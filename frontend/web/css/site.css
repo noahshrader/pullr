@@ -26,6 +26,7 @@ body {
     list-style-type: none;
 }
 .page-container{
+    margin-left: 80px;
     color: white;
 }
 
