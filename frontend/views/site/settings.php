@@ -19,15 +19,17 @@ $this->title = 'Account Settings';
                                    $keyValues = array_combine($timezones, $timezones);
                                            ?>
                                 <?= $form->field($user, 'timezone')->dropDownList($keyValues); ?>
-                                <div>
-                                    <h2>Notifications</h2>
+                                <fieldset>
+                                    <legend>Notifications</legend>
                                     
-                                    <?= $form->field($notification, Notification::$NOTIFY_NEVER )->label('Never send me emails')->checkbox(); ?>
+                                    <?= $form->field($notification, Notification::$NOTIFY_NEVER )->checkbox(); ?>
                                     
                                     <? $attributes = $notification->getNotificationsAttributes(); ?>
                                     <div class="row">
                                         <div class="col-xs-2">
-                                            Email me
+                                            <span style="position: relative; top: 8px">
+                                                Email me 
+                                            </span>
                                         </div>
                                         <div class="col-xs-10">
                                         <? foreach ($attributes as $attribute): ?>
@@ -35,7 +37,13 @@ $this->title = 'Account Settings';
                                         <? endforeach; ?>
                                         </div>
                                     </div>
-                                </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Change Password</legend>
+                                    <?= $form->field($changePasswordForm, 'oldPassword') ?>
+                                    <?= $form->field($changePasswordForm, 'newPassword') ?>
+                                    <?= $form->field($changePasswordForm, 'confirmPassword') ?>
+                                </fieldset>
 				<div class="form-group">
 					<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
 				</div>

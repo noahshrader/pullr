@@ -7,11 +7,13 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
+use common\assets\CommonAsset;
 
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
+CommonAsset::register($this);
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>

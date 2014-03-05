@@ -9,6 +9,7 @@ use common\models\OpenIDToUser;
 use frontend\models\PasswordResetRequestForm;
 use common\models\User;
 use yii\web\NotFoundHttpException;
+use common\models\ChangePasswordForm;
 
 /**
  * Site controller
@@ -124,7 +125,7 @@ class SiteController extends Controller {
 
     public function actionSettings() {
         if (Yii::$app->user->isGuest){
-            throw new NotFoundHttpException();
+            return Yii::$app->user->loginRequired();
         }
 
         
@@ -132,10 +133,17 @@ class SiteController extends Controller {
         $user->setScenario('settings');
         $user->load($_POST) && $user->save($_POST);
         
-        $notificaiton = $user->notification;
+        $notification = $user->notification;
+        $notification->load($_POST) && $notification->save($_POST);
+        
+        $changePasswordForm = new ChangePasswordForm();
+        if ($changePasswordForm->load($_POST)){
+            
+        }
         return $this->render('settings', [
                     'user' => $user,
-                    'notification' => $notificaiton
+                    'notification' => $notification, 
+                    'changePasswordForm' => $changePasswordForm
         ]);
     }
     

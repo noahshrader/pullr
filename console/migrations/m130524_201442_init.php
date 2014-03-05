@@ -42,10 +42,10 @@ class m130524_201442_init extends \yii\db\Migration {
         $this->createTable(Notification::tableName(), [
             'userId' => Schema::TYPE_PK,
             Notification::$NOTIFY_NEVER => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT FALSE',
-            'donationReceived' => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
-            'newFeatureAdded' => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
-            'newThemeAvailable' => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
-            'systemUpdate' => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
+            Notification::$NOTIFY_DONATION_RECEIVED => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
+            Notification::$NOTIFY_NEW_FEATURE_ADDED => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
+            Notification::$NOTIFY_NEW_THEME_AVAILABLE => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
+            Notification::$NOTIFY_SYSTEM_UPDATE => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
                 ], $tableOptions);
         
         
