@@ -5,20 +5,23 @@ use yii\widgets\ActiveForm;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
- * @var \frontend\models\SignupForm $model
+ * @var common\models\User $model
  */
 $this->title = 'Signup';
 ?>
 <div class="site-signup">
 	<h1><?= Html::encode($this->title) ?></h1>
+
         <p class="lead">Do you already have an account on one of these sites? Click the logo to log in with it here:</p>
         <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/login')); ?>
-	<p>Please fill out the following fields to signup:</p>
+	<br />
+        
+	<p class="lead">Please fill out the following fields to signup:</p>
 
 	<div class="row">
 		<div class="col-lg-5">
 			<?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-				<?= $form->field($model, 'username') ?>
+				<?= $form->field($model, 'name') ?>
 				<?= $form->field($model, 'email') ?>
 				<?= $form->field($model, 'password')->passwordInput() ?>
 				<div class="form-group">

@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
 use common\components\Application;
+use common\models\Notification;
 
 /**
  * Class User
@@ -38,7 +39,7 @@ class User extends ActiveRecord implements IdentityInterface {
     public function behaviors() {
         return [
             'timestamp' => [
-                'class' => 'yii\behaviors\AutoTimestamp',
+                'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
@@ -124,6 +125,7 @@ class User extends ActiveRecord implements IdentityInterface {
 
     public function scenarios() {
         return [
+            'settings' => ['fullName', 'timezone'],
             'openId' => ['name', 'email'],
             'signup' => ['name', 'email', 'password', '!status'],
             'roles' => ['role'],
@@ -144,6 +146,17 @@ class User extends ActiveRecord implements IdentityInterface {
             return true;
         }
         return false;
+    }
+
+    public function afterSave($insert) {
+        parent::afterSave($insert);
+        if ($insert){
+            /** so we have new record*/
+            $notification = new Notification();
+            $notification->userId = $this->id;
+            $notification->save();
+        }
+        
     }
 
     public function getUrl() {
@@ -201,5 +214,12 @@ class User extends ActiveRecord implements IdentityInterface {
         public function getUsername(){
             return $this->name;
         }
-
+        
+        /**
+        * 
+        * @return User
+        */
+        public function getNotification() {
+            return $this->hasOne(Notification::className(), ['userId' => 'id']);
+        }
 }
