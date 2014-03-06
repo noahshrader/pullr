@@ -215,6 +215,9 @@ class User extends ActiveRecord implements IdentityInterface {
             return $this->name;
         }
         
+        public static function findIdentityByAccessToken($token) {
+            return null;
+        }
         /**
         * 
         * @return User
