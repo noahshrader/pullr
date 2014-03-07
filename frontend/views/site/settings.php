@@ -8,7 +8,7 @@ use common\models\Notification;
  * @var yii\widgets\ActiveForm $form
  * @var common\models\User $user
  */
-$this->title = 'My Account';
+$this->title = 'Account Settings';
 ?>
 <div class="account-settings">
 	<h1><?= Html::encode($this->title) ?></h1>
