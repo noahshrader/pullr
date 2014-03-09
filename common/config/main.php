@@ -8,6 +8,11 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [],
+                ]
+            ],
             'converter' => [
                 'class' => 'yii\web\AssetConverter',
                 'commands' => [

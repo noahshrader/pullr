@@ -9,7 +9,8 @@ class CommonAsset extends AssetBundle {
     public $sourcePath = '@common/web';
     public $baseUrl = '@web';
     public $css = [
-        'css/common.css'
+        'css/common.css',
+        'css/bootstrap/less/bootstrap.less',
     ];
     public $js = [
     ];
