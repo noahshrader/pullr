@@ -8,9 +8,9 @@ use Yii;
 use common\models\OpenIDToUser;
 use frontend\models\PasswordResetRequestForm;
 use common\models\User;
-use yii\web\NotFoundHttpException;
 use common\models\ChangePasswordForm;
-
+use common\models\base\BaseImage;
+use common\components\UploadImage;
 /**
  * Site controller
  */
@@ -131,7 +131,25 @@ class SiteController extends Controller {
         
         $user = Yii::$app->user->identity;
         $user->setScenario('settings');
-        $user->load($_POST) && $user->save($_POST);
+        if ($user->load($_POST) && $user->save($_POST)){
+            $errors = UploadImage::Upload($user->id, BaseImage::TYPE_USER);
+            if ($errors) {
+                $user->addError('images', $errors[0]);
+            } else{
+                $params = ['userId' => $user->id, 'type' => BaseImage::TYPE_USER, 'status' => BaseImage::STATUS_APPROVED];
+                $image = BaseImage::find()->where($params)->orderBy('id DESC')->one();
+                $user->photo = $image->id;
+                $user->smallPhoto = $image->id;
+                $user->save();
+                $user->refresh();
+                $oldImages = BaseImage::find()->where($params)->andWhere('id < '.$image->id)->all();
+                foreach ($oldImages as $oldImage){
+                    $oldImage->status = BaseImage::STATUS_DELETED;
+                    $oldImage->save();
+                }
+                
+            }
+        }
         
         $notification = $user->notification;
         $notification->load($_POST) && $notification->save($_POST);

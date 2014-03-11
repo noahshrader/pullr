@@ -20,5 +20,13 @@ return [
                 ],
             ],
         ],
+        'image' => [
+            'class' => 'yii\image\ImageDriver',
+            'driver' => 'GD', //GD or Imagick
+        ],
+        'authManager' => [
+            'class' => \common\components\PhpManager::className(),
+            'defaultRoles' => ['guest'],
+        ],
     ],
 ];

@@ -5,7 +5,7 @@ use common\models\OpenIDToUser;
 use common\models\Notification;
 use yii\db\Schema;
 
-class m130524_201442_init extends \yii\db\Migration {
+class m130524_201442_init extends \console\models\ExtendedMigration{
 
     public function up() {
         $tableOptions = null;
@@ -16,7 +16,6 @@ class m130524_201442_init extends \yii\db\Migration {
         $this->createTable(User::tableName(), [
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'fullName' => Schema::TYPE_STRING . ' NOT NULL',
             'auth_key' => Schema::TYPE_STRING . '(32) NOT NULL',
             'password_hash' => Schema::TYPE_STRING . ' NOT NULL',
             'password_reset_token' => Schema::TYPE_STRING . '(32)',
@@ -102,7 +101,8 @@ class m130524_201442_init extends \yii\db\Migration {
 
     public function down() {
         $this->dropTable(OpenIDToUser::tableName());
-        $this->dropTable('tbl_user');
+        $this->dropTable(User::tableName());
+        $this->dropTable(Notification::tableName());
     }
 
 }

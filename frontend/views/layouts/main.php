@@ -8,7 +8,6 @@ use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
 use common\assets\CommonAsset;
-
 /**
  * @var \yii\web\View $this
  * @var string $content
@@ -58,6 +57,9 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
         <div class="page-wrapper">
             <div class="page-sidebar">
+                <? if (!Yii::$app->user->isGuest): ?>
+                    <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+                <? endif; ?>
                 <ul> 
                     <? if (Yii::$app->user->isGuest): ?>
                     <li>

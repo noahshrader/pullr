@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "2bc77b13cd129ff977be2d7e1cd6e9e5",
+    "hash": "d253e2d68fb570bc9446289d58b40ba3",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -108,6 +108,93 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "kartik-v/bootstrap-star-rating",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
+                "reference": "2603050a50f6175db91cbd91dcf797b580df2314"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/2603050a50f6175db91cbd91dcf797b580df2314",
+                "reference": "2603050a50f6175db91cbd91dcf797b580df2314",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
+            "homepage": "https://github.com/kartik-v/bootstrap-star-rating",
+            "keywords": [
+                "Rating",
+                "bootstrap",
+                "jquery",
+                "star"
+            ],
+            "time": "2014-03-05 15:54:01"
+        },
+        {
+            "name": "kartik-v/yii2-widgets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widgets.git",
+                "reference": "1f2346cb67c332ff3486c6fde4d58c85763c2caa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/1f2346cb67c332ff3486c6fde4d58c85763c2caa",
+                "reference": "1f2346cb67c332ff3486c6fde4d58c85763c2caa",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-star-rating": "dev-master",
+                "yiisoft/yii2": "dev-master",
+                "yiisoft/yii2-bootstrap": "dev-master"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Collection of useful widgets for Yii Framework 2.0 extending functionalities for Bootstrap",
+            "homepage": "https://github.com/kartik-v/yii2-widgets",
+            "keywords": [
+                "extension",
+                "form",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-03-11 09:10:15"
         },
         {
             "name": "lusitanian/oauth",
@@ -328,12 +415,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "af5a2197183754629a8ff09c23b043c3c9711a1f"
+                "reference": "6234ba561a5d6549b68825416905d4fdbabc695e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/af5a2197183754629a8ff09c23b043c3c9711a1f",
-                "reference": "af5a2197183754629a8ff09c23b043c3c9711a1f",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6234ba561a5d6549b68825416905d4fdbabc695e",
+                "reference": "6234ba561a5d6549b68825416905d4fdbabc695e",
                 "shasum": ""
             },
             "type": "library",
@@ -368,7 +455,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-03-05 22:17:20"
+            "time": "2014-03-10 10:08:56"
         },
         {
             "name": "yiisoft/jquery",
@@ -425,12 +512,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "92c5fcf5dceb4d32fe13624f446db6d01b94517f"
+                "reference": "ad45735113d328467c91c1d95ae878aa30a5630c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/92c5fcf5dceb4d32fe13624f446db6d01b94517f",
-                "reference": "92c5fcf5dceb4d32fe13624f446db6d01b94517f",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ad45735113d328467c91c1d95ae878aa30a5630c",
+                "reference": "ad45735113d328467c91c1d95ae878aa30a5630c",
                 "shasum": ""
             },
             "require": {
@@ -495,7 +582,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-03-07 02:18:28"
+            "time": "2014-03-11 10:18:35"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -503,12 +590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "fcbfd76087654f4b8d3e0909a98540a885817bbf"
+                "reference": "9de1bbeeb914bf648867782525d57e06e8070d40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/fcbfd76087654f4b8d3e0909a98540a885817bbf",
-                "reference": "fcbfd76087654f4b8d3e0909a98540a885817bbf",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/9de1bbeeb914bf648867782525d57e06e8070d40",
+                "reference": "9de1bbeeb914bf648867782525d57e06e8070d40",
                 "shasum": ""
             },
             "require": {
@@ -538,7 +625,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-03-06 11:18:32"
+            "time": "2014-03-11 10:15:21"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -546,12 +633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-composer.git",
-                "reference": "dfad39e5aa0802154cd35f0f5c84ef63bb541ed1"
+                "reference": "94baa21b7a75e731f5d3a82e13262c62b22ae57c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/dfad39e5aa0802154cd35f0f5c84ef63bb541ed1",
-                "reference": "dfad39e5aa0802154cd35f0f5c84ef63bb541ed1",
+                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/94baa21b7a75e731f5d3a82e13262c62b22ae57c",
+                "reference": "94baa21b7a75e731f5d3a82e13262c62b22ae57c",
                 "shasum": ""
             },
             "require": {
@@ -584,7 +671,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2014-02-27 16:37:08"
+            "time": "2014-03-04 22:22:55"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -631,6 +718,49 @@
                 "yii2"
             ],
             "time": "2014-03-04 12:09:56"
+        },
+        {
+            "name": "yurkinx/yii2-image",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yurkinx/yii2-image.git",
+                "reference": "4c16aecf897e6052c6e060425b829d955f70a1a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yurkinx/yii2-image/zipball/4c16aecf897e6052c6e060425b829d955f70a1a2",
+                "reference": "4c16aecf897e6052c6e060425b829d955f70a1a2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "yii\\image\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yuri Kileev",
+                    "email": "kileev@gmail.com"
+                }
+            ],
+            "description": "Yii2 extension for image manipulating using Kohana Image Library.",
+            "homepage": "https://github.com/yurkinx/yii2-image",
+            "keywords": [
+                "extension",
+                "image",
+                "yii2"
+            ],
+            "time": "2013-10-19 02:00:53"
         }
     ],
     "packages-dev": [
@@ -673,12 +803,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "99f3ba2ea13556a0f00190e438675f1d3d3f7fee"
+                "reference": "77c09e518f66af38a019c8ff95cfa08f899e9d99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/99f3ba2ea13556a0f00190e438675f1d3d3f7fee",
-                "reference": "99f3ba2ea13556a0f00190e438675f1d3d3f7fee",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/77c09e518f66af38a019c8ff95cfa08f899e9d99",
+                "reference": "77c09e518f66af38a019c8ff95cfa08f899e9d99",
                 "shasum": ""
             },
             "require": {
@@ -709,7 +839,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2014-03-04 18:40:04"
+            "time": "2014-03-10 11:25:15"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -717,12 +847,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "980be9be00c3e2a6dbaff92e332e95f603507afa"
+                "reference": "48e8eeea1976313a617d9bf1d2c57c999fed2b0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/980be9be00c3e2a6dbaff92e332e95f603507afa",
-                "reference": "980be9be00c3e2a6dbaff92e332e95f603507afa",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/48e8eeea1976313a617d9bf1d2c57c999fed2b0f",
+                "reference": "48e8eeea1976313a617d9bf1d2c57c999fed2b0f",
                 "shasum": ""
             },
             "require": {
@@ -754,16 +884,17 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-03-06 22:03:23"
+            "time": "2014-03-08 23:47:04"
         }
     ],
     "aliases": [
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "kartik-v/yii2-widgets": 20,
+        "yurkinx/yii2-image": 20
+    },
     "platform": {
         "php": ">=5.4.0"
     },

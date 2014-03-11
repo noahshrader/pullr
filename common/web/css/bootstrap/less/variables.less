@@ -126,9 +126,9 @@
 //** Default background color used for all tables.
 @table-bg:                      transparent;
 //** Background color used for `.table-striped`.
-@table-bg-accent:               #f9f9f9;
+@table-bg-accent:               @pullr-bg-lighter;
 //** Background color used for `.table-hover`.
-@table-bg-hover:                #f5f5f5;
+@table-bg-hover:                lighten(@pullr-bg-lighter, 5%);
 @table-bg-active:               @table-bg-hover;
 
 //** Border color for table and cell borders.
@@ -196,7 +196,7 @@
 //** Small `.form-control` height
 @input-height-small:             (floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2);
 
-@legend-color:                   @gray-dark;
+@legend-color:                   @pullr-text-color;
 @legend-border-color:            #e5e5e5;
 
 //** Background color for textual input addons

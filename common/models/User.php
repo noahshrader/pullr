@@ -2,12 +2,12 @@
 
 namespace common\models;
 
-use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
 use common\components\Application;
 use common\models\Notification;
+use common\models\base\BaseImage;
 
 /**
  * Class User
@@ -25,7 +25,11 @@ use common\models\Notification;
  * @property integer $updated_at
  */
 class User extends ActiveRecord implements IdentityInterface {
-
+    /**
+     * that field is used to upload photo for user avatar
+     * @var type 
+     */
+    public $images;
     /**
      * @var string the raw password. Used to collect password input and isn't saved in database
      */
@@ -47,7 +51,7 @@ class User extends ActiveRecord implements IdentityInterface {
             ],
         ];
     }
-
+    
     /**
      * Finds an identity by the given ID.
      *
@@ -172,7 +176,21 @@ class User extends ActiveRecord implements IdentityInterface {
         $allowed = ['id', 'name', 'photo', 'smallPhoto'];
         return array_intersect_key(parent::toArray(), array_flip($allowed));
     }
-
+    
+    public function afterFind() {
+        parent::afterFind();
+        if (intval($this->photo)){
+            $id = intval($this->photo);
+            $this->photo = BaseImage::getOriginalUrlById($id);
+            $this->smallPhoto = BaseImage::getMiddleUrlById($id);
+            
+            if (Application::IsBackend()){
+                $this->photo = Application::frontendUrl($this->photo);
+                $this->smallPhoto = Application::frontendUrl($this->smallPhoto);
+            }
+        }
+    }
+    
     /**
      * Finds user by password reset token
      *
@@ -224,5 +242,13 @@ class User extends ActiveRecord implements IdentityInterface {
         */
         public function getNotification() {
             return $this->hasOne(Notification::className(), ['userId' => 'id']);
+        }
+        
+        /**
+         * 
+         * @return User
+         */
+        public function getOpenIDToUser() {
+            return $this->hasOne(OpenIDToUser::className(), ['userId' => 'id']);
         }
 }
