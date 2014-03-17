@@ -18,6 +18,7 @@ return [
         ],
         'eauth' => require 'eauth.php',
         'user' => [
+             'class' => 'common\components\PullrUserComponent',
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],

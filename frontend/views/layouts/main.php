@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+use frontend\assets\FrontendAsset;
 use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
 use common\assets\CommonAsset;
@@ -13,7 +13,7 @@ use common\assets\CommonAsset;
  * @var string $content
  */
 CommonAsset::register($this);
-AppAsset::register($this);
+FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -77,7 +77,6 @@ AppAsset::register($this);
                 </ul>
             </div>
             <div class="page-container">
-                <div class="container">
                     <?=
                     Breadcrumbs::widget([
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -85,7 +84,6 @@ AppAsset::register($this);
                     ?>
 <?= Alert::widget() ?>
             <?= $content ?>
-                </div>
             </div>
 
 

@@ -11,6 +11,8 @@ use common\models\User;
 use common\models\ChangePasswordForm;
 use common\models\base\BaseImage;
 use common\components\UploadImage;
+use common\models\Plan;
+
 /**
  * Site controller
  */
@@ -127,7 +129,7 @@ class SiteController extends Controller {
         if (Yii::$app->user->isGuest){
             return Yii::$app->user->loginRequired();
         }
-
+        
         
         $user = Yii::$app->user->identity;
         $user->setScenario('settings');
@@ -138,6 +140,7 @@ class SiteController extends Controller {
             } else{
                 $params = ['userId' => $user->id, 'type' => BaseImage::TYPE_USER, 'status' => BaseImage::STATUS_APPROVED];
                 $image = BaseImage::find()->where($params)->orderBy('id DESC')->one();
+                $user->setScenario('photo');
                 $user->photo = $image->id;
                 $user->smallPhoto = $image->id;
                 $user->save();
@@ -158,6 +161,13 @@ class SiteController extends Controller {
         if ($changePasswordForm->load($_POST)){
             
         }
+        
+        /*account subscriptions*/
+        if (isset($_POST['subscription'])){
+            $plan = Plan::find($user->id);
+            $plan->prolong($_POST['subscription']);
+        }
+        
         return $this->render('settings', [
                     'user' => $user,
                     'notification' => $notification, 

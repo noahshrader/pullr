@@ -3,6 +3,7 @@
 use common\models\User;
 use common\models\OpenIDToUser;
 use common\models\Notification;
+use common\models\Plan;
 use yii\db\Schema;
 
 class m130524_201442_init extends \console\models\ExtendedMigration{
@@ -26,6 +27,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'role' => Schema::TYPE_STRING . '(10) NOT NULL DEFAULT "user"',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
             'timezone' => Schema::TYPE_STRING . ' NOT NULL',
+            'last_login' => Schema::TYPE_INTEGER. ' NOT NULL',
             'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
                 ], $tableOptions);
@@ -47,6 +49,15 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             Notification::$NOTIFY_SYSTEM_UPDATE => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
                 ], $tableOptions);
         
+        $plans = implode('","', Plan::$PLANS);
+        $plans = "ENUM (\"$plans\") NOT NULL DEFAULT \"" . Plan::PLAN_BASE . '"';
+        
+        $this->createTable(Plan::tableName(), [
+            'id' => Schema::TYPE_PK,
+            'plan' => $plans, 
+            'expire' => \yii\db\oci\Schema::TYPE_INTEGER . ' NOT NULL', 
+            'subscription' => Schema::TYPE_STRING . '(20)',
+        ]);
         
         $this->sampleUsers();
     }
@@ -103,6 +114,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $this->dropTable(OpenIDToUser::tableName());
         $this->dropTable(User::tableName());
         $this->dropTable(Notification::tableName());
+        $this->dropTable(Plan::tableName());
     }
 
 }

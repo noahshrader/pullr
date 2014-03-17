@@ -13,7 +13,7 @@ $this->title = 'Users';
 <table id="users-management-table"  class="table table-striped table-bordered table-hover dataTable">
     <thead>
         <tr>
-            <th class="sorting" role="columnheader">
+            <th>
                 Full Name
             </th>
             <th>
@@ -33,15 +33,15 @@ $this->title = 'Users';
             </th>
         </tr>
     </thead>
-    <tbody role="alert" aria-live="polite" aria-relevant="all">
+    <tbody>
         <? foreach ($users as $user): ?>
-            <tr class='event' data-id='<?= $user->id?>'>
+            <tr data-id='<?= $user->id?>'>
                 <td><?= $user->name ?></td>
                 <td><?= $user->email?> </td>
                 <td></td>
                 <td><?= ($user->status == User::STATUS_ACTIVE) ? 'Active' : 'Inactive'?> </td>
                 <td><?= date('M j Y', $user->created_at) ?> </td>
-                <td></td>
+                <td><?= date('M j Y', $user->last_login) ?></td>
             </tr>
         <? endforeach; ?>
     </tbody>

@@ -5,6 +5,7 @@ namespace common\models\base;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yii\web\ForbiddenHttpException;
+use common\components\Application;
 
 class BaseImage extends ActiveRecord implements IBaseImage {
     const MAX_IMAGES_PER_OBJECT = 10;
@@ -56,7 +57,7 @@ class BaseImage extends ActiveRecord implements IBaseImage {
     }
     
     public static function getMiddleUrlById($id){
-        return self::getSubPathById($id) . '_middle.jpg';
+        return Application::frontendUrl(self::getSubPathById($id) . '_middle.jpg');
     }
     
     public function getOriginalUrl() {
@@ -64,7 +65,7 @@ class BaseImage extends ActiveRecord implements IBaseImage {
     }
     
      public static function getOriginalUrlById($id){
-        return self::getSubPathById($id) . '_original.jpg';
+        return Application::frontendUrl(self::getSubPathById($id) . '_original.jpg');
     }
 
     /**

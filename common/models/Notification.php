@@ -5,9 +5,6 @@ namespace common\models;
 use yii\db\ActiveRecord;
 use common\models\User;
 
-/**
- * class is responsible for associating OpenID accounts to User model
- */
 class Notification extends ActiveRecord {
     public static $NOTIFY_NEVER = 'never';
     public static $NOTIFY_DONATION_RECEIVED = 'donationReceived';

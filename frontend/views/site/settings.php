@@ -12,6 +12,8 @@ use kartik\widgets\FileInput;
 $this->title = 'Account Settings';
 ?>
 <div class="account-settings">
+    <div class='account-settings-row row'>
+    <div class="col-xs-10">
 <h1><?= Html::encode($this->title) ?></h1>
     <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options'=> [
         'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
@@ -31,6 +33,7 @@ $this->title = 'Account Settings';
                     <?= Html::error($user, 'images', ['class' => 'help-block']); ?>
                 <? endif; ?>
             <? endif ?>
+            </div>
             <?= $form->field($user, 'name') ?>
             <?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
             <? $timezones = timezone_identifiers_list();
@@ -66,4 +69,15 @@ $this->title = 'Account Settings';
                     <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
             </div>
     <?php ActiveForm::end(); ?>
+            </div>
+    </div>
+<!-- table-cell div -->
+<div class='col-xs-2 account-plan-container'>
+    <div class='account-plan'>
+            <?= $this->render('settings-plan', [
+                'user' => $user
+            ]); ?>
+    </div>
+</div>
+    </div>
 </div>

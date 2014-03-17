@@ -8,7 +8,7 @@ use yii\web\IdentityInterface;
 use common\components\Application;
 use common\models\Notification;
 use common\models\base\BaseImage;
-
+use common\models\Plan;
 /**
  * Class User
  * @package common\models
@@ -129,13 +129,15 @@ class User extends ActiveRecord implements IdentityInterface {
 
     public function scenarios() {
         return [
+            'photo' => ['photo', 'smallPhoto'],
             'settings' => ['fullName', 'timezone'],
-            'openId' => ['name', 'email'],
+            'openId' => ['name', 'email', 'birthday', 'photo', 'smallPhoto'],
             'signup' => ['name', 'email', 'password', '!status'],
             'roles' => ['role'],
             'resetPassword' => ['password'],
             'requestPasswordResetToken' => ['email'],
-            'password_reset_token' => ['password_reset_token']
+            'password_reset_token' => ['password_reset_token'],
+            'last_login' => ['last_login']
         ];
     }
 
@@ -147,11 +149,24 @@ class User extends ActiveRecord implements IdentityInterface {
             if ($this->isNewRecord) {
                 $this->auth_key = Security::generateRandomKey();
             }
+            
+            if (!$this->isNewRecord && (!in_array($this->getScenario(), ['photo', 'openId']))){
+                if ($this->photo != $this->oldAttributes['photo']){
+                    $this->photo = $this->oldAttributes['photo'];
+                }
+                if ($this->smallPhoto != $this->oldAttributes['smallPhoto']){
+                    $this->smallPhoto = $this->oldAttributes['smallPhoto'];
+                }
+            }
             return true;
         }
         return false;
     }
 
+    /**
+     * 
+     * @param type $insert  - if true - new record inserted
+     */
     public function afterSave($insert) {
         parent::afterSave($insert);
         if ($insert){
@@ -159,8 +174,12 @@ class User extends ActiveRecord implements IdentityInterface {
             $notification = new Notification();
             $notification->userId = $this->id;
             $notification->save();
+            
+            $plan = new Plan();
+            $plan->id = $this->id;
+            $plan->plan = Plan::PLAN_BASE;
+            $plan->save();
         }
-        
     }
 
     public function getUrl() {
@@ -179,17 +198,28 @@ class User extends ActiveRecord implements IdentityInterface {
     
     public function afterFind() {
         parent::afterFind();
+        $this->checkPhotoLinks();
+    }
+    
+    public function checkPhotoLinks(){
         if (intval($this->photo)){
             $id = intval($this->photo);
             $this->photo = BaseImage::getOriginalUrlById($id);
             $this->smallPhoto = BaseImage::getMiddleUrlById($id);
-            
-            if (Application::IsBackend()){
-                $this->photo = Application::frontendUrl($this->photo);
-                $this->smallPhoto = Application::frontendUrl($this->smallPhoto);
-            }
         }
     }
+        
+//    /**
+//     * If object created from another object like event->user it will have wrong link to images 
+//     * if no getPhoto() and getSmallPhoto is called
+//     */
+//    public function getPhoto(){
+//        $this->checkPhotoLinks();
+//    }
+//    
+//    public function getSmallPhoto(){
+//        $this->checkPhotoLinks();
+//    }
     
     /**
      * Finds user by password reset token
@@ -250,5 +280,28 @@ class User extends ActiveRecord implements IdentityInterface {
          */
         public function getOpenIDToUser() {
             return $this->hasOne(OpenIDToUser::className(), ['userId' => 'id']);
+        }
+        
+        
+        private $_plan = null;
+        public function getPlan(){
+            if (!$this->_plan){
+                $plan = Plan::find($this->id);
+                $this->_plan = $plan->plan;
+                if ($plan->expire < time()){
+                    $this->_plan = Plan::PLAN_BASE;
+                }
+            }
+            
+            return $this->_plan;
+        }
+        
+        /**
+         * prolong User plan
+         * @param type $amount - money amount
+         */
+        public function prolong($amount){
+            $plan = Plan::find($this->id);
+            $plan->prolong($amount);
         }
 }

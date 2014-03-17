@@ -2,11 +2,22 @@
 
 namespace common\components;
 
-class Application {
+class Application extends \yii\web\Application{
 
     const ID_BACKEND = 'pullr-backend';
     const ID_FRONTEND = 'pullr-frontend';
-
+    
+    public function __construct($config = array()) {
+        parent::__construct($config);
+        if ($this->user && $this->user->id){
+            $user = $this->user->identity;
+            $oldScenario = $user->getScenario();
+            $user->setScenario('last_login');
+            $user->last_login = time();
+            $user->save();
+            $user->setScenario($oldScenario);
+        }
+    }
     public static function IsBackend() {
         return \Yii::$app->id == self::ID_BACKEND;
     }
@@ -23,7 +34,11 @@ class Application {
      * @return String
      */
     public static function frontendUrl($url) {
-        return \Yii::$app->params['frontendUrl'] . $url;
+        if (self::IsBackend()){
+            return \Yii::$app->params['frontendUrl'] . $url;
+        } else {
+            return $url;
+        }
     }
     
     /**
@@ -34,7 +49,11 @@ class Application {
      * @return String
      */
     public static function backendUrl($url) {
-        return \Yii::$app->params['backendUrl'] . $url;
+        if (self::IsFrontend()){
+            return \Yii::$app->params['backendUrl'] . $url;
+        } else {
+            return $url;
+        }
     }
     
     public static function IsAdmin(){
