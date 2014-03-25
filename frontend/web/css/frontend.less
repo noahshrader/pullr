@@ -1,4 +1,4 @@
-.account-plan{
+.frontend-right-widget{
     border: 1px solid #fff;
     position: absolute;
     top: 10px;
@@ -7,22 +7,23 @@
     right: 10px;
     padding: 10px;
 }
-.account-settings{
+.pullr-table{
     display: table;
     width: 100%;
 }
-.account-settings-row{
+
+.pullr-table-row{
     display: table-row;
 }
 
-.account-settings-row > div{
+.pullr-table-row > div{
     display: table-cell;
     float: none;
 }
 
 .plan-show-base{
     .plan-pro-advertisement{
-        
+
     }
     .payment{
         display: none;
@@ -36,7 +37,7 @@
     .plan-pro-advertisement{
         display: none;
     }
-    
+
     .payment{
         select{
             color: #000;
@@ -57,3 +58,46 @@
     .plan-pro{
     }
 }
+
+
+.layout-edit{
+    color: #000;
+    h4{
+        color: #fff;
+    }
+    #layout-channelname, #layout-channelteam, #layout-multichannels{
+        display: none;
+    }
+
+    [data-layout-type=SingleStream] #layout-channelname{
+        display: initial;
+    }
+
+    [data-layout-type=TeamStream] #layout-channelteam{
+        display: initial;
+    }
+
+    [data-layout-type=MultiStream] #layout-multichannels{
+        display: block;
+    }
+    #layout-multichannels{
+        padding: 5px;
+        input{
+            margin-left: 5px;
+            /*margin-top: 10px;*/
+            /*margin-bottom: 5px;*/
+        }
+        background-color: #ddd;
+        ol{
+            padding-left: 20px;
+            list-style-type: none;
+            li {
+                padding-right: 20px;
+                a{
+                    float: right;
+                }
+            }
+        }
+    }
+}
+

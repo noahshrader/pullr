@@ -34,7 +34,7 @@ class Application extends \yii\web\Application{
      * @return String
      */
     public static function frontendUrl($url) {
-        if (self::IsBackend()){
+        if (self::IsBackend() && (strpos($url, 'http')!==0)){
             return \Yii::$app->params['frontendUrl'] . $url;
         } else {
             return $url;

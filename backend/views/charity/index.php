@@ -54,7 +54,7 @@ $this->title = 'Charities';
     <tbody>
         <? foreach ($charities as $charity): ?>
             <tr data-id='<?= $charity->id?>'>
-                <td></td>
+                <td class="text-center"><a href="charity/edit?id=<?= $charity->id ?>"><img title="<?= $charity->name ?>" class="microPhoto" src="<?= $charity->smallPhoto ?>"></a></td>
                 <td><a href="charity/edit?id=<?= $charity->id ?>"><?= $charity->name ?></a></td>
                 <td><?= $charity->type?> </td>
                 <td><?= $charity->paypal?> </td>

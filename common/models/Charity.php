@@ -56,18 +56,24 @@ class Charity extends ActiveRecord {
      * @var type 
      */
     public $images;
-
+    public $smallPhoto;
+    
     public function afterFind() {
         parent::afterFind();
         if (intval($this->photo)) {
             $id = intval($this->photo);
             $this->photo = BaseImage::getOriginalUrlById($id);
+            $this->smallPhoto = BaseImage::getMiddleUrlById($id);
+        } 
+        if (empty($this->photo)){
+            $this->photo = BaseImage::NO_PHOTO_LINK();
+            $this->smallPhoto = BaseImage::NO_PHOTO_LINK();
         }
     }
 
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
-            if ($this->photo && !int_val($this->photo)) {
+            if ($this->photo && !intval($this->photo)) {
                 $this->photo = $this->oldAttributes['photo'];
             }
             return true;

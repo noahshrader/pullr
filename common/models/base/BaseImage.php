@@ -13,6 +13,9 @@ class BaseImage extends ActiveRecord implements IBaseImage {
     const STATUS_PENDING = 'pending';
     const STATUS_DELETED = 'deleted';
 
+    public function NO_PHOTO_LINK(){
+        return Application::frontendUrl('images/no_photo.png');
+    }
     /**
      * when error is generated during uploading image
      */
@@ -24,11 +27,13 @@ class BaseImage extends ActiveRecord implements IBaseImage {
     public static $STATUSES = [self::STATUS_APPROVED, self::STATUS_PENDING, self::STATUS_DELETED, self::STATUS_ERROR];
 
     const TYPE_USER = 'user';
+    const TYPE_CHARITY = 'charity';
+    
 
     /**
      * list of types (models) available to upload images
      */
-    public static $TYPES = [self::TYPE_USER];
+    public static $TYPES = [self::TYPE_USER, self::TYPE_CHARITY];
 
     /** MAX size is 5 MB */
     const MAX_IMAGE_SIZE = 5242880;
@@ -100,7 +105,7 @@ class BaseImage extends ActiveRecord implements IBaseImage {
         $baseImage->userId = \Yii::$app->user->id;
         $baseImage->save();
 
-        $basePath = \Yii::getAlias('@webroot') . '/' . self::getSubPathById($baseImage->id);
+        $basePath = \Yii::getAlias('@frontend') . '/web/' . self::getSubPathById($baseImage->id);
         $originalPath = $basePath . '_original.jpg';
         $middlePath = $basePath . '_middle.jpg';
         $image = \Yii::$app->image->load($file->tempName);

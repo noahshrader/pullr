@@ -138,7 +138,7 @@ class SiteController extends Controller {
             if ($errors) {
                 $user->addError('images', $errors[0]);
             } else{
-                $params = ['userId' => $user->id, 'type' => BaseImage::TYPE_USER, 'status' => BaseImage::STATUS_APPROVED];
+                $params = ['subjectId' => $user->id, 'type' => BaseImage::TYPE_USER, 'status' => BaseImage::STATUS_APPROVED];
                 $image = BaseImage::find()->where($params)->orderBy('id DESC')->one();
                 $user->setScenario('photo');
                 $user->photo = $image->id;

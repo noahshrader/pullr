@@ -91,7 +91,7 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
     public function sampleData(){
         $charity = new Charity();
         $charity->name = 'St. Jude';
-        $charity->type = 'Children\'s Charity';
+        $charity->type = 'Community';
         $charity->paypal = 'paypal@stjude.org';
         $charity->contact = 'Noah Shrader';
         $charity->contactEmail = 'noahshrader@gmail.com';
@@ -111,8 +111,10 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
         $event->startDate = strtotime('27-12-2013');
         $event->endDate = strtotime('01-01-2014');
         $event->userId = 1;
+        $event->status = Event::STATUS_ACTIVE;
         $event->save();
     }
+    
     public function down() {
         $this->dropTable(BaseImage::tableName());
         $this->dropTable(Payment::tableName());

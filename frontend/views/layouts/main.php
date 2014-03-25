@@ -71,6 +71,12 @@ FrontendAsset::register($this);
                     <? endif; ?>
                     <? if (!Yii::$app->user->isGuest): ?>
                         <li>
+                            <a href="">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="pullrlayout">Streams</a>
+                        </li>
+                        <li>
                             <a href="site/settings">Settings</a>
                         </li>
                     <? endif; ?>

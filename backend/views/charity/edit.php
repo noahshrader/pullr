@@ -2,6 +2,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use kartik\widgets\FileInput;
 
 use common\models\Charity; 
 /**
@@ -11,11 +12,13 @@ $this->title = ($charity->id == 0) ? 'New charity' : 'Edit charity ' . $charity-
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 
-<?php $form = ActiveForm::begin(['options' => [
+<?php $form = ActiveForm::begin(['id' => 'editCharity', 'options' => [
         'enctype' => 'multipart/form-data', 'method' => 'POST']]); ?>
-
-<div class="form-group user-images <?= $user->hasErrors('images') ? 'has-error' : '' ?>">
-                <label class="control-label">Upload avatar</label> 
+<div>
+    <img class="smallPhoto" src="<?= $charity->photo ?>" >
+</div>
+<div class="form-group user-images <?= $charity->hasErrors('images') ? 'has-error' : '' ?>">
+                <label class="control-label">Upload a logo</label> 
                 <? $params = ['multiple' => false, 'accept' => 'image/*'];
                     echo FileInput::widget([
                         'name' => 'images[]',
@@ -25,9 +28,10 @@ $this->title = ($charity->id == 0) ? 'New charity' : 'Edit charity ' . $charity-
                         'buttonOptions' => ['label' => false],
                         'showRemove' => false,
                     ]); ?>
-                 <? if ($user->hasErrors('images')): ?>
-                    <?= Html::error($user, 'images', ['class' => 'help-block']); ?>
-                <? endif; ?>
+                 <? if ($charity->hasErrors('images')): ?>
+                    <?= Html::error($charity, 'images', ['class' => 'help-block']); ?>
+                 <? endif ?>
+</div>
                 
 <?= $form->field($charity, 'name') ?>
 <?= $form->field($charity, 'status')->dropDownList(array_combine(Charity::$STATUSES, Charity::$STATUSES));?>

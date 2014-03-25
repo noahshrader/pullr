@@ -6,6 +6,7 @@ use common\models\User;
 use common\components\Application;
 use yii\helpers\Html;
 use yii\base\ErrorException;
+use common\models\base\BaseImage;
 
 class UserPhoto extends Widget{
     /**
@@ -30,7 +31,7 @@ class UserPhoto extends Widget{
             }
             $image = $this->user->$type;
             if (!$image){
-                $image = 'images/no_photo.png';
+                $image = BaseImage::NO_PHOTO_LINK();
                 if (Application::IsBackend()){
                     $image = Application::frontendUrl($image);
                 }

@@ -30,7 +30,7 @@ class Event extends ActiveRecord {
     
     /**
      * 
-     * @return User
+     * @return Charity
      */
     public function getCharity() {
         return $this->hasOne(Charity::className(), ['id' => 'charityId']);
