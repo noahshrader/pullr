@@ -29,19 +29,23 @@ $this->registerJsFile('@web/js/pullrlayout/edit.js', common\assets\CommonAsset::
                             Layout options
                         </a>
                 </div></div>
-                <div id="collapseTwo" class="panel-collapse collapse" data-layout-type="<?= str_replace(' ','',$layout->type) ?>">
+                <div id="collapseTwo" class="panel-collapse collapse<?= $layout->chat?' chatOn':''?>" data-layout-type="<?= str_replace(' ','',$layout->type) ?>">
                     <?= $form->field($layout, 'type',['autoPlaceholder' => true])->dropDownList(array_combine(Layout::$TYPES, Layout::$TYPES)) ?>
                     <?= $form->field($layout, 'channelName',['autoPlaceholder' => true]); ?>
                     <?= $form->field($layout, 'channelTeam',['autoPlaceholder' => true]);?>
                     <div id="layout-multichannels">
+                        <? if ($layout->isNewRecord): ?>
+                        <div class="label label-danger">Save layout before adding channels</div>
+                        <? endif ?>
                         <input type="text" id="addLayoutTeam" placeholder="Add channel"> <a class="btn btn-success btn-xs" onclick="addNewLayoutTeam()"> <i class="glyphicon glyphicon-plus"></i></a>
                         <div id="layoutTeams">
                             
                         </div>
                     </div>
-                    <?= $form->field($layout, 'chat')->checkbox(); ?>
-                    <?= $form->field($layout, 'chatToggle')->checkbox(); ?>
-                    <?= $form->field($layout, 'enableDonations')->checkbox(); ?>
+                    <input type="checkbox" id="switch-change" checked>
+                    <?= $form->field($layout, 'chat')->label('Chat on?')->checkbox([], false); ?>
+                    <?= $form->field($layout, 'chatToggle')->label('Use toggle?')->checkbox([], false); ?>
+                    <?= $form->field($layout, 'enableDonations')->label('Enable donations?')->checkbox([], false); ?>
                 </div>
             </div>
             

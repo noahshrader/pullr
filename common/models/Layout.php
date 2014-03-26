@@ -41,7 +41,13 @@ class Layout extends ActiveRecord {
             'default' => ['name','domain','streamService','type','channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations']
         ];
     }
-    
+    public function __construct($config = array()) {
+        parent::__construct($config);
+        
+        if ($this->isNewRecord){
+            $this->type = self::TYPE_SINGLE;
+        }
+    }
     public function attributeLabels() {
         return [
             'domain' => 'Domain Name',
@@ -54,7 +60,6 @@ class Layout extends ActiveRecord {
             ['name', 'required'],
             ['name', 'filter', 'filter' => 'strip_tags'],
             ['domain', 'filter', 'filter' => 'strip_tags'],
-            ['type', 'default', 'value' => self::TYPE_SINGLE],
             ['channelName', 'filter', 'filter' => 'strip_tags'],
             ['channelTeam', 'filter', 'filter' => 'strip_tags'],
             

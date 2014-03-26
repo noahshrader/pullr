@@ -11,9 +11,11 @@ class CommonAsset extends AssetBundle {
     public $css = [
         'css/bootstrap/less/bootstrap.less',
         'css/common.less',
+        'plugins/bootstrapSwitch/css/bootstrap3/bootstrap-switch.min.css'
     ];
     public $js = [
-        'js/common.js'
+        'js/common.js',
+        'plugins/bootstrapSwitch/js/bootstrap-switch.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
