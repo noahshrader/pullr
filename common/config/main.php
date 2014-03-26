@@ -28,5 +28,10 @@ return [
             'class' => \common\components\PhpManager::className(),
             'defaultRoles' => ['guest'],
         ],
+        'components' => [
+            'mail' => [
+                'class' => 'yii\swiftmailer\Mailer',
+            ],
+        ],
     ],
 ];

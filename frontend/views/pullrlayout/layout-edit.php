@@ -1,8 +1,16 @@
 <? 
 use common\models\Layout;
 use kartik\widgets\ActiveForm;
-
+use common\models\Event;
 $this->registerJsFile('@web/js/pullrlayout/edit.js', common\assets\CommonAsset::className());
+
+$events = Event::find()->where(['status' => Event::STATUS_ACTIVE])->all();
+$eventsNames = [];
+$eventsIds = [];
+foreach ($events as $event){        
+    $eventsNames[] = $event->name;
+    $eventsIds[] = $event->id;
+}
 ?>
 <? if ($layout): ?>
 <div class="layout-edit" data-id="<?= $layout->id?>">
@@ -29,7 +37,7 @@ $this->registerJsFile('@web/js/pullrlayout/edit.js', common\assets\CommonAsset::
                             Layout options
                         </a>
                 </div></div>
-                <div id="collapseTwo" class="panel-collapse collapse<?= $layout->chat?' chatOn':''?>" data-layout-type="<?= str_replace(' ','',$layout->type) ?>">
+                <div id="collapseTwo" class="panel-collapse collapse<?= $layout->chat?' chatOn':''?><?= $layout->enableDonations?' enableDonations':''?>" data-layout-type="<?= str_replace(' ','',$layout->type) ?>">
                     <?= $form->field($layout, 'type',['autoPlaceholder' => true])->dropDownList(array_combine(Layout::$TYPES, Layout::$TYPES)) ?>
                     <?= $form->field($layout, 'channelName',['autoPlaceholder' => true]); ?>
                     <?= $form->field($layout, 'channelTeam',['autoPlaceholder' => true]);?>
@@ -42,10 +50,12 @@ $this->registerJsFile('@web/js/pullrlayout/edit.js', common\assets\CommonAsset::
                             
                         </div>
                     </div>
-                    <input type="checkbox" id="switch-change" checked>
                     <?= $form->field($layout, 'chat')->label('Chat on?')->checkbox([], false); ?>
                     <?= $form->field($layout, 'chatToggle')->label('Use toggle?')->checkbox([], false); ?>
                     <?= $form->field($layout, 'enableDonations')->label('Enable donations?')->checkbox([], false); ?>
+                    
+                    <?= $form->field($layout, 'eventId',['autoPlaceholder' => true])->label('Select an Event')->dropDownList(array_combine($eventsIds, $eventsNames)) ?>
+                    
                 </div>
             </div>
             

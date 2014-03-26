@@ -7,9 +7,8 @@ use common\models\Layout;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
 use common\models\LayoutTeam;
-/**
- * Site controller
- */
+
+
 class PullrLayoutController extends Controller {
 
     /**

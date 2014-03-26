@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use yii\base\Model;
@@ -7,63 +8,68 @@ use Yii;
 /**
  * Login form
  */
-class ChangePasswordForm extends Model
-{
-	public $oldPassword;
-        public $newPassword;
-        public $confirmPassword;
-	private $_user = false;
+class ChangePasswordForm extends Model {
 
-	/**
-	 * @inheritdoc
-	 */
-	public function rules()
-	{
-		return [
-			// username and password are both required
-			[['username', 'password'], 'required'],
-			// password is validated by validatePassword()
-			['password', 'validatePassword'],
-			// rememberMe must be a boolean value
-			['rememberMe', 'boolean'],
-		];
-	}
+    public $oldPassword;
+    public $newPassword;
+    public $confirmPassword;
+    public $success;
 
-	/**
-	 * Validates the password.
-	 * This method serves as the inline validation for password.
-	 */
-	public function validatePassword()
-	{
-		$user = $this->getUser();
-		if (!$user || !$user->validatePassword($this->password)) {
-			$this->addError('password', 'Incorrect username or password.');
-		}
-	}
+    public function scenarios() {
+        return [
+            'default' => ['oldPassword', 'newPassword', 'confirmPassword']
+        ];
+    }
 
-	/**
-	 * Logs in a user using the provided username and password.
-	 * @return boolean whether the user is logged in successfully
-	 */
-	public function login()
-	{
-		if ($this->validate()) {
-			return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
-		} else {
-			return false;
-		}
-	}
+        public function rules() {
+            return [
+                ['newPassword', 'string', 'min' => 6],
+                ['confirmPassword', 'string', 'min' => 6],
+            ];
+        }
 
-	/**
-	 * Finds user by [[username]]
-	 *
-	 * @return User|null
-	 */
-	private function getUser()
-	{
-		if ($this->_user === false) {
-			$this->_user = User::findByUsername($this->username);
-		}
-		return $this->_user;
-	}
+    /**
+     * Validates the password.
+     * This method serves as the inline validation for password.
+     */
+    public function validatePassword() {
+        $user = \Yii::$app->user->identity;
+        if (!$user || !$user->validatePassword($this->oldPassword)) {
+            $this->addError('oldPassword', 'Incorrect password.');
+        }
+    }
+
+    public function validateNewPassword() {
+        if (!$this->newPassword) {
+            $this->addError('newPassword', 'New password should be set');
+        }
+        if ($this->newPassword != $this->confirmPassword) {
+            $this->addError('confirmPassword', "Passwords doesn't match");
+        }
+    }
+
+    /**
+     * Logs in a user using the provided username and password.
+     * @return boolean whether the user is logged in successfully
+     */
+    public function login() {
+        if ($this->validate()) {
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Finds user by [[username]]
+     *
+     * @return User|null
+     */
+    private function getUser() {
+        if ($this->_user === false) {
+            $this->_user = User::findByUsername($this->username);
+        }
+        return $this->_user;
+    }
+
 }

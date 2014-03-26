@@ -26,7 +26,6 @@ function layoutTeamRemove(el) {
     })
 }
 function addNewLayoutTeam() {
-    log(1);
     var id = $('.layout-edit').data('id');
     var $el = $('#addLayoutTeam');
     var name = $el.val();
@@ -58,12 +57,24 @@ function rememberAccordionState() {
 
 function initBootstrapSwitch() {
     $(".layout-edit input[type='checkbox']").bootstrapSwitch();
-    $(".layout-edit input[type='checkbox']").on('switchChange', function(e, data) {
-        var $element = $(data.el),
-                value = data.value;
-
-        console.log(e, $element, value);
+    $("#layout-chat").on('click', function() {
+        var value = $('#layout-chat').bootstrapSwitch('state');
+        if (value){
+            $('.field-layout-chattoggle').show('slow');
+        } else {
+            $('.field-layout-chattoggle').hide('slow');
+        }
     });
+    $("#layout-enabledonations").on('click', function() {
+        var value = $('#layout-enabledonations').bootstrapSwitch('state');
+        if (value){
+            $('.field-layout-eventid').show('slow');
+        } else {
+            $('.field-layout-eventid').hide('slow');
+        }
+    });
+    
+    
 }
 
 $(function() {

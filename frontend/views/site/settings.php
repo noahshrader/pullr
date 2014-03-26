@@ -61,6 +61,12 @@ $this->title = 'Account Settings';
             </fieldset>
             <fieldset>
                 <legend>Change Password</legend>
+                <? if ($changePasswordForm->success): ?>
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Password successfully changed
+                    </div>
+                <? endif; ?>
                 <?= $form->field($changePasswordForm, 'oldPassword') ?>
                 <?= $form->field($changePasswordForm, 'newPassword') ?>
                 <?= $form->field($changePasswordForm, 'confirmPassword') ?>

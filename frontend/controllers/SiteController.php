@@ -12,6 +12,7 @@ use common\models\ChangePasswordForm;
 use common\models\base\BaseImage;
 use common\components\UploadImage;
 use common\models\Plan;
+use common\models\mail\Mail;
 
 /**
  * Site controller
@@ -111,70 +112,86 @@ class SiteController extends Controller {
         return $this->goHome();
     }
 
+    public function approveEmail($user) {
+        $mail = new Mail();
+        $mail->to = $user->email;
+        $mail->subject = '[Pullr] Confirm email';
+        $mail->text = 'some text';
+        $mail->save();
+    }
+
     public function actionSignup() {
-        $model = new User();
-        $model->setScenario('signup');
-        if ($model->load($_POST) && $model->save()) {
-            if (Yii::$app->getUser()->login($model)) {
+        $user = new User();
+        $user->setScenario('signup');
+        if ($user->load($_POST) && $user->save()) {
+            if (Yii::$app->getUser()->login($user)) {
+                $this->approveEmail($user);
                 return $this->goHome();
             }
         }
 
         return $this->render('signup', [
-                    'model' => $model,
+                    'model' => $user,
         ]);
     }
 
     public function actionSettings() {
-        if (Yii::$app->user->isGuest){
+        if (Yii::$app->user->isGuest) {
             return Yii::$app->user->loginRequired();
         }
-        
-        
+
         $user = Yii::$app->user->identity;
         $user->setScenario('settings');
-        if ($user->load($_POST) && $user->save($_POST)){
+        if ($user->load($_POST) && $user->save($_POST)) {
             $errors = UploadImage::Upload($user->id, BaseImage::TYPE_USER);
             if ($errors) {
                 $user->addError('images', $errors[0]);
-            } else{
+            } else {
                 $params = ['subjectId' => $user->id, 'type' => BaseImage::TYPE_USER, 'status' => BaseImage::STATUS_APPROVED];
                 $image = BaseImage::find()->where($params)->orderBy('id DESC')->one();
-                $user->setScenario('photo');
-                $user->photo = $image->id;
-                $user->smallPhoto = $image->id;
-                $user->save();
-                $user->refresh();
-                $oldImages = BaseImage::find()->where($params)->andWhere('id < '.$image->id)->all();
-                foreach ($oldImages as $oldImage){
-                    $oldImage->status = BaseImage::STATUS_DELETED;
-                    $oldImage->save();
+                if ($image && ($user->photo != $image->id)){
+                    $user->setScenario('photo');
+                    $user->photo = $image->id;
+                    $user->smallPhoto = $image->id;
+                    $user->save();
+                    $user->refresh();
+                    $oldImages = BaseImage::find()->where($params)->andWhere('id < ' . $image->id)->all();
+                    foreach ($oldImages as $oldImage) {
+                        $oldImage->status = BaseImage::STATUS_DELETED;
+                        $oldImage->save();
+                    }
                 }
-                
             }
         }
-        
+
         $notification = $user->notification;
         $notification->load($_POST) && $notification->save($_POST);
-        
+
         $changePasswordForm = new ChangePasswordForm();
-        if ($changePasswordForm->load($_POST)){
-            
+        if ($changePasswordForm->load($_POST) && $changePasswordForm->oldPassword ) {
+            $changePasswordForm->validatePassword();
+            $changePasswordForm->validateNewPassword();
+            if (!$changePasswordForm->getErrors()){
+                $user->setNewPassword($changePasswordForm->newPassword);
+                $user->save();
+                $changePasswordForm = new ChangePasswordForm();
+                $changePasswordForm->success = true;
+            }
         }
-        
-        /*account subscriptions*/
-        if (isset($_POST['subscription'])){
+
+        /* account subscriptions */
+        if (isset($_POST['subscription'])) {
             $plan = Plan::find($user->id);
             $plan->prolong($_POST['subscription']);
         }
-        
+
         return $this->render('settings', [
                     'user' => $user,
-                    'notification' => $notification, 
+                    'notification' => $notification,
                     'changePasswordForm' => $changePasswordForm
         ]);
     }
-    
+
     public function actionRequestPasswordReset() {
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post())) {

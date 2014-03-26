@@ -137,17 +137,21 @@ class User extends ActiveRecord implements IdentityInterface {
             'resetPassword' => ['password'],
             'requestPasswordResetToken' => ['email'],
             'password_reset_token' => ['password_reset_token'],
-            'last_login' => ['last_login']
+            'last_login' => ['last_login'],
         ];
     }
 
+    public function setNewPassword($password){
+        $this->password_hash = Security::generatePasswordHash($password);
+    }
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if (($this->isNewRecord || $this->getScenario() === 'resetPassword') && !empty($this->password)) {
-                $this->password_hash = Security::generatePasswordHash($this->password);
+                $this->setNewPassword($this->password);
             }
             if ($this->isNewRecord) {
                 $this->auth_key = Security::generateRandomKey();
+                
             }
             
             if (!$this->isNewRecord && (!in_array($this->getScenario(), ['photo', 'openId']))){
@@ -181,7 +185,7 @@ class User extends ActiveRecord implements IdentityInterface {
             $plan->save();
         }
     }
-
+    
     public function getUrl() {
         $url = 'user/' . $this->id;
         if (Application::IsBackend()) {
