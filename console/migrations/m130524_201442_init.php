@@ -4,6 +4,7 @@ use common\models\User;
 use common\models\OpenIDToUser;
 use common\models\Notification;
 use common\models\Plan;
+use frontend\models\site\DeactivateAccount;
 use yii\db\Schema;
 
 class m130524_201442_init extends \console\models\ExtendedMigration{
@@ -16,6 +17,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
 
         $this->createTable(User::tableName(), [
             'id' => Schema::TYPE_PK,
+            'login' => Schema::TYPE_STRING,
             'name' => Schema::TYPE_STRING . ' NOT NULL',
             'auth_key' => Schema::TYPE_STRING . '(32) NOT NULL',
             'password_hash' => Schema::TYPE_STRING . ' NOT NULL',
@@ -59,12 +61,21 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'subscription' => Schema::TYPE_STRING . '(20)',
         ]);
         
+        $this->createTable(DeactivateAccount::tableName(), [
+            'userId' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'reason' => Schema::TYPE_TEXT,
+            'creationDate' => Schema::TYPE_INTEGER,
+            'processingDate' => Schema::TYPE_INTEGER
+        ]);
+        $this->createIndex('deactivateUserId', DeactivateAccount::tableName(), ['userId']);
+        
         $this->sampleUsers();
     }
 
     public function sampleUsers() {
         $user = new User();
         $user->setScenario('signup');
+        $user->login = 'stanislav@gmail.com';
         $user->name = 'Stanislav';
         $user->password = 'Stanislav';
         $user->email = 'stas.msu@gmail.com';
@@ -101,6 +112,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
 
         $user = new User();
         $user->setScenario('signup');
+        $user->login = 'admin@gmail.com';
         $user->name = 'Admin';
         $user->password = 'Admin';
         $user->save();
@@ -115,6 +127,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $this->dropTable(User::tableName());
         $this->dropTable(Notification::tableName());
         $this->dropTable(Plan::tableName());
+        $this->dropTable(DeactivateAccount::tableName());
     }
 
 }

@@ -14,8 +14,8 @@ class MailController extends Controller {
             return;
         }
         foreach ($mails as $mail){
-            Yii::$app->mail->compose('@console/views/mail/layout')
-                ->setFrom($mail->from)
+            Yii::$app->mail->compose()->setHtmlBody($mail->text)
+                ->setFrom([$mail->from => 'Pullr'])
                 ->setTo($mail->to)
                 ->setSubject($mail->subject)
                 ->send(new yii\swiftmailer\Mailer());

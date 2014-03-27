@@ -8,11 +8,14 @@ use Yii;
 use common\models\OpenIDToUser;
 use frontend\models\PasswordResetRequestForm;
 use common\models\User;
-use common\models\ChangePasswordForm;
+use frontend\models\site\ChangePasswordForm;
 use common\models\base\BaseImage;
 use common\components\UploadImage;
 use common\models\Plan;
 use common\models\mail\Mail;
+use frontend\models\site\DeactivateAccount;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * Site controller
@@ -135,6 +138,21 @@ class SiteController extends Controller {
         ]);
     }
 
+    public function actionDeactivate() {
+        $deactivate = new DeactivateAccount();
+        if (Yii::$app->request->isAjax) {
+            $deactivate->load($_POST);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($deactivate);
+        } else {
+            /*in fact it should be true, as it was verified by ajax before sending*/
+            if ($deactivate->load($_POST) && $deactivate->save()){
+                Yii::$app->getUser()->logout(true);
+                $this->redirect('/');
+            }
+        }
+    }
+
     public function actionSettings() {
         if (Yii::$app->user->isGuest) {
             return Yii::$app->user->loginRequired();
@@ -149,7 +167,7 @@ class SiteController extends Controller {
             } else {
                 $params = ['subjectId' => $user->id, 'type' => BaseImage::TYPE_USER, 'status' => BaseImage::STATUS_APPROVED];
                 $image = BaseImage::find()->where($params)->orderBy('id DESC')->one();
-                if ($image && ($user->photo != $image->id)){
+                if ($image && ($user->photo != $image->id)) {
                     $user->setScenario('photo');
                     $user->photo = $image->id;
                     $user->smallPhoto = $image->id;
@@ -168,10 +186,10 @@ class SiteController extends Controller {
         $notification->load($_POST) && $notification->save($_POST);
 
         $changePasswordForm = new ChangePasswordForm();
-        if ($changePasswordForm->load($_POST) && $changePasswordForm->oldPassword ) {
+        if ($changePasswordForm->load($_POST) && $changePasswordForm->oldPassword) {
             $changePasswordForm->validatePassword();
             $changePasswordForm->validateNewPassword();
-            if (!$changePasswordForm->getErrors()){
+            if (!$changePasswordForm->getErrors()) {
                 $user->setNewPassword($changePasswordForm->newPassword);
                 $user->save();
                 $changePasswordForm = new ChangePasswordForm();

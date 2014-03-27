@@ -75,6 +75,9 @@ $this->title = 'Account Settings';
                     <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
             </div>
     <?php ActiveForm::end(); ?>
+            <?= $this->render('deactivate', [
+                'user' => $user
+            ]); ?>
             </div>
 <!-- table-cell div -->
 <div class='col-xs-2'>

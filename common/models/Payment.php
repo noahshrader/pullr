@@ -28,12 +28,6 @@ class Payment extends ActiveRecord {
         return 'tbl_payment';
     }
     
-//    public function scenarios() {
-//        return [
-//            'default' => ['plan','expire']
-//        ];
-//    }
-    
     /**
      * 
      * @return User

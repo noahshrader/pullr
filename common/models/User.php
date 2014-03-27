@@ -115,11 +115,13 @@ class User extends ActiveRecord implements IdentityInterface {
             return $default;
         }
         $additionalRules = [
+            ['login', 'filter', 'filter' => 'trim'],
+            ['login', 'required'],
+            ['login', 'email'],
+            ['login', 'unique', 'message' => 'This email address has already been taken.', 'on' => 'signup'],
+            ['login', 'exist', 'message' => 'There is no user with such email.', 'on' => 'requestPasswordResetToken'],
             ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'message' => 'This email address has already been taken.', 'on' => 'signup'],
-            ['email', 'exist', 'message' => 'There is no user with such email.', 'on' => 'requestPasswordResetToken'],
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
         ];
@@ -132,12 +134,13 @@ class User extends ActiveRecord implements IdentityInterface {
             'photo' => ['photo', 'smallPhoto'],
             'settings' => ['fullName', 'timezone'],
             'openId' => ['name', 'email', 'birthday', 'photo', 'smallPhoto'],
-            'signup' => ['name', 'email', 'password', '!status'],
+            'signup' => ['name', 'email', 'login', 'password', '!status'],
             'roles' => ['role'],
             'resetPassword' => ['password'],
             'requestPasswordResetToken' => ['email'],
             'password_reset_token' => ['password_reset_token'],
             'last_login' => ['last_login'],
+            'status' => ['status']
         ];
     }
 

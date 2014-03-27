@@ -15,9 +15,21 @@ class Mail extends ActiveRecord {
     public static function tableName() {
         return 'tbl_mail';
     }
-
-    public function __construct($config = array()) {
-        parent::__construct($config);
-        $this->from = 'noreply@flaper.info';
+    
+    public static function sendMail($to, $subject, $content, $type = null, $from = 'noreply@flaper.info'){
+        $controller = new \yii\base\Controller(-1,'test');
+        $params = [
+            'content' => $content,
+            'footer' => '<br /> Do not reply for this email'
+        ];
+        $text = $controller->getView()->render('@console/views/mail/layout', $params, $controller);
+        
+        $mail = new Mail();
+        $mail->to = $to;
+        $mail->from = $from;
+        $mail->subject = $subject;
+        $mail->text = $text;
+        $mail->type = $type;
+        $mail->save();
     }
 }

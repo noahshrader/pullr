@@ -12,7 +12,7 @@ class m140326_120234_maillog extends \console\models\ExtendedMigration
                  'to' => Schema::TYPE_STRING. ' NOT NULL',
                  'subject' => Schema::TYPE_STRING. ' NOT NULL',
                  'text' => Schema::TYPE_TEXT. ' NOT NULL',
-                 'type' => Schema::TYPE_STRING. ' NOT NULL',
+                 'type' => Schema::TYPE_STRING,
                  'creationDate' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
                  'processingDate' => Schema::TYPE_INTEGER
              ]);
@@ -20,6 +20,6 @@ class m140326_120234_maillog extends \console\models\ExtendedMigration
 
 	public function down()
 	{
-            $this->dropTable(LayoutTeam::tableName());
+            $this->dropTable(Mail::tableName());
 	}
 }
