@@ -23,10 +23,14 @@ $this->title = ($charity->id == 0) ? 'New charity' : 'Edit charity ' . $charity-
                     echo FileInput::widget([
                         'name' => 'images[]',
                         'options' => $params,
-                         'showUpload' => true,
-                        'uploadOptions' => ['label' => false],
-                        'buttonOptions' => ['label' => false],
-                        'showRemove' => false,
+                        'pluginOptions' => [
+                            'showUpload' => true,
+                             'browseLabel' => ' ',
+                            'uploadLabel' => ' ',
+//                            'uploadOptions' => ['label' => false],
+//                            'buttonOptions' => ['label' => false],
+                            'showRemove' => false,
+                        ]
                     ]); ?>
                  <? if ($charity->hasErrors('images')): ?>
                     <?= Html::error($charity, 'images', ['class' => 'help-block']); ?>

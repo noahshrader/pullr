@@ -34,7 +34,7 @@ class DeactivateAccount extends ActiveRecord {
      * @inheritdoc
      */
     public function rules() {
-        if ($this->scenarios() == 'default') {
+        if ($this->getScenario() == 'default') {
             return [
                 ['reason', 'filter', 'filter' => 'trim'],
                 ['reason', 'filter', 'filter' => 'strip_tags'],

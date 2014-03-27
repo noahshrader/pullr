@@ -41,6 +41,13 @@ class Application extends \yii\web\Application{
         }
     }
     
+    public static function getBaseUrl(){
+        $url = \Yii::$app->params['baseUrl'];
+        if (strpos($url, 'http') !==0){
+            $url = 'http://'.$url;
+        }
+        return $url;
+    }
     /**
      * Return string in backend application. 
      * Should be used to create links from frontend to backend

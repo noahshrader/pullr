@@ -2,8 +2,8 @@
 
 namespace frontend\controllers;
 
+use frontend\controllers\FrontendController;
 use common\models\LoginForm;
-use yii\web\Controller;
 use Yii;
 use common\models\OpenIDToUser;
 use frontend\models\PasswordResetRequestForm;
@@ -16,11 +16,12 @@ use common\models\mail\Mail;
 use frontend\models\site\DeactivateAccount;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use frontend\models\site\EmailConfirmation;
 
 /**
  * Site controller
  */
-class SiteController extends Controller {
+class SiteController extends FrontendController{
 
     /**
      * @inheritdoc
@@ -29,17 +30,17 @@ class SiteController extends Controller {
         return [
             'access' => [
                 'class' => \yii\web\AccessControl::className(),
-                'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['index', 'signup', 'login', 'termsofservice', 'privacypolicy', 'logout'],
                         'allow' => true,
-                        'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        
+                    ],
+                    [
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['frontend'],
                     ],
                 ],
             ],
@@ -115,27 +116,38 @@ class SiteController extends Controller {
         return $this->goHome();
     }
 
-    public function approveEmail($user) {
-        $mail = new Mail();
-        $mail->to = $user->email;
-        $mail->subject = '[Pullr] Confirm email';
-        $mail->text = 'some text';
-        $mail->save();
+    public function actionConfirmemail(){
+        echo 123;
+    }
+    public function sendConfirmEmail($user) {
+        $email = $user->login;
+        $key = EmailConfirmation::getKeyForEmail($email);
+        $content = $this->getView()->render('@console/views/mail/confirmationEmail',[
+            'email' => $email,
+            'key' => $key
+        ]);
+        
+        Mail::sendMail($email, 'Confirm email', $content, 'emailConfirm');
     }
 
     public function actionSignup() {
         $user = new User();
         $user->setScenario('signup');
-        if ($user->load($_POST) && $user->save()) {
-            if (Yii::$app->getUser()->login($user)) {
-                $this->approveEmail($user);
+        if (Yii::$app->request->isAjax) {
+            $user->load($_POST);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($user);
+        }
+
+        /*in fact it should be true, as it was verified by ajax before sending*/
+        if ($user->load($_POST)) {
+            $user->role = User::ROLE_ONCONFIRMATION;
+            if ($user->save() && Yii::$app->getUser()->login($user)) {
+                $this->sendConfirmEmail($user);
                 return $this->goHome();
             }
         }
-
-        return $this->render('signup', [
-                    'model' => $user,
-        ]);
+        return $this->goHome();
     }
 
     public function actionDeactivate() {
@@ -242,5 +254,13 @@ class SiteController extends Controller {
                     'model' => $model,
         ]);
     }
-
+    
+    public function actionTermsofservice(){
+        return $this->render('termsOfService');
+    }
+    
+    public function actionPrivacypolicy(){
+        return $this->render('privacyPolicy');
+    }
+    
 }

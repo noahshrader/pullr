@@ -2,32 +2,14 @@
 
 namespace frontend\controllers;
 
-use yii\web\Controller;
+use frontend\controllers\FrontendController;
 use common\models\Layout;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
 use common\models\LayoutTeam;
 
 
-class PullrLayoutController extends Controller {
-
-    /**
-     * @inheritdoc
-     */
-    public function behaviors() {
-        return [
-            'access' => [
-                'class' => \yii\web\AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
+class PullrLayoutController extends FrontendController {
     public function actionAdd(){
         $layout = new Layout();
         return $this->actionIndex($layout);

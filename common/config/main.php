@@ -8,6 +8,7 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'assetManager' => [
+            'class' => \yii\web\AssetManager::className(),
             'bundles' => [
                 'yii\bootstrap\BootstrapAsset' => [
                     'css' => [],
@@ -28,10 +29,8 @@ return [
             'class' => \common\components\PhpManager::className(),
             'defaultRoles' => ['guest'],
         ],
-        'components' => [
-            'mail' => [
-                'class' => 'yii\swiftmailer\Mailer',
-            ],
+        'mail' => [
+            'class' => 'yii\swiftmailer\Mailer',
         ],
     ],
 ];

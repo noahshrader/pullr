@@ -6,6 +6,7 @@ use common\models\Notification;
 use common\models\Plan;
 use frontend\models\site\DeactivateAccount;
 use yii\db\Schema;
+use frontend\models\site\EmailConfirmation;
 
 class m130524_201442_init extends \console\models\ExtendedMigration{
 
@@ -26,7 +27,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'photo' => Schema::TYPE_STRING,
             'smallPhoto' => Schema::TYPE_STRING,
             'birthday' => Schema::TYPE_DATE,
-            'role' => Schema::TYPE_STRING . '(10) NOT NULL DEFAULT "user"',
+            'role' => Schema::TYPE_STRING . '(20) NOT NULL DEFAULT "user"',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
             'timezone' => Schema::TYPE_STRING . ' NOT NULL',
             'last_login' => Schema::TYPE_INTEGER. ' NOT NULL',
@@ -61,6 +62,18 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'subscription' => Schema::TYPE_STRING . '(20)',
         ]);
         
+        $statuses = implode('","', EmailConfirmation::$STATUSES);
+        $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . EmailConfirmation::STATUS_SENT . '"';
+        
+        $this->createTable(EmailConfirmation::tableName(), [
+            'email' => Schema::TYPE_STRING. ' NOT NULL',
+            'key' => Schema::TYPE_STRING. ' NOT NULL',
+            'status' => $statuses,
+            'userId' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'lastSent' => Schema::TYPE_INTEGER. ' NOT NULL'
+        ]);
+        $this->createIndex('emailConfirmationEmail', EmailConfirmation::tableName(), ['email']);
+        
         $this->createTable(DeactivateAccount::tableName(), [
             'userId' => Schema::TYPE_INTEGER. ' NOT NULL',
             'reason' => Schema::TYPE_TEXT,
@@ -78,8 +91,11 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user->login = 'stanislav@gmail.com';
         $user->name = 'Stanislav';
         $user->password = 'Stanislav';
+        $user->confirmPassword = $user->password;
         $user->email = 'stas.msu@gmail.com';
-        $user->save();
+        if (!$user->save()){
+            var_dump($user->getErrors());
+        }
 
         $user = new User();
         $user->setScenario('openId');

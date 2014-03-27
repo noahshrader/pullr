@@ -19,6 +19,8 @@ class MailController extends Controller {
                 ->setTo($mail->to)
                 ->setSubject($mail->subject)
                 ->send(new yii\swiftmailer\Mailer());
+            $mail->processingDate = time();
+            $mail->save();
         }
     }
 }

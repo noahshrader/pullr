@@ -37,9 +37,9 @@ FrontendAsset::register($this);
         $menuItems = [
         ];
         if (Yii::$app->user->isGuest) {
-            $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-            $loginUrl = (strpos(\Yii::$app->request->url, 'site/login')) > 0 ? \Yii::$app->request->url : '/site/login?return=' . urlencode(\Yii::$app->request->url);
-            $menuItems[] = ['label' => 'Login', 'url' => [$loginUrl]];
+//            $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+//            $loginUrl = (strpos(\Yii::$app->request->url, 'site/login')) > 0 ? \Yii::$app->request->url : '/site/login?return=' . urlencode(\Yii::$app->request->url);
+//            $menuItems[] = ['label' => 'Login', 'url' => [$loginUrl]];
         } else {
             $logoutUrl = 'site/logout?return=' . urlencode(\Yii::$app->request->url);
             $logoutLink = '<li><a href="' . $logoutUrl . '" > Logout (';
@@ -47,7 +47,7 @@ FrontendAsset::register($this);
             $logoutLink .= Yii::$app->user->identity->name . ')</a></li>';
             $menuItems[] = $logoutLink;
         }
-
+//
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => $menuItems,
@@ -63,7 +63,7 @@ FrontendAsset::register($this);
                 <ul> 
                     <? if (Yii::$app->user->isGuest): ?>
                     <li>
-                        <a href="site/signup">Signup</a>
+                         <?= $this->render('signupModal'); ?>  
                     </li>
                     <li>
                         <a href="site/login">Login</a>
@@ -79,6 +79,7 @@ FrontendAsset::register($this);
                         <li>
                             <a href="site/settings">Settings</a>
                         </li>
+                           
                     <? endif; ?>
                 </ul>
             </div>

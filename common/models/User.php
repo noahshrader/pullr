@@ -34,12 +34,19 @@ class User extends ActiveRecord implements IdentityInterface {
      * @var string the raw password. Used to collect password input and isn't saved in database
      */
     public $password;
-
+    
+    /**
+     * @var string to confirm password. Used to collect confirm password while registering and isn't saved in database
+     */
+    public $confirmPassword;
+    
+    
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
     const ROLE_USER = 'user';
     const ROLE_ADMIN = 'admin';
-
+    /*user expecting confirmation of email*/
+    const ROLE_ONCONFIRMATION = 'onconfirmation';
     public function behaviors() {
         return [
             'timestamp' => [
@@ -103,30 +110,25 @@ class User extends ActiveRecord implements IdentityInterface {
     }
 
     public function rules() {
-        $default = [
+        return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            ['name', 'filter', 'filter' => 'trim'],
-            ['name', 'required'],
-            ['name', 'string', 'min' => 2, 'max' => 255],
-        ];
-
-        if ($this->getScenario() == 'openId') {
-            return $default;
-        }
-        $additionalRules = [
             ['login', 'filter', 'filter' => 'trim'],
             ['login', 'required'],
             ['login', 'email'],
-            ['login', 'unique', 'message' => 'This email address has already been taken.', 'on' => 'signup'],
+            ['login', 'verifyLogin', 'on' => 'signup'],
             ['login', 'exist', 'message' => 'There is no user with such email.', 'on' => 'requestPasswordResetToken'],
+            ['name', 'filter', 'filter' => 'trim'],
+            ['name', 'filter', 'filter' => 'strip_tags'],
+            /*that is workaroung to call verifyName even if name is empty*/
+            ['login', 'verifyName'],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 8],
+            ['confirmPassword','required'],
+            ['confirmPassword', 'compare', 'compareAttribute' => 'password']
         ];
-        $result = array_merge($default, $additionalRules);
-        return $result;
     }
 
     public function scenarios() {
@@ -134,7 +136,7 @@ class User extends ActiveRecord implements IdentityInterface {
             'photo' => ['photo', 'smallPhoto'],
             'settings' => ['fullName', 'timezone'],
             'openId' => ['name', 'email', 'birthday', 'photo', 'smallPhoto'],
-            'signup' => ['name', 'email', 'login', 'password', '!status'],
+            'signup' => ['login', 'name', 'email',  'password', 'confirmPassword', '!status', '!role'],
             'roles' => ['role'],
             'resetPassword' => ['password'],
             'requestPasswordResetToken' => ['email'],
@@ -143,7 +145,19 @@ class User extends ActiveRecord implements IdentityInterface {
             'status' => ['status']
         ];
     }
-
+    
+    public function verifyLogin(){
+        $count = User::find()->where(['status' => User::STATUS_ACTIVE, 'login' => $this->login])->count();
+        if ($count>0){
+            $this->addError('login','This email address has already been taken.');
+        }
+    }
+    public function verifyName(){
+        if (!$this->name){
+            $this->name = $this->login;
+        }
+    }
+    
     public function setNewPassword($password){
         $this->password_hash = Security::generatePasswordHash($password);
     }
