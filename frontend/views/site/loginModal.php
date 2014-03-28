@@ -25,6 +25,7 @@ $model->load($_POST);
           <?= $form->field($model, 'password')->passwordInput() ?>
           <?= $form->field($model, 'rememberMe')->checkbox() ?>
           
+          <div><a href="site/requestpasswordreset">Forgot password?</a></div>
            <div class="alert">Do you already have an account on one of these sites? Click the logo to log in with it here:</div>
           <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/login')); ?>
            <br />

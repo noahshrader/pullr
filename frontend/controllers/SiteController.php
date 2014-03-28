@@ -32,7 +32,7 @@ class SiteController extends FrontendController{
                 'class' => \yii\web\AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'signup', 'login', 'termsofservice', 'privacypolicy', 'logout', 'resendemailconfirmation', 'confirmemail'],
+                        'actions' => ['index', 'signup', 'login', 'termsofservice', 'privacypolicy', 'logout', 'resendemailconfirmation', 'confirmemail', 'requestpasswordreset'],
                         'allow' => true,
                     ],
                     [
@@ -96,9 +96,17 @@ class SiteController extends FrontendController{
             //that code should never be reached
             return;
         }
-
+        
+         
+        
         // default authorization code through login/password .
         $model = new LoginForm();
+        if (Yii::$app->request->isAjax) {
+            $model->load($_POST);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+        
         if ($model->load($_POST) && $model->login($duration)) {
             return $this->goBack();
         }
@@ -124,7 +132,7 @@ class SiteController extends FrontendController{
             if ($user->role == User::ROLE_ONCONFIRMATION){
                 $user->role = User::ROLE_USER;
             }
-            $user->email = $user->email;
+            $user->email = $user->login;
             $user->save();
             $confirmation->status = EmailConfirmation::STATUS_APPROVED;
             $confirmation->save();
@@ -247,7 +255,7 @@ class SiteController extends FrontendController{
         ]);
     }
 
-    public function actionRequestPasswordReset() {
+    public function actionRequestpasswordreset() {
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($model->sendEmail()) {
