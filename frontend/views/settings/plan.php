@@ -14,8 +14,8 @@
     <div class='payment'>
         <? $form = ActiveForm::begin(['options' => ['method' => 'POST']]) ?>
             <h2>Go Pro</h2>
-            <div style='min-height: 100px'>
-                <select name="subscription">
+            <div style='min-height: 50px; margin-top: 100px;'>
+                <select name="subscription" class='form-control'>
                     <option label="Yearly recurring $(<?= \Yii::$app->params['yearSubscription'] ?>/yr)"><?= \Yii::$app->params['yearSubscription'] ?></option>
                     <option label="Monthly recurring $(<?= \Yii::$app->params['monthSubscription']?>/mo)"><?= \Yii::$app->params['monthSubscription'] ?></option>
                 </select>
