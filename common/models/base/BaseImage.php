@@ -13,7 +13,7 @@ class BaseImage extends ActiveRecord implements IBaseImage {
     const STATUS_PENDING = 'pending';
     const STATUS_DELETED = 'deleted';
 
-    public function NO_PHOTO_LINK(){
+    public static function NO_PHOTO_LINK(){
         return Application::frontendUrl('images/no_photo.png');
     }
     /**

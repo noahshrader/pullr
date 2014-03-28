@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f01bd31a154773f19e55fad90c30e220",
+    "hash": "c86c87ff65f2116c9889e5bcfdc0ff33",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -404,6 +404,98 @@
             "time": "2014-03-24 14:28:29"
         },
         {
+            "name": "paypal/rest-api-sdk-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paypal/rest-api-sdk-php.git",
+                "reference": "5b01b235aee35a62596b7b9dd5a77c6c6b8809ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paypal/rest-api-sdk-php/zipball/5b01b235aee35a62596b7b9dd5a77c6c6b8809ce",
+                "reference": "5b01b235aee35a62596b7b9dd5a77c6c6b8809ce",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "paypal/sdk-core-php": "2.4.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PayPal": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "PayPal",
+                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+                }
+            ],
+            "description": "PayPal's PHP SDK for REST APIs",
+            "homepage": "https://github.com/paypal/rest-api-sdk-php",
+            "keywords": [
+                "payments",
+                "paypal",
+                "rest",
+                "sdk"
+            ],
+            "time": "2013-12-27 16:25:51"
+        },
+        {
+            "name": "paypal/sdk-core-php",
+            "version": "v2.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paypal/sdk-core-php.git",
+                "reference": "226d3492f80847f09c99debb4d3220d5e744ddc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paypal/sdk-core-php/zipball/226d3492f80847f09c99debb4d3220d5e744ddc8",
+                "reference": "226d3492f80847f09c99debb4d3220d5e744ddc8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PayPal": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "PayPal",
+                    "homepage": "https://github.com/paypal/sdk-core-php/contributors"
+                }
+            ],
+            "description": "PayPal Core SDK for PHP",
+            "homepage": "https://github.com/paypal/sdk-core-php",
+            "keywords": [
+                "paypal",
+                "php",
+                "sdk"
+            ],
+            "time": "2013-09-11 14:27:58"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "dev-master",
             "source": {
@@ -460,12 +552,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "e9982cad66839f82515079912f207ee1b9708f9d"
+                "reference": "90902db50cd9545639bb79ae30d1d81e84c12b6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/e9982cad66839f82515079912f207ee1b9708f9d",
-                "reference": "e9982cad66839f82515079912f207ee1b9708f9d",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/90902db50cd9545639bb79ae30d1d81e84c12b6c",
+                "reference": "90902db50cd9545639bb79ae30d1d81e84c12b6c",
                 "shasum": ""
             },
             "type": "library",
@@ -500,7 +592,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-03-27 11:22:15"
+            "time": "2014-03-28 11:48:19"
         },
         {
             "name": "yiisoft/jquery",
@@ -557,12 +649,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "3df63b72eb3817dd9d5837136a0b9f0bfeb46397"
+                "reference": "a75b58ea5bcd7885eec836248b7456b8edabe3f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3df63b72eb3817dd9d5837136a0b9f0bfeb46397",
-                "reference": "3df63b72eb3817dd9d5837136a0b9f0bfeb46397",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/a75b58ea5bcd7885eec836248b7456b8edabe3f1",
+                "reference": "a75b58ea5bcd7885eec836248b7456b8edabe3f1",
                 "shasum": ""
             },
             "require": {
@@ -627,7 +719,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-03-27 15:01:00"
+            "time": "2014-03-27 18:09:30"
         },
         {
             "name": "yiisoft/yii2-bootstrap",

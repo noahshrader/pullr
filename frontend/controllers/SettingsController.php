@@ -12,6 +12,10 @@ use frontend\models\site\DeactivateAccount;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\models\mail\Mail;
+use PayPal\Rest\ApiContext;
+use PayPal\Api\Payment;
+use PayPal\Auth\OAuthTokenCredential;
+
 class SettingsController extends FrontendController {
     public function actionIndex() {
         if (Yii::$app->user->isGuest) {
@@ -59,8 +63,15 @@ class SettingsController extends FrontendController {
 
         /* account subscriptions */
         if (isset($_POST['subscription'])) {
-            $plan = Plan::find($user->id);
-            $plan->prolong($_POST['subscription']);
+            $clientId = 'AdhS6hAM2klW0zvrByqMTUAwosKCt8kMrhUPN6-HHzoCaJscFJHsGfGUvLzP';
+            $clientSecret = 'EHYMZhAE29WHfY8T37s-j-2wMOL8SMjjB3uX-9h9uz2snme0pL_tKYLg3YK4';
+            $apiContext = new ApiContext(new OAuthTokenCredential($clientId, $clientSecret));
+            define('PP_CONFIG_PATH', '/var/www/pullr/common/config/paypal');
+            $payment = new Payment();
+            $payment->setIntent("Sale");
+            $payment->create($apiContext);
+//            $plan = Plan::find($user->id);
+//            $plan->prolong($_POST['subscription']);
         }
 
         return $this->render('index', [
