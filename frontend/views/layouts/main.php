@@ -66,7 +66,7 @@ FrontendAsset::register($this);
                          <?= $this->render('signupModal'); ?>  
                     </li>
                     <li>
-                        <a href="site/login">Login</a>
+                         <?= $this->render('loginModal'); ?>  
                     </li>
                     <? endif; ?>
                     <? if (!Yii::$app->user->isGuest): ?>

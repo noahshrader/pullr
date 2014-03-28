@@ -73,6 +73,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'lastSent' => Schema::TYPE_INTEGER. ' NOT NULL'
         ]);
         $this->createIndex('emailConfirmationEmail', EmailConfirmation::tableName(), ['email']);
+        $this->createIndex('emailConfirmationUserId', EmailConfirmation::tableName(), ['userId']);
         
         $this->createTable(DeactivateAccount::tableName(), [
             'userId' => Schema::TYPE_INTEGER. ' NOT NULL',

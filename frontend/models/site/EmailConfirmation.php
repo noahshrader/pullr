@@ -3,7 +3,7 @@
 namespace frontend\models\site;
 
 use yii\db\ActiveRecord;
-
+use common\models\User;
 /**
  * to consider account on other the base you also should check expire field to be more than current time
  */
@@ -21,7 +21,7 @@ class EmailConfirmation extends ActiveRecord {
     
     public static function getKeyForEmail($email, $updateDate = false){
         /*in fact orderBy left for almost impossible situations*/
-        $confirmation = EmailConfirmation::find()->where(['status' => self::STATUS_SENT, 'email' => $email])->orderBy('lastSent')->one();
+        $confirmation = EmailConfirmation::find()->where(['status' => self::STATUS_SENT, 'email' => $email])->orderBy('lastSent DESC')->one();
         if (!$confirmation){
             $confirmation = new EmailConfirmation();
             $confirmation->email = $email;
@@ -36,4 +36,11 @@ class EmailConfirmation extends ActiveRecord {
         return $confirmation->key;
     }
    
+    /**
+     * 
+     * @return User
+     */
+    public function getUser() {
+        return $this->hasOne(User::className(), ['id' => 'userId']);
+    }
 }

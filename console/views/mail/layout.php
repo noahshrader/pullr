@@ -1,6 +1,11 @@
+<? 
+use common\components\Application;
+
+?>
+
 <div style="background-color: #111514; padding: 5px 0;">
     <div style="margin: 0 auto; width: 650px;">
-        <a href="http://flaper.info"><h2 style="height: 30px; vertical-align: middle;">Pullr</h2></a>
+        <a href="<?= Application::getBaseUrl() ?> "><h2 style="height: 30px; vertical-align: middle;">Pullr</h2></a>
     </div> 
 </div>
 <div style="background-color: #2c2d2f; padding: 15px 0;">

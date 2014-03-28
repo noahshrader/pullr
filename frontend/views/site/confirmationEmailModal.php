@@ -22,7 +22,7 @@ $user->setScenario('signup');
                <div>Thanks for registering. Please check your inbox for a confirmation email.</div>
                <br />
                <br />
-               <button type="submit" class="btn btn-primary">Resend Email</button>
+               <button type="submit" class="btn btn-primary" onclick="$.post('site/resendemailconfirmation'); alert('Has been sent');">Resend Email</button>
           </div>
       </div>
     </div>
