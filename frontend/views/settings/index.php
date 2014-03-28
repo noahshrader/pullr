@@ -94,7 +94,7 @@ $this->render('deactivate', [
         <div class='col-xs-2'>
             <div class='frontend-right-widget'>
 <?=
-$this->render('settings-plan', [
+$this->render('plan', [
     'user' => $user
 ]);
 ?>

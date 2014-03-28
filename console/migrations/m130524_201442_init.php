@@ -94,10 +94,17 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user->password = 'Stanislav';
         $user->confirmPassword = $user->password;
         $user->email = 'stas.msu@gmail.com';
-        if (!$user->save()){
-            var_dump($user->getErrors());
-        }
-
+        $user->save();
+        
+        $user = new User();
+        $user->setScenario('signup');
+        $user->login = 's.klyukin@yandex.ru';
+        $user->name = 'Stanislav';
+        $user->password = 'Stanislav';
+        $user->confirmPassword = $user->password;
+        $user->email = 's.klyukin@yandex.ru';
+        $user->save();
+        
         $user = new User();
         $user->setScenario('openId');
         $user->name = 'Stanislav Klyukin';
@@ -145,6 +152,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $this->dropTable(Notification::tableName());
         $this->dropTable(Plan::tableName());
         $this->dropTable(DeactivateAccount::tableName());
+        $this->dropTable(EmailConfirmation::tableName());
     }
 
 }

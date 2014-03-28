@@ -77,7 +77,7 @@ FrontendAsset::register($this);
                             <a href="pullrlayout">Streams</a>
                         </li>
                         <li>
-                            <a href="site/settings">Settings</a>
+                            <a href="settings">Settings</a>
                         </li>
                            
                     <? endif; ?>

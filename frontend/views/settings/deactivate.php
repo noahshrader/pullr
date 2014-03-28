@@ -14,7 +14,7 @@ $deactivateAccount = new DeactivateAccount();
   <div class="modal-dialog">
     <div class="modal-content">
       <? $form = ActiveForm::begin([
-        'action'=> 'site/deactivate' , 
+        'action'=> 'settings/deactivate' , 
         'fieldConfig' => ['autoPlaceholder'=>true],
         'enableAjaxValidation' => true,
       ]) ?>
@@ -24,7 +24,7 @@ $deactivateAccount = new DeactivateAccount();
       </div>
       <div class="modal-body">
           <?= $form->field($deactivateAccount, 'reason')->textarea();?>
-          <?= $form->field($deactivateAccount, 'password') ?>
+          <?= $form->field($deactivateAccount, 'password')->passwordInput() ?>
           Keep in mind that you have 30 days before the account is completely removed. Contact us if there's anything we can do to change your mind.
       </div>
       <div class="modal-footer">
