@@ -213,9 +213,9 @@ class User extends ActiveRecord implements IdentityInterface {
         }
     }
 
-    public function toArray() {
+    public function toArray(array $fields = [], array $expand = [], $recursive = true) {
         $allowed = ['id', 'name', 'photo', 'smallPhoto'];
-        return array_intersect_key(parent::toArray(), array_flip($allowed));
+        return array_intersect_key(parent::toArray($fields, $expand, $recursive), array_flip($allowed));
     }
     
     public function afterFind() {
