@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The manifest of files that are local to specific environment.
  * This file returns a list of environments that the application
@@ -17,22 +18,42 @@
  * ```
  */
 return [
-	'Development' => [
-		'path' => 'dev',
-		'writable' => [
-			// handled by composer.json already
-		],
-		'executable' => [
-			'yii',
-		],
-	],
-	'Production' => [
-		'path' => 'prod',
-		'writable' => [
-			// handled by composer.json already
-		],
-		'executable' => [
-			'yii',
-		],
-	],
+    'Development' => [
+        'path' => 'dev',
+        'writable' => [
+            "common/web/css",
+            "backend/runtime",
+            "backend/web/assets",
+            "backend/web/css",
+            "console/runtime",
+            "console/migrations",
+            "frontend/runtime",
+            "frontend/web/assets",
+            "frontend/web/css",
+            "frontend/web/userimages"
+        // handled by composer.json already
+        ],
+        'executable' => [
+            'yii',
+        ],
+    ],
+    'Production' => [
+        'path' => 'prod',
+        'writable' => [
+            "common/web/css",
+            "backend/runtime",
+            "backend/web/assets",
+            "backend/web/css",
+            "console/runtime",
+            "console/migrations",
+            "frontend/runtime",
+            "frontend/web/assets",
+            "frontend/web/css",
+            "frontend/web/userimages"
+        // handled by composer.json already
+        ],
+        'executable' => [
+            'yii',
+        ],
+    ],
 ];
