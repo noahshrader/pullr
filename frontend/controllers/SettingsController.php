@@ -11,7 +11,7 @@ use common\models\Plan;
 use frontend\models\site\DeactivateAccount;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-
+use common\models\mail\Mail;
 class SettingsController extends FrontendController {
     public function actionIndex() {
         if (Yii::$app->user->isGuest) {
@@ -79,6 +79,12 @@ class SettingsController extends FrontendController {
         } else {
             /*in fact it should be true, as it was verified by ajax before sending*/
             if ($deactivate->load($_POST) && $deactivate->save()){
+                $content = $this->renderPartial('@console/views/mail/deactivationEmail',[
+                    'reason' => $deactivate->reason,
+                    'user' => $deactivate->user
+                ]);
+                
+                Mail::sendMail(\Yii::$app->params['adminEmails'], 'User deactivated account', $content, 'deactivatedAccount');
                 Yii::$app->getUser()->logout(true);
                 $this->redirect('/');
             }

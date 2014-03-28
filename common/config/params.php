@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
-    'supportEmail' => 'support@example.com',
+    'adminEmails' => ['s.klyukin@yandex.ru', 'noahshrader@gmail.com'],
     'baseUrl' => 'http://pullr.io',
     'user.passwordResetTokenExpire' => 3600,
     'frontendUrl' => '../../frontend/web/',

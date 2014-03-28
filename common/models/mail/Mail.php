@@ -24,6 +24,9 @@ class Mail extends ActiveRecord {
         ];
         $text = $controller->getView()->render('@console/views/mail/layout', $params, $controller);
         
+        if (is_array($to)){
+            $to = implode(';', $to);
+        }
         $mail = new Mail();
         $mail->to = $to;
         $mail->from = $from;

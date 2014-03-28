@@ -14,9 +14,10 @@ class MailController extends Controller {
             return;
         }
         foreach ($mails as $mail){
+            $to = explode(';', $mail->to);
             Yii::$app->mail->compose()->setHtmlBody($mail->text)
                 ->setFrom([$mail->from => 'Pullr'])
-                ->setTo($mail->to)
+                ->setTo($to)
                 ->setSubject($mail->subject)
                 ->send(new yii\swiftmailer\Mailer());
             $mail->processingDate = time();
