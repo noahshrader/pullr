@@ -3,7 +3,7 @@ function showAuthModal(){
         $('#confirmationEmailModal').modal('show');
         return;
     }
-    var $el = $('#signupModal');
+    var $el = $('#loginModal');
     if ($el.length > 0){
         $el.modal('show');
     }

@@ -18,7 +18,7 @@ $model->load($_POST);
       ]) ?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h5 class="modal-title" id="myModalLabel">Signup</h5>
+        <h5 class="modal-title" id="myModalLabel">Login</h5>
       </div>
       <div class="modal-body">
           <?= $form->field($model, 'login')->textInput(['placeHolder' => 'Email address (username)']);?>
@@ -32,7 +32,8 @@ $model->load($_POST);
       </div>
       <div class="modal-footer">
           <div class="text-left">
-          <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button class="btn btn-link" onclick="$('#loginModal').modal('hide');$('#signupModal').modal('show');return false;">Signup</button>
           </div>
       </div>
       <? ActiveForm::end() ?>

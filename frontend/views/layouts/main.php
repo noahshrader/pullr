@@ -29,7 +29,7 @@ FrontendAsset::register($this);
         <?php
         NavBar::begin([
             'brandLabel' => 'pullr',
-            'brandUrl' => "/",
+            'brandUrl' => ".",
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top top-menu',
             ],
@@ -63,10 +63,10 @@ FrontendAsset::register($this);
                 <ul> 
                     <? if (Yii::$app->user->isGuest): ?>
                     <li>
-                         <?= $this->render('signupModal'); ?>  
+                         <?= $this->render('@frontend/views/site/signupModal'); ?>  
                     </li>
                     <li>
-                         <?= $this->render('loginModal'); ?>  
+                         <?= $this->render('@frontend/views/site/loginModal'); ?>  
                     </li>
                     <? endif; ?>
                     <? if (!Yii::$app->user->isGuest): ?>

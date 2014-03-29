@@ -34,7 +34,10 @@ $user->setScenario('signup');
            </div>
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Create an account</button>
+          <div class="text-left">
+            <button type="submit" class="btn btn-primary">Create an account</button>
+            <button class="btn btn-link" onclick="$('#signupModal').modal('hide');$('#loginModal').modal('show');return false;">Already registered?</button>
+          </div>
       </div>
       <? ActiveForm::end() ?>
     </div>
