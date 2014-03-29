@@ -1,33 +1,35 @@
 @import "pullr-variables.less";
+
+
 html,
 body {
-    height: 100%;
-    background-color: @pullr-background;
+    background-color: @pullr-main-bg;
+    font-family: 'proxima-nova';
 }
 
-/* testing CSS */
+/*
+// Sidebar/Menu
+// -------------------------------------------------- */
 
 .page-wrapper{
     position: relative;
     top: 50px;
-
 }
-
 .page-sidebar{
-    padding-top: 20px;
-    position: absolute;
-    width:100px;
-    background-color: #222;
-    top: 0px;
-    bottom: 0px;
-    color: white;
-    min-height: 800px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    color: #FFF;
+    padding: 1.2em 0;
+    width: 110px;
+    height: 100%;
+    background: @pullr-dark-bg;
+    overflow: hidden;
 }
-
-.page-sidebar ul{
-    padding-left: 15px;
-    list-style-type: none;
-}
+    .page-sidebar ul{
+        padding-left: 15px;
+        list-style-type: none;
+    }
 .page-container{
     margin-left: 120px;
     color: white;

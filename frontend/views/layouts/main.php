@@ -23,6 +23,10 @@ FrontendAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">
         <?php $this->head() ?>
+
+        <!-- Typekit Font Embed -->
+        <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     </head>
     <body>
         <?php
@@ -54,9 +58,9 @@ FrontendAsset::register($this);
         NavBar::end();
         ?>
 
-    <!-- BEGIN Main Sidebar -->
     <?php $this->beginBody() ?>
         <div class="page-wrapper">
+            <!-- BEGIN Main Sidebar -->
             <div class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
                     <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
@@ -84,6 +88,7 @@ FrontendAsset::register($this);
                     <? endif; ?>
                 </ul>
             </div>
+            <!-- END Main Sidebar -->
             <div class="page-container">
                     <?=
                     Breadcrumbs::widget([
