@@ -23,7 +23,7 @@ class PullrPayment extends \yii\base\Component {
     
     public function __construct($config = array()) {
         parent::__construct($config);
-        define('PP_CONFIG_PATH', '/var/www/pullr/common/config/paypal');
+        define('PP_CONFIG_PATH', __DIR__.'/../config/paypal');
         $this->apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret)); 
     }
     
