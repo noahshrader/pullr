@@ -16,14 +16,16 @@ use PayPal\Api\PaymentExecution;
 
 class PullrPayment extends \yii\base\Component {
 
-    public $clientId = 'AdhS6hAM2klW0zvrByqMTUAwosKCt8kMrhUPN6-HHzoCaJscFJHsGfGUvLzP';
-    public $clientSecret = 'EHYMZhAE29WHfY8T37s-j-2wMOL8SMjjB3uX-9h9uz2snme0pL_tKYLg3YK4';
+    public $clientId;
+    public $clientSecret;
 
     public $apiContext;
     
     public function __construct($config = array()) {
         parent::__construct($config);
         define('PP_CONFIG_PATH', __DIR__.'/../config/paypal');
+        $this->clientId = \Yii::$app->params['paypalClientId'];
+        $this->clientSecret = \Yii::$app->params['paypalClientSecret'];
         $this->apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret)); 
     }
     
@@ -162,7 +164,10 @@ class PullrPayment extends \yii\base\Component {
             }
         } catch (\Exception $ex) {
             echo "Exception: " . $ex->getMessage() . PHP_EOL;
-            var_dump($ex->getData());
+            if ($ex instanceof \PayPal\Exception){
+                var_dump($ex->getData());
+            }
+            echo 
             exit(1);
         }
     }

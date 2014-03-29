@@ -89,6 +89,24 @@ class SettingsController extends FrontendController {
         ]);
     }
 
+    /**
+     * that is for debug purposes and only availabe for user's id<10
+     */
+    public function actionDeactivatepro(){
+        $user = \Yii::$app->user->identity;
+        if ($user->id < 10){
+            $plan = Plan::find($user->id);
+            $plan->plan = Plan::PLAN_BASE;
+            $plan->expire = time();
+            $plan->save();
+        }
+        $this->redirect('settings');
+    }
+    
+    /**
+     * that method set request for account deactivation, and logout user
+     * then if user will not login in 30 days his account will deactivated
+     */
     public function actionDeactivate() {
         $deactivate = new DeactivateAccount();
         if (Yii::$app->request->isAjax) {
