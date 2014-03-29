@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -54,7 +53,9 @@ FrontendAsset::register($this);
         ]);
         NavBar::end();
         ?>
-<?php $this->beginBody() ?>
+
+    <!-- BEGIN Main Sidebar -->
+    <?php $this->beginBody() ?>
         <div class="page-wrapper">
             <div class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
@@ -89,7 +90,7 @@ FrontendAsset::register($this);
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                     ])
                     ?>
-<?= Alert::widget() ?>
+            <?= Alert::widget() ?>
             <?= $content ?>
             </div>
 
