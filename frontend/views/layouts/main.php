@@ -29,34 +29,42 @@ FrontendAsset::register($this);
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     </head>
     <body>
+        <?php
+        NavBar::begin([
+            'brandLabel' => 'pullr',
+            'brandUrl' => "/",
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top top-menu',
+            ],
+        ]);
+        $menuItems = [
+        ];
+        if (Yii::$app->user->isGuest) {
+//            $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+//            $loginUrl = (strpos(\Yii::$app->request->url, 'site/login')) > 0 ? \Yii::$app->request->url : '/site/login?return=' . urlencode(\Yii::$app->request->url);
+//            $menuItems[] = ['label' => 'Login', 'url' => [$loginUrl]];
+        } else {
+            $logoutUrl = 'site/logout?return=' . urlencode(\Yii::$app->request->url);
+            $logoutLink = '<li><a href="' . $logoutUrl . '" > Logout (';
+            $logoutLink .= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'logoPhoto']]);
+            $logoutLink .= Yii::$app->user->identity->name . ')</a></li>';
+            $menuItems[] = $logoutLink;
+        }
+//
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => $menuItems,
+        ]);
+        NavBar::end();
+        ?>
 
+    <!-- BEGIN Main Sidebar -->
     <?php $this->beginBody() ?>
-        <!-- BEGIN Main Sidebar -->
+        <div class="page-wrapper">
             <div class="page-sidebar">
-                <?php if (!Yii::$app->user->isGuest): ?>
-                    <div class="avatar">
-                        <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
-                    </div>
+                <? if (!Yii::$app->user->isGuest): ?>
+                    <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
                 <? endif; ?>
-                <?php
-                NavBar::begin([
-                    'brandLabel' => 'pullr',
-                    'brandUrl' => "/",
-                ]);
-                $menuItems = [];
-                if (Yii::$app->user->isGuest) {
-                } else {
-                    $logoutUrl = 'site/logout?return=' . urlencode(\Yii::$app->request->url);
-                    $logoutLink = '<li><a href="' . $logoutUrl . '" > Logout (';
-                    $logoutLink .= Yii::$app->user->identity->name . ')</a></li>';
-                    $menuItems[] = $logoutLink;
-                }
-                echo Nav::widget([
-                    'options' => ['class' => 'navbar-nav navbar-right'],
-                    'items' => $menuItems,
-                ]);
-                NavBar::end();
-                ?>
                 <ul> 
                     <? if (Yii::$app->user->isGuest): ?>
                     <li>
@@ -80,13 +88,17 @@ FrontendAsset::register($this);
                     <? endif; ?>
                 </ul>
             </div>
-            <!-- END Main Sidebar -->
-
-        <div class="page-wrapper">
             <div class="page-container">
+                    <?=
+                    Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ])
+                    ?>
             <?= Alert::widget() ?>
             <?= $content ?>
             </div>
+
+
 <?php $this->endBody() ?>
     </body>
 </html>
