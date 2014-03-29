@@ -63,7 +63,9 @@ FrontendAsset::register($this);
         <div class="page-wrapper">
             <div class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
-                    <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+                    <div class="avatar">
+                        <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+                    </div>
                 <? endif; ?>
                 <ul> 
                     <? if (Yii::$app->user->isGuest): ?>
