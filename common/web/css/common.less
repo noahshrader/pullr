@@ -14,6 +14,7 @@ body {
     position: relative;
     top: 50px;
 }
+/* Main styles */
 .page-sidebar{
     position: fixed;
     top: 0;
@@ -26,7 +27,19 @@ body {
     overflow: hidden;
     z-index: 800;
 }
-    .page-sidebar ul{
+    /* User photo */
+    .page-sidebar .avatar {
+        margin: 0 auto 1.2em;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+        .page-sidebar .avatar img {
+            width: 100%;
+            height: auto;
+        }
+    .page-sidebar ul {
         padding-left: 15px;
         list-style-type: none;
     }
@@ -49,11 +62,6 @@ body {
     margin: 0 0 15px 0;
 }
 
-.top-menu .smallPhoto{
-    width: 20px;
-    height: 20px;
-}
-
 form {
     input, select, textarea,.form-row, .user-images, .alert{
         max-width: 400px;
@@ -70,13 +78,6 @@ form {
         max-width: none;
     }
 }
-
-.user-photo-menu img{
-    max-width: 80px;
-    margin-left: 10px;
-}
-
-
 .dataTable{
     .odd{
         a{

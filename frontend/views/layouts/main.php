@@ -34,9 +34,16 @@ FrontendAsset::register($this);
         <!-- BEGIN Main Sidebar -->
             <div class="page-sidebar">
                 <?php if (!Yii::$app->user->isGuest): ?>
-                    <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+                    <div class="avatar">
+                        <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+                    </div>
                 <? endif; ?>
                 <?php
+                NavBar::begin([
+                    'brandLabel' => 'pullr',
+                    'brandUrl' => "/",
+                ]);
+                $menuItems = [];
                 if (Yii::$app->user->isGuest) {
                 } else {
                     $logoutUrl = 'site/logout?return=' . urlencode(\Yii::$app->request->url);
@@ -48,6 +55,7 @@ FrontendAsset::register($this);
                     'options' => ['class' => 'navbar-nav navbar-right'],
                     'items' => $menuItems,
                 ]);
+                NavBar::end();
                 ?>
                 <ul> 
                     <? if (Yii::$app->user->isGuest): ?>
