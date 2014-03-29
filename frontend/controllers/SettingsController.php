@@ -15,8 +15,18 @@ use common\models\mail\Mail;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\Payment;
 use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Api\Amount;
+use PayPal\Api\Transaction;
+use PayPal\Api\Details;
+use PayPal\Api\Payer;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\RedirectUrls;
+
+use common\components\PullrPayment;
 
 class SettingsController extends FrontendController {
+
     public function actionIndex() {
         if (Yii::$app->user->isGuest) {
             return Yii::$app->user->loginRequired();
@@ -63,15 +73,13 @@ class SettingsController extends FrontendController {
 
         /* account subscriptions */
         if (isset($_POST['subscription'])) {
-            $clientId = 'AdhS6hAM2klW0zvrByqMTUAwosKCt8kMrhUPN6-HHzoCaJscFJHsGfGUvLzP';
-            $clientSecret = 'EHYMZhAE29WHfY8T37s-j-2wMOL8SMjjB3uX-9h9uz2snme0pL_tKYLg3YK4';
-            $apiContext = new ApiContext(new OAuthTokenCredential($clientId, $clientSecret));
-            define('PP_CONFIG_PATH', '/var/www/pullr/common/config/paypal');
-            $payment = new Payment();
-            $payment->setIntent("Sale");
-            $payment->create($apiContext);
-//            $plan = Plan::find($user->id);
-//            $plan->prolong($_POST['subscription']);
+            $payment = new PullrPayment();
+            $payment->proPayment($_POST['subscription']);
+        }
+        if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
+            $payment = new PullrPayment();
+            $payment->completePayment();
+            $this->redirect('settings');
         }
 
         return $this->render('index', [
@@ -80,7 +88,7 @@ class SettingsController extends FrontendController {
                     'changePasswordForm' => $changePasswordForm
         ]);
     }
-    
+
     public function actionDeactivate() {
         $deactivate = new DeactivateAccount();
         if (Yii::$app->request->isAjax) {
@@ -88,17 +96,18 @@ class SettingsController extends FrontendController {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($deactivate);
         } else {
-            /*in fact it should be true, as it was verified by ajax before sending*/
-            if ($deactivate->load($_POST) && $deactivate->save()){
-                $content = $this->renderPartial('@console/views/mail/deactivationEmail',[
+            /* in fact it should be true, as it was verified by ajax before sending */
+            if ($deactivate->load($_POST) && $deactivate->save()) {
+                $content = $this->renderPartial('@console/views/mail/deactivationEmail', [
                     'reason' => $deactivate->reason,
                     'user' => $deactivate->user
                 ]);
-                
+
                 Mail::sendMail(\Yii::$app->params['adminEmails'], 'User deactivated account', $content, 'deactivatedAccount');
                 Yii::$app->getUser()->logout(true);
                 $this->redirect('/');
             }
         }
     }
+
 }

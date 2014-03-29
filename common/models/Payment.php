@@ -33,6 +33,6 @@ class Payment extends ActiveRecord {
      * @return User
      */
     public function getUser() {
-        return $this->hasOne(User::className(), ['userId' => 'id']);
+        return $this->hasOne(User::className(), ['id' => 'userId']);
     }
 }
