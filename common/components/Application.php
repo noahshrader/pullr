@@ -66,4 +66,12 @@ class Application extends \yii\web\Application{
     public static function IsAdmin(){
         return \Yii::$app->user->checkAccess('backend');
     }
+    
+    /**
+     * that is hack for rendering tempaltes outside views
+     */
+    public static function render($name, $params = null, $controller = null){
+         $controller = new \yii\base\Controller(-1,'hackController');
+         return $controller->getView()->render($name, $params, $controller);
+    }
 }

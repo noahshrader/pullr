@@ -4,8 +4,9 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 use common\models\User;
-use common\models\Payment;
 use common\components\PullrPayment;
+use common\components\Application;
+use common\models\mail\Mail;
 /**
  * to consider account on other the base you also should check expire field to be more than current time
  */
@@ -34,7 +35,8 @@ class Plan extends ActiveRecord {
      */
     public function prolong($money){
         $params = PullrPayment::getPaymentParamsForMoney($money);
-                
+        /** @var string */
+        $oldPlan = $this->user->getPlan(); 
         if ($this->expire < time()){
             $this->expire = time();
         }
@@ -43,6 +45,15 @@ class Plan extends ActiveRecord {
         $this->plan = self::PLAN_PRO;
         $this->subscription = $params['subscription'];
         $this->save();
+        
+        if ($oldPlan == self::PLAN_BASE){
+            $content = Application::render('@console/views/mail/proActivatedEmail', [
+                    'subscription' => $params['subscription'],
+                    'user' => $this->user
+                ]);
+
+            Mail::sendMail(\Yii::$app->params['adminEmails'], 'User activated pro-account', $content, 'proAccountActivation');
+        }
     }
     /**
      * 
