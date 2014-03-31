@@ -14,24 +14,24 @@ return [
 //            'class' => 'nodge\eauth\services\GoogleOpenIDService',
 ////'realm' => '*.example.org', // your domain, can be with wildcard to authenticate on subdomains.
 //        ],        
-        'google_oauth' => [
-            // register your app here: https://code.google.com/apis/console/
-            'class' => 'common\components\oauth\IBCGoogleService',
-            'clientId' => '959544113849-4b16pbc81js1c1p312bbvemfpuu5pkk5.apps.googleusercontent.com',
-            'clientSecret' => 'dIXnsLBsXkx0mWT_tSw889G8',
-            'scope' => ['USERINFO_PROFILE', 'USERINFO_EMAIL'],
-        ],
-        'facebook' => array(
-            // register your app here: https://developers.facebook.com/apps/
-            'class' => 'common\components\oauth\IBCFacebookService',
-            'clientId' => '720235521330099',
-            'clientSecret' => '023d306a1682daec9f6c73d7eada6d0d',
-        ),
+//        'google_oauth' => [
+//            // register your app here: https://code.google.com/apis/console/
+//            'class' => 'common\components\oauth\IBCGoogleService',
+//            'clientId' => '959544113849-4b16pbc81js1c1p312bbvemfpuu5pkk5.apps.googleusercontent.com',
+//            'clientSecret' => 'dIXnsLBsXkx0mWT_tSw889G8',
+//            'scope' => ['USERINFO_PROFILE', 'USERINFO_EMAIL'],
+//        ],
+//        'facebook' => array(
+//            // register your app here: https://developers.facebook.com/apps/
+//            'class' => 'common\components\oauth\IBCFacebookService',
+//            'clientId' => '720235521330099',
+//            'clientSecret' => '023d306a1682daec9f6c73d7eada6d0d',
+//        ),
         'twitter' => array(
             // register your app here: https://dev.twitter.com/apps/new
             'class' => 'common\components\oauth\IBCTwitterService',
-            'key' => '',
-            'secret' => '',
+            'key' => 'p3fUyJl8GEYuF78PvHp0gdLV6',
+            'secret' => 'g6UcBnBvuoTRwHPfvjEkZ8DaaJDDWNKbbc0tcT4Coxaj2AJuwC',
         ),
 //        'yandex' => [
 //            'class' => 'nodge\eauth\services\YandexOpenIDService',
