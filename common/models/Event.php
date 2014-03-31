@@ -20,6 +20,10 @@ class Event extends ActiveRecord {
         return 'tbl_event';
     }
     
+    public static function createQuery($config = array()) {
+        $config['modelClass'] = get_called_class();
+        return new query\EventQuery($config);
+    }
     /**
      * 
      * @return User

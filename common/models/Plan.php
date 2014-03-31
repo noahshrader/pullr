@@ -7,6 +7,7 @@ use common\models\User;
 use common\components\PullrPayment;
 use common\components\Application;
 use common\models\mail\Mail;
+use common\models\PlanHistory;
 /**
  * to consider account on other the base you also should check expire field to be more than current time
  */
@@ -45,6 +46,13 @@ class Plan extends ActiveRecord {
         $this->plan = self::PLAN_PRO;
         $this->subscription = $params['subscription'];
         $this->save();
+        
+        $log = new PlanHistory();
+        $log->userId = $this->id;
+        $log->plan = self::PLAN_PRO;
+        $log->date = time();
+        $log->days = $params['days'];
+        $log->save();
         
         if ($oldPlan == self::PLAN_BASE){
             $content = Application::render('@console/views/mail/proActivatedEmail', [

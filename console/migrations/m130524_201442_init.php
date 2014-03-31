@@ -4,6 +4,7 @@ use common\models\User;
 use common\models\OpenIDToUser;
 use common\models\Notification;
 use common\models\Plan;
+use common\models\PlanHistory;
 use frontend\models\site\DeactivateAccount;
 use yii\db\Schema;
 use frontend\models\site\EmailConfirmation;
@@ -65,6 +66,14 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'expire' => \yii\db\oci\Schema::TYPE_INTEGER . ' NOT NULL', 
             'subscription' => Schema::TYPE_STRING . '(20)',
         ]);
+        
+        $this->createTable(PlanHistory::tableName(), [
+            'userId' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'plan' => Schema::TYPE_STRING. ' NOT NULL',
+            'days' => Schema::TYPE_FLOAT. ' NOT NULL',
+            'date' => Schema::TYPE_INTEGER. ' NOT NULL',
+        ]);
+        $this->createIndex('planHistoryUserId', PlanHistory::tableName(), ['userId']);
         
         $statuses = implode('","', EmailConfirmation::$STATUSES);
         $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . EmailConfirmation::STATUS_SENT . '"';
@@ -166,6 +175,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $this->dropTable(User::tableName());
         $this->dropTable(Notification::tableName());
         $this->dropTable(Plan::tableName());
+        $this->dropTable(PlanHistory::tableName());
         $this->dropTable(DeactivateAccount::tableName());
         $this->dropTable(EmailConfirmation::tableName());
         $this->dropTable(Mail::tableName());
