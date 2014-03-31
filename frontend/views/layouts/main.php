@@ -91,11 +91,6 @@ FrontendAsset::register($this);
                 </ul>
             </div>
             <div class="page-container">
-                    <?=
-                    Breadcrumbs::widget([
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ])
-                    ?>
             <?= Alert::widget() ?>
             <?= $content ?>
             </div>
