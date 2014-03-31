@@ -1,33 +1,52 @@
 @import "pullr-variables.less";
+
 html,
 body {
-    height: 100%;
-    background-color: @pullr-background;
+    background-color: @pullr-main-bg;
+    font-family: 'proxima-nova';
 }
 
-/* testing CSS */
+.navbar-fixed-top {
+    display: none;
+}
+
+/*
+// Sidebar/Menu
+// -------------------------------------------------- */
 
 .page-wrapper{
     position: relative;
     top: 50px;
-
 }
-
+/* Main styles */
 .page-sidebar{
-    padding-top: 20px;
-    position: absolute;
-    width:100px;
-    background-color: #222;
-    top: 0px;
-    bottom: 0px;
-    color: white;
-    min-height: 800px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    color: #FFF;
+    padding: 1.2em 0;
+    width: 110px;
+    height: 100%;
+    background: @pullr-dark-bg;
+    overflow: hidden;
+    z-index: 800;
 }
-
-.page-sidebar ul{
-    padding-left: 15px;
-    list-style-type: none;
-}
+    /* User photo */
+    .page-sidebar .avatar {
+        margin: 0 auto 1.2em;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+        .page-sidebar .avatar img {
+            width: 100%;
+            height: auto;
+        }
+    .page-sidebar ul {
+        padding-left: 15px;
+        list-style-type: none;
+    }
 .page-container{
     margin-left: 120px;
     color: white;
@@ -47,11 +66,6 @@ body {
     margin: 0 0 15px 0;
 }
 
-.top-menu .smallPhoto{
-    width: 20px;
-    height: 20px;
-}
-
 form {
     input, select, textarea,.form-row, .user-images, .alert{
         max-width: 400px;
@@ -68,13 +82,6 @@ form {
         max-width: none;
     }
 }
-
-.user-photo-menu img{
-    max-width: 80px;
-    margin-left: 10px;
-}
-
-
 .dataTable{
     .odd{
         a{

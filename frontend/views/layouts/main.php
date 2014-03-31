@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -24,6 +23,10 @@ FrontendAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">
         <?php $this->head() ?>
+
+        <!-- Typekit Font Embed -->
+        <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     </head>
     <body>
         <?php
@@ -54,11 +57,15 @@ FrontendAsset::register($this);
         ]);
         NavBar::end();
         ?>
-<?php $this->beginBody() ?>
+
+    <!-- BEGIN Main Sidebar -->
+    <?php $this->beginBody() ?>
         <div class="page-wrapper">
             <div class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
-                    <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+                    <div class="avatar">
+                        <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+                    </div>
                 <? endif; ?>
                 <ul> 
                     <? if (Yii::$app->user->isGuest): ?>
@@ -89,7 +96,7 @@ FrontendAsset::register($this);
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                     ])
                     ?>
-<?= Alert::widget() ?>
+            <?= Alert::widget() ?>
             <?= $content ?>
             </div>
 
