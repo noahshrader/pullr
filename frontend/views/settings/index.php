@@ -16,7 +16,7 @@ $this->title = 'Account Settings';
     <div class='pullr-table-row row'>
         <div class="col-xs-10">
             <h1><?= Html::encode($this->title) ?></h1>
-            <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => [
+            <?php $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']])
             ?>
                 <? if (!$user->openIDToUser): ?>
@@ -77,8 +77,8 @@ $keyValues = array_combine($timezones, $timezones);
                     </div>
                 <? endif; ?>
                 <?= $form->field($changePasswordForm, 'oldPassword') ?>
-            <?= $form->field($changePasswordForm, 'newPassword') ?>
-            <?= $form->field($changePasswordForm, 'confirmPassword') ?>
+            <?= $form->field($changePasswordForm, 'newPassword')->passwordInput() ?>
+            <?= $form->field($changePasswordForm, 'confirmPassword')->passwordInput() ?>
             </fieldset>
             <div class="form-group">
             <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>

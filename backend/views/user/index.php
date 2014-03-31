@@ -31,17 +31,29 @@ $this->title = 'Users';
             <th>
                 Last login
             </th>
+            <th>
+                # of Layouts
+            </th>
+            <th>
+                # of Events
+            </th>
+            <th>
+                Total Raised
+            </th>
         </tr>
     </thead>
     <tbody>
         <? foreach ($users as $user): ?>
             <tr data-id='<?= $user->id?>'>
-                <td><?= $user->name ?></td>
+                <td><a href="user/edit?id=<?=$user->id?>"><?= $user->name ?></a></td>
                 <td><?= $user->email?> </td>
-                <td></td>
+                <td><?= $user->getPlan() ?></td>
                 <td><?= ($user->status == User::STATUS_ACTIVE) ? 'Active' : 'Inactive'?> </td>
                 <td><?= date('M j Y', $user->created_at) ?> </td>
                 <td><?= date('M j Y', $user->last_login) ?></td>
+                <td><?= $user->getLayouts()->count(); ?></td>
+                <td><?= $user->getEvents()->count(); ?></td>
+                <td><?= number_format($user->getEvents()->sum('amountRaised')) ?></td>
             </tr>
         <? endforeach; ?>
     </tbody>

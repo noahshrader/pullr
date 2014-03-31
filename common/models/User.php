@@ -9,6 +9,8 @@ use common\components\Application;
 use common\models\Notification;
 use common\models\base\BaseImage;
 use common\models\Plan;
+use common\models\Layout;
+use common\models\Event;
 /**
  * Class User
  * @package common\models
@@ -41,12 +43,18 @@ class User extends ActiveRecord implements IdentityInterface {
     public $confirmPassword;
     
     
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+    const STATUS_DELETED = 'deleted';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_PENDING = 'pending';
+    
     const ROLE_USER = 'user';
     const ROLE_ADMIN = 'admin';
     /*user expecting confirmation of email*/
     const ROLE_ONCONFIRMATION = 'onconfirmation';
+    
+    public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_PENDING];
+    public static $ROLES = [self::ROLE_ONCONFIRMATION, self::ROLE_USER, self::ROLE_ADMIN];
+
     public function behaviors() {
         return [
             'timestamp' => [
@@ -143,7 +151,9 @@ class User extends ActiveRecord implements IdentityInterface {
             'requestPasswordResetToken' => ['email'],
             'password_reset_token' => ['password_reset_token'],
             'last_login' => ['last_login'],
-            'status' => ['status']
+            'status' => ['status'],
+            'adminEdit' => ['login', 'name', 'email', 'role','status'],
+            'changePassword' => ['password', 'confirmPassword']
         ];
     }
     
@@ -304,6 +314,17 @@ class User extends ActiveRecord implements IdentityInterface {
             return $this->hasOne(OpenIDToUser::className(), ['userId' => 'id']);
         }
         
+        public function getLayouts($status = Layout::STATUS_ACTIVE){
+            return $this->hasMany(Layout::className(), ['userId' => 'id'])
+                    ->where(['status' => $status])
+                    ->orderBy('date DESC');
+        }
+        
+        public function getEvents($status = Event::STATUS_ACTIVE){
+            return $this->hasMany(Event::className(), ['userId' => 'id'])
+                    ->where(['status' => $status])
+                    ->orderBy('date DESC');
+        }
         
         private $_plan = null;
         public function getPlan(){

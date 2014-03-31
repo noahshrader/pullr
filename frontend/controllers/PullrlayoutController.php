@@ -50,10 +50,10 @@ class PullrLayoutController extends FrontendController {
                 $this->redirect('pullrlayout/edit?id='.$layout->id);
             }
         }
-        $userId = \Yii::$app->user->id;
+        $user = \Yii::$app->user->identity;
         $params = [];
         $params['selectedLayout'] = $layout;
-        $params['layouts'] = Layout::find()->where(['userId' => $userId, 'status' => Layout::STATUS_ACTIVE])->orderBy('date DESC')->all();
+        $params['layouts'] = $user->layouts;
         return $this->render('index', $params);
     }
     

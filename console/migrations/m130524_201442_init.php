@@ -7,6 +7,7 @@ use common\models\Plan;
 use frontend\models\site\DeactivateAccount;
 use yii\db\Schema;
 use frontend\models\site\EmailConfirmation;
+use common\models\mail\Mail;
 
 class m130524_201442_init extends \console\models\ExtendedMigration{
 
@@ -16,6 +17,9 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
+        $statuses = implode('","', User::$STATUSES);
+        $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . User::STATUS_ACTIVE . '"';
+        
         $this->createTable(User::tableName(), [
             'id' => Schema::TYPE_PK,
             'login' => Schema::TYPE_STRING,
@@ -28,7 +32,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'smallPhoto' => Schema::TYPE_STRING,
             'birthday' => Schema::TYPE_DATE,
             'role' => Schema::TYPE_STRING . '(20) NOT NULL DEFAULT "user"',
-            'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
+            'status' => $statuses,
             'timezone' => Schema::TYPE_STRING . ' NOT NULL',
             'last_login' => Schema::TYPE_INTEGER. ' NOT NULL',
             'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
@@ -83,6 +87,17 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         ]);
         $this->createIndex('deactivateUserId', DeactivateAccount::tableName(), ['userId']);
         
+         $this->createTable(Mail::tableName(), [
+                 'id' => Schema::TYPE_PK,
+                 'from' => Schema::TYPE_STRING. ' NOT NULL',
+                 'to' => Schema::TYPE_STRING. ' NOT NULL',
+                 'subject' => Schema::TYPE_STRING. ' NOT NULL',
+                 'text' => Schema::TYPE_TEXT. ' NOT NULL',
+                 'type' => Schema::TYPE_STRING,
+                 'creationDate' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
+                 'processingDate' => Schema::TYPE_INTEGER
+             ]);
+         
         $this->sampleUsers();
     }
 
@@ -140,7 +155,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user->name = 'Admin';
         $user->password = 'Admin';
         $user->save();
-
+        
         $user->setScenario('roles');
         $user->role = User::ROLE_ADMIN;
         $user->save();
@@ -153,6 +168,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $this->dropTable(Plan::tableName());
         $this->dropTable(DeactivateAccount::tableName());
         $this->dropTable(EmailConfirmation::tableName());
+        $this->dropTable(Mail::tableName());
     }
 
 }

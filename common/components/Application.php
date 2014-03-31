@@ -1,6 +1,7 @@
 <?php
 
 namespace common\components;
+use common\models\User;
 
 class Application extends \yii\web\Application{
 
@@ -11,11 +12,15 @@ class Application extends \yii\web\Application{
         parent::__construct($config);
         if ($this->user && $this->user->id){
             $user = $this->user->identity;
-            $oldScenario = $user->getScenario();
-            $user->setScenario('last_login');
-            $user->last_login = time();
-            $user->save();
-            $user->setScenario($oldScenario);
+            if ($user->status != User::STATUS_ACTIVE){
+                $this->user->logout(true);
+            } else {
+                $oldScenario = $user->getScenario();
+                $user->setScenario('last_login');
+                $user->last_login = time();
+                $user->save();
+                $user->setScenario($oldScenario);
+            }
         }
     }
     public static function IsBackend() {
