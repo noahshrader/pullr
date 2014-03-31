@@ -14,6 +14,7 @@ body {
 // Sidebar/Menu
 // -------------------------------------------------- */
 
+@pullr-sidebar-width: 110px;
 /* Main styles */
 .page-sidebar{
     position: fixed;
@@ -21,28 +22,43 @@ body {
     bottom: 0;
     color: #FFF;
     padding: 1.2em 0;
-    width: 110px;
+    width: @pullr-sidebar-width;
     height: 100%;
     background: @pullr-dark-bg;
-    overflow: hidden;
     z-index: 800;
-}
+    
     /* User photo */
-    .page-sidebar .avatar {
+    .avatar {
         margin: 0 auto 1.2em;
         width: 70px;
         height: 70px;
         border-radius: 50%;
         overflow: hidden;
+        cursor: pointer;
     }
-        .page-sidebar .avatar img {
-            width: 100%;
-            height: auto;
+    .avatar img {
+        width: 100%;
+        height: auto;
+    }
+    .avatar-submenu{
+        top: 0px; 
+        left: @pullr-sidebar-width;
+        li>a{
+            padding: 2px 20px;
         }
-    .page-sidebar ul {
+    }
+    .avatar-container{
+        ul{
+            padding-left: 0px;
+        }
+    }
+    ul {
+        overflow: hidden;
         padding-left: 15px;
         list-style-type: none;
     }
+}
+
 .page-container{
     margin-left: 120px;
     color: white;
@@ -122,7 +138,7 @@ form {
                 width: @pull-layout-icon-size;
             }
         }
-        
+
         .pullr-layout:hover{
             .main-info{
                 left: @pull-layout-icon-size;

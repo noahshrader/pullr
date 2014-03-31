@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\FrontendAsset;
 use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
@@ -63,9 +62,7 @@ FrontendAsset::register($this);
         <div class="page-wrapper">
             <div class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
-                    <div class="avatar">
-                        <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
-                    </div>
+                   <?= $this->render('@common/views/leftmenu/avatar'); ?>
                 <? endif; ?>
                 <ul> 
                     <? if (Yii::$app->user->isGuest): ?>

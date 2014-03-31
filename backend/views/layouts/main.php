@@ -58,11 +58,9 @@ CommonAsset::register($this);
         <div class="page-wrapper">
             <div class="page-sidebar">
                 <? if (Application::IsAdmin()): ?>
-                    <div class="avatar">
                     <? if (!Yii::$app->user->isGuest): ?>
-                        <?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+                         <?= $this->render('@common/views/leftmenu/avatar'); ?>
                     <? endif; ?>
-                    </div>
                     <ul> 
 
                             <li>
