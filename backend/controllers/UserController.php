@@ -12,7 +12,7 @@ class UserController extends BackendController
             return $this->render('index', $params);
 	}
         
-        public function actionEdit(){
+        public function actionView(){
             $id = $_REQUEST['id'];
             
             $user = User::find($id);
@@ -29,6 +29,6 @@ class UserController extends BackendController
                 
             }
             $params['user'] = $user;
-            return $this->render('edit', $params);
+            return $this->render('view', $params);
         }
 }

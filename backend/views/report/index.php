@@ -8,7 +8,7 @@ $this->title = 'Reports';
 ?>
 <div>
     <h1><?= Html::encode($this->title) ?></h1>
-    <div class="row">
+    <div class="row report">
         <fieldset class="col-md-6">
                 <legend>Active Users</legend>
                 <div class="text-center">

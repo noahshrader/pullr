@@ -30,7 +30,7 @@ CommonAsset::register($this);
         <?php
         NavBar::begin([
             'brandLabel' => 'pullr',
-            'brandUrl' => "/",
+            'brandUrl' => ".",
             'options' => [
                 'class' => 'navbar-inverse navbar-fixed-top top-menu',
             ],
@@ -64,7 +64,7 @@ CommonAsset::register($this);
                     <ul> 
 
                             <li>
-                                <a href="/">Reports</a>
+                                <a href=".">Reports</a>
                             </li>
                             <li>
                                 <a href="user">Users</a>

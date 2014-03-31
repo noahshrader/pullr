@@ -5,8 +5,6 @@ use kartik\widgets\ActiveForm;
 
 $this->title = 'Edit user ' . $user->name;
 ?>
-<h1><?= Html::encode($this->title) ?></h1>
-
 <div>
     <? $form = ActiveForm::begin() ?>
         <?= $form->field($user, 'login'); ?>
@@ -18,7 +16,7 @@ $this->title = 'Edit user ' . $user->name;
         <?= $form->field($user, 'confirmPassword')->passwordInput(); ?>
 
     <div class="text-left">
-        <button type="submit" class="btn btn-primary">Update</button><a href="user" class="btn btn-link">Back</a>
+        <button type="submit" class="btn btn-primary">Update</button>
     </div>
     <? ActiveForm::end() ?>
 </div>

@@ -45,12 +45,12 @@ $this->title = 'Users';
     <tbody>
         <? foreach ($users as $user): ?>
             <tr data-id='<?= $user->id?>'>
-                <td><a href="user/edit?id=<?=$user->id?>"><?= $user->name ?></a></td>
+                <td><a href="user/view?id=<?=$user->id?>"><?= $user->name ?></a></td>
                 <td><?= $user->email?> </td>
                 <td><?= $user->getPlan() ?></td>
                 <td><?= ($user->status == User::STATUS_ACTIVE) ? 'Active' : 'Inactive'?> </td>
                 <td><?= date('M j Y', $user->created_at) ?> </td>
-                <td><?= date('M j Y', $user->last_login) ?></td>
+                <td><?= date('M j Y h:iA', $user->last_login) ?></td>
                 <td><?= $user->getLayouts()->count(); ?></td>
                 <td><?= $user->getEvents()->count(); ?></td>
                 <td><?= number_format($user->getEvents()->sum('amountRaised')) ?></td>
