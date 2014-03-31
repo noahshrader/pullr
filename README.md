@@ -2,7 +2,7 @@ pullr
 =====
 
 
-####Cron task 
+####Cron tasks
 
 to check and send emails every 1 minute
 * `* * * * * /www/pullr/yii mail/send`
