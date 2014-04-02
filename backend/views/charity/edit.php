@@ -2,7 +2,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use kartik\widgets\FileInput;
+use common\widgets\file\ImageInput;
 
 use common\models\Charity; 
 /**
@@ -18,23 +18,11 @@ $this->title = ($charity->id == 0) ? 'New charity' : 'Edit charity ' . $charity-
     <img class="smallPhoto" src="<?= $charity->photo ?>" >
 </div>
 <div class="form-group user-images <?= $charity->hasErrors('images') ? 'has-error' : '' ?>">
-                <label class="control-label">Upload a logo</label> 
-                <? $params = ['multiple' => false, 'accept' => 'image/*'];
-                    echo FileInput::widget([
-                        'name' => 'images[]',
-                        'options' => $params,
-                        'pluginOptions' => [
-                            'showUpload' => true,
-                             'browseLabel' => ' ',
-                            'uploadLabel' => ' ',
-//                            'uploadOptions' => ['label' => false],
-//                            'buttonOptions' => ['label' => false],
-                            'showRemove' => false,
-                        ]
-                    ]); ?>
-                 <? if ($charity->hasErrors('images')): ?>
-                    <?= Html::error($charity, 'images', ['class' => 'help-block']); ?>
-                 <? endif ?>
+    <label class="control-label">Upload a logo</label> 
+        <?=ImageInput::widget();?>
+     <? if ($charity->hasErrors('images')): ?>
+        <?= Html::error($charity, 'images', ['class' => 'help-block']); ?>
+     <? endif ?>
 </div>
                 
 <?= $form->field($charity, 'name') ?>

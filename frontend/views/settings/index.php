@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Notification;
-use kartik\widgets\FileInput;
+use common\widgets\file\ImageInput;
 
 /**
  * @var yii\web\View $this
@@ -22,21 +22,7 @@ $this->title = 'Account Settings';
                 <? if (!$user->openIDToUser): ?>
                 <div class="form-group user-images <?= $user->hasErrors('images') ? 'has-error' : '' ?>">
                     <label class="control-label">Upload avatar</label> 
-                    <?
-                    $params = ['multiple' => false, 'accept' => 'image/*'];
-                    echo FileInput::widget([
-                        'name' => 'images[]',
-                        'options' => $params,
-                        'pluginOptions' => [
-                            'showUpload' => true,
-                             'browseLabel' => ' ',
-                            'uploadLabel' => ' ',
-//                            'uploadOptions' => ['label' => false],
-//                            'buttonOptions' => ['label' => false],
-                            'showRemove' => false,
-                        ]
-                    ]);
-                    ?>
+                    <?=ImageInput::widget();?>
                 <? if ($user->hasErrors('images')): ?>
                     <?= Html::error($user, 'images', ['class' => 'help-block']); ?>
                 <? endif; ?>
@@ -77,7 +63,7 @@ $keyValues = array_combine($timezones, $timezones);
                     </div>
                 <? endif; ?>
                 <?= $form->field($changePasswordForm, 'oldPassword') ?>
-            <?= $form->field($changePasswordForm, 'newPassword')->passwordInput() ?>
+            <?= $form->field($changePasswordForm, 'newPassword')->passwordInput(['autocomplete' => 'off']) ?>
             <?= $form->field($changePasswordForm, 'confirmPassword')->passwordInput() ?>
             </fieldset>
             <div class="form-group">
