@@ -1,21 +1,24 @@
-<? 
+<?
+
 use common\models\Layout;
 use kartik\widgets\ActiveForm;
 use common\models\Event;
+use yii\helpers\Html;
+
 $this->registerJsFile('@web/js/pullrlayout/edit.js', common\assets\CommonAsset::className());
 
 $events = Event::find()->where(['status' => Event::STATUS_ACTIVE])->all();
 $eventsNames = [];
 $eventsIds = [];
-foreach ($events as $event){        
+foreach ($events as $event) {
     $eventsNames[] = $event->name;
     $eventsIds[] = $event->id;
 }
 ?>
 <? if ($layout): ?>
-<div class="layout-edit" data-id="<?= $layout->id?>">
-    <h4> <?= $layout->name ?></h4>
-    <? $form = ActiveForm::begin() ?>
+    <div class="layout-edit" data-id="<?= $layout->id ?>">
+        <h4> <?= $layout->name ?></h4>
+        <? $form = ActiveForm::begin() ?>
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -26,55 +29,76 @@ foreach ($events as $event){
                     </div>
                 </div>
                 <div class="panel-collapse collapse in" id="collapseOne">
-                    <?= $form->field($layout, 'name',['autoPlaceholder' => true]) ?>
-                    <?= $form->field($layout, 'domain',['autoPlaceholder' => true]) ?>
-                    <?= $form->field($layout, 'streamService',['autoPlaceholder' => true])->dropDownList(array_combine(Layout::$STREAM_SERVICES, Layout::$STREAM_SERVICES)) ?>
+                    <?= $form->field($layout, 'name', ['autoPlaceholder' => true]); ?>
+                    <div class="form-group field-layout-domain <?= ($layout->hasErrors('domain')) ? 'has-error' : '' ?>">
+                        <?= Html::activeInput('text', $layout, 'domain', ['class' => 'form-control', 'placeholder' => 'Google Analytics Tracking ID']) ?>
+                        <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Add Google Analytics to your page by entering the Tracking ID you want to use with this layout. If you don't want to use this feauter, leave this blank."></i>
+                        <?= Html::error($layout, 'domain', ['class' => 'help-block']) ?>
+                    </div>
+
+                    <div class="form-group field-layout-streamService <?= ($layout->hasErrors('streamService')) ? 'has-error' : '' ?>">
+                        <?= Html::activeDropDownList($layout, 'streamService', array_combine(Layout::$STREAM_SERVICES, Layout::$STREAM_SERVICES), ['class' => 'form-control']) ?>
+                        <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the streaming service your want to pull from."></i>
+                        <?= Html::error($layout, 'streamService', ['class' => 'help-block']) ?>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading"><div class="panel-title">
-                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                             Layout options
                         </a>
-                </div></div>
-                <div id="collapseTwo" class="panel-collapse collapse<?= $layout->chat?' chatOn':''?><?= $layout->enableDonations?' enableDonations':''?>" data-layout-type="<?= str_replace(' ','',$layout->type) ?>">
-                    <?= $form->field($layout, 'type',['autoPlaceholder' => true])->dropDownList(array_combine(Layout::$TYPES, Layout::$TYPES)) ?>
-                    <?= $form->field($layout, 'channelName',['autoPlaceholder' => true]); ?>
-                    <?= $form->field($layout, 'channelTeam',['autoPlaceholder' => true]);?>
+                    </div></div>
+                <div id="collapseTwo" class="panel-collapse collapse<?= $layout->chat ? ' chatOn' : '' ?><?= $layout->enableDonations ? ' enableDonations' : '' ?>" data-layout-type="<?= str_replace(' ', '', $layout->type) ?>">
+                    <div class="form-group field-layout-type <?= ($layout->hasErrors('type')) ? 'has-error' : '' ?>">
+                        <?= Html::activeDropDownList($layout, 'type', array_combine(Layout::$TYPES, Layout::$TYPES), ['class' => 'form-control']) ?>
+                        <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
+                        <?= Html::error($layout, 'type', ['class' => 'help-block']) ?>
+                    </div>
+                    <?= $form->field($layout, 'channelName', ['autoPlaceholder' => true]); ?>
+                    <?= $form->field($layout, 'channelTeam', ['autoPlaceholder' => true]); ?>
                     <div id="layout-multichannels">
                         <? if ($layout->isNewRecord): ?>
-                        <div class="label label-danger">Save layout before adding channels</div>
+                            <div class="label label-danger">Save layout before adding channels</div>
                         <? endif ?>
-                        <input type="text" id="addLayoutTeam" placeholder="Add channel"> <a class="btn btn-success btn-xs" onclick="addNewLayoutTeam()"> <i class="glyphicon glyphicon-plus"></i></a>
+                        <input type="text" id="addLayoutTeam" placeholder="Add channel(s)"> <a class="btn btn-success btn-xs" onclick="addNewLayoutTeam()"> <i class="glyphicon glyphicon-plus"></i></a>
                         <div id="layoutTeams">
-                            
+
                         </div>
                     </div>
                     <?= $form->field($layout, 'chat')->label('Chat on?')->checkbox([], false); ?>
                     <?= $form->field($layout, 'chatToggle')->label('Use toggle?')->checkbox([], false); ?>
                     <?= $form->field($layout, 'enableDonations')->label('Enable donations?')->checkbox([], false); ?>
-                    
-                    <?= $form->field($layout, 'eventId',['autoPlaceholder' => true])->label('Select an Event')->dropDownList(array_combine($eventsIds, $eventsNames)) ?>
-                    
+
+                    <?= $form->field($layout, 'eventId', ['autoPlaceholder' => true])->label('Select an Event')->dropDownList(array_combine($eventsIds, $eventsNames)) ?>
+
                 </div>
             </div>
-            
+
             <div class="panel panel-default">
                 <div class="panel-heading"><div class="panel-title">
-                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                             Customizations
                         </a>
-                </div></div>
+                    </div></div>
                 <div class="panel-collapse collapse" id="collapseThree">
                 </div>
             </div>
         </div>
-        
+
         <button class="btn btn-primary">Save</button>
-    <? ActiveForm::end() ?>
-</div>
+        <? ActiveForm::end() ?>
+
+    </div>
 <? else: ?>
-<div class="text-center">
-    <a href="pullrlayout/add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New layout</a>
-</div>
+    <div class="text-center">
+        <a href="pullrlayout/add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New layout</a>
+    </div>
 <? endif ?> 
+<div id='modal-social-link' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+        </div>
+    </div>
+</div>

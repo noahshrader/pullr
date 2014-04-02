@@ -9,8 +9,12 @@ function updateLayoutTeams() {
     $.getJSON('pullrlayout/layoutteams', {id: id}, function(teams) {
         var $list = $('<ol>');
         for (var key in teams) {
-            var $item = $('<li>').append($('<span>').text(teams[key]));
+            var team = teams[key];
+            var $item = $('<li>').append($('<span>').text(team.name));
             $item.append($('<a href="javascript:void(0)" onclick="layoutTeamRemove(this)"><i class="glyphicon glyphicon-remove"></i></a>'))
+            $item.append($('<a href="javascript:void(0)" class="'+(team.facebook?'active':'')+'" onclick="layoutTeamLink(this,'+team.id+')"><i class="facebook">f</i></a> '))
+            $item.append($('<a href="javascript:void(0)" class="'+(team.twitter?'active':'')+'" onclick="layoutTeamLink(this,'+team.id+')"><i class="twitter">t</i></a> '))
+            $item.append($('<a href="javascript:void(0)" class="'+(team.youtube?'active':'')+'" onclick="layoutTeamLink(this,'+team.id+')"><i class="youtube">y</i></a> '))
             $list.append($item);
         }
         var $list = $('<div>').append($list);
@@ -18,6 +22,14 @@ function updateLayoutTeams() {
     });
 }
 
+
+function layoutTeamLink(el, id){
+//    var id = $('.layout-edit').data('id');
+//    var value = $(el).data('value');
+    $('#modal-social-link .modal-content').load('pullrlayout/layoutteamedit', {id: id, get: true}, function(){
+        $('#modal-social-link').modal('show');
+    })
+}
 function layoutTeamRemove(el) {
     var id = $('.layout-edit').data('id');
     var name = $(el).parents('li').find('span').text();

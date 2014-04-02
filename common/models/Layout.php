@@ -50,9 +50,9 @@ class Layout extends ActiveRecord {
     }
     public function attributeLabels() {
         return [
-            'domain' => 'Domain Name',
+            'domain' => 'Google Analytics Tracking ID',
             'type' => 'Type of Layout',
-            'channelTeam' => 'Team Channel',
+            'channelTeam' => 'Team Channel Name',
         ];
     }
     public function rules() {
@@ -62,8 +62,6 @@ class Layout extends ActiveRecord {
             ['domain', 'filter', 'filter' => 'strip_tags'],
             ['channelName', 'filter', 'filter' => 'strip_tags'],
             ['channelTeam', 'filter', 'filter' => 'strip_tags'],
-            
-//            ['url', 'url', 'defaultScheme' => 'http'],
         ];
     }
     

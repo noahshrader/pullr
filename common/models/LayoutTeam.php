@@ -18,7 +18,13 @@ class LayoutTeam extends ActiveRecord {
      public function rules() {
         return [
             ['name', 'required'],
-            ['name', 'filter', 'filter' => 'strip_tags']
+            ['name', 'filter', 'filter' => 'strip_tags'],
+            ['youtube', 'filter', 'filter' => 'strip_tags'],
+            ['youtube', 'url', 'defaultScheme' => 'http'],
+            ['facebook', 'filter', 'filter' => 'strip_tags'],
+            ['facebook', 'url', 'defaultScheme' => 'http'],
+            ['twitter', 'filter', 'filter' => 'strip_tags'],
+            ['twitter', 'url', 'defaultScheme' => 'http'],
         ];
     }
     /**

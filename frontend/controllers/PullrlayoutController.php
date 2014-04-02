@@ -7,7 +7,9 @@ use common\models\Layout;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
 use common\models\LayoutTeam;
-
+use yii\web\Response;
+use Yii;
+use kartik\widgets\ActiveForm;
 
 class PullrLayoutController extends FrontendController {
     public function actionAdd(){
@@ -61,14 +63,33 @@ class PullrLayoutController extends FrontendController {
         $id = $_REQUEST['id'];
         $teams = LayoutTeam::find()->where(['layoutId' => $id])->orderBy('date DESC')->all();
 
-        $teamNames = [];
+        $teamsOut = [];
         foreach ($teams as $team){
-            $teamNames[] = $team->name;
+            $teamsOut[] = $team->toArray();
         }
         
-        return json_encode($teamNames);
+        return json_encode($teamsOut);
     }
     
+    public function actionLayoutteamedit(){
+        $id = $_REQUEST['id'];
+        $layoutTeam = LayoutTeam::find($id);
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_REQUEST['get']) && !isset($_REQUEST['save'])) {
+            $layoutTeam->load($_POST);
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($layoutTeam);
+        }
+        if ($layoutTeam->load($_POST) && $layoutTeam->save($_POST)){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($layoutTeam);
+        }
+        $layout = Layout::find($layoutTeam->layoutId);
+        if ($layout->userId != \Yii::$app->user->id  && !Application::IsAdmin()){
+            throw new \yii\web\ForbiddenHttpException();
+        }
+        return $this->renderAjax('layout-team-edit', ['layoutTeam' => $layoutTeam]);
+    }
     public function actionLayoutteamremove(){
         $id = $_POST['id'];
         $name = $_POST['name'];
