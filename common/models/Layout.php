@@ -38,7 +38,8 @@ class Layout extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['name','domain','streamService','type','channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations']
+            'default' => ['name','domain','streamService','type','channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations', 
+                'primaryColor', 'secondaryColor', 'tertiaryColor']
         ];
     }
     public function __construct($config = array()) {

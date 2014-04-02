@@ -78,10 +78,13 @@ FrontendAsset::register($this);
                             <a href="">Dashboard</a>
                         </li>
                         <li>
-                            <a href="pullrlayout">Streams</a>
+                            <a href="pullrlayout">Layouts</a>
                         </li>
                         <li>
-                            <a href="settings">Settings</a>
+                            <a href="event">Events</a>
+                        </li>
+                        <li>
+                            <a href="donation">Donations</a>
                         </li>
                            
                     <? endif; ?>

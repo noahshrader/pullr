@@ -6,16 +6,20 @@ use common\models\Event;
 use yii\helpers\Html;
 
 $this->registerJsFile('@web/js/pullrlayout/edit.js', common\assets\CommonAsset::className());
-
-$events = Event::find()->where(['status' => Event::STATUS_ACTIVE])->all();
-$eventsNames = [];
-$eventsIds = [];
-foreach ($events as $event) {
-    $eventsNames[] = $event->name;
-    $eventsIds[] = $event->id;
-}
+$user = \Yii::$app->user->identity;
 ?>
-<? if ($layout): ?>
+
+    <? if ($layout): ?>
+
+    <?
+    $events = $user->events;
+    $eventsNames = [];
+    $eventsIds = [];
+    foreach ($events as $event) {
+        $eventsNames[] = $event->name;
+        $eventsIds[] = $event->id;
+    }
+    ?>
     <div class="layout-edit" data-id="<?= $layout->id ?>">
         <h4> <?= $layout->name ?></h4>
         <? $form = ActiveForm::begin() ?>
@@ -69,7 +73,6 @@ foreach ($events as $event) {
                     <?= $form->field($layout, 'chat')->label('Chat on?')->checkbox([], false); ?>
                     <?= $form->field($layout, 'chatToggle')->label('Use toggle?')->checkbox([], false); ?>
                     <?= $form->field($layout, 'enableDonations')->label('Enable donations?')->checkbox([], false); ?>
-
                     <?= $form->field($layout, 'eventId', ['autoPlaceholder' => true])->label('Select an Event')->dropDownList(array_combine($eventsIds, $eventsNames)) ?>
 
                 </div>
@@ -82,6 +85,9 @@ foreach ($events as $event) {
                         </a>
                     </div></div>
                 <div class="panel-collapse collapse" id="collapseThree">
+                    <?= $form->field($layout, 'primaryColor')->label('Choose a primary color:')->input('color'); ?>
+                    <?= $form->field($layout, 'secondaryColor')->label('Choose a secondary color:')->input('color'); ?>
+                    <?= $form->field($layout, 'tertiaryColor')->label('Choose a tertiary color:')->input('color'); ?>
                 </div>
             </div>
         </div>
