@@ -131,9 +131,6 @@ $user = \Yii::$app->user->identity;
 
     </div>
 <? else: ?>
-    <div class="text-center">
-        <a href="pullrlayout/add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New layout</a>
-    </div>
 <? endif ?> 
 <!-- Modal -->
 <div class="modal fade" id="modalThemes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

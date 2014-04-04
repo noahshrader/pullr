@@ -133,6 +133,6 @@ function selectTheme(el){
 $(function() {
     $('#layout-type').change(layoutTypeChanged);
     updateLayoutTeams();
-    rememberAccordionState();
+//    rememberAccordionState();
     initBootstrapSwitch();
 });

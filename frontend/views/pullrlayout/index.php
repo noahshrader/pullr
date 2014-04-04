@@ -22,8 +22,8 @@ $this->title = 'Layouts';
 </script>
     <div class='pullr-table'>
         <div class="row pullr-table-row">
-            <div class="col-xs-10">
-                <h1><?= Html::encode($this->title) ?></h1>
+            <div class="<?= $selectedLayout ? 'col-xs-10': 'col-xs-12' ?>">
+                <h1><?= Html::encode($this->title) ?> <a href="pullrlayout/add" style="float:right" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New layout</a></h1>
                 <div class="row content-container content-container-layout">
                     <? foreach ($layouts as $layout): ?>
                         <div class="col-sm-4 pullr-layout-container">
@@ -50,6 +50,7 @@ $this->title = 'Layouts';
                     <? endforeach; ?>
                 </div>
             </div>
+            <? if ($selectedLayout):?>
             <!-- table-cell div -->
             <div class='col-xs-2 table-cell'>
                 <div class="frontend-right-widget">
@@ -58,5 +59,6 @@ $this->title = 'Layouts';
                         ]); ?>            
                 </div>
             </div>
+            <? endif; ?>
         </div>
     </div>
