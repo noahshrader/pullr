@@ -12,8 +12,8 @@ use common\models\PlanHistory;
  * to consider account on other the base you also should check expire field to be more than current time
  */
 class Plan extends ActiveRecord {
-    const PLAN_BASE = 'base';
-    const PLAN_PRO = 'pro';
+    const PLAN_BASE = 'Basic';
+    const PLAN_PRO = 'Pro';
     const SUBSCRIPTION_YEAR = 'year';
     const SUBSCRIPTION_MONTH = 'month';
     

@@ -1,8 +1,8 @@
 /*
-  Name:          Basic Dark Theme
-  Description:   A very basic, dark-styled theme for basic members
-  Layout:        Single (Available: Single or Multiple)
-  Plan:          Basic (Available plans: Basic or Pro)
+  name:          Basic Dark Theme
+  description:   A very basic, dark-styled theme for basic members
+  layout:        Single Stream #available layouts look at Layout::$TYPES
+  plan:          Basic #avaliable plans look at Plan::$PLANS
 */
 
 /* Core Styles */

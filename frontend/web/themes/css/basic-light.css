@@ -1,8 +1,8 @@
 /*
-  Name:         Basic Light Theme
-  Description:  A very basic, light-styled theme for basic members
-  Layout:       Single (Available: Single or Multiple)
-  Plan:         Basic (Available plans: Basic or Pro)
+  name:         Basic Light Theme
+  description:  A very basic, light-styled theme for basic members. #comment
+  layout:       Single Stream  #available layouts look at Layout::$TYPES
+  plan:         Basic  #avaliable plans look at Plan::$PLANS
 */
 
 /* Core Styles */
