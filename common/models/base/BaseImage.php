@@ -28,12 +28,12 @@ class BaseImage extends ActiveRecord implements IBaseImage {
 
     const TYPE_USER = 'user';
     const TYPE_CHARITY = 'charity';
-    
+    const TYPE_LAYOUT_LOGO = 'layoutLogo';
 
     /**
      * list of types (models) available to upload images
      */
-    public static $TYPES = [self::TYPE_USER, self::TYPE_CHARITY];
+    public static $TYPES = [self::TYPE_USER, self::TYPE_CHARITY, self::TYPE_LAYOUT_LOGO];
 
     /** MAX size is 5 MB */
     const MAX_IMAGE_SIZE = 5242880;

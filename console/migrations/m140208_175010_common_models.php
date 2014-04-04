@@ -55,7 +55,7 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . ' NOT NULL',
             'status' => $statuses, 
-            'photo' => Schema::TYPE_INTEGER,
+            'photoId' => Schema::TYPE_INTEGER,
             'type' => Schema::TYPE_STRING . ' NOT NULL',
             'paypal' => Schema::TYPE_STRING. ' NOT NULL',
             'url' => Schema::TYPE_STRING. ' NOT NULL',

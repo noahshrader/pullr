@@ -35,25 +35,7 @@ class SettingsController extends FrontendController {
         $user = Yii::$app->user->identity;
         $user->setScenario('settings');
         if ($user->load($_POST) && $user->save($_POST)) {
-            $errors = UploadImage::Upload($user->id, BaseImage::TYPE_USER);
-            if ($errors) {
-                $user->addError('images', $errors[0]);
-            } else {
-                $params = ['subjectId' => $user->id, 'type' => BaseImage::TYPE_USER, 'status' => BaseImage::STATUS_APPROVED];
-                $image = BaseImage::find()->where($params)->orderBy('id DESC')->one();
-                if ($image && ($user->photo != $image->id)) {
-                    $user->setScenario('photo');
-                    $user->photo = $image->id;
-                    $user->smallPhoto = $image->id;
-                    $user->save();
-                    $user->refresh();
-                    $oldImages = BaseImage::find()->where($params)->andWhere('id < ' . $image->id)->all();
-                    foreach ($oldImages as $oldImage) {
-                        $oldImage->status = BaseImage::STATUS_DELETED;
-                        $oldImage->save();
-                    }
-                }
-            }
+            UploadImage::UploadLogo($user);
         }
 
         $notification = $user->notification;

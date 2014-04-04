@@ -4,6 +4,7 @@ use common\models\Layout;
 use kartik\widgets\ActiveForm;
 use common\models\Event;
 use yii\helpers\Html;
+use common\widgets\file\ImageInput;
 
 $this->registerJsFile('@web/js/pullrlayout/edit.js', common\assets\CommonAsset::className());
 $user = \Yii::$app->user->identity;
@@ -22,7 +23,8 @@ $user = \Yii::$app->user->identity;
     ?>
     <div class="layout-edit" data-id="<?= $layout->id ?>">
         <h4> <?= $layout->name ?></h4>
-        <? $form = ActiveForm::begin() ?>
+        <? $form = ActiveForm::begin(['options' => [
+                            'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -85,6 +87,14 @@ $user = \Yii::$app->user->identity;
                         </a>
                     </div></div>
                 <div class="panel-collapse collapse" id="collapseThree">
+                    <img class="logo" src="<?= $layout->smallPhoto ?>">
+                    <div class="form-group user-images <?= $layout->hasErrors('images') ? 'has-error' : '' ?>">
+                        <label class="control-label">Upload a logo</label> 
+                            <?=ImageInput::widget();?>
+                         <? if ($layout->hasErrors('images')): ?>
+                            <?= Html::error($layout, 'images', ['class' => 'help-block']); ?>
+                         <? endif ?>
+                    </div>
                     <?= $form->field($layout, 'primaryColor')->label('Choose a primary color:')->input('color'); ?>
                     <?= $form->field($layout, 'secondaryColor')->label('Choose a secondary color:')->input('color'); ?>
                     <?= $form->field($layout, 'tertiaryColor')->label('Choose a tertiary color:')->input('color'); ?>

@@ -51,13 +51,4 @@ class PullrUserComponent extends \yii\web\User{
         }
         parent::loginRequired();
     }
-    
-    public function getIdentity($checkSession = true) {
-        $identity = parent::getIdentity($checkSession);
-        if ($identity){
-            $identity->checkPhotoLinks();
-        }
-        
-        return $identity;
-    }
 }

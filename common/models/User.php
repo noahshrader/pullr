@@ -28,11 +28,6 @@ use common\models\Event;
  */
 class User extends ActiveRecord implements IdentityInterface {
     /**
-     * that field is used to upload photo for user avatar
-     * @var type 
-     */
-    public $images;
-    /**
      * @var string the raw password. Used to collect password input and isn't saved in database
      */
     public $password;
@@ -172,6 +167,7 @@ class User extends ActiveRecord implements IdentityInterface {
     public function setNewPassword($password){
         $this->password_hash = Security::generatePasswordHash($password);
     }
+    
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if (($this->isNewRecord || $this->getScenario() === 'resetPassword') && !empty($this->password)) {
@@ -182,14 +178,6 @@ class User extends ActiveRecord implements IdentityInterface {
                 
             }
             
-            if (!$this->isNewRecord && (!in_array($this->getScenario(), ['photo', 'openId']))){
-                if ($this->photo != $this->oldAttributes['photo']){
-                    $this->photo = $this->oldAttributes['photo'];
-                }
-                if ($this->smallPhoto != $this->oldAttributes['smallPhoto']){
-                    $this->smallPhoto = $this->oldAttributes['smallPhoto'];
-                }
-            }
             return true;
         }
         return false;
@@ -228,30 +216,16 @@ class User extends ActiveRecord implements IdentityInterface {
         return array_intersect_key(parent::toArray($fields, $expand, $recursive), array_flip($allowed));
     }
     
+    /**
+     * that field is used to upload photo for user avatar
+     * @var type 
+     */
+    public $images;
+    
     public function afterFind() {
         parent::afterFind();
-        $this->checkPhotoLinks();
+        \common\components\UploadImage::ApplyLogo($this);
     }
-    
-    public function checkPhotoLinks(){
-        if (intval($this->photo)){
-            $id = intval($this->photo);
-            $this->photo = BaseImage::getOriginalUrlById($id);
-            $this->smallPhoto = BaseImage::getMiddleUrlById($id);
-        }
-    }
-        
-//    /**
-//     * If object created from another object like event->user it will have wrong link to images 
-//     * if no getPhoto() and getSmallPhoto is called
-//     */
-//    public function getPhoto(){
-//        $this->checkPhotoLinks();
-//    }
-//    
-//    public function getSmallPhoto(){
-//        $this->checkPhotoLinks();
-//    }
     
     /**
      * Finds user by password reset token

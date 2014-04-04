@@ -76,16 +76,9 @@ class Layout extends ActiveRecord {
     
     public function afterFind() {
         parent::afterFind();
-        if ($this->photoId) {
-            $id = $this->photoId;
-            $this->photo = BaseImage::getOriginalUrlById($id);
-            $this->smallPhoto = BaseImage::getMiddleUrlById($id);
-        } else {
-            $this->photo = BaseImage::NO_PHOTO_LINK();
-            $this->smallPhoto = BaseImage::NO_PHOTO_LINK();
-        }
+        \common\components\UploadImage::ApplyLogo($this);
     }
-
+    
     public function beforeSave($insert) {
         if ($insert && isset(\Yii::$app->user) && !\Yii::$app->user->isGuest){
             $this->userId = \Yii::$app->user->id;
