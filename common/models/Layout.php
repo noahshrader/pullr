@@ -37,7 +37,8 @@ class Layout extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['name','domain','streamService','type','channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations', 
-                'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId']
+                'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId', 'twitterEnable', 'twitterName', 'facebookEnable', 'facebookUrl',
+                'youtubeEnable', 'youtubeUrl', 'includeYoutubeFeed']
         ];
     }
     public function __construct($config = array()) {
@@ -52,6 +53,9 @@ class Layout extends ActiveRecord {
             'domain' => 'Google Analytics Tracking ID',
             'type' => 'Type of Layout',
             'channelTeam' => 'Team Channel Name',
+            'twitterName' => 'Twitter username',
+            'youtubeUrl' => 'YouTube Channel URL',
+            'facebookUrl' => 'Facebook page/profile URL'
         ];
     }
     public function rules() {
@@ -61,9 +65,17 @@ class Layout extends ActiveRecord {
             ['domain', 'filter', 'filter' => 'strip_tags'],
             ['channelName', 'filter', 'filter' => 'strip_tags'],
             ['channelTeam', 'filter', 'filter' => 'strip_tags'],
+            ['twitterName', 'twitterFilter'],
+            ['facebookUrl', 'url', 'defaultScheme' => 'http'],
+            ['youtubeUrl', 'url', 'defaultScheme' => 'http']
         ];
     }
     
+    public function twitterFilter(){
+        if ($this->twitterName && $this->twitterName[0] != '@'){
+            $this->twitterName = '@'.$this->twitterName;
+        }
+    }
     /**
      * that field is used to upload photo for user avatar
      * @var type 

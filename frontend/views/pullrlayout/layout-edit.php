@@ -22,7 +22,7 @@ $user = \Yii::$app->user->identity;
     }
     ?>
     <div class="layout-edit" data-id="<?= $layout->id ?>">
-        <h4> <?= $layout->name ?></h4>
+        <h4> <?= ($layout->name)?$layout->name:'New layout' ?></h4>
         <? $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
         <div class="panel-group" id="accordion">
@@ -54,7 +54,7 @@ $user = \Yii::$app->user->identity;
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                             Layout options
                         </a>
-                    </div></div>
+                </div></div>
                 <div id="collapseTwo" class="panel-collapse collapse<?= $layout->chat ? ' chatOn' : '' ?><?= $layout->enableDonations ? ' enableDonations' : '' ?>" data-layout-type="<?= str_replace(' ', '', $layout->type) ?>">
                     <div class="form-group field-layout-type <?= ($layout->hasErrors('type')) ? 'has-error' : '' ?>">
                         <?= Html::activeDropDownList($layout, 'type', array_combine(Layout::$TYPES, Layout::$TYPES), ['class' => 'form-control']) ?>
@@ -85,7 +85,7 @@ $user = \Yii::$app->user->identity;
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
                             Customizations
                         </a>
-                    </div></div>
+                </div></div>
                 <div class="panel-collapse collapse" id="collapseThree">
                     <?= $form->field($layout, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
                     <div class='theme-name <? if (!$layout->themeId) { echo 'hidden';} ?>'>
@@ -106,6 +106,22 @@ $user = \Yii::$app->user->identity;
                     <?= $form->field($layout, 'primaryColor')->label('Choose a primary color:')->input('color'); ?>
                     <?= $form->field($layout, 'secondaryColor')->label('Choose a secondary color:')->input('color'); ?>
                     <?= $form->field($layout, 'tertiaryColor')->label('Choose a tertiary color:')->input('color'); ?>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><div class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                        Social Integration
+                    </a>
+                </div></div>
+                <div id="collapseFour" class="panel-collapse collapse <?= ($layout->twitterEnable? 'twitterEnable ': '').($layout->youtubeEnable? 'youtubeEnable ': '').($layout->facebookEnable? 'facebookEnable ': '') ?>">
+                    <?= $form->field($layout, 'twitterEnable')->label('Enable Twitter Link?')->checkbox([], false); ?>
+                    <?= $form->field($layout, 'twitterName', ['autoPlaceholder' => true]); ?>
+                    <?= $form->field($layout, 'youtubeEnable')->label('Enable Youtube?')->checkbox([], false); ?>
+                    <?= $form->field($layout, 'youtubeUrl', ['autoPlaceholder' => true]); ?>
+                    <?= $form->field($layout, 'includeYoutubeFeed')->label('Include Youtube Feed?')->checkbox([], false); ?>
+                    <?= $form->field($layout, 'facebookEnable')->label('Enable Facebook?')->checkbox([], false); ?>
+                    <?= $form->field($layout, 'facebookUrl', ['autoPlaceholder' => true]); ?>
                 </div>
             </div>
         </div>

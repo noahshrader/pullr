@@ -84,7 +84,34 @@ function initBootstrapSwitch() {
         }
     });
     
+    $("#layout-twitterenable").on('click', function() {
+        var value = $('#layout-twitterenable').bootstrapSwitch('state');
+        if (value){
+            $('.field-layout-twittername').show('slow');
+        } else {
+            $('.field-layout-twittername').hide('slow');
+        }
+    });
     
+    $("#layout-youtubeenable").on('click', function() {
+        var value = $('#layout-youtubeenable').bootstrapSwitch('state');
+        if (value){
+            $('.field-layout-youtubeurl').show('slow');
+            $('.field-layout-includeyoutubefeed').show('slow');
+        } else {
+            $('.field-layout-youtubeurl').hide('slow');
+            $('.field-layout-includeyoutubefeed').hide('slow');
+        }
+    });
+    
+    $("#layout-facebookenable").on('click', function() {
+        var value = $('#layout-facebookenable').bootstrapSwitch('state');
+        if (value){
+            $('.field-layout-facebookurl').show('slow');
+        } else {
+            $('.field-layout-facebookurl').hide('slow');
+        }
+    });
 }
 
 function layoutChooseTheme(){

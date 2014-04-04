@@ -160,6 +160,30 @@
             margin-right: 15px;
         }
     }
+    
+    #collapseFour{
+        .field-layout-twittername, .field-layout-youtubeurl, .field-layout-facebookurl, .field-layout-includeyoutubefeed{
+            display: none;
+        }
+    }
+    
+    #collapseFour.twitterEnable{
+        .field-layout-twittername{
+            display: block;
+        }
+    }
+    
+    #collapseFour.youtubeEnable{
+        .field-layout-youtubeurl, .field-layout-includeyoutubefeed{
+            display: block;
+        }
+    }
+    
+    #collapseFour.facebookEnable{
+        .field-layout-facebookurl{
+            display: block;
+        }
+    }
 }
 
 #modalThemes{
