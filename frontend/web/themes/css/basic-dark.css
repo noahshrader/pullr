@@ -1,0 +1,270 @@
+/*
+  Name:          Basic Dark Theme
+  Description:   A very basic, dark-styled theme for basic members
+  Layout:        Single (Available: Single or Multiple)
+  Plan:          Basic (Available plans: Basic or Pro)
+*/
+
+/* Core Styles */
+/* ------------------------------------------------- */
+/* Resets */
+/* ------------------------------------------------- */
+*,
+*:after,
+*:before {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  color: #444;
+}
+/* clear */
+.clear:before,
+.clear:after {
+  content: '';
+  display: table;
+}
+.clear:after {
+  clear: both;
+}
+.clear {
+  *zoom: 1;
+}
+a {
+  color: #444;
+  text-decoration: none;
+}
+a:hover {
+  color: #444;
+}
+a:hover,
+a:focus,
+a:active,
+input,
+input:focus,
+button,
+button:active {
+  outline: 0;
+}
+input,
+button {
+  border: 0;
+}
+/* Icon fonts */
+/* ------------------------------------------------- */
+@font-face {
+  font-family: 'icomoon';
+  src: url('fonts/icomoon.eot?-n3v11d');
+  src: url('fonts/icomoon.eot?#iefix-n3v11d') format('embedded-opentype'), url('fonts/icomoon.woff?-n3v11d') format('woff'), url('fonts/icomoon.ttf?-n3v11d') format('truetype'), url('fonts/icomoon.svg?-n3v11d#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-checkmark:before {
+  content: "\e607";
+}
+.icon-twitter:before {
+  content: "\e600";
+}
+.icon-facebook:before {
+  content: "\e601";
+}
+.icon-googleplus:before {
+  content: "\e602";
+}
+/* Headings */
+/* ------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 1.6em;
+}
+h2 {
+  font-size: 2em;
+  line-height: 1.3em;
+}
+h3 {
+  font-size: 1.8em;
+  line-height: 1.3em;
+}
+h4 {
+  color: #FFF;
+  font-size: 1.1em;
+  line-height: 1.3em;
+}
+/* Forms */
+/* ------------------------------------------------- */
+.field {
+  position: relative;
+  display: inline-block;
+  border-radius: 3px;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+/* Dark field */
+.dark .field {
+  background: ;
+}
+.field input {
+  background: transparent;
+}
+/* Main Elements */
+/* ------------------------------------------------- */
+/* Defaults */
+/* width of parent elements */
+/* max width of parent elements */
+/* Donate Buttons */
+a.donate,
+input[type="submit"].donate,
+button.donate {
+  display: inline-block;
+  color: #FFF;
+  font-weight: 600;
+  padding: .8em 1.4em;
+  background: #1dbc9c;
+  border-radius: 3px;
+  background-clip: padding-box;
+}
+a.donate:hover,
+input[type="submit"].donate:hover,
+button.donate:hover {
+  background: #20d2ae;
+}
+/* Structures */
+.wrapper {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 960px;
+}
+/* Header */
+header .logo img {
+  max-width: 90%;
+  max-height: 200px;
+}
+/* Stream Section */
+#stream {
+  padding: .8em;
+  margin: .8em 0;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 960px;
+  border-radius: 3px;
+  background-clip: padding-box;
+}
+#stream .player {
+  float: left;
+  width: 60%;
+  min-height: 400px;
+}
+/* Donation Bar/Progress */
+#progress {
+  position: relative;
+  width: 100%;
+  background: #3a3c40;
+}
+#progress .progress-bar {
+  height: 100%;
+  background: #1dbc9c;
+  transition: width 0.8s ease-in-out;
+}
+#progress span {
+  display: inline-block;
+  color: #FFF;
+  font-weight: 600;
+  padding: .6em 0;
+}
+#progress .progress-bar span.total-raised {
+  float: right;
+  padding-right: .6em;
+}
+#progress span.goal-amount {
+  position: absolute;
+  top: 0;
+  right: 12px;
+}
+/* Footer */
+footer {
+  padding: 2em 0;
+  text-align: center;
+  width: 100%;
+}
+footer span.copy {
+  color: #6b6e75;
+  font-size: .7em;
+}
+/* Backgrounds */
+/* ------------------------------------------------- */
+/* background color */
+/* Darken */
+/* 5% gray background */
+/* 10% gray background */
+/* 20% gray background */
+/* 30% gray background */
+/* 40% gray background */
+/* 60% gray background */
+/* 80% gray background */
+/* faded white background color */
+/* Links */
+/* ------------------------------------------------- */
+/* Link color for white on dark */
+/* Hover state for white on dark */
+/* Color Palettes */
+/* ------------------------------------------------- */
+/* Primary color */
+/* Primary color hover state */
+/* Borders & Box Shadows */
+/* ------------------------------------------------- */
+/* Defaults */
+/* ------------------------------------------------- */
+html,
+body {
+  background: #222325;
+}
+/* Structures */
+header {
+  padding: 3.2em 0;
+}
+header .logo {
+  text-align: center;
+}
+/* Stream */
+#stream {
+  background: rgba(31, 31, 31, 0.8);
+}
+#stream .player {
+  background: #222325;
+}
+/* Stream Info */
+#stream-info {
+  padding: 2em 0;
+}
+/* Footer */
+footer {
+  background: #2e3032;
+}
+/* Responsive Styles */
