@@ -24,8 +24,6 @@ function updateLayoutTeams() {
 
 
 function layoutTeamLink(el, id){
-//    var id = $('.layout-edit').data('id');
-//    var value = $(el).data('value');
     $('#modal-social-link .modal-content').load('pullrlayout/layoutteamedit', {id: id, get: true}, function(){
         $('#modal-social-link').modal('show');
     })
@@ -89,6 +87,22 @@ function initBootstrapSwitch() {
     
 }
 
+function layoutChooseTheme(){
+    var layoutType = $('#layout-type').val();
+    $('#modalThemes .modal-content').load('pullrlayout/modalthemes', {type: layoutType}, function(){
+        $('#modalThemes').modal('show');
+    })
+}
+
+function selectTheme(el){
+    var $theme = $(el).parents('.select-theme-container');
+    var name = $theme.data('name');
+    var id = $theme.data('id');
+    $('#layout-themeid').val(id);
+    $('.theme-name span').text(name);
+    $('.theme-name').removeClass('hidden');
+    $('#modalThemes').modal('hide');
+}
 $(function() {
     $('#layout-type').change(layoutTypeChanged);
     updateLayoutTeams();

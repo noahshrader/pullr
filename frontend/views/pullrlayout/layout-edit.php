@@ -87,6 +87,14 @@ $user = \Yii::$app->user->identity;
                         </a>
                     </div></div>
                 <div class="panel-collapse collapse" id="collapseThree">
+                    <?= $form->field($layout, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
+                    <div class='theme-name <? if (!$layout->themeId) { echo 'hidden';} ?>'>
+                        <label>
+                            Selected theme:
+                        </label>
+                        <span><?= $layout->theme?$layout->theme->name:''?></span>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="layoutChooseTheme()">Choose a theme</button> <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Choose how you want to style your layout page. Options based on the Type of Layout you selected and which plan you're on."></i>
                     <img class="logo" src="<?= $layout->smallPhoto ?>">
                     <div class="form-group user-images <?= $layout->hasErrors('images') ? 'has-error' : '' ?>">
                         <label class="control-label">Upload a logo</label> 
@@ -111,6 +119,14 @@ $user = \Yii::$app->user->identity;
         <a href="pullrlayout/add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New layout</a>
     </div>
 <? endif ?> 
+<!-- Modal -->
+<div class="modal fade" id="modalThemes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
 <div id='modal-social-link' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

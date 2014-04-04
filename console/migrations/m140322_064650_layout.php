@@ -32,7 +32,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             'chatToggle' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'enableDonations' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'eventId' => Schema::TYPE_INTEGER,
-            'theme' => Schema::TYPE_STRING. ' NOT NULL',
+            'themeId' => Schema::TYPE_INTEGER,
             'photoId' => Schema::TYPE_INTEGER,
             'primaryColor' => Schema::TYPE_STRING. ' NOT NULL',
             'secondaryColor' => Schema::TYPE_STRING. ' NOT NULL',

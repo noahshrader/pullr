@@ -4,9 +4,7 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 use common\models\User;
-use common\models\Payment;
-use common\components\Application;
-use common\models\base\BaseImage;
+use common\models\Theme;
 
 /**
  * to consider account on other the base you also should check expire field to be more than current time
@@ -39,7 +37,7 @@ class Layout extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['name','domain','streamService','type','channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations', 
-                'primaryColor', 'secondaryColor', 'tertiaryColor']
+                'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId']
         ];
     }
     public function __construct($config = array()) {
@@ -95,5 +93,9 @@ class Layout extends ActiveRecord {
 
     public function getTeams(){
         return $this->hasMany(LayoutTeam::className(), ['id' => 'layoutId']);
+    }
+    
+    public function getTheme(){
+        return $this->hasOne(Theme::className(), ['id' => 'themeId']);
     }
 }

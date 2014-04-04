@@ -10,9 +10,9 @@ use common\models\LayoutTeam;
 use yii\web\Response;
 use Yii;
 use kartik\widgets\ActiveForm;
-use common\models\base\BaseImage;
 use common\components\UploadImage;
-
+use common\models\Theme;
+use common\models\Plan;
 class PullrLayoutController extends FrontendController {
 
     public function actionAdd() {
@@ -141,6 +141,24 @@ class PullrLayoutController extends FrontendController {
         $layoutTeam->name = $name;
 
         $layoutTeam->save();
+    }
+
+    public function actionModalthemes() {
+        $type = $_POST['type'];
+        $plan = \Yii::$app->user->identity->getPlan();
+
+        $themesQuery = Theme::find()->where(['status' => Theme::STATUS_ACTIVE]);
+        if ($plan == Plan::PLAN_BASE) {
+            $themesQuery->andWhere(['plan' => Plan::PLAN_BASE]);
+        }
+        if ($type){
+            $themesQuery->andWhere(['layoutType' => $type]);
+        }
+
+        $themes = $themesQuery->all();
+        return $this->renderPartial('modalThemes',[
+            'themes' => $themes, 'type' => $type
+        ]);
     }
 
 }

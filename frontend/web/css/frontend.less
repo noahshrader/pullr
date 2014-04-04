@@ -61,6 +61,9 @@
 
 
 .layout-edit{
+    .panel-heading{
+        margin-bottom: 10px;
+    }
     input[type=text].form-control{
         width: 200px;
         display: inline;
@@ -145,17 +148,35 @@
             display: block;
         }
     }
-    
-     #collapseThree{
-         .logo{
-             max-width: 100px;
-             max-height: 100px;
-             margin: 10px;
-         }
-         input[type=color]{
-             float: right;
-             margin-right: 15px;
-         }
-     }
+
+    #collapseThree{
+        .logo{
+            max-width: 100px;
+            max-height: 100px;
+            margin: 10px;
+        }
+        input[type=color]{
+            float: right;
+            margin-right: 15px;
+        }
+    }
 }
 
+#modalThemes{
+    @select-theme-height: 50px;
+    .select-theme{
+        min-height: @select-theme-height; 
+        background-color: #ccc;
+        padding-top: @select-theme-height / 2 - 10px;
+    }
+    .select-theme-container{
+        a{
+            display: none;
+        }
+    }
+    .select-theme-container:hover{
+        a{
+            display: inline;
+        }
+    }
+}

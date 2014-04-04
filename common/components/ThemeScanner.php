@@ -2,7 +2,6 @@
 
 namespace common\components;
 
-use Yii;
 use common\models\Theme;
 
 class ThemeScanner extends \yii\base\Component
