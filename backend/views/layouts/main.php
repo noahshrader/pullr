@@ -75,6 +75,9 @@ CommonAsset::register($this);
                             <li>
                                 <a href="charity">Charities</a>
                             </li>
+                            <li>
+                                <a href="theme">Themes</a>
+                            </li>
                     </ul>
                 <? endif; ?>
             </div>
