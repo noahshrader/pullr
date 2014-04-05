@@ -10,13 +10,16 @@ class CommonAsset extends AssetBundle {
     public $baseUrl = '@web';
     public $css = [
         'css/bootstrap/less/bootstrap.less',
+        'plugins/bootstrapSwitch/css/bootstrap3/bootstrap-switch.min.css',
         'css/common.less',
-        'plugins/bootstrapSwitch/css/bootstrap3/bootstrap-switch.min.css'
+        'css/reports.less'
     ];
     public $js = [
-        'js/common.js',
         'plugins/bootstrapSwitch/js/bootstrap-switch.min.js',
-        'plugins/jquery.form/jquery.form.js'
+        'plugins/jquery.form/jquery.form.js',
+        'https://www.google.com/jsapi',
+        'js/common.js',
+        
     ];
     public $depends = [
         'yii\web\YiiAsset',

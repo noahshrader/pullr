@@ -13,8 +13,8 @@ class EventQuery extends ActiveQuery
     public function active(){
         $event = $this->andWhere([
             'status' => Event::STATUS_ACTIVE])
-                ->andWhere('startDate > '. time())
-                ->andWhere('endDate < ' . time());
+                ->andWhere('startDate < '. time())
+                ->andWhere('endDate > ' . time());
         return $event;
     }
 }

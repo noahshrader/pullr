@@ -80,7 +80,6 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'numberOfDonations' => Schema::TYPE_INTEGER. ' NOT NULL',
             'numberOfUniqueDonors' => Schema::TYPE_INTEGER. ' NOT NULL',
             'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'amount' => Schema::TYPE_FLOAT . ' NOT NULL',
             'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
             'type' => Schema::TYPE_STRING
         ], $tableOptions);
@@ -114,6 +113,30 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
         $event->userId = 1;
         $event->status = Event::STATUS_ACTIVE;
         $event->save();
+        
+        $event = new Event();
+        $event->name = 'Zeldathon St. Jude Admin';
+        $event->charityId = 1;
+        $event->startDate = strtotime('27-12-2013');
+        $event->endDate = strtotime('01-06-2014');
+        $event->userId = 5; //admin
+        $event->status = Event::STATUS_ACTIVE;
+        $event->amountRaised = '1233.13';
+        $event->goalAmount = '1500';
+        $event->save();
+        
+        
+        $event = new Event();
+        $event->name = 'Zeldathon St. Jude Admin 2';
+        $event->charityId = 2;
+        $event->startDate = strtotime('27-12-2013');
+        $event->endDate = strtotime('01-06-2014');
+        $event->userId = 5; //admin
+        $event->status = Event::STATUS_ACTIVE;
+        $event->amountRaised = '111.11';
+        $event->goalAmount = '2000';
+        $event->save();
+        
     }
     
     public function down() {
