@@ -62,6 +62,9 @@ class User extends ActiveRecord implements IdentityInterface {
         ];
     }
     
+    public static function tableName() {
+        return 'tbl_user';
+    }
     /**
      * Finds an identity by the given ID.
      *
@@ -69,7 +72,7 @@ class User extends ActiveRecord implements IdentityInterface {
      * @return IdentityInterface|null the identity object that matches the given ID.
      */
     public static function findIdentity($id) {
-        return static::find($id);
+        return static::find()->andWhere(['id' => $id])->one();
     }
 
     /**
@@ -303,7 +306,7 @@ class User extends ActiveRecord implements IdentityInterface {
         private $_plan = null;
         public function getPlan(){
             if (!$this->_plan){
-                $plan = Plan::find($this->id);
+                $plan = Plan::findOne($this->id);
                 $this->_plan = $plan->plan;
                 if ($plan->expire < time()){
                     $this->_plan = Plan::PLAN_BASE;
@@ -318,7 +321,7 @@ class User extends ActiveRecord implements IdentityInterface {
          * @param type $amount - money amount
          */
         public function prolong($amount){
-            $plan = Plan::find($this->id);
+            $plan = Plan::findOne($this->id);
             $plan->prolong($amount);
         }
 }

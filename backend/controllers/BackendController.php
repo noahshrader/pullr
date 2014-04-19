@@ -13,7 +13,7 @@ class BackendController extends Controller
 	{
 		return [
 			'access' => [
-				'class' => \yii\web\AccessControl::className(),
+				'class' => \yii\filters\AccessControl::className(),
 				'rules' => [
 					[
 						'allow' => true,

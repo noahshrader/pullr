@@ -19,6 +19,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
              
             $this->createTable(Layout::tableName(), [
             'id' => Schema::TYPE_PK,
+            'key' => Schema::TYPE_STRING. ' NOT NULL',
             'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
             'name' => Schema::TYPE_STRING . ' NOT NULL',
             'status' => $statuses,
@@ -70,6 +71,8 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $layout->name = 'Fun For Freedom';
             $layout->type = Layout::TYPE_TEAM;
             $layout->userId = 1;
+            $layout->key = 'test_key';
+            $layout->eventId = 1;
             $layout->save();
             
             $layout = new Layout;

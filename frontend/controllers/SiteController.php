@@ -24,7 +24,7 @@ class SiteController extends FrontendController{
     public function behaviors() {
         return [
             'access' => [
-                'class' => \yii\web\AccessControl::className(),
+                'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
                         'actions' => ['index', 'signup', 'login', 'termsofservice', 'privacypolicy', 'logout', 'resendemailconfirmation', 'confirmemail', 'requestpasswordreset'],

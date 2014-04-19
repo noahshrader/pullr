@@ -20,9 +20,13 @@ class Event extends ActiveRecord {
         return 'tbl_event';
     }
     
-    public static function createQuery($config = array()) {
-        $config['modelClass'] = get_called_class();
-        return new query\EventQuery($config);
+   /**
+     * @inheritdoc
+     * @return CommentQuery
+     */
+    public static function find()
+    {
+        return new query\EventQuery(get_called_class());
     }
     /**
      * 

@@ -1,50 +1,55 @@
 {
-	"name": "yiisoft/yii2-app-advanced",
-	"description": "Yii 2 Advanced Application Template",
-	"keywords": ["yii", "framework", "advanced", "application template"],
-	"homepage": "http://www.yiiframework.com/",
-	"type": "project",
-	"license": "BSD-3-Clause",
-	"support": {
-		"issues": "https://github.com/yiisoft/yii2/issues?state=open",
-		"forum": "http://www.yiiframework.com/forum/",
-		"wiki": "http://www.yiiframework.com/wiki/",
-		"irc": "irc://irc.freenode.net/yii",
-		"source": "https://github.com/yiisoft/yii2"
-	},
-	"minimum-stability": "dev",
-	"require": {
-		"php": ">=5.4.0",
-		"yiisoft/yii2": "*",
-		"yiisoft/yii2-bootstrap": "*",
-		"yiisoft/yii2-swiftmailer": "*",
-		"nodge/yii2-eauth": "*",
-                "kartik-v/yii2-widgets": "dev-master",
-                "yurkinx/yii2-image": "dev-master",
-		"paypal/rest-api-sdk-php": "*"
-	},
-	"require-dev": {
-		"yiisoft/yii2-debug": "*",
-		"yiisoft/yii2-gii": "*"
-	},
-	"scripts": {
-		"post-create-project-cmd": [
-			"yii\\composer\\Installer::setPermission"
-		]
-	},
-	"config": {
-		"process-timeout": 1800
-	},
-	"extra": {
-		"writable": [
-			"backend/runtime",
-			"backend/web/assets",
-
-			"console/runtime",
-			"console/migrations",
-
-			"frontend/runtime",
-			"frontend/web/assets"
-		]
-	}
+    "name": "yiisoft/yii2-app-advanced",
+    "description": "Yii 2 Advanced Application Template",
+    "keywords": ["yii", "framework", "advanced", "application template"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/sklyukin/Twitch-SDK"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "nodge/yii2-eauth": "*",
+        "kartik-v/yii2-widgets": "dev-master",
+        "yurkinx/yii2-image": "dev-master",
+        "paypal/rest-api-sdk-php": "*",
+        "ritero/twitch-sdk": "dev-master"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::setPermission"
+        ]
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "writable": [
+            "backend/runtime",
+            "backend/web/assets",
+            "console/runtime",
+            "console/migrations",
+            "frontend/runtime",
+            "frontend/web/assets"
+        ]
+    }
 }

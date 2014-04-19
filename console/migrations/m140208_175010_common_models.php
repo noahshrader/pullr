@@ -70,6 +70,7 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
         $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Event::STATUS_INACTIVE . '"';
         $this->createTable(Event::tableName(), [
             'id' => Schema::TYPE_PK,
+            'key' => Schema::TYPE_STRING. ' NOT NULL',
             'name' => Schema::TYPE_STRING . ' NOT NULL',
             'status' => $statuses, 
             'charityId' => Schema::TYPE_INTEGER . ' NOT NULL',

@@ -22,7 +22,7 @@ class PullrLayoutController extends FrontendController {
 
     public function actionEdit() {
         $id = $_GET['id'];
-        $layout = Layout::find($id);
+        $layout = Layout::find($id)->one();
 
         if (!$layout) {
             throw new NotFoundHttpException('Layout not found');

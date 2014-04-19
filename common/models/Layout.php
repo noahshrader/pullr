@@ -16,15 +16,16 @@ class Layout extends ActiveRecord {
     const STATUS_DELETED = 'deleted';
 
     public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_DELETED];
-    
+
     const STREAM_SERVICE_TWITCH = 'Twitch';
     const STREAM_SERVICE_HITBOX = 'Hitbox';
-    
+
     public static $STREAM_SERVICES = [self::STREAM_SERVICE_TWITCH, self::STREAM_SERVICE_HITBOX];
-    
+
     const TYPE_SINGLE = 'Single Stream';
     const TYPE_TEAM = 'Team Stream';
     const TYPE_MULTI = 'Multi Stream';
+
     public static $TYPES = [self::TYPE_SINGLE, self::TYPE_TEAM, self::TYPE_MULTI];
 
     /**
@@ -36,18 +37,20 @@ class Layout extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['name','domain','streamService','type','channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations', 
+            'default' => ['name', 'domain', 'streamService', 'type', 'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations',
                 'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId', 'twitterEnable', 'twitterName', 'facebookEnable', 'facebookUrl',
                 'youtubeEnable', 'youtubeUrl', 'includeYoutubeFeed']
         ];
     }
+
     public function __construct($config = array()) {
         parent::__construct($config);
-        
-        if ($this->isNewRecord){
+
+        if ($this->isNewRecord) {
             $this->type = self::TYPE_SINGLE;
         }
     }
+
     public function attributeLabels() {
         return [
             'domain' => 'Google Analytics Tracking ID',
@@ -58,6 +61,7 @@ class Layout extends ActiveRecord {
             'facebookUrl' => 'Facebook page/profile URL'
         ];
     }
+
     public function rules() {
         return [
             ['name', 'required'],
@@ -70,12 +74,13 @@ class Layout extends ActiveRecord {
             ['youtubeUrl', 'url', 'defaultScheme' => 'http']
         ];
     }
-    
-    public function twitterFilter(){
-        if ($this->twitterName && $this->twitterName[0] != '@'){
-            $this->twitterName = '@'.$this->twitterName;
+
+    public function twitterFilter() {
+        if ($this->twitterName && $this->twitterName[0] != '@') {
+            $this->twitterName = '@' . $this->twitterName;
         }
     }
+
     /**
      * that field is used to upload photo for user avatar
      * @var type 
@@ -83,18 +88,25 @@ class Layout extends ActiveRecord {
     public $images;
     public $photo;
     public $smallPhoto;
-    
+
     public function afterFind() {
         parent::afterFind();
         \common\components\UploadImage::ApplyLogo($this);
     }
-    
+
     public function beforeSave($insert) {
-        if ($insert && isset(\Yii::$app->user) && !\Yii::$app->user->isGuest){
-            $this->userId = \Yii::$app->user->id;
+        if ($insert) {
+            if (isset(\Yii::$app->user) && !\Yii::$app->user->isGuest) {
+                $this->userId = \Yii::$app->user->id;
+            }
+            if (!$this->key) {
+                //$this->key can be set only for test events
+                $this->key = md5(rand());
+            }
         }
         return parent::beforeSave($insert);
     }
+
     /**
      * 
      * @return User
@@ -103,11 +115,18 @@ class Layout extends ActiveRecord {
         return $this->hasOne(User::className(), ['id' => 'userId']);
     }
 
-    public function getTeams(){
+    public function getTeams() {
         return $this->hasMany(LayoutTeam::className(), ['id' => 'layoutId']);
     }
-    
-    public function getTheme(){
+
+    public function getTheme() {
         return $this->hasOne(Theme::className(), ['id' => 'themeId']);
     }
+    
+    public function getEvent() {
+        return $this->hasOne(Event::className(), ['id' => 'eventId']);
+    }
+    
+    
+
 }

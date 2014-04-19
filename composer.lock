@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c86c87ff65f2116c9889e5bcfdc0ff33",
+    "hash": "1734c16e9182b8f16b80b6ea2c12e896",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -115,12 +115,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "e6369e391e98a834b93e97b519eb4776b60b6e3d"
+                "reference": "5db03b87c380b99cc2381d8ad872ca1bbbf505f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/e6369e391e98a834b93e97b519eb4776b60b6e3d",
-                "reference": "e6369e391e98a834b93e97b519eb4776b60b6e3d",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/5db03b87c380b99cc2381d8ad872ca1bbbf505f8",
+                "reference": "5db03b87c380b99cc2381d8ad872ca1bbbf505f8",
                 "shasum": ""
             },
             "type": "library",
@@ -151,7 +151,7 @@
                 "preview",
                 "upload"
             ],
-            "time": "2014-03-22 11:21:09"
+            "time": "2014-04-05 10:53:57"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -159,12 +159,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
-                "reference": "607f0851f22e4a1fc3c41e1e5502b827f44d07a0"
+                "reference": "228e505029c4e85298a0b17c5ab5f08dc502b64a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/607f0851f22e4a1fc3c41e1e5502b827f44d07a0",
-                "reference": "607f0851f22e4a1fc3c41e1e5502b827f44d07a0",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/228e505029c4e85298a0b17c5ab5f08dc502b64a",
+                "reference": "228e505029c4e85298a0b17c5ab5f08dc502b64a",
                 "shasum": ""
             },
             "type": "library",
@@ -192,7 +192,7 @@
                 "jquery",
                 "star"
             ],
-            "time": "2014-03-25 05:30:54"
+            "time": "2014-04-05 10:50:03"
         },
         {
             "name": "kartik-v/yii2-widgets",
@@ -200,12 +200,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widgets.git",
-                "reference": "f702cac6696e5a43b214dcf91ed98202c420eaf6"
+                "reference": "0035491322b02eddb86739762137c2886f3d3906"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/f702cac6696e5a43b214dcf91ed98202c420eaf6",
-                "reference": "f702cac6696e5a43b214dcf91ed98202c420eaf6",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/0035491322b02eddb86739762137c2886f3d3906",
+                "reference": "0035491322b02eddb86739762137c2886f3d3906",
                 "shasum": ""
             },
             "require": {
@@ -239,20 +239,20 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-03-25 14:33:37"
+            "time": "2014-04-05 11:17:03"
         },
         {
             "name": "lusitanian/oauth",
-            "version": "v0.2.5",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lusitanian/PHPoAuthLib.git",
-                "reference": "27e375e13e1badcd6dca7fb47b154b3c48fdec0c"
+                "reference": "f981b349c03f7e233b7058a9d30903809898659c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/27e375e13e1badcd6dca7fb47b154b3c48fdec0c",
-                "reference": "27e375e13e1badcd6dca7fb47b154b3c48fdec0c",
+                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/f981b349c03f7e233b7058a9d30903809898659c",
+                "reference": "f981b349c03f7e233b7058a9d30903809898659c",
                 "shasum": ""
             },
             "require": {
@@ -264,6 +264,7 @@
                 "symfony/http-foundation": "~2.1"
             },
             "suggest": {
+                "ext-openssl": "Allows for usage of secure connections with the stream-based HTTP client.",
                 "predis/predis": "Allows using the Redis storage backend.",
                 "symfony/http-foundation": "Allows using the Symfony Session storage backend."
             },
@@ -302,7 +303,7 @@
                 "oauth",
                 "security"
             ],
-            "time": "2013-12-25 20:05:42"
+            "time": "2014-03-30 13:50:10"
         },
         {
             "name": "nodge/lightopenid",
@@ -356,12 +357,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nodge/yii2-eauth.git",
-                "reference": "3a05c7b9c891bf037552047e08718eb34401570f"
+                "reference": "f944c7b57cb13898d0c3aef3c811ac29f9363f9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nodge/yii2-eauth/zipball/3a05c7b9c891bf037552047e08718eb34401570f",
-                "reference": "3a05c7b9c891bf037552047e08718eb34401570f",
+                "url": "https://api.github.com/repos/Nodge/yii2-eauth/zipball/f944c7b57cb13898d0c3aef3c811ac29f9363f9b",
+                "reference": "f944c7b57cb13898d0c3aef3c811ac29f9363f9b",
                 "shasum": ""
             },
             "require": {
@@ -401,7 +402,7 @@
                 "oauth",
                 "yii2"
             ],
-            "time": "2014-03-24 14:28:29"
+            "time": "2014-04-10 08:22:37"
         },
         {
             "name": "paypal/rest-api-sdk-php",
@@ -409,12 +410,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/rest-api-sdk-php.git",
-                "reference": "5b01b235aee35a62596b7b9dd5a77c6c6b8809ce"
+                "reference": "ae52f47f1521af734b4f24a222942bb659b8d1fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/rest-api-sdk-php/zipball/5b01b235aee35a62596b7b9dd5a77c6c6b8809ce",
-                "reference": "5b01b235aee35a62596b7b9dd5a77c6c6b8809ce",
+                "url": "https://api.github.com/repos/paypal/rest-api-sdk-php/zipball/ae52f47f1521af734b4f24a222942bb659b8d1fa",
+                "reference": "ae52f47f1521af734b4f24a222942bb659b8d1fa",
                 "shasum": ""
             },
             "require": {
@@ -450,7 +451,7 @@
                 "rest",
                 "sdk"
             ],
-            "time": "2013-12-27 16:25:51"
+            "time": "2014-04-09 15:14:18"
         },
         {
             "name": "paypal/sdk-core-php",
@@ -496,17 +497,64 @@
             "time": "2013-09-11 14:27:58"
         },
         {
+            "name": "ritero/twitch-sdk",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sklyukin/Twitch-SDK.git",
+                "reference": "7d488732c15e6b5eb3564661c914aa1c571a236c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sklyukin/Twitch-SDK/zipball/7d488732c15e6b5eb3564661c914aa1c571a236c",
+                "reference": "7d488732c15e6b5eb3564661c914aa1c571a236c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ritero\\SDK\\TwitchTV": "src/"
+                },
+                "classmap": [
+                    "src/ritero/SDK/TwitchTV/TwitchSDK.php"
+                ]
+            },
+            "license": [
+                "MIT License"
+            ],
+            "authors": [
+                {
+                    "name": "Josef Ohnheiser",
+                    "homepage": "http://www.ritero.cz"
+                }
+            ],
+            "description": "TwitchTV API SDK for PHP",
+            "homepage": "https://github.com/jofner/Twitch-SDK",
+            "keywords": [
+                "api",
+                "sdk",
+                "twitch"
+            ],
+            "support": {
+                "source": "https://github.com/sklyukin/Twitch-SDK/tree/master"
+            },
+            "time": "2013-02-15 06:47:35"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "82ec0cdebf731efac382e1c509a42ce0c643a41b"
+                "reference": "4f7a8b30aea0e580849a814876cdd8343277efc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/82ec0cdebf731efac382e1c509a42ce0c643a41b",
-                "reference": "82ec0cdebf731efac382e1c509a42ce0c643a41b",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/4f7a8b30aea0e580849a814876cdd8343277efc2",
+                "reference": "4f7a8b30aea0e580849a814876cdd8343277efc2",
                 "shasum": ""
             },
             "require": {
@@ -544,7 +592,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-03-24 14:44:22"
+            "time": "2014-04-03 05:12:31"
         },
         {
             "name": "twbs/bootstrap",
@@ -552,12 +600,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "90902db50cd9545639bb79ae30d1d81e84c12b6c"
+                "reference": "ee7498a69366c516ccba01ca7c977fb83ea23a7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/90902db50cd9545639bb79ae30d1d81e84c12b6c",
-                "reference": "90902db50cd9545639bb79ae30d1d81e84c12b6c",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/ee7498a69366c516ccba01ca7c977fb83ea23a7b",
+                "reference": "ee7498a69366c516ccba01ca7c977fb83ea23a7b",
                 "shasum": ""
             },
             "type": "library",
@@ -592,7 +640,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-03-28 11:48:19"
+            "time": "2014-04-09 19:07:27"
         },
         {
             "name": "yiisoft/jquery",
@@ -649,12 +697,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "f97dd9a3de169000f7eda88981a644453a4ef6a4"
+                "reference": "d4089f182a9bd06f9f927555bd879bd5c43f88bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f97dd9a3de169000f7eda88981a644453a4ef6a4",
-                "reference": "f97dd9a3de169000f7eda88981a644453a4ef6a4",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d4089f182a9bd06f9f927555bd879bd5c43f88bf",
+                "reference": "d4089f182a9bd06f9f927555bd879bd5c43f88bf",
                 "shasum": ""
             },
             "require": {
@@ -719,7 +767,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-03-29 01:54:32"
+            "time": "2014-04-10 13:53:18"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -727,12 +775,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "4f20483deac5f21ac011fc09facdf7f2623a08e3"
+                "reference": "559ac1c475ffb6ac5e6c9586123b02e625e09f73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/4f20483deac5f21ac011fc09facdf7f2623a08e3",
-                "reference": "4f20483deac5f21ac011fc09facdf7f2623a08e3",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/559ac1c475ffb6ac5e6c9586123b02e625e09f73",
+                "reference": "559ac1c475ffb6ac5e6c9586123b02e625e09f73",
                 "shasum": ""
             },
             "require": {
@@ -762,7 +810,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-03-20 13:30:50"
+            "time": "2014-04-10 02:22:49"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -770,12 +818,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-composer.git",
-                "reference": "90547559cbf45b1836c370c0b4d1b2c70f778dd5"
+                "reference": "49e3e2ce1e8a99f46a387bdebd130f630c4d1034"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/90547559cbf45b1836c370c0b4d1b2c70f778dd5",
-                "reference": "90547559cbf45b1836c370c0b4d1b2c70f778dd5",
+                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/49e3e2ce1e8a99f46a387bdebd130f630c4d1034",
+                "reference": "49e3e2ce1e8a99f46a387bdebd130f630c4d1034",
                 "shasum": ""
             },
             "require": {
@@ -808,7 +856,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2014-03-16 04:46:21"
+            "time": "2014-04-03 18:28:08"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -816,12 +864,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-                "reference": "eba2c032a808aa5631fec8be249483032dbf745b"
+                "reference": "ea892b20869a3c2b3c7917acc7bde866a58aba7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/eba2c032a808aa5631fec8be249483032dbf745b",
-                "reference": "eba2c032a808aa5631fec8be249483032dbf745b",
+                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/ea892b20869a3c2b3c7917acc7bde866a58aba7d",
+                "reference": "ea892b20869a3c2b3c7917acc7bde866a58aba7d",
                 "shasum": ""
             },
             "require": {
@@ -854,7 +902,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2014-03-20 23:54:52"
+            "time": "2014-04-03 18:28:08"
         },
         {
             "name": "yurkinx/yii2-image",
@@ -940,12 +988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "0d7b65e443dfd6e05e9204502438cf8e2837899d"
+                "reference": "f6c6412b823d658e0213e21b6bb0e05cdb429f03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/0d7b65e443dfd6e05e9204502438cf8e2837899d",
-                "reference": "0d7b65e443dfd6e05e9204502438cf8e2837899d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/f6c6412b823d658e0213e21b6bb0e05cdb429f03",
+                "reference": "f6c6412b823d658e0213e21b6bb0e05cdb429f03",
                 "shasum": ""
             },
             "require": {
@@ -976,7 +1024,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2014-03-29 01:54:32"
+            "time": "2014-04-10 12:45:33"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -984,12 +1032,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "9d48ce9aa5f6a01ae5159fa2bb817c2e86f17f42"
+                "reference": "3351501e0ca591c730c3e86ac9dfe19079416e05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/9d48ce9aa5f6a01ae5159fa2bb817c2e86f17f42",
-                "reference": "9d48ce9aa5f6a01ae5159fa2bb817c2e86f17f42",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/3351501e0ca591c730c3e86ac9dfe19079416e05",
+                "reference": "3351501e0ca591c730c3e86ac9dfe19079416e05",
                 "shasum": ""
             },
             "require": {
@@ -1021,7 +1069,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-03-24 12:28:22"
+            "time": "2014-04-10 02:22:49"
         }
     ],
     "aliases": [
@@ -1030,7 +1078,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "kartik-v/yii2-widgets": 20,
-        "yurkinx/yii2-image": 20
+        "yurkinx/yii2-image": 20,
+        "ritero/twitch-sdk": 20
     },
     "platform": {
         "php": ">=5.4.0"
