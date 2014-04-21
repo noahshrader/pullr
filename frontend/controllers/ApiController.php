@@ -40,7 +40,10 @@ class ApiController extends \yii\web\Controller {
         if (!$event){
             echo json_encode(null);
         } else {
-            echo json_encode($layout->event->toArray());
+            $eventArray = $layout->event->toArray();
+            $eventArray['startDateFormatted'] = $eventArray['startDate'] ? date('F j, Y', $eventArray['startDate']) : null;
+            $eventArray['endDateFormatted'] = $eventArray['endDate'] ? date('F j, Y', $eventArray['endDate']) : null;
+            echo json_encode($eventArray);
         }
     }
     

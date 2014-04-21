@@ -6,19 +6,29 @@ window.Pullr = window.Pullr || {};
  * Pullr.Init({id:1, key: "test_key"}); 
  */
 Pullr.Init = function (requestParams){
+    Pullr.__ready = [];
     Pullr.requestParams = requestParams;
     $('#pullr').text('pullr-text here');
     Pullr.LoadTemplates();
     Pullr.LoadLayout();
     Pullr.UpdateEvent();
     Pullr.LoadChannels();
+    Pullr.Ready(Pullr.Show);
+    Pullr.Ready(Pullr.ShortCodes);
     Pullr.Run();
 };
 
+Pullr.Ready = function(func){
+    Pullr.__ready.push(func);
+}
 Pullr.Run = function(){
     if (jQuery().loadTemplate && ($('#templateTeamMember').length>0) && Pullr.layout && Pullr.event && Pullr.channels ){
         console.log('loaded');
-        Pullr.Show();
+        while (Pullr.__ready.length > 0) 
+        {
+            var func = Pullr.__ready.shift();
+            func();
+        }
     } else {
         console.log('waiting response');
         setTimeout(function(){
@@ -36,6 +46,31 @@ Pullr.Show = function(){
         $el.addClass(data.status);
         $('#pullr-channels').append($el);
     }
+}
+
+Pullr.ShortCodes = function(){
+    $('[data-pullr]').each(function(){
+        var $el = $(this);
+        /*
+         * so we are having something like
+         * [0] - event
+         * [1] - name
+         * [2] - maybe more variables in tree (unlimited)
+         */
+        var array = $el.data('pullr').split('-');
+        
+        var current = Pullr;
+        while (array.length > 0){
+            var name = array.shift();
+            if (!current[name]){
+                return;
+            }
+            
+            current = current[name];
+        }
+        
+        $el.text(current);
+    })
 }
 
 /*that load jquery templates for showing data*/
