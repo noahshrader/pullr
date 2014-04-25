@@ -15,7 +15,7 @@ class AdminController extends BackendController
 	{
 		return [
 			'access' => [
-				'class' => \yii\web\AccessControl::className(),
+				'class' => \yii\filters\AccessControl::className(),
 				'rules' => [
 					[
 						'actions' => ['login', 'error', 'logout'],

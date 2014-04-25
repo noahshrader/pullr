@@ -13,7 +13,14 @@ class PhpManager extends \yii\rbac\PhpManager
         parent::init();
         if (!Yii::$app->user->isGuest) {
             // we suppose that user's role is stored in identity
-            $this->assign(Yii::$app->user->identity->id, Yii::$app->user->identity->role);
+            $role = $this->getRole(Yii::$app->user->identity->role);
+            $this->assign($role, Yii::$app->user->identity->id);
+            
         }
+    }
+    
+    /*just to not save rbac into persistent storage*/
+    public function save(){
+        
     }
 }

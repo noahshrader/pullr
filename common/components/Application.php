@@ -69,7 +69,7 @@ class Application extends \yii\web\Application{
     }
     
     public static function IsAdmin(){
-        return \Yii::$app->user->checkAccess('backend');
+        return \Yii::$app->user->can('backend');
     }
     
     /**
