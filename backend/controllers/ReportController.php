@@ -26,14 +26,14 @@ class ReportController extends BackendController
                     ->select('charityId')
                     ->scalar();
             
-            $result['topSelectedCharity'] = Charity::find($topSelectedCharityId);
+            $result['topSelectedCharity'] = Charity::findOne($topSelectedCharityId);
             
             $topProfitCharityId =(new \yii\db\Query())->from($sql)
                     ->where(['amountRaised' => $maxes['maxAmountRaised']])
                     ->select('charityId')
                     ->scalar();
             
-            $result['topProfitCharity'] = Charity::find($topProfitCharityId);
+            $result['topProfitCharity'] = Charity::findOne($topProfitCharityId);
             return $result;
         }
         
@@ -53,14 +53,14 @@ class ReportController extends BackendController
                     ->select('userId')
                     ->scalar();
             
-            $result['userWithMostEvents'] = User::find($topSelectedCharityId);
+            $result['userWithMostEvents'] = User::findOne($topSelectedCharityId);
             
             $topProfitCharityId =(new \yii\db\Query())->from($sql)
                     ->where(['amountRaised' => $maxes['maxAmountRaised']])
                     ->select('userId')
                     ->scalar();
             
-            $result['topProfitUser'] = User::find($topProfitCharityId);
+            $result['topProfitUser'] = User::findOne($topProfitCharityId);
             return $result;
         }
         

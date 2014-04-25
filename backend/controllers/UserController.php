@@ -15,7 +15,7 @@ class UserController extends BackendController
         public function actionView(){
             $id = $_REQUEST['id'];
             
-            $user = User::find($id);
+            $user = User::findOne($id);
             $user->setScenario('adminEdit');
             if ($user->load($_POST) && $user->save()){
                 //**pasword change*/

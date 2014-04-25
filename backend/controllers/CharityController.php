@@ -21,7 +21,7 @@ class CharityController extends BackendController {
         return $this->actionEdit();
     }
     public function actionEdit($id = 0) {
-        $charity = ($id == 0) ? new Charity() : Charity::find($id);
+        $charity = ($id == 0) ? new Charity() : Charity::findOne($id);
         
         if (!$charity) {
             throw new NotFoundHttpException("Charity with id = $id is not found");
