@@ -43,7 +43,7 @@ FrontendAsset::register($this);
 //            $loginUrl = (strpos(\Yii::$app->request->url, 'site/login')) > 0 ? \Yii::$app->request->url : '/site/login?return=' . urlencode(\Yii::$app->request->url);
 //            $menuItems[] = ['label' => 'Login', 'url' => [$loginUrl]];
         } else {
-            $logoutUrl = 'site/logout?return=' . urlencode(\Yii::$app->request->url);
+            $logoutUrl = 'app/site/logout?return=' . urlencode(\Yii::$app->request->url);
             $logoutLink = '<li><a href="' . $logoutUrl . '" > Logout (';
             $logoutLink .= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'logoPhoto']]);
             $logoutLink .= Yii::$app->user->identity->name . ')</a></li>';
@@ -75,7 +75,7 @@ FrontendAsset::register($this);
                     <? endif; ?>
                     <? if (!Yii::$app->user->isGuest): ?>
                         <li>
-                            <a href="app/">Dashboard</a>
+                            <a href="app">Dashboard</a>
                         </li>
                         <li>
                             <a href="app/pullrlayout">Layouts</a>

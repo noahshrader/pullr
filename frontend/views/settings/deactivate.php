@@ -14,7 +14,7 @@ $deactivateAccount = new DeactivateAccount();
   <div class="modal-dialog">
     <div class="modal-content">
       <? $form = ActiveForm::begin([
-        'action'=> 'settings/deactivate' , 
+        'action'=> 'app/settings/deactivate' , 
         'fieldConfig' => ['autoPlaceholder'=>true],
         'enableAjaxValidation' => true,
       ]) ?>

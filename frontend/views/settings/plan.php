@@ -40,7 +40,7 @@ use common\models\Plan;
         <? if ($user->id < 10): ?>
         <div style="margin-top: 150px">
             <div class="alert alert-info">That is debug option available for users with id < 10 </div>
-            <a class="btn btn-danger" href="settings/deactivatepro"><i class="glyphicon glyphicon-remove"></i> Deactive pro-account</a>
+            <a class="btn btn-danger" href="app/settings/deactivatepro"><i class="glyphicon glyphicon-remove"></i> Deactive pro-account</a>
         </div>
         <? endif;?>
     </div>

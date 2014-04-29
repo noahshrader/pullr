@@ -16,6 +16,7 @@ return [
                 'login/<service:google_oauth|twitter|facebook|>' => 'site/login',
                 'app/<controller>/<action>' => '<controller>/<action>',
                 'app/<controller>' => '<controller>',
+                'app' => 'site',
                 'api/<action>' => 'api/<action>',
                 '<userAlias>/<layoutAlias>' => 'layoutview/view'
             ]
