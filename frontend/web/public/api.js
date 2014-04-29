@@ -1,5 +1,9 @@
 window.Pullr = window.Pullr || {};
 
+Pullr.MAIN_URL = "//localhost:8000/pullr/frontend/web/";
+Pullr.API_URL = Pullr.MAIN_URL + "api/";
+Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
+Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.min.js";
 
 /**
  * example: 
@@ -97,10 +101,6 @@ Pullr.LoadChannels = function(){
     });
 }
 
-Pullr.MAIN_URL = "//localhost:8000/pullr/frontend/web/" 
-Pullr.API_URL = Pullr.MAIN_URL + "api/";
-Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
-Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.min.js";
 Pullr.Call = function (method, params, callback){
     if (!params){
         params = {};

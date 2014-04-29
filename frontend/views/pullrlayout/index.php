@@ -10,6 +10,7 @@ use kartik\widgets\FileInput;
  * @var common\models\User $user
  */
 $this->title = 'Layouts';
+$user = \Yii::$app->user->identity;
 ?>
 <script type="text/javascript">
     function layoutRemove(id){
@@ -32,11 +33,14 @@ $this->title = 'Layouts';
                                         <div class="pullr-table-row">
                                             <div class="change-icons">
                                                 <div>
-                                                    <a href="pullrlayout/edit?id=<?= $layout->id?>"><i class="glyphicon glyphicon-edit"></i></a>
+                                                    <a href='<?= $user->getUrl().$layout->alias ?>'><i class="glyphicon glyphicon-search"></i></a>
+                                                </div>
+                                                <div>
+                                                    <a href="app/pullrlayout/edit?id=<?= $layout->id?>"><i class="glyphicon glyphicon-edit"></i></a>
                                                 </div>
                                                 <div>
                                                     
-                                                    <a href="pullrlayout" onclick="return layoutRemove(<?=$layout->id?>)" ><i class="glyphicon glyphicon-remove"></i></a>
+                                                    <a href="app/pullrlayout" onclick="return layoutRemove(<?=$layout->id?>)" ><i class="glyphicon glyphicon-remove"></i></a>
                                                 </div>
                                             </div>
                                             <div class="main-info" >

@@ -128,6 +128,7 @@ class User extends ActiveRecord implements IdentityInterface {
             ['name', 'filter', 'filter' => 'strip_tags'],
             /*that is workaroung to call verifyName even if name is empty*/
             ['login', 'verifyName'],
+            ['uniqueName', 'verifyUniqueName'],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['password', 'required'],
@@ -153,6 +154,27 @@ class User extends ActiveRecord implements IdentityInterface {
             'adminEdit' => ['login', 'name', 'email', 'role','status'],
             'changePassword' => ['password', 'confirmPassword']
         ];
+    }
+    
+    public function verifyUniqueName(){
+        if ($this->uniqueName && ($this->isNewRecord || $this->uniqueName != $this->oldAttributes['uniqueName'])){
+            $user = User::findOne(['uniqueName' => $this->uniqueName]);
+            if ($user){
+                $this->uniqueName = ($this->isNewRecord)? '': $this->oldAttributes['uniqueName'];
+            }
+        }
+    }
+    
+    public function getUrl(){
+        if ($this->uniqueName && !(ctype_digit($this->uniqueName))){
+            return $this->uniqueName.'/'; 
+        } else {
+            return $this->id.'/';
+        }
+    }
+    
+    public static function getUserByUrl(){
+        
     }
     
     public function verifyLogin(){
@@ -205,14 +227,14 @@ class User extends ActiveRecord implements IdentityInterface {
         }
     }
     
-    public function getUrl() {
-        $url = 'user/' . $this->id;
-        if (Application::IsBackend()) {
-            return Application::frontendUrl($url);
-        } else {
-            return $url;
-        }
-    }
+//    public function getUrl() {
+//        $url = 'user/' . $this->id;
+//        if (Application::IsBackend()) {
+//            return Application::frontendUrl($url);
+//        } else {
+//            return $url;
+//        }
+//    }
 
     public function toArray(array $fields = [], array $expand = [], $recursive = true) {
         $allowed = ['id', 'name', 'photo', 'smallPhoto'];

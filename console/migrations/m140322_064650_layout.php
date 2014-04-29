@@ -19,6 +19,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
              
             $this->createTable(Layout::tableName(), [
             'id' => Schema::TYPE_PK,
+            'alias' => Schema::TYPE_STRING. ' NOT NULL',
             'key' => Schema::TYPE_STRING. ' NOT NULL',
             'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
             'name' => Schema::TYPE_STRING . ' NOT NULL',

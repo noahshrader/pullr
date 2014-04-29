@@ -25,6 +25,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'id' => Schema::TYPE_PK,
             'login' => Schema::TYPE_STRING,
             'name' => Schema::TYPE_STRING . ' NOT NULL',
+            'uniqueName' => Schema::TYPE_STRING. ' NOT NULL',
             'auth_key' => Schema::TYPE_STRING . '(32) NOT NULL',
             'password_hash' => Schema::TYPE_STRING . ' NOT NULL',
             'password_reset_token' => Schema::TYPE_STRING . '(32)',

@@ -75,16 +75,16 @@ FrontendAsset::register($this);
                     <? endif; ?>
                     <? if (!Yii::$app->user->isGuest): ?>
                         <li>
-                            <a href="">Dashboard</a>
+                            <a href="app/">Dashboard</a>
                         </li>
                         <li>
-                            <a href="pullrlayout">Layouts</a>
+                            <a href="app/pullrlayout">Layouts</a>
                         </li>
                         <li>
-                            <a href="event">Events</a>
+                            <a href="app/event">Events</a>
                         </li>
                         <li>
-                            <a href="donation">Donations</a>
+                            <a href="app/donation">Donations</a>
                         </li>
                            
                     <? endif; ?>

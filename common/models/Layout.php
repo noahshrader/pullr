@@ -37,7 +37,7 @@ class Layout extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['name', 'domain', 'streamService', 'type', 'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations',
+            'default' => ['name', 'alias', 'domain', 'streamService', 'type', 'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations',
                 'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId', 'twitterEnable', 'twitterName', 'facebookEnable', 'facebookUrl',
                 'youtubeEnable', 'youtubeUrl', 'includeYoutubeFeed']
         ];
@@ -66,6 +66,7 @@ class Layout extends ActiveRecord {
         return [
             ['name', 'required'],
             ['name', 'filter', 'filter' => 'strip_tags'],
+            ['name', 'nameFilter'],
             ['domain', 'filter', 'filter' => 'strip_tags'],
             ['channelName', 'filter', 'filter' => 'strip_tags'],
             ['channelTeam', 'filter', 'filter' => 'strip_tags'],
@@ -75,6 +76,27 @@ class Layout extends ActiveRecord {
         ];
     }
 
+    public function nameFilter(){
+        $userId = $this->userId;
+        if (!$userId){
+            $this->addError('userId', "User should be set");
+            return;
+        }
+        if ($this->name){
+            $alias = str_replace(' ', '_', $this->name);
+            /**better to use userId field that current user, because of possible sample data*/
+            $query = Layout::find()->where(['userId' => $userId,'status' => self::STATUS_ACTIVE, 'alias' => $alias]);
+            if ($this->id){
+                $query->andWhere(['not','id', $this->id]);
+            }
+            $count = $query->count();
+            if ($count>0){
+                $this->addError('name','That name already exists');
+            } else {
+                $this->alias = $alias;
+            }
+        }
+    }
     public function twitterFilter() {
         if ($this->twitterName && $this->twitterName[0] != '@') {
             $this->twitterName = '@' . $this->twitterName;
