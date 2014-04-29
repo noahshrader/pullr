@@ -71,6 +71,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $layout = new Layout;
             $layout->name = 'Fun For Freedom';
             $layout->type = Layout::TYPE_TEAM;
+            $layout->channelTeam = "funforfreedom";
             $layout->userId = 1;
             $layout->key = 'test_key';
             $layout->eventId = 1;
