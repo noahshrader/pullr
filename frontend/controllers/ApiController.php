@@ -77,4 +77,11 @@ class ApiController extends \yii\web\Controller {
         $members = array_merge($onlines, $offlines);
         echo json_encode($members);
     }
+    
+    public function actionJs(){
+        echo $this->renderFile('@frontend/views/api/api.js');
+        \common\components\Application::frontendUrl('/');
+        
+//        echo $this->renderPartial('api.js')
+    }
 }

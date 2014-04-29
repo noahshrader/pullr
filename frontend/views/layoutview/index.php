@@ -12,7 +12,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
-        <script src="public/api.js"></script>
+        <script src="api/js"></script>
         <link  rel="stylesheet" href="layoutview/bootstrap.css" />
         <link  rel="stylesheet" href="layoutview/api.css" />
     </head>

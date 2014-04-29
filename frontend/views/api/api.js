@@ -1,6 +1,6 @@
 window.Pullr = window.Pullr || {};
 
-Pullr.MAIN_URL = "//localhost:8000/pullr/frontend/web/";
+Pullr.MAIN_URL = "//<?=$_SERVER['HTTP_HOST']?><?= \Yii::$app->urlManager->baseUrl?>/";
 Pullr.API_URL = Pullr.MAIN_URL + "api/";
 Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
 Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.min.js";
@@ -12,7 +12,6 @@ Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.
 Pullr.Init = function (requestParams){
     Pullr.__ready = [];
     Pullr.requestParams = requestParams;
-    $('#pullr').text('pullr-text here');
     Pullr.LoadTemplates();
     Pullr.LoadLayout();
     Pullr.UpdateEvent();
