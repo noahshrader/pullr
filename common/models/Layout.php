@@ -90,7 +90,7 @@ class Layout extends ActiveRecord {
             /**better to use userId field that current user, because of possible sample data*/
             $query = Layout::find()->where(['userId' => $userId,'status' => self::STATUS_ACTIVE, 'alias' => $alias]);
             if ($this->id){
-                $query->andWhere(['not','id', $this->id]);
+                $query->andWhere(['not','id ='. $this->id]);
             }
             $count = $query->count();
             if ($count>0){

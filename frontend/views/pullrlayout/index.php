@@ -15,7 +15,7 @@ $user = \Yii::$app->user->identity;
 <script type="text/javascript">
     function layoutRemove(id){
         if (confirm('Are you sure to remove?')){
-            $.post('pullrlayout/remove', {id: id});
+            $.post('app/pullrlayout/remove', {id: id});
             return true;
         }
         return false;

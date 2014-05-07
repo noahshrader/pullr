@@ -37,7 +37,7 @@ class PullrLayoutController extends FrontendController {
 
     public function actionRemove() {
         $id = $_POST['id'];
-        $layout = Layout::find($id);
+        $layout = Layout::findOne($id);
 
         if (!$layout) {
             throw new NotFoundHttpException('Layout not found');
