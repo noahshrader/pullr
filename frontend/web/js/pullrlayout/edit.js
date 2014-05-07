@@ -6,7 +6,7 @@ function layoutTypeChanged() {
 
 function updateLayoutTeams() {
     var id = $('.layout-edit').data('id');
-    $.getJSON('pullrlayout/layoutteams', {id: id}, function(teams) {
+    $.getJSON('app/pullrlayout/layoutteams', {id: id}, function(teams) {
         var $list = $('<ol>');
         for (var key in teams) {
             var team = teams[key];
@@ -24,14 +24,14 @@ function updateLayoutTeams() {
 
 
 function layoutTeamLink(el, id){
-    $('#modal-social-link .modal-content').load('pullrlayout/layoutteamedit', {id: id, get: true}, function(){
+    $('#modal-social-link .modal-content').load('app/pullrlayout/layoutteamedit', {id: id, get: true}, function(){
         $('#modal-social-link').modal('show');
     })
 }
 function layoutTeamRemove(el) {
     var id = $('.layout-edit').data('id');
     var name = $(el).parents('li').find('span').text();
-    $.post('pullrlayout/layoutteamremove', {id: id, name: name}, function() {
+    $.post('app/pullrlayout/layoutteamremove', {id: id, name: name}, function() {
         updateLayoutTeams();
     })
 }
@@ -40,7 +40,7 @@ function addNewLayoutTeam() {
     var $el = $('#addLayoutTeam');
     var name = $el.val();
     if (name) {
-        $.post('pullrlayout/layoutteamadd', {id: id, name: name}, function() {
+        $.post('app/pullrlayout/layoutteamadd', {id: id, name: name}, function() {
             $el.val('');
             updateLayoutTeams();
         });

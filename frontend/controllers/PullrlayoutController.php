@@ -48,16 +48,16 @@ class PullrLayoutController extends FrontendController {
 
         $layout->status = Layout::STATUS_DELETED;
         $layout->save();
-        $this->redirect('pullrlayout');
+        $this->redirect('app/pullrlayout');
     }
 
-    public function actionIndex($layout = null) {
+    public function actionIndex(Layout $layout = null) {
         $isNewRecord = $layout && $layout->isNewRecord;
         if ($layout && $layout->load($_POST) && $layout->save()) {
             UploadImage::UploadLogo($layout);
 
             if ($isNewRecord) {
-                $this->redirect('pullrlayout/edit?id=' . $layout->id);
+                $this->redirect('app/pullrlayout/edit?id=' . $layout->id);
             }
         }
         $user = \Yii::$app->user->identity;

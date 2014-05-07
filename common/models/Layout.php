@@ -48,6 +48,9 @@ class Layout extends ActiveRecord {
 
         if ($this->isNewRecord) {
             $this->type = self::TYPE_SINGLE;
+            if (\Yii::$app->user && !\Yii::$app->user->isGuest){
+                $this->userId = \Yii::$app->user->id;
+            }
         }
     }
 

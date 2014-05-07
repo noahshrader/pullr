@@ -9,7 +9,7 @@ use kartik\widgets\ActiveForm;
 </div>
 <?
 $form = ActiveForm::begin(['id' => 'ajaxLayoutTeamEdit',
-            'action' => 'pullrlayout/layoutteamedit?save=true&id=' . $layoutTeam->id,
+            'action' => 'app/pullrlayout/layoutteamedit?save=true&id=' . $layoutTeam->id,
             'fieldConfig' => ['autoPlaceholder' => true],
             'enableAjaxValidation' => true,
             'beforeSubmit' => new \yii\web\JsExpression('function(form) {

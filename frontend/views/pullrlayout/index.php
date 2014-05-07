@@ -24,7 +24,7 @@ $user = \Yii::$app->user->identity;
     <div class='pullr-table'>
         <div class="row pullr-table-row">
             <div class="<?= $selectedLayout ? 'col-xs-10': 'col-xs-12' ?>">
-                <h1><?= Html::encode($this->title) ?> <a href="pullrlayout/add" style="float:right" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New layout</a></h1>
+                <h1><?= Html::encode($this->title) ?> <a href="app/pullrlayout/add" style="float:right" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New layout</a></h1>
                 <div class="row content-container content-container-layout">
                     <? foreach ($layouts as $layout): ?>
                         <div class="col-sm-4 pullr-layout-container">
