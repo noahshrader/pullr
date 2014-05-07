@@ -26,8 +26,8 @@ $this->title = 'Account Settings';
                 <? if ($user->hasErrors('images')): ?>
                     <?= Html::error($user, 'images', ['class' => 'help-block']); ?>
                 <? endif; ?>
+                </div>
             <? endif ?>
-            </div>
             <?= $form->field($user, 'name') ?>
             <?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
 <?

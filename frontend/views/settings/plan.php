@@ -31,7 +31,7 @@ use common\models\Plan;
         <h4>You are currently on the Pullr Pro account.</h4>
         
         <?
-            $plan = Plan::find($user->id);
+            $plan = Plan::findOne($user->id);
         ?>
         <br>
         <br>

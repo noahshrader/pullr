@@ -1,7 +1,7 @@
 <?
 use kartik\widgets\ActiveForm;
 use common\models\LoginForm;
-
+use common\widgets\user\TwitchLogin;
 $model = new LoginForm();
 $model->load($_POST);
 ?>
@@ -12,7 +12,7 @@ $model->load($_POST);
   <div class="modal-dialog">
     <div class="modal-content">
       <? $form = ActiveForm::begin([
-        'action'=> 'site/login' , 
+        'action'=> 'app/site/login' , 
         'fieldConfig' => ['autoPlaceholder'=>true],
         'enableAjaxValidation' => true,
       ]) ?>
@@ -21,14 +21,13 @@ $model->load($_POST);
         <h5 class="modal-title" id="myModalLabel">Login</h5>
       </div>
       <div class="modal-body">
+          <div><?= TwitchLogin::widget() ?></div>
+           <br />
           <?= $form->field($model, 'login')->textInput(['placeHolder' => 'Email address (username)']);?>
           <?= $form->field($model, 'password')->passwordInput() ?>
           <?= $form->field($model, 'rememberMe')->checkbox() ?>
           
-          <div><a href="site/requestpasswordreset">Forgot password?</a></div>
-           <div class="alert">Do you already have an account on one of these sites? Click the logo to log in with it here:</div>
-          <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/login')); ?>
-           <br />
+          <div><a href="app/site/requestpasswordreset">Forgot password?</a></div>
       </div>
       <div class="modal-footer">
           <div class="text-left">

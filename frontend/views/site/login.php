@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use common\widgets\user\TwitchLogin;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -11,12 +11,12 @@ $this->title = 'Login';
 ?>
 <div class="site-login">
 	<h1><?= Html::encode($this->title) ?></h1>
-        <p class="lead">Do you already have an account on one of these sites? Click the logo to log in with it here:</p>
-        <?php echo \nodge\eauth\Widget::widget(array('action' => 'site/login')); ?>
 	<p>Please fill out the following fields to login:</p>
 
 	<div class="row">
 		<div class="col-lg-5">
+                     <div><?= TwitchLogin::widget() ?></div>
+                     <br />
 			<?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 				<?= $form->field($model, 'login') ?>
 				<?= $form->field($model, 'password')->passwordInput() ?>
