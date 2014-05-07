@@ -25,7 +25,7 @@ Pullr.Ready = function(func){
     Pullr.__ready.push(func);
 }
 Pullr.Run = function(){
-    if (jQuery().loadTemplate && ($('#templateTeamMember').length>0) && Pullr.layout && Pullr.event && Pullr.channels ){
+    if (jQuery().loadTemplate && ($('#templateTeamMember').length>0) && Pullr.layout && Pullr.eventLoaded && Pullr.channels ){
         console.log('loaded');
         while (Pullr.__ready.length > 0) 
         {
@@ -91,6 +91,8 @@ Pullr.LoadLayout = function(){
 Pullr.UpdateEvent = function(){
     Pullr.Call('event', {}, function (data) {
         Pullr.event = data;
+        /*event can be empty*/
+        Pullr.eventLoaded = true; 
     });
 }
 
