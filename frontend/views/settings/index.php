@@ -79,11 +79,11 @@ $this->render('deactivate', [
         <!-- table-cell div -->
         <div class='col-xs-2'>
             <div class='frontend-right-widget'>
-<?=
-$this->render('plan', [
-    'user' => $user
-]);
-?>
+                <?=
+                $this->render('plan', [
+                    'user' => $user
+                ]);
+                ?>
             </div>
         </div>
     </div>

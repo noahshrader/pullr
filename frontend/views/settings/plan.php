@@ -9,7 +9,7 @@ use common\models\Plan;
         Some advertising text here - you can use pro-plan with more features
         </div>
         <div class='text-center'>
-            <button class='btn btn-primary' onclick="$('.plan-show-base').toggleClass('plan-show-base plan-show-payment')">Go pro</button>
+            <button class='btn btn-primary' onclick="$('.plan-show-Basic').toggleClass('plan-show-Basic plan-show-payment')">Go pro</button>
         </div>
     </div>
 

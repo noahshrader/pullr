@@ -77,7 +77,7 @@ class SettingsController extends FrontendController {
     public function actionDeactivatepro(){
         $user = \Yii::$app->user->identity;
         if ($user->id < 10){
-            $plan = Plan::find($user->id);
+            $plan = Plan::findOne($user->id);
             $plan->plan = Plan::PLAN_BASE;
             $plan->expire = time();
             $plan->save();

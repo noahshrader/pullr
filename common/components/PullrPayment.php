@@ -73,7 +73,7 @@ class PullrPayment extends \yii\base\Component {
             $pay = \common\models\Payment::find()->where(['paypalId' => $result->getId()])->one();
             if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING){
                 $id = $pay->user->id;
-                $plan = Plan::find($id);
+                $plan = Plan::findOne($id);
                 $plan->prolong($pay->amount);
                 $pay->status = \common\models\Payment::STATUS_APPROVED;
                 $pay->save();
