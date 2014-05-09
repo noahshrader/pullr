@@ -12,9 +12,11 @@ class BaseImage extends ActiveRecord implements IBaseImage {
     const STATUS_APPROVED = 'approved';
     const STATUS_PENDING = 'pending';
     const STATUS_DELETED = 'deleted';
-
+    
+    const NO_PHOTO_PATH = 'images/no_photo.png';
+    
     public static function NO_PHOTO_LINK(){
-        return Application::frontendUrl('images/no_photo.png');
+        return Application::frontendUrl(self::NO_PHOTO_PATH);
     }
     /**
      * when error is generated during uploading image

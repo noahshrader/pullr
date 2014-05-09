@@ -208,10 +208,10 @@ class User extends ActiveRecord implements IdentityInterface {
                 
             }
             
-            if (strpos(BaseImage::NO_PHOTO_LINK(), $this->photo)>=0){
+            if (strpos(BaseImage::NO_PHOTO_PATH, $this->photo)!==false){
                 $this->photo = null;
             } 
-            if (strpos(BaseImage::NO_PHOTO_LINK(), $this->smallPhoto)>=0){
+            if (strpos(BaseImage::NO_PHOTO_PATH, $this->smallPhoto)!==false){
                 $this->smallPhoto = null;
             } 
             return true;
