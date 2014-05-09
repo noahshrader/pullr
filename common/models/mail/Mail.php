@@ -16,7 +16,10 @@ class Mail extends ActiveRecord {
         return 'tbl_mail';
     }
     
-    public static function sendMail($to, $subject, $content, $type = null, $from = 'noreply@flaper.info'){
+    public static function sendMail($to, $subject, $content, $type = null, $from = null){
+        if ($from == null){
+            $from = \Yii::$app->params['mailFrom'];
+        }
         $controller = new \yii\base\Controller(-1,'test');
         $params = [
             'content' => $content,

@@ -2,6 +2,7 @@
 
 return [
     'adminEmails' => ['s.klyukin@yandex.ru', 'noahshrader@gmail.com'],
+    'mailFrom' => 'noreply@flaper.info',
     'baseUrl' => 'http://pullr.io',
     'user.passwordResetTokenExpire' => 3600,
     'frontendUrl' => '../../frontend/web/',

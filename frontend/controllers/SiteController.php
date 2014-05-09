@@ -13,7 +13,7 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use frontend\models\site\EmailConfirmation;
 use ritero\SDK\TwitchTV\TwitchSDK;
-
+use frontend\models\ResetPasswordForm;
 /**
  * Site controller
  */
@@ -28,7 +28,7 @@ class SiteController extends FrontendController {
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'signup', 'login', 'twitch', 'termsofservice', 'privacypolicy', 'logout', 'resendemailconfirmation', 'confirmemail', 'requestpasswordreset'],
+                        'actions' => ['index', 'signup', 'login', 'twitch', 'termsofservice', 'privacypolicy', 'logout', 'resendemailconfirmation', 'confirmemail', 'requestpasswordreset', 'resetpassword'],
                         'allow' => true,
                     ],
                     [
@@ -241,7 +241,7 @@ class SiteController extends FrontendController {
         ]);
     }
 
-    public function actionResetPassword($token) {
+    public function actionResetpassword($token) {
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidParamException $e) {

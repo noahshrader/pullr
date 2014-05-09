@@ -146,7 +146,7 @@ class User extends ActiveRecord implements IdentityInterface {
             'signup' => ['login', 'name', 'email',  'password', 'confirmPassword', '!status', '!role'],
             'emailConfirm' => ['role', 'email'],
             'roles' => ['role'],
-            'resetPassword' => ['password'],
+            'resetPassword' => ['password', 'password_reset_token'],
             'requestPasswordResetToken' => ['email'],
             'password_reset_token' => ['password_reset_token'],
             'last_login' => ['last_login'],
@@ -278,7 +278,7 @@ class User extends ActiveRecord implements IdentityInterface {
             return null;
         }
 
-        return User::find([
+        return User::findOne([
                     'password_reset_token' => $token,
                     'status' => User::STATUS_ACTIVE,
         ]);
