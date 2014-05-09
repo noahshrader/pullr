@@ -16,6 +16,16 @@ $this->registerJSFile('@web/js/user/info.js', DataTableAsset::className());
     <div><span class="userinfo-label">Registered Date:</span> <span class="userinfo-value"> <?= date('M j Y', $user->created_at) ?></span></div>
     <div><span class="userinfo-label">Last Login:</span> <span class="userinfo-value"> <?= date('M j Y h:iA', $user->last_login) ?></span></div>
 </fieldset>
+<br />
+<fieldset>
+    <legend>Social networks</legend>
+    <? $openId = \common\models\OpenIDToUser::findOne(['userId' => $user->id]) ?>
+    <? if ($openId): ?>
+        <div><span class="userinfo-label"><?= $openId->serviceName ?>:</span> <span class="userinfo-value"> <?= $openId->url ?> </span></div>
+    <? else:  ?>
+        <div>none</div>
+    <? endif; ?>
+</fieldset>
 <fieldset style="margin-top: 30px">
     <legend>Events/Donations</legend>
     <div><b>Total Amount Raised: <?= number_format($totalAmountRaised) ?> </b></div>

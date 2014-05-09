@@ -20,7 +20,12 @@ class TwitchLogin extends Widget {
         
         $this->options['href'] = $loginURL;
         $this->options['class'] = 'twitchLogin';
-        $a = Html::tag('a', 'Login via Twitch', $this->options);
+        
+        $imageOptions = [];
+        $imageOptions['src'] = \common\components\Application::frontendUrl('images/connect_twitch_dark.png');
+        $imageTag = Html::tag('img','', $imageOptions);
+        $a = Html::tag('a', $imageTag, $this->options);
+        
         return $a;
     }
 

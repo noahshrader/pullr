@@ -35,23 +35,7 @@ CommonAsset::register($this);
                 'class' => 'navbar-inverse navbar-fixed-top top-menu',
             ],
         ]);
-        $menuItems = [
-        ];
-        if (Yii::$app->user->isGuest) {
-            $loginUrl = (strpos(\Yii::$app->request->url, 'admin/login')) > 0 ? \Yii::$app->request->url : '/admin/login?return=' . urlencode(\Yii::$app->request->url);
-            $menuItems[] = ['label' => 'Login', 'url' => [$loginUrl]];
-        } else {
-            $logoutUrl = 'admin/logout?return=' . urlencode(\Yii::$app->request->url);
-            $logoutLink = '<li><a href="' . $logoutUrl . '" > Logout (';
-            $logoutLink .= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'logoPhoto']]);
-            $logoutLink .= Yii::$app->user->identity->name . ')</a></li>';
-            $menuItems[] = $logoutLink;
-        }
-
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav navbar-right'],
-            'items' => $menuItems,
-        ]);
+        
         NavBar::end();
         ?>
 <?php $this->beginBody() ?>

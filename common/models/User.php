@@ -156,6 +156,11 @@ class User extends ActiveRecord implements IdentityInterface {
         ];
     }
     
+    public function attributeLabels() {
+        return [
+            'login' => 'Login (email)',
+        ];
+    }
     public function verifyUniqueName(){
         if ($this->uniqueName && ($this->isNewRecord || $this->uniqueName != $this->oldAttributes['uniqueName'])){
             $user = User::findOne(['uniqueName' => $this->uniqueName]);
@@ -203,6 +208,12 @@ class User extends ActiveRecord implements IdentityInterface {
                 
             }
             
+            if (strpos(BaseImage::NO_PHOTO_LINK(), $this->photo)>=0){
+                $this->photo = null;
+            } 
+            if (strpos(BaseImage::NO_PHOTO_LINK(), $this->smallPhoto)>=0){
+                $this->smallPhoto = null;
+            } 
             return true;
         }
         return false;

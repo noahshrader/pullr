@@ -81,6 +81,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . EmailConfirmation::STATUS_SENT . '"';
         
         $this->createTable(EmailConfirmation::tableName(), [
+            'id' => Schema::TYPE_PK,
             'email' => Schema::TYPE_STRING. ' NOT NULL',
             'key' => Schema::TYPE_STRING. ' NOT NULL',
             'status' => $statuses,

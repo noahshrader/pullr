@@ -14,7 +14,7 @@ $this->title = 'Users';
     <thead>
         <tr>
             <th>
-                Full Name
+                Name
             </th>
             <th>
                 Email Address
@@ -32,10 +32,7 @@ $this->title = 'Users';
                 Last login
             </th>
             <th>
-                # of Layouts
-            </th>
-            <th>
-                # of Events
+                # of Campaigns
             </th>
             <th>
                 Total Raised
@@ -51,7 +48,6 @@ $this->title = 'Users';
                 <td><?= ($user->status == User::STATUS_ACTIVE) ? 'Active' : 'Inactive'?> </td>
                 <td><?= date('M j Y', $user->created_at) ?> </td>
                 <td><?= date('M j Y h:iA', $user->last_login) ?></td>
-                <td><?= $user->getLayouts()->count(); ?></td>
                 <td><?= $user->getEvents()->count(); ?></td>
                 <td><?= number_format($user->getEvents()->sum('amountRaised')) ?></td>
             </tr>

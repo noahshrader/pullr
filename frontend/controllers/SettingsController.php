@@ -5,23 +5,12 @@ namespace frontend\controllers;
 use Yii;
 use frontend\controllers\FrontendController;
 use frontend\models\site\ChangePasswordForm;
-use common\models\base\BaseImage;
 use common\components\UploadImage;
 use common\models\Plan;
 use frontend\models\site\DeactivateAccount;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\models\mail\Mail;
-use PayPal\Rest\ApiContext;
-use PayPal\Api\Payment;
-use PayPal\Auth\OAuthTokenCredential;
-use PayPal\Api\Amount;
-use PayPal\Api\Transaction;
-use PayPal\Api\Details;
-use PayPal\Api\Payer;
-use PayPal\Api\Item;
-use PayPal\Api\ItemList;
-use PayPal\Api\RedirectUrls;
 
 use common\components\PullrPayment;
 

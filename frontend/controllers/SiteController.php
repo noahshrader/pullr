@@ -112,6 +112,12 @@ class SiteController extends FrontendController {
     /* login via twitch */
 
     public function actionTwitch() {
+        if (isset($_REQUEST['error'])){
+            echo 'error: <b>'.$_REQUEST['error'].'</b>';
+            echo '<br />';
+            echo "Possible pullr application return url should be changed at http://twitch.tv ";
+            return;
+        }
         $code = $_REQUEST['code'];
         $twitch_config = [
             'client_id' => \Yii::$app->params['twitchClientId'],

@@ -13,7 +13,7 @@ $user->setScenario('signup');
   <div class="modal-dialog">
     <div class="modal-content">
       <? $form = ActiveForm::begin([
-        'action'=> 'site/signup' , 
+        'action'=> 'app/site/signup' , 
         'fieldConfig' => ['autoPlaceholder'=>true],
         'enableAjaxValidation' => true,
       ]) ?>
@@ -25,7 +25,8 @@ $user->setScenario('signup');
           <div><?= TwitchLogin::widget() ?></div>
           <br />
 
-          <?= $form->field($user, 'login')->textInput(['placeHolder' => 'Email address (username)']);?>
+          <?= $form->field($user, 'login');?>
+          <?= $form->field($user, 'name') ; ?>
           <?= $form->field($user, 'password')->passwordInput() ?>
           <?= $form->field($user, 'confirmPassword')->passwordInput() ?>
            <br />
