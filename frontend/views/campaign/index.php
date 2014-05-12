@@ -9,13 +9,13 @@ use kartik\widgets\FileInput;
  * @var yii\widgets\ActiveForm $form
  * @var common\models\User $user
  */
-$this->title = 'Layouts';
+$this->title = 'Campaigns';
 $user = \Yii::$app->user->identity;
 ?>
 <script type="text/javascript">
     function layoutRemove(id){
         if (confirm('Are you sure to remove?')){
-            $.post('app/pullrlayout/remove', {id: id});
+            $.post('app/campaign/remove', {id: id});
             return true;
         }
         return false;
@@ -23,29 +23,29 @@ $user = \Yii::$app->user->identity;
 </script>
     <div class='pullr-table'>
         <div class="row pullr-table-row">
-            <div class="<?= $selectedLayout ? 'col-xs-10': 'col-xs-12' ?>">
-                <h1><?= Html::encode($this->title) ?> <a href="app/pullrlayout/add" style="float:right" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New layout</a></h1>
+            <div class="<?= $selectedCampaign ? 'col-xs-10': 'col-xs-12' ?>">
+                <h1><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New campaign</a></h1>
                 <div class="row content-container content-container-layout">
-                    <? foreach ($layouts as $layout): ?>
+                    <? foreach ($campaigns as $campaign): ?>
                         <div class="col-sm-4 pullr-layout-container">
                             <div class="pullr-layout">
                                     <div class="pullr-table">
                                         <div class="pullr-table-row">
                                             <div class="change-icons">
                                                 <div>
-                                                    <a href='<?= $user->getUrl().$layout->alias ?>'><i class="glyphicon glyphicon-search"></i></a>
+                                                    <a href='<?= $user->getUrl().$campaign->alias ?>'><i class="glyphicon glyphicon-search"></i></a>
                                                 </div>
                                                 <div>
-                                                    <a href="app/pullrlayout/edit?id=<?= $layout->id?>"><i class="glyphicon glyphicon-edit"></i></a>
+                                                    <a href="app/campaign/edit?id=<?= $campaign->id?>"><i class="glyphicon glyphicon-edit"></i></a>
                                                 </div>
                                                 <div>
                                                     
-                                                    <a href="app/pullrlayout" onclick="return layoutRemove(<?=$layout->id?>)" ><i class="glyphicon glyphicon-remove"></i></a>
+                                                    <a href="app/campaign" onclick="return layoutRemove(<?=$campaign->id?>)" ><i class="glyphicon glyphicon-remove"></i></a>
                                                 </div>
                                             </div>
                                             <div class="main-info" >
-                                                <div><?= $layout->name ?></div>
-                                                <div class="layout-type"><?= $layout->type ?></div>
+                                                <div><?= $campaign->name ?></div>
+                                                <div class="layout-type"><?= $campaign->type ?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -54,12 +54,12 @@ $user = \Yii::$app->user->identity;
                     <? endforeach; ?>
                 </div>
             </div>
-            <? if ($selectedLayout):?>
+            <? if ($selectedCampaign):?>
             <!-- table-cell div -->
             <div class='col-xs-2 table-cell'>
                 <div class="frontend-right-widget">
-                    <?= $this->render('layout-edit', [
-                            'layout' => $selectedLayout
+                    <?= $this->render('campaign-edit', [
+                            'campaign' => $selectedCampaign
                         ]); ?>            
                 </div>
             </div>

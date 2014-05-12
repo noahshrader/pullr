@@ -6,7 +6,7 @@ function layoutTypeChanged() {
 
 function updateLayoutTeams() {
     var id = $('.layout-edit').data('id');
-    $.getJSON('app/pullrlayout/layoutteams', {id: id}, function(teams) {
+    $.getJSON('app/campaign/layoutteams', {id: id}, function(teams) {
         var $list = $('<ol>');
         for (var key in teams) {
             var team = teams[key];
@@ -24,14 +24,14 @@ function updateLayoutTeams() {
 
 
 function layoutTeamLink(el, id){
-    $('#modal-social-link .modal-content').load('app/pullrlayout/layoutteamedit', {id: id, get: true}, function(){
+    $('#modal-social-link .modal-content').load('app/campaign/layoutteamedit', {id: id, get: true}, function(){
         $('#modal-social-link').modal('show');
     })
 }
 function layoutTeamRemove(el) {
     var id = $('.layout-edit').data('id');
     var name = $(el).parents('li').find('span').text();
-    $.post('app/pullrlayout/layoutteamremove', {id: id, name: name}, function() {
+    $.post('app/campaign/layoutteamremove', {id: id, name: name}, function() {
         updateLayoutTeams();
     })
 }
@@ -40,7 +40,7 @@ function addNewLayoutTeam() {
     var $el = $('#addLayoutTeam');
     var name = $el.val();
     if (name) {
-        $.post('app/pullrlayout/layoutteamadd', {id: id, name: name}, function() {
+        $.post('app/campaign/layoutteamadd', {id: id, name: name}, function() {
             $el.val('');
             updateLayoutTeams();
         });
@@ -116,7 +116,7 @@ function initBootstrapSwitch() {
 
 function layoutChooseTheme(){
     var layoutType = $('#layout-type').val();
-    $('#modalThemes .modal-content').load('pullrlayout/modalthemes', {type: layoutType}, function(){
+    $('#modalThemes .modal-content').load('app/campaign/modalthemes', {type: layoutType}, function(){
         $('#modalThemes').modal('show');
     })
 }

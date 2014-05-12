@@ -78,7 +78,7 @@ FrontendAsset::register($this);
                             <a href="app">Dashboard</a>
                         </li>
                         <li>
-                            <a href="app/pullrlayout">Layouts</a>
+                            <a href="app/campaign">Campaigns</a>
                         </li>
                         <li>
                             <a href="app/event">Events</a>

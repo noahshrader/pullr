@@ -2,7 +2,7 @@
 
 use yii\db\Schema;
 use common\models\Theme;
-use common\models\Layout;
+use common\models\Campaign;
 use common\models\Plan;
 
 class m140404_064916_theme extends \console\models\ExtendedMigration
@@ -12,7 +12,7 @@ class m140404_064916_theme extends \console\models\ExtendedMigration
         $statuses = implode('","', Theme::$STATUSES);
         $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Theme::STATUS_ACTIVE . '"';
         
-        $layoutTypes = implode('","', Layout::$TYPES);
+        $layoutTypes = implode('","', Campaign::$LAYOUT_TYPES);
         $layoutTypes = "ENUM (\"$layoutTypes\") NOT NULL";
 
         $plans = implode('","', Plan::$PLANS);

@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\User;
-use common\models\Layout;
+use common\models\Campaign;
 
 class LayoutviewController extends FrontendController {
 
@@ -18,7 +18,7 @@ class LayoutviewController extends FrontendController {
             throw new \yii\web\NotFoundHttpException("Such user don't exist");
         }
         
-        $layout = Layout::findOne(['userId' => $user->id, 'status' => Layout::STATUS_ACTIVE, 'alias' => $layoutAlias]);
+        $layout = Campaign::findOne(['userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE, 'alias' => $layoutAlias]);
         if (!$layout){
             throw new \yii\web\NotFoundHttpException("Such layout don't exist for user");
         }

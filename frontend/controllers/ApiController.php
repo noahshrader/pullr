@@ -6,7 +6,7 @@ namespace frontend\controllers;
 use yii\web\Response;
 use yii\base\Exception;
 use yii\web\ForbiddenHttpException;
-use common\models\Layout;
+use common\models\Campaign;
 use \ritero\SDK\TwitchTV\TwitchSDK;
 
 class ApiController extends \yii\web\Controller {
@@ -18,7 +18,7 @@ class ApiController extends \yii\web\Controller {
         }
         $id = $_REQUEST['id'];
         $key = $_REQUEST['key'];
-        $layout = Layout::findOne($id);
+        $layout = Campaign::findOne($id);
         if (!$layout){
             throw new Exception("Invalid event id");
         }
@@ -53,7 +53,7 @@ class ApiController extends \yii\web\Controller {
     
     public function actionChannels(){
         $layout = $this->validateRequest();
-        if ($layout->type != Layout::TYPE_TEAM || !$layout->channelTeam){
+        if ($layout->type != Campaign::LAYOUT_TYPE_TEAM || !$layout->channelTeam){
             echo json_encode([]);
             return;
         }

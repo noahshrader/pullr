@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use frontend\controllers\FrontendController;
-use common\models\Layout;
+use common\models\Campaign;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
 use common\models\LayoutTeam;
@@ -13,63 +13,64 @@ use kartik\widgets\ActiveForm;
 use common\components\UploadImage;
 use common\models\Theme;
 use common\models\Plan;
-class PullrLayoutController extends FrontendController {
+
+class CampaignController extends FrontendController {
 
     public function actionAdd() {
-        $layout = new Layout();
-        return $this->actionIndex($layout);
+        $campaign = new Campaign();
+        return $this->actionIndex($campaign);
     }
 
     public function actionEdit() {
         $id = $_GET['id'];
-        $layout = Layout::findOne($id);
+        $campaign = Campaign::findOne($id);
 
-        if (!$layout) {
+        if (!$campaign) {
             throw new NotFoundHttpException('Layout not found');
         }
-        if ($layout->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
+        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }
 
 
-        return $this->actionIndex($layout);
+        return $this->actionIndex($campaign);
     }
 
     public function actionRemove() {
         $id = $_POST['id'];
-        $layout = Layout::findOne($id);
+        $campaign = Campaign::findOne($id);
 
-        if (!$layout) {
+        if (!$campaign) {
             throw new NotFoundHttpException('Layout not found');
         }
-        if ($layout->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
+        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }
 
-        $layout->status = Layout::STATUS_DELETED;
-        $layout->save();
-        $this->redirect('app/pullrlayout');
+        $campaign->status = Campaign::STATUS_DELETED;
+        $campaign->save();
+        $this->redirect('app/campaign');
     }
 
-    public function actionIndex(Layout $layout = null) {
-        $isNewRecord = $layout && $layout->isNewRecord;
-        if ($layout && $layout->load($_POST) && $layout->save()) {
-            UploadImage::UploadLogo($layout);
+    public function actionIndex(Campaign $campaign = null) {
+        $isNewRecord = $campaign && $campaign->isNewRecord;
+        if ($campaign && $campaign->load($_POST) && $campaign->save()) {
+            UploadImage::UploadLogo($campaign);
 
             if ($isNewRecord) {
-                $this->redirect('app/pullrlayout/edit?id=' . $layout->id);
+                $this->redirect('app/campaign/edit?id=' . $campaign->id);
             }
         }
         $user = \Yii::$app->user->identity;
         $params = [];
-        $params['selectedLayout'] = $layout;
-        $params['layouts'] = $user->layouts;
+        $params['selectedCampaign'] = $campaign;
+        $params['campaigns'] = $user->campaigns;
         return $this->render('index', $params);
     }
 
     public function actionLayoutteams() {
         $id = $_REQUEST['id'];
-        $teams = LayoutTeam::find()->where(['layoutId' => $id])->orderBy('date DESC')->all();
+        $teams = LayoutTeam::find()->where(['campaignId' => $id])->orderBy('date DESC')->all();
 
         $teamsOut = [];
         foreach ($teams as $team) {
@@ -92,7 +93,7 @@ class PullrLayoutController extends FrontendController {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($layoutTeam);
         }
-        $layout = Layout::find($layoutTeam->layoutId);
+        $layout = Campaign::find($layoutTeam->layoutId);
         if ($layout->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }
@@ -103,20 +104,20 @@ class PullrLayoutController extends FrontendController {
         $id = $_POST['id'];
         $name = $_POST['name'];
 
-        $layout = Layout::find($id);
+        $campaign = Campaign::findOne($id);
 
-        if (!$layout) {
+        if (!$campaign) {
             throw new NotFoundHttpException('Layout not found');
         }
 
-        if ($layout->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
+        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }
 
-        $layoutTeam = LayoutTeam::find()->where(['name' => $name, 'layoutId' => $id])->one();
+        $campaignTeam = LayoutTeam::find()->where(['name' => $name, 'campaignId' => $id])->one();
 
-        if ($layoutTeam) {
-            $layoutTeam->delete();
+        if ($campaignTeam) {
+            $campaignTeam->delete();
         }
     }
 
@@ -124,13 +125,13 @@ class PullrLayoutController extends FrontendController {
         $id = $_POST['id'];
         $name = $_POST['name'];
 
-        $layout = Layout::find($id);
+        $campaign = Campaign::findOne($id);
 
-        if (!$layout) {
+        if (!$campaign) {
             throw new NotFoundHttpException('Layout not found');
         }
 
-        if ($layout->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
+        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }
 

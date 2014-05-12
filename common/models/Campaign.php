@@ -9,7 +9,7 @@ use common\models\Theme;
 /**
  * to consider account on other the base you also should check expire field to be more than current time
  */
-class Layout extends ActiveRecord {
+class Campaign extends ActiveRecord {
 
     const STATUS_ACTIVE = 'active';
 //    const STATUS_PENDING = 'pending';
@@ -21,12 +21,17 @@ class Layout extends ActiveRecord {
     const STREAM_SERVICE_HITBOX = 'Hitbox';
 
     public static $STREAM_SERVICES = [self::STREAM_SERVICE_TWITCH, self::STREAM_SERVICE_HITBOX];
+    
+    const TYPE_PERSONAL_TIP_JAR = 'Personal Tip Jar';
+    const TYPE_CHARITY_EVENT = 'Charity Event';
+    const TYPE_CHARITY_FUNDRAISER = 'Charity Fundraiser';
+    public static $TYPES = [self::TYPE_PERSONAL_TIP_JAR, self::TYPE_CHARITY_EVENT, self::TYPE_CHARITY_FUNDRAISER];
+    
+    const LAYOUT_TYPE_SINGLE = 'Single Stream';
+    const LAYOUT_TYPE_TEAM = 'Team Stream';
+    const LAYOUT_TYPE_MULTI = 'Multi Stream';
 
-    const TYPE_SINGLE = 'Single Stream';
-    const TYPE_TEAM = 'Team Stream';
-    const TYPE_MULTI = 'Multi Stream';
-
-    public static $TYPES = [self::TYPE_SINGLE, self::TYPE_TEAM, self::TYPE_MULTI];
+    public static $LAYOUT_TYPES = [self::LAYOUT_TYPE_SINGLE, self::LAYOUT_TYPE_TEAM, self::LAYOUT_TYPE_MULTI];
 
     /**
      * @return string the name of the table associated with this ActiveRecord class.
@@ -47,7 +52,7 @@ class Layout extends ActiveRecord {
         parent::__construct($config);
 
         if ($this->isNewRecord) {
-            $this->type = self::TYPE_SINGLE;
+            $this->type = self::LAYOUT_TYPE_SINGLE;
             if (isset(\Yii::$app->components['user']) && !\Yii::$app->user->isGuest){
                 $this->userId = \Yii::$app->user->id;
             }
@@ -88,7 +93,7 @@ class Layout extends ActiveRecord {
         if ($this->name){
             $alias = str_replace(' ', '_', $this->name);
             /**better to use userId field that current user, because of possible sample data*/
-            $query = Layout::find()->where(['userId' => $userId,'status' => self::STATUS_ACTIVE, 'alias' => $alias]);
+            $query = Campaign::find()->where(['userId' => $userId,'status' => self::STATUS_ACTIVE, 'alias' => $alias]);
             if ($this->id){
                 $query->andWhere(['not','id ='. $this->id]);
             }

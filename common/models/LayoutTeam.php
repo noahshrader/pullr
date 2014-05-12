@@ -3,7 +3,7 @@
 namespace common\models;
 
 use yii\db\ActiveRecord;
-use common\models\Layout;
+use common\models\Campaign;
 /**
  * to consider account on other the base you also should check expire field to be more than current time
  */
@@ -29,9 +29,9 @@ class LayoutTeam extends ActiveRecord {
     }
     /**
      * 
-     * @return Layout
+     * @return Campaign
      */
     public function getLayout() {
-        return $this->hasOne(Layout::className(), ['id' => 'layoutId']);
+        return $this->hasOne(Campaign::className(), ['id' => 'layoutId']);
     }
 }

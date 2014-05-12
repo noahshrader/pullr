@@ -29,7 +29,7 @@ and open the template in the editor.
         </div>
         <div id='pullr-channels'></div>
         <script type='text/javascript'>
-            Pullr.Init({id: <?= $layout->id ?>, key: <?= json_encode($layout->key) ?>});
+            Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
 //            Pullr.Ready(function(){alert(Pullr.event.name)});
         </script>
     </body>

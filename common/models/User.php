@@ -9,7 +9,7 @@ use common\components\Application;
 use common\models\Notification;
 use common\models\base\BaseImage;
 use common\models\Plan;
-use common\models\Layout;
+use common\models\Campaign;
 use common\models\Event;
 /**
  * Class User
@@ -324,8 +324,8 @@ class User extends ActiveRecord implements IdentityInterface {
             return $this->hasOne(OpenIDToUser::className(), ['userId' => 'id']);
         }
         
-        public function getLayouts($status = Layout::STATUS_ACTIVE){
-            return $this->hasMany(Layout::className(), ['userId' => 'id'])
+        public function getCampaigns($status = Campaign::STATUS_ACTIVE){
+            return $this->hasMany(Campaign::className(), ['userId' => 'id'])
                     ->where(['status' => $status])
                     ->orderBy('date DESC');
         }

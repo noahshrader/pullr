@@ -45,7 +45,7 @@ class UploadImage extends \yii\base\Component {
     }
     
     public static function getTypeByModel($model){
-        if ($model instanceof \common\models\Layout){
+        if ($model instanceof \common\models\Campaign){
             return BaseImage::TYPE_LAYOUT_LOGO;
         }
         if ($model instanceof \common\models\User){

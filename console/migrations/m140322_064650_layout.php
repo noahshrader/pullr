@@ -1,32 +1,36 @@
 <?php
 
 use yii\db\Schema;
-use common\models\Layout;
+use common\models\Campaign;
 use common\models\LayoutTeam;
 
 class m140322_064650_layout extends \console\models\ExtendedMigration
 {
 	public function up()
 	{
-            $statuses = implode('","', Layout::$STATUSES);
-            $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Layout::STATUS_ACTIVE . '"';
+            $types = implode('","', Campaign::$TYPES);
+            $types = "ENUM (\"$types\") NOT NULL";
+            
+            $statuses = implode('","', Campaign::$STATUSES);
+            $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Campaign::STATUS_ACTIVE . '"';
         
-            $streamServices = implode('","', Layout::$STREAM_SERVICES);
+            $streamServices = implode('","', Campaign::$STREAM_SERVICES);
             $streamServices = "ENUM (\"$streamServices\") NOT NULL";
              
-            $types = implode('","', Layout::$TYPES);
-            $types = "ENUM (\"$types\") NOT NULL";
+            $layoutTypes = implode('","', Campaign::$LAYOUT_TYPES);
+            $layoutTypes = "ENUM (\"$layoutTypes\") NOT NULL";
              
-            $this->createTable(Layout::tableName(), [
+            $this->createTable(Campaign::tableName(), [
             'id' => Schema::TYPE_PK,
             'alias' => Schema::TYPE_STRING. ' NOT NULL',
+            'type' => $types, 
             'key' => Schema::TYPE_STRING. ' NOT NULL',
             'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
             'name' => Schema::TYPE_STRING . ' NOT NULL',
             'status' => $statuses,
             'domain' => Schema::TYPE_STRING. ' NOT NULL',
             'streamService' => $streamServices,
-            'type' => $types,
+            'layoutType' => $layoutTypes,
             'channelName' => Schema::TYPE_STRING. ' NOT NULL',
             'channelTeam' => Schema::TYPE_STRING. ' NOT NULL',
             'appearance' => Schema::TYPE_STRING. ' NOT NULL',   
@@ -50,7 +54,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
                 ]);
              
-             $this->createIndex('LAYOUT_BY_USER', Layout::tableName(), ['userId']);
+             $this->createIndex('LAYOUT_BY_USER', Campaign::tableName(), ['userId']);
              
              $this->createTable(LayoutTeam::tableName(), [
                  'id' => Schema::TYPE_PK,
@@ -68,48 +72,48 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
 	}
 
         public function sampleData(){
-            $layout = new Layout;
+            $layout = new Campaign;
             $layout->name = 'Fun For Freedom';
-            $layout->type = Layout::TYPE_TEAM;
+            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
             $layout->channelTeam = "funforfreedom";
             $layout->userId = 1;
             $layout->key = 'test_key';
             $layout->eventId = 1;
             $layout->save();
             
-            $layout = new Layout;
+            $layout = new Campaign;
             $layout->name = 'LinkSonicK';
-            $layout->type = Layout::TYPE_SINGLE;
+            $layout->type = Campaign::LAYOUT_TYPE_SINGLE;
             $layout->userId = 1;
             $layout->save();
             
-            $layout = new Layout;
+            $layout = new Campaign;
             $layout->name = 'Awesome Games Done Quick';
-            $layout->type = Layout::TYPE_TEAM;
+            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
             $layout->userId = 1;
             $layout->save();
             
-            $layout = new Layout;
+            $layout = new Campaign;
             $layout->name = 'Awesome Games Done Quick';
-            $layout->type = Layout::TYPE_TEAM;
+            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
             $layout->userId = 1;
             $layout->save();
             
-            $layout = new Layout;
+            $layout = new Campaign;
             $layout->name = 'Awesome Games Done Quick';
-            $layout->type = Layout::TYPE_TEAM;
+            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
             $layout->userId = 1;
             $layout->save();
             
-            $layout = new Layout;
+            $layout = new Campaign;
             $layout->name = 'Awesome Games Done Quick';
-            $layout->type = Layout::TYPE_TEAM;
+            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
             $layout->userId = 1;
             $layout->save();
         }
 	public function down()
 	{
             $this->dropTable(LayoutTeam::tableName());
-            $this->dropTable(Layout::tableName());
+            $this->dropTable(Campaign::tableName());
 	}
 }
