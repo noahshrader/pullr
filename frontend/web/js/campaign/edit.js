@@ -4,6 +4,13 @@ function layoutTypeChanged() {
     $('[data-layout-type]').attr('data-layout-type', newValue);
 }
 
+function campaignTypeChanged(){
+    $('#campaignEdit').attr('data-campaignType', $(this).val());
+}
+
+function donationDestinationChanged(){
+    $('#donationDestination').attr('data-donationDestination', $(this).val());
+}
 function updateLayoutTeams() {
     var id = $('.layout-edit').data('id');
     $.getJSON('app/campaign/layoutteams', {id: id}, function(teams) {
@@ -66,52 +73,63 @@ function rememberAccordionState() {
 }
 
 function initBootstrapSwitch() {
-    $(".layout-edit input[type='checkbox']").bootstrapSwitch();
-    $("#layout-chat").on('click', function() {
-        var value = $('#layout-chat').bootstrapSwitch('state');
+    $("#campaignEdit input[type='checkbox']").bootstrapSwitch();
+    $("#campaign-chat").on('click', function() {
+        var value = $('#campaign-chat').bootstrapSwitch('state');
         if (value){
-            $('.field-layout-chattoggle').show('slow');
+            $('.field-campaign-chattoggle').show('slow');
         } else {
-            $('.field-layout-chattoggle').hide('slow');
+            $('.field-campaign-chattoggle').hide('slow');
         }
     });
-    $("#layout-enabledonations").on('click', function() {
-        var value = $('#layout-enabledonations').bootstrapSwitch('state');
+    $("#campaign-enabledonations").on('click', function() {
+        var value = $('#campaign-enabledonations').bootstrapSwitch('state');
         if (value){
-            $('.field-layout-eventid').show('slow');
+            $('.field-campaign-eventid').show('slow');
         } else {
-            $('.field-layout-eventid').hide('slow');
-        }
-    });
-    
-    $("#layout-twitterenable").on('click', function() {
-        var value = $('#layout-twitterenable').bootstrapSwitch('state');
-        if (value){
-            $('.field-layout-twittername').show('slow');
-        } else {
-            $('.field-layout-twittername').hide('slow');
+            $('.field-campaign-eventid').hide('slow');
         }
     });
     
-    $("#layout-youtubeenable").on('click', function() {
-        var value = $('#layout-youtubeenable').bootstrapSwitch('state');
+    $("#campaign-twitterenable").on('click', function() {
+        var value = $('#campaign-twitterenable').bootstrapSwitch('state');
         if (value){
-            $('.field-layout-youtubeurl').show('slow');
-            $('.field-layout-includeyoutubefeed').show('slow');
+            $('.field-campaign-twittername').show('slow');
         } else {
-            $('.field-layout-youtubeurl').hide('slow');
-            $('.field-layout-includeyoutubefeed').hide('slow');
+            $('.field-campaign-twittername').hide('slow');
         }
     });
     
-    $("#layout-facebookenable").on('click', function() {
-        var value = $('#layout-facebookenable').bootstrapSwitch('state');
+    $("#campaign-youtubeenable").on('click', function() {
+        var value = $('#campaign-youtubeenable').bootstrapSwitch('state');
         if (value){
-            $('.field-layout-facebookurl').show('slow');
+            $('.field-campaign-youtubeurl').show('slow');
+            $('.field-campaign-includeyoutubefeed').show('slow');
         } else {
-            $('.field-layout-facebookurl').hide('slow');
+            $('.field-campaign-youtubeurl').hide('slow');
+            $('.field-campaign-includeyoutubefeed').hide('slow');
         }
     });
+    
+    $("#campaign-facebookenable").on('click', function() {
+        var value = $('#campaign-facebookenable').bootstrapSwitch('state');
+        if (value){
+            $('.field-campaign-facebookurl').show('slow');
+        } else {
+            $('.field-campaign-facebookurl').hide('slow');
+        }
+    });
+    
+    $("#campaign-enablegoogleanalytics").on('click', function() {
+        var value = $('#campaign-enablegoogleanalytics').bootstrapSwitch('state');
+        log(value);
+        if (value){
+            $('.field-campaign-googleAnalytics').show('slow');
+        } else {
+            $('.field-campaign-googleAnalytics').hide('slow');
+        }
+    });
+    
 }
 
 function layoutChooseTheme(){
@@ -130,8 +148,11 @@ function selectTheme(el){
     $('.theme-name').removeClass('hidden');
     $('#modalThemes').modal('hide');
 }
+
 $(function() {
     $('#layout-type').change(layoutTypeChanged);
+    $('[name="Campaign[type]"]').change(campaignTypeChanged);
+    $('[name="Campaign[donationDestination]"').change(donationDestinationChanged);
     updateLayoutTeams();
 //    rememberAccordionState();
     initBootstrapSwitch();

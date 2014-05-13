@@ -20,7 +20,7 @@ $user = \Yii::$app->user->identity;
         $eventsIds[] = $event->id;
     }
     ?>
-    <div class="layout-edit" data-id="<?= $campaign->id ?>">
+    <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
         <h4> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h4>
         <? $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
@@ -35,11 +35,11 @@ $user = \Yii::$app->user->identity;
                             Layout options
                         </a>
                 </div></div>
-                <div id="collapseTwo" class="panel-collapse collapse<?= $campaign->chat ? ' chatOn' : '' ?><?= $campaign->enableDonations ? ' enableDonations' : '' ?>" data-layout-type="<?= str_replace(' ', '', $campaign->type) ?>">
-                    <div class="form-group field-layout-type <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
-                        <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control']) ?>
+                <div id="collapseTwo" class="panel-collapse collapse<?= $campaign->chat ? ' chatOn' : '' ?><?= $campaign->enableDonations ? ' enableDonations' : '' ?>" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
+                    <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
+                        <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control']) ?>
                         <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
-                        <?= Html::error($campaign, 'type', ['class' => 'help-block']) ?>
+                        <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
                     </div>
                     <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => true]); ?>
                     <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => true]); ?>
@@ -95,7 +95,12 @@ $user = \Yii::$app->user->identity;
                     </a>
                 </div></div>
                 <div id="collapseFour" class="panel-collapse collapse <?= ($campaign->twitterEnable? 'twitterEnable ': '').($campaign->youtubeEnable? 'youtubeEnable ': '').($campaign->facebookEnable? 'facebookEnable ': '') ?>">
-                    <?= $form->field($campaign, 'twitterEnable')->label('Enable Twitter Link?')->checkbox([], false); ?>
+                    <div class="form-group field-layout-streamService <?= ($campaign->hasErrors('streamService')) ? 'has-error' : '' ?>">
+            <?= Html::activeDropDownList($campaign, 'streamService', array_combine(Campaign::$STREAM_SERVICES, Campaign::$STREAM_SERVICES), ['class' => 'form-control']) ?>
+            <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the streaming service your want to pull from."></i>
+            <?= Html::error($campaign, 'streamService', ['class' => 'help-block']) ?>
+        </div>
+                            <?= $form->field($campaign, 'twitterEnable')->label('Enable Twitter Link?')->checkbox([], false); ?>
                     <?= $form->field($campaign, 'twitterName', ['autoPlaceholder' => true]); ?>
                     <?= $form->field($campaign, 'youtubeEnable')->label('Enable Youtube?')->checkbox([], false); ?>
                     <?= $form->field($campaign, 'youtubeUrl', ['autoPlaceholder' => true]); ?>

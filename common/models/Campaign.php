@@ -33,16 +33,24 @@ class Campaign extends ActiveRecord {
 
     public static $LAYOUT_TYPES = [self::LAYOUT_TYPE_SINGLE, self::LAYOUT_TYPE_TEAM, self::LAYOUT_TYPE_MULTI];
 
+//    const DONATION_PERSONAL_PAYPAL = 'Personal Paypal';
+    const DONATION_PREAPPROVED_CHARITIES = 'Pre-approved Charities';
+    const DONATION_CUSTOM_FUNDRAISER = 'Custom Fundraiser';
+    
+    public static $DONATION_DESTINATIONS = [self::DONATION_PREAPPROVED_CHARITIES, self::DONATION_CUSTOM_FUNDRAISER];
+    
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
     public static function tableName() {
-        return 'tbl_layout';
+        return 'tbl_campaign';
     }
 
     public function scenarios() {
         return [
-            'default' => ['name', 'alias', 'domain', 'streamService', 'type', 'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations',
+            'default' => ['name', 'alias', 'goalAmount', 'enableGoogleAnalytics', 'googleAnalytics', 'streamService', 'type', 'startDate', 'endDate', 'layoutType',
+                'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 'enableGoogleAnalytics',
+                'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations',
                 'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId', 'twitterEnable', 'twitterName', 'facebookEnable', 'facebookUrl',
                 'youtubeEnable', 'youtubeUrl', 'includeYoutubeFeed']
         ];
@@ -52,17 +60,25 @@ class Campaign extends ActiveRecord {
         parent::__construct($config);
 
         if ($this->isNewRecord) {
-            $this->type = self::LAYOUT_TYPE_SINGLE;
+            $this->type = self::TYPE_PERSONAL_TIP_JAR;
+            $this->layoutType = self::LAYOUT_TYPE_SINGLE;
             if (isset(\Yii::$app->components['user']) && !\Yii::$app->user->isGuest){
                 $this->userId = \Yii::$app->user->id;
             }
         }
     }
 
+    public function init() {
+        parent::init();
+        $this->type = self::TYPE_PERSONAL_TIP_JAR;
+    }
+    
     public function attributeLabels() {
         return [
-            'domain' => 'Google Analytics Tracking ID',
-            'type' => 'Type of Layout',
+            'googleAnalytics' => 'Google Analytics Tracking ID',
+//            'paypalAddress' => 'Paypal Address'
+            'type' => 'Type of Campaign',
+            'layoutType' => 'Type of Layout',
             'channelTeam' => 'Team Channel Name',
             'twitterName' => 'Twitter username',
             'youtubeUrl' => 'YouTube Channel URL',
@@ -75,12 +91,14 @@ class Campaign extends ActiveRecord {
             ['name', 'required'],
             ['name', 'filter', 'filter' => 'strip_tags'],
             ['name', 'nameFilter'],
-            ['domain', 'filter', 'filter' => 'strip_tags'],
+            ['goalAmount', 'double'],
+            ['paypalAddress', 'email'],
+            ['googleAnalytics', 'filter', 'filter' => 'strip_tags'],
             ['channelName', 'filter', 'filter' => 'strip_tags'],
             ['channelTeam', 'filter', 'filter' => 'strip_tags'],
             ['twitterName', 'twitterFilter'],
             ['facebookUrl', 'url', 'defaultScheme' => 'http'],
-            ['youtubeUrl', 'url', 'defaultScheme' => 'http']
+            ['youtubeUrl', 'url', 'defaultScheme' => 'http'],
         ];
     }
 

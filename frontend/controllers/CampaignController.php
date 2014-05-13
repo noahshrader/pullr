@@ -55,16 +55,43 @@ class CampaignController extends FrontendController {
     public function actionIndex(Campaign $campaign = null) {
         $isNewRecord = $campaign && $campaign->isNewRecord;
         if ($campaign && $campaign->load($_POST) && $campaign->save()) {
+            /**from html5 datetime-local tag to timestamp */
+            if ($campaign->startDate && !is_numeric($campaign->startDate)){
+                $campaign->startDate =(new \DateTime($campaign->startDate))->getTimestamp();
+            }
+            if ($campaign->endDate && !is_numeric($campaign->endDate)){
+                $campaign->endDate =(new \DateTime($campaign->endDate))->getTimestamp();
+            }
+            
             UploadImage::UploadLogo($campaign);
 
             if ($isNewRecord) {
                 $this->redirect('app/campaign/edit?id=' . $campaign->id);
             }
         }
+       
+        if ($campaign){
+            if (!$campaign->startDate){
+                $campaign->startDate = time();
+            }
+            if (!$campaign->endDate){
+                $campaign->endDate = time()+60*60*24*4;
+            }
+            if (is_numeric($campaign->startDate)){
+                $campaign->startDate = strftime('%Y-%m-%dT%H:%M:%S', $campaign->startDate);
+            }
+            if (is_numeric($campaign->endDate)){
+                $campaign->endDate = strftime('%Y-%m-%dT%H:%M:%S', $campaign->endDate);
+            }
+        }
+        
         $user = \Yii::$app->user->identity;
         $params = [];
         $params['selectedCampaign'] = $campaign;
         $params['campaigns'] = $user->campaigns;
+        
+        /**from timestamp to html5 datetime-local tag*/ 
+        
         return $this->render('index', $params);
     }
 
@@ -82,7 +109,7 @@ class CampaignController extends FrontendController {
 
     public function actionLayoutteamedit() {
         $id = $_REQUEST['id'];
-        $layoutTeam = LayoutTeam::find($id);
+        $layoutTeam = LayoutTeam::findOne($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_REQUEST['get']) && !isset($_REQUEST['save'])) {
             $layoutTeam->load($_POST);
@@ -93,7 +120,7 @@ class CampaignController extends FrontendController {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($layoutTeam);
         }
-        $layout = Campaign::find($layoutTeam->layoutId);
+        $layout = Campaign::findOne($layoutTeam->layoutId);
         if ($layout->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }

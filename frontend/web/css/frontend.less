@@ -207,3 +207,31 @@
         }
     }
 }
+
+.field-campaign-paypaladdress{
+    display: none;
+}
+#campaignEdit[data-campaignType="Personal Tip Jar"]{
+    .field-campaign-paypaladdress{
+        display: block;
+    }
+    #startEndContainer{
+        display: none;
+    }
+    
+    #donationDestination{
+        display: none;
+    }
+}
+
+[data-donationDestination='Pre-approved Charities']{
+    .customCharity{
+        display: none;
+    }
+}
+
+[data-donationDestination='Custom Fundraiser']{
+    .preapprovedCharity{
+        display: none;
+    }
+}

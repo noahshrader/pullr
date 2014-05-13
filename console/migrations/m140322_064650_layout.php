@@ -23,12 +23,22 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $this->createTable(Campaign::tableName(), [
             'id' => Schema::TYPE_PK,
             'alias' => Schema::TYPE_STRING. ' NOT NULL',
-            'type' => $types, 
             'key' => Schema::TYPE_STRING. ' NOT NULL',
             'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
             'name' => Schema::TYPE_STRING . ' NOT NULL',
+            'type' => $types, 
+            'startDate' => Schema::TYPE_INTEGER,
+            'endDate' => Schema::TYPE_INTEGER,
+            'goalAmount' => Schema::TYPE_FLOAT,
+            'paypalAddress' => Schema::TYPE_STRING,
+            'donationDestination' => Schema::TYPE_STRING,
+            'charityId' => Schema::TYPE_INTEGER,
+            'customCharity' => Schema::TYPE_STRING,
+            'customCharityPaypal' => Schema::TYPE_STRING,
+            'customCharityDescription' => Schema::TYPE_STRING,
+            'enableGoogleAnalytics' => Schema::TYPE_BOOLEAN. ' NOT NULL',
+            'googleAnalytics' => Schema::TYPE_STRING. ' NOT NULL',
             'status' => $statuses,
-            'domain' => Schema::TYPE_STRING. ' NOT NULL',
             'streamService' => $streamServices,
             'layoutType' => $layoutTypes,
             'channelName' => Schema::TYPE_STRING. ' NOT NULL',
@@ -74,7 +84,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
         public function sampleData(){
             $layout = new Campaign;
             $layout->name = 'Fun For Freedom';
-            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
+            $layout->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $layout->channelTeam = "funforfreedom";
             $layout->userId = 1;
             $layout->key = 'test_key';
@@ -83,31 +93,31 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             
             $layout = new Campaign;
             $layout->name = 'LinkSonicK';
-            $layout->type = Campaign::LAYOUT_TYPE_SINGLE;
+            $layout->layoutType = Campaign::LAYOUT_TYPE_SINGLE;
             $layout->userId = 1;
             $layout->save();
             
             $layout = new Campaign;
             $layout->name = 'Awesome Games Done Quick';
-            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
+            $layout->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $layout->userId = 1;
             $layout->save();
             
             $layout = new Campaign;
             $layout->name = 'Awesome Games Done Quick';
-            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
+            $layout->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $layout->userId = 1;
             $layout->save();
             
             $layout = new Campaign;
             $layout->name = 'Awesome Games Done Quick';
-            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
+            $layout->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $layout->userId = 1;
             $layout->save();
             
             $layout = new Campaign;
             $layout->name = 'Awesome Games Done Quick';
-            $layout->type = Campaign::LAYOUT_TYPE_TEAM;
+            $layout->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $layout->userId = 1;
             $layout->save();
         }
