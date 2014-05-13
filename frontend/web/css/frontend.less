@@ -60,7 +60,7 @@
 }
 
 
-.layout-edit{
+#campaignEdit{
     .panel-heading{
         margin-bottom: 10px;
     }
@@ -76,22 +76,22 @@
     h4{
         color: #fff;
     }
-    #layout-channelname, #layout-channelteam, #layout-multichannels{
+    #campaign-channelname, #campaign-channelteam, #campaign-multichannels{
         display: none;
     }
 
-    [data-layout-type=SingleStream] #layout-channelname{
+    [data-campaign-layoutType=SingleStream] #campaign-channelname{
         display: initial;
     }
 
-    [data-layout-type=TeamStream] #layout-channelteam{
+    [data-campaign-layoutType=TeamStream] #campaign-channelteam{
         display: initial;
     }
 
-    [data-layout-type=MultiStream] #layout-multichannels{
+    [data-campaign-layoutType=MultiStream] #campaign-multichannels{
         display: block;
     }
-    #layout-multichannels{
+    #campaign-multichannels{
         margin-bottom: 10px;
         padding: 5px;
         div.label-danger{

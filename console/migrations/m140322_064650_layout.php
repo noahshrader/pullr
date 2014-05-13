@@ -68,7 +68,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
              
              $this->createTable(LayoutTeam::tableName(), [
                  'id' => Schema::TYPE_PK,
-                 'layoutId' =>  Schema::TYPE_INTEGER. ' NOT NULL',
+                 'campaignId' =>  Schema::TYPE_INTEGER. ' NOT NULL',
                  'name' => Schema::TYPE_STRING. ' NOT NULL',
                  'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
                  'youtube' => Schema::TYPE_STRING. ' NOT NULL',
@@ -76,7 +76,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
                  'facebook' => Schema::TYPE_STRING. ' NOT NULL',
              ]);
              
-             $this->createIndex('layoutTeamunique',  LayoutTeam::tableName(), ['layoutId', 'name'], true);
+             $this->createIndex('campaignTeamunique',  LayoutTeam::tableName(), ['campaignId', 'name'], true);
              
              $this->sampleData(); 
 	}

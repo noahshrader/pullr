@@ -1,7 +1,7 @@
 function layoutTypeChanged() {
     var newValue = $(this).val();
     newValue = newValue.replace(' ', '');
-    $('[data-layout-type]').attr('data-layout-type', newValue);
+    $('[data-campaign-layoutType]').attr('data-campaign-layoutType', newValue);
 }
 
 function campaignTypeChanged(){
@@ -150,7 +150,7 @@ function selectTheme(el){
 }
 
 $(function() {
-    $('#layout-type').change(layoutTypeChanged);
+    $('#campaign-layouttype').change(layoutTypeChanged);
     $('[name="Campaign[type]"]').change(campaignTypeChanged);
     $('[name="Campaign[donationDestination]"').change(donationDestinationChanged);
     updateLayoutTeams();

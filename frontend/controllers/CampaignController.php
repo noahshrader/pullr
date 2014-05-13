@@ -120,7 +120,7 @@ class CampaignController extends FrontendController {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($layoutTeam);
         }
-        $layout = Campaign::findOne($layoutTeam->layoutId);
+        $layout = Campaign::findOne($layoutTeam->campaignId);
         if ($layout->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }
@@ -165,7 +165,7 @@ class CampaignController extends FrontendController {
 
         $layoutTeam = new LayoutTeam();
 
-        $layoutTeam->layoutId = $id;
+        $layoutTeam->campaignId = $id;
         $layoutTeam->name = $name;
 
         $layoutTeam->save();
