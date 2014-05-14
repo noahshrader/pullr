@@ -14,7 +14,13 @@ Download composer (e.g. to you home folder, next home folder will be supposed)
 
 Next from home folder run 
 * `~/composer.phar update`
- 
+
+Next step from "pullr" directory
+Select Yes for install under Development Environment
+For All "index.php" type no
+* ./init 
+
 
 
 ####Mac
+If you use MAMP please enable "Allow Network access to MYSQL" 
