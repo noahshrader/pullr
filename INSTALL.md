@@ -24,3 +24,5 @@ For All "index.php" type no
 
 ####Mac
 If you use MAMP please enable "Allow Network access to MYSQL" 
+And you should use "127.0.0.1" instead of localhost  in `common/config/main-local.php`
+(For some reason connection to localhost via file is not working by default for pullr in MAC). 
