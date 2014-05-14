@@ -14,4 +14,7 @@ Download composer (e.g. to you home folder, next home folder will be supposed)
 
 Next from home folder run 
 * `~/composer.phar update`
+ 
+
+
 ####Mac
