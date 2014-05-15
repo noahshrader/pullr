@@ -50,7 +50,7 @@ class Campaign extends ActiveRecord {
         return [
             'default' => ['name', 'alias', 'goalAmount', 'enableGoogleAnalytics', 'googleAnalytics', 'streamService', 'type', 'startDate', 'endDate', 'layoutType',
                 'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 'enableGoogleAnalytics',
-                'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableDonations',
+                'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableCustomLogo',
                 'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId', 'twitterEnable', 'twitterName', 'facebookEnable', 'facebookUrl',
                 'youtubeEnable', 'youtubeUrl', 'includeYoutubeFeed']
         ];
@@ -171,8 +171,8 @@ class Campaign extends ActiveRecord {
         return $this->hasOne(Theme::className(), ['id' => 'themeId']);
     }
     
-    public function getEvent() {
-        return $this->hasOne(Event::className(), ['id' => 'eventId']);
+    public function getCharity() {
+        return $this->hasOne(Charity::className(), ['id' => 'charityId']);
     }
     
     

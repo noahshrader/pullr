@@ -149,12 +149,15 @@
         }
     }
 
+    .logo{
+        max-width: 100px;
+        max-height: 100px;
+        margin: 10px;
+    }
+    .file-preview-image{
+        max-width: 200px;
+    }
     #collapseThree{
-        .logo{
-            max-width: 100px;
-            max-height: 100px;
-            margin: 10px;
-        }
         input[type=color]{
             float: right;
             margin-right: 15px;
@@ -165,25 +168,25 @@
     }
     
     #collapseFour{
-        .field-layout-twittername, .field-layout-youtubeurl, .field-layout-facebookurl, .field-layout-includeyoutubefeed{
+        .field-campaign-twittername, .field-campaign-youtubeurl, .field-campaign-facebookurl, .field-campaign-includeyoutubefeed{
             display: none;
         }
     }
     
     #collapseFour.twitterEnable{
-        .field-layout-twittername{
+        .field-campaign-twittername{
             display: block;
         }
     }
     
     #collapseFour.youtubeEnable{
-        .field-layout-youtubeurl, .field-layout-includeyoutubefeed{
+        .field-campaign-youtubeurl, .field-campaign-includeyoutubefeed{
             display: block;
         }
     }
     
     #collapseFour.facebookEnable{
-        .field-layout-facebookurl{
+        .field-campaign-facebookurl{
             display: block;
         }
     }
@@ -234,4 +237,18 @@
     .preapprovedCharity{
         display: none;
     }
+}
+
+#modalCharity .microPhoto{
+    max-width: 150px;
+    max-height: 150px;
+}
+
+#modalCharity .select-charity-container{
+    cursor: pointer;
+    padding: 10px 0px 10px 0px;
+}
+
+#modalCharity .select-charity-container:hover{
+    background-color: #ccc;
 }

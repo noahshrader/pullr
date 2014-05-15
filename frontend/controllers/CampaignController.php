@@ -13,6 +13,7 @@ use kartik\widgets\ActiveForm;
 use common\components\UploadImage;
 use common\models\Theme;
 use common\models\Plan;
+use common\models\Charity;
 
 class CampaignController extends FrontendController {
 
@@ -172,20 +173,27 @@ class CampaignController extends FrontendController {
     }
 
     public function actionModalthemes() {
-        $type = $_POST['type'];
+        $layoutType = $_POST['layoutType'];
         $plan = \Yii::$app->user->identity->getPlan();
 
         $themesQuery = Theme::find()->where(['status' => Theme::STATUS_ACTIVE]);
         if ($plan == Plan::PLAN_BASE) {
             $themesQuery->andWhere(['plan' => Plan::PLAN_BASE]);
         }
-        if ($type){
-            $themesQuery->andWhere(['layoutType' => $type]);
+        if ($layoutType){
+            $themesQuery->andWhere(['layoutType' => $layoutType]);
         }
 
         $themes = $themesQuery->all();
         return $this->renderPartial('modalThemes',[
-            'themes' => $themes, 'type' => $type
+            'themes' => $themes, 'type' => $layoutType
+        ]);
+    }
+    
+    public function actionModalcharities() {
+        $charities = Charity::findAll(['status' => Charity::STATUS_ACTIVE ]);
+        return $this->renderPartial('modalCharities',[
+            'charities' => $charities
         ]);
     }
 

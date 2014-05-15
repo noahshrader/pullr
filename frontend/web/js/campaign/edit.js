@@ -122,7 +122,6 @@ function initBootstrapSwitch() {
     
     $("#campaign-enablegoogleanalytics").on('click', function() {
         var value = $('#campaign-enablegoogleanalytics').bootstrapSwitch('state');
-        log(value);
         if (value){
             $('.field-campaign-googleAnalytics').show('slow');
         } else {
@@ -130,23 +129,51 @@ function initBootstrapSwitch() {
         }
     });
     
+    $("#campaign-enablecustomlogo").on('click', function() {
+        var value = $('#campaign-enablecustomlogo').bootstrapSwitch('state');
+        if (value){
+            $('#logo-container').show('slow');
+        } else {
+            $('#logo-container').hide('slow');
+        }
+    });
+    
 }
 
 function layoutChooseTheme(){
-    var layoutType = $('#layout-type').val();
-    $('#modalThemes .modal-content').load('app/campaign/modalthemes', {type: layoutType}, function(){
+    var layoutType = $('#campaign-layouttype').val();
+    $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
         $('#modalThemes').modal('show');
     })
 }
+
 
 function selectTheme(el){
     var $theme = $(el).parents('.select-theme-container');
     var name = $theme.data('name');
     var id = $theme.data('id');
-    $('#layout-themeid').val(id);
+    $('#campaign-themeid').val(id);
     $('.theme-name span').text(name);
     $('.theme-name').removeClass('hidden');
     $('#modalThemes').modal('hide');
+}
+
+function campaignChooseCharity(){
+    $('#modalCharity .modal-content').load('app/campaign/modalcharities', function(){
+        $('#modalCharity').modal('show');
+    })
+}
+
+function selectCharity(el){
+    $el = $(el);
+    var id = $el.data('id');
+    var name = $el.data('name');
+    log(name);
+    log(id);
+    $('#campaign-charityid').val(id);
+    $('.charity-name span').text(name);
+    $('.charity-name').removeClass('hidden');
+    $('#modalCharity').modal('hide');
 }
 
 $(function() {

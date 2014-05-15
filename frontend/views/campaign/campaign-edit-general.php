@@ -37,7 +37,16 @@ use yii\helpers\Html;
             </div>
             
             <div class='preapprovedCharity'>
-                <button class="btn btn-default">Choose a charity</button>
+                <?= $form->field($campaign, 'charityId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
+                <div class='charity-name <? if (!$campaign->charityId) { echo 'hidden';} ?>'>
+                    <label>
+                        Selected charity:
+                    </label>
+                    <span><?= $campaign->charity?$campaign->charity->name:''?></span>
+                </div>
+                
+                <button class="btn btn-primary" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
+                
                 <br/>
                 <br/>
             </div>
@@ -49,7 +58,7 @@ use yii\helpers\Html;
             
         </div>
         <?= $form->field($campaign, 'enableGoogleAnalytics')->label('Enable Google Analytics Tracking?')->checkbox([], false); ?>
-        <div class="form-group <?= ($campaign->enableGoogleAnalytics)?'' :'hidden' ?> field-campaign-googleAnalytics <?= ($campaign->hasErrors('googleAnalytics')) ? 'has-error' : '' ?>">
+        <div style="<?= ($campaign->enableGoogleAnalytics)?'' :'display:none' ?> " class="form-group field-campaign-googleAnalytics <?= ($campaign->hasErrors('googleAnalytics')) ? 'has-error' : '' ?>">
             <?= Html::activeInput('text', $campaign, 'googleAnalytics', ['class' => 'form-control', 'placeholder' => 'Google Analytics Tracking ID']) ?>
             <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Add Google Analytics to your page by entering the Tracking ID you want to use with this layout. If you don't want to use this feauter, leave this blank."></i>
             <?= Html::error($campaign, 'googleAnalytics', ['class' => 'help-block']) ?>
