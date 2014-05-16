@@ -48,7 +48,7 @@ Next change first line of /usr/local/bin/lessc from first line to second
 * `#!/usr/bin/env node`
 * `#!/usr/bin/env /usr/local/bin/node`
 
-And last thing check **/Applications/MAMP/Library/bin/envars**. To prevent $DYLD_LIBRARY_PATH variables being changed by MAMP comment out two lines. So the file should looks like:
+And last thing to check is **/Applications/MAMP/Library/bin/envars**. To prevent $DYLD_LIBRARY_PATH variables being changed by MAMP comment out two lines. So the file should looks like:
 
 ```
 if test "x$DYLD_LIBRARY_PATH" != "x" ; then
