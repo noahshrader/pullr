@@ -23,9 +23,9 @@ FrontendAsset::register($this);
         <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">
         <?php $this->head() ?>
 
-        <!-- Typekit Font Embed -->
-        <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <!-- Google Webfonts -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700' rel='stylesheet' type='text/css'>
+
     </head>
     <body>
         <?php
@@ -60,11 +60,11 @@ FrontendAsset::register($this);
     <!-- BEGIN Main Sidebar -->
     <?php $this->beginBody() ?>
         <div class="page-wrapper">
-            <div class="page-sidebar">
+            <header class="page-sidebar clip">
                 <? if (!Yii::$app->user->isGuest): ?>
                    <?= $this->render('@common/views/leftmenu/avatar'); ?>
                 <? endif; ?>
-                <ul> 
+                <ul class="nav nav-stacked"> 
                     <? if (Yii::$app->user->isGuest): ?>
                     <li>
                          <?= $this->render('@frontend/views/site/signupModal'); ?>  
@@ -89,7 +89,7 @@ FrontendAsset::register($this);
                            
                     <? endif; ?>
                 </ul>
-            </div>
+            </header>
             <div class="page-container">
             <?= Alert::widget() ?>
             <?= $content ?>
