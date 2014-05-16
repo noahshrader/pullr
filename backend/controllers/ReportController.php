@@ -5,24 +5,23 @@ use common\models\User;
 use common\models\Plan;
 use common\models\PlanHistory;
 use common\models\Payment;
-use common\models\Event;
 use common\models\Charity;
-
+use common\models\Campaign;
 class ReportController extends BackendController
 {   
         private function topCharities(){
             $result = [];
-            $command = (new \yii\db\Query())->from(Event::tableName())
-                    ->select(['charityId', 'COUNT(*) eventsNumber ', 'SUM(amountRaised) amountRaised'])
+            $command = (new \yii\db\Query())->from(Campaign::tableName())
+                    ->select(['charityId', 'COUNT(*) campaignsNumber ', 'SUM(amountRaised) amountRaised'])->where('charityId >= 0')
                     ->groupBy('charityId')->createCommand();
             
-            $sql = '('.$command->getSql().') eventAggregated';
+            $sql = '('.$command->getSql().') campaignAggregated';
             $maxes = (new \yii\db\Query)->from($sql)
-                    ->select(['Max(eventsNumber) maxEventsNumber', 'Max(amountRaised) maxAmountRaised'])
+                    ->select(['Max(campaignsNumber) maxCampaignsNumber', 'Max(amountRaised) maxAmountRaised'])
                     ->one();
             
             $topSelectedCharityId =(new \yii\db\Query())->from($sql)
-                    ->where(['eventsNumber' => $maxes['maxEventsNumber']])
+                    ->where(['campaignsNumber' => $maxes['maxCampaignsNumber']])
                     ->select('charityId')
                     ->scalar();
             
@@ -39,21 +38,21 @@ class ReportController extends BackendController
         
         private function topUsers(){
             $result = [];
-            $command = (new \yii\db\Query())->from(Event::tableName())
-                    ->select(['userId', 'COUNT(*) eventsNumber ', 'SUM(amountRaised) amountRaised'])
+            $command = (new \yii\db\Query())->from(Campaign::tableName())
+                    ->select(['userId', 'COUNT(*) campaignsNumber ', 'SUM(amountRaised) amountRaised'])
                     ->groupBy('userId')->createCommand();
             
-            $sql = '('.$command->getSql().') eventAggregated';
+            $sql = '('.$command->getSql().') campaignAggregated';
             $maxes = (new \yii\db\Query)->from($sql)
-                    ->select(['Max(eventsNumber) maxEventsNumber', 'Max(amountRaised) maxAmountRaised'])
+                    ->select(['Max(campaignsNumber) maxCampaignsNumber', 'Max(amountRaised) maxAmountRaised'])
                     ->one();
             
             $topSelectedCharityId =(new \yii\db\Query())->from($sql)
-                    ->where(['eventsNumber' => $maxes['maxEventsNumber']])
+                    ->where(['campaignsNumber' => $maxes['maxCampaignsNumber']])
                     ->select('userId')
                     ->scalar();
             
-            $result['userWithMostEvents'] = User::findOne($topSelectedCharityId);
+            $result['userWithMostCampaigns'] = User::findOne($topSelectedCharityId);
             
             $topProfitCharityId =(new \yii\db\Query())->from($sql)
                     ->where(['amountRaised' => $maxes['maxAmountRaised']])
@@ -88,22 +87,22 @@ class ReportController extends BackendController
             $totalUsersTryPro = max(PlanHistory::find()->select('userId')->distinct()->count(),1);
             $params['retentionRate'] = round(100 * $params['proPlanUsers'] / $totalUsersTryPro);
             
-            $params['totalAmountRaised'] = Event::find()->sum('amountRaised');
-            $params['amountCurrentlyBeingRaised'] = Event::find()->active()->sum('amountRaised');
-            $params['totalEvents'] = Event::find()->count();
-            $params['currentEvents'] = Event::find()->active()->count();
-            $params['eventsThisMonth'] = Event::find()->where(['status' => Event::STATUS_ACTIVE])->andWhere('startDate >= '.strtotime(date('01-m-Y')))->count();
+            $params['totalAmountRaised'] = Campaign::find()->sum('amountRaised');
+            $params['amountCurrentlyBeingRaised'] = Campaign::find()->active()->sum('amountRaised');
+            $params['totalCampaigns'] = Campaign::find()->count();
+            $params['currentCampaigns'] = Campaign::find()->active()->count();
+            $params['campaignsThisMonth'] = Campaign::find()->where(['status' => Campaign::STATUS_ACTIVE])->andWhere('startDate >= '.strtotime(date('01-m-Y')))->count();
             
             $result = $this->topCharities();
             $params['topSelectedCharity'] = $result['topSelectedCharity'];
             $params['topProfitCharity'] = $result['topProfitCharity'];
             
             $result = $this->topUsers();
-            $params['userWithMostEvents'] = $result['userWithMostEvents'];
+            $params['userWithMostCampaigns'] = $result['userWithMostCampaigns'];
             $params['topProfitUser'] = $result['topProfitUser'];
             
             
-//            $charities =  Event::find()->select(['charityId', 'COUNT(*)'])->groupBy('charityId')->all();
+//            $charities =  Campaign::find()->select(['charityId', 'COUNT(*)'])->groupBy('charityId')->all();
             
             $topSelectedCharity = -1;
             $topSelectedCharityMax = 0;

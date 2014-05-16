@@ -2,19 +2,19 @@
 namespace common\models\query;
 
 use yii\db\ActiveQuery;
-use common\models\Event;
+use common\models\Campaign;
 
-class EventQuery extends ActiveQuery
+class CampaignQuery extends ActiveQuery
 {
     /**
      * 
      * @return Event
      */
     public function active(){
-        $event = $this->andWhere([
-            'status' => Event::STATUS_ACTIVE])
+        $campaignsQuery = $this->andWhere([
+            'status' => Campaign::STATUS_ACTIVE])
                 ->andWhere('startDate > '. time())
                 ->andWhere('endDate < ' . time());
-        return $event;
+        return $campaignsQuery;
     }
 }

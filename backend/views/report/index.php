@@ -51,9 +51,9 @@ $this->title = 'Reports';
                 </div>
         </fieldset>
         <fieldset class="col-md-6">
-                <legend>Active Donations/Events</legend>
+                <legend>Active Donations/Campaigns</legend>
                 <div class="text-center">
-                    <div class='report-label'>Total Amount Raised (across all events)</div>
+                    <div class='report-label'>Total Amount Raised (across all campaigns)</div>
                     <div class='report-value'><?= number_format($totalAmountRaised) ?></div>
                 </div>
                 <div class="text-center row">
@@ -68,32 +68,32 @@ $this->title = 'Reports';
                 </div>
                 <div class="text-center row">
                     <div class="col-xs-4">
-                        <div class='report-label'>Total # of Events</div>
-                        <div class='report-value'><?= $totalEvents?></div>
+                        <div class='report-label'>Total # of Campaigns</div>
+                        <div class='report-value'><?= $totalCampaigns?></div>
                     </div>
                     <div class="col-xs-4">
-                        <div class='report-label'>Current Events</div>
-                        <div class='report-value'><?= $currentEvents?></div>
+                        <div class='report-label'>Current Campaigns</div>
+                        <div class='report-value'><?= $currentCampaigns?></div>
                     </div>
                     <div class="col-xs-4">
-                        <div class='report-label'>Events This Month</div>
-                        <div class='report-value'><?= $eventsThisMonth?></div>
+                        <div class='report-label'>Campaigns This Month</div>
+                        <div class='report-value'><?= $campaignsThisMonth?></div>
                     </div>
                 </div>
                 <div class="text-center row">
                     <div class="col-xs-6">
                         <div class='report-label'>Top Selected Charity </div>
-                        <div class='report-value'><?= $topSelectedCharity->name ?></div>
+                        <div class='report-value'><?= $topSelectedCharity ? $topSelectedCharity->name : 'Not any charity selected' ?></div>
                     </div>
                     <div class="col-xs-6">
                         <div class='report-label'>Most Profitable Charity</div>
-                        <div class='report-value'><?= $topProfitCharity->name ?></div>
+                        <div class='report-value'><?= $topProfitCharity ?  $topProfitCharity->name : 'Not any charity selected' ?></div>
                     </div>
                 </div>
                  <div class="text-center row">
                     <div class="col-xs-6">
-                        <div class='report-label'>User with Most Events</div>
-                        <div class='report-value'><?= $userWithMostEvents->name ?></div>
+                        <div class='report-label'>User with Most Campaigns</div>
+                        <div class='report-value'><?= $userWithMostCampaigns->name ?></div>
                     </div>
                     <div class="col-xs-6">
                         <div class='report-label'>Top Earning User</div>

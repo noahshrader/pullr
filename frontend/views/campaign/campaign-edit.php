@@ -10,15 +10,6 @@ $user = \Yii::$app->user->identity;
 
     <? if ($campaign): ?>
 
-    <?
-    $events = $user->events;
-    $eventsNames = [];
-    $eventsIds = [];
-    foreach ($events as $event) {
-        $eventsNames[] = $event->name;
-        $eventsIds[] = $event->id;
-    }
-    ?>
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
         <h4> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h4>
         <? $form = ActiveForm::begin(['options' => [
@@ -32,8 +23,6 @@ $user = \Yii::$app->user->identity;
             <?= $this->render('campaign-edit-layout', [
                             'form' => $form,
                             'campaign' => $campaign, 
-                            'eventsIds' => $eventsIds,
-                            'eventsNames' => $eventsNames
                         ]); ?>   
             <div class="panel panel-default">
                 <div class="panel-heading"><div class="panel-title">
@@ -48,8 +37,6 @@ $user = \Yii::$app->user->identity;
             <?= $this->render('campaign-edit-social', [
                             'form' => $form,
                             'campaign' => $campaign, 
-                            'eventsIds' => $eventsIds,
-                            'eventsNames' => $eventsNames
                         ]); ?>   
         </div>
 

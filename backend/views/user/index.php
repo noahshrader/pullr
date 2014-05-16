@@ -48,8 +48,8 @@ $this->title = 'Users';
                 <td><?= ($user->status == User::STATUS_ACTIVE) ? 'Active' : 'Inactive'?> </td>
                 <td><?= date('M j Y', $user->created_at) ?> </td>
                 <td><?= date('M j Y h:iA', $user->last_login) ?></td>
-                <td><?= $user->getEvents()->count(); ?></td>
-                <td><?= number_format($user->getEvents()->sum('amountRaised')) ?></td>
+                <td><?= $user->getCampaigns()->count(); ?></td>
+                <td><?= number_format($user->getCampaigns()->sum('amountRaised')) ?></td>
             </tr>
         <? endforeach; ?>
     </tbody>

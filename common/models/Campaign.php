@@ -101,7 +101,15 @@ class Campaign extends ActiveRecord {
             ['youtubeUrl', 'url', 'defaultScheme' => 'http'],
         ];
     }
-
+    
+    /* @inheritdoc
+     * @return CommentQuery
+     */
+    public static function find()
+    {
+        return new query\CampaignQuery(get_called_class());
+    }
+    
     public function nameFilter(){
         $userId = $this->userId;
         if (!$userId){

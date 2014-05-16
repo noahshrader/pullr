@@ -2,19 +2,19 @@
 use yii\helpers\Html; 
 use common\assets\DataTableAsset;
 use yii\widgets\ActiveForm;
-use common\models\Event;
+use common\models\Campaign;
 
 DataTableAsset::register($this);
 $this->registerJSFile('@web/js/event/index.js', DataTableAsset::className());
 
-$this->title = 'Events';
+$this->title = 'Campaigns';
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 <?php $form = ActiveForm::begin(); ?>
 <label>
     Status:
     <select class="form-control" name='status' onchange="$(this).parents('form').submit()">
-        <?php foreach (Event::$STATUSES as $_status): ?>
+        <?php foreach (Campaign::$STATUSES as $_status): ?>
             <option <?php if (isset($status) && $status == $_status) echo 'selected' ?>><?= $_status ?></option>
         <?php endforeach; ?>
     </select>
@@ -23,7 +23,7 @@ $this->title = 'Events';
     <thead>
         <tr>
             <th>
-                Event name
+                Campaign name
             </th>
             <th>
                 Charity
@@ -55,29 +55,29 @@ $this->title = 'Events';
         </tr>
     </thead>
     <tbody>
-        <? foreach ($events as $event): ?>
-            <tr data-id='<?= $event->id?>'>
-                <td><?= $event->name ?></td>
-                <td><?= $event->charity->name?> </td>
-                <td><?= date('M j Y', $event->startDate) ?></td>
-                <td><?= date('M j Y', $event->endDate)?> </td>
-                <td><?= number_format($event->amountRaised) ?> </td>
-                <td><?= number_format($event->goalAmount) ?></td>
-                <td><?= $event->numberOfDonations ?></td>
-                <td><?= $event->numberOfUniqueDonors ?></td>
-                <td><?= $event->user->name ?></td>
-                <? switch ($event->status){
-                        case (Event::STATUS_ACTIVE):
+        <? foreach ($campaigns as $campaign): ?>
+            <tr data-id='<?= $campaign->id?>'>
+                <td> <a href="campaign/edit?id=<?= $campaign->id?>"><?= $campaign->name ?></a></td>
+                <td><?= $campaign->charity ? $campaign->charity->name : '' ?> </td>
+                <td><?= $campaign->startDate ? date('M j Y', $campaign->startDate) : '' ?></td>
+                <td><?= $campaign->endDate ? date('M j Y', $campaign->endDate) : ''?> </td>
+                <td><?= number_format($campaign->amountRaised) ?> </td>
+                <td><?= number_format($campaign->goalAmount) ?></td>
+                <td><?= $campaign->numberOfDonations ?></td>
+                <td><?= $campaign->numberOfUniqueDonors ?></td>
+                <td><?= $campaign->user->name ?></td>
+                <? switch ($campaign->status){
+                        case (Campaign::STATUS_ACTIVE):
                             $class = 'success';
                             break;
-                        case (Event::STATUS_INACTIVE):
+                        case (Campaign::STATUS_DELETED):
                             $class = 'danger';
                             break;
                         default:
                             break;
                    } 
                 ?>
-                <td><span class="label label-<?= $class ?>"><?= $event->status ?></span></td>
+                <td><span class="label label-<?= $class ?>"><?= $campaign->status ?></span></td>
             </tr>
         <? endforeach; ?>
     </tbody>

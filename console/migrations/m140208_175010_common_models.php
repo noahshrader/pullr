@@ -4,7 +4,6 @@ use yii\db\Schema;
 use common\models\base\BaseImage;
 use common\models\Payment;
 use common\models\User;
-use common\models\Event;
 use common\models\Charity;
 
 class m140208_175010_common_models extends \console\models\ExtendedMigration {
@@ -66,25 +65,25 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
         ]);
         
-        $statuses = implode('","', Event::$STATUSES);
-        $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Event::STATUS_INACTIVE . '"';
-        $this->createTable(Event::tableName(), [
-            'id' => Schema::TYPE_PK,
-            'key' => Schema::TYPE_STRING. ' NOT NULL',
-            'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'status' => $statuses, 
-            'charityId' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'startDate' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'endDate' =>   Schema::TYPE_INTEGER . ' NOT NULL',
-            'amountRaised' => Schema::TYPE_FLOAT . ' NOT NULL',
-            'goalAmount' => Schema::TYPE_FLOAT . ' NOT NULL',
-            'numberOfDonations' => Schema::TYPE_INTEGER. ' NOT NULL',
-            'numberOfUniqueDonors' => Schema::TYPE_INTEGER. ' NOT NULL',
-            'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'amount' => Schema::TYPE_FLOAT . ' NOT NULL',
-            'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
-            'type' => Schema::TYPE_STRING
-        ], $tableOptions);
+//        $statuses = implode('","', Event::$STATUSES);
+//        $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Event::STATUS_INACTIVE . '"';
+//        $this->createTable(Event::tableName(), [
+//            'id' => Schema::TYPE_PK,
+//            'key' => Schema::TYPE_STRING. ' NOT NULL',
+//            'name' => Schema::TYPE_STRING . ' NOT NULL',
+//            'status' => $statuses, 
+//            'charityId' => Schema::TYPE_INTEGER . ' NOT NULL',
+//            'startDate' => Schema::TYPE_INTEGER . ' NOT NULL',
+//            'endDate' =>   Schema::TYPE_INTEGER . ' NOT NULL',
+//            'amountRaised' => Schema::TYPE_FLOAT . ' NOT NULL',
+//            'goalAmount' => Schema::TYPE_FLOAT . ' NOT NULL',
+//            'numberOfDonations' => Schema::TYPE_INTEGER. ' NOT NULL',
+//            'numberOfUniqueDonors' => Schema::TYPE_INTEGER. ' NOT NULL',
+//            'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
+//            'amount' => Schema::TYPE_FLOAT . ' NOT NULL',
+//            'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
+//            'type' => Schema::TYPE_STRING
+//        ], $tableOptions);
         
         
         $this->sampleData();
@@ -107,21 +106,20 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
         $charity->contactEmail = 'stas.msu@gmail.com';
         $charity->save();
         
-        $event = new Event();
-        $event->name = 'Zeldathon St. Jude';
-        $event->charityId = 1;
-        $event->startDate = strtotime('27-12-2013');
-        $event->endDate = strtotime('01-01-2014');
-        $event->userId = 1;
-        $event->status = Event::STATUS_ACTIVE;
-        $event->save();
+//        $event = new Event();
+//        $event->name = 'Zeldathon St. Jude';
+//        $event->charityId = 1;
+//        $event->startDate = strtotime('27-12-2013');
+//        $event->endDate = strtotime('01-01-2014');
+//        $event->userId = 1;
+//        $event->status = Event::STATUS_ACTIVE;
+//        $event->save();
     }
     
     public function down() {
         $this->dropTable(BaseImage::tableName());
         $this->dropTable(Payment::tableName());
         $this->dropTable(Charity::tableName());
-        $this->dropTable(Event::tableName());
     }
 
 }

@@ -1,8 +1,8 @@
 <?
 use common\assets\DataTableAsset;
 
-$events = $user->events;
-$totalAmountRaised = $user->getEvents()->sum('amountRaised');
+$campaigns = $user->campaigns;
+$totalAmountRaised = $user->getCampaigns()->sum('amountRaised');
 $this->registerJSFile('@web/js/user/info.js', DataTableAsset::className());
 
 ?>
@@ -51,13 +51,13 @@ $this->registerJSFile('@web/js/user/info.js', DataTableAsset::className());
         </tr>
     </thead>
     <tbody>
-        <? foreach ($events as $event): ?>
+        <? foreach ($campaigns as $campaign): ?>
             <tr>
-                <td><?= $event->name ?></td>
-                <td><?= date('M j Y', $event->startDate).'- '.date('M j Y', $event->endDate) ?></td>
-                <td><?= $event->charity->name ?></td>
-                <td><?= number_format($event->goalAmount) ?></td>
-                <td><?= number_format($event->amountRaised) ?></td>
+                <td><?= $campaign->name ?></td>
+                <td><?= ($campaign->startDate ? date('M j Y', $campaign->startDate) : '') .'- '.($campaign->endDate ? date('M j Y', $campaign->endDate) : '') ?></td>
+                <td><?= $campaign->charity ? $campaign->charity->name : '' ?></td>
+                <td><?= number_format($campaign->goalAmount) ?></td>
+                <td><?= number_format($campaign->amountRaised) ?></td>
             </tr>
         <? endforeach; ?>
     </tbody>

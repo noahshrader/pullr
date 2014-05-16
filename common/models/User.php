@@ -5,12 +5,10 @@ namespace common\models;
 use yii\db\ActiveRecord;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
-use common\components\Application;
 use common\models\Notification;
 use common\models\base\BaseImage;
 use common\models\Plan;
 use common\models\Campaign;
-use common\models\Event;
 /**
  * Class User
  * @package common\models
@@ -326,12 +324,6 @@ class User extends ActiveRecord implements IdentityInterface {
         
         public function getCampaigns($status = Campaign::STATUS_ACTIVE){
             return $this->hasMany(Campaign::className(), ['userId' => 'id'])
-                    ->where(['status' => $status])
-                    ->orderBy('date DESC');
-        }
-        
-        public function getEvents($status = Event::STATUS_ACTIVE){
-            return $this->hasMany(Event::className(), ['userId' => 'id'])
                     ->where(['status' => $status])
                     ->orderBy('date DESC');
         }
