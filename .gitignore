@@ -4,3 +4,11 @@
 /composer.lock
 composer.lock
 common/config/main.php
+
+*.codekit
+
+*.map
+
+*.map
+
+frontend/web/css/frontend.css.map
