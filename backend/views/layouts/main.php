@@ -54,7 +54,7 @@ CommonAsset::register($this);
                                 <a href="user">Users</a>
                             </li>
                             <li>
-                                <a href="campaign">Campaign</a>
+                                <a href="campaign">Campaigns</a>
                             </li>
                             <li>
                                 <a href="charity">Charities</a>
