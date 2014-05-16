@@ -33,3 +33,23 @@ If you use MAMP please enable "Allow Network access to MYSQL"
 And you should use "127.0.0.1" instead of localhost  in `common/config/main-local.php`
 
 (For some reason connection to localhost via file is not working by default for pullr in MAC). 
+
+
+####Mac issues with lessc 
+Some pathes issues exist when using lessc in Mac. Here we have a workaround. 
+
+in common/config/main.php change 
+
+* `'less' => ['css', 'lessc {from} {to} --source-map --compress'],`
+
+to 
+
+* `'less' => ['css', '/usr/local/bin/lessc {from} {to} --source-map --compress'],`
+
+
+Next change first line of /usr/local/bin/lessc from 
+* `#!/usr/bin/env node`
+
+to
+
+* `#!/usr/bin/env /usr/local/bin/node`
