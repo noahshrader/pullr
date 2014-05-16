@@ -3,6 +3,7 @@
 use common\models\Campaign;
 use kartik\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->registerJsFile('@web/js/campaign/edit.js', common\assets\CommonAsset::className());
 $user = \Yii::$app->user->identity;
@@ -14,33 +15,34 @@ $user = \Yii::$app->user->identity;
         <h4> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h4>
         <? $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
-        <div class="panel-group" id="accordion">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="<?= Url::to()?>#general" data-toggle="tab">Home</a></li>
+            <li><a href="<?= Url::to()?>#layout" data-toggle="tab">Layout</a></li>
+            <li><a href="<?= Url::to()?>#social" data-toggle="tab">Social</a></li>
+        </ul>
+        <div class="tab-content" id="accordion">
+            <div class="tab-pane fade in active" id="general">
              <?= $this->render('campaign-edit-general', [
                             'form' => $form,
                             'campaign' => $campaign
                         ]); ?>    
-            
+            </div>
+            <div class="tab-pane" id="layout">
             <?= $this->render('campaign-edit-layout', [
                             'form' => $form,
                             'campaign' => $campaign, 
                         ]); ?>   
-            <div class="panel panel-default">
-                <div class="panel-heading"><div class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            Customizations
-                        </a>
-                </div></div>
-                <div class="panel-collapse collapse" id="collapseThree">
-                   
-                </div>
             </div>
+            <div class="tab-pane" id="social">
             <?= $this->render('campaign-edit-social', [
                             'form' => $form,
                             'campaign' => $campaign, 
                         ]); ?>   
+            </div>
         </div>
-
-        <button class="btn btn-primary">Save</button>
+        <div class="text-center">
+            <button class="btn btn-primary">Update</button>
+        </div>
         <? ActiveForm::end() ?>
 
     </div>

@@ -2,14 +2,6 @@
 use common\models\Campaign;
 use yii\helpers\Html;
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                General Settings
-            </a>
-        </div>
-    </div>
     <div class="panel-collapse collapse in" id="collapseOne">
         <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
         <div class="form-group field-campaign-type">
@@ -70,4 +62,3 @@ use yii\helpers\Html;
                         <?= Html::error($campaign, 'streamService', ['class' => 'help-block']) ?>
         </div>
     </div>
-</div>
