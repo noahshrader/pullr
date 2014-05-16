@@ -50,9 +50,9 @@ Next change first line of /usr/local/bin/lessc from first line to second
 
 And last thing check /Applications/MAMP/Library/bin/envars. To prevent $DYLD_LIBRARY_PATH variables being changed by MAMP comment out two lines. So the file should looks like:
 
-* `if test "x$DYLD_LIBRARY_PATH" != "x" ; then
-  #DYLD_LIBRARY_PATH="/Applications/MAMP/Library/lib:$DYLD_LIBRARY_PATH"
-else
-  #DYLD_LIBRARY_PATH="/Applications/MAMP/Library/lib"
-fi
-export DYLD_LIBRARY_PATH`
+* `if test "x$DYLD_LIBRARY_PATH" != "x" ; then`
+*  `#DYLD_LIBRARY_PATH="/Applications/MAMP/Library/lib:$DYLD_LIBRARY_PATH"`
+* `else`
+*  `#DYLD_LIBRARY_PATH="/Applications/MAMP/Library/lib"`
+*`fi`
+* `export DYLD_LIBRARY_PATH``
