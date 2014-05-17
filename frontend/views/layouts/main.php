@@ -75,16 +75,19 @@ FrontendAsset::register($this);
                     <? endif; ?>
                     <? if (!Yii::$app->user->isGuest): ?>
                         <li>
-                            <a href="app">Dashboard</a>
+                            <a class="icon-statistics" href="app">Dashboard</a>
                         </li>
                         <li>
-                            <a href="app/campaign">Campaigns</a>
+                            <a class="icon-text" href="app/pages">Pages</a>
                         </li>
                         <li>
-                            <a href="app/event">Events</a>
+                            <a class="icon-heart2" href="app/donation">Donations</a>
                         </li>
                         <li>
-                            <a href="app/donation">Donations</a>
+                            <a class="icon-popup" href="app/alerts">Alerts</a>
+                        </li>
+                        <li>
+                            <a class="icon-cog" href="app/settings">Settings</a>
                         </li>
                            
                     <? endif; ?>
