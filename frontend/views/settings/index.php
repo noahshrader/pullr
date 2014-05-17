@@ -14,7 +14,7 @@ $this->title = 'Account Settings';
 ?>
 <div class="pullr-table">
     <div class='pullr-table-row row'>
-        <div class="col-xs-10">
+        <div class="col-xs-7 col-xs-pull-2">
             <h1><?= Html::encode($this->title) ?></h1>
             <?php $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']])
@@ -77,8 +77,8 @@ $this->render('deactivate', [
 ?>
         </div>
         <!-- table-cell div -->
-        <div class='col-xs-2'>
-            <div class='frontend-right-widget'>
+        <div id="side-panel" class='col-xs-3'>
+            <div class='sidepanel basic'>
                 <?=
                 $this->render('plan', [
                     'user' => $user
