@@ -60,7 +60,7 @@ FrontendAsset::register($this);
     <!-- BEGIN Main Sidebar -->
     <?php $this->beginBody() ?>
         <div class="page-wrapper">
-            <header class="page-sidebar">
+            <header class="header-sidebar col-xs-2">
                 <? if (!Yii::$app->user->isGuest): ?>
                    <?= $this->render('@common/views/leftmenu/avatar'); ?>
                 <? endif; ?>
