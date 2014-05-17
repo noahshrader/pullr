@@ -27,6 +27,16 @@ Next step let's install db data, run from pullr project folder
 * `./yii migrate`
 
 
+####Update your local repository with new changes
+To update files use your GUI App to sync or use that to run via terminal:   
+* `git pull`
+
+Sometimes you need to update db, so run that (first line to remove previous db data, second to apply db data again): 
+```
+./yii migrate/down 10
+./yii migrate
+```
+
 ####Mac
 If you use MAMP please enable "Allow Network access to MYSQL" 
 
