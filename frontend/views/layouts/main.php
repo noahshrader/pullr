@@ -23,9 +23,9 @@ FrontendAsset::register($this);
         <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">
         <?php $this->head() ?>
 
-        <!-- Typekit Font Embed -->
-        <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700' rel='stylesheet' type='text/css'>
+
     </head>
     <body>
         <?php
