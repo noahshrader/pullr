@@ -1,4 +1,5 @@
 @import "pullr-type.less";
+@import "pullr-flat-ui.less";
 @import "pullr-variables.less";
 
 html,
@@ -74,6 +75,24 @@ body {
         overflow: hidden;
         padding-left: 15px;
         list-style-type: none;
+
+        li > a:before {
+            vertical-align: middle;
+            color: #53555a;
+            font-size: 1.9em;
+            line-height: 30px;
+            text-align: center;
+            margin-right: .8em;
+            width: 30px;
+        }
+
+        li > a {
+            vertical-align: middle;
+            color: #53555a;
+            font-size: 1.1em;
+            cursor: pointer;
+            line-height: 30px;
+        }
     }
 }
 
