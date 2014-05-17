@@ -60,11 +60,11 @@ FrontendAsset::register($this);
     <!-- BEGIN Main Sidebar -->
     <?php $this->beginBody() ?>
         <div class="page-wrapper">
-            <div class="page-sidebar">
+            <header class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
                    <?= $this->render('@common/views/leftmenu/avatar'); ?>
                 <? endif; ?>
-                <ul> 
+                <ul class="nav nav-stacked"> 
                     <? if (Yii::$app->user->isGuest): ?>
                     <li>
                          <?= $this->render('@frontend/views/site/signupModal'); ?>  
@@ -89,7 +89,7 @@ FrontendAsset::register($this);
                            
                     <? endif; ?>
                 </ul>
-            </div>
+            </header>
             <div class="page-container">
             <?= Alert::widget() ?>
             <?= $content ?>
