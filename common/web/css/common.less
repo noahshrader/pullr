@@ -1,28 +1,69 @@
+@import "pullr-type.less";
 @import "pullr-variables.less";
 
 html,
 body {
     background-color: @pullr-main-bg;
-    font-family: 'proxima-nova';
+   .main();
+ }
+ 
+ body {
+     font-size: 14px;
+ }
+ 
+ a, a:link, a:visited, a:active {
+     -webkit-transition-duration: 0.33s;
+     -webkit-transition-property: color, background, text-shadow, border, opacity, text-decoration;
+     -moz-transition-duration: 0.33s;
+     -moz-transition-property: color, background, text-shadow, border, opacity, text-decoration;
+     -o-transition-duration: 0.33s;
+     -o-transition-property: color, background, text-shadow, border, opacity, text-decoration;
+     transition-duration: 0.33s;
+     transition-property: color, background, text-shadow, border, opacity, text-decoration;
+     text-decoration: none;
+    
 }
+
+/* Bootstrap Overrides */
 
 .navbar-fixed-top {
     display: none;
+}
+
+.form-control {
+padding: .8em 1em;
+border-radius: 3px;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+background: #3a3c40;
+border: none;
+-webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
+box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
+-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+color: #fff;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    cursor: not-allowed;
+    opacity: .2;
+    background: #3a3c40;
 }
 
 /*
 // Sidebar/Menu
 // -------------------------------------------------- */
 
-@pullr-sidebar-width: 110px;
+@pullr-sidebar-width: 240px;
 /* Main styles */
-.page-sidebar{
+.header-sidebar{
     position: fixed;
     top: 0;
     bottom: 0;
     color: #FFF;
     padding: 1.2em 0;
-    width: @pullr-sidebar-width;
+    min-width: @pullr-sidebar-width;
+    max-width: @pullr-sidebar-width;
     height: 100%;
     background: @pullr-dark-bg;
     z-index: 800;
@@ -56,11 +97,29 @@ body {
         overflow: hidden;
         padding-left: 15px;
         list-style-type: none;
+
+        li > a:before {
+            vertical-align: middle;
+            color: #53555a;
+            font-size: 1.9em;
+            line-height: 30px;
+            text-align: center;
+            margin-right: .8em;
+            width: 30px;
+        }
+
+        li > a {
+            vertical-align: middle;
+            color: #53555a;
+            font-size: 1.1em;
+            cursor: pointer;
+            line-height: 30px;
+        }
     }
 }
 
 .page-container{
-    margin-left: 120px;
+    margin-left: 260px;
     color: white;
 }
 
@@ -146,6 +205,14 @@ form {
             }
         }
     }
+}
+
+#side-panel {
+    background: #1dbc9c;
+    height: 100%;
+    min-height: 100%;
+    position: fixed;
+    right: 0px;
 }
 
 .table-cell{
