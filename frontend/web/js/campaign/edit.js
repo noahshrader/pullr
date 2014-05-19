@@ -12,7 +12,7 @@ function donationDestinationChanged(){
     $('#donationDestination').attr('data-donationDestination', $(this).val());
 }
 function updateLayoutTeams() {
-    var id = $('.layout-edit').data('id');
+    var id = $('#campaignEdit').data('id');
     $.getJSON('app/campaign/layoutteams', {id: id}, function(teams) {
         var $list = $('<ol>');
         for (var key in teams) {
@@ -36,14 +36,14 @@ function layoutTeamLink(el, id){
     })
 }
 function layoutTeamRemove(el) {
-    var id = $('.layout-edit').data('id');
+    var id = $('#campaignEdit').data('id');
     var name = $(el).parents('li').find('span').text();
     $.post('app/campaign/layoutteamremove', {id: id, name: name}, function() {
         updateLayoutTeams();
     })
 }
 function addNewLayoutTeam() {
-    var id = $('.layout-edit').data('id');
+    var id = $('#campaignEdit').data('id');
     var $el = $('#addLayoutTeam');
     var name = $el.val();
     if (name) {
@@ -54,6 +54,22 @@ function addNewLayoutTeam() {
     }
 }
 
+function updateCampaignInvites(){
+    
+}
+
+function addNewCampaignInvite() {
+    var id = $('#campaignEdit').data('id');
+    var $el = $('#addCampaignInvite');
+    var email = $el.val();
+    if (email) {
+        $.post('app/campaign/campaigninvite', {id: id, email: email}, function(data) {
+            log(data);
+            $el.val('');
+            updateLayoutTeams();
+        });
+    }
+}
 function rememberAccordionState() {
     var last = localStorage.getItem('activeAccordionGroup');
     if (last != null && $('#' + last).length != 0) {

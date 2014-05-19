@@ -329,6 +329,9 @@ class User extends ActiveRecord implements IdentityInterface {
         }
         
         private $_plan = null;
+        /*
+         * @return Plan::PLAN_BASE or Plan::PLAN_PRO
+         */
         public function getPlan(){
             if (!$this->_plan){
                 $plan = Plan::findOne($this->id);

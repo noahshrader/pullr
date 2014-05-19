@@ -3,7 +3,7 @@ use common\models\Campaign;
 use yii\helpers\Html;
 use common\widgets\file\ImageInput;
 ?>
-<div id="collapseTwo" class="<?= $campaign->chat ? ' chatOn' : '' ?> data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
+<div id="collapseTwo" class="<?= $campaign->chat ? ' chatOn' : '' ?>" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
 
     <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
         <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control']) ?>
@@ -14,7 +14,7 @@ use common\widgets\file\ImageInput;
     <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => true]); ?>
     <div id="campaign-multichannels">
         <? if ($campaign->isNewRecord): ?>
-            <div class="label label-danger">Save layout before adding channels</div>
+            <div class="label label-danger">Save campaign before adding channels</div>
         <? endif ?>
         <input type="text" id="addLayoutTeam" placeholder="Add channel(s)"> <a class="btn btn-success btn-xs" onclick="addNewLayoutTeam()"> <i class="glyphicon glyphicon-plus"></i></a>
         <div id="layoutTeams">

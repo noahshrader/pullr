@@ -4,8 +4,13 @@ use common\models\Campaign;
 use kartik\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use common\models\User;
+use common\models\Plan;
 
 $this->registerJsFile('@web/js/campaign/edit.js', common\assets\CommonAsset::className());
+/**
+ * @var User;
+ */
 $user = \Yii::$app->user->identity;
 ?>
 
@@ -17,6 +22,9 @@ $user = \Yii::$app->user->identity;
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
         <ul class="nav nav-tabs">
             <li class="active"><a href="<?= Url::to()?>#general" data-toggle="tab">Home</a></li>
+            <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
+                <li id="campaign-edit-team-li"><a href="<?= Url::to()?>#team" data-toggle="tab">Team</a></li>
+            <? endif ?>
             <li><a href="<?= Url::to()?>#layout" data-toggle="tab">Layout</a></li>
             <li><a href="<?= Url::to()?>#social" data-toggle="tab">Social</a></li>
         </ul>
@@ -27,6 +35,14 @@ $user = \Yii::$app->user->identity;
                             'campaign' => $campaign
                         ]); ?>    
             </div>
+            <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
+            <div class="tab-pane" id="team">
+                 <?= $this->render('campaign-edit-team', [
+                            'form' => $form,
+                            'campaign' => $campaign, 
+                        ]); ?>   
+            </div>
+            <? endif; ?>
             <div class="tab-pane" id="layout">
             <?= $this->render('campaign-edit-layout', [
                             'form' => $form,

@@ -3,6 +3,7 @@
 use yii\db\Schema;
 use common\models\Campaign;
 use common\models\LayoutTeam;
+use common\models\CampaignInvite;
 
 class m140322_064650_layout extends \console\models\ExtendedMigration
 {
@@ -48,8 +49,6 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             'channelTeam' => Schema::TYPE_STRING. ' NOT NULL',
             'appearance' => Schema::TYPE_STRING. ' NOT NULL',   
             'chat' => Schema::TYPE_BOOLEAN. ' NOT NULL',
-//            'chatToggle' => Schema::TYPE_BOOLEAN. ' NOT NULL',
-//            'enableDonations' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'eventId' => Schema::TYPE_INTEGER,
             'themeId' => Schema::TYPE_INTEGER,
             'enableCustomLogo' => Schema::TYPE_BOOLEAN. ' NOT NULL',
@@ -82,6 +81,18 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
              
              $this->createIndex('campaignTeamunique',  LayoutTeam::tableName(), ['campaignId', 'name'], true);
              
+             
+             $statuses = implode('","', CampaignInvite::$STATUSES);
+             $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . CampaignInvite::STATUS_ACTIVE . '"';
+             $this->createTable(CampaignInvite::tableName(), [
+                 'id' => Schema::TYPE_PK,
+                 'campaignId' => Schema::TYPE_INTEGER. ' NOT NULL',
+                 'userId' => Schema::TYPE_INTEGER. ' NOT NULL',
+                 'status' => $statuses
+             ]);
+             $this->createIndex('campaignInviteCampaignId', CampaignInvite::tableName(), ['campaignId']);
+             $this->createIndex('campaignInviteUserId', CampaignInvite::tableName(), ['userId']);
+             $this->createIndex('campaignInviteUnique', CampaignInvite::tableName(),['userId', 'campaignId'], true);
              $this->sampleData(); 
 	}
 

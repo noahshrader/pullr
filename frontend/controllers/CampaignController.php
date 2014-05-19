@@ -14,6 +14,8 @@ use common\components\UploadImage;
 use common\models\Theme;
 use common\models\Plan;
 use common\models\Charity;
+use common\models\User;
+use common\models\CampaignInvite;
 
 class CampaignController extends FrontendController {
 
@@ -171,7 +173,44 @@ class CampaignController extends FrontendController {
 
         $layoutTeam->save();
     }
+    
+    public function actionCampaigninvite(){
+        $id = $_POST['id'];
+        $email = $_POST['email'];
+        
+        $campaign = Campaign::findOne($id);
 
+        if (!$campaign) {
+            throw new NotFoundHttpException('Layout not found');
+        }
+
+        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
+            throw new \yii\web\ForbiddenHttpException();
+        }
+        
+        $userId = \Yii::$app->user->id;
+        
+        $users = User::find()->where(['email' => $email])->andWhere(['not in', 'id', [$userId]])->all();
+        
+        $changesCounter = 0;
+        
+        foreach ($users as $user){
+            $invite = CampaignInvite::findOne(['userId' => $user->id, 'campaignId' => $id]);
+            if (!$invite){
+                $invite = new CampaignInvite();
+                $invite->userId = $user->id;
+                $invite->campaignId = $id;
+                $invite->status = CampaignInvite::STATUS_PENDIND;
+                $invite->save();
+                $changesCounter++;
+            } else if ($invite->status != CampaignInvite::STATUS_PENDIND) {
+                $invite->status = CampaignInvite::STATUS_PENDIND;
+                $changesCounter++;
+            }
+        }
+        
+        echo number_format($changesCounter);
+    }
     public function actionModalthemes() {
         $layoutType = $_POST['layoutType'];
         $plan = \Yii::$app->user->identity->getPlan();
