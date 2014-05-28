@@ -25,30 +25,13 @@ class CampaignController extends FrontendController {
     }
 
     public function actionEdit() {
-        $id = $_GET['id'];
-        $campaign = Campaign::findOne($id);
-
-        if (!$campaign) {
-            throw new NotFoundHttpException('Layout not found');
-        }
-        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
-            throw new \yii\web\ForbiddenHttpException();
-        }
-
+        $campaign = $this->getCampaign();
 
         return $this->actionIndex($campaign);
     }
 
     public function actionRemove() {
-        $id = $_POST['id'];
-        $campaign = Campaign::findOne($id);
-
-        if (!$campaign) {
-            throw new NotFoundHttpException('Layout not found');
-        }
-        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
-            throw new \yii\web\ForbiddenHttpException();
-        }
+        $campaign = $this->getCampaign();
 
         $campaign->status = Campaign::STATUS_DELETED;
         $campaign->save();
@@ -131,18 +114,10 @@ class CampaignController extends FrontendController {
     }
 
     public function actionLayoutteamremove() {
-        $id = $_POST['id'];
+        $campaign = $this->getCampaign();
+        $id = $campaign->id;
+
         $name = $_POST['name'];
-
-        $campaign = Campaign::findOne($id);
-
-        if (!$campaign) {
-            throw new NotFoundHttpException('Layout not found');
-        }
-
-        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
-            throw new \yii\web\ForbiddenHttpException();
-        }
 
         $campaignTeam = LayoutTeam::find()->where(['name' => $name, 'campaignId' => $id])->one();
 
@@ -152,19 +127,10 @@ class CampaignController extends FrontendController {
     }
 
     public function actionLayoutteamadd() {
-        $id = $_POST['id'];
+        $campaign = $this->getCampaign();
+        $id = $campaign->id;
+
         $name = $_POST['name'];
-
-        $campaign = Campaign::findOne($id);
-
-        if (!$campaign) {
-            throw new NotFoundHttpException('Layout not found');
-        }
-
-        if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
-            throw new \yii\web\ForbiddenHttpException();
-        }
-
 
         $layoutTeam = new LayoutTeam();
 
@@ -174,12 +140,14 @@ class CampaignController extends FrontendController {
         $layoutTeam->save();
     }
     
-    public function actionCampaigninvite(){
+    /**
+     * get campaign and validate user has access to edit it.
+     * @return Campaign
+     */
+    public function getCampaign(){
         $id = $_POST['id'];
-        $email = $_POST['email'];
-        
         $campaign = Campaign::findOne($id);
-
+        
         if (!$campaign) {
             throw new NotFoundHttpException('Layout not found');
         }
@@ -187,6 +155,16 @@ class CampaignController extends FrontendController {
         if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }
+        
+        return $campaign;
+    }
+    
+    public function actionCampaigninvite(){
+        $campaign = $this->getCampaign();
+        $id = $campaign->id;
+        
+        $email = $_POST['email'];
+        
         
         $userId = \Yii::$app->user->id;
         
