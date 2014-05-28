@@ -55,7 +55,27 @@ function addNewLayoutTeam() {
 }
 
 function updateCampaignInvites(){
-    
+    var id = $('#campaignEdit').data('id');
+    $.getJSON('app/campaign/getcampaigninvites', {id: id}, function(invites) {
+        var $list = $('<ol>');
+        for (var key in invites) {
+            var invite = invites[key];
+            var $item = $('<li>').append($('<span>').text(invite.user.name+' ['+invite.user.email+']'));
+            $item.attr('data-userid', invite.user.id);
+            $item.append($('<a href="javascript:void(0)" onclick="campaignInviteRemove(this)"><i class="glyphicon glyphicon-remove"></i></a>'))
+            $list.append($item);
+        }
+        var $list = $('<div>').append($list);
+        $('#campaignInvitesUsers').html($list.html());
+    });
+}
+
+function campaignInviteRemove(el) {
+    var id = $('#campaignEdit').data('id');
+    var userid = $(el).parents('li').data('userid');
+    $.post('app/campaign/campaigninviteremove', {id: id, userid: userid}, function() {
+        updateCampaignInvites();
+    })
 }
 
 function addNewCampaignInvite() {
@@ -66,7 +86,7 @@ function addNewCampaignInvite() {
         $.post('app/campaign/campaigninvite', {id: id, email: email}, function(data) {
             log(data);
             $el.val('');
-            updateLayoutTeams();
+            updateCampaignInvites();
         });
     }
 }
@@ -184,8 +204,6 @@ function selectCharity(el){
     $el = $(el);
     var id = $el.data('id');
     var name = $el.data('name');
-    log(name);
-    log(id);
     $('#campaign-charityid').val(id);
     $('.charity-name span').text(name);
     $('.charity-name').removeClass('hidden');
@@ -197,6 +215,7 @@ $(function() {
     $('[name="Campaign[type]"]').change(campaignTypeChanged);
     $('[name="Campaign[donationDestination]"').change(donationDestinationChanged);
     updateLayoutTeams();
+    updateCampaignInvites();
 //    rememberAccordionState();
     initBootstrapSwitch();
 });

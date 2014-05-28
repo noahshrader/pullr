@@ -145,7 +145,7 @@ class CampaignController extends FrontendController {
      * @return Campaign
      */
     public function getCampaign(){
-        $id = $_POST['id'];
+        $id = $_REQUEST['id'];
         $campaign = Campaign::findOne($id);
         
         if (!$campaign) {
@@ -159,6 +159,33 @@ class CampaignController extends FrontendController {
         return $campaign;
     }
     
+    public function actionGetcampaigninvites() {
+        $campaign = $this->getCampaign();
+        $invites = CampaignInvite::find()->where(['campaignId' => $campaign->id])
+                ->andWhere(['in','status',[CampaignInvite::STATUS_ACTIVE, CampaignInvite::STATUS_PENDIND]])->all();
+        $invitesOut = [];
+        foreach ($invites as $invite) {
+            $inviteArray = $invite->toArray();
+            $inviteArray['user'] = $invite->user->toArrayPrivate();
+            $invitesOut[] = $inviteArray;
+        }
+
+        return json_encode($invitesOut);
+    }
+    
+    public function actionCampaigninviteremove(){
+        $campaign = $this->getCampaign();
+        $userId = $_POST['userid'];
+        $invite = CampaignInvite::findOne(['campaignId' => $campaign->id, 'userId' => $userId]);
+        if ($invite){
+            $invite->status = CampaignInvite::STATUS_DELETED;
+            $invite->save();
+        }
+    }
+    
+    /**
+     * Find user by @email and invite him, if he is not still invited
+     */
     public function actionCampaigninvite(){
         $campaign = $this->getCampaign();
         $id = $campaign->id;
@@ -181,8 +208,9 @@ class CampaignController extends FrontendController {
                 $invite->status = CampaignInvite::STATUS_PENDIND;
                 $invite->save();
                 $changesCounter++;
-            } else if ($invite->status != CampaignInvite::STATUS_PENDIND) {
+            } else if (!in_array ($invite->status, [CampaignInvite::STATUS_PENDIND, CampaignInvite::STATUS_ACTIVE])) {
                 $invite->status = CampaignInvite::STATUS_PENDIND;
+                $invite->save();
                 $changesCounter++;
             }
         }

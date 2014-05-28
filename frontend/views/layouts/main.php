@@ -78,7 +78,7 @@ FrontendAsset::register($this);
                             <a class="icon-statistics" href="app">Dashboard</a>
                         </li>
                         <li>
-                            <a class="icon-text" href="app/pages">Pages</a>
+                            <a class="icon-text" href="app/campaigns">Campaign</a>
                         </li>
                         <li>
                             <a class="icon-heart2" href="app/donation">Donations</a>

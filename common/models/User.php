@@ -236,18 +236,20 @@ class User extends ActiveRecord implements IdentityInterface {
         }
     }
     
-//    public function getUrl() {
-//        $url = 'user/' . $this->id;
-//        if (Application::IsBackend()) {
-//            return Application::frontendUrl($url);
-//        } else {
-//            return $url;
-//        }
-//    }
-
     public function toArray(array $fields = [], array $expand = [], $recursive = true) {
         $allowed = ['id', 'name', 'photo', 'smallPhoto'];
         return array_intersect_key(parent::toArray($fields, $expand, $recursive), array_flip($allowed));
+    }
+    
+    
+    /**
+     * also send user email (private information)
+     * @return type
+     */
+    public function toArrayPrivate(array $fields = [], array $expand = [], $recursive = true){
+        $allowed = ['id', 'name', 'photo', 'smallPhoto', 'email'];
+        return array_intersect_key(parent::toArray($fields, $expand, $recursive), array_flip($allowed));
+    
     }
     
     /**
