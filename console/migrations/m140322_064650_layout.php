@@ -140,5 +140,6 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
 	{
             $this->dropTable(LayoutTeam::tableName());
             $this->dropTable(Campaign::tableName());
+            $this->dropTable(CampaignInvite::tableName());
 	}
 }
