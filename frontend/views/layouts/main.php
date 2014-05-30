@@ -6,12 +6,15 @@ use frontend\assets\FrontendAsset;
 use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
 use common\assets\CommonAsset;
+use common\models\CampaignInvite;
+
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
 CommonAsset::register($this);
 FrontendAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -80,6 +83,12 @@ FrontendAsset::register($this);
                         <li>
                             <a class="icon-text" href="app/campaign">Campaign</a>
                         </li>
+                        <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
+                        <? if ($campaignInvitesCount > 0): ?>
+                            <li>
+                                <a class="icon-text" href="app/campaigninvite">Invites (<?= $campaignInvitesCount?>)</a>
+                            </li>
+                        <? endif; ?>
                         <li>
                             <a class="icon-heart2" href="app/donation">Donations</a>
                         </li>

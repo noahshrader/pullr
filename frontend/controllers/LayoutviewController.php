@@ -5,6 +5,9 @@ namespace frontend\controllers;
 use common\models\User;
 use common\models\Campaign;
 
+/*
+controller to view exported layout
+ *  */
 class LayoutviewController extends FrontendController {
 
     public function actionView($userAlias, $layoutAlias) {
