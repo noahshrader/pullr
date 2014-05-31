@@ -21,9 +21,7 @@ $user = \Yii::$app->user->identity;
         return false;
     }
 </script>
-    <div class='pullr-table'>
-        <div class="row pullr-table-row">
-            <div class="<?= $selectedCampaign ? 'col-xs-10': 'col-xs-12' ?>">
+            <section class="<?= $selectedCampaign ? 'container': 'panels-wrap open' ?>">
                 <h1><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New campaign</a></h1>
                 <div class="row content-container content-container-layout">
                     <? foreach ($campaigns as $campaign): ?>
@@ -53,16 +51,16 @@ $user = \Yii::$app->user->identity;
                         </div>
                     <? endforeach; ?>
                 </div>
-            </div>
+            </section>
             <? if ($selectedCampaign):?>
-            <!-- table-cell div -->
-            <div class='col-xs-2 table-cell'>
+            
+
+            <!-- sidebar -->
+            <section class='sidepanel'>
                 <div class="frontend-right-widget">
                     <?= $this->render('campaign-edit', [
                             'campaign' => $selectedCampaign
                         ]); ?>            
                 </div>
-            </div>
+            </section>
             <? endif; ?>
-        </div>
-    </div>
