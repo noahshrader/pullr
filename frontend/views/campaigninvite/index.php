@@ -1,7 +1,3 @@
-<?php
-use common\models\CampaignInvite;
-use common\models\Campaign;
-?>
 <div>
     <div>
         <h1>Campaign Invites</h1>

@@ -81,7 +81,7 @@ FrontendAsset::register($this);
                             <a class="icon-statistics" href="app">Dashboard</a>
                         </li>
                         <li>
-                            <a class="icon-text" href="app/campaign">Campaign</a>
+                            <a class="icon-text" href="app/campaign">Campaigns</a>
                         </li>
                         <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
                         <? if ($campaignInvitesCount > 0): ?>

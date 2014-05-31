@@ -16,6 +16,7 @@ use common\models\Plan;
 use common\models\Charity;
 use common\models\User;
 use common\models\CampaignInvite;
+use common\models\mail\Mail;
 
 class CampaignController extends FrontendController {
 
@@ -41,43 +42,43 @@ class CampaignController extends FrontendController {
     public function actionIndex(Campaign $campaign = null) {
         $isNewRecord = $campaign && $campaign->isNewRecord;
         if ($campaign && $campaign->load($_POST) && $campaign->save()) {
-            /**from html5 datetime-local tag to timestamp */
-            if ($campaign->startDate && !is_numeric($campaign->startDate)){
-                $campaign->startDate =(new \DateTime($campaign->startDate))->getTimestamp();
+            /*             * from html5 datetime-local tag to timestamp */
+            if ($campaign->startDate && !is_numeric($campaign->startDate)) {
+                $campaign->startDate = (new \DateTime($campaign->startDate))->getTimestamp();
             }
-            if ($campaign->endDate && !is_numeric($campaign->endDate)){
-                $campaign->endDate =(new \DateTime($campaign->endDate))->getTimestamp();
+            if ($campaign->endDate && !is_numeric($campaign->endDate)) {
+                $campaign->endDate = (new \DateTime($campaign->endDate))->getTimestamp();
             }
-            
+
             UploadImage::UploadLogo($campaign);
 
             if ($isNewRecord) {
                 $this->redirect('app/campaign/edit?id=' . $campaign->id);
             }
         }
-       
-        if ($campaign){
-            if (!$campaign->startDate){
+
+        if ($campaign) {
+            if (!$campaign->startDate) {
                 $campaign->startDate = time();
             }
-            if (!$campaign->endDate){
-                $campaign->endDate = time()+60*60*24*4;
+            if (!$campaign->endDate) {
+                $campaign->endDate = time() + 60 * 60 * 24 * 4;
             }
-            if (is_numeric($campaign->startDate)){
+            if (is_numeric($campaign->startDate)) {
                 $campaign->startDate = strftime('%Y-%m-%dT%H:%M:%S', $campaign->startDate);
             }
-            if (is_numeric($campaign->endDate)){
+            if (is_numeric($campaign->endDate)) {
                 $campaign->endDate = strftime('%Y-%m-%dT%H:%M:%S', $campaign->endDate);
             }
         }
-        
+
         $user = \Yii::$app->user->identity;
         $params = [];
         $params['selectedCampaign'] = $campaign;
         $params['campaigns'] = $user->campaigns;
-        
-        /**from timestamp to html5 datetime-local tag*/ 
-        
+
+        /*         * from timestamp to html5 datetime-local tag */
+
         return $this->render('index', $params);
     }
 
@@ -139,15 +140,15 @@ class CampaignController extends FrontendController {
 
         $layoutTeam->save();
     }
-    
+
     /**
      * get campaign and validate user has access to edit it.
      * @return Campaign
      */
-    public function getCampaign(){
+    public function getCampaign() {
         $id = $_REQUEST['id'];
         $campaign = Campaign::findOne($id);
-        
+
         if (!$campaign) {
             throw new NotFoundHttpException('Layout not found');
         }
@@ -155,14 +156,14 @@ class CampaignController extends FrontendController {
         if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             throw new \yii\web\ForbiddenHttpException();
         }
-        
+
         return $campaign;
     }
-    
+
     public function actionGetcampaigninvites() {
         $campaign = $this->getCampaign();
         $invites = CampaignInvite::find()->where(['campaignId' => $campaign->id])
-                ->andWhere(['in','status',[CampaignInvite::STATUS_ACTIVE, CampaignInvite::STATUS_PENDIND]])->all();
+                        ->andWhere(['in', 'status', [CampaignInvite::STATUS_ACTIVE, CampaignInvite::STATUS_PENDIND]])->all();
         $invitesOut = [];
         foreach ($invites as $invite) {
             $inviteArray = $invite->toArray();
@@ -172,51 +173,60 @@ class CampaignController extends FrontendController {
 
         return json_encode($invitesOut);
     }
-    
-    public function actionCampaigninviteremove(){
+
+    public function actionCampaigninviteremove() {
         $campaign = $this->getCampaign();
         $userId = $_POST['userid'];
         $invite = CampaignInvite::findOne(['campaignId' => $campaign->id, 'userId' => $userId]);
-        if ($invite){
+        if ($invite) {
             $invite->status = CampaignInvite::STATUS_DELETED;
             $invite->save();
         }
     }
-    
+
     /**
      * Find user by @email and invite him, if he is not still invited
      */
-    public function actionCampaigninvite(){
+    public function actionCampaigninvite() {
         $campaign = $this->getCampaign();
         $id = $campaign->id;
-        
+
         $email = $_POST['email'];
-        
-        
+
+
         $userId = \Yii::$app->user->id;
-        
+
         $users = User::find()->where(['email' => $email])->andWhere(['not in', 'id', [$userId]])->all();
-        
+
         $changesCounter = 0;
-        
-        foreach ($users as $user){
+
+        foreach ($users as $user) {
             $invite = CampaignInvite::findOne(['userId' => $user->id, 'campaignId' => $id]);
-            if (!$invite){
+            if (!$invite) {
                 $invite = new CampaignInvite();
                 $invite->userId = $user->id;
                 $invite->campaignId = $id;
                 $invite->status = CampaignInvite::STATUS_PENDIND;
                 $invite->save();
                 $changesCounter++;
-            } else if (!in_array ($invite->status, [CampaignInvite::STATUS_PENDIND, CampaignInvite::STATUS_ACTIVE])) {
+            } else if (!in_array($invite->status, [CampaignInvite::STATUS_PENDIND, CampaignInvite::STATUS_ACTIVE])) {
                 $invite->status = CampaignInvite::STATUS_PENDIND;
                 $invite->save();
                 $changesCounter++;
             }
         }
-        
+
+        if ($changesCounter > 0) {
+            $content = $this->renderPartial('@console/views/mail/campaignInvite', [
+                'campaign' => $campaign,
+            ]);
+
+            Mail::sendMail($email, 'You was invited to fundraiser "'.$campaign->name.'"', $content, 'fundraiserInvite');
+        }
+
         echo number_format($changesCounter);
     }
+
     public function actionModalthemes() {
         $layoutType = $_POST['layoutType'];
         $plan = \Yii::$app->user->identity->getPlan();
@@ -225,20 +235,20 @@ class CampaignController extends FrontendController {
         if ($plan == Plan::PLAN_BASE) {
             $themesQuery->andWhere(['plan' => Plan::PLAN_BASE]);
         }
-        if ($layoutType){
+        if ($layoutType) {
             $themesQuery->andWhere(['layoutType' => $layoutType]);
         }
 
         $themes = $themesQuery->all();
-        return $this->renderPartial('modalThemes',[
-            'themes' => $themes, 'type' => $layoutType
+        return $this->renderPartial('modalThemes', [
+                    'themes' => $themes, 'type' => $layoutType
         ]);
     }
-    
+
     public function actionModalcharities() {
-        $charities = Charity::findAll(['status' => Charity::STATUS_ACTIVE ]);
-        return $this->renderPartial('modalCharities',[
-            'charities' => $charities
+        $charities = Charity::findAll(['status' => Charity::STATUS_ACTIVE]);
+        return $this->renderPartial('modalCharities', [
+                    'charities' => $charities
         ]);
     }
 
