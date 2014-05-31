@@ -7,10 +7,11 @@ $model->load($_POST);
 ?>
 <button class='btn btn-link'data-toggle="modal" data-target="#loginModal" >Login</button>
 
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<!-- Removing Login Modal so that it appears on the home page instead -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
       <? $form = ActiveForm::begin([
         'action'=> 'app/site/login' , 
         'fieldConfig' => ['autoPlaceholder'=>true],
