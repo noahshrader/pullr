@@ -371,9 +371,115 @@ form {
 
 /* Campaigns Styling */
 
-body.campaigns .container.panels-wrap {
+.panels-wrap {
 margin: 0;
 padding: 118px 0 0;
 height: 100%;
 max-width: 100%;
+}
+
+/* Main Components */
+/* ------------------------------------------------- */
+.freeze {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.content-container {
+  position: relative;
+  padding: 180px 5% 4em 5%;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.content-container.clip {
+  margin-left: 240px;
+}
+.content-container.open {
+  opacity: .3;
+  margin-left: -30% !important;
+  margin-right: 30% !important;
+}
+.content-container.open.expand {
+  margin-left: -100% !important;
+  margin-right: 100% !important;
+}
+.content {
+  padding-bottom: 2em;
+}
+.content h5 {
+  color: #efeff0;
+  padding-bottom: .8em;
+  border-bottom: solid 1px #2e3032;
+}
+/* Right Sidebar */
+.sidepanel {
+  position: fixed;
+  top: 0;
+  right: -30%;
+  padding-top: 120px;
+  width: 30%;
+  height: 100%;
+  max-height: 100%;
+  z-index: 900;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.sidepanel .field {
+  width: 100%;
+}
+/* Main Add/Edit Panel */
+#sidepanel {
+  background: #2e3032;
+}
+#sidepanel.open {
+  right: 0;
+}
+#sidepanel.open.expand {
+  right: 70%;
+}
+#sidepanel .sidepanel-head {
+  position: fixed;
+  top: 0;
+  right: -30%;
+  width: 30%;
+  background: #3a3c40;
+  z-index: 900;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+#sidepanel.open .sidepanel-head {
+  right: 0;
+}
+#sidepanel.open.expand .sidepanel-head {
+  width: 100%;
+}
+#sidepanel.open .sidepanel-head.scroll {
+  -webkit-box-shadow: 0 0 10px rgba(34, 35, 37, 0.5);
+  box-shadow: 0 0 10px rgba(34, 35, 37, 0.5);
+}
+#sidepanel h4.section-header {
+  color: #FFF;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 69px;
+  text-transform: uppercase;
+  padding: 0 4em 0 1.8em;
+  margin-bottom: 0;
+  background: #1dbc9c;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+/* Extra Content Side Panel */
+#sidepaneltwo {
+  top: 69px;
+  padding-top: 0;
+  background: #222325;
+  z-index: 1000;
+}
+#sidepaneltwo.expand {
+  right: 0;
+  width: 70%;
+}
+#sidepaneltwo.hide {
+  right: -70%;
 }

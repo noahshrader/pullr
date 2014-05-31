@@ -82,29 +82,16 @@ FrontendAsset::register($this);
                      </ul>
                 </header>
 
+                <?= Alert::widget() ?>
+                <?= $content ?>
 
-            <div class="page-container">
+                <? if (Yii::$app->user->isGuest): ?>
 
-                <div class="container">
+                <?= $this->render('@frontend/views/site/signupModal'); ?>  
 
-                    <div class="row">
+                <?= $this->render('@frontend/views/site/loginModal'); ?>  
 
-                        <?= Alert::widget() ?>
-                        <?= $content ?>
-
-                        <? if (Yii::$app->user->isGuest): ?>
-
-                        <?= $this->render('@frontend/views/site/signupModal'); ?>  
-
-                        <?= $this->render('@frontend/views/site/loginModal'); ?>  
-
-                        <? endif; ?>
-
-                    </div>
-
-                </div>
-
-            </div>
+                <? endif; ?>
 
 
 <?php $this->endBody() ?>

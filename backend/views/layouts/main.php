@@ -38,7 +38,7 @@ CommonAsset::register($this);
         
         NavBar::end();
         ?>
-<?php $this->beginBody() ?>
+    <?php $this->beginBody() ?>
         <div class="page-wrapper">
             <div class="page-sidebar">
                 <? if (Application::IsAdmin()): ?>
@@ -65,14 +65,11 @@ CommonAsset::register($this);
                     </ul>
                 <? endif; ?>
             </div>
-            <div class="page-container">
-                <div class="container">
-                    <?= $content ?>
-                </div>
-            </div>
 
+            <?= $content ?>
 
 <?php $this->endBody() ?>
+    </div>
     </body>
 </html>
 <?php $this->endPage() ?>
