@@ -6,6 +6,8 @@ use frontend\assets\FrontendAsset;
 use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
 use common\assets\CommonAsset;
+use common\models\CampaignInvite;
+
 /**
  * @var \yii\web\View $this
  * @var string $content
@@ -72,6 +74,12 @@ FrontendAsset::register($this);
                             <li>
                                 <a class="campaigns icon-heart2" title="Alerts" href="app/campaign">Campaigns</a>
                             </li>
+                        <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
+                        <? if ($campaignInvitesCount > 0): ?>
+                            <li>
+                                <a class="icon-text" href="app/campaigninvite">Invites (<?= $campaignInvitesCount?>)</a>
+                            </li>
+                        <? endif; ?>
                             <li>
                                 <a class="streamboard icon-popup" title="Streamboard" href="streamboard/index.html" target="_blank">Streamboard</a>
                             </li>
