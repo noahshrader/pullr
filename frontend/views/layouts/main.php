@@ -6,15 +6,12 @@ use frontend\assets\FrontendAsset;
 use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
 use common\assets\CommonAsset;
-use common\models\CampaignInvite;
-
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
 CommonAsset::register($this);
 FrontendAsset::register($this);
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -63,48 +60,50 @@ FrontendAsset::register($this);
     <!-- BEGIN Main Sidebar -->
     <?php $this->beginBody() ?>
         <div class="page-wrapper">
-            <header class="header-sidebar col-xs-2">
+            
+            <header class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
                    <?= $this->render('@common/views/leftmenu/avatar'); ?>
                 <? endif; ?>
-                <ul class="nav nav-stacked"> 
-                    <? if (Yii::$app->user->isGuest): ?>
-                    <li>
-                         <?= $this->render('@frontend/views/site/signupModal'); ?>  
-                    </li>
-                    <li>
-                         <?= $this->render('@frontend/views/site/loginModal'); ?>  
-                    </li>
-                    <? endif; ?>
-                    <? if (!Yii::$app->user->isGuest): ?>
-                        <li>
-                            <a class="icon-statistics" href="app">Dashboard</a>
-                        </li>
-                        <li>
-                            <a class="icon-text" href="app/campaign">Campaign</a>
-                        </li>
-                        <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
-                        <? if ($campaignInvitesCount > 0): ?>
+                <nav class="navigation">
+                    <ul> 
+                        <? if (!Yii::$app->user->isGuest): ?>
                             <li>
-                                <a class="icon-text" href="app/campaigninvite">Invites (<?= $campaignInvitesCount?>)</a>
+                                <a class="campaigns icon-heart2" title="Alerts" href="app/campaign">Campaigns</a>
                             </li>
+                            <li>
+                                <a class="streamboard icon-popup" title="Streamboard" href="streamboard/index.html" target="_blank">Streamboard</a>
+                            </li>
+                            <li>
+                                <a class="icon-heart2" title="Dashboard" href="app/dashboard">Donations</a>
+                            </li>
+                               
                         <? endif; ?>
-                        <li>
-                            <a class="icon-heart2" href="app/donation">Donations</a>
-                        </li>
-                        <li>
-                            <a class="icon-popup" href="app/alerts">Alerts</a>
-                        </li>
-                        <li>
-                            <a class="icon-cog" href="app/settings">Settings</a>
-                        </li>
-                           
-                    <? endif; ?>
-                </ul>
-            </header>
+                     </ul>
+                </header>
+
+
             <div class="page-container">
-            <?= Alert::widget() ?>
-            <?= $content ?>
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <?= Alert::widget() ?>
+                        <?= $content ?>
+
+                        <? if (Yii::$app->user->isGuest): ?>
+
+                        <?= $this->render('@frontend/views/site/signupModal'); ?>  
+
+                        <?= $this->render('@frontend/views/site/loginModal'); ?>  
+
+                        <? endif; ?>
+
+                    </div>
+
+                </div>
+
             </div>
 
 
