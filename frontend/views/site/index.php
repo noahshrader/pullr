@@ -8,7 +8,7 @@ $this->title = 'Pullr';
 $this->registerJsFile('@web/js/site/index.js', common\assets\CommonAsset::className());
 ?>
 <div>
-    <h1> This is a change!</h1>
+    <h1><a class="logo icon-pullr"></a></h1>
 </div>
 
 <? if (\Yii::$app->user && !\Yii::$app->user->isGuest && \Yii::$app->user->identity->role == User::ROLE_ONCONFIRMATION): ?>
