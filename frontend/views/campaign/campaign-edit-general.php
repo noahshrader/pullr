@@ -5,7 +5,7 @@ use yii\helpers\Html;
     <div class="panel-collapse collapse in" id="collapseOne">
         <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
         <div class="form-group field-campaign-type">
-            <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'form-control']) ?>
+            <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'form-control select-block']) ?>
             <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
         </div>
         <div id="startEndContainer">
@@ -24,7 +24,7 @@ use yii\helpers\Html;
                 <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the donation destination."></i>
             </label>
             <div class="form-group field-campaign-donationDestination">
-                <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'form-control']) ?>
+                <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'form-control select-block']) ?>
                 <?= Html::error($campaign, 'donationDestination', ['class' => 'help-block']) ?>
             </div>
             
@@ -57,7 +57,7 @@ use yii\helpers\Html;
         </div>
         
          <div class="form-group field-layout-streamService <?= ($campaign->hasErrors('streamService')) ? 'has-error' : '' ?>">
-                        <?= Html::activeDropDownList($campaign, 'streamService', array_combine(Campaign::$STREAM_SERVICES, Campaign::$STREAM_SERVICES), ['class' => 'form-control']) ?>
+                        <?= Html::activeDropDownList($campaign, 'streamService', array_combine(Campaign::$STREAM_SERVICES, Campaign::$STREAM_SERVICES), ['class' => 'form-control select-block']) ?>
                         <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the streaming service your want to pull from."></i>
                         <?= Html::error($campaign, 'streamService', ['class' => 'help-block']) ?>
         </div>

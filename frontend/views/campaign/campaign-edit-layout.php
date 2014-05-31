@@ -6,7 +6,7 @@ use common\widgets\file\ImageInput;
 <div id="collapseTwo" class="<?= $campaign->chat ? ' chatOn' : '' ?>" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
 
     <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
-        <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control']) ?>
+        <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control select-block']) ?>
         <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
         <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
     </div>

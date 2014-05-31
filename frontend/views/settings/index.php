@@ -34,7 +34,7 @@ $this->title = 'Account Settings';
 $timezones = timezone_identifiers_list();
 $keyValues = array_combine($timezones, $timezones);
 ?>
-                <?= $form->field($user, 'timezone')->dropDownList($keyValues); ?>
+                <?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block']); ?>
             <fieldset>
                 <legend>Notifications</legend>
 
