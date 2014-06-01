@@ -89,6 +89,8 @@ FrontendAsset::register($this);
                                
                         <? endif; ?>
                      </ul>
+
+                     <a class="add-btn openone icon-plus2" href="app/campaign/add"></a>
                 </header>
 
                 <?= Alert::widget() ?>
