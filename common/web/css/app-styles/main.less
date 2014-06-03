@@ -44,28 +44,20 @@ a.stamp {
 
 /* Main Components */
 /* ------------------------------------------------- */
+
+.page-wrapper {
+    padding: 100px 70px;
+    max-width: 100%;
+    overflow: hidden;
+   	.slowtrans;
+}
+
 .freeze {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;	
 }
-.container {
-	position: relative;
-	padding: 180px 5% 4em 5%;
-	.slowtrans;
-}
-	.container.clip {
-		margin-left: 240px;
-	}
-	.container.open {
-		opacity: .3;
-		margin-left: -@sidepanelwidth !important;
-		margin-right: @sidepanelwidth !important;
-	}
-	.container.open.expand {
-		margin-left: -@sidepanelexpand !important;
-		margin-right: @sidepanelexpand !important;
-	}
+
 .content {
 	padding-bottom: 2em;
 }

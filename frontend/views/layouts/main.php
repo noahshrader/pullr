@@ -115,6 +115,9 @@ FrontendAsset::register($this);
 
 
 <?php $this->endBody() ?>
+    
+    </div>
+
     </body>
 </html>
 <?php $this->endPage() ?>
