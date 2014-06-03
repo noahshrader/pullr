@@ -1,0 +1,48 @@
+/* Tables */
+/* ------------------------------------------------- */
+table {
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+	table th {
+		color: @gray12;
+		.smallcaps;
+		}
+		table td {
+			color: @gray50;
+			cursor: pointer;
+			.trans;
+		}
+	table th, table td {
+		padding: 1em .8em;
+	}
+		table tr.odd td {
+			background: @gray5;
+		}
+		table tr:hover td {
+			color: #FFF;
+		}
+	/* Expand/Collapse icon */
+	table td a.icon-plus2 {
+		display: block;
+		text-align: center;
+		margin: 0 auto;
+	}
+
+/* Search Field */
+.dataTables_length {
+	display: none;
+}
+.dataTables_filter {
+	float: left;
+	padding: 1em;
+}
+	.dataTables_filter label {
+	}
+	.dataTables_filter input {
+		padding: .6em 1em;
+		background: @gray5;
+		.round-radius;
+	}

@@ -1,0 +1,211 @@
+/* Navigation */
+/* ------------------------------------------------- */
+header.page-sidebar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 76px;
+	background: @bgcolor;
+	border-bottom: solid 1px @dkgray;
+	.box-shadow;
+	z-index: 999;
+	.slowtrans;
+}
+	header.page-sidebar.open {
+		opacity: .3;
+		right: @sidepanelwidth;
+	}
+	header.page-sidebar.open.expand {
+		right: @sidepanelexpand;
+	}
+
+/* Main Navigation */
+header.page-sidebar nav.navigation ul {
+	display: inline-block;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+	header.page-sidebar nav.navigation ul li {
+		position: relative;
+		display: inline-block;
+		border-right: solid 1px @dkgray;
+	}
+	header.page-sidebar nav.navigation ul li a {
+		display: inline-block;
+		font-weight: 400;
+		line-height: 76px;
+		text-align: center;
+		padding: 0px 20px;
+		cursor: pointer;
+		color: lighten(@pullr-background, 20%);
+	}
+		header.page-sidebar nav.navigation ul li a span {
+			display: inline-block;
+			vertical-align: middle;
+			font-weight: normal;
+			text-transform: uppercase;
+			.trans-opacity;
+			display: none;
+		}
+
+		header.page-sidebar nav.navigation ul li a:hover,
+		header.page-sidebar nav.navigation ul li a:hover:before {
+			color: #FFF;
+		}
+		header.page-sidebar nav.navigation ul li a:before {
+			color: @gray20;
+      		font-size: 1.9em;
+      		line-height: 75px;
+      		padding: 0px 10px 0px 0px;
+      		vertical-align: middle;
+    		}
+		header.page-sidebar nav.navigation ul li a.selected,
+		header.page-sidebar nav.navigation ul li a.selected:before {
+			color: #FFF;
+		}
+
+		/* Streamboard Launcher */
+		a.streamboard {
+			position: relative;
+			float: right;
+			display: inline-block;
+			text-align: center;
+			line-height: 76px;
+			width: 76px;
+			height: 76px;
+		}
+			a.streamboard:before {
+				display: inline-block;
+				color: #FFF;
+				font-size: 1.4em;
+			}
+
+/* Logo */
+header.page-sidebar .header-utility {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	text-align: center;
+	margin: -20px 0 0 -36px;
+}
+	header.page-sidebar a.logo {
+		display: block;
+	}
+	header.page-sidebar a.logo:before {
+		display: inline-block;
+		color: @gray20;
+		font-size: 2.4em;
+	}
+
+/* Avatar */
+header.page-sidebar .avatar-container {
+	float: left;
+	text-align: center;
+	padding: 15px 1em;
+	border-right: solid 1px @dkgray;
+	&:hover:before {
+		border-top: 6px solid #FFF;
+	}
+}
+	header.page-sidebar .avatar-container:hover:after {
+		border-top: 5px solid #FFF;
+		.trans;
+	}
+	header.page-sidebar .avatar-container:after {
+			content: '';
+			float: left;
+			display: inline-block;
+			margin-top: 1.1em;
+			width: 0;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 5px solid @gray20;
+	}
+	header.page-sidebar .avatar-container span {
+		float: left;
+		display: inline-block;
+		margin-right: .5em;
+		width: 40px;
+		height: 40px;
+		overflow: hidden;
+		border-radius: 50%;
+	}
+	header.page-sidebar .avatar-container img {
+		width: 100%;
+	}
+
+/* Sub Navigation */
+nav.sub-nav {
+	position: fixed;
+	top: 70px;
+	right:0;
+	text-align: center;
+	padding: .8em 0;
+	width: 100%;
+	min-height: 40px;
+	border-bottom: solid 1px @dkgray;
+	background: @bgcolor;
+	z-index: 998;
+	.slowtrans;
+	overflow: hidden;
+}
+	nav.sub-nav ul li {
+		display: inline-block;
+	}
+		nav.sub-nav ul li a {
+			display: inline-block;
+			color: @gray20;
+			font-size: @smalltext;
+			padding: .2em 1em;
+			&:hover {
+				color: @gray30;
+			}
+		}
+			nav.sub-nav ul li a.selected {
+				color: @gray30;
+				background: @dkgray;
+				.round-radius;
+			}
+	nav.sub-nav.open {
+		opacity: .3;
+		right: @sidepanelwidth;
+	}
+	nav.sub-nav.open.expand {
+		right: @sidepanelexpand;
+	}
+	nav.sub-nav.move {
+		top: 400px;
+	}
+
+/* Add Button */
+a.add-btn {
+	position: fixed;
+	top: 0;
+	right: 0;
+	display: inline-block;
+	text-align: center;
+	line-height: 75px;
+	width: 75px;
+	height: 75px;
+	z-index: 1000;
+	background: @accent;
+	&:hover {
+		background: @accenthover;
+	}
+}
+	a.add-btn:hover:before {
+		color: #FFF;
+	}
+	a.add-btn:before {
+		display: block;
+		color: #FFF;
+		font-size: 1.4em;
+	}
+	a.add-btn.open:before {
+		color: #FFF;
+		transform:rotate(-45deg);
+		-ms-transform:rotate(-45deg);
+		-webkit-transform:rotate(-45deg);
+	}

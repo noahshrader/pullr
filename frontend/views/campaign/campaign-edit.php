@@ -17,7 +17,10 @@ $user = \Yii::$app->user->identity;
     <? if ($campaign): ?>
 
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
-        <h4> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h4>
+
+        <div class="sidepanel-head">
+            <h4 class="section-header"> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h4>
+        </div>
         <? $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
         <ul class="nav nav-tabs">

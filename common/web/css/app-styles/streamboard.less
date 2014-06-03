@@ -1,0 +1,94 @@
+/*
+                 ____    
+    ____  __  __/ / /____
+   / __ \/ / / / / / ___/
+  / /_/ / /_/ / / / /    
+ / .___/\__,_/_/_/_/     
+/_/
+
+App: Pullr
+App Website: http://www.pullr.io
+
+*/
+
+@import "resets.less";
+@import "variables.less";
+@import "typography.less";
+@import "forms.less";
+@import "main.less";
+
+
+/* Side Panel */
+/* ------------------------------------------------- */
+.sidepanel {
+	right: 0;
+	padding-top: 54px;
+	width: @sbpanelwidth;
+}
+	.sidepanel ul.nav-tabs li a.region1:before {
+		content: '1';
+	}
+	.sidepanel ul.nav-tabs li a.region2:before {
+		content: '2';
+	}
+#sidepanel .sidepanel-head {
+	position: absolute;
+	right: 0;
+	width: 100%;
+}
+
+/* Slidepanel */
+/* ------------------------------------------------- */
+.slidepanel {
+	position: fixed;
+	bottom: -400px;
+	right: 0;
+	width: @sbpanelwidth;
+	height: 400px;
+	background: @gray10;
+	z-index: 1000;
+	.slowtrans;
+}
+	.slidepanel.selected {
+		bottom: 0;
+	}
+	.slidepanel a.close {
+		display: block;
+		float: right;
+		text-align: center;
+		padding: 1em;
+		margin-bottom: 2em;
+	}
+		.slidepanel a.close:before {
+			color: #FFF;
+		}
+
+/* Tabs */
+/* ------------------------------------------------- */
+ul.bottom-panel-nav {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: @sbpanelwidth;
+	background: @gray10;
+	z-index: 9999;
+}
+	ul.bottom-panel-nav li {
+		float: left;
+		text-align: center;
+	}
+		ul.bottom-panel-nav li a {
+			display: inline-block;
+			color: #FFF;
+			font-size: @smalltext;
+			padding: .6em 0;
+			width: 100%;
+			&:hover {
+				background: @gray12;
+			}
+		}
+			ul.bottom-panel-nav li a.selected {
+				background: @gray12;
+			}
+
+@import "animations.less";

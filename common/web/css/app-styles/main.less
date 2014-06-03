@@ -1,0 +1,349 @@
+/* Buttons/Submits */
+/* ------------------------------------------------- */
+/* General */
+button,
+input[type="submit"] {
+	color: #FFF;
+	font-size: 1.2em;
+	font-weight: 600;
+	border: 0;
+	.border-radius;
+	background: @accent;
+	&:hover {
+		background: @accenthover;
+	}
+}
+/* Standard Action */
+a.btn,
+button.btn {
+	display: inline-block;
+	color: #FFF;
+	font-family: @mainfont;
+	font-size: @smalltext;
+	font-weight: 700;
+	text-align: center;
+	padding: .8em 1.2em;
+	background: @accent;
+	outline: 0;
+	border: 0;
+	.border-radius;
+	&:hover {
+		background: @accenthover;
+	}
+}
+/* Stamp Out Buttons */
+a.stamp {
+	color: @gray40;
+	background: transparent !important;
+	box-shadow: inset 0 0 1px 1px @gray40;
+	&:hover {
+		color: #FFF;
+		box-shadow: inset 0 0 1px 1px #FFF;
+	}
+}
+
+/* Main Components */
+/* ------------------------------------------------- */
+.freeze {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;	
+}
+.container {
+	position: relative;
+	padding: 180px 5% 4em 5%;
+	.slowtrans;
+}
+	.container.clip {
+		margin-left: 240px;
+	}
+	.container.open {
+		opacity: .3;
+		margin-left: -@sidepanelwidth !important;
+		margin-right: @sidepanelwidth !important;
+	}
+	.container.open.expand {
+		margin-left: -@sidepanelexpand !important;
+		margin-right: @sidepanelexpand !important;
+	}
+.content {
+	padding-bottom: 2em;
+}
+	.content h5 {
+		color: @gray80;
+		padding-bottom: .8em;
+		border-bottom: solid 1px @gray5
+	}
+
+/* Right Sidebar */
+.sidepanel {
+	position: fixed;
+	top: 0;
+	right: -@sidepanelwidth;
+	padding-top: 120px;
+	width: @sidepanelwidth;
+	height: 100%;
+	max-height: 100%;
+	z-index: 900;
+	.slowtrans;
+}
+	.sidepanel .field {
+		width: 100%;
+	}
+
+	/* Main Add/Edit Panel */
+	#sidepanel {
+		background: @gray5;
+	}
+		#sidepanel.open {
+			right: 0;
+		}
+		#sidepanel.open.expand {
+			right: @sidepanelwidth;
+		}
+		#sidepanel .sidepanel-head {
+			position: fixed;
+			top: 0;
+			right: -@sidepanelwidth;
+			width: @sidepanelwidth;
+			background: @gray10;
+			z-index: 900;
+			.slowtrans;
+		}	
+			#sidepanel.open .sidepanel-head {
+				right: 0;
+			}
+			#sidepanel.open.expand .sidepanel-head {
+				width: @sidepanelexpand;
+			}
+			#sidepanel.open .sidepanel-head.scroll {
+				box-shadow: 0 0 10px rgba(34,35,37,.5);
+			}
+			#sidepanel h4.section-header {
+				color: #FFF;
+				font-size: 1em;
+				font-weight: 600;
+				line-height: 69px;
+				text-transform: uppercase;
+				padding: 0 4em 0 1.8em;
+				margin-bottom: 0;
+				background: @accent;
+				.box-shadow;
+			}
+
+	/* Extra Content Side Panel */
+	#sidepaneltwo {
+		top: 69px;
+		padding-top: 0;
+		background: @bgcolor;
+		z-index: 1000;
+	}
+		#sidepaneltwo.expand {
+			right: 0;
+		}
+		#sidepaneltwo.hide {
+			right: -@sidepanelwidth;
+		}
+
+
+/* Modules */
+/* ------------------------------------------------- */
+.module {
+	position: relative;
+	padding-bottom: 1em;
+	margin-bottom: 2em;
+	.border-radius;
+	border-bottom: solid 1px @dkgray;
+}
+	.module h3 {
+		float: left;
+		display: inline-block;
+		line-height: 1.5em;
+		margin: 0 1em 2em 0;
+	}
+	
+
+/* Tabs */
+/* ------------------------------------------------- */
+
+/* Main Tab Styles */
+.tabs ul.nav-tabs {
+	display: inline-block;
+	text-align: center;
+	margin-bottom: 2.4em;
+	border: solid 1px @dkgray;
+	.border-radius;
+	overflow: hidden;
+}
+	.tabs ul.nav-tabs li {
+		float: left;
+		border-right: solid 1px @dkgray;
+	}
+		.tabs ul.nav-tabs li:last-child {
+			border: 0;
+		}
+		.tabs ul.nav-tabs li a {
+			display: inline-block;
+			color: #53555a;
+			font-weight: 500;
+			text-align: center;
+			padding: .6em 1.2em;
+			min-width: 60px;
+			&:hover {
+				color: @gray30;
+			}
+		}
+			.tabs ul.nav-tabs li.active a {
+				color: #FFF;
+				position: relative;
+			}
+				.tabs ul.nav-tabs li.active a:before {
+					bottom: -12px;
+					left: 50%;
+					margin-left: -12px;
+					color: @gray20;
+					.arrow-down;
+				}
+
+/* Sidepanel Tab Menu */
+.sidepanel ul.nav-tabs {
+	height: 50px;
+	overflow: hidden;
+	width: 100%;
+	.slowtrans;
+}
+	.sidepanel.expand ul.nav-tabs {
+		width: @sidepanelwidth;
+	}
+	.sidepanel ul.nav-tabs li {
+		position: relative;
+		float: left;
+		text-align: center;
+	}
+		.sidepanel ul.two-tabs li {
+			width: 50%;
+			width: -webkit-calc(100% / 2);
+			width: calc(100% / 2);
+		}
+		.sidepanel ul.three-tabs li {
+			width: 33.33%;
+			width: -webkit-calc(100% / 3);
+			width: calc(100% / 3);
+		}
+		.sidepanel ul.four-tabs li {
+			width: 25%;
+			width: -webkit-calc(100% / 4);
+			width: calc(100% / 4);
+		}
+		.sidepanel ul.nav-tabs li a {
+			display: inline-block;
+			color: @gray70;
+			font-size: 1.2em;
+			font-weight: 500;
+			padding: .8em 1.2em;
+			width: 100%;
+			background: @gray10;
+			&:hover {
+				background: @gray12;
+			}
+		}
+			.sidepanel ul.nav-tabs li a:before {
+				display: block;
+				color: #FFF;
+				line-height: 1;
+			}
+			.sidepanel ul.nav-tabs li.active a {
+				background: @gray12;
+			}
+
+/* Tab Containers */
+.tabs {
+	text-align: center;
+}
+.tab-content {
+	overflow: auto;
+	height: 100%;
+}
+	.sidepanel .tab-content {
+		padding: 2.4em 2em;
+	}
+	#sidepaneltwo .tab-content {
+		padding: 50px 2em 2.4em;
+	}
+	#sidepanel.open.expand .tab-content {
+		overflow: hidden;
+	}
+.tab-content .tab-pane {
+    display: none;
+}
+.tab-content .tab-pane.active {
+    display: block;
+}
+
+
+/* Grid */
+/* ------------------------------------------------- */
+.col {float:left;}
+	.col20 {width: 20%;}
+	.col30 {width: 30%;}
+	.col40 {width: 40%;}
+	.col50 {width: 50%;}
+	.col60 {width: 60%;}
+	.col70 {width: 70%;}
+	.col80 {width: 80%;}
+
+
+/* Statsboard */
+/* ------------------------------------------------- */
+a.dashboard.show:before {
+	color: #FFF !important;
+}
+.statsboard {
+	height: 0;
+	overflow: hidden;
+	.slowtrans;
+}
+	.statsboard .container {
+		padding: 100px 2em 30px;
+	}
+	.statsboard.show {
+		background: @dkgray;
+		height: 400px;
+		width: 100%;
+	}
+	.statsboard .widget {
+		text-align: center;
+		float: left;
+		padding: 0 2em;
+		width: 33.33%;
+		width: -webkit-calc(100% / 3);
+		width: calc(100% / 3);
+	}
+		.statsboard .widget span.icon {
+			display: inline-block;
+			color: @gray5;
+			font-size: 1.4em;
+			padding: 0 5%;
+			background: @dkgray;
+		}
+		.statsboard .widget hr {
+			margin: -0.6em 0 1.6em;
+			height: 1px;
+			background: @bgcolor;
+			border: 0;
+		}
+
+	/* Overview */
+
+
+	/* Twitch Love */
+
+
+	/* Activity Feed */
+	.activity-feed ul li {
+		color: #FFF;
+		font-size: @smalltext;
+		text-align: left;
+		padding: .2em 0;
+		border-bottom: solid 1px @bgcolor;
+	}

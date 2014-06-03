@@ -1,0 +1,88 @@
+/* Forms */
+/* ------------------------------------------------- */
+/* General */
+input {
+	color: #FFF;
+	font-size: .9em;
+	font-weight: 500;
+	width: 100%;
+	border: 0;
+	outline: 0;
+	background: transparent;
+}
+label {
+	display: inline-block;
+	color: @gray20;
+	.smallcaps;
+	margin-bottom: .4em;
+}
+select {
+	position: relative;
+	color: #FFF;
+	font-size: @smalltext;
+	padding-right: 2em;
+	width: 100%;
+	background: transparent;
+	border: 0;
+	.border-radius;
+   	-webkit-appearance:none;
+	-moz-appearance:none;
+	appearance:none;
+	text-indent: 0.01px;
+	text-overflow: '';
+	z-index: 1;
+	cursor: pointer;
+}
+
+
+/* Form Containers */
+.field {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 1.2em;
+	min-width: 160px;
+	overflow: hidden;
+}
+	.field a.stamp {
+		display: block;
+	}
+
+	/* Text Inputs and Select */
+	.field-input {
+		padding: .8em 1em;
+		.border-radius;
+		background: @inputbg;
+	}
+		.field-input:before {
+			position: absolute;
+			top: 50%;
+			right: 1em;
+			color: @gray30;
+			margin-top: -6px;
+			z-index: 0;
+		}
+
+	/* Buttons */
+	.field-cta {
+		display: inline-block;
+		padding: 1em 0;
+		margin-top: 1em;
+		width: 100%;
+		border-top: solid 1px @gray10;
+	}
+
+	/* Option Buttons */
+	.field a.option-btn {display: block;}
+
+	/* Add Input */
+	.field-add {padding-right: 3.6em;}
+		.field-add button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			line-height: 44px;
+			padding: 0 .6em;
+			border-radius: 0;
+		}
+
+/* Switch Buttons */

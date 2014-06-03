@@ -66,25 +66,26 @@ FrontendAsset::register($this);
             <header class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
                    <?= $this->render('@common/views/leftmenu/avatar'); ?>
+                   <a class="add-btn openone icon-plus2" href="app/campaign/add"></a>
                 <? endif; ?>
 
                 <nav class="navigation">
                     <ul> 
                         <? if (!Yii::$app->user->isGuest): ?>
                             <li>
-                                <a class="campaigns icon-heart2" title="Alerts" href="app/campaign">Campaigns</a>
+                                <a class="campaign-link icon-heart2" title="Alerts" href="app/campaign"><span>Campaigns</span></a>
                             </li>
                         <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
                         <? if ($campaignInvitesCount > 0): ?>
                             <li>
-                                <a class="icon-text" href="app/campaigninvite">Invites (<?= $campaignInvitesCount?>)</a>
+                                <a class="campaign-invites icon-text" href="app/campaigninvite"><span>Invites (<?= $campaignInvitesCount?>)</span></a>
                             </li>
                         <? endif; ?>
                             <li>
-                                <a class="streamboard icon-popup" title="Streamboard" href="streamboard/index.html" target="_blank">Streamboard</a>
+                                <a class="streamboard-link icon-popup" title="Streamboard" href="streamboard/index.html" target="_blank"><span>Streamboard</span></a>
                             </li>
                             <li>
-                                <a class="icon-heart2" title="Dashboard" href="app/dashboard">Donations</a>
+                                <a class="donations-link icon-heart2" title="Dashboard" href="app/dashboard"><span>Donations</span></a>
                             </li>
                                
                         <? endif; ?>
@@ -95,8 +96,6 @@ FrontendAsset::register($this);
                 <div class="header-utility">
                     <a class="logo icon-pullr"></a>
                 </div>
-
-                <a class="add-btn openone icon-plus2" href="app/campaign/add"></a>
                 
                 </header>
 
