@@ -1,0 +1,268 @@
+.frontend-right-widget{
+    border: 1px solid #fff;
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 10px;
+}
+.pullr-table{
+    display: table;
+    width: 100%;
+}
+
+.pullr-table-row{
+    display: table-row;
+}
+
+.pullr-table-row > div{
+    display: table-cell;
+    float: none;
+}
+
+.plan-show-Basic{
+    .plan-pro-advertisement{
+
+    }
+    .payment{
+        display: none;
+    }
+    .plan-pro{
+        display: none;
+    }
+}
+
+.plan-show-payment{
+    .plan-pro-advertisement{
+        display: none;
+    }
+
+    .payment{
+        select{
+            color: #000;
+        }
+    }
+    .plan-pro{
+        display: none;
+    }
+}
+
+.plan-show-Pro{
+    .plan-pro-advertisement{
+        display: none;
+    }
+    .payment{
+        display: none;
+    }
+    .plan-pro{
+    }
+}
+
+
+#campaignEdit{
+    padding-bottom: 10px;
+    background-color: #fff;
+    h4{
+        padding: 10px 5px 5px 5px;
+        color: #000;
+        /*background-color: #333;*/
+    }
+    .tab-pane{
+        padding: 10px 5px 10px 5px;
+    }
+    input[type=text].form-control{
+        width: 200px;
+        display: inline;
+    }
+    select{
+        display: inline;
+        width: inherit;
+    }
+    color: #000;
+    #campaign-channelname, #campaign-channelteam, #campaign-multichannels{
+        display: none;
+    }
+
+    [data-campaign-layoutType=SingleStream] #campaign-channelname{
+        display: initial;
+    }
+
+    [data-campaign-layoutType=TeamStream] #campaign-channelteam{
+        display: initial;
+    }
+
+    [data-campaign-layoutType=MultiStream] #campaign-multichannels{
+        display: block;
+    }
+    #campaign-multichannels{
+        margin-bottom: 10px;
+        padding: 5px;
+        div.label-danger{
+            display: block;
+            margin-bottom: 5px;
+        }
+        input{
+            margin-left: 5px;
+            /*margin-top: 10px;*/
+            /*margin-bottom: 5px;*/
+        }
+        background-color: #ddd;
+        ol{
+            padding-left: 20px;
+            list-style-type: none;
+            li {
+                padding-right: 10px;
+                a{
+                    margin-right: 5px;
+                    float: right;
+                }
+                a.active{
+                    color: red;
+                }
+            }
+        }
+    }
+
+    #collapseTwo{
+        .field-layout-chattoggle{
+            display: none;
+        }
+        .field-layout-eventid{
+            display: none;
+        }
+        #layoutTeams {
+            ol{
+                padding: 0px;
+                li{
+                    border-bottom: 1px solid #000;
+                }
+                li:first-child{
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+
+    #collapseTwo.chatOn{
+        .field-layout-chattoggle{
+            display: block;
+        }
+        .field-layout-eventid{
+            display: block;
+        }
+    }
+
+    .logo{
+        max-width: 100px;
+        max-height: 100px;
+        margin: 10px;
+    }
+    .file-preview-image{
+        max-width: 200px;
+    }
+    #collapseThree{
+        input[type=color]{
+            float: right;
+            margin-right: 15px;
+        }
+        .user-images{
+            margin-top: 10px;
+        }
+    }
+    
+    #collapseFour{
+        .field-campaign-twittername, .field-campaign-youtubeurl, .field-campaign-facebookurl, .field-campaign-includeyoutubefeed{
+            display: none;
+        }
+    }
+    
+    #collapseFour.twitterEnable{
+        .field-campaign-twittername{
+            display: block;
+        }
+    }
+    
+    #collapseFour.youtubeEnable{
+        .field-campaign-youtubeurl, .field-campaign-includeyoutubefeed{
+            display: block;
+        }
+    }
+    
+    #collapseFour.facebookEnable{
+        .field-campaign-facebookurl{
+            display: block;
+        }
+    }
+}
+
+#modalThemes{
+    @select-theme-height: 50px;
+    .select-theme{
+        min-height: @select-theme-height; 
+        background-color: #ccc;
+        padding-top: @select-theme-height / 2 - 10px;
+    }
+    .select-theme-container{
+        a{
+            display: none;
+        }
+    }
+    .select-theme-container:hover{
+        a{
+            display: inline;
+        }
+    }
+}
+
+.field-campaign-paypaladdress{
+    display: none;
+}
+#campaignEdit[data-campaignType="Personal Tip Jar"]{
+    .field-campaign-paypaladdress{
+        display: block;
+    }
+    #startEndContainer{
+        display: none;
+    }
+    
+    #donationDestination{
+        display: none;
+    }
+}
+
+[data-donationDestination='Pre-approved Charities']{
+    .customCharity{
+        display: none;
+    }
+}
+
+[data-donationDestination='Custom Fundraiser']{
+    .preapprovedCharity{
+        display: none;
+    }
+}
+
+#modalCharity .microPhoto{
+    max-width: 150px;
+    max-height: 150px;
+}
+
+#modalCharity .select-charity-container{
+    cursor: pointer;
+    padding: 10px 0px 10px 0px;
+}
+
+#modalCharity .select-charity-container:hover{
+    background-color: #ccc;
+}
+
+#campaign-edit-team, #campaign-edit-team-li {
+    display: none;
+}
+
+[data-campaigntype="Charity Fundraiser"]{
+   #campaign-edit-team, #campaign-edit-team-li {
+        display: block;
+   } 
+}
