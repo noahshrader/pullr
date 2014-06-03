@@ -63,4 +63,24 @@ $user = \Yii::$app->user->identity;
                         ]); ?>            
                 </div>
             </section>
+            
+            <!-- Theme Browsing -->
+
+            <section id="sidepaneltwo" class="sidepanel">
+                
+                <div class="tab-content">
+
+                    <div id="modalCharity">
+
+                        <div class="modal-content">
+
+                            Modal Charity
+
+                        </div>
+
+                    </div>
+                     
+                </div>
+            </section>
+
             <? endif; ?>

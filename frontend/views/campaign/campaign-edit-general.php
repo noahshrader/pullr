@@ -2,6 +2,7 @@
 use common\models\Campaign;
 use yii\helpers\Html;
 ?>
+    
     <div class="panel-collapse collapse in" id="collapseOne">
         <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
         <div class="form-group field-campaign-type">
@@ -37,7 +38,7 @@ use yii\helpers\Html;
                     <span><?= $campaign->charity?$campaign->charity->name:''?></span>
                 </div>
                 
-                <button class="btn btn-primary" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
+                <button class="btn btn-primary opentwo" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
                 
                 <br/>
                 <br/>
@@ -61,4 +62,24 @@ use yii\helpers\Html;
                         <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the streaming service your want to pull from."></i>
                         <?= Html::error($campaign, 'streamService', ['class' => 'help-block']) ?>
         </div>
+    
+        <div class="clearfix"></div>
     </div>
+
+<script type="text/javascript">
+        // Sidebar scripts
+        $('a.openone').click(function() {
+            $('#sidepanel, .container, .page-sidebar, nav.sub-nav').toggleClass('open');
+            $('body, html').toggleClass('freeze');
+            $('#sidepaneltwo').toggleClass('hide').toggleClass('open');
+            return false;
+        });
+        $('a.closetwo, .sidepanel ul.nav-tabs li a').click(function() {
+            $('#sidepanel, #sidepaneltwo, .container, .page-sidebar, nav.sub-nav').removeClass('expand');
+        });
+        $('a.opentwo').click(function() {
+            $('#sidepanel, #sidepaneltwo, .container, .page-sidebar, nav.sub-nav').addClass('open expand');
+            $('body').addClass('freeze');
+            return false;
+        });
+</script>
