@@ -72,7 +72,7 @@ $user = \Yii::$app->user->identity;
 
                     <div id="modalCharity">
 
-                        <div class="modal-content">
+                        <div class="charity-list">
 
 
 
@@ -91,7 +91,7 @@ $user = \Yii::$app->user->identity;
 
                     <div id="modalThemes">
 
-                        <div class="modal-content">
+                        <div class="themes-list">
 
                             
 

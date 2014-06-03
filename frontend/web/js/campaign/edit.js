@@ -180,7 +180,8 @@ function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
     $('#sidepanelthree').addClass('open expand');
     $('#sidepanel').addClass('expand');
-    $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
+    $('.page-wrapper').addClass('choosetheme-expand');
+    $('#modalThemes .themes-list').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
 
     })
 }
@@ -196,12 +197,14 @@ function selectTheme(el){
     $('#modalThemes').modal('hide');
     $('#sidepanelthree').removeClass('open expand');
     $('#sidepanel').removeClass('expand');
+    $('.page-wrapper').removeClass('choosetheme-expand');
 }
 
 function campaignChooseCharity(){
     $('#sidepaneltwo').addClass('open expand');
     $('#sidepanel').addClass('expand');
-    $('#modalCharity .modal-content').load('app/campaign/modalcharities');
+    $('.page-wrapper').addClass('charity-expand');
+    $('#modalCharity .charity-list').load('app/campaign/modalcharities');
 }
 
 function selectCharity(el){
@@ -213,6 +216,7 @@ function selectCharity(el){
     $('.charity-name').removeClass('hidden');
     $('#sidepaneltwo').removeClass('open expand');
     $('#sidepanel').removeClass('expand');
+    $('.page-wrapper').removeClass('charity-expand');
 }
 
 $(function() {
