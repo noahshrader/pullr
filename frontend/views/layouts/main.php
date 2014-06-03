@@ -66,7 +66,6 @@ FrontendAsset::register($this);
             <header class="page-sidebar">
                 <? if (!Yii::$app->user->isGuest): ?>
                    <?= $this->render('@common/views/leftmenu/avatar'); ?>
-                   <a class="add-btn openone icon-plus2" href="app/campaign/add"></a>
                 <? endif; ?>
 
                 <nav class="navigation">
@@ -98,6 +97,10 @@ FrontendAsset::register($this);
                 </div>
                 
                 </header>
+
+                <? if (!Yii::$app->user->isGuest): ?>
+                    <a id="add-campaign" class="add-btn openone icon-plus2" href="app/campaign/add"></a>
+                <? endif; ?>
 
                 <?= Alert::widget() ?>
                 <?= $content ?>
