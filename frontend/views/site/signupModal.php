@@ -6,7 +6,7 @@ $user = new User();
 $user->setScenario('signup');
 
 ?>
-<button class='btn btn-link'data-toggle="modal" data-target="#signupModal" >Singup</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

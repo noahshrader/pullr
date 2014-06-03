@@ -15,7 +15,7 @@ $this->title = 'Login';
 
 	<div class="row">
 		<div class="col-lg-5">
-                     <div><?= TwitchLogin::widget() ?></div>
+			<div><?= TwitchLogin::widget() ?></div>
                      <br />
 			<?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 				<?= $form->field($model, 'login') ?>
