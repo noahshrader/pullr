@@ -64,7 +64,7 @@ $user = \Yii::$app->user->identity;
                 </div>
             </section>
             
-            <!-- Theme Browsing -->
+            <!-- Charity Browsing -->
 
             <section id="sidepaneltwo" class="sidepanel">
                 
@@ -74,7 +74,7 @@ $user = \Yii::$app->user->identity;
 
                         <div class="modal-content">
 
-                            Modal Charity
+
 
                         </div>
 
@@ -82,5 +82,25 @@ $user = \Yii::$app->user->identity;
                      
                 </div>
             </section>
+
+            <!-- Theme Browsing -->
+
+            <section id="sidepanelthree" class="sidepanel">
+                
+                <div class="tab-content">
+
+                    <div id="modalThemes">
+
+                        <div class="modal-content">
+
+                            
+
+                        </div>
+
+                    </div>
+                     
+                </div>
+            </section>
+
 
             <? endif; ?>

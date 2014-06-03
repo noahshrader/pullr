@@ -178,8 +178,10 @@ function initBootstrapSwitch() {
 
 function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
+    $('#sidepanelthree').addClass('open expand');
+    $('#sidepanel').addClass('expand');
     $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
-        $('#modalThemes').modal('show');
+
     })
 }
 
@@ -192,6 +194,8 @@ function selectTheme(el){
     $('.theme-name span').text(name);
     $('.theme-name').removeClass('hidden');
     $('#modalThemes').modal('hide');
+    $('#sidepanelthree').removeClass('open expand');
+    $('#sidepanel').removeClass('expand');
 }
 
 function campaignChooseCharity(){
