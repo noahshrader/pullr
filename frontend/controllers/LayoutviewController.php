@@ -7,10 +7,13 @@ use common\models\Campaign;
 
 /*
 controller to view exported layout
+ * donations
  *  */
 class LayoutviewController extends FrontendController {
 
-    public function actionView($userAlias, $layoutAlias) {
+    public $campaign = null;
+    
+    public function getCampaign($userAlias, $campaignAlias){
         if (ctype_digit($userAlias)){
             $user = User::findOne($userAlias);
         } else {
@@ -21,12 +24,28 @@ class LayoutviewController extends FrontendController {
             throw new \yii\web\NotFoundHttpException("Such user don't exist");
         }
         
-        $campaign = Campaign::findOne(['userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE, 'alias' => $layoutAlias]);
+        $campaign = Campaign::findOne(['userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE, 'alias' => $campaignAlias]);
         if (!$campaign){
             throw new \yii\web\NotFoundHttpException("Such campaign don't exist for user");
         }
         
+        return $campaign;
+    }
+    public function actionView($userAlias, $campaignAlias) {
+        $campaign = $this->getCampaign($userAlias, $campaignAlias);
         echo $this->renderPartial('index',['campaign' => $campaign]);
         die;
     }
+    
+    public function actionDonate($userAlias, $campaignAlias){
+        $campaign = $this->getCampaign($userAlias, $campaignAlias);
+    
+        /*passing campaign to layout*/
+        $this->campaign = $campaign;
+        $this->layout = 'donation';
+        return $this->render('donate', [
+            'campaign' => $campaign
+        ]);
+    }
+       
 }

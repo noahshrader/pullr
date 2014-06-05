@@ -18,7 +18,8 @@ return [
                 'app/<controller>' => '<controller>',
                 'app' => 'site',
                 'api/<action>' => 'api/<action>',
-                '<userAlias>/<layoutAlias>' => 'layoutview/view'
+                '<userAlias>/<campaignAlias>' => 'layoutview/view',
+                '<userAlias>/<campaignAlias>/donate' => 'layoutview/donate'
             ]
         ],
         'eauth' => require 'eauth.php',
