@@ -29,6 +29,9 @@ $user = \Yii::$app->user->identity;
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon-cog"><span>General</span></a>
             </li>
+            <li>
+                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab" class="icon-cog"><span>Form</span></a>
+            </li>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
                 <li id="campaign-edit-team-li">
                     <a href="<?= Url::to()?>#team" data-toggle="tab" class="icon-layout"><span>Team</span></a>
@@ -49,6 +52,12 @@ $user = \Yii::$app->user->identity;
                             'campaign' => $campaign
                         ]); ?>    
             </div>
+           <div class="tab-pane" id="campaign-edit-form-container">
+             <?= $this->render('campaign-edit-form', [
+                            'form' => $form,
+                            'campaign' => $campaign
+                        ]); ?>    
+           </div>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
             <div class="tab-pane" id="team">
                  <?= $this->render('campaign-edit-team', [

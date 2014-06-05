@@ -28,7 +28,8 @@
         "kartik-v/yii2-widgets": "dev-master",
         "yurkinx/yii2-image": "dev-master",
         "paypal/rest-api-sdk-php": "*",
-        "ritero/twitch-sdk": "dev-master"
+        "ritero/twitch-sdk": "dev-master",
+        "2amigos/yii2-ckeditor-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

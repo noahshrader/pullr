@@ -5,7 +5,7 @@ namespace common\models;
 use yii\db\ActiveRecord;
 use common\models\User;
 use common\models\Theme;
-
+use yii\helpers\HtmlPurifier;
 /**
  * to consider account on other the base you also should check expire field to be more than current time
  */
@@ -52,7 +52,8 @@ class Campaign extends ActiveRecord {
                 'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 'enableGoogleAnalytics',
                 'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableCustomLogo',
                 'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId', 'twitterEnable', 'twitterName', 'facebookEnable', 'facebookUrl',
-                'youtubeEnable', 'youtubeUrl', 'includeYoutubeFeed']
+                'youtubeEnable', 'youtubeUrl', 'includeYoutubeFeed',
+                'enableDonorComments', 'enableThankYouPage', 'thankYouPageText']
         ];
     }
 
@@ -71,12 +72,15 @@ class Campaign extends ActiveRecord {
     public function init() {
         parent::init();
         $this->type = self::TYPE_PERSONAL_TIP_JAR;
+        $this->formVisibility = true;
+        $this->enableDonorComments = true;
+        $this->enableThankYouPage = false;
+        
     }
     
     public function attributeLabels() {
         return [
             'googleAnalytics' => 'Google Analytics Tracking ID',
-//            'paypalAddress' => 'Paypal Address'
             'type' => 'Type of Campaign',
             'layoutType' => 'Type of Layout',
             'channelTeam' => 'Team Channel Name',
@@ -99,6 +103,7 @@ class Campaign extends ActiveRecord {
             ['twitterName', 'twitterFilter'],
             ['facebookUrl', 'url', 'defaultScheme' => 'http'],
             ['youtubeUrl', 'url', 'defaultScheme' => 'http'],
+            ['thankYouPageText', 'thankYouPagePurifier']
         ];
     }
     
@@ -129,6 +134,12 @@ class Campaign extends ActiveRecord {
             } else {
                 $this->alias = $alias;
             }
+        }
+    }
+    
+    public function thankYouPagePurifier(){
+        if ($this->thankYouPageText){
+            $this->thankYouPageText = HtmlPurifier::process($this->thankYouPageText); 
         }
     }
     public function twitterFilter() {
