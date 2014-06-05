@@ -41,7 +41,9 @@ class CampaignController extends FrontendController {
 
     public function actionIndex(Campaign $campaign = null) {
         $isNewRecord = $campaign && $campaign->isNewRecord;
-        if ($campaign && $campaign->load($_POST) && $campaign->save()) {
+        
+        
+        if ($campaign && $campaign->load($_POST)){ 
             /*             * from html5 datetime-local tag to timestamp */
             if ($campaign->startDate && !is_numeric($campaign->startDate)) {
                 $campaign->startDate = (new \DateTime($campaign->startDate))->getTimestamp();
@@ -50,10 +52,12 @@ class CampaignController extends FrontendController {
                 $campaign->endDate = (new \DateTime($campaign->endDate))->getTimestamp();
             }
 
-            UploadImage::UploadLogo($campaign);
+            if ($campaign->save()){
+                UploadImage::UploadLogo($campaign);
 
-            if ($isNewRecord) {
-                $this->redirect('app/campaign/edit?id=' . $campaign->id);
+                if ($isNewRecord) {
+                    $this->redirect('app/campaign/edit?id=' . $campaign->id);
+                }
             }
         }
 
@@ -65,10 +69,10 @@ class CampaignController extends FrontendController {
                 $campaign->endDate = time() + 60 * 60 * 24 * 4;
             }
             if (is_numeric($campaign->startDate)) {
-                $campaign->startDate = strftime('%Y-%m-%dT%H:%M:%S', $campaign->startDate);
+                $campaign->startDate = strftime('%Y-%m-%dT%H:%M', $campaign->startDate);
             }
             if (is_numeric($campaign->endDate)) {
-                $campaign->endDate = strftime('%Y-%m-%dT%H:%M:%S', $campaign->endDate);
+                $campaign->endDate = strftime('%Y-%m-%dT%H:%M', $campaign->endDate);
             }
         }
 
