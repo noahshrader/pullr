@@ -65,7 +65,7 @@ header.primary-header {
 					vertical-align: middle;						
 				}
 
-				a.selected, a.seleted:before {
+				a.selected, a.seleted:before, a:hover:before {
 					color: #FFF;
 				}
 
@@ -89,15 +89,30 @@ header.primary-header {
 		}	
 	}
 
+	.avatar-wrap.open {
+		opacity: 1;
+	}
+
 	.avatar-container {
 		float: left;
 		text-align: center;
 		padding: 15px 1em;
 		border-right: solid 1px @dkgray;
 			
-			&:hover:before {
-				border-top: 6px solid #FFF;
-			}
+		&:hover:before {
+			border-top: 6px solid #FFF;
+		}
+
+		&:after {
+			content: '';
+			float: left;
+			display: inline-block;
+			margin-top: 1.1em;
+			width: 0;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 5px solid #53555a;
+		}
 
 		span {
 			float: left;
@@ -113,7 +128,7 @@ header.primary-header {
 			width: 100%;
 		}
 
-}
+	}
 
 	.avatar-contaner:hover:after {
 		border-top: 5px solid #FFF;
