@@ -84,7 +84,7 @@ FrontendAsset::register($this);
                                 <a class="streamboard-link icon-popup" title="Streamboard" href="streamboard/index.html" target="_blank"><span>Streamboard</span></a>
                             </li>
                             <li>
-                                <a class="donations-link icon-heart2" title="Dashboard" href="app/dashboard"><span>Donations</span></a>
+                                <a class="donations-link icon-statistics" title="Dashboard" href="app/dashboard"><span>Donations</span></a>
                             </li>
                                
                         <? endif; ?>

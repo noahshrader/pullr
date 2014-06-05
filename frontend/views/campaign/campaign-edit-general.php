@@ -6,8 +6,8 @@ use yii\helpers\Html;
     <div class="panel-collapse collapse in" id="collapseOne">
         <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
         <div class="form-group field-campaign-type">
+            <label>Campaign Type:</label><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
             <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'form-control select-block']) ?>
-            <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
         </div>
         <div id="startEndContainer">
             <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Start date tooltip"></i>'; ?>
