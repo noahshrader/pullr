@@ -21,12 +21,12 @@ class LayoutviewController extends FrontendController {
             throw new \yii\web\NotFoundHttpException("Such user don't exist");
         }
         
-        $layout = Campaign::findOne(['userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE, 'alias' => $layoutAlias]);
-        if (!$layout){
-            throw new \yii\web\NotFoundHttpException("Such layout don't exist for user");
+        $campaign = Campaign::findOne(['userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE, 'alias' => $layoutAlias]);
+        if (!$campaign){
+            throw new \yii\web\NotFoundHttpException("Such campaign don't exist for user");
         }
         
-        echo $this->renderPartial('index',['layout' => $layout]);
+        echo $this->renderPartial('index',['campaign' => $campaign]);
         die;
     }
 }

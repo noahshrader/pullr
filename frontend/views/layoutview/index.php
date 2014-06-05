@@ -18,9 +18,9 @@ and open the template in the editor.
     </head>
     <body>
         <div class='row'>
-            <h1  data-pullr='event-name'></h1>
-            <span data-pullr='event-startDateFormatted'></span> -
-            <span data-pullr='event-endDateFormatted'></span>
+            <h1  data-pullr='campaign-name'></h1>
+            <span data-pullr='campaign-startDateFormatted'></span> -
+            <span data-pullr='campaign-endDateFormatted'></span>
             
         </div>
         

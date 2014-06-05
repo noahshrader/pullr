@@ -18,33 +18,24 @@ class ApiController extends \yii\web\Controller {
         }
         $id = $_REQUEST['id'];
         $key = $_REQUEST['key'];
-        $layout = Campaign::findOne($id);
-        if (!$layout){
+        $campaign = Campaign::findOne($id);
+        if (!$campaign){
             throw new Exception("Invalid event id");
         }
-        if ($layout->key != $key){
+        if ($campaign->key != $key){
             throw new ForbiddenHttpException('Invalid event key');
         }
         
-        return $layout;
+        return $campaign;
     }
     
-    public function actionLayout(){
-        $layout = $this->validateRequest();
-        echo json_encode($layout->toArray());
-    }
-    
-    public function actionEvent(){
-        $layout = $this->validateRequest();
-        $event = $layout->event;
-        if (!$event){
-            echo json_encode(null);
-        } else {
-            $eventArray = $layout->event->toArray();
-            $eventArray['startDateFormatted'] = $eventArray['startDate'] ? date('F j, Y', $eventArray['startDate']) : null;
-            $eventArray['endDateFormatted'] = $eventArray['endDate'] ? date('F j, Y', $eventArray['endDate']) : null;
-            echo json_encode($eventArray);
-        }
+    public function actionCampaign(){
+        $campaign = $this->validateRequest();
+        $campaignArray = $campaign->toArray();
+        $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? date('F j, Y', $campaignArray['startDate']) : null;
+        $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? date('F j, Y', $campaignArray['endDate']) : null;
+        
+        echo json_encode($campaignArray);
     }
     
     public function actionIndex(){
@@ -52,14 +43,14 @@ class ApiController extends \yii\web\Controller {
     }
     
     public function actionChannels(){
-        $layout = $this->validateRequest();
-        if ($layout->type != Campaign::LAYOUT_TYPE_TEAM || !$layout->channelTeam){
+        $campaign = $this->validateRequest();
+        if ($campaign->layoutType != Campaign::LAYOUT_TYPE_TEAM || !$campaign->channelTeam){
             echo json_encode([]);
             return;
         }
         
         $twitch = new TwitchSDK();
-        $membersList = $twitch->teamMembersAll($layout->channelTeam);
+        $membersList = $twitch->teamMembersAll($campaign->channelTeam);
         
         $offlines = [];
         $onlines = [];

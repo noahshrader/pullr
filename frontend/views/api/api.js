@@ -13,8 +13,7 @@ Pullr.Init = function (requestParams){
     Pullr.__ready = [];
     Pullr.requestParams = requestParams;
     Pullr.LoadTemplates();
-    Pullr.LoadLayout();
-    Pullr.UpdateEvent();
+    Pullr.LoadCampaign();
     Pullr.LoadChannels();
     Pullr.Ready(Pullr.Show);
     Pullr.Ready(Pullr.ShortCodes);
@@ -24,8 +23,12 @@ Pullr.Init = function (requestParams){
 Pullr.Ready = function(func){
     Pullr.__ready.push(func);
 }
+
+/**
+ * wait for all data being loaded and then execute __ready functions  
+ */
 Pullr.Run = function(){
-    if (jQuery().loadTemplate && ($('#templateTeamMember').length>0) && Pullr.layout && Pullr.eventLoaded && Pullr.channels ){
+    if (jQuery().loadTemplate && ($('#templateTeamMember').length>0) && Pullr.campaign && Pullr.channels ){
         console.log('loaded');
         while (Pullr.__ready.length > 0) 
         {
@@ -39,6 +42,7 @@ Pullr.Run = function(){
         }, 20)
     }
 }
+
 Pullr.Show = function(){
     for (var key in Pullr.channels){
         /*making shallow copy*/
@@ -56,7 +60,7 @@ Pullr.ShortCodes = function(){
         var $el = $(this);
         /*
          * so we are having something like
-         * [0] - event
+         * [0] - campaign
          * [1] - name
          * [2] - maybe more variables in tree (unlimited)
          */
@@ -82,17 +86,9 @@ Pullr.LoadTemplates = function(){
     $.getScript(Pullr.JQUERY_TEMPLATES_URL);
 }
 
-Pullr.LoadLayout = function(){
-    Pullr.Call('layout', {}, function (data) {
-        Pullr.layout = data;
-    });
-}
-
-Pullr.UpdateEvent = function(){
-    Pullr.Call('event', {}, function (data) {
-        Pullr.event = data;
-        /*event can be empty*/
-        Pullr.eventLoaded = true; 
+Pullr.LoadCampaign = function(){
+    Pullr.Call('campaign', {}, function (data) {
+        Pullr.campaign = data;
     });
 }
 
