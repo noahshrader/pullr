@@ -21,6 +21,9 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $layoutTypes = implode('","', Campaign::$LAYOUT_TYPES);
             $layoutTypes = "ENUM (\"$layoutTypes\") NOT NULL";
              
+            $donationDestinations = implode('","', Campaign::$DONATION_DESTINATIONS);
+            $donationDestinations = "ENUM (\"$donationDestinations\") NOT NULL";
+            
             $this->createTable(Campaign::tableName(), [
             'id' => Schema::TYPE_PK,
             'alias' => Schema::TYPE_STRING. ' NOT NULL',
@@ -35,7 +38,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             'numberOfDonations' => Schema::TYPE_INTEGER. ' NOT NULL',
             'numberOfUniqueDonors' => Schema::TYPE_INTEGER. ' NOT NULL',
             'paypalAddress' => Schema::TYPE_STRING,
-            'donationDestination' => Schema::TYPE_STRING,
+            'donationDestination' => $donationDestinations,
             'charityId' => Schema::TYPE_INTEGER,
             'customCharity' => Schema::TYPE_STRING,
             'customCharityPaypal' => Schema::TYPE_STRING,
