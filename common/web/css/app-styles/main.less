@@ -79,11 +79,21 @@ a.stamp {
 	z-index: 20;
 	.slowtrans;
 	background: @gray5;
+	overflow: auto;
 
 	input, .form-control	{
 		width: 90%;
 		display: inline-block;
 		margin-right: 5px;
+	}
+
+	input.form-control, select.form-control {
+		padding: 20px;
+		border-radius: 3px;
+		-webkit-background-clip: padding-box;
+		background-clip: padding-box;
+		background: #3a3c40;	
+		border: 0px;	
 	}
 
 	&.open {
