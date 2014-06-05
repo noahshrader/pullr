@@ -38,8 +38,9 @@ CommonAsset::register($this);
         
         NavBar::end();
         ?>
-    <?php $this->beginBody() ?>
-        <div class="page-wrapper">
+        <?php $this->beginBody() ?>
+        <div class="main-wrapper">
+        
             <div class="page-sidebar">
                 <? if (Application::IsAdmin()): ?>
                     <? if (!Yii::$app->user->isGuest): ?>

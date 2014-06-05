@@ -59,16 +59,16 @@ FrontendAsset::register($this);
         NavBar::end();
         ?>
 
-    <!-- BEGIN Main Sidebar -->
-    <?php $this->beginBody() ?>
-        <div class="page-wrapper">
+        <?php $this->beginBody() ?>
+        
+        <div class="main-wrapper">
             
-            <header class="page-sidebar">
+            <header class="primary-header">
                 <? if (!Yii::$app->user->isGuest): ?>
                    <?= $this->render('@common/views/leftmenu/avatar'); ?>
                 <? endif; ?>
 
-                <nav class="navigation">
+                <nav class="primary-navigation">
                     <ul> 
                         <? if (!Yii::$app->user->isGuest): ?>
                             <li>
@@ -92,31 +92,30 @@ FrontendAsset::register($this);
 
                 </nav>
 
-                <div class="header-utility">
-                    <a class="logo icon-pullr"></a>
-                </div>
+
+                <a class="logo icon-pullr"></a>
+
                 
-                </header>
+            </header>
 
-                <? if (!Yii::$app->user->isGuest): ?>
-                    <a id="add-campaign" class="add-btn openone icon-plus2" href="app/campaign/add"></a>
-                <? endif; ?>
+            <? if (!Yii::$app->user->isGuest): ?>
+                <a id="add-campaign" class="add-btn icon-plus2" href="app/campaign/add"></a>
+            <? endif; ?>
 
-                <?= Alert::widget() ?>
-                <?= $content ?>
+            <?= Alert::widget() ?>
+            <?= $content ?>
 
-                <? if (Yii::$app->user->isGuest): ?>
+            <? if (Yii::$app->user->isGuest): ?>
 
-                <?= $this->render('@frontend/views/site/signupModal'); ?>  
+            <?= $this->render('@frontend/views/site/signupModal'); ?>  
 
-                <?= $this->render('@frontend/views/site/loginModal'); ?>  
+            <?= $this->render('@frontend/views/site/loginModal'); ?>  
 
-                <? endif; ?>
+            <? endif; ?>
 
+            <?php $this->endBody() ?>
 
-<?php $this->endBody() ?>
-    
-    </div>
+        </div><!-- /main-wrapper -->
 
     </body>
 </html>

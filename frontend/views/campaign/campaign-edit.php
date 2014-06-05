@@ -21,17 +21,28 @@ $user = \Yii::$app->user->identity;
         <div class="sidepanel-head">
             <h4 class="section-header"> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h4>
         </div>
+
         <? $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="<?= Url::to()?>#general" data-toggle="tab">Home</a></li>
+        
+        <ul class="nav nav-tabs four-tabs">
+            <li class="active">
+                <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon-cog"><span>General</span></a>
+            </li>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
-                <li id="campaign-edit-team-li"><a href="<?= Url::to()?>#team" data-toggle="tab">Team</a></li>
+                <li id="campaign-edit-team-li">
+                    <a href="<?= Url::to()?>#team" data-toggle="tab" class="icon-layout"><span>Team</span></a>
+                </li>
             <? endif ?>
-            <li><a href="<?= Url::to()?>#layout" data-toggle="tab">Layout</a></li>
-            <li><a href="<?= Url::to()?>#social" data-toggle="tab">Social</a></li>
+            <li>
+                <a href="<?= Url::to()?>#layout" data-toggle="tab" class="icon-layout"><span>Layout</span></a>
+            </li>
+            <li>
+                <a href="<?= Url::to()?>#social" data-toggle="tab" class="icon-comment"><span>Social</span></a>
+            </li>
         </ul>
-        <div class="tab-content" id="accordion">
+       
+       <div class="tab-content" id="accordion">
             <div class="tab-pane fade in active" id="general">
              <?= $this->render('campaign-edit-general', [
                             'form' => $form,

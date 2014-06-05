@@ -45,7 +45,7 @@ a.stamp {
 /* Main Components */
 /* ------------------------------------------------- */
 
-.page-wrapper {
+.main-wrapper {
     padding: 100px 70px;
     max-width: 100%;
     overflow: hidden;
@@ -68,6 +68,7 @@ a.stamp {
 	}
 
 /* Right Sidebar */
+
 .sidepanel {
 	position: fixed;
 	top: 0;
@@ -77,69 +78,179 @@ a.stamp {
 	max-height: 100%;
 	z-index: 20;
 	.slowtrans;
-}
-	.sidepanel .field {
-		width: 100%;
+	background: @gray5;
+
+	input, .form-control	{
+		width: 90%;
+		display: inline-block;
+		margin-right: 5px;
 	}
 
-	/* Main Add/Edit Panel */
-	#sidepanel {
-		background: @gray5;
-	}
-		#sidepanel.open {
-			right: 0;
-		}
-		#sidepanel.open.expand {
-			right: @sidepanelwidth;
-		}
-		#sidepanel .sidepanel-head {
-			position: fixed;
-			top: 0;
-			right: -@sidepanelwidth;
-			width: @sidepanelwidth;
-			background: @gray10;
-			z-index: 900;
-			.slowtrans;
-		}	
-			#sidepanel.open .sidepanel-head {
-				right: 0;
-			}
-			#sidepanel.open.expand .sidepanel-head {
-				width: @sidepanelexpand;
-			}
-			#sidepanel.open .sidepanel-head.scroll {
+	&.open {
+		right: 0px;
+
+		.sidepanel-head {
+			right: 0px;
+
+			&.scroll {
 				box-shadow: 0 0 10px rgba(34,35,37,.5);
 			}
-			#sidepanel h4.section-header {
-				color: #FFF;
-				font-size: 1em;
-				font-weight: 600;
-				line-height: 76px;
-				text-transform: uppercase;
-				padding: 0 4em 0 1.8em;
-				margin-bottom: 0;
-				background: @accent;
-				margin-top: 0px;
-				.box-shadow;
+		}
+
+		&.expand {
+			right: @sidepanelwidth;
+
+			.sidepanel-head {
+				width: @sidepanelexpand;
+			}
+		}
+	}
+
+	.sidepanel-head {
+		position: fixed;
+		top: 0;
+		right: -@sidepanelwidth;
+		width: @sidepanelwidth;
+		background: @gray10;
+		z-index: 900;
+		.slowtrans;
+
+	}
+
+	h4.section-header {
+		color: #FFF;
+		font-size: 1em;
+		font-weight: 600;
+		line-height: 76px;
+		text-transform: uppercase;
+		padding: 0 4em 0 1.8em;
+		margin-bottom: 0;
+		background: @accent;
+		margin-top: 0px;
+		.box-shadow;	
+	}
+
+	/* Sidebar Navigation Tabs */
+
+	ul.nav-tabs {
+		width: 100%;
+		margin-top: 100px;
+		.slowtrans;
+		border: 0px;
+
+		li {
+			text-align: center;
+
+			a {
+				display: inline-block;
+				color: @gray70;
+				font-size: 18px;
+				font-weight: 500;
+				padding: 10px 20px;
+				width: 100%;
+				background: @gray10;
+				border: 0px;
+				border-radius: 0px;
+
+				&:hover {
+					background: @gray12;
+					border: 0px;
+				}
+
+				&:before {
+					display: block;
+					color: #fff;
+					line-height: 1;
+				}
+
+				span {
+					display: none;
+				}
+
 			}
 
-	/* Extra Content Side Panel */
-	#sidepaneltwo, #sidepanelthree {
-		top: 76px;
-		padding-top: 0;
-		background: @bgcolor;
-		z-index: 20;
-	}
-		#sidepaneltwo.expand, #sidepanelthree.expand {
-			right: 0;
-			width: 70%;
-		}
-		#sidepaneltwo.hide, #sidepanelthree.hide {
-			right: -@sidepanelwidth;
+			&.active a {
+				background: @gray12;
+				border: 0px;	
+			}
+
 		}
 
+		&.two-tabs {
+
+			li {
+				width: 50%;
+				width: -webkit-cal(100% / 2);
+				width: calc(100% / 2);
+			}
+
+		}
+
+		&.three-tabs {
+
+			li {
+				width: 33.33%;
+				width: -webkit-cal(100% / 3);
+				width: calc(100% / 3);				
+			}
+
+		}
+
+		&.four-tabs {
+
+			li {
+				width: 25%;
+				width: -webkit-cal(100% / 4);
+				width: calc(100% / 4);				
+			}
+
+		}
+
+	}
+
+
+}
+
+/* Extra Content Side Panel */
+
+#sidepaneltwo, #sidepanelthree {
+	top: 76px;
+	padding-top: 0;
+	background: @bgcolor;
+	z-index: 20;
+}
+
+#sidepaneltwo.expand, #sidepanelthree.expand {
+	right: 0;
+	width: 70%;
+}
+
+#sidepaneltwo.hide, #sidepanelthree.hide {
+	right: -@sidepanelwidth;
+}
+
 #sidepanel.open.expand {
-right: 70%;
+	right: 70%;
+}
+
+.tab-content {
+	overflow: auto;
+	height: 100%;
+}
+.sidepanel .tab-content {
+	padding: 2.4em 2em;
+}
+#sidepaneltwo .tab-content {
+	padding: 50px 2em 2.4em;
+}
+#sidepanel.open.expand .tab-content {
+	overflow: hidden;
+}
+.tab-content .tab-pane {
+    display: none;
+}
+.tab-content .tab-pane.active {
+    display: block;
 }
 
 
@@ -159,137 +270,6 @@ right: 70%;
 		margin: 0 1em 2em 0;
 	}
 	
-
-/* Tabs */
-/* ------------------------------------------------- */
-
-/* Main Tab Styles */
-.tabs ul.nav-tabs {
-	display: inline-block;
-	text-align: center;
-	margin-bottom: 2.4em;
-	border: solid 1px @dkgray;
-	.border-radius;
-	overflow: hidden;
-}
-	.tabs ul.nav-tabs li {
-		float: left;
-		border-right: solid 1px @dkgray;
-	}
-		.tabs ul.nav-tabs li:last-child {
-			border: 0;
-		}
-		.tabs ul.nav-tabs li a {
-			display: inline-block;
-			color: #53555a;
-			font-weight: 500;
-			text-align: center;
-			padding: .6em 1.2em;
-			min-width: 60px;
-			&:hover {
-				color: @gray30;
-			}
-		}
-			.tabs ul.nav-tabs li.active a {
-				color: #FFF;
-				position: relative;
-			}
-				.tabs ul.nav-tabs li.active a:before {
-					bottom: -12px;
-					left: 50%;
-					margin-left: -12px;
-					color: @gray20;
-					.arrow-down;
-				}
-
-/* Sidepanel Tab Menu */
-.sidepanel ul.nav-tabs {
-	height: 50px;
-	overflow: hidden;
-	width: 100%;
-	margin-top: 100px;
-	.slowtrans;
-}
-	.sidepanel.expand ul.nav-tabs {
-		width: 100%;
-	}
-	.sidepanel ul.nav-tabs li {
-		position: relative;
-		float: left;
-		text-align: center;
-	}
-		.sidepanel ul.two-tabs li {
-			width: 50%;
-			width: -webkit-calc(100% / 2);
-			width: calc(100% / 2);
-		}
-		.sidepanel ul.three-tabs li {
-			width: 33.33%;
-			width: -webkit-calc(100% / 3);
-			width: calc(100% / 3);
-		}
-		.sidepanel ul.four-tabs li {
-			width: 25%;
-			width: -webkit-calc(100% / 4);
-			width: calc(100% / 4);
-		}
-		.sidepanel ul.nav-tabs li a {
-			display: inline-block;
-			color: @gray70;
-			font-size: 1.2em;
-			font-weight: 500;
-			padding: .8em 1.2em;
-			width: 100%;
-			background: @gray10;
-			&:hover {
-				background: @gray12;
-			}
-		}
-			.sidepanel ul.nav-tabs li a:before {
-				display: block;
-				color: #FFF;
-				line-height: 1;
-			}
-			.sidepanel ul.nav-tabs li.active a {
-				background: @gray12;
-			}
-
-/* Tab Containers */
-.tabs {
-	text-align: center;
-}
-.tab-content {
-	overflow: auto;
-	height: 100%;
-}
-	.sidepanel .tab-content {
-		padding: 2.4em 2em;
-	}
-	#sidepaneltwo .tab-content {
-		padding: 50px 2em 2.4em;
-	}
-	#sidepanel.open.expand .tab-content {
-		overflow: hidden;
-	}
-.tab-content .tab-pane {
-    display: none;
-}
-.tab-content .tab-pane.active {
-    display: block;
-}
-
-
-/* Grid */
-/* ------------------------------------------------- */
-.col {float:left;}
-	.col20 {width: 20%;}
-	.col30 {width: 30%;}
-	.col40 {width: 40%;}
-	.col50 {width: 50%;}
-	.col60 {width: 60%;}
-	.col70 {width: 70%;}
-	.col80 {width: 80%;}
-
 
 /* Statsboard */
 /* ------------------------------------------------- */
