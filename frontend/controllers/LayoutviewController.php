@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\User;
 use common\models\Campaign;
+use common\models\Donation;
 
 /*
 controller to view exported layout
@@ -43,8 +44,15 @@ class LayoutviewController extends FrontendController {
         /*passing campaign to layout*/
         $this->campaign = $campaign;
         $this->layout = 'donation';
+        $donation = new Donation();
+        $donation->createdDate = time();
+        $donation->campaignId = $campaign->id;
+        if ($donation->load($_REQUEST) && $donation->save()){
+            
+        }
         return $this->render('donate', [
-            'campaign' => $campaign
+            'campaign' => $campaign,
+            'donation' => $donation
         ]);
     }
        

@@ -28,7 +28,7 @@ $campaign = \Yii::$app->controller->campaign;
        <!-- BEGIN Progress Bar -->
         <div class="form-progress">
                 <div class="form-progress-wrap">
-                        <div class="progress" style="width:40%;"></div>
+                    <div class="progress" style="width:<?= round(100*$campaign->amountRaised/max(1,$campaign->goalAmount)) ?>%;"></div>
                         <div class="separation">
                                 <div class="separation-left"></div>
                                 <div class="separation-right"></div>

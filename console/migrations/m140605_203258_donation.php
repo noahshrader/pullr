@@ -9,6 +9,8 @@ class m140605_203258_donation extends \console\models\ExtendedMigration
     {
         $this->createTable(Donation::tableName(), [
             'id' => Schema::TYPE_PK,
+            'campaignId' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'amount' => Schema::TYPE_FLOAT. ' NOT NULL',
             'name' => Schema::TYPE_STRING. ' NOT NULL',
             'email' => Schema::TYPE_STRING. ' NOT NULL',
             'comments' => Schema::TYPE_TEXT. ' NOT NULL',

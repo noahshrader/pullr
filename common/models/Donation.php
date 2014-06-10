@@ -28,19 +28,11 @@ class Donation extends ActiveRecord
 	 */
 	public function rules()
 	{
-		return [
-			['username', 'filter', 'filter' => 'trim'],
-			['username', 'required'],
-			['username', 'string', 'min' => 2, 'max' => 255],
-
-			['email', 'filter', 'filter' => 'trim'],
-			['email', 'required'],
-			['email', 'email'],
-			['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-
-			['password', 'required'],
-			['password', 'string', 'min' => 6],
-		];
+            return [
+                ['name', 'filter', 'filter' => 'strip_tags'],
+                ['email', 'filter', 'filter' => 'strip_tags'],
+                ['comments', 'filter', 'filter' => 'strip_tags'],
+            ];
 	}
 }
  
