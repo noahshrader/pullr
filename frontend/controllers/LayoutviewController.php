@@ -10,7 +10,7 @@ use common\components\PullrPayment;
 controller to view exported layout
  * donations
  *  */
-class LayoutviewController extends FrontendController {
+class LayoutviewController extends \yii\web\Controller {
 
     public $campaign = null;
     
