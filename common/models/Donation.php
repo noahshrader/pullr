@@ -4,6 +4,7 @@ namespace common\models;
 use common\models\User;
 use yii\db\ActiveRecord;
 use Yii;
+use common\models\Campaign;
 
 /**
  * Signup form
@@ -34,5 +35,21 @@ class Donation extends ActiveRecord
                 ['comments', 'filter', 'filter' => 'strip_tags'],
             ];
 	}
+        
+    /**
+     * 
+     * @return Campaign
+     */
+    public function getCampaign() {
+        return $this->hasOne(Campaign::className(), ['id' => 'campaignId']);
+    }
+    
+    /**
+     * 
+     * @return User
+     */
+    public function getUser() {
+        return $this->hasOne(User::className(), ['id' => 'userId']);
+    }
 }
  

@@ -5,7 +5,7 @@ namespace frontend\controllers;
 use common\models\User;
 use common\models\Campaign;
 use common\models\Donation;
-
+use common\components\PullrPayment;
 /*
 controller to view exported layout
  * donations
@@ -47,8 +47,11 @@ class LayoutviewController extends FrontendController {
         $donation = new Donation();
         $donation->createdDate = time();
         $donation->campaignId = $campaign->id;
+        if (!\Yii::$app->user->isGuest){
+            $donation->userId = \Yii::$app->user->id; 
+        }
         if ($donation->load($_REQUEST) && $donation->save()){
-            
+            PullrPayment::donationPayment($donation);
         }
         return $this->render('donate', [
             'campaign' => $campaign,

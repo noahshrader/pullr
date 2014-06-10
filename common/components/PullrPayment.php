@@ -13,6 +13,7 @@ use PayPal\Api\ItemList;
 use PayPal\Api\RedirectUrls;
 use common\models\Plan;
 use PayPal\Api\PaymentExecution;
+use common\models\Donation;
 
 class PullrPayment extends \yii\base\Component {
 
@@ -80,16 +81,38 @@ class PullrPayment extends \yii\base\Component {
             }
         }
     }
-    public function proPayment($moneyAmount) {
-//        $plan = Plan::find($user->id);
-//        $plan->prolong($_POST['subscription']);
-        $params = self::getPaymentParamsForMoney($moneyAmount);
-
+    
+    /**
+     * fired when someone make donation for campaign
+     * @param \common\models\Donation $donation
+     */
+    public static function donationPayment(Donation $donation){
         // A resource representing a Payer that funds a payment
         // For paypal account payments, set payment method
         // to 'paypal'.
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
+
+        // ### Itemized information
+        // (Optional) Lets you specify item wise
+        // information
+        $item = new Item();
+        $item->setName('Donation for ' . $donation->campaign->name)
+                ->setCurrency('USD')
+                ->setQuantity(1)
+                ->setPrice($donation->amount);
+        $itemList = new ItemList();
+        $itemList->setItems([$item]);
+
+
+        $amount = new Amount();
+        $amount->setCurrency("USD")
+                ->setTotal($donation->amount);
+        
+        self::makePayment($amount, $itemList, 'donation', $donation->id);
+    }
+    public function proPayment($moneyAmount) {
+        $params = self::getPaymentParamsForMoney($moneyAmount);
 
         // ### Itemized information
         // (Optional) Lets you specify item wise
@@ -107,6 +130,16 @@ class PullrPayment extends \yii\base\Component {
         $amount->setCurrency("USD")
                 ->setTotal($moneyAmount);
 
+        self::makePayment($amount, $itemList, $params['paymentType']);
+    }
+    
+    public static function makePayment($amount, $itemList, $paymentType, $relatedId = null){
+        // A resource representing a Payer that funds a payment
+        // For paypal account payments, set payment method
+        // to 'paypal'.
+        $payer = new Payer();
+        $payer->setPaymentMethod("paypal");
+        
         // ### Transaction
         // A transaction defines the contract of a
         // payment - what is the payment for and who
@@ -121,7 +154,6 @@ class PullrPayment extends \yii\base\Component {
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl($baseUrl.'?paymentSuccess=true')
                 ->setCancelUrl($baseUrl.'?paymentSuccess=false');
-//        var_dump($redirectUrls);die;
 
         // ### Payment
         // A Payment Resource; create one using
@@ -131,9 +163,11 @@ class PullrPayment extends \yii\base\Component {
                 ->setPayer($payer)
                 ->setRedirectUrls($redirectUrls)
                 ->setTransactions([$transaction]);
-
-        try {
-            $payment->create($this->apiContext);
+        
+        $pullrPayment = new PullrPayment;
+         try {
+            
+            $payment->create($pullrPayment->apiContext);
             // ### Get redirect url
             // The API response provides the url that you must redirect
             // the buyer to. Retrieve the url from the $payment->getLinks()
@@ -153,9 +187,12 @@ class PullrPayment extends \yii\base\Component {
             $_SESSION['paymentId'] = $payment->getId();
             $pay = new \common\models\Payment();
             $pay->paypalId = $payment->getId();
-            $pay->userId = \Yii::$app->user->id;
-            $pay->amount = $moneyAmount;
-            $pay->type = $params['paymentType'];
+            if (!\Yii::$app->user->isGuest){
+                $pay->userId = \Yii::$app->user->id;
+            }
+            $pay->amount = $amount->getTotal();
+            $pay->type = $paymentType;
+            $pay->relatedId = $relatedId;
             $pay->save();
 
             if (isset($redirectUrl)) {

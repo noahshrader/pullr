@@ -35,11 +35,12 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
         $this->createTable(Payment::tableName(), [
             'id' => Schema::TYPE_PK,
             'status' => $statuses, 
-            'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'userId' => Schema::TYPE_INTEGER,
             'amount' => Schema::TYPE_FLOAT . ' NOT NULL',
             'paypalId' => Schema::TYPE_STRING,
             'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
-            'type' => Schema::TYPE_STRING
+            'type' => Schema::TYPE_STRING,
+            'relatedId' => Schema::TYPE_INTEGER
         ], $tableOptions);
         
         $user = User::find()->where(['name' => 'Stanislav'])->one();
