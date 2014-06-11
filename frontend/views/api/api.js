@@ -96,11 +96,21 @@ Pullr.loadMagnificPopup = function(){
             items:{
                 src: location.href + '/donate'
             },
-            type: 'iframe'
+            type: 'iframe',
+            iframe: {
+                markup: '<div class="mfp-iframe-scaler">'+
+                          '<div class="mfp-close"></div>'+
+                          '<iframe class="mfp-iframe" frameborder="0"  onload="javascript:resizeIframe(this);" allowfullscreen></iframe>'+
+                        '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
+            }
         });
     });
 }
 
+function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+}
+  
 Pullr.LoadCampaign = function(){
     Pullr.Call('campaign', {}, function (data) {
         Pullr.campaign = data;

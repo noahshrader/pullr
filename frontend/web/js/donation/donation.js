@@ -36,6 +36,12 @@ function donatePageInit() {
 
 function amountChangedEvent(){
     var value = $('[name=donation-amount]:checked').val();
+    var undefinedFlag = false;
+    if (typeof value === 'undefined'){
+        value = 1;
+        undefinedFlag = true;
+    }
+    
     if (value=='other'){
         var value=parseInt($('#other-amount').val());
         if (!$.isNumeric(value) || value == 0){
@@ -45,6 +51,23 @@ function amountChangedEvent(){
     
     $('input#donation-amount').val(value);
     $('button.donate').text('Donate $'+value);
+    
+    /**casting to int*/
+    value=parseInt(value);
+    if (!undefinedFlag){
+        var $progressContainer = $('.form-progress');
+        var amountRaised = parseInt($progressContainer.data('amountraised'));
+        var goalAmount = parseInt($progressContainer.data('goalamount'));
+        amountRaised+=value;
+        $progressContainer.find('.amountRaised').text('$'+amountRaised);
+        /*preventing division by zero*/
+        goalAmount = Math.max(1, goalAmount);
+        console.log(amountRaised);
+        console.log(goalAmount);
+        var percent = 100*amountRaised/goalAmount;
+        console.log(percent);
+        $progressContainer.find('.progress').css('width',percent+'%');
+    }
 }
 
 $(document).ready(donatePageInit);

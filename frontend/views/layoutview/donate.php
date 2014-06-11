@@ -24,11 +24,11 @@ use yii\widgets\ActiveForm;
                 <? endif ?>
             <? endif ?>
         <? endif; ?>
-         <?php $form = ActiveForm::begin() ?>
+         <?php $form = ActiveForm::begin(['options' => ['target' => '_blank']]) ?>
                 <!-- Amount Selections -->
                 <div id="donation-amount" class="cf">
                         <div class="choice fieldamount">
-                                <label for="option1" class="active">$5<input type="radio" id="option1" name="donation-amount" class="toggle donation-amount" value="5" checked="checked"></label>
+                                <label for="option1">$5<input type="radio" id="option1" name="donation-amount" class="toggle donation-amount" value="5"></label>
                         </div>
                         <div class="choice fieldamount">
                                 <label for="option2" class="">$15<input type="radio" id="option2" name="donation-amount" class="toggle donation-amount" value="15"></label>
@@ -68,7 +68,7 @@ use yii\widgets\ActiveForm;
                             <textarea type="text" id='donation-comments' name="Donation[comments]" placeholder="Comments"><?=htmlspecialchars($donation->comments) ?></textarea>
                             <span class="counter"></span>
                         </div>
-                    <button type="submit" class="btn donate">Donate $5</button>
+                    <button type="submit" class="btn donate">Donate $1</button>
                 </div>
         <?php ActiveForm::end(); ?>
 </section>

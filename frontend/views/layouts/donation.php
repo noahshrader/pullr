@@ -26,16 +26,16 @@ $campaign = \Yii::$app->controller->campaign;
     </head>
     <body>
        <!-- BEGIN Progress Bar -->
-        <div class="form-progress">
+        <div class="form-progress" data-amountraised="<?= $campaign->amountRaised ?>" data-goalamount = <?= $campaign->goalAmount ?>>
                 <div class="form-progress-wrap">
-                    <div class="progress" style="width:<?= round(100*$campaign->amountRaised/max(1,$campaign->goalAmount)) ?>%;"></div>
+                    <div class="progress" style="width:<?= 100*$campaign->amountRaised/max(1,$campaign->goalAmount) ?>%;"></div>
                         <div class="separation">
                                 <div class="separation-left"></div>
                                 <div class="separation-right"></div>
                         </div>
                 </div>
                 <div class="totals">
-                    <span class="total">$<?= number_format($campaign->amountRaised) ?></span> of <span class="goal">$<?= number_format($campaign->goalAmount) ?></span>
+                    <span class="total amountRaised">$<?= number_format($campaign->amountRaised) ?></span> of <span class="goal">$<?= number_format($campaign->goalAmount) ?></span>
                 </div>
         </div>
        <!-- ENG Progress Bar -->
