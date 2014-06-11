@@ -151,7 +151,6 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user->setScenario('openId');
         $user->name = 'Stanislav Klyukin';
         $user->smallPhoto = 'http://pbs.twimg.com/profile_images/1410660514/a_e8c2fb55_normal.jpg';
-        $user->uniqueName = 'klyukin';
         $user->save();
 
         $openId = new OpenIDToUser();
@@ -159,6 +158,21 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $openId->serviceName = 'twitter';
         $openId->serviceId = '113944685';
         $openId->url = 'http://twitter.com/SKlyukin';
+        $openId->save();
+        
+        $user = new User();
+        $user->setScenario('openId');
+        $user->name = 'Klyukin';
+        $user->uniqueName = 'klyukin';
+        $user->photo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
+        $user->smallPhoto = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
+        $user->save();
+
+        $openId = new OpenIDToUser();
+        $openId->userId = $user->id;
+        $openId->serviceName = 'twitch';
+        $openId->serviceId = '55052982';
+        $openId->url = 'http://twitch.tv/klyukin';
         $openId->save();
 
 

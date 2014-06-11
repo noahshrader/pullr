@@ -118,7 +118,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $campaign->name = 'Fun For Freedom';
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $campaign->channelTeam = "funforfreedom";
-            $campaign->userId = 4;
+            $campaign->userId = 5;
             $campaign->key = 'test_key';
             $campaign->eventId = 1;
             $campaign->goalAmount = 17000;
