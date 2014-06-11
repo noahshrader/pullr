@@ -32,7 +32,7 @@ will generate something like:
 `<span data-pullr="campaign-charity-name">PETA</span>`
 
 ###Campaign attributes
-As for June 2014 list of available fields look like:
+As for June 2014 list of available fields looks like:
 
 ```
 alias: "Fun_For_Freedom"
@@ -87,4 +87,21 @@ youtubeLayout: ""
 youtubeUrl: ""
 ```
 
+###Charity's attributes
+If charity avaliable list of available attributes for **campaign-charity**  as for June 2014 looks like:
 
+```
+`<span data-pullr="campaign-charity-name"></span>`
+contact: "Stanislav Klyukin"
+contactEmail: "stas.msu@gmail.com"
+contactPhone: ""
+date: "2014-06-12 01:35:36"
+description: ""
+id: 2
+name: "PETA"
+paypal: "paypal@peta.org"
+photoId: null
+status: "active"
+type: "Animals"
+url: ""
+```
