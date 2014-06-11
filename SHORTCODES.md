@@ -91,9 +91,7 @@ youtubeUrl: ""
 If charity avaliable list of available attributes for **campaign-charity**  as for June 2014 looks like:
 
 ```
-`<span data-pullr="campaign-charity-name"></span>`
-contact: "Stanislav Klyukin"
-contactEmail: "stas.msu@gmail.com"
+contactEmail: "support@peta.org"
 contactPhone: ""
 date: "2014-06-12 01:35:36"
 description: ""
