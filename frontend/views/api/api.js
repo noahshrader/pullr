@@ -4,7 +4,8 @@ Pullr.MAIN_URL = "//<?=$_SERVER['HTTP_HOST']?><?= \Yii::$app->urlManager->baseUr
 Pullr.API_URL = Pullr.MAIN_URL + "api/";
 Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
 Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.min.js";
-
+Pullr.MAGNIFIC_POPUP_JS_URL = Pullr.MAIN_URL + "js/lib/magnificpopup.js";
+Pullr.MAGNIFIC_POPUP_CSS_URL = Pullr.MAIN_URL + "js/lib/magnificpopup.css";
 /**
  * example: 
  * Pullr.Init({id:1, key: "test_key"}); 
@@ -15,6 +16,7 @@ Pullr.Init = function (requestParams){
     Pullr.LoadTemplates();
     Pullr.LoadCampaign();
     Pullr.LoadChannels();
+    Pullr.loadMagnificPopup();
     Pullr.Ready(Pullr.Show);
     Pullr.Ready(Pullr.ShortCodes);
     Pullr.Run();
@@ -84,6 +86,19 @@ Pullr.ShortCodes = function(){
 Pullr.LoadTemplates = function(){
     $("body").append($("<div>").load(Pullr.TEMPLATES_URL));
     $.getScript(Pullr.JQUERY_TEMPLATES_URL);
+}
+
+Pullr.loadMagnificPopup = function(){
+    $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', Pullr.MAGNIFIC_POPUP_CSS_URL) );
+    
+    $.getScript(Pullr.MAGNIFIC_POPUP_JS_URL, function(){
+        $('.donate').magnificPopup({
+            items:{
+                src: location.href + '/donate'
+            },
+            type: 'iframe'
+        });
+    });
 }
 
 Pullr.LoadCampaign = function(){

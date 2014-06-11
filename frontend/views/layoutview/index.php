@@ -17,7 +17,7 @@ and open the template in the editor.
         <link  rel="stylesheet" href="layoutview/api.css" />
     </head>
     <body>
-        <a href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary">Donate</a>
+        <button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate">Donate</button>
         <div class='row'>
             <h1  data-pullr='campaign-name'></h1>
             <span data-pullr='campaign-startDateFormatted'></span> -
