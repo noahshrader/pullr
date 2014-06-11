@@ -62,10 +62,7 @@ function amountChangedEvent(){
         $progressContainer.find('.amountRaised').text('$'+amountRaised);
         /*preventing division by zero*/
         goalAmount = Math.max(1, goalAmount);
-        console.log(amountRaised);
-        console.log(goalAmount);
         var percent = 100*amountRaised/goalAmount;
-        console.log(percent);
         $progressContainer.find('.progress').css('width',percent+'%');
     }
 }
