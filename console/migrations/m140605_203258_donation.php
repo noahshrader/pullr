@@ -16,7 +16,10 @@ class m140605_203258_donation extends \console\models\ExtendedMigration
             'email' => Schema::TYPE_STRING. ' NOT NULL',
             'comments' => Schema::TYPE_TEXT. ' NOT NULL',
             'createdDate' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'paymentDate' => Schema::TYPE_INTEGER. ' NOT NULL'
         ]);
+        
+        $this->createIndex('DONATION_CAMPAIGN_ID', Donation::tableName(), ['campaignId']);
     }
 
     public function down()

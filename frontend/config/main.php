@@ -19,7 +19,8 @@ return [
                 'app' => 'site',
                 'api/<action>' => 'api/<action>',
                 '<userAlias>/<campaignAlias>' => 'layoutview/view',
-                '<userAlias>/<campaignAlias>/donate' => 'layoutview/donate'
+                '<userAlias>/<campaignAlias>/donate' => 'layoutview/donate',
+                '<userAlias>/<campaignAlias>/thankyou' => 'layoutview/thankyou'
             ]
         ],
         'eauth' => require 'eauth.php',

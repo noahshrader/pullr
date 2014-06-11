@@ -38,7 +38,8 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'userId' => Schema::TYPE_INTEGER,
             'amount' => Schema::TYPE_FLOAT . ' NOT NULL',
             'paypalId' => Schema::TYPE_STRING,
-            'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
+            'createdDate' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'paymentDate' => Schema::TYPE_INTEGER. ' NOT NULL',
             'type' => Schema::TYPE_STRING,
             'relatedId' => Schema::TYPE_INTEGER
         ], $tableOptions);
@@ -65,27 +66,6 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'description' => Schema::TYPE_TEXT. ' NOT NULL',
             'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
         ]);
-        
-//        $statuses = implode('","', Event::$STATUSES);
-//        $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Event::STATUS_INACTIVE . '"';
-//        $this->createTable(Event::tableName(), [
-//            'id' => Schema::TYPE_PK,
-//            'key' => Schema::TYPE_STRING. ' NOT NULL',
-//            'name' => Schema::TYPE_STRING . ' NOT NULL',
-//            'status' => $statuses, 
-//            'charityId' => Schema::TYPE_INTEGER . ' NOT NULL',
-//            'startDate' => Schema::TYPE_INTEGER . ' NOT NULL',
-//            'endDate' =>   Schema::TYPE_INTEGER . ' NOT NULL',
-//            'amountRaised' => Schema::TYPE_FLOAT . ' NOT NULL',
-//            'goalAmount' => Schema::TYPE_FLOAT . ' NOT NULL',
-//            'numberOfDonations' => Schema::TYPE_INTEGER. ' NOT NULL',
-//            'numberOfUniqueDonors' => Schema::TYPE_INTEGER. ' NOT NULL',
-//            'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
-//            'amount' => Schema::TYPE_FLOAT . ' NOT NULL',
-//            'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
-//            'type' => Schema::TYPE_STRING
-//        ], $tableOptions);
-        
         
         $this->sampleData();
     }

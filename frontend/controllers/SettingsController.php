@@ -50,7 +50,7 @@ class SettingsController extends FrontendController {
         if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
             $payment = new PullrPayment();
             $payment->completePayment();
-            $this->redirect('settings');
+            $this->redirect('app/settings');
         }
 
         return $this->render('index', [

@@ -14,22 +14,22 @@ use PayPal\Api\RedirectUrls;
 use common\models\Plan;
 use PayPal\Api\PaymentExecution;
 use common\models\Donation;
+use common\models\Campaign;
 
 class PullrPayment extends \yii\base\Component {
 
     public $clientId;
     public $clientSecret;
-
     public $apiContext;
-    
+
     public function __construct($config = array()) {
         parent::__construct($config);
-        define('PP_CONFIG_PATH', __DIR__.'/../config/paypal');
+        define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
         $this->clientId = \Yii::$app->params['paypalClientId'];
         $this->clientSecret = \Yii::$app->params['paypalClientSecret'];
-        $this->apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret)); 
+        $this->apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret));
     }
-    
+
     public static function getPaymentParamsForMoney($amount) {
         $params = [];
         switch ($amount) {
@@ -49,44 +49,62 @@ class PullrPayment extends \yii\base\Component {
         return $params;
     }
 
-    public function completePayment(){
+    public function completePayment() {
         // Get the payment Object by passing paymentId
-	// payment id was previously stored in session in
-	// CreatePaymentUsingPayPal.php
-	$paymentId = $_SESSION['paymentId'];
-	$payment = Payment::get($paymentId, $this->apiContext);
-	
-	// PaymentExecution object includes information necessary 
-	// to execute a PayPal account payment. 
-	// The payer_id is added to the request query parameters
-	// when the user is redirected from paypal back to your site
-	$execution = new PaymentExecution();
-	$execution->setPayerId($_GET['PayerID']);
-	
-	//Execute the payment
-	// (See bootstrap.php for more on `ApiContext`)
-        try{
+        // payment id was previously stored in session in
+        // CreatePaymentUsingPayPal.php
+        $session = new \yii\web\Session();
+        $paymentId =$session->get('paymentId');
+        $payment = Payment::get($paymentId, $this->apiContext);
+
+        // PaymentExecution object includes information necessary 
+        // to execute a PayPal account payment. 
+        // The payer_id is added to the request query parameters
+        // when the user is redirected from paypal back to your site
+        $execution = new PaymentExecution();
+        $execution->setPayerId($_GET['PayerID']);
+
+        //Execute the payment
+        // (See bootstrap.php for more on `ApiContext`)
+        try {
             $result = $payment->execute($execution, $this->apiContext);
-        }catch (\Exception $ex) {
+        } catch (\Exception $ex) {
             return;
         }
-        if ($result && $result->getState()=='approved'){
-            $pay = \common\models\Payment::find()->where(['paypalId' => $result->getId()])->one();
-            if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING){
-                $id = $pay->user->id;
-                $plan = Plan::findOne($id);
-                $plan->prolong($pay->amount);
+        if ($result && $result->getState() == 'approved') {
+            $pay = \common\models\Payment::findOne(['paypalId' => $result->getId()]);
+            
+            if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING) {
                 $pay->status = \common\models\Payment::STATUS_APPROVED;
+                $pay->paymentDate = time();
                 $pay->save();
+                switch ($pay->type) {
+                    case \common\models\Payment::TYPE_PRO_MONTH:
+                    case \common\models\Payment::TYPE_PRO_YEAR:
+                        $id = $pay->user->id;
+                        $plan = Plan::findOne($id);
+                        $plan->prolong($pay->amount);
+                        break;
+                    case \common\models\Payment::TYPE_DONATION:
+                        $donation = Donation::findOne($pay->relatedId);
+                        $donation->paymentDate = $pay->paymentDate;
+                        $donation->save();
+                        
+                        $campaign = Campaign::findOne($donation->campaignId);
+                        $sum = Donation::find()->where(['campaignId' => $campaign->id])->andWhere('paymentDate > 0')->sum('amount');
+                        $campaign->amountRaised = $sum;
+                        $campaign->save();
+                        break;
+                }
             }
         }
     }
-    
+
     /**
      * fired when someone make donation for campaign
      * @param \common\models\Donation $donation
      */
-    public static function donationPayment(Donation $donation){
+    public static function donationPayment(Donation $donation) {
         // A resource representing a Payer that funds a payment
         // For paypal account payments, set payment method
         // to 'paypal'.
@@ -108,9 +126,10 @@ class PullrPayment extends \yii\base\Component {
         $amount = new Amount();
         $amount->setCurrency("USD")
                 ->setTotal($donation->amount);
-        
-        self::makePayment($amount, $itemList, 'donation', $donation->id);
+
+        self::makePayment($amount, $itemList, \common\models\Payment::TYPE_DONATION, $donation->id);
     }
+
     public function proPayment($moneyAmount) {
         $params = self::getPaymentParamsForMoney($moneyAmount);
 
@@ -132,14 +151,14 @@ class PullrPayment extends \yii\base\Component {
 
         self::makePayment($amount, $itemList, $params['paymentType']);
     }
-    
-    public static function makePayment($amount, $itemList, $paymentType, $relatedId = null){
+
+    public static function makePayment($amount, $itemList, $paymentType, $relatedId = null) {
         // A resource representing a Payer that funds a payment
         // For paypal account payments, set payment method
         // to 'paypal'.
         $payer = new Payer();
         $payer->setPaymentMethod("paypal");
-        
+
         // ### Transaction
         // A transaction defines the contract of a
         // payment - what is the payment for and who
@@ -148,12 +167,12 @@ class PullrPayment extends \yii\base\Component {
         $transaction->setAmount($amount)
                 ->setItemList($itemList);
 
-        $baseUrl = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $baseUrl = preg_replace('/\?.*/', '', $baseUrl);
-        
+
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl($baseUrl.'?paymentSuccess=true')
-                ->setCancelUrl($baseUrl.'?paymentSuccess=false');
+        $redirectUrls->setReturnUrl($baseUrl . '?paymentSuccess=true')
+                ->setCancelUrl($baseUrl . '?paymentSuccess=false');
 
         // ### Payment
         // A Payment Resource; create one using
@@ -163,10 +182,10 @@ class PullrPayment extends \yii\base\Component {
                 ->setPayer($payer)
                 ->setRedirectUrls($redirectUrls)
                 ->setTransactions([$transaction]);
-        
+
         $pullrPayment = new PullrPayment;
-         try {
-            
+        try {
+
             $payment->create($pullrPayment->apiContext);
             // ### Get redirect url
             // The API response provides the url that you must redirect
@@ -178,21 +197,23 @@ class PullrPayment extends \yii\base\Component {
                     break;
                 }
             }
-
+            
+            $session = new \yii\web\Session();
             // ### Redirect buyer to PayPal website
             // Save the payment id so that you can 'complete' the payment
             // once the buyer approves the payment and is redirected
             // back to your website.
             //
-            $_SESSION['paymentId'] = $payment->getId();
+            $session->set('paymentId', $payment->getId());
             $pay = new \common\models\Payment();
             $pay->paypalId = $payment->getId();
-            if (!\Yii::$app->user->isGuest){
+            if (!\Yii::$app->user->isGuest) {
                 $pay->userId = \Yii::$app->user->id;
             }
             $pay->amount = $amount->getTotal();
             $pay->type = $paymentType;
             $pay->relatedId = $relatedId;
+            $pay->createdDate = time();
             $pay->save();
 
             if (isset($redirectUrl)) {
@@ -201,10 +222,10 @@ class PullrPayment extends \yii\base\Component {
             }
         } catch (\Exception $ex) {
             echo "Exception: " . $ex->getMessage() . PHP_EOL;
-            if ($ex instanceof \PayPal\Exception){
+            if ($ex instanceof \PayPal\Exception) {
                 var_dump($ex->getData());
             }
-            echo 
+            echo
             exit(1);
         }
     }

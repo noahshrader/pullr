@@ -21,6 +21,11 @@ class Payment extends ActiveRecord {
      */
     const TYPE_PRO_YEAR = 'pro_year';
     
+    
+    /**
+     * when donation is done
+     */
+    const TYPE_DONATION = 'donation';
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */

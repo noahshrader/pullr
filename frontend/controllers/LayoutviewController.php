@@ -38,6 +38,11 @@ class LayoutviewController extends \yii\web\Controller {
         die;
     }
     
+    public function actionThankyou($userAlias, $campaignAlias){
+        $campaign = $this->getCampaign($userAlias, $campaignAlias);
+        echo $this->renderPartial('thankyou',['campaign' => $campaign]);
+        die;
+    }
     public function actionDonate($userAlias, $campaignAlias){
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
     
@@ -53,6 +58,13 @@ class LayoutviewController extends \yii\web\Controller {
         if ($donation->load($_REQUEST) && $donation->save()){
             PullrPayment::donationPayment($donation);
         }
+        
+         if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
+            $payment = new PullrPayment();
+            $payment->completePayment();
+            $this->redirect($userAlias.'/'.$campaignAlias.'/thankyou');
+        }
+        
         return $this->render('donate', [
             'campaign' => $campaign,
             'donation' => $donation
