@@ -122,6 +122,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $campaign->key = 'test_key';
             $campaign->eventId = 1;
             $campaign->goalAmount = 17000;
+            $campaign->charityId = 1;
             $campaign->save();
             
             

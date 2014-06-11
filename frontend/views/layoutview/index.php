@@ -19,7 +19,8 @@ and open the template in the editor.
     <body>
         <button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate">Donate</button>
         <div class='row'>
-            <h1  data-pullr='campaign-name'></h1>
+            <h1  data-pullr='campaign-name'></h1><h3>for <span data-pullr="campaign-charity-name"></span></h3>
+            
             <span data-pullr='campaign-startDateFormatted'></span> -
             <span data-pullr='campaign-endDateFormatted'></span>
             
