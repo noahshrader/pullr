@@ -1,7 +1,7 @@
 Short codes
 =========
 
-You can use any tag with **data-pullr** attributes set to some value. If that model/attribute exists its content will be inserted directly in that tag. 
+You can use any tag with **data-pullr** attribute set to some value. If that model/attribute exists its value will be inserted directly in that tag. If it doesn't exist nothing will happen.
 
 Code example:
 ```
@@ -20,6 +20,18 @@ As result we can recieve something like:
 ```
 
 To view list of available fields you can type *Pullr.campaign* in javascript console on layout page. 
+
+###Predefined charity
+If all required condition met (donationDestination is *pre-approved charites* and campaign's type is *charity event* or *charity fundraiser* and predefined charity is selected) **campaign-charity** model is avaiable. 
+Code example: 
+
+`<span data-pullr="campaign-charity-name"></span>`
+
+will generate something like:
+
+`<span data-pullr="campaign-charity-name">PETA</span>`
+
+###Campaign attributes
 As for June 2014 list of available fields look like:
 
 ```
@@ -74,3 +86,5 @@ youtubeEnable: 0
 youtubeLayout: ""
 youtubeUrl: ""
 ```
+
+
