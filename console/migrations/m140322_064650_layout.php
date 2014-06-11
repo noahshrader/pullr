@@ -113,6 +113,17 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $campaign->eventId = 1;
             $campaign->goalAmount = 17000;
             $campaign->save();
+
+            $campaign = new Campaign;
+            $campaign->name = 'Fun For Freedom';
+            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
+            $campaign->channelTeam = "funforfreedom";
+            $campaign->userId = 4;
+            $campaign->key = 'test_key';
+            $campaign->eventId = 1;
+            $campaign->goalAmount = 17000;
+            $campaign->save();
+            
             
             $campaign = new Campaign;
             $campaign->name = 'LinkSonicK';

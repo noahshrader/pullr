@@ -151,6 +151,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user->setScenario('openId');
         $user->name = 'Stanislav Klyukin';
         $user->smallPhoto = 'http://pbs.twimg.com/profile_images/1410660514/a_e8c2fb55_normal.jpg';
+        $user->uniqueName = 'klyukin';
         $user->save();
 
         $openId = new OpenIDToUser();
