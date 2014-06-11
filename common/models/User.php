@@ -327,7 +327,7 @@ class User extends ActiveRecord implements IdentityInterface {
         public function getCampaigns($status = Campaign::STATUS_ACTIVE){
             return $this->hasMany(Campaign::className(), ['userId' => 'id'])
                     ->where(['status' => $status])
-                    ->orderBy('date DESC');
+                    ->orderBy('date DESC, id DESC');
         }
         
         private $_plan = null;
