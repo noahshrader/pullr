@@ -23,10 +23,11 @@ $user = \Yii::$app->user->identity;
                 <h2><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right; margin-right: 10px; color: #fff" ><i class="glyphicon glyphicon-plus"></i></a></h2>
                 <div class="text-center">
                     <div class="btn-group">
-                        <a type="button" href="app/campaign" class="btn btn-default active">Active</a>
-                        <a type="button" class="btn btn-default">Past</a>
+                        <a type="button" href="app/campaign" class="btn btn-default active">Current</a>
+                        <a type="button" class="btn btn-default">Archive</a>
                         <a type="button" class="btn btn-default">Donors</a>
                     </div>
+                    <a href="app/campaign" class="trash"><i class="glyphicon glyphicon-trash"></i></a>
                 </div>
                 <div class="campaigns-list ">
                     <? foreach ($campaigns as $campaign): ?>

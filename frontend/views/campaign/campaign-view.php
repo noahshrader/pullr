@@ -65,9 +65,4 @@ $donations = $campaign->donations;
             <? endforeach; ?>
         </tbody>
     </table>
-    <? if (sizeof($donations) == 0): ?>
-        <div class="text-center">
-            There are no donations yet.
-        </div>
-    <?    endif; ?>
 </section>

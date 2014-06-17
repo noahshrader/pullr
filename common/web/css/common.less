@@ -190,17 +190,22 @@ form {
     .campaigns-list>a:hover, .campaigns-list>a.active{
         background-color: #fff;
     }
+    .trash{
+        float: right;
+        margin-top: 28px;
+        margin-right: 10px;
+        color: #fff;
+        font-size: 1.2em;
+    }
 }
 
 .campaings-view-selected{
+    overflow: hidden;
     margin-left: @campaigns-left-menu-width;
     .campaign-actions{
         margin: 10px auto;
         max-width: 800px;
         
-    }
-    .campaign-actions>.row{
-        height: 50px;
     }
     
     table#campaign-donations{
