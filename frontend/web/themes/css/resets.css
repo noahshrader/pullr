@@ -1,0 +1,53 @@
+/* Resets */
+/* ------------------------------------------------- */
+*,
+*:after,
+*:before {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  color: #444;
+}
+/* clear */
+.clear:before,
+.clear:after {
+  content: '';
+  display: table;
+}
+.clear:after {
+  clear: both;
+}
+.clear {
+  *zoom: 1;
+}
+a {
+  color: #444;
+  text-decoration: none;
+}
+a:hover {
+  color: #444;
+}
+a:hover,
+a:focus,
+a:active,
+input,
+input:focus,
+button,
+button:active {
+  outline: 0;
+}
+input,
+button {
+  border: 0;
+}
