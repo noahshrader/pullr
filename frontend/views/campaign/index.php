@@ -1,9 +1,6 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use common\models\Notification;
-use kartik\widgets\FileInput;
-
+use common\models\Campaign;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
@@ -21,29 +18,38 @@ $user = \Yii::$app->user->identity;
         return false;
     }
 </script>
-            <section class="<?= $selectedCampaign ? 'content-container': 'panels-wrap open' ?>">
-                <h1><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New campaign</a></h1>
-                <div class="row content-container content-container-layout">
+<div style="height: 100%">
+            <section class="campaigns-left-menu <?= $editCampaign ? 'content-container': 'panels-wrap open' ?>">
+                <h2><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right; margin-right: 10px; color: #fff" ><i class="glyphicon glyphicon-plus"></i></a></h2>
+                <div class="text-center">
+                    <div class="btn-group">
+                        <a type="button" href="app/campaign" class="btn btn-default active">Current</a>
+                        <a type="button" class="btn btn-default">Archive</a>
+                        <a type="button" class="btn btn-default">Donors</a>
+                    </div>
+                    <a href="app/campaign" class="trash"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+                <div class="campaigns-list ">
+                    <? foreach ($campaigns as $campaign): ?>
+                        <a href="app/campaign/view?id=<?= $campaign->id?>" class="row <?= ($selectedCampaign && $campaign->id == $selectedCampaign->id)?'active':''; ?>">
+                            <div class="col-xs-10 main-info">
+                                <div><?= $campaign->name ?></div>
+                                <div class="layout-type"><?= $campaign->type ?></div>
+                                <div>$<?= number_format($campaign->amountRaised)?></div>
+                            </div>
+                            <div class="col-xs-2" style="vertical-align: middle">
+                                <strong>&gt;</strong>
+                            </div>
+                        </a>
+                    <? endforeach; ?>
+                </div>
+                <div class="row content-container content-container-layout" style="display: none">
                     <? foreach ($campaigns as $campaign): ?>
                         <div class="col-sm-4 pullr-layout-container">
                             <div class="pullr-layout">
                                     <div class="pullr-table">
                                         <div class="pullr-table-row">
                                             <div class="change-icons">
-                                                <div>
-                                                    <a href='<?= $user->getUrl().$campaign->alias ?>'><i class="glyphicon glyphicon-search"></i></a>
-                                                </div>
-                                                <div>
-                                                    <a href="app/campaign/edit?id=<?= $campaign->id?>"><i class="glyphicon glyphicon-edit"></i></a>
-                                                </div>
-                                                <div>
-                                                    
-                                                    <a href="app/campaign" onclick="return layoutRemove(<?=$campaign->id?>)" ><i class="glyphicon glyphicon-remove"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="main-info" >
-                                                <div><?= $campaign->name ?></div>
-                                                <div class="layout-type"><?= $campaign->type ?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -52,14 +58,19 @@ $user = \Yii::$app->user->identity;
                     <? endforeach; ?>
                 </div>
             </section>
-            <? if ($selectedCampaign):?>
+            <? if ($selectedCampaign): ?>
+                 <?= $this->render('campaign-view', [
+                            'campaign' => $selectedCampaign
+                        ]); ?>   
+            <? endif ?> 
+            <? if ($editCampaign):?>
             
 
             <!-- sidebar -->
             <section id="sidepanel" class='sidepanel open'>
                 <div class="frontend-right-widget">
                     <?= $this->render('campaign-edit', [
-                            'campaign' => $selectedCampaign
+                            'campaign' => $editCampaign
                         ]); ?>            
                 </div>
             </section>
@@ -104,3 +115,4 @@ $user = \Yii::$app->user->identity;
 
 
             <? endif; ?>
+</div>

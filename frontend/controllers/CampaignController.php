@@ -38,49 +38,55 @@ class CampaignController extends FrontendController {
         $campaign->save();
         $this->redirect('app/campaign');
     }
-
-    public function actionIndex(Campaign $campaign = null) {
-        $isNewRecord = $campaign && $campaign->isNewRecord;
+    
+    public function actionView(){
+        $campaign = $this->getCampaign();
+        
+        return $this->actionIndex(null, $campaign);
+    }
+    public function actionIndex(Campaign $editCampaign = null, Campaign $selectedCampaign = null) {
+        $isNewRecord = $editCampaign && $editCampaign->isNewRecord;
         
         
-        if ($campaign && $campaign->load($_POST)){ 
+        if ($editCampaign && $editCampaign->load($_POST)){ 
             /*             * from html5 datetime-local tag to timestamp */
-            if ($campaign->startDate && !is_numeric($campaign->startDate)) {
-                $campaign->startDate = (new \DateTime($campaign->startDate))->getTimestamp();
+            if ($editCampaign->startDate && !is_numeric($editCampaign->startDate)) {
+                $editCampaign->startDate = (new \DateTime($editCampaign->startDate))->getTimestamp();
             }
-            if ($campaign->endDate && !is_numeric($campaign->endDate)) {
-                $campaign->endDate = (new \DateTime($campaign->endDate))->getTimestamp();
+            if ($editCampaign->endDate && !is_numeric($editCampaign->endDate)) {
+                $editCampaign->endDate = (new \DateTime($editCampaign->endDate))->getTimestamp();
             }
 
-            if ($campaign->save()){
-                UploadImage::UploadLogo($campaign);
+            if ($editCampaign->save()){
+                UploadImage::UploadLogo($editCampaign);
 
                 if ($isNewRecord) {
-                    $this->redirect('app/campaign/edit?id=' . $campaign->id);
+                    $this->redirect('app/campaign/edit?id=' . $editCampaign->id);
                 }
             }
         }
 
-        if ($campaign) {
-            if (!$campaign->startDate) {
-                $campaign->startDate = time();
+        if ($editCampaign) {
+            if (!$editCampaign->startDate) {
+                $editCampaign->startDate = time();
             }
-            if (!$campaign->endDate) {
-                $campaign->endDate = time() + 60 * 60 * 24 * 4;
+            if (!$editCampaign->endDate) {
+                $editCampaign->endDate = time() + 60 * 60 * 24 * 4;
             }
-            if (is_numeric($campaign->startDate)) {
-                $campaign->startDate = strftime('%Y-%m-%dT%H:%M', $campaign->startDate);
+            if (is_numeric($editCampaign->startDate)) {
+                $editCampaign->startDate = strftime('%Y-%m-%dT%H:%M', $editCampaign->startDate);
             }
-            if (is_numeric($campaign->endDate)) {
-                $campaign->endDate = strftime('%Y-%m-%dT%H:%M', $campaign->endDate);
+            if (is_numeric($editCampaign->endDate)) {
+                $editCampaign->endDate = strftime('%Y-%m-%dT%H:%M', $editCampaign->endDate);
             }
         }
 
         $user = \Yii::$app->user->identity;
         $params = [];
-        $params['selectedCampaign'] = $campaign;
+        $params['editCampaign'] = $editCampaign;
         $params['campaigns'] = $user->campaigns;
-
+        $params['selectedCampaign'] = $selectedCampaign;
+        
         /*         * from timestamp to html5 datetime-local tag */
 
         return $this->render('index', $params);

@@ -6,6 +6,8 @@ use yii\db\ActiveRecord;
 use common\models\User;
 use common\models\Theme;
 use yii\helpers\HtmlPurifier;
+use common\models\Donation;
+
 /**
  * to consider account on other the base you also should check expire field to be more than current time
  */
@@ -194,6 +196,9 @@ class Campaign extends ActiveRecord {
         return $this->hasOne(Charity::className(), ['id' => 'charityId']);
     }
     
+    public function getDonations(){
+        return $this->hasMany(Donation::className(), ['campaignId' => 'id'])->andWhere('paymentDate > 0');
+    }
     
 
 }

@@ -1,16 +1,16 @@
 function donatePageInit() {
-    jQuery("#other-amount").on("change keyup paste",amountChangedEvent);
+    $("#other-amount").on("change keyup paste",amountChangedEvent);
 
-    jQuery("#other").hide();
+    $("#other").hide();
 
 
-    jQuery('.donationContainer').on('change', 'input[type="radio"].toggle', function() {
+    $('.donationContainer').on('change', 'input[type="radio"].toggle', function() {
         if (this.checked) {
-            jQuery('input[name="' + this.name + '"].checked').removeClass('checked');
-            jQuery(this).addClass('checked');
+            $('input[name="' + this.name + '"].checked').removeClass('checked');
+            $(this).addClass('checked');
         }
     });
-    jQuery('.fieldamount input:radio').click(function() {
+    $('.fieldamount input:radio').click(function() {
         var $els = $('.fieldamount input:radio[name=' + $(this).attr('name') + ']');
         $('.fieldamount input:radio[name=' + $(this).attr('name') + ']').parent().removeClass('active');
         var $active = $(this);
@@ -19,14 +19,34 @@ function donatePageInit() {
         this.checked = true;
         amountChangedEvent();
     });
-    jQuery('.donationContainer input[type="radio"].toggle:checked').addClass('checked');
-    jQuery('a.closethis').click(function() {
-        jQuery('#other').fadeOut(100);
-        jQuery('.choice').fadeIn(200);
-        jQuery('#otheramount').removeClass('checked');
-        jQuery('#option1').attr('checked', 'checked');
+    $('.donationContainer input[type="radio"].toggle:checked').addClass('checked');
+    $('a.closethis').click(function() {
+        $('#other').fadeOut(100);
+        $('.choice').fadeIn(200);
+        $('#otheramount').removeClass('checked');
+        $('#option1').attr('checked', 'checked');
         amountChangedEvent();
     });
+    
+    // Character count for donation form text area
+    $.fn.extend( {
+            limiter: function(limit, elem) {
+                    $(this).on("keyup focus", function() {
+                    setCount(this, elem);
+                });
+                function setCount(src, elem) {
+                    var chars = src.value.length;
+                    if (chars > limit) {
+                        src.value = src.value.substr(0, limit);
+                        chars = limit;
+                    }
+                    elem.html( limit - chars );
+                }
+                setCount($(this)[0], elem);
+            }
+    });
+    var elem = $(".counter");
+    $('textarea#donation-comments').limiter(600, elem);
     
     $('#otheramount').click(function(){
         $('#other').css('display','block');
@@ -34,18 +54,47 @@ function donatePageInit() {
     amountChangedEvent();
 }
 
-function amountChangedEvent(){
-    var value = $('[name=donation-amount]:checked').val();
-    var undefinedFlag = false;
-    if (typeof value === 'undefined'){
-        value = 1;
-        undefinedFlag = true;
+/**
+ *
+ * format number with ",". Example - 1,200,322 
+ */
+function numberFormat(number){
+    var str = '';
+    var module = number % 1000;
+    str = module + str;
+    remainNumber = Math.floor(number/1000);
+    if (remainNumber > 0){
+        if (module<100){
+            str = '0'+str;
+        }
+        if (module<10){
+            str = '0'+str;
+        }
+        str = numberFormat(remainNumber) + ','+str;
     }
     
-    if (value=='other'){
+    return str;
+}
+
+function amountChangedEvent(){
+    if ($('.tip-jar').length>0){
         var value=parseInt($('#other-amount').val());
         if (!$.isNumeric(value) || value == 0){
             return;
+        }
+    } else {
+        var value = $('[name=donation-amount]:checked').val();
+        var undefinedFlag = false;
+        if (typeof value === 'undefined'){
+            value = 1;
+            undefinedFlag = true;
+        }
+
+        if (value=='other'){
+            var value=parseInt($('#other-amount').val());
+            if (!$.isNumeric(value) || value == 0){
+                return;
+            }
         }
     }
     
@@ -59,7 +108,7 @@ function amountChangedEvent(){
         var amountRaised = parseInt($progressContainer.data('amountraised'));
         var goalAmount = parseInt($progressContainer.data('goalamount'));
         amountRaised+=value;
-        $progressContainer.find('.amountRaised').text('$'+amountRaised);
+        $progressContainer.find('.amountRaised').text('$'+numberFormat(amountRaised));
         /*preventing division by zero*/
         goalAmount = Math.max(1, goalAmount);
         var percent = 100*amountRaised/goalAmount;
