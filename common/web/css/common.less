@@ -159,3 +159,55 @@ form {
 .twitchLogin{
     color: red;
 }
+
+@campaigns-left-menu-width : 300px;
+.campaigns-left-menu{
+    float: left;
+    width: @campaigns-left-menu-width;
+    height: 100%;
+    border-right: #000 3px solid;
+    
+    .btn-group{
+        margin-top: 20px;
+    }
+    
+    .campaigns-list{
+        margin-top: 30px;
+    }
+    
+    .campaigns-list>a{
+        display: table;
+        margin: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: #000 2px solid;
+    }
+    [class*="col-"] {
+        float: none;
+        display: table-cell;
+        vertical-align: top;
+    }
+    .campaigns-list>a:hover, .campaigns-list>a.active{
+        background-color: #fff;
+    }
+}
+
+.campaings-view-selected{
+    margin-left: @campaigns-left-menu-width;
+    .campaign-actions{
+        margin: 10px auto;
+        max-width: 800px;
+        
+    }
+    .campaign-actions>.row{
+        height: 50px;
+    }
+    
+    table#campaign-donations{
+        margin: 10px;
+        text-align: center;
+        th{
+            text-align: center;
+        }
+    }
+}
