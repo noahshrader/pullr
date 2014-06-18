@@ -2,6 +2,7 @@ $(function(){
     $el = $('#campaign-donations');
 //    $wrapper = $el.parent().parent();
     $el.dataTable({
+         "bSort": false,
          "aLengthMenu": [
                     [10, 20, 40, -1],
                     [10, 20, 40, "All"] // change per page values here
@@ -17,6 +18,10 @@ $(function(){
                     }
           }
     });
+    
+    
+    // let's initiate popover
+    $('[data-toggle="popover"').popover();
     
 //    $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
 //    $wrapper.find('.dataTables_length select').addClass("form-control"); // modify table per page dropdown

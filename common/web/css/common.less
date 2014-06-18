@@ -44,7 +44,7 @@ a, a:link, a:visited, a:active {
     transition-duration: 0.33s;
     transition-property: color, background, text-shadow, border, opacity, text-decoration;
     text-decoration: none;
-    
+
 }
 
 .navbar-fixed-top {
@@ -166,15 +166,15 @@ form {
     width: @campaigns-left-menu-width;
     height: 100%;
     border-right: #000 3px solid;
-    
+
     .btn-group{
         margin-top: 20px;
     }
-    
+
     .campaigns-list{
         margin-top: 30px;
     }
-    
+
     .campaigns-list>a{
         display: table;
         margin: 0px;
@@ -199,20 +199,40 @@ form {
     }
 }
 
+@border : #000 2px solid;
 .campaings-view-selected{
     overflow: hidden;
     margin-left: @campaigns-left-menu-width;
     .campaign-actions{
         margin: 10px auto;
         max-width: 800px;
-        
+
     }
-    
-    table#campaign-donations{
-        margin: 10px;
-        text-align: center;
-        th{
-            text-align: center;
+
+    .campaign-overview-tops{
+        .col-xs-6 div:first-child{
+            font-size: 1.6em;
         }
+        .col-xs-6:first-child{
+            border-right: @border;
+        }
+
+        .col-xs-6{
+            padding: 20px 0px;
+        }
+    }
+
+    .campaign-overview-general-number{
+        padding: 40px 50px; 
+        border-bottom: @border;
+        .col-xs-3 div:first-child{
+            font-size: 2em;
+            font-weight: bold;
+        }
+    }
+
+    #campaign-donations_wrapper, #campaign-overview{
+        border: @border;
+        margin: 20px 10px; 
     }
 }

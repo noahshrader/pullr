@@ -197,7 +197,7 @@ class Campaign extends ActiveRecord {
     }
     
     public function getDonations(){
-        return $this->hasMany(Donation::className(), ['campaignId' => 'id'])->andWhere('paymentDate > 0');
+        return $this->hasMany(Donation::className(), ['campaignId' => 'id'])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
     }
     
 

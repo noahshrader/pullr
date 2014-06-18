@@ -73,7 +73,6 @@ class PullrPayment extends \yii\base\Component {
         }
         if ($result && $result->getState() == 'approved') {
             $pay = \common\models\Payment::findOne(['paypalId' => $result->getId()]);
-            
             if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING) {
                 $pay->status = \common\models\Payment::STATUS_APPROVED;
                 $pay->paymentDate = time();
@@ -86,10 +85,17 @@ class PullrPayment extends \yii\base\Component {
                         $plan->prolong($pay->amount);
                         break;
                     case \common\models\Payment::TYPE_DONATION:
+                        $payer = $result->getPayer();
+                        $payerInfo = $payer->getPayerInfo();
                         $donation = Donation::findOne($pay->relatedId);
                         $donation->paymentDate = $pay->paymentDate;
+                        if (!$donation->email){
+                            $donation->email = strip_tags($payerInfo->getEmail());
+                        }
+                        if (!$donation->name){
+                            $donation->name = strip_tags($payerInfo->getFirstName().' '.$payerInfo->getLastName());
+                        }
                         $donation->save();
-                        
                         $campaign = Campaign::findOne($donation->campaignId);
                         $sum = Donation::find()->where(['campaignId' => $campaign->id])->andWhere('paymentDate > 0')->sum('amount');
                         $campaign->amountRaised = $sum;
