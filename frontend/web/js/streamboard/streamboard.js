@@ -1,6 +1,6 @@
 $(function () {
     $(".resizable").resizable({
-//        maxHeight: 250,
+//        maxHeight: 150,
         maxWidth: (screen.width/2),
 //        minHeight: 150,
         minWidth: 287,
