@@ -14,10 +14,10 @@ use common\models\Donation;
 class Campaign extends ActiveRecord {
 
     const STATUS_ACTIVE = 'active';
-//    const STATUS_PENDING = 'pending';
+    const STATUS_PENDING = 'pending';
     const STATUS_DELETED = 'deleted';
 
-    public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_DELETED];
+    public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_PENDING, self::STATUS_DELETED];
 
     const STREAM_SERVICE_TWITCH = 'Twitch';
     const STREAM_SERVICE_HITBOX = 'Hitbox';
@@ -98,6 +98,7 @@ class Campaign extends ActiveRecord {
             ['name', 'filter', 'filter' => 'strip_tags'],
             ['name', 'nameFilter'],
             ['goalAmount', 'double'],
+            ['goalAmount', 'default', 'value' => 0],
             ['paypalAddress', 'email'],
             ['googleAnalytics', 'filter', 'filter' => 'strip_tags'],
             ['channelName', 'filter', 'filter' => 'strip_tags'],

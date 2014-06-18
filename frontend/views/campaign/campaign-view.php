@@ -18,40 +18,73 @@ $command = $connection->createCommand($sql);
 $topDonorName = $command->queryScalar();
 $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('name')->scalar();
 ?>
+
+<script type="text/javascript">
+    function campaignChangeStatus(id, status){
+        if (status!= '<?= Campaign::STATUS_DELETED ?>' || confirm('Are you sure to remove campaign?')){
+            $.get('app/campaign/status', {id: id, status: status});
+            return true;
+        }
+        return false;
+    }
+</script>
+
 <section class="campaings-view-selected">
     <h1 class="text-center"><?= $campaign->name ?></h1>
     <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
         <div class="text-center"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></div>
 <? endif ?>
-    <div class="campaign-actions">
-        <div class="row text-center"  >
-                <a href='<?= $user->getUrl() . $campaign->alias ?>' class="col-xs-2 col-xs-offset-1">
+    <table class="campaign-actions">
+        <tr class="text-center"  >
+            <td>
+                <a href='<?= $user->getUrl() . $campaign->alias ?>'>
                     <i class="glyphicon glyphicon-search"></i>
                     <br>
                     View campaign
                 </a>
-                <a href="app/campaign/edit?id=<?= $campaign->id ?>" class="col-xs-2">
+            </td>
+            <td>
+                <a href="app/campaign/edit?id=<?= $campaign->id ?>">
                     <i class="glyphicon glyphicon-edit"></i>
                     <br>
-                    Edit campaigned
+                    Edit campaign
                 </a>
-                <a href="app/campaign" class="col-xs-2"  onclick="return layoutArchive(<?= $campaign->id ?>)">
+            </td>
+            <td>
+                <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
+                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
                     <i class="glyphicon glyphicon-book"></i>
                     <br>
                     Campaign archive
                 </a>
-                <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md" class="col-xs-2">
+                <? endif ?>
+            </td>
+            <td>
+                <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    <br>
+                    Campaign restore
+                </a>
+                <? endif ?>
+            </td>
+            <td>
+                <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
                     <br>
                     Shortcodes
                 </a>
-                <a href="app/campaign" class="col-xs-2"  onclick="return layoutRemove(<?= $campaign->id ?>)">
+            </td>
+            <td>
+                <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
+                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                     <i class="glyphicon glyphicon-remove"></i>
                     <br>
                     Campaign remove
                 </a>
-            </div>
-        </div>
-   
+                <? endif ?>
+            </td>
+        </tr>
+    </table>
         
     <div id='campaign-overview' class='text-center'>
         <div class='campaign-overview-general-number'>
@@ -120,11 +153,11 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
                     </td>
                     <td>
                         <? if ($donation->comments): ?>
-                        'Yes' &nbsp;
+                        Yes &nbsp;
                             <i class="glyphicon glyphicon-plus-sign" data-container="body" data-toggle="popover" 
                                data-placement="bottom" data-content="<?= $donation->comments ?>"></i>
                         <? else: ?>
-                            'No
+                            No
                         <? endif ?>
                     </td>
                 </tr>

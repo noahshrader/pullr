@@ -9,29 +9,21 @@ use common\models\Campaign;
 $this->title = 'Campaigns';
 $user = \Yii::$app->user->identity;
 ?>
-<script type="text/javascript">
-    function layoutRemove(id){
-        if (confirm('Are you sure to remove?')){
-            $.post('app/campaign/remove', {id: id});
-            return true;
-        }
-        return false;
-    }
-</script>
 <div style="height: 100%">
             <section class="campaigns-left-menu <?= $editCampaign ? 'content-container': 'panels-wrap open' ?>">
                 <h2><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right; margin-right: 10px; color: #fff" ><i class="glyphicon glyphicon-plus"></i></a></h2>
                 <div class="text-center">
                     <div class="btn-group">
-                        <a type="button" href="app/campaign" class="btn btn-default active">Current</a>
-                        <a type="button" class="btn btn-default">Archive</a>
-                        <a type="button" class="btn btn-default">Donors</a>
+                        <a type="button" href="app/campaign" class="btn btn-default <?= $status == Campaign::STATUS_ACTIVE ? 'active': '' ?>">Current</a>
+                        <a type="button" href="app/campaign?status=<?= Campaign::STATUS_PENDING ?>" class="btn btn-default <?= $status == Campaign::STATUS_PENDING ? 'active': '' ?>">Archive</a>
+                        <a type="button" href="app/campaign" class="btn btn-default">Donors</a>
                     </div>
-                    <a href="app/campaign" class="trash"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="app/campaign?status=<?= Campaign::STATUS_DELETED ?>" class="trash <?= $status == Campaign::STATUS_DELETED ? 'active': '' ?>"><i class="glyphicon glyphicon-trash"></i></a>
                 </div>
                 <div class="campaigns-list ">
+                    <? $currentCampaign = $selectedCampaign ? $selectedCampaign : $editCampaign ?>
                     <? foreach ($campaigns as $campaign): ?>
-                        <a href="app/campaign/view?id=<?= $campaign->id?>" class="row <?= ($selectedCampaign && $campaign->id == $selectedCampaign->id)?'active':''; ?>">
+                        <a href="app/campaign/view?id=<?= $campaign->id?>" class="row <?= ($currentCampaign && $campaign->id == $currentCampaign->id)?'active':''; ?>">
                             <div class="col-xs-10 main-info">
                                 <div><?= $campaign->name ?></div>
                                 <div class="layout-type"><?= $campaign->type ?></div>

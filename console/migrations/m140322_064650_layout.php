@@ -34,7 +34,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             'startDate' => Schema::TYPE_INTEGER,
             'endDate' => Schema::TYPE_INTEGER,
             'amountRaised' => Schema::TYPE_FLOAT . ' NOT NULL',
-            'goalAmount' => Schema::TYPE_FLOAT . ' NOT NULL',
+            'goalAmount' => Schema::TYPE_FLOAT . ' NOT NULL DEFAULT 0',
             'numberOfDonations' => Schema::TYPE_INTEGER. ' NOT NULL',
             'numberOfUniqueDonors' => Schema::TYPE_INTEGER. ' NOT NULL',
             'paypalAddress' => Schema::TYPE_STRING,

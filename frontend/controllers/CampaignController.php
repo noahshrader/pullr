@@ -27,14 +27,14 @@ class CampaignController extends FrontendController {
 
     public function actionEdit() {
         $campaign = $this->getCampaign();
-
-        return $this->actionIndex($campaign);
+        
+        return $this->actionIndex($campaign, null, $campaign->status);
     }
 
-    public function actionRemove() {
+    public function actionStatus() {
         $campaign = $this->getCampaign();
-
-        $campaign->status = Campaign::STATUS_DELETED;
+        $status = $_REQUEST['status'];
+        $campaign->status = $status;
         $campaign->save();
         $this->redirect('app/campaign');
     }
@@ -42,9 +42,9 @@ class CampaignController extends FrontendController {
     public function actionView(){
         $campaign = $this->getCampaign();
         
-        return $this->actionIndex(null, $campaign);
+        return $this->actionIndex(null, $campaign, $campaign->status);
     }
-    public function actionIndex(Campaign $editCampaign = null, Campaign $selectedCampaign = null) {
+    public function actionIndex(Campaign $editCampaign = null, Campaign $selectedCampaign = null, $status = Campaign::STATUS_ACTIVE) {
         $isNewRecord = $editCampaign && $editCampaign->isNewRecord;
         
         
@@ -84,8 +84,9 @@ class CampaignController extends FrontendController {
         $user = \Yii::$app->user->identity;
         $params = [];
         $params['editCampaign'] = $editCampaign;
-        $params['campaigns'] = $user->campaigns;
+        $params['campaigns'] = $user->getCampaigns($status)->orderBy('id DESC')->all();
         $params['selectedCampaign'] = $selectedCampaign;
+        $params['status'] = $status;
         
         /*         * from timestamp to html5 datetime-local tag */
 
