@@ -34,6 +34,11 @@ $user = \Yii::$app->user->identity;
                             </div>
                         </a>
                     <? endforeach; ?>
+                    <? if (sizeof($campaigns) == 0): ?>
+                    <div class='text-center'>
+                        No campaigns here yet.
+                    </div>
+                    <? endif ?>
                 </div>
                 <div class="row content-container content-container-layout" style="display: none">
                     <? foreach ($campaigns as $campaign): ?>
