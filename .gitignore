@@ -3,3 +3,4 @@
 /ssh.sh
 /composer.lock
 composer.lock
+/frontend/web/css/frontend.css.map

@@ -1,9 +1,9 @@
 /*
-                 ____    
+                 ____
     ____  __  __/ / /____
    / __ \/ / / / / / ___/
-  / /_/ / /_/ / / / /    
- / .___/\__,_/_/_/_/     
+  / /_/ / /_/ / / / /
+ / .___/\__,_/_/_/_/
 /_/
 
 App: Pullr
@@ -22,6 +22,9 @@ App Website: http://www.pullr.io
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+html {
+  height: 100%;
+}
 html,
 body {
   padding: 0;
@@ -35,9 +38,6 @@ body {
   color: #444;
   -webkit-animation: fadein 0.3s;
   animation: fadein 0.3s;
-}
-.hidden {
-  display: none;
 }
 /* Clearfix */
 .cf:before,
@@ -65,12 +65,16 @@ button {
   cursor: pointer;
 }
 input,
-textarea,
 button,
 select {
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   margin: 0;
   outline: 0;
+}
+iframe {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  background: transparent;
 }
 /* Selection */
 ::-moz-selection {
@@ -195,6 +199,7 @@ select {
 /* Default width */
 /* Width of the slideout sidebar */
 /* Adding two sidebars next to each other */
+/* Width of Streamboard sidebar */
 /* Lists */
 /* ------------------------------------------------- */
 .ulist {
@@ -224,269 +229,277 @@ select {
   -moz-osx-font-smoothing: grayscale;
 }
 .icon-pullr-support:before {
-  content: "\e650";
+  content: "\e658";
 }
 .icon-pullr:before {
-  content: "\e651";
+  content: "\e659";
 }
-.icon-mobile:before {
-  content: "\e603";
+.icon-twitch:before {
+  content: "\e65a";
 }
 .icon-mail:before {
-  content: "\e604";
+  content: "\e600";
 }
 .icon-pencil:before {
-  content: "\e605";
-}
-.icon-paperclip:before {
-  content: "\e606";
-}
-.icon-reply:before {
-  content: "\e607";
-}
-.icon-reply-all:before {
-  content: "\e608";
-}
-.icon-forward:before {
-  content: "\e609";
+  content: "\e601";
 }
 .icon-user:before {
-  content: "\e60a";
+  content: "\e602";
 }
 .icon-users:before {
-  content: "\e60b";
+  content: "\e603";
 }
 .icon-user-add:before {
-  content: "\e60c";
-}
-.icon-vcard:before {
-  content: "\e60d";
-}
-.icon-export:before {
-  content: "\e60e";
+  content: "\e604";
 }
 .icon-heart:before {
-  content: "\e60f";
+  content: "\e605";
 }
 .icon-heart2:before {
-  content: "\e657";
-  font-weight: 600;
+  content: "\e606";
 }
 .icon-star:before {
-  content: "\e610";
+  content: "\e607";
 }
-.icon-thumbsup:before {
-  content: "\e611";
-}
-.icon-thumbsdown:before {
-  content: "\e612";
-}
-.icon-chat:before {
-  content: "\e613";
+.icon-star2:before {
+  content: "\e608";
 }
 .icon-comment:before {
-  content: "\e614";
+  content: "\e609";
 }
 .icon-popup:before {
-  content: "\e615";
+  content: "\e60a";
 }
 .icon-search:before {
-  content: "\e616";
+  content: "\e60b";
 }
 .icon-bell:before {
-  content: "\e617";
+  content: "\e60c";
 }
 .icon-link:before {
-  content: "\e618";
+  content: "\e60d";
 }
 .icon-flag:before {
-  content: "\e619";
+  content: "\e60e";
 }
 .icon-cog:before {
-  content: "\e61a";
+  content: "\e60f";
 }
 .icon-trophy:before {
-  content: "\e61b";
-}
-.icon-megaphone:before {
-  content: "\e61c";
-}
-.icon-palette:before {
-  content: "\e61d";
+  content: "\e610";
 }
 .icon-lifebuoy:before {
-  content: "\e61e";
+  content: "\e611";
 }
 .icon-eye:before {
-  content: "\e61f";
+  content: "\e612";
+}
+.icon-clock:before {
+  content: "\e613";
 }
 .icon-calendar:before {
-  content: "\e620";
-}
-.icon-briefcase:before {
-  content: "\e621";
+  content: "\e614";
 }
 .icon-gauge:before {
-  content: "\e622";
+  content: "\e615";
 }
 .icon-rocket:before {
-  content: "\e623";
+  content: "\e616";
+}
+.icon-brush:before {
+  content: "\e617";
 }
 .icon-cone:before {
-  content: "\e624";
+  content: "\e618";
 }
 .icon-browser:before {
-  content: "\e625";
+  content: "\e619";
 }
 .icon-publish:before {
-  content: "\e626";
+  content: "\e61a";
+}
+.icon-sun:before {
+  content: "\e61b";
 }
 .icon-code:before {
-  content: "\e627";
+  content: "\e61c";
 }
 .icon-screen:before {
-  content: "\e628";
-}
-.icon-light-bulb:before {
-  content: "\e629";
+  content: "\e61d";
 }
 .icon-creditcard:before {
-  content: "\e62a";
+  content: "\e61e";
 }
-.icon-clipboard:before {
-  content: "\e62b";
+.icon-database:before {
+  content: "\e61f";
 }
-.icon-box:before {
-  content: "\e62c";
+.icon-cart:before {
+  content: "\e620";
 }
-.icon-uniE62C:before {
-  content: "\e62d";
+.icon-uniE621:before {
+  content: "\e621";
 }
 .icon-statistics:before {
-  content: "\e62e";
-}
-.icon-pie:before {
-  content: "\e62f";
-}
-.icon-bars:before {
-  content: "\e630";
+  content: "\e622";
 }
 .icon-graph:before {
-  content: "\e631";
+  content: "\e623";
 }
 .icon-lock:before {
-  content: "\e632";
+  content: "\e624";
 }
 .icon-lock-open:before {
-  content: "\e633";
-}
-.icon-logout:before {
-  content: "\e634";
-}
-.icon-login:before {
-  content: "\e635";
+  content: "\e625";
 }
 .icon-checkmark:before {
-  content: "\e636";
+  content: "\e626";
 }
 .icon-cross:before {
-  content: "\e637";
+  content: "\e627";
+}
+.icon-minus:before {
+  content: "\e628";
 }
 .icon-plus:before {
-  content: "\e655";
+  content: "\e629";
+}
+.icon-cross2:before {
+  content: "\e62a";
+}
+.icon-minus2:before {
+  content: "\e62b";
 }
 .icon-plus2:before {
-  content: "\e638";
+  content: "\e62c";
+}
+.icon-info:before {
+  content: "\e62d";
 }
 .icon-help:before {
-  content: "\e639";
+  content: "\e62e";
+}
+.icon-warning:before {
+  content: "\e62f";
+}
+.icon-cycle:before {
+  content: "\e630";
 }
 .icon-list:before {
-  content: "\e63a";
+  content: "\e631";
 }
 .icon-add-to-list:before {
-  content: "\e63b";
+  content: "\e632";
 }
 .icon-layout:before {
-  content: "\e63c";
+  content: "\e633";
 }
 .icon-list2:before {
-  content: "\e63d";
+  content: "\e634";
 }
 .icon-text:before {
-  content: "\e63e";
+  content: "\e635";
+}
+.icon-pictures:before {
+  content: "\e636";
+}
+.icon-video:before {
+  content: "\e637";
+}
+.icon-music:before {
+  content: "\e638";
+}
+.icon-folder:before {
+  content: "\e639";
 }
 .icon-archive:before {
-  content: "\e63f";
+  content: "\e63a";
 }
 .icon-trash:before {
-  content: "\e640";
+  content: "\e63b";
+}
+.icon-install:before {
+  content: "\e63c";
+}
+.icon-upload:before {
+  content: "\e63d";
 }
 .icon-bookmark:before {
-  content: "\e641";
+  content: "\e63e";
 }
 .icon-play:before {
-  content: "\e642";
+  content: "\e63f";
 }
 .icon-pause:before {
-  content: "\e643";
+  content: "\e640";
 }
 .icon-record:before {
-  content: "\e656";
+  content: "\e641";
 }
-.icon-arrow-left:before {
+.icon-stop:before {
+  content: "\e642";
+}
+.icon-volume:before {
+  content: "\e643";
+}
+.icon-sound:before {
   content: "\e644";
 }
-.icon-arrow-down:before {
+.icon-arrow-left:before {
   content: "\e645";
 }
-.icon-arrow-up:before {
+.icon-arrow-down:before {
   content: "\e646";
 }
-.icon-arrow-right:before {
+.icon-arrow-up:before {
   content: "\e647";
 }
-.icon-arrow-left2:before {
+.icon-arrow-right:before {
   content: "\e648";
 }
-.icon-arrow-down2:before {
+.icon-arrow-left2:before {
   content: "\e649";
 }
-.icon-arrow-up2:before {
+.icon-arrow-down2:before {
   content: "\e64a";
 }
-.icon-arrow-right2:before {
+.icon-arrow-up2:before {
   content: "\e64b";
 }
-.icon-arrow-left3:before {
+.icon-arrow-right2:before {
   content: "\e64c";
 }
-.icon-arrow-down3:before {
+.icon-arrow-left3:before {
   content: "\e64d";
 }
-.icon-arrow-up3:before {
+.icon-arrow-down3:before {
   content: "\e64e";
 }
-.icon-arrow-right3:before {
+.icon-arrow-up3:before {
   content: "\e64f";
 }
+.icon-arrow-right3:before {
+  content: "\e650";
+}
 .icon-arrow-left4:before {
+  content: "\e651";
+}
+.icon-arrow-down4:before {
   content: "\e652";
 }
-.icon-arrow-right4:before {
+.icon-arrow-up4:before {
   content: "\e653";
 }
-.icon-ellipsis:before {
+.icon-arrow-right4:before {
   content: "\e654";
 }
 .icon-twitter:before {
-  content: "\e601";
+  content: "\e655";
 }
 .icon-facebook:before {
-  content: "\e600";
+  content: "\e656";
 }
-.icon-googleplus:before {
-  content: "\e602";
+.icon-paypal:before {
+  content: "\e657";
 }
 /* Headings */
 /* ------------------------------------------------- */
@@ -510,7 +523,7 @@ h1 {
   margin-bottom: .1em;
 }
 h2 {
-  font-size: 1.8em;
+  font-size: 2em;
   font-weight: 300;
 }
 h3 {
@@ -561,35 +574,20 @@ button,
 button:active {
   outline: 0;
 }
-/* Donation Form Specific */
-/* Donation Forms */
+a:hover:before {
+  color: #2ddfbb;
+}
+/* Forms */
 /* ------------------------------------------------- */
 /* General */
-form {
-  padding-top: 2em;
-}
-input,
-textarea {
-  color: #53555a;
-  font-size: 1.1em;
+input {
+  color: #FFF;
+  font-size: .9em;
   font-weight: 500;
-  padding: 1em;
   width: 100%;
-  border: solid 1px #d4d5d8;
+  border: 0;
   outline: 0;
-  background: #FFF;
-  border-radius: 3px;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-input:focus,
-textarea:focus {
-  border: solid 1px #53555a;
-}
-textarea {
-  max-width: 100%;
-  min-height: 160px;
-  max-height: 220px;
+  background: transparent;
 }
 label {
   display: inline-block;
@@ -620,28 +618,58 @@ select {
   z-index: 1;
   cursor: pointer;
 }
-button.donate {
-  font-size: 1.4em;
-  margin: .3em 0;
-}
 /* Form Containers */
 .field {
   position: relative;
-  margin-bottom: .6em;
+  display: inline-block;
+  margin-bottom: 1.2em;
+  min-width: 160px;
+  overflow: hidden;
+}
+.field a.stamp {
+  display: block;
+}
+/* Text Inputs and Select */
+.field-input {
+  padding: .8em 1em;
+  border-radius: 3px;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: #3a3c40;
+}
+.field-input:before {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  color: #6b6e75;
+  margin-top: -6px;
+  z-index: 0;
+}
+/* Buttons */
+.field-cta {
+  display: inline-block;
+  padding: 1em 0;
+  margin-top: 1em;
   width: 100%;
+  border-top: solid 1px #3a3c40;
 }
-.field.comments span.counter {
-  float: right;
-  color: #53555a;
-  font-size: .8em;
+/* Option Buttons */
+.field a.option-btn {
+  display: block;
 }
-/* Form Validation */
-/* Resets */
-/* ------------------------------------------------- */
-html,
-body {
-  background: #ffffff;
+/* Add Input */
+.field-add {
+  padding-right: 3.6em;
 }
+.field-add button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  line-height: 44px;
+  padding: 0 .6em;
+  border-radius: 0;
+}
+/* Switch Buttons */
 /* Buttons/Submits */
 /* ------------------------------------------------- */
 /* General */
@@ -666,9 +694,10 @@ button.btn {
   display: inline-block;
   color: #FFF;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 0.9em;
   font-weight: 700;
   text-align: center;
-  padding: .7em 2em;
+  padding: .8em 1.2em;
   background: #1dbc9c;
   outline: 0;
   border: 0;
@@ -681,357 +710,401 @@ button.btn:hover {
   background: #2ddfbb;
 }
 /* Stamp Out Buttons */
-a.stamp,
-button.stamp {
+a.stamp {
   color: #85888e;
   background: transparent !important;
   -webkit-box-shadow: inset 0 0 1px 1px #85888e;
   box-shadow: inset 0 0 1px 1px #85888e;
 }
-a.stamp:hover,
-button.stamp:hover {
+a.stamp:hover {
   color: #FFF;
   -webkit-box-shadow: inset 0 0 1px 1px #FFF;
   box-shadow: inset 0 0 1px 1px #FFF;
 }
-/* Name */
+/* Main Components */
 /* ------------------------------------------------- */
-h1.campaign-name {
-  color: #6b6e75;
-  font-size: 3.4em;
-  margin-bottom: .2em;
-}
-h3.charity-name {
-  color: #6b6e75;
-  font-size: 1.3em;
-  margin-bottom: 0;
-}
-span.approved {
-  display: inline-block;
-  color: #FFF;
-  font-size: .6em;
-  line-height: 16px;
-  text-align: center;
-  padding: .1em;
-  margin-left: .6em;
-  height: 16px;
-  width: 16px;
-  background: #1dbc9c;
-  border-radius: 30px;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-/* Progress Bar */
-/* ------------------------------------------------- */
-.form-progress {
-  text-align: center;
-}
-.form-progress .totals {
-  color: #6b6e75;
-  font-size: 1.1em;
-  font-weight: 400;
-  padding: .3em 0;
-}
-.form-progress .totals span.total {
-  color: #1dbc9c;
-}
-.form-progress-wrap {
-  position: relative;
-  text-align: center;
-  height: 24px;
+.freeze {
   width: 100%;
-  background: #efeff0;
-}
-.form-progress-wrap .progress {
   height: 100%;
-  max-width: 100%;
-  background: #1dbc9c;
-  -webkit-animation: animate-bar 1s 1 ease;
-  animation: animate-bar 1s 1 ease;
-}
-/* Separators */
-.separation {
-  position: absolute;
-  bottom: 0;
-  height: 10px;
   overflow: hidden;
-  width: 100%;
 }
-div.separation > div.separation-left,
-div.separation > div.separation-right {
-  position: absolute;
-  width: 50%;
-  height: 30px;
-  top: 0;
-  left: 0;
-  background: #ffffff;
-  margin-left: -12px;
+.container {
+  position: relative;
+  padding: 180px 5% 4em 5%;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 }
-div.separation > div.separation-right {
-  left: 50%;
-  margin-left: 12px;
+.container.clip {
+  margin-left: 240px;
 }
-div.separation > div.separation-left:after,
-div.separation > div.separation-right:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -90px;
-  height: 0;
-  width: 0;
-  border-left: 90px solid transparent;
-  border-right: 90px solid transparent;
-  border-bottom: 60px solid #ffffff;
+.container.open {
+  opacity: .3;
+  margin-left: -50% !important;
+  margin-right: 50% !important;
 }
-div.separation > div.separation-right:after {
-  left: -90px;
+.container.open.expand {
+  margin-left: -100% !important;
+  margin-right: 100% !important;
 }
-/* Footer */
-/* ------------------------------------------------- */
-footer {
-  text-align: center;
+.content {
   padding-bottom: 2em;
 }
-footer h5 {
-  color: #d4d5d8;
-  font-size: .6em;
-  margin-bottom: .1em;
+.content h5 {
+  color: #efeff0;
+  padding-bottom: .8em;
+  border-bottom: solid 1px #2e3032;
 }
-footer a.logo:before {
-  color: #d4d5d8;
-  font-size: 2.4em;
+/* Right Sidebar */
+.sidepanel {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  padding-top: 120px;
+  width: 50%;
+  height: 100%;
+  max-height: 100%;
+  z-index: 900;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 }
-footer a.logo:before:hover:before {
-  color: #53555a;
-}
-footer a.logo:hover:before {
-  color: #53555a;
-}
-/* Responsive */
-/* ------------------------------------------------- */
-@media only screen and (max-width: 480px) {
-  h1.campaign-name {
-    font-size: 2.4em;
-  }
-  h3.charity-name {
-    font-size: 1em;
-  }
-  button.donate {
-    width: 100%;
-  }
-}
-/* Tip Jar Donation Form */
-/* ------------------------------------------------- */
-.tip-jar {
-  text-align: center;
-  padding: 6em 5% 2em;
-}
-.tip-jar form {
-  margin: 0 auto;
+.sidepanel .field {
   width: 100%;
-  max-width: 420px;
 }
-/* Donation Input */
-.tip-jar .donation-amount input {
-  padding: 1em 3.2em 1em 2em;
+/* Main Add/Edit Panel */
+#sidepanel {
+  background: #2e3032;
 }
-.tip-jar .donation-amount span {
-  position: absolute;
-  top: 1.25em;
-  color: #53555a;
+#sidepanel.open {
+  right: 0;
 }
-.tip-jar .donation-amount span.preamt {
-  position: absolute;
-  left: 1.2em;
+#sidepanel.open.expand {
+  right: 50%;
 }
-.tip-jar .donation-amount span.currency {
-  position: absolute;
-  right: 1.2em;
+#sidepanel .sidepanel-head {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  background: #3a3c40;
+  z-index: 900;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 }
-/* Events Donation Form */
-/* ------------------------------------------------- */
-.events-form {
-  text-align: center;
-  padding: 6em 5% 2em;
+#sidepanel.open .sidepanel-head {
+  right: 0;
 }
-.events-form form {
-  margin: 0 auto;
+#sidepanel.open.expand .sidepanel-head {
   width: 100%;
-  max-width: 680px;
 }
-/* Amount Selections */
-.events-form #donation-amount {
-  position: relative;
-  margin: 2em auto 3em;
+#sidepanel.open .sidepanel-head.scroll {
+  -webkit-box-shadow: 0 0 10px rgba(34, 35, 37, 0.5);
+  box-shadow: 0 0 10px rgba(34, 35, 37, 0.5);
 }
-.events-form #donation-amount .fieldamount {
+#sidepanel h4.section-header {
+  color: #FFF;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 69px;
+  text-transform: uppercase;
+  padding: 0 4em 0 1.8em;
+  margin-bottom: 0;
+  background: #1dbc9c;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+/* Extra Content Side Panel */
+#sidepaneltwo {
+  top: 69px;
+  padding-top: 0;
+  background: #222325;
+  z-index: 1000;
+}
+#sidepaneltwo.expand {
+  right: 0;
+}
+#sidepaneltwo.hide {
+  right: -50%;
+}
+/* Modules */
+/* ------------------------------------------------- */
+.module {
   position: relative;
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+  border-radius: 3px;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-bottom: solid 1px #1d1e20;
+}
+.module h3 {
   float: left;
   display: inline-block;
-  text-align: center;
-  margin: 0 .5%;
-  width: 16%;
-  width: -webkit-calc(15.66666667%);
-  width: calc(15.66666667%);
-  overflow: hidden;
-  -webkit-transition: linear .1s;
-  transition: linear .1s;
+  line-height: 1.5em;
+  margin: 0 1em 2em 0;
 }
-.events-form #donation-amount .fieldamount label {
-  color: #6b6e75;
-  font-size: 1.8em;
-  font-weight: 400;
-  line-height: 100px;
-  letter-spacing: -1px;
-  margin: 0;
-  width: 100%;
-  background: #efeff0;
-  border-radius: 3px;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  -webkit-transition: linear 0.08s;
-  transition: linear 0.08s;
-  cursor: pointer;
-}
-.events-form #donation-amount .fieldamount label:hover {
-  background: #d4d5d8;
-}
-.events-form #donation-amount .fieldamount label.active {
-  color: #FFF !important;
-  background: #1dbc9c !important;
-}
-.events-form #donation-amount .fieldamount label.other {
-  font-size: 1.1em;
-  text-transform: uppercase;
-  letter-spacing: 0;
-}
-.events-form #donation-amount .fieldamount input[type="radio"] {
-  position: absolute;
-  left: -999px;
-}
-.events-form #donation-amount #other {
-  position: absolute;
-  top: 0;
-  left: .5%;
-  right: 17%;
-  background: #FFF;
-  border-radius: 3px;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: solid 1px #d4d5d8;
-  overflow: hidden;
-}
-.events-form #donation-amount #other a.closethis {
-  position: absolute;
-  top: 0;
-  right: 32px;
-  color: #d4d5d8;
-  font-size: 1.4em;
-  line-height: 100px;
-  z-index: 100;
-}
-.events-form #donation-amount #other a.closethis:hover {
-  color: #53555a;
-}
-.events-form #donation-amount #other span.dollar-sign {
-  position: absolute;
-  left: 6.5%;
-  color: #53555a;
-  z-index: 900;
-  font-size: 2em;
-  line-height: 100px;
-}
-.events-form #donation-amount #other .field {
-  position: relative;
-  margin: 0;
-}
-.events-form #donation-amount #other .field input {
-  font-size: 2em;
-  width: 100%;
-  padding: .86em 10% !important;
-  border: 0;
-  text-indent: 6%;
-}
-/* Responsive Styles */
-@media only screen and (max-width: 540px) {
-  .events-form #donation-amount .fieldamount {
-    margin: .12em .5%;
-    width: 33%;
-    width: -webkit-calc(32.33333333%);
-    width: calc(32.33333333%);
-  }
-  .events-form #donation-amount #other {
-    right: .5%;
-  }
-  .events-form #donation-amount #other .field input {
-    text-indent: 18%;
-    padding: .9em 10% !important;
-  }
-  .form-wrapper {
-    padding: 0;
-  }
-}
-/* Dark Styles (if opted) */
+/* Tabs */
 /* ------------------------------------------------- */
-html.dark,
-html.dark body {
-  background: #222325;
+/* Main Tab Styles */
+.tabs ul.nav-tabs {
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 2.4em;
+  border: solid 1px #1d1e20;
+  border-radius: 3px;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  overflow: hidden;
 }
-/* Progress Bar */
-html.dark .form-progress .totals {
-  color: #53555a;
+.tabs ul.nav-tabs li {
+  float: left;
+  border-right: solid 1px #1d1e20;
 }
-html.dark .form-progress-wrap {
-  background: #3a3c40;
-}
-html.dark div.separation > div.separation-left,
-html.dark div.separation > div.separation-right {
-  background: #222325;
-}
-html.dark div.separation > div.separation-left:after,
-html.dark div.separation > div.separation-right:after {
-  border-bottom: 60px solid #222325;
-}
-/* General */
-html.dark h1.campaign-name {
-  color: #FFF;
-}
-/* Forms */
-html.dark input,
-html.dark textarea {
-  color: #FFF;
+.tabs ul.nav-tabs li:last-child {
   border: 0;
-  background: #2e3032;
 }
-html.dark .events-form #donation-amount .fieldamount label {
-  color: #85888e;
-  background: #2e3032;
+.tabs ul.nav-tabs li a {
+  display: inline-block;
+  color: #53555a;
+  font-weight: 500;
+  text-align: center;
+  padding: .6em 1.2em;
+  min-width: 60px;
 }
-html.dark .events-form #donation-amount .fieldamount label:hover {
+.tabs ul.nav-tabs li a:hover {
+  color: #6b6e75;
+}
+.tabs ul.nav-tabs li.active a {
+  color: #FFF;
+  position: relative;
+}
+.tabs ul.nav-tabs li.active a:before {
+  bottom: -12px;
+  left: 50%;
+  margin-left: -12px;
+  color: #53555a;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid;
+}
+/* Sidepanel Tab Menu */
+.sidepanel ul.nav-tabs {
+  height: 50px;
+  overflow: hidden;
+  width: 100%;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.sidepanel.expand ul.nav-tabs {
+  width: 50%;
+}
+.sidepanel ul.nav-tabs li {
+  position: relative;
+  float: left;
+  text-align: center;
+}
+.sidepanel ul.two-tabs li {
+  width: 50%;
+  width: -webkit-calc(50%);
+  width: calc(50%);
+}
+.sidepanel ul.three-tabs li {
+  width: 33.33%;
+  width: -webkit-calc(33.33333333%);
+  width: calc(33.33333333%);
+}
+.sidepanel ul.four-tabs li {
+  width: 25%;
+  width: -webkit-calc(25%);
+  width: calc(25%);
+}
+.sidepanel ul.nav-tabs li a {
+  display: inline-block;
+  color: #d4d5d8;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: .8em 1.2em;
+  width: 100%;
   background: #3a3c40;
 }
-html.dark .events-form #donation-amount #other {
-  background: #2e3032;
-  border: solid 1px #2e3032;
+.sidepanel ul.nav-tabs li a:hover {
+  background: #3f4145;
 }
-html.dark .events-form #donation-amount #other a.closethis {
-  color: #6b6e75;
+.sidepanel ul.nav-tabs li a:before {
+  display: block;
+  color: #FFF;
+  line-height: 1;
 }
-html.dark .events-form #donation-amount #other a.closethis:hover {
+.sidepanel ul.nav-tabs li.active a {
+  background: #3f4145;
+}
+/* Tab Containers */
+.tabs {
+  text-align: center;
+}
+.tab-content {
+  overflow: auto;
+  height: 100%;
+}
+.sidepanel .tab-content {
+  padding: 2.4em 2em;
+}
+#sidepaneltwo .tab-content {
+  padding: 50px 2em 2.4em;
+}
+#sidepanel.open.expand .tab-content {
+  overflow: hidden;
+}
+.tab-content .tab-pane {
+  display: none;
+}
+.tab-content .tab-pane.active {
+  display: block;
+}
+/* Grid */
+/* ------------------------------------------------- */
+.col {
+  float: left;
+}
+.col20 {
+  width: 20%;
+}
+.col30 {
+  width: 30%;
+}
+.col40 {
+  width: 40%;
+}
+.col50 {
+  width: 50%;
+}
+.col60 {
+  width: 60%;
+}
+.col70 {
+  width: 70%;
+}
+.col80 {
+  width: 80%;
+}
+/* Statsboard */
+/* ------------------------------------------------- */
+a.dashboard.show:before {
+  color: #FFF !important;
+}
+.statsboard {
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.statsboard .container {
+  padding: 100px 2em 30px;
+}
+.statsboard.show {
+  background: #1d1e20;
+  height: 400px;
+  width: 100%;
+}
+.statsboard .widget {
+  text-align: center;
+  float: left;
+  padding: 0 2em;
+  width: 33.33%;
+  width: -webkit-calc(33.33333333%);
+  width: calc(33.33333333%);
+}
+.statsboard .widget span.icon {
+  display: inline-block;
+  color: #2e3032;
+  font-size: 1.4em;
+  padding: 0 5%;
+  background: #1d1e20;
+}
+.statsboard .widget hr {
+  margin: -0.6em 0 1.6em;
+  height: 1px;
+  background: #222325;
+  border: 0;
+}
+/* Overview */
+/* Twitch Love */
+/* Activity Feed */
+.activity-feed ul li {
+  color: #FFF;
+  font-size: 0.9em;
+  text-align: left;
+  padding: .2em 0;
+  border-bottom: solid 1px #222325;
+}
+/* Side Panel */
+/* ------------------------------------------------- */
+.sidepanel {
+  right: 0;
+  padding-top: 54px;
+  width: 280px;
+}
+
+#sidepanel .sidepanel-head {
+  position: absolute;
+  right: 0;
+  width: 100%;
+}
+/* Slidepanel */
+/* ------------------------------------------------- */
+.slidepanel {
+  position: fixed;
+  bottom: -400px;
+  right: 0;
+  width: 280px;
+  height: 400px;
+  background: #3a3c40;
+  z-index: 1000;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.slidepanel.selected {
+  bottom: 0;
+}
+.slidepanel a.close {
+  display: block;
+  float: right;
+  text-align: center;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+.slidepanel a.close:before {
   color: #FFF;
 }
-html.dark .events-form #donation-amount #other span.dollar-sign {
-  color: #6b6e75;
+/* Tabs */
+/* ------------------------------------------------- */
+ul.bottom-panel-nav {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 280px;
+  background: #3a3c40;
+  z-index: 9999;
 }
-/* Footer */
-html.dark h5 {
-  color: #3a3c40;
+ul.bottom-panel-nav li {
+  float: left;
+  text-align: center;
 }
-html.dark footer a.logo:before {
-  color: #3a3c40;
-}
-html.dark footer a.logo:hover:before {
+ul.bottom-panel-nav li a {
+  display: inline-block;
   color: #FFF;
+  font-size: 0.9em;
+  padding: .6em 0;
+  width: 100%;
+}
+ul.bottom-panel-nav li a:hover {
+  background: #3f4145;
+}
+ul.bottom-panel-nav li a.selected {
+  background: #3f4145;
 }
 /* Animations */
 /* ------------------------------------------------- */
@@ -1075,4 +1148,9 @@ html.dark footer a.logo:hover:before {
   0% {
     width: 0%;
   }
+}
+
+.sidepanel ul.nav-tabs {
+
+margin-top: 0px;
 }

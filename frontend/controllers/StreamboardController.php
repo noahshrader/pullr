@@ -2,10 +2,8 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use yii\web\Response;
-use yii\base\Exception;
-use yii\web\ForbiddenHttpException;
-use common\models\Campaign;
 
 
 class StreamboardController extends \yii\web\Controller {
@@ -16,12 +14,12 @@ class StreamboardController extends \yii\web\Controller {
         }
 
         $user = Yii::$app->user->identity;
-        var_dump($user);exit;
+//        var_dump($user);exit;
+
+        $this->layout = 'streamboard';
 
         return $this->render('index', [
                     'user' => $user,
-                    'notification' => $notification,
-                    'changePasswordForm' => $changePasswordForm
         ]);
 
     }

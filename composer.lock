@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2513ee4d70516e489daf6c62629a1d4d",
+    "hash": "73032ce4f5ec3fc11502c8e9ac202fb9",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -245,12 +245,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
-                "reference": "592dfb6d5fa6fe2303094c3b30410b516655d456"
+                "reference": "fdf7e355f02be7dc1d1fea3c3fb866f232388319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/592dfb6d5fa6fe2303094c3b30410b516655d456",
-                "reference": "592dfb6d5fa6fe2303094c3b30410b516655d456",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/fdf7e355f02be7dc1d1fea3c3fb866f232388319",
+                "reference": "fdf7e355f02be7dc1d1fea3c3fb866f232388319",
                 "shasum": ""
             },
             "type": "library",
@@ -278,7 +278,7 @@
                 "jquery",
                 "star"
             ],
-            "time": "2014-06-18 11:06:34"
+            "time": "2014-06-13 13:35:14"
         },
         {
             "name": "kartik-v/dependent-dropdown",
@@ -379,12 +379,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widgets.git",
-                "reference": "21b89980e630e04854f112dd96df4e6b2a30484c"
+                "reference": "b6a94a57b7269338d47a83583fa9d3d1ba1e8bf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/21b89980e630e04854f112dd96df4e6b2a30484c",
-                "reference": "21b89980e630e04854f112dd96df4e6b2a30484c",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/b6a94a57b7269338d47a83583fa9d3d1ba1e8bf7",
+                "reference": "b6a94a57b7269338d47a83583fa9d3d1ba1e8bf7",
                 "shasum": ""
             },
             "require": {
@@ -419,7 +419,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-06-17 11:34:52"
+            "time": "2014-06-14 19:33:07"
         },
         {
             "name": "lusitanian/oauth",
@@ -590,12 +590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/rest-api-sdk-php.git",
-                "reference": "100c5f17b107fec01449b3900bffa812f54ddba3"
+                "reference": "2589c5e880d12af4a1634c37ca05c8a5e9378df4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/rest-api-sdk-php/zipball/100c5f17b107fec01449b3900bffa812f54ddba3",
-                "reference": "100c5f17b107fec01449b3900bffa812f54ddba3",
+                "url": "https://api.github.com/repos/paypal/rest-api-sdk-php/zipball/2589c5e880d12af4a1634c37ca05c8a5e9378df4",
+                "reference": "2589c5e880d12af4a1634c37ca05c8a5e9378df4",
                 "shasum": ""
             },
             "require": {
@@ -631,7 +631,7 @@
                 "rest",
                 "sdk"
             ],
-            "time": "2014-06-17 15:05:06"
+            "time": "2014-06-12 20:40:58"
         },
         {
             "name": "paypal/sdk-core-php",
@@ -783,12 +783,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "6d45f733e57d0e520668a8a38b55d085bd5ef05a"
+                "reference": "ed06fd0936ba2c03ecb052eb65a89c5be94b1b8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6d45f733e57d0e520668a8a38b55d085bd5ef05a",
-                "reference": "6d45f733e57d0e520668a8a38b55d085bd5ef05a",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/ed06fd0936ba2c03ecb052eb65a89c5be94b1b8d",
+                "reference": "ed06fd0936ba2c03ecb052eb65a89c5be94b1b8d",
                 "shasum": ""
             },
             "replace": {
@@ -826,7 +826,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-06-18 10:16:32"
+            "time": "2014-06-13 19:07:13"
         },
         {
             "name": "yiisoft/jquery",
@@ -883,12 +883,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "adb0fd1c2c511796845280e0dfb203567f46f059"
+                "reference": "abb404b1ffc0970f138eb58043ade631f6d1f986"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/adb0fd1c2c511796845280e0dfb203567f46f059",
-                "reference": "adb0fd1c2c511796845280e0dfb203567f46f059",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/abb404b1ffc0970f138eb58043ade631f6d1f986",
+                "reference": "abb404b1ffc0970f138eb58043ade631f6d1f986",
                 "shasum": ""
             },
             "require": {
@@ -953,7 +953,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-06-18 06:51:55"
+            "time": "2014-06-14 20:21:59"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1162,7 +1162,8 @@
             "authors": [
                 {
                     "name": "Chris Boulton",
-                    "homepage": "http://github.com/chrisboulton"
+                    "homepage": "http://github.com/chrisboulton",
+                    "role": "Original developer"
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
@@ -1174,12 +1175,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "ef0c5dab7ffebb1018263dbaf4dbe96a85be3187"
+                "reference": "762426c692d25d6ead30aa43c2bb8795e12af734"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/ef0c5dab7ffebb1018263dbaf4dbe96a85be3187",
-                "reference": "ef0c5dab7ffebb1018263dbaf4dbe96a85be3187",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/762426c692d25d6ead30aa43c2bb8795e12af734",
+                "reference": "762426c692d25d6ead30aa43c2bb8795e12af734",
                 "shasum": ""
             },
             "require": {
@@ -1210,7 +1211,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2014-06-17 01:01:48"
+            "time": "2014-06-13 14:04:48"
         },
         {
             "name": "yiisoft/yii2-gii",
