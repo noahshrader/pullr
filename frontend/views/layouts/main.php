@@ -41,8 +41,6 @@ FrontendAsset::register($this);
 
                     <a class="logo icon-pullr"></a>
 
-<!-- The LOGO - We would really like to have a link back to the dashboard or main page here if possible  -->
-                
                     <? if (!Yii::$app->user->isGuest): ?>
                        <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
                     <? endif; ?>

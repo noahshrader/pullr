@@ -22,32 +22,12 @@ $user = \Yii::$app->user->identity;
                             <li><a href="app/campaign?status=<?= Campaign::STATUS_DELETED ?>" class="<?= $status == Campaign::STATUS_DELETED ? 'active': '' ?>"><i class="glyphicon glyphicon-trash"></i></a></li>
                         </ul>
                     </nav>
-
-                <div class="campaigns-list ">
-                    <? $currentCampaign = $selectedCampaign ? $selectedCampaign : $editCampaign ?>
-                    <? foreach ($campaigns as $campaign): ?>
-                        <a href="app/campaign/view?id=<?= $campaign->id?>" class="row <?= ($currentCampaign && $campaign->id == $currentCampaign->id)?'active':''; ?> campaign-item">
-
-                            <div class="col-xs-10 main-info">
-                                <h3><?= $campaign->name ?></h3>
-                                <h4 class="layout-type"><?= $campaign->type ?></h4>
-                                <p>$<?= number_format($campaign->amountRaised)?></p>
-                                <!-- added the change icons though they are non functional at them moment -->
-                            </div>
-
-                            <div class="tick col-xs-2">
-                                <strong>&gt;</strong>
-                            </div>
-
-                        </a>
-
-                    <? endforeach; ?>
-                    <? if (sizeof($campaigns) == 0): ?>
-                    <div class='text-center'>
-                        No campaigns here yet.
-                    </div>
-                    <? endif ?>
-            </div>
+                 
+                <?= $this->render('campaigns-list', [
+                    'campaigns' => $campaigns,
+                    'currentCampaign' => $selectedCampaign? $selectedCampaign : $editCampaign
+                ]); ?>    
+                 
         <div class="row content-container content-container-layout" style="display: none">
             <? foreach ($campaigns as $campaign): ?>
                 <div class="col-sm-4 pullr-layout-container">
