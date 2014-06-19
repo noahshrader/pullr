@@ -44,45 +44,8 @@ FrontendAsset::register($this);
 <!-- The LOGO - We would really like to have a link back to the dashboard or main page here if possible  -->
                 
                     <? if (!Yii::$app->user->isGuest): ?>
-                       <?= $this->render('@common/views/leftmenu/avatar'); ?>
+                       <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
                     <? endif; ?>
-
-<!-- I've tried my best to comment out what I don't need - basically, I don't need this referring to any bootstrap navigation at all -->
-
-                    <?php
-                    // NavBar::begin([
-                    // 'brandLabel' => 'pullr',
-                    // 'brandUrl' => ".",
-                    // 'options' => [
-                    // 'class' => 'sidebar-nav nav-top',
-                    // ],
-                    // ]);
-                    // $menuItems = [
-                    // ];
-
-
-// Can you explain to me what the below does?  Is it saying if the user is a guest, show the signup modal?  This was commented out before so I'm not sure if we are using it or not... basically it gave me another logout option?
-
-                    //if (Yii::$app->user->isGuest) {
-                    // $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                    // $loginUrl = (strpos(\Yii::$app->request->url, 'site/login')) > 0 ? \Yii::$app->request->url : '/site/login?return=' . urlencode(\Yii::$app->request->url);
-                    // $menuItems[] = ['label' => 'Login', 'url' => [$loginUrl]];
-                    // } else {
-
-                    // $logoutUrl = 'app/site/logout?return=' . urlencode(\Yii::$app->request->url);
-                    // $logoutLink = '<li><a href="' . $logoutUrl . '" > Logout (';
-                    // $logoutLink .= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'logoPhoto']]);
-                    // $logoutLink .= Yii::$app->user->identity->name . ')</a></li>';
-                    // $menuItems[] = $logoutLink;
-                    // }
-
-
-                    // echo Nav::widget([
-                    // 'options' => ['class' => 'test-class'],
-                    // 'items' => $menuItems,
-                    // ]);
-                    // NavBar::end();
-                    ?>
 
                     <nav class="sidebar-nav nav-top">
                         <ul> 
@@ -91,8 +54,6 @@ FrontendAsset::register($this);
                                 <li>
                                     <a class="campaign-link icon-heart2" title="Alerts" href="app/campaign"><span>Campaigns</span></a>
                                 </li>
-
-    <!-- Can you explain the campaignInvitesCount?  I just wnat to make sure I understand what is being shown here -->
 
                             <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
                             <? if ($campaignInvitesCount > 0): ?>
