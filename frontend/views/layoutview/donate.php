@@ -56,7 +56,7 @@ use yii\widgets\ActiveForm;
                     </div>
                 <? else: ?>
                    <div class="field donation-amount">
-					<input type="text" id="other-amount" placeholder="1">
+					<input type="text" id="other-amount" value='1'>
 					<span class="preamt">$</span>
 					<span class="currency">USD</span>
                     </div>
