@@ -22,8 +22,10 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
 <script type="text/javascript">
     function campaignChangeStatus(id, status){
         if (status!= '<?= Campaign::STATUS_DELETED ?>' || confirm('Are you sure to remove campaign?')){
-            $.get('app/campaign/status', {id: id, status: status});
-            return true;
+            $.get('app/campaign/status', {id: id, status: status}, function(){
+                    location.href='app/campaign';    
+                }
+            );
         }
         return false;
     }

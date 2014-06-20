@@ -289,8 +289,6 @@
   content: "\e602";
 }
 
-
-
 /* Primary Typography Styling */
 
 .main() {
@@ -311,59 +309,53 @@
   font-style: normal;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	margin-bottom: 0em;
-	.main();
-}
-
-p, ol, ul, blockquote, pre, code {
-	font-size: 1em;
-	margin-top: 1.5em;
-	margin-bottom: 1.5em;   
-	line-height: 1.5em;
-	color: #4e4e4e;
-}
-
-p ,ol, ul, blockquote {
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0px;
 	.secondary();
 }
 
-code {
-	.tertiary();
+p, ol, ul, blockquote, pre, code {
+  color: #85888e;
+  font-size: 1.1em;
+  line-height: 1.4em;
+  margin-bottom: 1.4em;
+}
+
+p ,ol, ul, blockquote {
+	.main();
 }
 
 h1 {
-  font-size: 2.3333em;
-  line-height: 1.2857em; 
-  margin-top: 0.6429em;
+  font-size: 3.6em;
+  font-weight: 100;
+  letter-spacing: -1px;
+  line-height: 1em;
+  margin-bottom: .1em;
 }
 
 h2 {
-  font-size: 2em; 
-  line-height: 1.5em;
-  margin-top: 0.75em;
+  font-size: 2em;
+  font-weight: 300;
 }
 
 h3 {
-  font-size: 1.6667em;
-  line-height: 1.8em;
-  margin-top: 0.9em;
+  font-size: 1.3em;
+  font-weight: 300;
+  margin-bottom: 1.2em;
 }
 
 h4 {
-  font-size: 1.5em;
-  line-height: 1.2em; 
-  margin-top: 1em;
+  color: #85888e;
+  font-size: 1.1em;
+  font-weight: 400;
 }
 
 h5 {
-  font-size: 1.3333em; 
-  line-height: 1.125em;
-  margin-top: 1.125em;
-}
-
-h6 {
-  font-size: 1.1667em;
-  line-height: 1.2857em; 
-  margin-top: 1.2857em;
+  color: #53555a;
+  /* Small text in all caps */
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: .6em;
 }

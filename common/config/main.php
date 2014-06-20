@@ -17,7 +17,7 @@ return [
             'converter' => [
                 'class' => 'yii\web\AssetConverter',
                 'commands' => [
-                    'less' => ['css', 'lessc {from} {to} --source-map --compress'],
+                    'less' => ['css', '/usr/local/bin/lessc {from} {to} --source-map --compress'],
                 ],
             ],
         ],

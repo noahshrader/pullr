@@ -21,8 +21,10 @@ $(function(){
     
     
     // let's initiate popover
-    $('[data-toggle="popover"').popover();
-    
+    var $popovers = $('[data-toggle="popover"');
+    if ($popovers.length > 0){
+        $popovers.popover();
+    }
 //    $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
 //    $wrapper.find('.dataTables_length select').addClass("form-control"); // modify table per page dropdown
 })
