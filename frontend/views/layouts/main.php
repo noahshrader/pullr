@@ -48,7 +48,7 @@ FrontendAsset::register($this);
                     <nav class="sidebar-nav nav-top">
                         <ul> 
                             <? if (!Yii::$app->user->isGuest): ?>
-                                <li><a class="streamboard icon-statistics" title="Streamboard" href="dashboard.html" target="_blank">Dashboard</a></li>
+                                <li><a class="streamboard icon-statistics" title="Streamboard" href="app">Dashboard</a></li>
                                 <li>
                                     <a class="campaign-link icon-heart2" title="Alerts" href="app/campaign"><span>Campaigns</span></a>
                                 </li>
