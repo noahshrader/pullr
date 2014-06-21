@@ -36,7 +36,7 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
             <ul class="campaign-actions">
 
                 <li>
-                    <a href="app/campaign/<?= $campaign->id ?>">
+                    <a href="app/campaign/view?id<?= $campaign->id ?>">
                         <i class="glyphicon glyphicon-edit"></i>
                         <br>
                         Overview
