@@ -32,22 +32,22 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
 </script>
 
 <section class="campaings-view-wrap">
-    <h1 class="section-header"> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
 
             <ul class="campaign-actions">
 
                 <li>
-                    <a href='<?= $user->getUrl() . $campaign->alias ?>'>
-                        <i class="glyphicon glyphicon-search"></i>
+                    <a href="app/campaign/<?= $campaign->id ?>">
+                        <i class="glyphicon glyphicon-edit"></i>
                         <br>
-                        View campaign
+                        Overview
                     </a>
                 </li>
+
                 <li>
                     <a href="app/campaign/edit?id=<?= $campaign->id ?>">
                         <i class="glyphicon glyphicon-edit"></i>
                         <br>
-                        Edit campaign
+                        Edit
                     </a>
                 </li>
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
@@ -55,7 +55,7 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
                             <i class="glyphicon glyphicon-book"></i>
                             <br>
-                            Campaign archive
+                            Archive
                         </a>
                     </li>
                 <? endif ?>
@@ -64,7 +64,7 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                             <i class="glyphicon glyphicon-ok"></i>
                             <br>
-                            Campaign restore
+                            Restore
                         </a>
                     </li>
                 <? endif ?>
@@ -79,7 +79,7 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                             <i class="glyphicon glyphicon-remove"></i>
                             <br>
-                            Campaign remove
+                            Remove
                         </a>
                     </li>
                 <? endif ?>
@@ -87,9 +87,13 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
         
     <div class="campaign-view-selected">
 
+         <h1> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
+
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
         <div class="text-center"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></div>
         <? endif ?>
+
+        <div class="center"><a href='<?= $user->getUrl() . $campaign->alias ?>'><i class="glyphicon glyphicon-search"></i>View Campaign</a></div>
 
 
         <section class="donation-overview">

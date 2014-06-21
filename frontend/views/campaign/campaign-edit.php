@@ -21,21 +21,21 @@ $user = \Yii::$app->user->identity;
             <h1 class="section-header"> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
 
 
-
             <ul class="campaign-actions">
 
                 <li>
-                    <a href='<?= $user->getUrl() . $campaign->alias ?>'>
-                        <i class="glyphicon glyphicon-search"></i>
+                    <a href="app/campaign/<?= $campaign->id ?>">
+                        <i class="glyphicon glyphicon-edit"></i>
                         <br>
-                        View campaign
+                        Overview
                     </a>
                 </li>
+
                 <li>
                     <a href="app/campaign/edit?id=<?= $campaign->id ?>">
                         <i class="glyphicon glyphicon-edit"></i>
                         <br>
-                        Edit campaign
+                        Edit
                     </a>
                 </li>
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
@@ -43,7 +43,7 @@ $user = \Yii::$app->user->identity;
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
                             <i class="glyphicon glyphicon-book"></i>
                             <br>
-                            Campaign archive
+                            Archive
                         </a>
                     </li>
                 <? endif ?>
@@ -52,7 +52,7 @@ $user = \Yii::$app->user->identity;
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                             <i class="glyphicon glyphicon-ok"></i>
                             <br>
-                            Campaign restore
+                            Restore
                         </a>
                     </li>
                 <? endif ?>
@@ -67,7 +67,7 @@ $user = \Yii::$app->user->identity;
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                             <i class="glyphicon glyphicon-remove"></i>
                             <br>
-                            Campaign remove
+                            Remove
                         </a>
                     </li>
                 <? endif ?>
