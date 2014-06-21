@@ -193,6 +193,11 @@ nav.sidebar-nav {
   text-align: center; 
 }
 
+.campaigns-list-wrap .glyphicon-plus {
+  font-size: 18px!important;
+  line-height: 70px;
+}
+
 /* Campaigns List Styling */
 
 .campaigns-list-wrap {
@@ -215,7 +220,7 @@ nav.sidebar-nav {
 
 .campaigns-list-wrap .campaign-quicknav {
     width: 100%;
-    padding: 15px 0px;
+    padding: 25px 0px;
     border-top: 1px solid #1d1e20;
     border-bottom: 1px solid #1d1e20;
 }
@@ -255,7 +260,7 @@ nav.sidebar-nav {
 }
 
 .campaign-item.active {
-    background-color: #2e3032;
+    background-color: #222325;
 }
 
 .campaign-item h3 {
@@ -294,6 +299,30 @@ right: 0;
     display: inline-block;
 }
 
+/* Campaign Edit Styling */
+
+ul.campaign-actions {
+  list-style: none;
+  margin: 0px;
+  padding: 2px 0px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid #1d1e20;
+  background: #2e3032;
+}
+
+ul.campaign-actions li {
+  display: inline-block;
+  text-align: center;
+  padding: 15px;
+}
+
+.campaign-edit-wrap {
+  padding: 60px;
+}
+
+
 /* Site Error */
 
 .site-error {
@@ -327,16 +356,16 @@ right: 0;
 /* Campaign Single Styling */
 
 /* Events Tables */
-.donations-table {
+.donations-table, .campaigns-table {
   border-top: solid 1px #1d1e20;
 }
 /* Single Events */
-.donation-title {
+.donation-title, .campaign-title {
   position: relative;
   text-align: center;
   padding-bottom: 2em;
 }
-.donation-title h3 {
+.donation-title h3, .campaign-title h3 {
   color: #6b6e75;
 }
 
@@ -376,13 +405,10 @@ ul.donation-actions li a:before {
   overflow: hidden;
 }
 .donation-overview .d-figure {
-  float: left;
   color: #6b6e75;
-  padding: 1.6em 2em;
-  width: 25%;
-  width: -webkit-calc(25%);
-  width: calc(25%);
   border-left: solid 1px #222325;
+  padding-top: 1.6em;
+  padding-bottom: 1.6em;
 }
 .donation-overview div:first-child {
   border: 0;
@@ -662,6 +688,11 @@ table td a.icon-plus2 {
     padding: 0px 60px;
     height: 70px;
     position: relative;
+    margin: 0px;
+    font-size: 42px;
+    line-height: 70px;
+    color: #fff;
+    text-align: center;
 }
 
 .section-header h1 {
@@ -768,6 +799,7 @@ a.showtoggle.closeme:before {
   color: #1dbc9c;
 }
 /* Donation/Progress Bars */
+
 .donation-bar {
   float: left;
   width: 100%;
@@ -780,6 +812,10 @@ a.showtoggle.closeme:before {
 .layout-edit    {
     overflow: hidden;
     margin-left: @campaigns-left-menu-width;
+}
+
+.campaign-view-selected {
+  padding: 60px;
 }
 
 
@@ -941,16 +977,9 @@ form {
 }
 
 @border : #000 2px solid;
-.campaings-view-selected{
+.campaings-view-wrap{
     overflow: hidden;
-    padding: 60px;
     margin-left: @campaigns-left-menu-width;
-
-    .campaign-actions{
-        margin: 10px auto;
-        max-width: 800px;
-
-    }
 
     .campaign-overview-tops{
         .col-xs-6 div:first-child{

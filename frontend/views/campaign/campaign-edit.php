@@ -18,14 +18,68 @@ $user = \Yii::$app->user->identity;
 
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
 
-        <div class="sidepanel-head">
-            <h4 class="section-header"> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h4>
-        </div>
+            <h1 class="section-header"> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
+
+
+
+            <ul class="campaign-actions">
+
+                <li>
+                    <a href='<?= $user->getUrl() . $campaign->alias ?>'>
+                        <i class="glyphicon glyphicon-search"></i>
+                        <br>
+                        View campaign
+                    </a>
+                </li>
+                <li>
+                    <a href="app/campaign/edit?id=<?= $campaign->id ?>">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        <br>
+                        Edit campaign
+                    </a>
+                </li>
+                <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
+                    <li>
+                        <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
+                            <i class="glyphicon glyphicon-book"></i>
+                            <br>
+                            Campaign archive
+                        </a>
+                    </li>
+                <? endif ?>
+                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                    <li>
+                        <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            <br>
+                            Campaign restore
+                        </a>
+                    </li>
+                <? endif ?>
+                    <li>
+                        <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
+                            <br>
+                            Shortcodes
+                        </a>
+                    </li>
+                <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
+                    <li>
+                        <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <br>
+                            Campaign remove
+                        </a>
+                    </li>
+                <? endif ?>
+                </ul>
+
 
         <? $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
+
+    <div class="campaign-edit-wrap">
         
-        <ul class="nav nav-tabs four-tabs">
+        <ul class="nav nav-tabs">
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon-cog"><span>General</span></a>
             </li>
@@ -88,6 +142,8 @@ $user = \Yii::$app->user->identity;
 <? else: ?>
 <? endif ?> 
 <!-- Modal -->
+
+</div>
 
 <div id='modal-social-link' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
