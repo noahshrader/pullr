@@ -15,7 +15,8 @@ $uniqueDonations = $campaign->getDonations()->count('DISTINCT email');
 $connection = \Yii::$app->db;
 $sql = 'SELECT id, SUM(amount) sum FROM '.Donation::tableName().' WHERE campaignId = '.$campaign->id.' AND email <> "" AND paymentDate > 0 GROUP BY email ORDER BY sum DESC';
 $command = $connection->createCommand($sql);
-$topDonorName = $command->queryScalar();
+$topDonor = $command->queryScalar();
+$topDonorName = ($topDonor) ? Donation::findOne($command->queryScalar())->name : '';
 $topDonationId = $campaign->getDonations()->orderBy('amount DESC')->select('id')->scalar();
 $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : '';
 ?>
