@@ -201,5 +201,14 @@ class Campaign extends ActiveRecord {
         return $this->hasMany(Donation::className(), ['campaignId' => 'id'])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
     }
     
-
+    /**
+     * executed after successfull donation
+     * @param type $id
+     */
+    public static function updateDonationStatistics($id){
+        $campaign = Campaign::findOne($id);
+        $sum = Donation::find()->where(['campaignId' => $campaign->id])->andWhere('paymentDate > 0')->sum('amount');
+        $campaign->amountRaised = $sum;
+        $campaign->save();
+    }
 }

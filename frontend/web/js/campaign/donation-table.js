@@ -8,7 +8,7 @@ $(function(){
                     [10, 20, 40, "All"] // change per page values here
                 ],
                 // set the initial value
-                "iDisplayLength": -1,
+                "iDisplayLength": 10,
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ records",

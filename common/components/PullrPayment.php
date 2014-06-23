@@ -96,10 +96,7 @@ class PullrPayment extends \yii\base\Component {
                             $donation->name = strip_tags($payerInfo->getFirstName().' '.$payerInfo->getLastName());
                         }
                         $donation->save();
-                        $campaign = Campaign::findOne($donation->campaignId);
-                        $sum = Donation::find()->where(['campaignId' => $campaign->id])->andWhere('paymentDate > 0')->sum('amount');
-                        $campaign->amountRaised = $sum;
-                        $campaign->save();
+                        Campaign::updateDonationStatistics($donation->campaignId);
                         break;
                 }
             }
