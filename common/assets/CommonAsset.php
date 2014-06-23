@@ -15,6 +15,7 @@ class CommonAsset extends AssetBundle {
     ];
     public $js = [
         'js/common.js',
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
         'plugins/bootstrapSwitch/js/bootstrap-switch.min.js',
         'plugins/jquery.form/jquery.form.js'
     ];

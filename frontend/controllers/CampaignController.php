@@ -262,5 +262,20 @@ class CampaignController extends FrontendController {
                     'charities' => $charities
         ]);
     }
-
+    
+    public function actionExportdonations(){
+        $campaign = $this->getCampaign();
+        $donations = $campaign->donations;
+        $rows = [];
+        foreach ($donations as $donation){
+            $rows[] = implode(',', [$donation->amount, $donation->name, $donation->email, $donation->comments, $donation->paymentDate]);
+        }
+        // set the content type
+        Header('Content-type: text/plain');
+        // force save as dialog (and suggest filename)
+        Header('Content-Disposition: attachment; filename="donations.csv"');
+        // next echo the text
+        echo implode(PHP_EOL, $rows);
+        die;
+    }
 }

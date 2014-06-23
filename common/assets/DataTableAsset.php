@@ -9,10 +9,10 @@ class DataTableAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'plugins/data-tables/DT_bootstrap.less'
+        '//cdn.datatables.net/1.10.0/css/jquery.dataTables.css',
     ];
     public $js = [
-            'plugins/data-tables/jquery.dataTables.js',
+            '//cdn.datatables.net/1.10.0/js/jquery.dataTables.js',
             'plugins/data-tables/DT_bootstrap.js',
     ];
     public $depends = [

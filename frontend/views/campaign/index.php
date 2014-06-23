@@ -10,7 +10,7 @@ $this->title = 'Campaigns';
 $user = \Yii::$app->user->identity;
 ?>
 
-    <section class="campaigns-list-wrap campaign-status-<?=$status?> campaigns-left-menu <?= $editCampaign ? 'content-container': 'panels-wrap open' ?>">
+    <section class="campaigns-list-wrap campaign-status-<?=$status?> campaigns-left-menu <?= $editCampaign ? 'sidebar-container': 'panels-wrap open' ?>">
 
                 <h2><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right; margin-right: 10px; color: #fff" ><i class="glyphicon glyphicon-plus"></i></a></h2>
 
