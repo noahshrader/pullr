@@ -19,7 +19,7 @@ class StreamboardAsset extends AssetBundle
 	];
         
 	public $js = [
-            '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
+//            '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
             '//code.jquery.com/ui/1.10.4/jquery-ui.js',
             'js/streamboard/streamboard.js',
 	];

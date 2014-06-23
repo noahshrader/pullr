@@ -23,6 +23,9 @@ return [
                 '<userAlias>/<campaignAlias>/thankyou' => 'layoutview/thankyou'
             ]
         ],
+        'request'=>array(
+            'enableCsrfValidation'=>false,
+        ),
         'eauth' => require 'eauth.php',
         'user' => [
              'class' => 'common\components\PullrUserComponent',

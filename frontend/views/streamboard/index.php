@@ -8,6 +8,7 @@ use yii\helpers\Url;
 
 //StreamboardAsset::register($this);
 ?>
+<div data-ng-app="streamboardApp">
 
 <!-- // Layout Options Side Panel // -->
 <section id="sidepanel" class="sidepanel open resizable">
@@ -22,10 +23,22 @@ use yii\helpers\Url;
 	</div>
 	<div class="tab-content">
 		<!-- Accordion slide one (Donations) -->
-		<div class="tab-pane active" id="donations">
+		<div class="tab-pane active" id="donations" data-ng-controller="DonationsController"
+            data-ng-init="start_time = <?php echo time(); ?>;
+            csrf_token_name = '<?php echo $csrf_token_name;?>';
+            csrf_token = '<?php echo $csrf_token;?>';
+            ">
+
+            <input type="button" data-ng-click="addDonation()" />
+            <ul class="donations_list">
+               <li data-ng-repeat="donation in donations">
+                   {{donation.name}} - {{donation.amount}}
+               </li>
+            </ul>
+
 			<ul class="bottom-panel-nav two-tabs cf">
-				<li><a>Campaigns</a></li>
-				<li><a>Stats</a></li>
+				<li><a data-panel="campaigns_list">Campaigns</a></li>
+				<li><a data-panel="stats">Stats</a></li>
 			</ul>
 		</div>
 		<!-- Accordion slide two (Region 1) -->
@@ -37,10 +50,38 @@ use yii\helpers\Url;
 			<h3>Region 2</h3>
             <iframe src="http://webdesignermemphis.com/pullrapp/streamboard/source.html" allowtransparency="true"></iframe>
 
-	</div>
-	<div class="slidepanel">
-		<a class="close icon-cross"></a>
-	</div>
+        </div>
+        <div class="campaigns_list_panel slidepanel">
+            <div class="campaigns_list">
+                <h3>Campaigns</h3>
+                <?php
+                    foreach($campaigns as $campaign) {
+                ?>
+                    <input type="checkbox" name="campaigns[]"
+                        value="<?php echo $campaign['id']; ?>"
+                        id="campaign_<?php echo $campaign['id']; ?>"
+                        data-ng-model="campaigns.<?php echo $campaign['id']; ?>"
+
+
+                        />
+                    <label for="campaign_<?php echo $campaign['id']; ?>">
+                        <?php echo $campaign['name']; ?>
+                    </label>
+                <?php
+                    }
+                ?>
+
+            </div>
+            <a class="close icon-cross"></a>
+        </div>
+        <div class="stats_panel slidepanel">
+            <a class="close icon-cross"></a>
+        </div>
+    </div>
 </section>
-<script src="../js/streamboard.js"></script>
-<script src="../js/plugins.js"></script>
+
+</div>
+
+
+<script src="/js/streamboard/angular/angular.min.js"></script>
+<script src="/js/streamboard/streamboard.js"></script>

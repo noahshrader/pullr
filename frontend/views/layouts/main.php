@@ -28,6 +28,9 @@ FrontendAsset::register($this);
     <!-- Google Webfonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700' rel='stylesheet' type='text/css'>
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
     </head>
     <body>
 
@@ -48,7 +51,7 @@ FrontendAsset::register($this);
                     <nav class="sidebar-nav nav-top">
                         <ul> 
                             <? if (!Yii::$app->user->isGuest): ?>
-                                <li><a class="streamboard icon-statistics" title="Streamboard" href="dashboard.html" target="_blank">Dashboard</a></li>
+                                <li><a class="streamboard icon-statistics" title="Streamboard" href="app">Dashboard</a></li>
                                 <li>
                                     <a class="campaign-link icon-heart2" title="Alerts" href="app/campaign"><span>Campaigns</span></a>
                                 </li>
@@ -69,6 +72,13 @@ FrontendAsset::register($this);
                                    
                             <? endif; ?>
                          </ul>
+                    </nav>
+
+                    <nav class="sidebar-nav nav-bottom">
+                        <ul>
+                            <li role="presentation"><a role="menuitem" href="app/help">Help</a></li>
+                            <li role="presentation"><a role="menuitem" href="app/site/logout">Logout</a></li>
+                        </ul>
                     </nav>
 
                 </div><!-- /primary-navigation -->
