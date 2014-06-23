@@ -78,8 +78,6 @@ a:hover:before {
     position: fixed;
     height: 100%;
     background: #1d1e20;
-    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     -webkit-transition: all ease-in-out 0.2s;
     transition: all ease-in-out 0.2s;
@@ -88,7 +86,7 @@ a:hover:before {
 }
 
 .primary-navigation {
-    width: 160px;
+    width: 140px;
     height: 100%;
     background: #1d1e20;
     z-index: 6;
@@ -98,7 +96,7 @@ a:hover:before {
 
 a.logo {
   background: @accent;
-  height: 82px;
+  height: @top-menu-height;
 }
 
 a.logo.icon-pullr {
@@ -106,7 +104,7 @@ a.logo.icon-pullr {
     width: 100%;
     font-size: 40px;
     text-align: center;
-    padding: 20px 0px;
+    line-height: @top-menu-height;
     cursor: pointer;
 }
 
@@ -168,7 +166,6 @@ nav.sidebar-nav {
     padding: 5px 15px;
     color: #53555a;
     border-bottom: 1px solid #000;
-    border-top: 1px solid #222325;
 }
 
 .page-sidebar nav.nav-top ul li a:before, .page-sidebar nav.nav-bottom ul li a:before {
@@ -227,7 +224,7 @@ nav.sidebar-nav {
     font-size: 24px;
     color: @accent;
     font-weight: 300;
-    line-height: 82px;
+    line-height: @top-menu-height;
     padding-left: 15px;
     padding-right: 15px;
     font-weight: normal;
@@ -326,7 +323,7 @@ ul.campaign-actions {
   text-align: center;
   border-top: 1px solid #1d1e20;
   background: #2e3032;
-  height: 82px;
+  height: @top-menu-height;
 }
 
 ul.campaign-actions li {
@@ -358,7 +355,7 @@ ul.campaign-actions li {
     z-index: 1;
     background: #222325;
     height: 100%;
-    padding-left: 161px;
+    padding-left: 141px;
 }
 
 .page-content {

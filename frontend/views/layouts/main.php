@@ -73,7 +73,7 @@ FrontendAsset::register($this);
 
                     <nav class="sidebar-nav nav-bottom">
                         <ul>
-                            <li role="presentation"><a role="menuitem" href="app/help">Help</a></li>
+                            <li role="presentation"><a class="streamboard icon-liferaft" role="menuitem" href="app/help">Help</a></li>
                             <li role="presentation"><a role="menuitem" href="app/site/logout">Logout</a></li>
                         </ul>
                     </nav>
