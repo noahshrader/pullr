@@ -21,7 +21,7 @@ class Donation extends ActiveRecord
     
     public function scenarios() {
         return [
-            'default' => ['name','email','comments','amount','createdDate']
+            'default' => ['nameFromForm','email','comments','amount','createdDate']
         ];
     }
 	/**
@@ -30,7 +30,7 @@ class Donation extends ActiveRecord
 	public function rules()
 	{
             return [
-                ['name', 'filter', 'filter' => 'strip_tags'],
+                ['nameFromForm', 'filter', 'filter' => 'strip_tags'],
                 ['email', 'filter', 'filter' => 'strip_tags'],
                 ['comments', 'filter', 'filter' => 'strip_tags'],
             ];
@@ -50,6 +50,14 @@ class Donation extends ActiveRecord
      */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'userId']);
+    }
+    
+    public function getName(){
+        if ($this->firstName || $this->lastName){
+            return $this->lastName.' '.$this->firstName;
+        } else {
+            return $this->nameFromForm;
+        }
     }
 }
  

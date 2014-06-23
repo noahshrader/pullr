@@ -92,9 +92,8 @@ class PullrPayment extends \yii\base\Component {
                         if (!$donation->email){
                             $donation->email = strip_tags($payerInfo->getEmail());
                         }
-                        if (!$donation->name){
-                            $donation->name = strip_tags($payerInfo->getFirstName().' '.$payerInfo->getLastName());
-                        }
+                        $donation->firstName = strip_tags($payerInfo->getFirstName());
+                        $donation->lastName = strip_tags($payerInfo->getLastName());
                         $donation->save();
                         Campaign::updateDonationStatistics($donation->campaignId);
                         break;
