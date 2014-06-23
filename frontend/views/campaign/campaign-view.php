@@ -137,6 +137,7 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
         <table id="campaign-donations" class="display donations-table extend" cellspacing="0" width="100%">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Date & Time</th>
                     <th>Donor Name</th>
                     <th>Amount</th>
@@ -145,26 +146,24 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
             </thead>
             <tbody>
                 <? foreach ($donations as $donation): ?>
-                    <tr>
+                    <tr data-email="<?= $donation->email ?>" data-comments="<?= $donation->comments ?>">
+                        <td class="details-control">
+                            <? if ($donation->email || $donation->comments): ?>
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            <? endif ?>
+                        </td>
                         <td>
                            <?= date('M j, Y', $donation->paymentDate) ?>
                         </td>
                         <td>
                             <?= $donation->name ? $donation->name : 'Anonymous' ?>
-                            <? if ($donation->email): ?>
-                            &nbsp;
-                                <i class="glyphicon glyphicon-plus-sign" data-container="body" data-toggle="popover" 
-                                   data-placement="bottom" data-content="<?= $donation->email ?>"></i>
-                            <? endif; ?>
                         </td>
                         <td>
                             $<?= number_format($donation->amount) ?>
                         </td>
                         <td>
                             <? if ($donation->comments): ?>
-                            Yes &nbsp;
-                                <i class="glyphicon glyphicon-plus-sign" data-container="body" data-toggle="popover" 
-                                   data-placement="bottom" data-content="<?= $donation->comments ?>"></i>
+                            Yes
                             <? else: ?>
                                 No
                             <? endif ?>
