@@ -44,8 +44,9 @@ $(function(){
         var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).text('CSV');
         csvButton.insertAfter($wrapper.find('.dataTables_info'));
     }
-//    $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
-//    $wrapper.find('.dataTables_length select').addClass("form-control"); // modify table per page dropdown
+    
+    $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
+    $wrapper.find('.dataTables_length select').addClass("form-control"); // modify table per page dropdown
 })
 
 
