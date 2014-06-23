@@ -61,8 +61,6 @@ use yii\helpers\Url;
                         value="<?php echo $campaign['id']; ?>"
                         id="campaign_<?php echo $campaign['id']; ?>"
                         data-ng-model="campaigns.<?php echo $campaign['id']; ?>"
-
-
                         />
                     <label for="campaign_<?php echo $campaign['id']; ?>">
                         <?php echo $campaign['name']; ?>
@@ -75,6 +73,26 @@ use yii\helpers\Url;
             <a class="close icon-cross"></a>
         </div>
         <div class="stats_panel slidepanel">
+            <h3>Stats</h3>
+            <label>Your Top 3 Donors</label>
+            <ul class="top_donors">
+                <li data-ng-repeat="donor in stats.top_donors">
+                    {{donor.name}}
+                </li>
+            </ul>
+
+            <label>Total Donation Amount</label>
+            <span class="total_amount" data-ng-model="stats.total_amount" ></span>
+
+            <label>Top Donation Amount</label>
+            <span class="top_donation" data-ng-model="stats.top_donation" ></span>
+
+            <label>Number Of Donations</label>
+            <span class="number_of_donations" data-ng-model="stats.number_of_donations" ></span>
+
+            <label>Number Of Donors</label>
+            <span class="number_of_donors" data-ng-model="stats.number_of_donors" ></span>
+
             <a class="close icon-cross"></a>
         </div>
     </div>
