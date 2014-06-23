@@ -268,7 +268,7 @@ class CampaignController extends FrontendController {
         $donations = $campaign->donations;
         $rows = [];
         foreach ($donations as $donation){
-            $rows[] = implode(',', [$donation->amount, $donation->name, $donation->email, $donation->comments, $donation->paymentDate]);
+            $rows[] = implode(',', [$donation->amount, $donation->name, $donation->email, $donation->comments, date('M j Y H:i:s', $donation->paymentDate)]);
         }
         // set the content type
         Header('Content-type: text/plain');
