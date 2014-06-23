@@ -26,6 +26,7 @@ $(function () {
 angular.module('streamboardApp', [])
 .controller('DonationsController', function ($scope, $http) {
     $scope.donations = [];
+    $scope.stats = [];
 //    $scope.campaigns = [];
 
     var updateDonations = function () {
@@ -54,6 +55,7 @@ angular.module('streamboardApp', [])
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(data) {
             $scope.donations = data.donations;
+            $scope.stats = data.stats;
         });
     };
     updateDonations();
