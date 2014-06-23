@@ -1,6 +1,6 @@
 $(function(){
     $el = $('#campaign-donations');
-//    $wrapper = $el.parent().parent();
+    $wrapper = $el.parent().parent();
     var $table = $el.dataTable({
          "bSort": false,
          "aLengthMenu": [
@@ -20,18 +20,11 @@ $(function(){
     });
     
     
-    // let's initiate popover
-    var $popovers = $('[data-toggle="popover"');
-    if ($popovers.length > 0){
-        $popovers.popover();
-    }
-    
     // Add event listener for opening and closing details
     $('#campaign-donations tbody').on('click', 'td.details-control', function () {
         var dt = $('#campaign-donations').DataTable();
         $row = $(this).closest('tr');
         var row = dt.row( $row );
-        log(row);
         if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
@@ -44,6 +37,13 @@ $(function(){
         }
     } );
     
+    if ($table.fnSettings().fnRecordsTotal()){
+        var id = $('.campaign-view-selected').data('id');
+        var href = 'app/campaign/exportdonations?id='+id;
+
+        var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).text('CSV');
+        csvButton.insertAfter($wrapper.find('.dataTables_info'));
+    }
 //    $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
 //    $wrapper.find('.dataTables_length select').addClass("form-control"); // modify table per page dropdown
 })

@@ -85,7 +85,7 @@ $topDonationName = $campaign->getDonations()->orderBy('amount DESC')->select('na
                 <? endif ?>
                 </ul>
         
-    <div class="campaign-view-selected">
+    <div class="campaign-view-selected" data-id="<?= $campaign->id ?>">
 
          <h1> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
 

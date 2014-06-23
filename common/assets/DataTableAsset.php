@@ -9,7 +9,7 @@ class DataTableAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        '//cdn.datatables.net/1.10.0/css/jquery.dataTables.css'
+        '//cdn.datatables.net/1.10.0/css/jquery.dataTables.css',
     ];
     public $js = [
             '//cdn.datatables.net/1.10.0/js/jquery.dataTables.js',
