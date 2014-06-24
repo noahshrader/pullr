@@ -320,7 +320,7 @@ class CampaignController extends FrontendController {
         $selectedEmail = $viewDonorParams ? $viewDonorParams['email'] : null;
         $user = \Yii::$app->user->identity;
         $connection = \Yii::$app->db;
-        $sql = 'SELECT email, SUM(amount) sum, GROUP_CONCAT(DISTINCT nameFromForm SEPARATOR " ") nameFromForm, firstName, lastName FROM '.Donation::tableName().' WHERE userId = '.$user->id.' AND paymentDate > 0 AND email<>"" GROUP BY email ORDER BY lastName, firstName, nameFromForm ASC';
+        $sql = 'SELECT email, SUM(amount) sum, GROUP_CONCAT(DISTINCT nameFromForm SEPARATOR " ") nameFromForm, firstName, lastName FROM '.Donation::tableName().' WHERE userId = '.$user->id.' AND paymentDate > 0 AND email<>"" GROUP BY email ORDER BY sum DESC';
         $command = $connection->createCommand($sql);
         $donors = $command->queryAll();
         
