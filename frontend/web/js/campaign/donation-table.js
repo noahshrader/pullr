@@ -42,7 +42,8 @@ $(function(){
         var id = $('.campaign-view-selected').data('id');
         var href = 'app/campaign/exportdonations?id='+id;
 
-        var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).text('CSV');
+        var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).html
+            ('<i class="glyphicon glyphicon-download-alt"></i> CSV');
         csvButton.insertBefore($wrapper.find('.dataTables_paginate'));
     }
     
