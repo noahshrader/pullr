@@ -12,7 +12,7 @@ $user = \Yii::$app->user->identity;
 
     <section class="campaigns-list-wrap campaign-status-<?=$status?> campaigns-left-menu <?= $editCampaign ? 'sidebar-container': 'panels-wrap open' ?>">
 
-                <h2><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right; margin-right: 10px; color: #fff" ><i class="glyphicon glyphicon-plus"></i></a></h2>
+                <h2><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right; margin-right: 10px; color: #fff" ><i class="icon icon-add2"></i></a></h2>
 
                     <nav class="campaign-quicknav">
                         <ul>

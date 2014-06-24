@@ -39,7 +39,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
                 <li>
                     <a href="app/campaign/view?id=<?= $campaign->id ?>">
-                        <i class="glyphicon glyphicon-edit"></i>
+                        <i class="icon-view"></i>
                         <br>
                         Overview
                     </a>
@@ -47,15 +47,24 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
                 <li>
                     <a href="app/campaign/edit?id=<?= $campaign->id ?>">
-                        <i class="glyphicon glyphicon-edit"></i>
+                        <i class="icon-edit"></i>
                         <br>
                         Edit
                     </a>
                 </li>
+
+                <li>
+                    <a href='<?= $user->getUrl() . $campaign->alias ?>'>
+                        <i class="icon-view"></i>
+                        <br/>
+                        View
+                    </a>
+                </li>
+
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                     <li>
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                            <i class="glyphicon glyphicon-book"></i>
+                            <i class="icon-archive"></i>
                             <br>
                             Archive
                         </a>
@@ -71,7 +80,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
                     </li>
                 <? endif ?>
                     <li>
-                        <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
+                        <a class="icon-code" href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
                             <br>
                             Shortcodes
                         </a>
@@ -79,7 +88,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
                 <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                     <li>
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                            <i class="glyphicon glyphicon-remove"></i>
+                            <i class="icon-remove"></i>
                             <br>
                             Remove
                         </a>
@@ -94,8 +103,6 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
         <div class="text-center"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></div>
         <? endif ?>
-
-        <div class="center"><a href='<?= $user->getUrl() . $campaign->alias ?>'><i class="glyphicon glyphicon-search"></i>View Campaign</a></div>
 
 
         <section class="donation-overview">
@@ -129,7 +136,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
             <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
             ?>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;">
+                <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;">
                     <?= round($progress) ?>%
                 </div>
             </div>

@@ -18,13 +18,11 @@ $user = \Yii::$app->user->identity;
 
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
 
-            <h1 class="section-header"> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
-
 
             <ul class="campaign-actions">
 
                 <li>
-                    <a href="app/campaign/<?= $campaign->id ?>">
+                    <a href="app/campaign/view?id=<?= $campaign->id ?>">
                         <i class="glyphicon glyphicon-edit"></i>
                         <br>
                         Overview
@@ -38,6 +36,15 @@ $user = \Yii::$app->user->identity;
                         Edit
                     </a>
                 </li>
+
+                <li>
+                    <a href='<?= $user->getUrl() . $campaign->alias ?>'>
+                        <i class="glyphicon glyphicon-search"></i>
+                        <br/>
+                        View
+                    </a>
+                </li>
+                
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                     <li>
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
@@ -78,6 +85,8 @@ $user = \Yii::$app->user->identity;
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
 
     <div class="campaign-edit-wrap">
+
+    <h1> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
         
         <ul class="nav nav-tabs">
             <li class="active">

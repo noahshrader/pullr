@@ -244,9 +244,9 @@ nav.sidebar-nav {
   text-align: center; 
 }
 
-.campaigns-list-wrap .glyphicon-plus {
+.campaigns-list-wrap .icon-add2 {
   font-size: 18px!important;
-  line-height: 70px;
+  line-height: @top-menu-height;
 }
 
 /* Campaigns List Styling */
@@ -368,7 +368,7 @@ ul.campaign-actions {
 ul.campaign-actions li {
   display: inline-block;
   text-align: center;
-  padding: 15px;
+  padding: 10px 15px;
 }
 
 .campaign-edit-wrap {
@@ -491,6 +491,11 @@ ul.donation-actions li a:before {
   border-top: solid 1px #222325;
   background: #3a3c40;
 }
+
+.progress {
+  border-radius: 0px;
+}
+
 .progress-line {
   position: relative;
   color: #FFF;
@@ -1049,9 +1054,6 @@ form {
     .campaign-overview-tops{
         .col-xs-6 div:first-child{
             font-size: 1.6em;
-        }
-        .col-xs-6:first-child{
-            border-right: @border;
         }
 
         .col-xs-6{
