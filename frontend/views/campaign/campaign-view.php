@@ -106,40 +106,41 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
 
         <section class="donation-overview">
-            <div class='row'>
-                <div class='col-xs-3 d-figure raised-total'>
-                    <span>$<?= number_format($campaign->amountRaised) ?></span>Raised
-                </div>
-                <div class='col-xs-3 d-figure'>
-                    <span>$<?= number_format($campaign->goalAmount) ?></span>Goal
-                </div>
-                <div class='col-xs-3 d-figure'>
-                    <span><?= sizeof($donations) ?></span>Donations
-                </div>
-                <div class='col-xs-3 d-figure'>
-                    <span><?= $uniqueDonations ?></span>Unique
-                </div>
-            </div>
-
-            <div class='row campaign-overview-tops'>
-                <div class='col-xs-6'>
-                    <div><?= $topDonorName ?></div>
-                    <div>Top Donor</div>
-                </div>
-                <div class='col-xs-6'>
-                    <div><?= $topDonationName ?></div>
-                    <div>Top Donation</div>
-                </div>
-            </div>
 
 
-            <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
-            ?>
-            <div class="progress">
-                <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;">
-                    <?= round($progress) ?>%
-                </div>
-            </div>
+                    <div class='col-xs-3 d-figure raised-total'>
+                        <span>$<?= number_format($campaign->amountRaised) ?></span>Raised
+                    </div>
+                    <div class='col-xs-3 d-figure'>
+                        <span>$<?= number_format($campaign->goalAmount) ?></span>Goal
+                    </div>
+                    <div class='col-xs-3 d-figure'>
+                        <span><?= sizeof($donations) ?></span>Donations
+                    </div>
+                    <div class='col-xs-3 d-figure'>
+                        <span><?= $uniqueDonations ?></span>Unique
+                    </div>
+                
+                    <div class="clearfix"></div>
+
+                    <div class='col-xs-6'>
+                        <div><?= $topDonorName ?></div>
+                        <div>Top Donor</div>
+                    </div>
+                    <div class='col-xs-6'>
+                        <div><?= $topDonationName ?></div>
+                        <div>Top Donation</div>
+                    </div>
+                    
+                    <div class="clearfix"></div>
+
+                    <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
+                    ?>
+                    <div class="progress">
+                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;">
+                            <?= round($progress) ?>%
+                        </div>
+                    </div>
 
         </section>
         
@@ -158,7 +159,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
                     <tr data-email="<?= $donation->email ?>" data-comments="<?= $donation->comments ?>">
                         <td class="details-control">
                             <? if ($donation->email || $donation->comments): ?>
-                                <i class="glyphicon glyphicon-plus-sign"></i>
+                                <i class="icon-add2"></i>
                             <? endif ?>
                         </td>
                         <td>
