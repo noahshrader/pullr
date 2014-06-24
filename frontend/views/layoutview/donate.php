@@ -66,7 +66,7 @@ use yii\widgets\ActiveForm;
                 <!-- Other Fields -->
                 <div class="form-wrapper">
                         <div class="field">
-                            <input type="text" id="donation-name" name="Donation[name]" value='<?= htmlspecialchars($donation->name) ?>' placeholder="Name">
+                            <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
                         </div>
                         <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
                         <div class="field">

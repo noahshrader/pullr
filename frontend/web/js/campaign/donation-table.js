@@ -37,15 +37,18 @@ $(function(){
         }
     } );
     
+    /*add csv button*/
     if ($table.fnSettings().fnRecordsTotal()){
         var id = $('.campaign-view-selected').data('id');
         var href = 'app/campaign/exportdonations?id='+id;
 
-        var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).text('CSV');
-        csvButton.insertAfter($wrapper.find('.dataTables_info'));
+        var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).html
+            ('<i class="glyphicon glyphicon-download-alt"></i> CSV');
+        csvButton.insertBefore($wrapper.find('.dataTables_paginate'));
     }
-//    $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
-//    $wrapper.find('.dataTables_length select').addClass("form-control"); // modify table per page dropdown
+    
+    $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
+    $wrapper.find('.dataTables_length select').addClass("form-control"); // modify table per page dropdown
 })
 
 

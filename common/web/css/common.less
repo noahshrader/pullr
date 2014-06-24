@@ -47,7 +47,7 @@ a, a:link, a:visited, a:active {
 
 a,
 a:before {
-  color: #1dbc9c;
+  color: @accent;
   text-decoration: none;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
@@ -71,6 +71,45 @@ a:hover:before {
   color: #2ddfbb;
 }
 
+/* Login and Signup Page */
+
+.intro-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: table;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.intro-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.intro-content .form-control {
+  width: 100%;
+  display: inline-block;
+}
+
+.intro-content .checkbox {
+  display: inline-block;
+}
+
+a.login-logo.icon-pullr {
+  color: @white;
+  font-size: 62px;
+}
+
+a.login-logo.icon-pullr:before {
+  color: @white;
+}
+
+.intro-content p {
+  max-width: 400px;
+  margin: 15px auto;
+}
 
 /* New Sidebar Styles */
 
@@ -78,8 +117,6 @@ a:hover:before {
     position: fixed;
     height: 100%;
     background: #1d1e20;
-    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     -webkit-transition: all ease-in-out 0.2s;
     transition: all ease-in-out 0.2s;
@@ -88,7 +125,7 @@ a:hover:before {
 }
 
 .primary-navigation {
-    width: 160px;
+    width: 140px;
     height: 100%;
     background: #1d1e20;
     z-index: 6;
@@ -96,27 +133,42 @@ a:hover:before {
     position: relative;
 }
 
+a.logo {
+  background: @accent;
+  height: @top-menu-height;
+}
+
 a.logo.icon-pullr {
     display: block;
     width: 100%;
-    font-size: 42px;
+    font-size: 40px;
     text-align: center;
-    padding: 20px 0px;
+    line-height: @top-menu-height;
+    cursor: pointer;
+}
+
+a.logo.icon-pullr:before {
+  color: @white;
+  font-size: 40px;
 }
 
 .avatar-container {
     display: block;
     text-align: center;
-    margin-bottom: 25px;
+    height: 80px;
 }
 
 .avatar-container span img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
-a.logo.icon-pullr:before, .page-sidebar nav.sidebar-nav ul li a, .page-sidebar nav.sidebar-nav ul li a:before {
+.avatar-container span {
+  line-height: 80px;
+}
+
+.page-sidebar nav.sidebar-nav ul li a, .page-sidebar nav.sidebar-nav ul li a:before {
     color: #53555a;
 }
 
@@ -153,7 +205,6 @@ nav.sidebar-nav {
     padding: 5px 15px;
     color: #53555a;
     border-bottom: 1px solid #000;
-    border-top: 1px solid #222325;
 }
 
 .page-sidebar nav.nav-top ul li a:before, .page-sidebar nav.nav-bottom ul li a:before {
@@ -187,15 +238,15 @@ nav.sidebar-nav {
 
 .page-sidebar nav.nav-bottom ul li a {
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   padding: 5px 15px;
   display: inline-block;
   text-align: center; 
 }
 
-.campaigns-list-wrap .glyphicon-plus {
+.campaigns-list-wrap .icon-add2 {
   font-size: 18px!important;
-  line-height: 70px;
+  line-height: @top-menu-height;
 }
 
 /* Campaigns List Styling */
@@ -210,9 +261,9 @@ nav.sidebar-nav {
 
 .campaigns-list-wrap h2 {
     font-size: 24px;
-    color: #1dbc9c;
+    color: @accent;
     font-weight: 300;
-    line-height: 70px;
+    line-height: @top-menu-height;
     padding-left: 15px;
     padding-right: 15px;
     font-weight: normal;
@@ -221,6 +272,7 @@ nav.sidebar-nav {
 .campaigns-list-wrap .campaign-quicknav {
     width: 100%;
     padding: 25px 0px;
+    height: 80px;
     border-top: 1px solid #1d1e20;
     border-bottom: 1px solid #1d1e20;
 }
@@ -310,12 +362,13 @@ ul.campaign-actions {
   text-align: center;
   border-top: 1px solid #1d1e20;
   background: #2e3032;
+  height: @top-menu-height;
 }
 
 ul.campaign-actions li {
   display: inline-block;
   text-align: center;
-  padding: 15px;
+  padding: 10px 15px;
 }
 
 .campaign-edit-wrap {
@@ -341,7 +394,7 @@ ul.campaign-actions li {
     z-index: 1;
     background: #222325;
     height: 100%;
-    padding-left: 161px;
+    padding-left: 141px;
 }
 
 .page-content {
@@ -421,7 +474,7 @@ ul.donation-actions li a:before {
   letter-spacing: -1px;
 }
 .donation-overview .d-figure.raised-total span {
-  color: #1dbc9c;
+  color: @accent;
 }
 
 .top-donate {
@@ -438,6 +491,11 @@ ul.donation-actions li a:before {
   border-top: solid 1px #222325;
   background: #3a3c40;
 }
+
+.progress {
+  border-radius: 0px;
+}
+
 .progress-line {
   position: relative;
   color: #FFF;
@@ -447,7 +505,7 @@ ul.donation-actions li a:before {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: #1dbc9c;
+  background: @accent;
   -webkit-animation: animate-bar 1s 1 ease;
   animation: animate-bar 1s 1 ease;
 }
@@ -519,7 +577,7 @@ ul.donation-actions li a:before {
   margin: .2em auto;
 }
 #campaigns ul.nav-tabs li.active h2 {
-  color: #1dbc9c;
+  color: @accent;
 }
 
 /* Individual Campaign Buckets */
@@ -718,7 +776,7 @@ a.add-btn {
     width: 69px;
     height: 69px;
     z-index: 1000;
-    background: #1dbc9c;
+    background: @accent;
 }
 
 a.add-btn:before {
@@ -800,7 +858,7 @@ a.showtoggle.closeme:before {
   letter-spacing: -1px;
 }
 .quick-stats .d-figure.raised-total span {
-  color: #1dbc9c;
+  color: @accent;
 }
 /* Donation/Progress Bars */
 
@@ -875,7 +933,7 @@ form {
 .dataTable{
     .odd{
         a{
-            color: lighten(@pullr-link-color, 15%);
+            color: @gray12;
         }
     }
 }
@@ -894,7 +952,7 @@ form {
         padding: 0px;
 
         .pullr-layout{
-            background-color: lighten(@pullr-background, 20%);
+            background-color: @gray20;
             min-height: 150px;
             /*padding-top: 50px;*/
             /*padding-left: 10px;*/
@@ -902,7 +960,7 @@ form {
             position: relative;
             .main-info{
                 position: absolute;
-                background-color: lighten(@pullr-background, 20%);
+                background-color: @gray20;;
                 left: 0px;
                 top: 0px;
                 .layout-type{
@@ -997,9 +1055,6 @@ form {
         .col-xs-6 div:first-child{
             font-size: 1.6em;
         }
-        .col-xs-6:first-child{
-            border-right: @border;
-        }
 
         .col-xs-6{
             padding: 20px 0px;
@@ -1015,8 +1070,4 @@ form {
         }
     }
 
-    #campaign-donations_wrapper, #campaign-overview{
-        border: @border;
-        margin: 20px 10px; 
-    }
 }

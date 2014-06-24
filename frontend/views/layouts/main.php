@@ -1,19 +1,20 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use frontend\assets\FrontendAsset;
-use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
 use common\assets\CommonAsset;
 use common\models\CampaignInvite;
-
+use yii\helpers\Url;
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
 CommonAsset::register($this);
 FrontendAsset::register($this);
+
+$js = 'Pullr.baseUrl = "'.Url::to('app').'";';
+$js .= 'Pullr.setCurrentMenuActive();';
+$this->registerJs($js);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -34,6 +35,10 @@ FrontendAsset::register($this);
         <?php $this->beginBody() ?>
         
         <div class="main-wrapper">
+
+            <!-- If the user is logged in and is a user -->
+
+            <? if (!Yii::$app->user->isGuest): ?>
             
             <div class="page-sidebar">
 
@@ -41,9 +46,7 @@ FrontendAsset::register($this);
 
                     <a class="logo icon-pullr"></a>
 
-                    <? if (!Yii::$app->user->isGuest): ?>
                        <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
-                    <? endif; ?>
 
                     <nav class="sidebar-nav nav-top">
                         <ul> 
@@ -73,7 +76,7 @@ FrontendAsset::register($this);
 
                     <nav class="sidebar-nav nav-bottom">
                         <ul>
-                            <li role="presentation"><a role="menuitem" href="app/help">Help</a></li>
+                            <li role="presentation"><a class="streamboard icon-liferaft" role="menuitem" href="app/help">Help</a></li>
                             <li role="presentation"><a role="menuitem" href="app/site/logout">Logout</a></li>
                         </ul>
                     </nav>
@@ -82,20 +85,31 @@ FrontendAsset::register($this);
 
             </div><!-- /page-sidebar -->
 
+            <? endif; ?>
+
             <div class="page-content-wrap">
 
                 <div class="page-content">
 
-                    <?= Alert::widget() ?>
-                    <?= $content ?>
-
                     <? if (Yii::$app->user->isGuest): ?>
 
-                    <?= $this->render('@frontend/views/site/signupModal'); ?>  
+                    <div class="intro-content-wrapper">
 
-                    <?= $this->render('@frontend/views/site/loginModal'); ?>  
+                        <div class="intro-content">
+
+                            <h1><a class="login-logo icon-pullr"></a></h1>
+
+                            <?= $this->render('@frontend/views/site/signupModal'); ?>  
+
+                            <?= $this->render('@frontend/views/site/loginModal'); ?> 
+
+                        </div>
+
+                    </div>
 
                     <? endif; ?>
+
+                    <?= $content ?>
 
                 </div>
 
