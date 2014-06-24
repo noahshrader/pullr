@@ -9,9 +9,7 @@ $model->load($_POST);
 
 <!-- Removing Login Modal so that it appears on the home page instead -->
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8">
+
       <? $form = ActiveForm::begin([
         'action'=> 'app/site/login' , 
         'fieldConfig' => ['autoPlaceholder'=>true],
@@ -29,8 +27,5 @@ $model->load($_POST);
             <button type="submit" class="btn btn-primary">Login</button>
             <button class="btn btn-link" onclick="$('#loginModal').modal('hide');$('#signupModal').modal('show');return false;">Signup</button>
 
-      </div>
+       <p>By connecting Twitch with your Pullr account, you agree to our <a href="/privacy"><strong>Privacy Policy</strong></a> and our <a href="/terms-of-service"><strong>Terms of service</strong></a></p>
       <? ActiveForm::end() ?>
-    </div>
-  </div>
-</div>

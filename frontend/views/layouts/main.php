@@ -34,6 +34,10 @@ FrontendAsset::register($this);
         <?php $this->beginBody() ?>
         
         <div class="main-wrapper">
+
+            <!-- If the user is logged in and is a user -->
+
+            <? if (!Yii::$app->user->isGuest): ?>
             
             <div class="page-sidebar">
 
@@ -41,9 +45,7 @@ FrontendAsset::register($this);
 
                     <a class="logo icon-pullr"></a>
 
-                    <? if (!Yii::$app->user->isGuest): ?>
                        <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
-                    <? endif; ?>
 
                     <nav class="sidebar-nav nav-top">
                         <ul> 
@@ -82,20 +84,33 @@ FrontendAsset::register($this);
 
             </div><!-- /page-sidebar -->
 
+            <? endif; ?>
+
             <div class="page-content-wrap">
 
                 <div class="page-content">
 
-                    <?= Alert::widget() ?>
-                    <?= $content ?>
-
                     <? if (Yii::$app->user->isGuest): ?>
 
-                    <?= $this->render('@frontend/views/site/signupModal'); ?>  
+                    <div class="intro-content-wrapper">
 
-                    <?= $this->render('@frontend/views/site/loginModal'); ?>  
+                        <div class="intro-content">
+
+                            <h1><a class="login-logo icon-pullr"></a></h1>
+
+                            <?= Alert::widget() ?>
+
+                            <?= $this->render('@frontend/views/site/signupModal'); ?>  
+
+                            <?= $this->render('@frontend/views/site/loginModal'); ?> 
+
+                        </div>
+
+                    </div>
 
                     <? endif; ?>
+
+                    <?= $content ?>
 
                 </div>
 
