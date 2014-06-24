@@ -2,9 +2,7 @@
 
 use common\models\Campaign;
 use kartik\widgets\ActiveForm;
-use yii\helpers\Html;
 use yii\helpers\Url;
-use common\models\User;
 use common\models\Plan;
 
 $this->registerJsFile('@web/js/campaign/edit.js', common\assets\CommonAsset::className());
