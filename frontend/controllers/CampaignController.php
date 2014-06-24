@@ -309,7 +309,19 @@ class CampaignController extends FrontendController {
         $viewDonorParams = [];
         $viewDonorParams['donations'] = $donations;
         $viewDonorParams['email'] = $email;
-        $viewDonorParams['name'] = $donations[0]->name;
+        $lastName = $donations[0]->lastName;
+        $firstName = $donations[0]->firstName;
+        if ($lastName && $firstName){
+                $name = $firstName.' '.$lastName;
+        } else if ($lastName){
+            $name = $lastName;
+        } else if ($firstName){
+            $name = $firstName;
+        } else {
+            $name = $donor['nameFromForm'];
+        }
+        
+        $viewDonorParams['name'] = $name;
         $viewDonorParams['totalDonated'] = $donationsQuery->sum('amount');
         $viewDonorParams['topDonation'] = $donationsQuery->max('amount');
         
