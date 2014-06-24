@@ -94,7 +94,15 @@ class CampaignController extends FrontendController {
 
         return $this->render('index', $params);
     }
-
+    
+    public function actionArchive(){
+        return $this->actionIndex(null, null, Campaign::STATUS_PENDING);
+    }
+    
+    public function actionTrash(){
+        return $this->actionIndex(null, null, Campaign::STATUS_DELETED);
+    }
+    
     public function actionLayoutteams() {
         $id = $_REQUEST['id'];
         $teams = LayoutTeam::find()->where(['campaignId' => $id])->orderBy('date DESC')->all();
