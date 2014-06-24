@@ -33,23 +33,31 @@ class StreamboardController extends \yii\web\Controller
     }
 
     public function actionAdd_donation_ajax() {
+        $userId = \Yii::$app->user->id;
 
+        $amount = rand(100, 10000);
+        $name = 'rand_user_'.intval(rand(1,3));
+        $sql = "
+	        INSERT INTO tbl_donation
+	        SET
+	          userId = '{$userId}'
+	          ,campaignId = 5
+	          ,createdDate = UNIX_TIMESTAMP()
+	          ,amount = '{$amount}'
+	          ,`name` = '{$name}'
+	          ,comments = 'Some test comment here.Some test comment here.'
+	    ";
+        var_dump($sql);
+        $res = Yii::$app->db->createCommand($sql)->execute();
+        var_dump($res);
     }
 
     public function actionGet_donations_ajax() {
         if (Yii::$app->user->isGuest
 //            || !Yii::$app->request->isAjax
         ) {
-            return false;
+            return;
         }
-
-        $streamboard_launch_time = (int)$_POST['streamboard_launch_time'];
-        $selected_campaigns = $_POST['selected_campaigns'];
-        foreach($selected_campaigns as $key => $value) {
-            $selected_campaigns[$key] = (int) $value;
-        }
-
-        //        var_dump($_POST['campaigns']);exit;
 
         $userId = \Yii::$app->user->id;
 
@@ -63,15 +71,38 @@ class StreamboardController extends \yii\web\Controller
         );
         $donors = array();
 
+        $streamboard_launch_time = (int)$_POST['streamboard_launch_time'];
+        $selected_campaigns = array();
+        if (!empty($_POST['selected_campaigns'])) {
+            $selected_campaigns = $_POST['selected_campaigns'];
+        }
+        if (empty($selected_campaigns)) {
+            echo json_encode(array(
+                'donations' => array(),
+                'stats' => $stats
+            ));
+            return;
+        }
+
+        foreach($selected_campaigns as $key => $value) {
+            $selected_campaigns[$key] = (int)$value;
+        }
+
+        //        var_dump($_POST['campaigns']);exit;
+
         $campaigns_filter = implode(',', $selected_campaigns);
 
         $sql = "
-	            SELECT *
-	            FROM tbl_donation
-	            WHERE userId = '{$userId}'
-	              AND createdDate > '{$streamboard_launch_time}'
-	              AND campaignId IN ($campaigns_filter)
-	            LIMIT 1
+	            SELECT d.name, d.amount
+	              , LOWER(FROM_UNIXTIME(d.createdDate,'%d/%m/%Y %l:%i %p'))
+	                  as date_formatted
+	              , d.comments, c.name as campaign_name
+	            FROM tbl_donation d
+	            INNER JOIN tbl_campaign c ON d.campaignId = c.id
+	            WHERE d.userId = '{$userId}'
+	              AND d.createdDate > '{$streamboard_launch_time}'
+	              AND d.campaignId IN ($campaigns_filter)
+	            ORDER BY d.createdDate DESC
 	          ";
         $donations = Yii::$app->db->createCommand($sql)->queryAll();
         if ($donations) {
@@ -91,7 +122,13 @@ class StreamboardController extends \yii\web\Controller
             }
 
             arsort($donors);
-            $stats['top_donors'] = array_slice($array, 0, 3);
+            foreach(array_slice($donors, 0, 3) as $name => $amount) {
+                $stats['top_donors'][] = array(
+                    'name' => $name,
+                    'amount' => $amount,
+                );
+            }
+
         }
         $stats['number_of_donors'] = count($donors);
 
@@ -104,7 +141,7 @@ class StreamboardController extends \yii\web\Controller
         //		}
 
         echo json_encode(array(
-            'donation' => $donations,
+            'donations' => $donations,
             'stats' => $stats
         ));
     }
