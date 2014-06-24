@@ -18,7 +18,7 @@ $user = \Yii::$app->user->identity;
 
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
 
-
+        <? if (!$campaign->isNewRecord): ?>
             <ul class="campaign-actions">
 
                 <li>
@@ -79,7 +79,7 @@ $user = \Yii::$app->user->identity;
                     </li>
                 <? endif ?>
                 </ul>
-
+        <? endif ?>
 
         <? $form = ActiveForm::begin(['options' => [
                             'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
