@@ -98,8 +98,6 @@ FrontendAsset::register($this);
 
                             <h1><a class="login-logo icon-pullr"></a></h1>
 
-                            <?= Alert::widget() ?>
-
                             <?= $this->render('@frontend/views/site/signupModal'); ?>  
 
                             <?= $this->render('@frontend/views/site/loginModal'); ?> 
