@@ -1,19 +1,20 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use frontend\assets\FrontendAsset;
-use frontend\widgets\Alert;
 use common\widgets\user\UserPhoto;
 use common\assets\CommonAsset;
 use common\models\CampaignInvite;
-
+use yii\helpers\Url;
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
 CommonAsset::register($this);
 FrontendAsset::register($this);
+
+$js = 'Pullr.baseUrl = "'.Url::to('app').'";';
+$js .= 'Pullr.setCurrentMenuActive();';
+$this->registerJs($js);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
