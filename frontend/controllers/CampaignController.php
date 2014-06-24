@@ -269,7 +269,7 @@ class CampaignController extends FrontendController {
         $user = \Yii::$app->user->identity;
         if (isset($_REQUEST['id'])){
             $campaign = $this->getCampaign();
-            $donations = $campaign->donaions;
+            $donations = $campaign->donations;
         } else if (isset($_REQUEST['email'])) {
             $donations = Donation::find()->where(['email' => $_REQUEST['email'], 'userId' => $user->id])->andWhere('paymentDate > 0')->all();
         } else {
