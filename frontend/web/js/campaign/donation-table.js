@@ -1,5 +1,5 @@
 $(function(){
-    $el = $('#campaign-donations');
+    $el = $('#donations-table');
     $wrapper = $el.parent().parent();
     var $table = $el.dataTable({
          "bSort": false,
@@ -21,8 +21,8 @@ $(function(){
     
     
     // Add event listener for opening and closing details
-    $('#campaign-donations tbody').on('click', 'td.details-control', function () {
-        var dt = $('#campaign-donations').DataTable();
+    $el.find('tbody').on('click', 'td.details-control i', function () {
+        var dt = $el.DataTable();
         $row = $(this).closest('tr');
         var row = dt.row( $row );
         if ( row.child.isShown() ) {
@@ -39,9 +39,14 @@ $(function(){
     
     /*add csv button*/
     if ($table.fnSettings().fnRecordsTotal()){
-        var id = $('.campaign-view-selected').data('id');
-        var href = 'app/campaign/exportdonations?id='+id;
-
+        if ($('.donor-view').length > 0){
+            
+            var email = $('.donor-view').data('email');
+            var href = 'app/campaign/exportdonations?email='+encodeURI(email);
+        } else {
+            var id = $('.campaign-view-selected').data('id');
+            var href = 'app/campaign/exportdonations?id='+id;
+        }
         var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).html
             ('<i class="glyphicon glyphicon-download-alt"></i> CSV');
         csvButton.insertBefore($wrapper.find('.dataTables_paginate'));
@@ -56,7 +61,7 @@ function formatChildRow ( $row ) {
     return '<table class="childTable" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
             '<td><em>Comments:</em> '+$row.data('comments')+'</td>'+
-            '<td><em>Email Address:</em> '+$row.data('email')+'</td>'+
+            '<td class="email"><em>Email Address:</em> '+$row.data('email')+'</td>'+
         '</tr>'+
     '</table>';
 }
