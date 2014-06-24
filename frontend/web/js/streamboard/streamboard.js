@@ -26,22 +26,30 @@ $(function () {
 angular.module('streamboardApp', [])
 .controller('DonationsController', function ($scope, $http) {
     $scope.donations = [];
-    $scope.stats = [];
+    $scope.stats = {};
 //    $scope.campaigns = [];
 
+    $scope.addDonation = function() {
+        $http({
+            method: 'POST',
+            url: '/app/streamboard/add_donation_ajax',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
+        });
+    }
     var updateDonations = function () {
-        var campaigns_selected = [];
+        var selected_campaigns = [];
         if (typeof $scope.campaigns !== 'undefined') {
             $.each($scope.campaigns, function( index, value ) {
                 if(String(value) == 'true') {
-                    campaigns_selected.push(index);
+                    selected_campaigns.push(index);
                 }
             });
         }
 
         var request_data = {
             streamboard_launch_time: $scope.start_time,
-            campaigns: campaigns_selected,
+            selected_campaigns: selected_campaigns,
         };
         request_data[$scope.csrf_token_name] = $scope.csrf_token;
 //        request_data['X-CSRF-Token'] = pub.getCsrfToken();
@@ -58,6 +66,7 @@ angular.module('streamboardApp', [])
             $scope.stats = data.stats;
         });
     };
+
     updateDonations();
     setInterval(function() {
         $scope.$apply(updateDonations);

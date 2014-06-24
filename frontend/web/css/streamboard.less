@@ -950,7 +950,7 @@ a.stamp:hover {
   height: 100%;
 }
 .sidepanel .tab-content {
-  padding: 2.4em 2em;
+  padding: 2.4em 0;
 }
 #sidepaneltwo .tab-content {
   padding: 50px 2em 2.4em;
@@ -1056,10 +1056,10 @@ a.dashboard.show:before {
 /* Slidepanel */
 /* ------------------------------------------------- */
 .slidepanel {
-  position: fixed;
+  position: absolute;
   bottom: -400px;
   right: 0;
-  width: 280px;
+  width: 100%;
   height: 400px;
   background: #3a3c40;
   z-index: 1000;
@@ -1082,10 +1082,10 @@ a.dashboard.show:before {
 /* Tabs */
 /* ------------------------------------------------- */
 ul.bottom-panel-nav {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
-  width: 280px;
+  width: 100%;
   background: #3a3c40;
   z-index: 9999;
 }
@@ -1162,4 +1162,12 @@ margin-top: 0px;
 .campaigns_list {
   float: left;
   margin: 20px;
+}
+
+body {
+  color: white;
+}
+
+.donation {
+  border-bottom: 1px solid white;
 }

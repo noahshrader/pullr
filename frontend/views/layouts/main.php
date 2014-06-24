@@ -60,7 +60,7 @@ FrontendAsset::register($this);
                                 </li>
                             <? endif; ?>
                                 <li>
-                                    <a class="streamboard-link icon-popup" title="Streamboard" href="streamboard/index.html" target="_blank"><span>Streamboard</span></a>
+                                    <a class="streamboard-link icon-popup" title="Streamboard" href="/app/streamboard" target="_blank"><span>Streamboard</span></a>
                                 </li>
 
                                 <li>
