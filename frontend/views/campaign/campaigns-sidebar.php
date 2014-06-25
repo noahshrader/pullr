@@ -3,7 +3,6 @@ use common\models\Campaign;
 use yii\helpers\Html;
 ?>
 
-<h2><?= Html::encode($this->title) ?> <a href="app/campaign/add" style="float:right; margin-right: 10px; color: #fff" ><i class="icon icon-add2"></i></a></h2>
 
 <nav class="campaign-quicknav">
     <ul>

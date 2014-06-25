@@ -39,6 +39,8 @@ $this->registerJs($js);
             <!-- If the user is logged in and is a user -->
 
             <? if (!Yii::$app->user->isGuest): ?>
+
+            <a class="add-campaign" href="app/campaign/add"><i class="icon icon-add"></i></a>
             
             <div class="page-sidebar">
 

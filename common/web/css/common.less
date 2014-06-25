@@ -113,6 +113,21 @@ a.login-logo.icon-pullr:before {
 
 /* New Sidebar Styles */
 
+.add-campaign {
+  width: 62px;
+  height: 62px;
+  line-height: 62px;
+  font-size: 32px;
+  color: @white;
+  background-color: @accent;
+  display: block;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 9999;
+  text-align: center;
+}
+
 .page-sidebar {
     position: fixed;
     height: 100%;
@@ -244,19 +259,18 @@ nav.sidebar-nav {
   text-align: center; 
 }
 
-.campaigns-list-wrap .icon-add2 {
-  font-size: 18px!important;
-  line-height: @top-menu-height;
-}
-
 /* Campaigns List Styling */
 
+@campaigns-list-wrap-width:   260px;
+
+
 .campaigns-list-wrap {
-    width: 260px;
+    width: @campaigns-list-wrap-width;
     float: left;
     height: 100%;
-    background: #000;
-  position: relative;
+    position: fixed;
+    top: 62px;
+    background: @gray5;
 }
 
 .campaigns-list-wrap h2 {
@@ -273,8 +287,6 @@ nav.sidebar-nav {
     width: 100%;
     padding: 25px 0px;
     height: 80px;
-    border-top: 1px solid #1d1e20;
-    border-bottom: 1px solid #1d1e20;
 }
 
 .campaigns-list-wrap .campaign-quicknav ul {
@@ -303,7 +315,7 @@ nav.sidebar-nav {
 }
 
 .campaign-item {
-    padding: 10px 0px;
+    padding: 10px 15px;
     margin: 0px;
     border-bottom: 1px solid #1d1e20;
     position: relative;
@@ -312,7 +324,20 @@ nav.sidebar-nav {
 }
 
 .campaign-item.active {
-    background-color: #222325;
+
+}
+
+.campaign-item.active:before {
+  content: " ";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 15px 15px 0;
+  border-color: transparent @gray20 transparent transparent;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  margin-bottom: -50%;
 }
 
 .campaign-item h3 {
@@ -360,9 +385,10 @@ ul.campaign-actions {
   display: block;
   width: 100%;
   text-align: center;
-  border-top: 1px solid #1d1e20;
-  background: #2e3032;
+  top: 0px;
+  z-index: 10;
   height: @top-menu-height;
+  padding-right: 62px;
 }
 
 ul.campaign-actions li {
@@ -392,7 +418,7 @@ ul.campaign-actions li {
     top: 0px;
     left: 0px;
     z-index: 1;
-    background: #222325;
+    background: @pullr-dark-bg;
     height: 100%;
     padding-left: 141px;
 }
@@ -876,8 +902,11 @@ a.showtoggle.closeme:before {
     margin-left: @campaigns-left-menu-width;
 }
 
-.donor-view, .campaign-view-selected {
+.campaign-view-selected {
   padding: 60px;
+  background: @gray20;
+  height: 100%;
+  position: relative;
 }
 
 .campaign-view-selected h1, .campaign-view-selected .center {
@@ -888,168 +917,12 @@ a.showtoggle.closeme:before {
   padding: 30px 0px;
 }
 
+/* Campaign View Styling */
 
-/* Added By Stanislav */
-
-.navbar-fixed-top {
-    display: none;
-}
-
-.page-container{
-    margin-left: 260px;
-    color: white;
-}
-
-.hint-block {
-    display: block;
-    margin-top: 5px;
-    color: #999;
-}
-
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-form {
-    input, select, textarea,.form-row, .user-images, .alert{
-        max-width: 400px;
-    }
-
-    fieldset{
-        margin-bottom: 10px;
-    }
-}
-
-/*modal form have different with*/
-.modal form{
-    .alert{
-        max-width: none;
-    }
-}
-.dataTable{
-    .odd{
-        a{
-            color: @gray12;
-        }
-    }
-}
-
-.content-container{
-    padding-top: 60px;
-    padding-bottom: 60px;
-    width: 100%;
-}
-
-@pull-layout-icon-size: 40px;
-.content-container-layout{
-
-
-    .pullr-layout-container{
-        padding: 0px;
-
-        .pullr-layout{
-            background-color: @gray20;
-            min-height: 150px;
-            /*padding-top: 50px;*/
-            /*padding-left: 10px;*/
-            margin: 10px;
-            position: relative;
-            .main-info{
-                position: absolute;
-                background-color: @gray20;;
-                left: 0px;
-                top: 0px;
-                .layout-type{
-                    color: #000;
-                }
-                transition: 0.5s;
-                padding-top: 50px;
-                padding-left: 10px;
-                min-height: 130px;
-            }
-            .change-icons{
-                padding-left: 15px;
-                font-size: 1.2em; 
-                padding-top: 35px;
-                width: @pull-layout-icon-size;
-            }
-        }
-
-        .pullr-layout:hover{
-            .main-info{
-                left: @pull-layout-icon-size;
-            }
-        }
-    }
-}
-
-.page-wrapper.charity-expand, .page-wrapper.charity-expand {
-    margin-left: 30%;
-}
-
-.table-cell{
-    display: table-cell;
-    float: none;
-}
-
-.modal{
-    color: #000;
-}
-
-.twitchLogin{
-    color: red;
-}
-
-@campaigns-left-menu-width : 300px;
-    .campaigns-left-menu{
-    float: left;
-    width: @campaigns-left-menu-width;
-    height: 100%;
-
-    // .btn-group{
-    //     margin-top: 20px;
-    // }
-
-    // .campaigns-list{
-    //     margin-top: 30px;
-    // }
-
-    // .campaigns-list>a{
-    //     display: table;
-    //     margin: 0px;
-    //     padding-top: 10px;
-    //     padding-bottom: 10px;
-    //     border-bottom: #000 2px solid;
-    // }
-    // [class*="col-"] {
-    //     float: none;
-    //     display: table-cell;
-    //     vertical-align: top;
-    // }
-    // .campaigns-list>a:hover, .campaigns-list>a.active{
-    //     background-color: #fff;
-    // }
-    // .trash{
-    //     float: right;
-    //     margin-top: 28px;
-    //     margin-right: 10px;
-    //     color: #888;
-    //     font-size: 1.2em;
-    // }
-    // .trash.active{
-    //     color: #fff;
-    //     font-weight: bold;
-    // }
-}
-
-@border : #000 2px solid;
-.campaings-view-wrap, .donor-view-wrap{
+.campaings-view-wrap{
     overflow: hidden;
-    margin-left: @campaigns-left-menu-width;
+    margin-left: @campaigns-list-wrap-width;
+    height: 100%;
 
     .campaign-overview-tops{
         .col-xs-6 div:first-child{
@@ -1063,7 +936,6 @@ form {
 
     .campaign-overview-general-number{
         padding: 40px 50px; 
-        border-bottom: @border;
         .col-xs-3 div:first-child{
             font-size: 2em;
             font-weight: bold;
@@ -1071,3 +943,11 @@ form {
     }
 
 }
+
+
+/* Added By Stanislav */
+
+
+
+@campaigns-left-menu-width : 300px;
+
