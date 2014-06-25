@@ -402,72 +402,68 @@
 
 /* Primary Typography Styling */
 
-.main() {
-	font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+/* Headings */
+/* ------------------------------------------------- */
+h1, h2, h3, h4, h5 {
+  color: #FFF;
+  font-family: @mainfont;
   font-weight: 400;
-  font-style: normal;
+  padding: 0;
+  margin: 0;
 }
-
-.secondary() {
-  font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.tertiary() {
-  font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-	margin: 0px;
-	.secondary();
-}
-
-p, ol, ul, blockquote, pre, code {
-  color: #85888e;
-  font-size: 1.1em;
-  line-height: 1.4em;
-  margin-bottom: 1.4em;
-}
-
-p ,ol, ul, blockquote {
-	.main();
-}
-
 h1 {
   color: #FFF;
   font-size: 3.6em;
   font-weight: 100;
   letter-spacing: -1px;
   line-height: 1em;
-  margin-bottom: .9em;
+  margin-bottom: .1em;
 }
-
 h2 {
   font-size: 2em;
   font-weight: 300;
 }
-
 h3 {
   font-size: 1.3em;
   font-weight: 300;
   margin-bottom: 1.2em;
 }
-
 h4 {
-  color: #85888e;
+  color: @gray40;
   font-size: 1.1em;
   font-weight: 400;
 }
-
 h5 {
-  color: #53555a;
-  /* Small text in all caps */
-  font-size: 0.9em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: @gray20;
+  .smallcaps;
   margin-bottom: .6em;
+}
+p {
+  color: @gray40;
+  font-size: 1.1em;
+  line-height: 1.4em;
+  margin-bottom: 1.4em;
+}
+  p.info {
+    font-size: @fineprint;
+  }
+a, a:before {
+  color: @accent;
+  text-decoration: none;
+  .trans;
+  &:hover {
+    color: @accenthover;
+  }
+}
+a:hover,
+a:focus,
+a:active,
+input,
+input:focus,
+button,
+button:active {
+  outline: 0;
+}
+a:hover:before {
+  color: @accenthover;
 }

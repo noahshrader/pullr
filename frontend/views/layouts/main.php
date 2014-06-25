@@ -46,81 +46,69 @@ $this->registerJs($js);
                 <a class="add-campaign" href="app/campaign/add"><i class="icon icon-add"></i></a>
             </div>
 
-            <div class="app-content">
-            
-                <div class="page-sidebar">
+            <div class="site-content">
 
-                    <div class="primary-navigation">
+                <div class="primary-navigation">
 
-                           <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
+                       <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
 
-                        <nav class="sidebar-nav nav-top">
-                            <ul> 
-                                <? if (!Yii::$app->user->isGuest): ?>
-                                    <li><a class="dashboard icon-dashboard" title="Dashboard" href="app">Dashboard</a></li>
-                                    <li>
-                                        <a class="campaign-link icon-campaigns" title="Campaigns" href="app/campaign"><span>Campaigns</span></a>
-                                    </li>
+                    <nav class="sidebar-nav nav-top">
+                        <ul> 
+                            <? if (!Yii::$app->user->isGuest): ?>
+                                <li><a class="dashboard icon-dashboard" title="Dashboard" href="app">Dashboard</a></li>
+                                <li>
+                                    <a class="campaign-link icon-campaigns" title="Campaigns" href="app/campaign"><span>Campaigns</span></a>
+                                </li>
 
-                                <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
-                                <? if ($campaignInvitesCount > 0): ?>
-                                    <li>
-                                        <a class="campaign-invites icon-text" href="app/campaigninvite"><span>Invites (<?= $campaignInvitesCount?>)</span></a>
-                                    </li>
-                                <? endif; ?>
-                                    <li>
-                                        <a class="streamboard-link icon-streamboard" title="Streamboard" href="/app/streamboard" target="_blank"><span>Streamboard</span></a>
-                                    </li>
+                            <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
+                            <? if ($campaignInvitesCount > 0): ?>
+                                <li>
+                                    <a class="campaign-invites icon-text" href="app/campaigninvite"><span>Invites (<?= $campaignInvitesCount?>)</span></a>
+                                </li>
+                            <? endif; ?>
+                                <li>
+                                    <a class="streamboard-link icon-streamboard" title="Streamboard" href="/app/streamboard" target="_blank"><span>Streamboard</span></a>
+                                </li>
 
-                                    <li>
-                                        <a class="streamboard icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
-                                    </li>
-                                       
-                                <? endif; ?>
-                             </ul>
-                        </nav>
+                                <li>
+                                    <a class="streamboard icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
+                                </li>
+                                   
+                            <? endif; ?>
+                         </ul>
+                    </nav>
 
-                        <nav class="sidebar-nav nav-bottom">
-                            <ul>
-                                <li role="presentation"><a class="help icon-support" href="app/help"></a></li>
-                                <li role="presentation"><a class="logout icon-logout" href="app/site/logout"></a></li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </nav>
+                    <nav class="sidebar-nav nav-bottom">
+                        <ul>
+                            <li role="presentation"><a class="help icon-support" href="app/help"></a></li>
+                            <li role="presentation"><a class="logout icon-logout" href="app/site/logout"></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </nav>
 
-                    </div><!-- /primary-navigation -->
-
-                </div><!-- /page-sidebar -->
+                </div><!-- /primary-navigation -->
 
                 <? endif; ?>
 
-                <div class="page-content-wrap">
+                <? if (Yii::$app->user->isGuest): ?>
 
-                    <div class="page-content">
+                <div class="intro-content-wrapper">
 
-                        <? if (Yii::$app->user->isGuest): ?>
+                    <div class="intro-content">
 
-                        <div class="intro-content-wrapper">
+                        <h1><a class="login-logo icon-pullr"></a></h1>
 
-                            <div class="intro-content">
+                        <?= $this->render('@frontend/views/site/signupModal'); ?>  
 
-                                <h1><a class="login-logo icon-pullr"></a></h1>
-
-                                <?= $this->render('@frontend/views/site/signupModal'); ?>  
-
-                                <?= $this->render('@frontend/views/site/loginModal'); ?> 
-
-                            </div>
-
-                        </div>
-
-                        <? endif; ?>
-
-                        <?= $content ?>
+                        <?= $this->render('@frontend/views/site/loginModal'); ?> 
 
                     </div>
 
                 </div>
+
+                <? endif; ?>
+
+                <?= $content ?>
 
                 <?php $this->endBody() ?>
 

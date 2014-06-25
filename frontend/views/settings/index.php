@@ -13,7 +13,7 @@ use common\widgets\file\ImageInput;
 $this->title = 'Account Settings';
 ?>
 
-
+<section class="account-settings">
 <div class="container">
     <div class='row'>
         <div class="col-xs-9">
@@ -92,4 +92,6 @@ $this->title = 'Account Settings';
             ?>
         </div>
     </div>
+</div>
+
 </div>
