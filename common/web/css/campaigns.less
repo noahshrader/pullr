@@ -1,0 +1,131 @@
+/* Campaigns Sidebar List Styling */
+
+@campaigns-list-wrap-width:   260px;
+
+
+.campaigns-list-wrap {
+    width: @campaigns-list-wrap-width;
+    height: 100%;
+    position: fixed;
+    top: @top-menu-height;
+    left: @primary-nav-width + 1;
+    background-color: @dkgray;
+}
+
+.campaigns-list-wrap h2 {
+    font-size: 24px;
+    color: @accent;
+    line-height: @top-menu-height;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: normal;
+}
+
+.campaigns-list-wrap .campaign-quicknav {
+    width: 100%;
+    padding: 30px 0px;
+    height: 80px;
+}
+
+.campaigns-list-wrap .campaign-quicknav ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+}
+
+.campaigns-list-wrap .campaign-quicknav ul li, .campaigns-list-wrap .campaign-quicknav ul li a  {
+    display: inline-block;
+}
+
+.campaigns-list-wrap .campaign-quicknav ul li a {
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 12px;
+    border-radius: 4px;
+}
+
+.campaigns-list-wrap .campaign-quicknav ul li a:hover, .campaigns-list-wrap .campaign-quicknav ul li a.active {
+	color: @darklinkhover;
+}
+
+.campaign-item {
+    padding: 10px 15px;
+    margin: 0px;
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.campaign-item.active {
+
+}
+
+.campaign-item.active:before {
+  content: " ";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 15px 15px 0;
+  border-color: transparent @gray20 transparent transparent;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  margin-bottom: -50%;
+}
+
+.campaign-item h3 {
+    margin: 0px;
+    padding: 0px 0px 5px 0px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.campaign-item h4   {
+    font-size: 14px;
+}
+
+.campaign-item p {
+    margin-top: 10px;
+    color: #fff;
+    margin-bottom: 0px;
+}
+
+
+/* Campaign Edit Styling */
+
+ul.campaign-actions {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  height: @top-menu-height;
+}
+
+ul.campaign-actions li {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 15px;
+}
+
+.campaign-edit-wrap {
+  padding: 60px;
+}
+
+.campaings-view-wrap, .donor-view-wrap, #sidepanel, .account-settings {
+	width: 100%;
+	padding-left: @campaigns-list-wrap-width + @primary-nav-width + 60px;
+	padding-top: 30px;
+	padding-right: 60px;
+	padding-bottom: 60px;
+}
+
+.account-settings {
+	width: 100%;
+	padding-left: @primary-nav-width + 60px;
+	padding-top: 30px;	
+	padding-bottom: 60px;
+}

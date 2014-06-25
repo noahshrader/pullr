@@ -17,6 +17,8 @@ use common\models\Charity;
 use common\models\User;
 use common\models\CampaignInvite;
 use common\models\mail\Mail;
+use common\models\Donation;
+use yii\db\Query;
 
 class CampaignController extends FrontendController {
 
@@ -92,7 +94,15 @@ class CampaignController extends FrontendController {
 
         return $this->render('index', $params);
     }
-
+    
+    public function actionArchive(){
+        return $this->actionIndex(null, null, Campaign::STATUS_PENDING);
+    }
+    
+    public function actionTrash(){
+        return $this->actionIndex(null, null, Campaign::STATUS_DELETED);
+    }
+    
     public function actionLayoutteams() {
         $id = $_REQUEST['id'];
         $teams = LayoutTeam::find()->where(['campaignId' => $id])->orderBy('date DESC')->all();
@@ -264,8 +274,16 @@ class CampaignController extends FrontendController {
     }
     
     public function actionExportdonations(){
-        $campaign = $this->getCampaign();
-        $donations = $campaign->donations;
+        $user = \Yii::$app->user->identity;
+        if (isset($_REQUEST['id'])){
+            $campaign = $this->getCampaign();
+            $donations = $campaign->donations;
+        } else if (isset($_REQUEST['email'])) {
+            $donations = Donation::find()->where(['email' => $_REQUEST['email'], 'userId' => $user->id])->andWhere('paymentDate > 0')->all();
+        } else {
+            throw new NotFoundHttpException();
+        }
+        
         $rows = [];
         foreach ($donations as $donation){
             $rows[] = implode(',', [$donation->amount, $donation->name, $donation->email, $donation->comments, date('M j Y H:i:s', $donation->paymentDate)]);
@@ -277,5 +295,68 @@ class CampaignController extends FrontendController {
         // next echo the text
         echo implode(PHP_EOL, $rows);
         die;
+    }
+
+    /*viewing single donor*/
+    public function actionDonor($email){
+        $user = \Yii::$app->user->identity;
+        $donationsQuery = Donation::find()->where(['email' => $email, 'userId' => $user->id])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
+        $donations = $donationsQuery->all();
+        if (sizeof($donations) == 0){
+            throw new NotFoundHttpException('Donations for such email don\'t exist');
+        } 
+        
+        $viewDonorParams = [];
+        $viewDonorParams['donations'] = $donations;
+        $viewDonorParams['email'] = $email;
+        $lastName = $donations[0]->lastName;
+        $firstName = $donations[0]->firstName;
+        if ($lastName && $firstName){
+                $name = $firstName.' '.$lastName;
+        } else if ($lastName){
+            $name = $lastName;
+        } else if ($firstName){
+            $name = $firstName;
+        } else {
+            $name = $donor['nameFromForm'];
+        }
+        
+        $viewDonorParams['name'] = $name;
+        $viewDonorParams['totalDonated'] = $donationsQuery->sum('amount');
+        $viewDonorParams['topDonation'] = $donationsQuery->max('amount');
+        
+        return $this->actionDonors($viewDonorParams);
+    }
+    
+    public function actionDonors($viewDonorParams = null){
+        $selectedEmail = $viewDonorParams ? $viewDonorParams['email'] : null;
+        $user = \Yii::$app->user->identity;
+        $connection = \Yii::$app->db;
+        $sql = 'SELECT email, SUM(amount) sum, GROUP_CONCAT(DISTINCT nameFromForm SEPARATOR " ") nameFromForm, firstName, lastName FROM '.Donation::tableName().' WHERE userId = '.$user->id.' AND paymentDate > 0 AND email<>"" GROUP BY email ORDER BY sum DESC, lastName ASC, firstName ASC';
+        $command = $connection->createCommand($sql);
+        $donors = $command->queryAll();
+        
+        foreach ($donors as &$donor){
+            $lastName = $donor['lastName'];
+            $firstName = $donor['firstName'];
+            if ($lastName && $firstName){
+                $donor['name'] = $lastName.', '.$firstName;
+            } else if ($lastName){
+                $donor['name'] = $lastName;
+            } else if ($firstName){
+                $donor['name'] = $firstName;
+            } else {
+                $donor['name'] = $donor['nameFromForm'];
+            }
+            
+            $donor['sum'] = '$'.number_format($donor['sum']);
+            $donor['href'] = 'app/campaign/donor?email='.urlencode($donor['email']);
+            $donor['isActive'] = $selectedEmail && ($donor['email'] == $selectedEmail);
+        }
+        
+        return $this->render('donors',[
+            'donors' => $donors,
+            'viewDonorParams' => $viewDonorParams
+        ]);
     }
 }

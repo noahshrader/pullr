@@ -1,0 +1,83 @@
+/* Resets */
+/* ------------------------------------------------- */
+
+*,
+*:after,
+*:before {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+html {
+  height: 100%;
+}
+html, body {
+  background: @bgcolor;
+  overflow-x: hidden;
+}
+body {
+  font-family: @mainfont;
+  font-size: 100%;
+  color: #444;
+  .fade-in;
+}
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " "; 
+    display: table;
+}
+.cf:after {
+    clear: both;
+}
+.cf {
+    *zoom: 1;
+}
+img {
+  width: 100%;
+}
+a,
+button {
+  cursor: pointer;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+input,
+button,
+select {
+  margin: 0;
+  outline: 0;
+}
+iframe {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  background: transparent;
+}
+
+/* Selection */
+::selection {
+  background: @accent;
+  color: #FFF;
+  text-shadow: none;
+}
+
+/* Placeholder */
+::-webkit-input-placeholder {
+   color: @gray30;
+}
+:-moz-placeholder {
+   color: @gray30;  
+}
+::-moz-placeholder {
+   color: @gray30;  
+}
+:-ms-input-placeholder {  
+   color: @gray30;  
+}

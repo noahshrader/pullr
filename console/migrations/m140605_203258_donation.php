@@ -40,7 +40,7 @@ class m140605_203258_donation extends \console\models\ExtendedMigration
         $users[] = [ 'nameFromForm' => 'Yura', 'email' => 'yura@gmail.com'];
         $users[] = [ 'nameFromForm' => 'Hedgehog', 'email' => 'hedgehog@gmail.com'];
         $users[] = [ 'nameFromForm' => 'Sofia', 'email' => 'sofia@gmail.com'];
-        $users[] = [ 'nameFromForm' => 'Sofia', 'email' => 'sofia@gmail.com'];
+        $users[] = [ 'nameFromForm' => 'Sofia2', 'email' => 'sofia@gmail.com'];
         $users[] = [ 'nameFromForm' => 'Maria', 'email' => 'maria@gmail.com'];
         $users[] = [ 'nameFromForm' => 'George', 'email' => 'george@gmail.com'];
         $users[] = [ 'nameFromForm' => 'Sofia', 'email' => 'sofia@gmail.com'];
@@ -53,6 +53,7 @@ class m140605_203258_donation extends \console\models\ExtendedMigration
             $donation->createdDate = time();
             $donation->paymentDate = time();
             $donation->nameFromForm = isset($user['nameFromForm']) ? $user['nameFromForm'] : '';
+            $donation->lastName = $donation->nameFromForm;
             $donation->email = isset($user['email']) ? $user['email'] : '';
             $donation->comments = isset($user['comments'])? $user['comments'] : '';
             $donation->save();

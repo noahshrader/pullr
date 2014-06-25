@@ -14,13 +14,10 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  CommonAsset::clas
         <script type="text/html" id="campaign">
             <?/*real attributes set in php code just few lines below, that is just mapping*/ ?>
             <a data-bind="attr: { href: href}, css: { active: isActive == true }" class='row campaign-item' >
-                <div class="col-xs-10 main-info">
+                <div class="main-info">
                     <h3 data-bind="text: name"></h3>
                     <h4 data-bind="text: type" class="layout-type"></h4>
                     <p data-bind="text: amountRaised"></p>
-                </div>
-                <div class="tick col-xs-2">
-                    <strong>&gt;</strong>
                 </div>
             </a>
         </script> 
