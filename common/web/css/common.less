@@ -99,7 +99,7 @@ a:hover:before {
 
 a.login-logo.icon-pullr {
   color: @white;
-  font-size: 62px;
+  font-size: 70px;
 }
 
 a.login-logo.icon-pullr:before {
@@ -113,15 +113,26 @@ a.login-logo.icon-pullr:before {
 
 /* New Sidebar Styles */
 
+.top-menu {
+  width: 100%;
+  background: @gray30;
+}
+
+.app-content {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
 .add-campaign {
-  width: 62px;
-  height: 62px;
-  line-height: 62px;
+  width: @top-menu-height;
+  height: @top-menu-height;
+  line-height: @top-menu-height;
   font-size: 32px;
   color: @white;
   background-color: @accent;
   display: block;
-  position: absolute;
+  position: fixed;
   right: 0px;
   top: 0px;
   z-index: 9999;
@@ -155,7 +166,7 @@ a.logo {
 
 a.logo.icon-pullr {
     display: block;
-    width: 100%;
+    width: @primary-nav-width;
     font-size: 40px;
     text-align: center;
     line-height: @top-menu-height;
@@ -279,7 +290,7 @@ nav.sidebar-nav {
     float: left;
     height: 100%;
     position: fixed;
-    top: 62px;
+    top: @top-menu-height;
     background: @gray5;
 }
 
@@ -398,7 +409,9 @@ ul.campaign-actions {
   top: 0px;
   z-index: 10;
   height: @top-menu-height;
-  padding-right: 62px;
+  position: fixed;
+  top: 0px;
+  padding-right: 80px;
 }
 
 ul.campaign-actions li {
@@ -424,12 +437,6 @@ ul.campaign-actions li {
 
 .page-content-wrap {
     width: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
-    background: @pullr-dark-bg;
-    height: 100%;
     padding-left: 141px;
 }
 
@@ -540,7 +547,8 @@ ul.donation-actions li a:before {
   text-transform: uppercase;
   letter-spacing: 1px;
   background: @accent;
-  -webkit-animation: animate-bar 1s 1 ease;
+  width: 0px;
+-webkit-animation: animate-bar 1s 1 ease;
   animation: animate-bar 1s 1 ease;
 }
 .progress-line span {
@@ -851,23 +859,15 @@ a.showtoggle.closeme:before {
 
 .campaign-view-selected {
   padding: 60px;
-  background: @gray20;
-  height: 100%;
-  position: relative;
 }
 
 .campaign-view-selected h1, .campaign-view-selected .center {
   text-align: center;
 }
 
-.campaign-view-selected .center {
-  padding: 30px 0px;
-}
-
 /* Campaign View Styling */
 
 .campaings-view-wrap{
-    overflow: hidden;
     margin-left: @campaigns-list-wrap-width;
     height: 100%;
 
@@ -892,7 +892,72 @@ a.showtoggle.closeme:before {
 }
 
 
-/* Added By Stanislav */
+/* Tables */
+/* ------------------------------------------------- */
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table.dataTable tbody th {
+  color: #3f4145;
+  /* Small text in all caps */
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+table.dataTable tbody td {
+  color: #9fa2a7;
+  cursor: pointer;
+  -webkit-transition: linear 0.08s;
+  transition: linear 0.08s;
+}
+table.dataTable tbody th ,
+table.dataTable tbody td {
+  padding: 1em .8em!important;
+}
+table.dataTable tbody tr {
+  background: transparent!important;
+}
+table tr.odd td {
+  background: #2e3032;
+}
+
+table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+  border: 0px solid transparent!important;
+}
+table tr:hover td {
+  color: #FFF;
+}
+/* Expand/Collapse icon */
+table td a.icon-plus2 {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+/* Search Field */
+.dataTables_length {
+/*  display: none;*/
+  line-height: 78px;
+}
+.dataTables_filter {
+  float: left;
+  padding: 1em;
+  text-align: right;
+}
+.dataTables_filter input {
+  padding: .6em 1em;
+  background: #2e3032;
+  border-radius: 30px;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: none;
+  outline: none;
+  text-align: left;
+}
+
 
 
 
