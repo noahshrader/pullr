@@ -217,16 +217,18 @@ nav.sidebar-nav {
     margin: 0px;
     text-decoration: none;
     font-size: 14px;
-    padding: 5px 15px;
+    padding: 15px 0px;
     color: #53555a;
     border-bottom: 1px solid #000;
+    text-align: center;
 }
 
 .page-sidebar nav.nav-top ul li a:before, .page-sidebar nav.nav-bottom ul li a:before {
     font-size: 22px;
-    line-height: 42px;
-    vertical-align: middle;
-    padding-right: 10px;
+    line-height: 22px;
+    text-align: center;
+    display: block;
+    padding-bottom: 10px;
 }
 
 .nav-bottom {
@@ -240,24 +242,32 @@ nav.sidebar-nav {
   margin: 0px;
   padding: 0px;
   border-top: 1px solid #000;
+  display: block;
 }
 
 .page-sidebar nav.nav-bottom ul li {
   margin: 0px;
   padding: 0px;
-  display: inline-block;
-  width: 48%;
+  display: block;
+  width: 50%;
   text-align: center;
   border-top: 1px solid #222325;
+  float: left;
 }
 
 .page-sidebar nav.nav-bottom ul li a {
   text-decoration: none;
   font-size: 13px;
   padding: 5px 15px;
-  display: inline-block;
+  display: block;
   text-align: center; 
+
+  &:before {
+    padding: 0px;
+  }
 }
+
+
 
 /* Campaigns List Styling */
 

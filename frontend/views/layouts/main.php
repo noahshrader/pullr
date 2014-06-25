@@ -53,9 +53,9 @@ $this->registerJs($js);
                     <nav class="sidebar-nav nav-top">
                         <ul> 
                             <? if (!Yii::$app->user->isGuest): ?>
-                                <li><a class="streamboard icon-statistics" title="Streamboard" href="app">Dashboard</a></li>
+                                <li><a class="dashboard icon-dashboard" title="Dashboard" href="app">Dashboard</a></li>
                                 <li>
-                                    <a class="campaign-link icon-heart2" title="Alerts" href="app/campaign"><span>Campaigns</span></a>
+                                    <a class="campaign-link icon-campaigns" title="Campaigns" href="app/campaign"><span>Campaigns</span></a>
                                 </li>
 
                             <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
@@ -65,11 +65,11 @@ $this->registerJs($js);
                                 </li>
                             <? endif; ?>
                                 <li>
-                                    <a class="streamboard-link icon-popup" title="Streamboard" href="/app/streamboard" target="_blank"><span>Streamboard</span></a>
+                                    <a class="streamboard-link icon-streamboard" title="Streamboard" href="/app/streamboard" target="_blank"><span>Streamboard</span></a>
                                 </li>
 
                                 <li>
-                                    <a class="streamboard icon-cog" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
+                                    <a class="streamboard icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
                                 </li>
                                    
                             <? endif; ?>
@@ -78,9 +78,10 @@ $this->registerJs($js);
 
                     <nav class="sidebar-nav nav-bottom">
                         <ul>
-                            <li role="presentation"><a class="streamboard icon-liferaft" role="menuitem" href="app/help">Help</a></li>
-                            <li role="presentation"><a role="menuitem" href="app/site/logout">Logout</a></li>
+                            <li role="presentation"><a class="help icon-support" href="app/help"></a></li>
+                            <li role="presentation"><a class="logout icon-logout" href="app/site/logout"></a></li>
                         </ul>
+                        <div class="clearfix"></div>
                     </nav>
 
                 </div><!-- /primary-navigation -->
