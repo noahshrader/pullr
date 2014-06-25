@@ -47,9 +47,7 @@ class StreamboardController extends \yii\web\Controller
 	          ,`name` = '{$name}'
 	          ,comments = 'Some test comment here.Some test comment here.'
 	    ";
-        var_dump($sql);
         $res = Yii::$app->db->createCommand($sql)->execute();
-        var_dump($res);
     }
 
     public function actionGet_donations_ajax() {
