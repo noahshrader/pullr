@@ -116,12 +116,15 @@ a.login-logo.icon-pullr:before {
 .top-menu {
   width: 100%;
   background: @gray30;
+  position: fixed;
+  z-index: 10;
 }
 
 .app-content {
   width: 100%;
   position: relative;
-  height: 100%;
+  padding-top: @top-menu-height;
+
 }
 
 .add-campaign {
@@ -155,7 +158,6 @@ a.login-logo.icon-pullr:before {
     height: 100%;
     background: #1d1e20;
     z-index: 6;
-    float: left;
     position: relative;
 }
 
@@ -859,6 +861,8 @@ a.showtoggle.closeme:before {
 
 .campaign-view-selected {
   padding: 60px;
+  position: relative;
+  z-index: 1;
 }
 
 .campaign-view-selected h1, .campaign-view-selected .center {
