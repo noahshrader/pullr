@@ -141,13 +141,13 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
                 
                     <div class="clearfix"></div>
 
-                    <div class='col-xs-6'>
-                        <div><?= $topDonorName ?></div>
-                        <div>Top Donor</div>
+                    <div class='col-xs-6 top-donor'>
+                        <h4><?= $topDonorName ?></h4>
+                        <h5>Top Donor</h5>
                     </div>
-                    <div class='col-xs-6'>
-                        <div><?= $topDonationName ?></div>
-                        <div>Top Donation</div>
+                    <div class='col-xs-6 top-donor'>
+                        <h4><?= $topDonationName ?></h4>
+                        <h5>Top Donation</h5>
                     </div>
                     
                     <div class="clearfix"></div>

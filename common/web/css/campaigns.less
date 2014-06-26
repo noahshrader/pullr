@@ -166,6 +166,7 @@
         padding-right: 0px;
         padding-left: 0px;
         float: right;
+        margin-bottom: 0px;
 
         li {
             a {
@@ -184,6 +185,8 @@
   padding: 60px;
 }
 
+/* Campaign View Styling */
+
 .campaings-view-wrap {
   width: 100%;
   padding-left: @campaigns-list-wrap-width + @primary-nav-width;
@@ -191,23 +194,62 @@
 
 .campaign-view-selected {
   padding: 60px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
 }
 
-.donor-view-wrap, .account-settings {
-	width: 100%;
-	padding-left: @campaigns-list-wrap-width + @primary-nav-width + 60px;
-	padding-top: 30px;
-	padding-right: 60px;
-	padding-bottom: 60px;
+.donation-overview {
+position: relative;
+text-align: center;
+margin-bottom: 3em;
+.border-radius;
+background: @gray5;
+overflow: hidden;
+}
+.donation-overview .d-figure {
+float: left;
+color: @gray30;
+padding: 1.6em 2em;
+width: 25%;
+width: -webkit-calc(100% / 4);
+width: calc(100% / 4);
+border-left: solid 1px @bgcolor;
+}
+.donation-overview div:first-child {
+border: 0;
+}
+.donation-overview .d-figure span {
+display: block;
+color: @gray80;
+font-size: 2.4em;
+font-weight: 300;
+letter-spacing: -1px;
+}
+.donation-overview .d-figure.raised-total span {
+color: @accent;
 }
 
-#sidepanel  {
-    padding-left: @campaigns-list-wrap-width + @primary-nav-width;
+.progress {
+    border-radius: 0px;
 }
 
-.account-settings {
-	width: 100%;
-	padding-left: @primary-nav-width + 60px;
-	padding-top: 30px;	
-	padding-bottom: 60px;
+.progress-line {
+    position: relative;
+    color: #FFF;
+    height: 20px;
+    .smallcaps;
+    background: @accent;
+    .animate-bar;
 }
+
+/* Top Donor */
+
+.top-donor {
+  border-top: solid 1px @bgcolor;
+  padding: 1.6em 2em;
+}
+
