@@ -1,14 +1,11 @@
 /* Campaigns Sidebar List Styling */
 
-@campaigns-list-wrap-width:   260px;
-
-
 .campaigns-list-wrap {
     width: @campaigns-list-wrap-width;
     height: 100%;
     position: fixed;
     top: @top-menu-height;
-    left: @primary-nav-width + 1;
+    left: @primary-nav-width;
     background-color: @dkgray;
 }
 
@@ -23,8 +20,9 @@
 
 .campaigns-list-wrap .campaign-quicknav {
     width: 100%;
-    padding: 30px 0px;
-    height: 80px;
+    line-height: 50px;
+    height: 50px;
+    border-bottom: solid 1px @bgcolor;
 }
 
 .campaigns-list-wrap .campaign-quicknav ul {
@@ -44,14 +42,15 @@
     font-size: 12px;
     line-height: 12px;
     border-radius: 4px;
+    color: @gray20;;
 }
 
 .campaigns-list-wrap .campaign-quicknav ul li a:hover, .campaigns-list-wrap .campaign-quicknav ul li a.active {
-	color: @darklinkhover;
+	color: @white;
 }
 
 .campaign-item {
-    padding: 10px 15px;
+    padding: 15px 25px;
     margin: 0px;
     position: relative;
     display: block;
@@ -68,11 +67,10 @@
   height: 0;
   border-style: solid;
   border-width: 15px 15px 15px 0;
-  border-color: transparent @gray20 transparent transparent;
+  border-color: transparent @bgcolor transparent transparent;
   position: absolute;
   right: 0px;
-  top: 50%;
-  margin-bottom: -50%;
+  top: 40%;
 }
 
 .campaign-item h3 {
@@ -84,48 +82,191 @@
 
 .campaign-item h4   {
     font-size: 14px;
+    color: @gray20;
 }
 
 .campaign-item p {
     margin-top: 10px;
-    color: #fff;
+    color: @accent;
     margin-bottom: 0px;
 }
 
 
 /* Campaign Edit Styling */
 
-ul.campaign-actions {
-  list-style: none;
+.campaign-actions {
+  display: block;
   margin: 0px;
   padding: 0px;
-  display: block;
   width: 100%;
-  text-align: center;
-  height: @top-menu-height;
+  height: 50px;
+  background: @gray5;
+
+  .campaign-nav {
+
+    padding-left: 0px;
+    padding-right: 0px;
+
+  }
+
+    ul {
+
+        li {
+
+        display: block;
+        float: left;
+
+            a {
+            display: block;
+            float: left;
+            font-size: 12px;
+            height: 50px;
+            color: @gray20;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+                .icon {
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 50px;
+                color: @gray20;
+                }
+
+            }
+
+            a:hover, a:hover .icon {
+                color: @white;
+            }
+
+        }
+
+    }
+
+    .campaign-quick-links {
+        
+        list-style: none;
+        text-align: left;
+        padding-right: 0px;
+        padding-left: 0px;
+            
+        li {
+            a {
+                width: 50px;
+                border-right: 1px solid @bgcolor;
+                text-align: center;
+            }
+        }
+
+        li.active a {
+            background: @bgcolor;
+            color: @white;
+        }
+
+        li.active .icon {
+            color: @white;
+        }
+    }
+
+    .campaign-buttons {
+        list-style: none;
+        text-align: right;
+        padding-right: 0px;
+        padding-left: 0px;
+        float: right;
+        margin-bottom: 0px;
+
+        li {
+            a {
+                padding-right: 20px;
+                padding-left: 20px;
+                border-left: 1px solid @bgcolor;
+                text-align: center;
+                line-height: 50px;
+
+                .icon {
+                    float: left;
+                    line-height: 46px;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+
 }
 
-ul.campaign-actions li {
-  display: inline-block;
-  text-align: center;
-  padding: 10px 15px;
-}
 
 .campaign-edit-wrap {
   padding: 60px;
 }
 
-.campaings-view-wrap, .donor-view-wrap, #sidepanel, .account-settings {
-	width: 100%;
-	padding-left: @campaigns-list-wrap-width + @primary-nav-width + 60px;
-	padding-top: 30px;
-	padding-right: 60px;
-	padding-bottom: 60px;
+/* Campaign View Styling */
+
+.campaings-view-wrap {
+  width: 100%;
+  padding-left: @campaigns-list-wrap-width + @primary-nav-width;
 }
 
-.account-settings {
-	width: 100%;
-	padding-left: @primary-nav-width + 60px;
-	padding-top: 30px;	
-	padding-bottom: 60px;
+.campaign-view-selected {
+  padding: 60px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
 }
+
+.donation-overview {
+position: relative;
+text-align: center;
+margin-bottom: 3em;
+.border-radius;
+background: @gray5;
+overflow: hidden;
+}
+.donation-overview .d-figure {
+float: left;
+color: @gray30;
+padding: 1.6em 2em;
+width: 25%;
+width: -webkit-calc(100% / 4);
+width: calc(100% / 4);
+border-left: solid 1px @bgcolor;
+}
+.donation-overview div:first-child {
+border: 0;
+}
+.donation-overview .d-figure span {
+display: block;
+color: @gray80;
+font-size: 2.4em;
+font-weight: 300;
+letter-spacing: -1px;
+}
+.donation-overview .d-figure.raised-total span {
+color: @accent;
+}
+
+.progress {
+    border-radius: 0px;
+    margin-bottom: 0px;
+    background: @gray20;
+}
+
+.progress-line {
+    position: relative;
+    color: #FFF;
+    height: 20px;
+    .smallcaps;
+    background: @accent;
+    -webkit-animation: animate-bar 1s 1 ease;
+    animation: animate-bar 1s 1 ease;
+}
+
+/* Top Donor */
+
+.top-donor {
+  border-top: solid 1px @bgcolor;
+  padding: 1.6em 2em;
+}
+
