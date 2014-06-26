@@ -116,7 +116,6 @@ a.stamp {
 					border-radius: 50%;
 					background-color: @dkaccent;
 
-
 					&:before {
 						color: @white;
 						font-weight: bold;
@@ -126,7 +125,17 @@ a.stamp {
 						vertical-align: middle;
 						display: inline-block;
 					}
+
+					&:hover {
+						background-color: @white;
+
+						&:before {
+							color: @accent!important;
+						}
+					}
+
 				}
+			
 			}
 		}
 

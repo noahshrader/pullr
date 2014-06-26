@@ -118,7 +118,7 @@
             float: left;
             font-size: 12px;
             height: 50px;
-            color: @gray70;
+            color: @gray20;
             text-transform: uppercase;
             letter-spacing: 1px;
 
@@ -126,7 +126,7 @@
                 font-size: 18px;
                 font-weight: bold;
                 line-height: 50px;
-                color: @gray70;
+                color: @gray20;
                 }
 
             }
@@ -156,6 +156,10 @@
 
         li.active a {
             background: @bgcolor;
+            color: @white;
+        }
+
+        li.active .icon {
             color: @white;
         }
     }
@@ -242,6 +246,8 @@ color: @accent;
 
 .progress {
     border-radius: 0px;
+    margin-bottom: 0px;
+    background: @gray20;
 }
 
 .progress-line {
