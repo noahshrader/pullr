@@ -39,7 +39,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
                 <ul class="campaign-quick-links col-md-6">
 
-                    <li>
+                    <li class="active">
                         <a href="app/campaign/view?id=<?= $campaign->id ?>">
                             <i class="icon icon-piechart"></i>
                             <!-- Overview -->
