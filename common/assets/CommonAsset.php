@@ -10,8 +10,8 @@ class CommonAsset extends AssetBundle {
     public $baseUrl = '@web';
     public $css = [
         'css/bootstrap/less/bootstrap.less',
-        'css/common.less',
-        'plugins/bootstrapSwitch/css/bootstrap3/bootstrap-switch.min.css'
+        'plugins/bootstrapSwitch/css/bootstrap3/bootstrap-switch.min.css',
+        'css/common.less'
     ];
     public $js = [
         'js/common.js',
