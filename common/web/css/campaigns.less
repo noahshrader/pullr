@@ -100,36 +100,69 @@
   height: 50px;
   background: @gray5;
 
-  .campaign-quick-links {
-    list-style: none;
-    text-align: left;
-  }
+    ul {
 
-  .campaign-buttons {
-    list-style: none;
-    text-align: right;
-  }
+        li {
 
-  ul {
-    li {
-      display: inline-block;
-      a {
         display: inline-block;
-        font-size: 12px;
-        height: 50px;
-        color: @white;
-        text-transform: uppercase;
-        letter-spacing: 1px;
 
-        .icon {
-          font-size: 18px;
-          font-weight: bold;
-          line-height: 50px;
-          color: @white;
+            a {
+            display: inline-block;
+            font-size: 12px;
+            height: 50px;
+            color: @gray70;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+                .icon {
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 50px;
+                color: @gray70;
+                }
+
+            }
+
+            a:hover, a:hover .icon {
+                color: @white;
+            }
+
         }
-      }
+
     }
-  }
+
+    .campaign-quick-links {
+        
+        list-style: none;
+        text-align: left;
+        padding-right: 0px;
+        padding-left: 0px;
+            
+        li {
+            a {
+                width: 50px;
+                border-right: 1px solid @bgcolor;
+                text-align: center;
+            }
+        }
+
+    }
+
+    .campaign-buttons {
+        list-style: none;
+        text-align: right;
+        padding-right: 0px;
+        padding-left: 0px;
+
+        li {
+            a {
+                padding-right: 20px;
+                padding-left: 20px;
+                border-left: 1px solid @bgcolor;
+                text-align: center;
+            }
+        }
+    }
 
 }
 

@@ -48,7 +48,8 @@ $this->registerJs($js);
                     <li class="add-campaign"><a href="app/campaign/add">Campaigns<i class="icon icon-add"></i></a></li>
                 </ul>
 
-                <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
+                
+                <?= $this->render('@common/views/leftmenu/avatar'); ?>
 
                 <div class="clearfix"></div>
 

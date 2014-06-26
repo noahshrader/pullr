@@ -132,22 +132,31 @@ a.stamp {
 
 	} /* End of quicknav */
 
-	.avatar {
+	.avatar-container {
 		float: right;
 		height: @top-menu-height;
 		display: block;
+		position: relative;
 
-		span {
-			height: @top-menu-height;
-			display: block;
-			line-height: @top-menu-height;
-			
-			img {
-				border-radius: 50%;
-				border: 2px solid @white;
-				height: 40px;
-				width: 40px;
+		.avatar {
+
+			span {
+				height: @top-menu-height;
+				display: block;
+				line-height: @top-menu-height;
+				
+				img {
+					border-radius: 50%;
+					border: 2px solid @white;
+					height: 40px;
+					width: 40px;
+				}
 			}
+
+		}
+
+		.dropdown-menu {
+			right: 0px;
 		}
 
 	}
@@ -219,7 +228,11 @@ a.stamp {
 						color: @gray20;
 					}
 
-					&:hover, &:hover:before, &.active, &.active:before {
+					&:hover, &:hover:before {
+						color: @white;
+					}
+
+					&.active, &.active:before {
 						color: @white;
 						background-color: @dkgray;
 					}
