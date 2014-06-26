@@ -20,59 +20,59 @@ $user = \Yii::$app->user->identity;
             <ul class="campaign-actions">
 
                 <li>
+                    <!-- Overview -->
                     <a href="app/campaign/view?id=<?= $campaign->id ?>">
                         <i class="glyphicon glyphicon-edit"></i>
                         <br>
-                        Overview
                     </a>
                 </li>
 
                 <li>
+                    <!-- Edit -->
                     <a href="app/campaign/edit?id=<?= $campaign->id ?>">
                         <i class="glyphicon glyphicon-edit"></i>
                         <br>
-                        Edit
                     </a>
                 </li>
 
                 <li>
+                    <!-- View -->
                     <a href='<?= $user->getUrl() . $campaign->alias ?>'>
                         <i class="glyphicon glyphicon-search"></i>
                         <br/>
-                        View
                     </a>
                 </li>
                 
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                     <li>
+                        <!-- Archive -->
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
                             <i class="glyphicon glyphicon-book"></i>
                             <br>
-                            Archive
                         </a>
                     </li>
                 <? endif ?>
                  <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                     <li>
+                        <!-- Restore -->
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                             <i class="glyphicon glyphicon-ok"></i>
                             <br>
-                            Restore
                         </a>
                     </li>
                 <? endif ?>
                     <li>
+                        <!-- Shortcodes -->
                         <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
                             <br>
-                            Shortcodes
                         </a>
                     </li>
                 <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                     <li>
+                        <!-- Remove -->
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                             <i class="glyphicon glyphicon-remove"></i>
                             <br>
-                            Remove
                         </a>
                     </li>
                 <? endif ?>

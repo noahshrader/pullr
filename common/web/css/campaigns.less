@@ -1,14 +1,11 @@
 /* Campaigns Sidebar List Styling */
 
-@campaigns-list-wrap-width:   260px;
-
-
 .campaigns-list-wrap {
     width: @campaigns-list-wrap-width;
     height: 100%;
     position: fixed;
     top: @top-menu-height;
-    left: @primary-nav-width + 1;
+    left: @primary-nav-width;
     background-color: @dkgray;
 }
 
@@ -23,8 +20,8 @@
 
 .campaigns-list-wrap .campaign-quicknav {
     width: 100%;
-    padding: 30px 0px;
-    height: 80px;
+    line-height: 50px;
+    height: 50px;
 }
 
 .campaigns-list-wrap .campaign-quicknav ul {
@@ -51,7 +48,7 @@
 }
 
 .campaign-item {
-    padding: 10px 15px;
+    padding: 15px 25px;
     margin: 0px;
     position: relative;
     display: block;
@@ -95,27 +92,62 @@
 
 /* Campaign Edit Styling */
 
-ul.campaign-actions {
-  list-style: none;
+.campaign-actions {
+  display: block;
   margin: 0px;
   padding: 0px;
-  display: block;
   width: 100%;
-  text-align: center;
-  height: @top-menu-height;
+  height: 50px;
+  background: @gray5;
+
+  .campaign-quick-links {
+    list-style: none;
+    text-align: left;
+  }
+
+  .campaign-buttons {
+    list-style: none;
+    text-align: right;
+  }
+
+  ul {
+    li {
+      display: inline-block;
+      a {
+        display: inline-block;
+        font-size: 12px;
+        height: 50px;
+        color: @white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        .icon {
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 50px;
+          color: @white;
+        }
+      }
+    }
+  }
+
 }
 
-ul.campaign-actions li {
-  display: inline-block;
-  text-align: center;
-  padding: 10px 15px;
-}
 
 .campaign-edit-wrap {
   padding: 60px;
 }
 
-.campaings-view-wrap, .donor-view-wrap, #sidepanel, .account-settings {
+.campaings-view-wrap {
+  width: 100%;
+  padding-left: @campaigns-list-wrap-width + @primary-nav-width;
+}
+
+.campaign-view-selected {
+  padding: 60px;
+}
+
+.donor-view-wrap, #sidepanel, .account-settings {
 	width: 100%;
 	padding-left: @campaigns-list-wrap-width + @primary-nav-width + 60px;
 	padding-top: 30px;

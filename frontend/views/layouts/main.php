@@ -42,15 +42,21 @@ $this->registerJs($js);
             <? if (!Yii::$app->user->isGuest): ?>
 
             <div class="top-menu">
-                <a class="logo icon-pullr"></a>
-                <a class="add-campaign" href="app/campaign/add"><i class="icon icon-add"></i></a>
+                
+                <ul class="quick-nav">
+                    <li class="branding"><a class="logo icon-pullr"></a></li>
+                    <li class="add-campaign"><a href="app/campaign/add">Campaigns<i class="icon icon-add"></i></a></li>
+                </ul>
+
+                <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
+
+                <div class="clearfix"></div>
+
             </div>
 
             <div class="site-content">
 
                 <div class="primary-navigation">
-
-                       <a class="avatar avatar-container" href='app'><?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?></a>
 
                     <nav class="sidebar-nav nav-top">
                         <ul> 

@@ -35,66 +35,76 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
 <section class="campaings-view-wrap">
 
-            <ul class="campaign-actions">
+            <div class="campaign-actions">
 
-                <li>
-                    <a href="app/campaign/view?id=<?= $campaign->id ?>">
-                        <i class="icon-view"></i>
-                        <br>
-                        Overview
-                    </a>
-                </li>
+                <ul class="campaign-quick-links col-md-6">
 
-                <li>
-                    <a href="app/campaign/edit?id=<?= $campaign->id ?>">
-                        <i class="icon-edit"></i>
-                        <br>
-                        Edit
-                    </a>
-                </li>
-
-                <li>
-                    <a href='<?= $user->getUrl() . $campaign->alias ?>'>
-                        <i class="icon-view"></i>
-                        <br/>
-                        View
-                    </a>
-                </li>
-
-                <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                     <li>
-                        <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                            <i class="icon-archive"></i>
-                            <br>
-                            Archive
+                        <a href="app/campaign/view?id=<?= $campaign->id ?>">
+                            <i class="icon icon-piechart"></i>
+                            <!-- Overview -->
                         </a>
                     </li>
-                <? endif ?>
-                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+
                     <li>
-                        <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                            <i class="glyphicon glyphicon-ok"></i>
-                            <br>
-                            Restore
+                        <a href="app/campaign/edit?id=<?= $campaign->id ?>">
+                            <i class="icon icon-edit"></i>
+                            <!-- Edit -->
                         </a>
                     </li>
-                <? endif ?>
-                    <li>
-                        <a class="icon-code" href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
-                            <br>
-                            Shortcodes
-                        </a>
-                    </li>
-                <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
+
+                    <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                     <li>
                         <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                            <i class="icon-remove"></i>
-                            <br>
-                            Remove
+                            <i class="icon icon-remove"></i>
+                            <!-- Remove -->
                         </a>
                     </li>
-                <? endif ?>
+                    <? endif ?>
+
+                    <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
+                    <li>
+                        <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
+                            <i class="icon icon-archive"></i>
+                            <!-- Archive -->
+                        </a>
+                    </li>
+                    <? endif ?>
+
+                     <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                    <li>
+                        <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                            <i class="icon icon-check2"></i>
+                            <!-- Restore -->
+                        </a>
+                    </li>
+                    <? endif ?>
+
                 </ul>
+
+                <ul class="campaign-buttons col-md-6">
+
+                    <li>
+                        <a href='<?= $user->getUrl() . $campaign->alias ?>'>
+                            <i class="icon icon-view"></i>
+                            <!-- View -->
+                            View Campaign
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
+                            <i class="icon icon-code"></i>
+                            <!-- Shortcodes -->
+                            XML
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="clearfix"></div>
+            
+            </div>
         
     <div class="campaign-view-selected" data-id="<?= $campaign->id ?>">
 
