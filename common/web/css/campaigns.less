@@ -41,10 +41,11 @@
     font-size: 12px;
     line-height: 12px;
     border-radius: 4px;
+    color: @gray20;;
 }
 
 .campaigns-list-wrap .campaign-quicknav ul li a:hover, .campaigns-list-wrap .campaign-quicknav ul li a.active {
-	color: @darklinkhover;
+	color: @white;
 }
 
 .campaign-item {
@@ -80,11 +81,12 @@
 
 .campaign-item h4   {
     font-size: 14px;
+    color: @gray20;
 }
 
 .campaign-item p {
     margin-top: 10px;
-    color: #fff;
+    color: @accent;
     margin-bottom: 0px;
 }
 
@@ -256,7 +258,8 @@ color: @accent;
     height: 20px;
     .smallcaps;
     background: @accent;
-    .animate-bar;
+    -webkit-animation: animate-bar 1s 1 ease;
+    animation: animate-bar 1s 1 ease;
 }
 
 /* Top Donor */

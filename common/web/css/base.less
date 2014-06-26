@@ -48,6 +48,41 @@ a, a:hover {
   text-decoration: none;
 }
 
+a, a:before {
+  color: @accent;
+  text-decoration: none;
+  .trans;
+  &:hover {
+    color: @accenthover;
+  }
+}
+a:hover,
+a:focus,
+a:active,
+input,
+input:focus,
+button,
+button:active {
+  outline: 0;
+}
+
+a,
+a:link,
+a:visited,
+a:active,
+a img,
+a .icon {
+  -webkit-transition-duration: 0.33s;
+  -webkit-transition-property: color, background, text-shadow, border, opacity, text-decoration;
+  -moz-transition-duration: 0.33s;
+  -moz-transition-property: color, background, text-shadow, border, opacity, text-decoration;
+  -o-transition-duration: 0.33s;
+  -o-transition-property: color, background, text-shadow, border, opacity, text-decoration;
+  transition-duration: 0.33s;
+  transition-property: color, background, text-shadow, border, opacity, text-decoration;
+  text-decoration: none;
+}
+
 input,
 button,
 select {
@@ -66,18 +101,4 @@ iframe {
   background: @accent;
   color: #FFF;
   text-shadow: none;
-}
-
-/* Placeholder */
-::-webkit-input-placeholder {
-   color: @gray30;
-}
-:-moz-placeholder {
-   color: @gray30;  
-}
-::-moz-placeholder {
-   color: @gray30;  
-}
-:-ms-input-placeholder {  
-   color: @gray30;  
 }
