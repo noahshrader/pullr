@@ -1,11 +1,9 @@
 <?php
 use yii\helpers\Html; 
-use common\assets\DataTableAsset;
 use common\models\Charity;
 use yii\widgets\ActiveForm;
 
-DataTableAsset::register($this);
-$this->registerJSFile('@web/js/charity/index.js', DataTableAsset::className());
+$this->registerJSFile('@web/js/charity/index.js', \common\assets\CommonAsset::className());
 
 $this->title = 'Charities';
 ?>

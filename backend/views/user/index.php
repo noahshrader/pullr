@@ -1,10 +1,8 @@
 <?php
 use yii\helpers\Html; 
 use common\models\User;
-use common\assets\DataTableAsset;
 
-DataTableAsset::register($this);
-$this->registerJSFile('@web/js/user/index.js', DataTableAsset::className());
+$this->registerJSFile('@web/js/user/index.js',  \common\assets\CommonAsset::className());
 
 $this->title = 'Users';
 ?>

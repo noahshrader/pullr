@@ -1,11 +1,9 @@
 <?php
 use yii\helpers\Html; 
-use common\assets\DataTableAsset;
 use yii\widgets\ActiveForm;
 use common\models\Theme;
 
-DataTableAsset::register($this);
-$this->registerJSFile('@web/js/event/index.js', DataTableAsset::className());
+$this->registerJSFile('@web/js/event/index.js',  \common\assets\CommonAsset::className());
 
 $this->title = 'Themes';
 ?>

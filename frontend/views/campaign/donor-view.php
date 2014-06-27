@@ -1,7 +1,4 @@
 <?
-
-use common\assets\DataTableAsset;
-DataTableAsset::register($this);
 $this->registerJSFile('@web/js/campaign/donation-table.js', DataTableAsset::className());
 
 $user = \Yii::$app->user->identity;
