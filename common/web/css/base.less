@@ -102,3 +102,73 @@ iframe {
   color: #FFF;
   text-shadow: none;
 }
+
+/* Table Styling */
+
+table {
+width: 100%;
+text-align: left;
+border-collapse: collapse;
+border-spacing: 0;
+}
+table th {
+color: @gray12;
+.smallcaps;
+}
+table td {
+color: @gray20;
+cursor: pointer;
+.trans;
+}
+table th, table td,
+table.dataTable tbody th, table.dataTable tbody td {
+padding: 1em .8em!important;
+}
+
+table tr.odd td {
+background: @gray5;
+}
+
+table tr:hover td {
+color: #FFF;
+}
+
+table.dataTable tbody tr {
+  background-color: transparent!important;
+  border-color: transparent!important;
+}
+
+table.dataTable.row-border tbody th, 
+table.dataTable.row-border tbody td, 
+table.dataTable.display tbody th, 
+table.dataTable.display tbody td,
+table.dataTable thead td,
+table.dataTable thead th   {
+  border-color: transparent!important;
+}
+
+table.dataTable thead th {
+  border-top: 1px solid @dkgray!important;
+}
+
+/* Expand/Collapse icon */
+table td a.icon-plus2 {
+display: block;
+text-align: center;
+margin: 0 auto;
+}
+
+td.details-control i.icon-add2:before {
+  color: @accent;
+}
+
+/* Search Field */
+
+.dataTables_filter {
+
+}
+.dataTables_filter input {
+background: @gray5;
+.round-radius;
+border-color: transparent;
+}
