@@ -162,13 +162,46 @@ td.details-control i.icon-add2:before {
   color: @accent;
 }
 
+table.dataTable.no-footer {
+  border-bottom: 1px solid @dkgray!important;  
+}
+
 /* Search Field */
 
-.dataTables_filter {
-
-}
 .dataTables_filter input {
 background: @gray5;
 .round-radius;
 border-color: transparent;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+  padding: 0px!important;
+}
+
+.btn.btn-csv {
+  margin: 20px 0px;
+  padding: .53em 1.2em;
+}
+
+.dataTables_info {
+  margin-top: 15px;
+}
+
+.pagination>li>a, .pagination>li>span {
+  background: @gray20;
+  border-color: transparent;
+}
+
+.pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus {
+   background: @gray5;
+  border-color: transparent;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+  border-color: transparent;
+  background: @dkgray;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+ color: @gray20!important; 
 }
