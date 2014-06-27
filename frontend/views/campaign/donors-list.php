@@ -16,13 +16,8 @@ $this->registerJsFile('@web/js/campaign/donors-filter.js',  CommonAsset::classNa
         <script type="text/html" id="donor">
             <?/*real attributes set in php code just few lines below, that is just mapping*/ ?>
             <a data-bind="attr: { href: href}, css: { active: isActive == true }" class='row campaign-item' >
-                <div class="col-xs-10 main-info">
                     <h3 data-bind="text: name"></h3>
                     <p data-bind="text: sum"></p>
-                </div>
-                <div class="tick col-xs-2">
-                    <strong>&gt;</strong>
-                </div>
             </a>
         </script> 
         <?

@@ -58,7 +58,8 @@ button.btn {
 			background: @dkaccent;
 			width: @primary-nav-width;
 			text-align: center;
-			display: inline-block;
+			display: block;
+			float: left;
 
 			a {
 				display: inline-block;
@@ -76,7 +77,8 @@ button.btn {
 		}
 
 		li.add-campaign {
-			display: inline-block;
+			display: block;
+			float: left;
 			width: @campaigns-list-wrap-width;
 			padding-left: 25px;
 			padding-right: 25px;
@@ -245,6 +247,11 @@ button.btn {
 				a:hover, a:hover:before  {
 					color: @white!important;
 				}
+
+				a.active, a.active:before {
+					color: @white;
+				}
+
 			}
 		}
 	}

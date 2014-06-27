@@ -20,7 +20,7 @@ StreamboardAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">
         <?php $this->head() ?>
-        <link href="/css/streamboard.less" rel="stylesheet">
+
     </head>
     <body>
 

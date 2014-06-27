@@ -221,8 +221,8 @@ class User extends ActiveRecord implements IdentityInterface {
      * 
      * @param type $insert  - if true - new record inserted
      */
-    public function afterSave($insert) {
-        parent::afterSave($insert);
+    public function afterSave($insert, $params = array()) {
+        parent::afterSave($insert, $params);
         if ($insert){
             /** so we have new record*/
             $notification = new Notification();

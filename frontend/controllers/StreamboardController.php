@@ -44,7 +44,7 @@ class StreamboardController extends \yii\web\Controller
 	          ,campaignId = 5
 	          ,createdDate = UNIX_TIMESTAMP()
 	          ,amount = '{$amount}'
-	          ,`name` = '{$name}'
+	          ,nameFromForm = '{$name}'
 	          ,comments = 'Some test comment here.Some test comment here.'
 	    ";
         $res = Yii::$app->db->createCommand($sql)->execute();
@@ -91,7 +91,7 @@ class StreamboardController extends \yii\web\Controller
         $campaigns_filter = implode(',', $selected_campaigns);
 
         $sql = "
-	            SELECT d.name, d.amount
+	            SELECT d.nameFromForm as name, d.amount
 	              , LOWER(FROM_UNIXTIME(d.createdDate,'%d/%m/%Y %l:%i %p'))
 	                  as date_formatted
 	              , d.comments, c.name as campaign_name

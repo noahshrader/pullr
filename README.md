@@ -1,4 +1,4 @@
 pullr
 =====
 
-The all-in-one fundraising platform for gamers
+The fundraising platform for gamers

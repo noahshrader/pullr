@@ -14,8 +14,8 @@ class StreamboardAsset extends AssetBundle
 	public $basePath = '@webroot';
 	public $baseUrl = '@web';
 	public $css = [
-//            'css/streamboard.less',
             '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css',
+            'css/streamboard.less',
 	];
         
 	public $js = [

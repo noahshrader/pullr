@@ -1,5 +1,10 @@
 <?php
 
+$lessc_path = 'lessc';
+if(empty($_SERVER["WINDIR"]) || $_SERVER["WINDIR"]!='C:\Windows') {
+    $lessc_path = '/usr/local/bin/lessc';
+}
+
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
@@ -17,7 +22,7 @@ return [
             'converter' => [
                 'class' => 'yii\web\AssetConverter',
                 'commands' => [
-                    'less' => ['css', '/usr/local/bin/lessc {from} {to} --source-map --compress'],
+                    'less' => ['css', $lessc_path.' {from} {to} --source-map --compress'],
                 ],
             ],
         ],
