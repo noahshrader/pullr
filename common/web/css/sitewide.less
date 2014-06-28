@@ -299,7 +299,7 @@ button.btn {
 	}
 }
 
-.donor-view-wrap, .account-settings {
+.donor-view-wrap {
 	width: 100%;
 	padding-left: @campaigns-list-wrap-width + @primary-nav-width + 60px;
 	padding-top: 30px;
@@ -311,45 +311,59 @@ button.btn {
     padding-left: @campaigns-list-wrap-width + @primary-nav-width;
 }
 
-.account-settings {
+.account-settings-wrap {
 	width: 100%;
 	padding-left: @primary-nav-width + 60px;
 	padding-top: 30px;	
 	padding-bottom: 60px;
 }
+
+.account-settings {
+	width: 60%;
+	float: left;
+	padding-bottom: 60px;
+}
+
+.pro-panel {
+	width: 30%;
+	position: fixed;
+	right: 0px;
+	top: @top-menu-height;
+	padding: 30px;
+	background: @gray8;
+	height: 100%;
+
+}
+
+
 /* Pace Styles */
 
-.pace {
-  -webkit-pointer-events: none;
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-.pace.pace-inactive .pace-progress {
-  display: none;
-}
-
 .pace .pace-progress {
+  background: @white;
   position: fixed;
   z-index: 2000;
   top: 0;
-  right: 0;
-  height: 5rem;
-  width: 5rem;
+  left: 0;
+  height: 3px;
+
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
 }
 
-.pace .pace-progress:after {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: .5rem;
-  content: attr(data-progress-text);
-  font-family: "Helvetica Neue", sans-serif;
-  font-weight: 100;
-  font-size: 5rem;
-  line-height: 1;
-  text-align: right;
-  color: rgba(0, 0, 0, 0.19999999999999996);
+.pace-inactive {
+  display: none;
+}
+
+/* General Form Styling */
+
+.form-control {
+	background-color: @gray5;
+	border-color: transparent;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	background-color: @dkgray;
+	border-color: transparent;	
 }

@@ -12,8 +12,9 @@ class CommonAsset extends AssetBundle {
         'css/common.less'
     ];
     public $js = [
-        'js/common.js',
         'js/pace.min.js',
+        'js/jquery.mCustomScrollbar.js',
+        'js/common.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

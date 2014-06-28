@@ -13,10 +13,9 @@ use common\widgets\file\ImageInput;
 $this->title = 'Account Settings';
 ?>
 
-<section class="account-settings">
-<div class="container">
-    <div class='row'>
-        <div class="col-xs-9">
+<section class="account-settings-wrap">
+
+    <div class="account-settings">
 
             <h1><?= Html::encode($this->title) ?></h1>
             <?php $form = ActiveForm::begin(['options' => [
@@ -81,9 +80,11 @@ $this->title = 'Account Settings';
             'user' => $user
             ]);
             ?>
+
         </div>
-        <!-- table-cell div -->
-        <div id="side-panel" class='col-xs-3'>
+
+        
+        <div class="pro-panel">
             <div class='sidepanel basic'>
             <?=
             $this->render('plan', [
@@ -91,7 +92,8 @@ $this->title = 'Account Settings';
             ]);
             ?>
         </div>
-    </div>
-</div>
 
-</div>
+        <div class="clearfix"></div>
+
+
+</section>

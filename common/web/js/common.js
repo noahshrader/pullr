@@ -44,3 +44,7 @@ Pullr.setCurrentMenuActive = function(){
 };
 
 (catchKeys());
+
+$(".campaigns-list-wrap").mCustomScrollbar({
+    theme:"minimal"
+});
