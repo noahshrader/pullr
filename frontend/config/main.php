@@ -13,7 +13,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'login/<service:google_oauth|twitter|facebook|>' => 'site/login',
+                'app/privacy' => 'site/privacy',
+                'app/termsofservice' => 'site/termsofservice',
                 'app/<controller>/<action>' => '<controller>/<action>',
                 'app/<controller>' => '<controller>',
                 'app' => 'site',
@@ -26,11 +27,11 @@ return [
         'request'=>array(
             'enableCsrfValidation'=>false,
         ),
-        'eauth' => require 'eauth.php',
         'user' => [
              'class' => 'common\components\PullrUserComponent',
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => '@web'
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

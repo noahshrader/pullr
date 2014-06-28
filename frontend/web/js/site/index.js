@@ -1,18 +1,3 @@
-function showAuthModal(){
-    if ($('#confirmationEmailModal').length > 0 ){
-        $('#confirmationEmailModal').modal('show');
-        return;
-    }
-    var $el = $('#loginModal');
-    if ($el.length > 0){
-        $el.modal('show');
-    }
-}
-
-$(function() {
-    showAuthModal();
-});
-
 // Sidebar scripts
 $('a.openone').click(function() {
     $('#sidepanel, .container, .primary-header, nav.sub-nav').toggleClass('open');
