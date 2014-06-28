@@ -14,9 +14,6 @@ $this->title = 'Account Settings';
 ?>
 
 <section class="account-settings">
-<div class="container">
-    <div class='row'>
-        <div class="col-xs-9">
 
             <h1><?= Html::encode($this->title) ?></h1>
             <?php $form = ActiveForm::begin(['options' => [
@@ -81,8 +78,8 @@ $this->title = 'Account Settings';
             'user' => $user
             ]);
             ?>
-        </div>
-        <!-- table-cell div -->
+
+        
         <div id="side-panel" class='col-xs-3'>
             <div class='sidepanel basic'>
             <?=
@@ -91,7 +88,6 @@ $this->title = 'Account Settings';
             ]);
             ?>
         </div>
-    </div>
-</div>
 
-</div>
+
+</section>
