@@ -16,7 +16,7 @@ use common\widgets\file\ImageInput;
         <? if ($campaign->isNewRecord): ?>
             <div class="label label-danger">Save campaign before adding channels</div>
         <? endif ?>
-        <input type="text" id="addLayoutTeam" placeholder="Add channel(s)"> <a class="btn btn-success btn-xs" onclick="addNewLayoutTeam()"> <i class="glyphicon glyphicon-plus"></i></a>
+        <input type="text" id="addLayoutTeam" placeholder="Add channel(s)"> <a class="btn btn-success btn-xs" onclick="addNewLayoutTeam()"> <i class="icon icon-add2"></i></a>
         <div id="layoutTeams">
 
         </div>

@@ -28,12 +28,12 @@ $(function(){
         if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
-            $row.find('td:first-child i').toggleClass('glyphicon-plus-sign glyphicon-minus-sign')
+            $row.find('td:first-child i').toggleClass('icon-add2 icon-minus2')
         }
         else {
             // Open this row
             row.child( formatChildRow($row) ).show();
-            $row.find('td:first-child i').toggleClass('glyphicon-plus-sign glyphicon-minus-sign')
+            $row.find('td:first-child i').toggleClass('icon-add2 icon-minus2')
         }
     } );
     
@@ -48,7 +48,7 @@ $(function(){
             var href = 'app/campaign/exportdonations?id='+id;
         }
         var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).html
-            ('<i class="glyphicon glyphicon-download-alt"></i> CSV');
+            ('<i class="icon icon-download"></i> CSV');
         csvButton.insertBefore($wrapper.find('.dataTables_paginate'));
     }
     

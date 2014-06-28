@@ -91,7 +91,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
                 <li>
                     <a href='<?= $user->getUrl() . $campaign->alias ?>'>
-                        <i class="icon icon-view"></i>
+                        <i class="icon icon-view" target="_blank"></i>
                         <!-- View -->
                         View Campaign
                     </a>

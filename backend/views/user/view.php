@@ -5,7 +5,7 @@ use yii\helpers\Html;
 $this->title = 'User info ' . $user->name;
 ?>
 <div>
-    <a href="user" class="btn btn-link"><h3><i class="glyphicon glyphicon-arrow-left"></i> Back to Users</h3></a>
+    <a href="user" class="btn btn-link"><h3><i class="icon icon-arrowleft"></i> Back to Users</h3></a>
 </div>
 
 <h1><?= Html::encode($this->title) ?></h1>

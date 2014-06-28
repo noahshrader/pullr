@@ -73,7 +73,7 @@ $user = \Yii::$app->user->identity;
             <ul class="campaign-buttons">
 
                 <li>
-                    <a href='<?= $user->getUrl() . $campaign->alias ?>'>
+                    <a href='<?= $user->getUrl() . $campaign->alias ?>' target="_blank">
                         <i class="icon icon-view"></i>
                         <!-- View -->
                         View Campaign
