@@ -85,14 +85,6 @@ $this->registerJs($js);
                          </ul>
                     </nav>
 
-                    <nav class="sidebar-nav nav-bottom">
-                        <ul>
-                            <li role="presentation"><a class="help icon-support" href="app/help"></a></li>
-                            <li role="presentation"><a class="logout icon-logout" href="app/site/logout"></a></li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </nav>
-
                 </div><!-- /primary-navigation -->
 
                 <? endif; ?>
