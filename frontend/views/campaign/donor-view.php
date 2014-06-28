@@ -1,5 +1,5 @@
 <?
-$this->registerJSFile('@web/js/campaign/donation-table.js', DataTableAsset::className());
+$this->registerJSFile('@web/js/campaign/donation-table.js', \common\assets\CommonAsset::className());
 
 $user = \Yii::$app->user->identity;
 
