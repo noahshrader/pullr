@@ -16,7 +16,8 @@ $user = \Yii::$app->user->identity;
 
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
 
-        <? if (!$campaign->isNewRecord): ?>
+    <? if (!$campaign->isNewRecord): ?>
+    
     <div class="campaign-actions">
 
         <div class="col-md-6 campaign-nav">
@@ -102,7 +103,7 @@ $user = \Yii::$app->user->identity;
 
     <div class="campaign-edit-wrap">
 
-    <h1> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
+    <h1>Editing: <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
         
         <ul class="nav nav-tabs">
             <li class="active">
