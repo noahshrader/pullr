@@ -196,11 +196,6 @@
 
 }
 
-
-.campaign-edit-wrap {
-  padding: 60px;
-}
-
 /* Campaign View Styling */
 
 .campaings-view-wrap {
@@ -285,4 +280,52 @@ color: @accent;
     position: relative;
     display: block;
     width: 100%;
+}
+
+/* Campaign Edit Tabs */
+
+.campaign-edit-wrap {
+  padding: 60px;
+}
+
+.campaign-edit-wrap ul {
+    margin-bottom: 30px;
+}
+
+.campaign-edit-wrap ul li {
+    width: 25%;
+    text-align: center;
+}
+
+/* Tab Override */
+
+.nav-tabs > li > a {
+    background: @dkgray;
+    border-radius: 0px;
+    color: @gray20;
+    border-width: 0px;
+}
+
+.nav-tabs > li > a:before {
+    padding-right: 10px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    background: @gray5;
+    border-color: @bgcolor;
+    border-radius: 0px;
+    color: @white;
+    border-width: 0px;
+}
+
+.nav-tabs>li>a:hover {
+    background: @gray20;
+    border-radius: 0px;
+    border-color: transparent;
+    color: @white;
+    border-width: 0px;
+}
+
+.nav-tabs {
+    border-color: transparent;
 }

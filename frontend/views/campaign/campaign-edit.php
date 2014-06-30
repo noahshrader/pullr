@@ -106,21 +106,21 @@ $user = \Yii::$app->user->identity;
         
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon-cog"><span>General</span></a>
+                <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon icon-settings"><span>General</span></a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab" class="icon-cog"><span>Form</span></a>
+                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab" class="icon icon-template"><span>Form</span></a>
             </li>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
                 <li id="campaign-edit-team-li">
-                    <a href="<?= Url::to()?>#team" data-toggle="tab" class="icon-layout"><span>Team</span></a>
+                    <a href="<?= Url::to()?>#team" data-toggle="tab" class="icon icon-usergroup"><span>Team</span></a>
                 </li>
             <? endif ?>
             <li>
-                <a href="<?= Url::to()?>#layout" data-toggle="tab" class="icon-layout"><span>Layout</span></a>
+                <a href="<?= Url::to()?>#layout" data-toggle="tab" class="icon icon-brush"><span>Layout</span></a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#social" data-toggle="tab" class="icon-comment"><span>Social</span></a>
+                <a href="<?= Url::to()?>#social" data-toggle="tab" class="icon icon-share"><span>Social</span></a>
             </li>
         </ul>
        

@@ -54,10 +54,10 @@ $this->registerJs($js);
                                 </li>
                             <? endif; ?>
                                 <li>
-                                    <a class="streamboard-link icon-streamboard" title="Streamboard" href="/app/streamboard" target="_blank"><span>Streamboard</span></a>
+                                    <a class="streamboard icon-streamboard" title="Streamboard" href="app/streamboard" target="_blank"><span>Streamboard</span></a>
                                 </li>
                                 <li>
-                                    <a class="streamboard icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
+                                    <a class="icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
                                 </li>
                          </ul>
                     </nav>

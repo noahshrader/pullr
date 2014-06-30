@@ -210,6 +210,7 @@ button.btn {
 	top: 0px;
 	padding-top: @top-menu-height;
 	width: @primary-nav-width;
+	background: @bgcolor;
 
 	nav.nav-top {
 
@@ -316,6 +317,8 @@ button.btn {
 	padding-left: @primary-nav-width + 60px;
 	padding-top: 30px;	
 	padding-bottom: 60px;
+	height: 100%;
+	background-color: @dkgray;
 }
 
 .account-settings {
@@ -364,6 +367,7 @@ button.btn {
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-	background-color: @dkgray;
+	background-color: @bgcolor;
+	border: 1px solid @dkgray;
 	border-color: transparent;	
 }
