@@ -75,7 +75,6 @@ $user = \Yii::$app->user->identity;
 
                 <li>
                     <a href='<?= $user->getUrl() . $campaign->alias ?>' target="_blank">
-                        <i class="icon icon-view"></i>
                         <!-- View -->
                         View Campaign
                     </a>
@@ -83,7 +82,6 @@ $user = \Yii::$app->user->identity;
 
                 <li>
                     <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
-                        <i class="icon icon-code"></i>
                         <!-- Shortcodes -->
                         XML
                     </a>

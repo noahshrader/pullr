@@ -59,7 +59,7 @@ $(function(){
 
 function formatChildRow ( $row ) {
     return '<table class="childTable" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
+        '<tr class="open-row">'+
             '<td><em>Comments:</em> '+$row.data('comments')+'</td>'+
             '<td class="email"><em>Email Address:</em> '+$row.data('email')+'</td>'+
         '</tr>'+
