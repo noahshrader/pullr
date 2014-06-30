@@ -156,15 +156,6 @@ function initBootstrapSwitch() {
         }
     });
     
-    $("#campaign-enablegoogleanalytics").on('click', function() {
-        var value = $('#campaign-enablegoogleanalytics').bootstrapSwitch('state');
-        if (value){
-            $('.field-campaign-googleAnalytics').show('slow');
-        } else {
-            $('.field-campaign-googleAnalytics').hide('slow');
-        }
-    });
-    
     $("#campaign-enablecustomlogo").on('click', function() {
         var value = $('#campaign-enablecustomlogo').bootstrapSwitch('state');
         if (value){
@@ -185,7 +176,6 @@ function layoutChooseTheme(){
 
     })
 }
-
 
 function selectTheme(el){
     var $theme = $(el).parents('.select-theme-container');

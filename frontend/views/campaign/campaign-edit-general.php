@@ -1,10 +1,12 @@
 <?
 use common\models\Campaign;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+/* @var $form ActiveForm */
 ?>
-    
     <div class="panel-collapse collapse in" id="collapseOne">
         <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
+        <?= $form->field($campaign, 'description', ['autoPlaceholder' => true])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 6]); ?>
         <div class="form-group field-campaign-type">
             <label>Campaign Type:</label><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
             <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'form-control select-block']) ?>
@@ -50,18 +52,6 @@ use yii\helpers\Html;
             </div>
             
         </div>
-        <?= $form->field($campaign, 'enableGoogleAnalytics')->label('Enable Google Analytics Tracking?')->checkbox([], false); ?>
-        <div style="<?= ($campaign->enableGoogleAnalytics)?'' :'display:none' ?> " class="form-group field-campaign-googleAnalytics <?= ($campaign->hasErrors('googleAnalytics')) ? 'has-error' : '' ?>">
-            <?= Html::activeInput('text', $campaign, 'googleAnalytics', ['class' => 'form-control', 'placeholder' => 'Google Analytics Tracking ID']) ?>
-            <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Add Google Analytics to your page by entering the Tracking ID you want to use with this layout. If you don't want to use this feauter, leave this blank."></i>
-            <?= Html::error($campaign, 'googleAnalytics', ['class' => 'help-block']) ?>
-        </div>
         
-         <div class="form-group field-layout-streamService <?= ($campaign->hasErrors('streamService')) ? 'has-error' : '' ?>">
-                        <?= Html::activeDropDownList($campaign, 'streamService', array_combine(Campaign::$STREAM_SERVICES, Campaign::$STREAM_SERVICES), ['class' => 'form-control select-block']) ?>
-                        <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the streaming service your want to pull from."></i>
-                        <?= Html::error($campaign, 'streamService', ['class' => 'help-block']) ?>
-        </div>
-    
         <div class="clearfix"></div>
     </div>

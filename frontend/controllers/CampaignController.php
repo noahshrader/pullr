@@ -18,7 +18,6 @@ use common\models\User;
 use common\models\CampaignInvite;
 use common\models\mail\Mail;
 use common\models\Donation;
-use yii\db\Query;
 
 class CampaignController extends FrontendController {
 
@@ -60,7 +59,7 @@ class CampaignController extends FrontendController {
             }
 
             if ($editCampaign->save()){
-                UploadImage::UploadLogo($editCampaign);
+                UploadImage::UploadCampaignBackground($editCampaign);
 
                 if ($isNewRecord) {
                     $this->redirect('app/campaign/edit?id=' . $editCampaign->id);

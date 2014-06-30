@@ -3,7 +3,7 @@ use common\models\Campaign;
 use yii\helpers\Html;
 use common\widgets\file\ImageInput;
 ?>
-<div id="collapseTwo" class="<?= $campaign->chat ? ' chatOn' : '' ?>" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
+<div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
 
     <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
         <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control select-block']) ?>
@@ -33,21 +33,17 @@ use common\widgets\file\ImageInput;
     <br />
     <br />
 
-    <?= $form->field($campaign, 'enableCustomLogo')->label('Enalbe Custom Logo?')->checkbox([], false); ?>
-
-    <div id="logo-container" style="<?= ($campaign->enableCustomLogo) ? '': 'display:none' ?>">
-    <img class="logo" src="<?= $campaign->smallPhoto ?>">
-    <div class="form-group user-images <?= $campaign->hasErrors('images') ? 'has-error' : '' ?>">
-        <label class="control-label">Upload a logo</label> 
-            <?=ImageInput::widget();?>
-         <? if ($campaign->hasErrors('images')): ?>
-            <?= Html::error($campaign, 'images', ['class' => 'help-block']); ?>
-         <? endif ?>
-    </div>
+    <div id="logo-container">
+        <img class="logo" src="<?= $campaign->backgroundImageSmallUrl ?>">
+        <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
+            <label class="control-label">Upload a background image</label> 
+                <?=ImageInput::widget(['name' => 'backgroundImage']);?>
+             <? if ($campaign->hasErrors('backgroundImage')): ?>
+                <?= Html::error($campaign, 'backgroundImage', ['class' => 'help-block']); ?>
+             <? endif ?>
+        </div>
     </div>
     <?= $form->field($campaign, 'primaryColor')->label('Choose a primary color:')->input('color'); ?>
     <?= $form->field($campaign, 'secondaryColor')->label('Choose a secondary color:')->input('color'); ?>
-    <?= $form->field($campaign, 'tertiaryColor')->label('Choose a tertiary color:')->input('color'); ?>
-    <?= $form->field($campaign, 'chat')->label('Chat on?')->checkbox([], false); ?>
 
 </div>

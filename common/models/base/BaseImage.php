@@ -30,12 +30,12 @@ class BaseImage extends ActiveRecord implements IBaseImage {
 
     const TYPE_USER = 'user';
     const TYPE_CHARITY = 'charity';
-    const TYPE_LAYOUT_LOGO = 'layoutLogo';
-
+    const TYPE_CAMPAIGN_BACKGROUND = 'campaignBackground';
+    
     /**
      * list of types (models) available to upload images
      */
-    public static $TYPES = [self::TYPE_USER, self::TYPE_CHARITY, self::TYPE_LAYOUT_LOGO];
+    public static $TYPES = [self::TYPE_USER, self::TYPE_CHARITY, self::TYPE_CAMPAIGN_BACKGROUND];
 
     /** MAX size is 5 MB */
     const MAX_IMAGE_SIZE = 5242880;
@@ -94,6 +94,7 @@ class BaseImage extends ActiveRecord implements IBaseImage {
             throw new ForbiddenHttpException();
         }
         
+        /*just limit for active photos per ojbect, that shouldn't happen for photoId / logo and others images */
         $imagesCount = BaseImage::find()->where(['subjectId' => $subjectId, 'type' => $type, 'status' => [self::STATUS_APPROVED, self::STATUS_PENDING] ])->count();
         
         if ($imagesCount >= self::MAX_IMAGES_PER_OBJECT){

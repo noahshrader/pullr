@@ -7,6 +7,7 @@ use common\models\User;
 use common\models\Theme;
 use yii\helpers\HtmlPurifier;
 use common\models\Donation;
+use common\models\base\BaseImage;
 
 /**
  * to consider account on other the base you also should check expire field to be more than current time
@@ -41,6 +42,7 @@ class Campaign extends ActiveRecord {
     
     public static $DONATION_DESTINATIONS = [self::DONATION_PREAPPROVED_CHARITIES, self::DONATION_CUSTOM_FUNDRAISER];
     
+    const DESCRIPTION_MAX_LENGTH = 1000;
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -50,11 +52,10 @@ class Campaign extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['name', 'alias', 'goalAmount', 'enableGoogleAnalytics', 'googleAnalytics', 'streamService', 'type', 'startDate', 'endDate', 'layoutType',
-                'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 'enableGoogleAnalytics',
-                'channelName', 'channelTeam', 'chat', 'chatToggle', 'enableCustomLogo',
-                'primaryColor', 'secondaryColor', 'tertiaryColor', 'themeId', 'twitterEnable', 'twitterName', 'facebookEnable', 'facebookUrl',
-                'youtubeEnable', 'youtubeUrl', 'includeYoutubeFeed',
+            'default' => ['name', 'alias', 'description', 'goalAmount', 'streamService', 'type', 'startDate', 'endDate', 'layoutType',
+                'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 
+                'channelName', 'channelTeam', 'primaryColor', 'secondaryColor', 'themeId', 'twitterEnable',
+                'twitterName', 'facebookEnable', 'facebookUrl', 'youtubeEnable', 'youtubeUrl',
                 'enableDonorComments', 'enableThankYouPage', 'thankYouPageText']
         ];
     }
@@ -82,8 +83,8 @@ class Campaign extends ActiveRecord {
     
     public function attributeLabels() {
         return [
-            'googleAnalytics' => 'Google Analytics Tracking ID',
             'type' => 'Type of Campaign',
+            'description' => 'Campaign Description',
             'layoutType' => 'Type of Layout',
             'channelTeam' => 'Team Channel Name',
             'twitterName' => 'Twitter username',
@@ -97,8 +98,10 @@ class Campaign extends ActiveRecord {
             ['name', 'required'],
             ['name', 'filter', 'filter' => 'strip_tags'],
             ['name', 'nameFilter'],
+            ['description', 'filter', 'filter' => 'strip_tags'],
+            ['description', 'string', 'length' => [0,self::DESCRIPTION_MAX_LENGTH]],
+            ['goalAmount', 'required'],
             ['goalAmount', 'double'],
-            ['goalAmount', 'default', 'value' => 0],
             ['paypalAddress', 'email'],
             ['googleAnalytics', 'filter', 'filter' => 'strip_tags'],
             ['channelName', 'filter', 'filter' => 'strip_tags'],
@@ -151,17 +154,20 @@ class Campaign extends ActiveRecord {
         }
     }
 
-    /**
-     * that field is used to upload photo for user avatar
-     * @var type 
-     */
-    public $images;
-    public $photo;
-    public $smallPhoto;
+    public $backgroundImageUrl;
+    public $backgroundImageSmallUrl;
+    
+    /*that is backgroundImage container photo*/
+    public $backgroundImage;
 
     public function afterFind() {
         parent::afterFind();
-        \common\components\UploadImage::ApplyLogo($this);
+        
+        $id = $this->backgroundImageId;
+        if ($id){
+            $this->backgroundImageUrl = BaseImage::getOriginalUrlById($id);
+            $this->backgroundImageSmallUrl = BaseImage::getMiddleUrlById($id);
+        }
     }
 
     public function beforeSave($insert) {

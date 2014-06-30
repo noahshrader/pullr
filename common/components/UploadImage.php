@@ -2,6 +2,7 @@
 
 namespace common\components;
 
+use common\models\Campaign;
 use yii\web\UploadedFile;
 use common\models\base\BaseImage;
 use yii\db\ActiveRecord;
@@ -45,9 +46,6 @@ class UploadImage extends \yii\base\Component {
     }
     
     public static function getTypeByModel($model){
-        if ($model instanceof \common\models\Campaign){
-            return BaseImage::TYPE_LAYOUT_LOGO;
-        }
         if ($model instanceof \common\models\User){
             return BaseImage::TYPE_USER;
         }
@@ -77,15 +75,49 @@ class UploadImage extends \yii\base\Component {
                     $model->photoId = $image->id;
                     $model->save();
                     self::ApplyLogo($model);
-
-                    $oldImages = BaseImage::find()->where($params)->andWhere('id < ' . $image->id)->all();
-                    foreach ($oldImages as $oldImage) {
-                        $oldImage->status = BaseImage::STATUS_DELETED;
-                        $oldImage->save();
-                    }
+                    
+                    self::deactiveOldImages($params, $image->id);
                 }
         } else if ($errors) {
             $model->addError('images', $errors[0]);
+        }
+    }
+    
+    public static function UploadCampaignBackground(Campaign $campaign){
+        $file = UploadedFile::getInstanceByName('backgroundImage');
+        $type = BaseImage::TYPE_CAMPAIGN_BACKGROUND;
+        try {
+            if (BaseImage::fromUploadedFile($campaign->id, $type, $file)){
+                $params = ['subjectId' => $campaign->id, 'type' => $type, 'status' => BaseImage::STATUS_APPROVED];
+                $image = BaseImage::find()->where($params)->orderBy('id DESC')->one();
+                if ($image){
+                    $campaign->backgroundImageId = $image->id;
+                    $campaign->save();
+                    self::deactiveOldImages($params, $image->id);
+                }
+                
+            } else {
+                $error = 'Cannot upload file ' . $file->name;
+            }
+        } catch (\Exception $exception) {
+            $error = $exception->getMessage();
+        }
+        
+        if ($error){
+            $campaign->addError('backgroundImage', $error);
+        }
+    }
+    
+    /**
+     * 
+     * @param type $params e.g. ['subjectId' => $campaign->id, 'type' => $type, 'status' => BaseImage::STATUS_APPROVED];
+     * @param type $id - deactive all images less than that $id
+     */
+    public static function deactiveOldImages($params, $id){
+        $oldImages = BaseImage::find()->where($params)->andWhere('id < ' . $image->id)->all();
+        foreach ($oldImages as $oldImage) {
+            $oldImage->status = BaseImage::STATUS_DELETED;
+            $oldImage->save();
         }
     }
 }

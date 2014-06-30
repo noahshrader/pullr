@@ -42,15 +42,12 @@ channelName: ""
 channelTeam: "funforfreedom"
 charity: null
 charityId: 2
-chat: 0
 customCharity: ""
 customCharityDescription: ""
 customCharityPaypal: ""
 date: "2014-06-12 01:35:37"
 donationDestination: "Pre-approved Charities"
-enableCustomLogo: 0
 enableDonorComments: 1
-enableGoogleAnalytics: 0
 enableThankYouPage: 0
 endDate: 1402861740
 endDateFormatted: "June 16, 2014"
@@ -59,7 +56,6 @@ facebookEnable: 0
 facebookUrl: ""
 formVisibility: 1
 goalAmount: "17000"
-googleAnalytics: ""
 id: 1
 includeYoutubeFeed: 0
 key: "test_key"
@@ -75,7 +71,6 @@ startDate: 1402516140
 startDateFormatted: "June 12, 2014"
 status: "active"
 streamService: "Twitch"
-tertiaryColor: "#000000"
 thankYouPageText: ""
 themeId: null
 twitterEnable: 0
