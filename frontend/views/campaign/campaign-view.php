@@ -118,7 +118,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
          <h1> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
 
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
-        <div class="campaign-date"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></div>
+        <h3 class="campaign-date"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></h3>
         <? endif ?>
 
 
