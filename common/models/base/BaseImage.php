@@ -112,7 +112,6 @@ class BaseImage extends ActiveRecord implements IBaseImage {
         $originalPath = $basePath . '_original.jpg';
         $middlePath = $basePath . '_middle.jpg';
         $image = \Yii::$app->image->load($file->tempName);
-
         $directory = dirname($originalPath);
         if (!file_exists($directory)) {
             mkdir($directory, 0777, true);

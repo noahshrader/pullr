@@ -86,10 +86,12 @@ class UploadImage extends \yii\base\Component {
     public static function UploadCampaignBackground(Campaign $campaign){
         $file = UploadedFile::getInstanceByName('backgroundImage');
         $type = BaseImage::TYPE_CAMPAIGN_BACKGROUND;
+        $error = false;
         try {
             if (BaseImage::fromUploadedFile($campaign->id, $type, $file)){
                 $params = ['subjectId' => $campaign->id, 'type' => $type, 'status' => BaseImage::STATUS_APPROVED];
                 $image = BaseImage::find()->where($params)->orderBy('id DESC')->one();
+                
                 if ($image){
                     $campaign->backgroundImageId = $image->id;
                     $campaign->save();
@@ -114,7 +116,7 @@ class UploadImage extends \yii\base\Component {
      * @param type $id - deactive all images less than that $id
      */
     public static function deactiveOldImages($params, $id){
-        $oldImages = BaseImage::find()->where($params)->andWhere('id < ' . $image->id)->all();
+        $oldImages = BaseImage::find()->where($params)->andWhere('id < ' . $id)->all();
         foreach ($oldImages as $oldImage) {
             $oldImage->status = BaseImage::STATUS_DELETED;
             $oldImage->save();
