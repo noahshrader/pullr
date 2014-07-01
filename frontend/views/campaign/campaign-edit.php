@@ -16,7 +16,8 @@ $user = \Yii::$app->user->identity;
 
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
 
-        <? if (!$campaign->isNewRecord): ?>
+    <? if (!$campaign->isNewRecord): ?>
+    
     <div class="campaign-actions">
 
         <div class="col-md-6 campaign-nav">
@@ -74,7 +75,6 @@ $user = \Yii::$app->user->identity;
 
                 <li>
                     <a href='<?= $user->getUrl() . $campaign->alias ?>' target="_blank">
-                        <i class="icon icon-view"></i>
                         <!-- View -->
                         View Campaign
                     </a>
@@ -82,7 +82,6 @@ $user = \Yii::$app->user->identity;
 
                 <li>
                     <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
-                        <i class="icon icon-code"></i>
                         <!-- Shortcodes -->
                         XML
                     </a>
@@ -102,25 +101,25 @@ $user = \Yii::$app->user->identity;
 
     <div class="campaign-edit-wrap">
 
-    <h1> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
+    <h1>Editing: <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
         
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon-cog"><span>General</span></a>
+                <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon icon-settings"><span>General</span></a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab" class="icon-cog"><span>Form</span></a>
+                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab" class="icon icon-template"><span>Form</span></a>
             </li>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
                 <li id="campaign-edit-team-li">
-                    <a href="<?= Url::to()?>#team" data-toggle="tab" class="icon-layout"><span>Team</span></a>
+                    <a href="<?= Url::to()?>#team" data-toggle="tab" class="icon icon-usergroup"><span>Team</span></a>
                 </li>
             <? endif ?>
             <li>
-                <a href="<?= Url::to()?>#layout" data-toggle="tab" class="icon-layout"><span>Layout</span></a>
+                <a href="<?= Url::to()?>#layout" data-toggle="tab" class="icon icon-brush"><span>Layout</span></a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#social" data-toggle="tab" class="icon-comment"><span>Social</span></a>
+                <a href="<?= Url::to()?>#social" data-toggle="tab" class="icon icon-share"><span>Social</span></a>
             </li>
         </ul>
        

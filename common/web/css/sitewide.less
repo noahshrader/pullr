@@ -83,62 +83,39 @@ button.btn {
 			width: @campaigns-list-wrap-width;
 			padding-left: 25px;
 			padding-right: 25px;
+			height: @top-menu-height;
+			color: @white;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			line-height: @top-menu-height;
 
 			a {
-				display: inline-block;
-				line-height: @top-menu-height;
-				color: @white;
+				display: block;
+				float: right;
+				text-align: center;
+				height: 40px;
+				width: 40px;
+				margin-top: 15px;
+				border-radius: 50%;
+				background-color: @dkaccent;
 				font-weight: bold;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-				width: 100%;
-				height: @top-menu-height;
+				text-align: center;
+				color: @white;
+				position: relative;
+
+
+				&:hover {
+					background-color: @white;
+					color: @accent;
+				}
 
 				.icon {
-					display: block;
-					float: right;
-					text-align: center;
-					height: 40px;
-					width: 40px;
-					line-height: 40px;
-					margin-top: 15px;
-					border-radius: 50%;
-					background-color: @dkaccent;
-					  -webkit-transition-duration: 0.33s;
-					-webkit-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-					-moz-transition-duration: 0.33s;
-					-moz-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-					-o-transition-duration: 0.33s;
-					-o-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-					transition-duration: 0.33s;
-					transition-property: color, background, text-shadow, border, opacity, text-decoration;
-
-					&:before {
-						color: @white;
-						font-weight: bold;
-						font-size: 13px;
-						text-align: center;
-						margin-left: 2px;
-						vertical-align: middle;
-						display: inline-block;
-						  -webkit-transition-duration: 0.33s;
-						-webkit-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-						-moz-transition-duration: 0.33s;
-						-moz-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-						-o-transition-duration: 0.33s;
-						-o-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-						transition-duration: 0.33s;
-						transition-property: color, background, text-shadow, border, opacity, text-decoration;
-					}
-
-					&:hover {
-						background-color: @white;
-
-						&:before {
-							color: @accent!important;
-						}
-					}
-
+					position: absolute;
+					top: 12px;
+					left: 12px;
+					font-size: 16px;
+					font-weight: bold;
 				}
 			
 			}
@@ -210,6 +187,7 @@ button.btn {
 	top: 0px;
 	padding-top: @top-menu-height;
 	width: @primary-nav-width;
+	background: @bgcolor;
 
 	nav.nav-top {
 
@@ -230,27 +208,25 @@ button.btn {
 
 				a {
 					display: block;
-					padding: 28px 0px 29px 0px;
+					padding: 28px 0px;
 					text-align: center;
 					font-size: 13px;
 					color: @gray20;
-					letter-spacing: 1px;
 
 					&:before {
 						font-size: 28px;
 						line-height: 28px;
 						display: block;
 						padding-bottom: 10px;
-						color: @gray20;
 					}
 
 				}
 
-				a:hover, a:hover:before  {
+				a:hover {
 					color: @white!important;
 				}
 
-				a.active, a.active:before {
+				a.active {
 					color: @white;
 					background-color: @dkgray;
 				}
@@ -316,6 +292,8 @@ button.btn {
 	padding-left: @primary-nav-width + 60px;
 	padding-top: 30px;	
 	padding-bottom: 60px;
+	height: 100%;
+	background-color: @dkgray;
 }
 
 .account-settings {
@@ -364,6 +342,7 @@ button.btn {
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-	background-color: @dkgray;
+	background-color: @bgcolor;
+	border: 1px solid @dkgray;
 	border-color: transparent;	
 }

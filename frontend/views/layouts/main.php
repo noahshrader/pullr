@@ -28,7 +28,7 @@ $this->registerJs($js);
             <div class="top-menu">
                 <ul class="quick-nav">
                     <li class="branding"><a class="logo icon-pullr"></a></li>
-                    <li class="add-campaign"><a href="app/campaign/add">Campaigns<i class="icon icon-add"></i></a></li>
+                    <li class="add-campaign">Campaigns<a href="app/campaign/add"><i class="icon icon-add"></i></a></li>
                 </ul>
                 <?= $this->render('@common/views/leftmenu/avatar'); ?>
 
@@ -54,10 +54,10 @@ $this->registerJs($js);
                                 </li>
                             <? endif; ?>
                                 <li>
-                                    <a class="streamboard-link icon-streamboard" title="Streamboard" href="/app/streamboard" target="_blank"><span>Streamboard</span></a>
+                                    <a class="streamboard icon-streamboard" title="Streamboard" href="app/streamboard" target="_blank"><span>Streamboard</span></a>
                                 </li>
                                 <li>
-                                    <a class="streamboard icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
+                                    <a class="icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
                                 </li>
                          </ul>
                     </nav>

@@ -91,7 +91,6 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
                 <li>
                     <a href='<?= $user->getUrl() . $campaign->alias ?>'>
-                        <i class="icon icon-view" target="_blank"></i>
                         <!-- View -->
                         View Campaign
                     </a>
@@ -99,7 +98,6 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
                 <li>
                     <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
-                        <i class="icon icon-code"></i>
                         <!-- Shortcodes -->
                         XML
                     </a>
@@ -118,7 +116,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
          <h1> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
 
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
-        <div class="campaign-date"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></div>
+        <h3 class="campaign-date"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></h3>
         <? endif ?>
 
 
