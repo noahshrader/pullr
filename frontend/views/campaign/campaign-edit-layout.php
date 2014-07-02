@@ -2,6 +2,9 @@
 use common\models\Campaign;
 use yii\helpers\Html;
 use common\widgets\file\ImageInput;
+use common\models\Plan;
+$user = \Yii::$app->user->identity;
+
 ?>
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
 
@@ -32,7 +35,8 @@ use common\widgets\file\ImageInput;
 
     <br />
     <br />
-
+    
+    <? if ($user->plan == Plan::PLAN_PRO): ?>
     <div id="logo-container">
         <img class="logo" src="<?= $campaign->backgroundImageSmallUrl ?>">
         <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
@@ -43,6 +47,7 @@ use common\widgets\file\ImageInput;
              <? endif ?>
         </div>
     </div>
+    <? endif ?>
     <?= $form->field($campaign, 'primaryColor')->label('Choose a primary color:')->input('color'); ?>
     <?= $form->field($campaign, 'secondaryColor')->label('Choose a secondary color:')->input('color'); ?>
 
