@@ -3,7 +3,7 @@
 namespace common\models;
 
 use yii\db\ActiveRecord;
-use yii\helpers\Security;
+use yii\base\Security;
 use yii\web\IdentityInterface;
 use common\models\Notification;
 use common\models\base\BaseImage;
@@ -44,6 +44,8 @@ class User extends ActiveRecord implements IdentityInterface {
     const ROLE_ADMIN = 'admin';
     /*user expecting confirmation of email*/
     const ROLE_ONCONFIRMATION = 'onconfirmation';
+    
+    public $passwordHashStrategy = 'password_hash';
     
     public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_PENDING];
     public static $ROLES = [self::ROLE_ONCONFIRMATION, self::ROLE_USER, self::ROLE_ADMIN];
@@ -110,6 +112,9 @@ class User extends ActiveRecord implements IdentityInterface {
      * @return bool if password provided is valid for current user
      */
     public function validatePassword($password) {
+//        $security = new Security();
+//        $security->
+        $security = \Yii::$app->security;
         return Security::validatePassword($password, $this->password_hash);
     }
 
@@ -124,7 +129,7 @@ class User extends ActiveRecord implements IdentityInterface {
             ['login', 'exist', 'message' => 'There is no user with such email.', 'on' => 'requestPasswordResetToken'],
             ['name', 'filter', 'filter' => 'trim'],
             ['name', 'filter', 'filter' => 'strip_tags'],
-            /*that is workaroung to call verifyName even if name is empty*/
+            /*that is workaround to call verifyName even if name is empty*/
             ['login', 'verifyName'],
             ['uniqueName', 'verifyUniqueName'],
             ['email', 'filter', 'filter' => 'trim'],
