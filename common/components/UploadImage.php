@@ -85,6 +85,10 @@ class UploadImage extends \yii\base\Component {
     
     public static function UploadCampaignBackground(Campaign $campaign){
         $file = UploadedFile::getInstanceByName('backgroundImage');
+        if (!$file || $file->size == 0){
+            return;
+        } 
+        
         $type = BaseImage::TYPE_CAMPAIGN_BACKGROUND;
         $error = false;
         try {
@@ -94,6 +98,8 @@ class UploadImage extends \yii\base\Component {
                 
                 if ($image){
                     $campaign->backgroundImageId = $image->id;
+                    $campaign->refreshBackgroundImageFields();
+                    
                     $campaign->save();
                     self::deactiveOldImages($params, $image->id);
                 }

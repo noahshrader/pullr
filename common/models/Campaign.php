@@ -162,7 +162,10 @@ class Campaign extends ActiveRecord {
 
     public function afterFind() {
         parent::afterFind();
-        
+        $this->refreshBackgroundImageFields();
+    }
+    
+    public function refreshBackgroundImageFields(){
         $id = $this->backgroundImageId;
         if ($id){
             $this->backgroundImageUrl = BaseImage::getOriginalUrlById($id);
