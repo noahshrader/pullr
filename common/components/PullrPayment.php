@@ -16,6 +16,8 @@ use PayPal\Api\PaymentExecution;
 use common\models\Donation;
 use common\models\Campaign;
 
+define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
+
 class PullrPayment extends \yii\base\Component {
 
     public $clientId;
@@ -24,7 +26,6 @@ class PullrPayment extends \yii\base\Component {
 
     public function __construct($config = array()) {
         parent::__construct($config);
-        define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
         $this->clientId = \Yii::$app->params['paypalClientId'];
         $this->clientSecret = \Yii::$app->params['paypalClientSecret'];
         $this->apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret));
