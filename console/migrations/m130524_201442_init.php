@@ -181,6 +181,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user->login = 'admin@gmail.com';
         $user->name = 'Admin';
         $user->password = 'Admin';
+        $user->email = 'pullr@yandex.com';
         $user->save();
         
         $user->setScenario('roles');

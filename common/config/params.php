@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'adminEmails' => ['s.klyukin@yandex.ru', 'noahshrader@gmail.com'],
+    'adminEmails' => ['s.klyukin@yandex.ru', 'noahshrader@gmail.com', 'pullr@yandex.com'],
     'mailFrom' => 'noreply@flaper.info',
     'baseUrl' => 'http://pullr.io',
     'user.passwordResetTokenExpire' => 3600,
