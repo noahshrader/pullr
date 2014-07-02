@@ -14,7 +14,7 @@
         <?= $invite->campaign->name ?>
     </div>
     <div class="col-lg-4">
-        <?= $invite->user->name ?>
+        <?= $invite->campaign->user->name ?>
     </div>
     <div class="col-lg-4">
         <a href="app/campaigninvite/approve?id=<?= $invite->id ?>" class="btn btn-success">Approve</a>

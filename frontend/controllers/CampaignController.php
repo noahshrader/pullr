@@ -200,6 +200,7 @@ class CampaignController extends FrontendController {
         $invite = CampaignInvite::findOne(['campaignId' => $campaign->id, 'userId' => $userId]);
         if ($invite) {
             $invite->status = CampaignInvite::STATUS_DELETED;
+            $invite->lastChangeDate = time();
             $invite->save();
         }
     }
@@ -221,17 +222,7 @@ class CampaignController extends FrontendController {
         $changesCounter = 0;
 
         foreach ($users as $user) {
-            $invite = CampaignInvite::findOne(['userId' => $user->id, 'campaignId' => $id]);
-            if (!$invite) {
-                $invite = new CampaignInvite();
-                $invite->userId = $user->id;
-                $invite->campaignId = $id;
-                $invite->status = CampaignInvite::STATUS_PENDIND;
-                $invite->save();
-                $changesCounter++;
-            } else if (!in_array($invite->status, [CampaignInvite::STATUS_PENDIND, CampaignInvite::STATUS_ACTIVE])) {
-                $invite->status = CampaignInvite::STATUS_PENDIND;
-                $invite->save();
+            if (CampaignInvite::addInvite($user->id, $id)){
                 $changesCounter++;
             }
         }

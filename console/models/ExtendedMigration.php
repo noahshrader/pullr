@@ -10,12 +10,12 @@ class ExtendedMigration extends \yii\db\Migration {
     }
     
     public function createTable($table, $columns, $options = null) {
-        if ($options == null)
-        $options = null;
-        if ($this->db->driverName === 'mysql') {
-            $options = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
-        }
-    
-        parent::createTable($table, $columns, $options);
+            if ($options == null)
+            $options = null;
+            if ($this->db->driverName === 'mysql') {
+                $options = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+            }
+
+            parent::createTable($table, $columns, $options);
     }
 }

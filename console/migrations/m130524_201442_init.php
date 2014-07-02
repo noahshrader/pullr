@@ -65,7 +65,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $this->createTable(Plan::tableName(), [
             'id' => Schema::TYPE_PK,
             'plan' => $plans, 
-            'expire' => \yii\db\oci\Schema::TYPE_INTEGER . ' NOT NULL', 
+            'expire' => Schema::TYPE_INTEGER . ' NOT NULL', 
             'subscription' => Schema::TYPE_STRING . '(20)',
         ]);
         

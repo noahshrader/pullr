@@ -115,7 +115,7 @@ class User extends ActiveRecord implements IdentityInterface {
 //        $security = new Security();
 //        $security->
         $security = \Yii::$app->security;
-        return Security::validatePassword($password, $this->password_hash);
+        return $security->validatePassword($password, $this->password_hash);
     }
 
     public function rules() {
@@ -198,7 +198,7 @@ class User extends ActiveRecord implements IdentityInterface {
     }
     
     public function setNewPassword($password){
-        $this->password_hash = Security::generatePasswordHash($password);
+        $this->password_hash = \Yii::$app->security->generatePasswordHash($password);
     }
     
     public function beforeSave($insert) {
@@ -207,7 +207,7 @@ class User extends ActiveRecord implements IdentityInterface {
                 $this->setNewPassword($this->password);
             }
             if ($this->isNewRecord) {
-                $this->auth_key = Security::generateRandomKey();
+                $this->auth_key = \Yii::$app->security->generateRandomKey();
                 
             }
             

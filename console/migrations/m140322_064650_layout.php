@@ -90,7 +90,8 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
                  'id' => Schema::TYPE_PK,
                  'campaignId' => Schema::TYPE_INTEGER. ' NOT NULL',
                  'userId' => Schema::TYPE_INTEGER. ' NOT NULL',
-                 'status' => $statuses
+                 'status' => $statuses,
+                 'lastChangeDate' => Schema::TYPE_INTEGER. ' NOT NULL'
              ]);
              $this->createIndex('campaignInviteCampaignId', CampaignInvite::tableName(), ['campaignId']);
              $this->createIndex('campaignInviteUserId', CampaignInvite::tableName(), ['userId']);
@@ -101,6 +102,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
         public function sampleData(){
             $campaign = new Campaign;
             $campaign->name = 'Fun For Freedom';
+            $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $campaign->channelTeam = "funforfreedom";
             $campaign->userId = 1;
@@ -110,7 +112,8 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $campaign->save();
 
             $campaign = new Campaign;
-            $campaign->name = 'Fun For Freedom';
+            $campaign->name = 'Fun For Freedom 2';
+            $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $campaign->channelTeam = "funforfreedom";
             $campaign->userId = 5;
@@ -120,6 +123,7 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $campaign->charityId = 1;
             $campaign->save();
             
+            CampaignInvite::addInvite(1, $campaign->id);
             
             $campaign = new Campaign;
             $campaign->name = 'LinkSonicK';

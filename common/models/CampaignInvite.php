@@ -35,4 +35,30 @@ class CampaignInvite extends ActiveRecord {
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'userId']);
     }
+    
+    /**
+     * 
+     * @param type $userId
+     * @param type $campaignId
+     * @return boolean true if invite was added, false in case if user already have active invitation to that campaign
+     */
+    public static function addInvite($userId, $campaignId){
+        $invite = CampaignInvite::findOne(['userId' => $userId, 'campaignId' => $campaignId]);
+        if (!$invite) {
+            $invite = new CampaignInvite();
+            $invite->userId = $userId;
+            $invite->campaignId = $campaignId;
+            $invite->status = CampaignInvite::STATUS_PENDIND;
+            $invite->lastChangeDate = time();
+            $invite->save();
+            return true;
+        } else if (!in_array($invite->status, [CampaignInvite::STATUS_PENDIND, CampaignInvite::STATUS_ACTIVE])) {
+            $invite->status = CampaignInvite::STATUS_PENDIND;
+            $invite->lastChangeDate = time();
+            $invite->save();
+            return true;
+        }
+        
+        return false;
+    }
 }
