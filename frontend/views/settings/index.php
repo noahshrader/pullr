@@ -10,7 +10,7 @@ use common\widgets\file\ImageInput;
 * @var yii\widgets\ActiveForm $form
 * @var common\models\User $user
 */
-$this->title = 'Account Settings';
+$this->title = 'Settings';
 ?>
 
 <section class="account-settings-wrap">
