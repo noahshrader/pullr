@@ -26,7 +26,7 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  CommonAsset::clas
         foreach ($campaigns as $campaign){
           $array = $campaign->toArray();
           $array['amountRaised'] = '$'.number_format($campaign->amountRaised);
-          $array['href'] = "app/campaign/view?id=".$campaign->id;
+          $array['href'] = ($campaign->isNewRecord) ? 'app/campaign/add' : "app/campaign/view?id=".$campaign->id;
           $array['isActive'] = $currentCampaign && $campaign->id == $currentCampaign->id;
           $campaignsArray[] = $array;
 

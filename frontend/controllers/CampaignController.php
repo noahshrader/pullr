@@ -86,6 +86,13 @@ class CampaignController extends FrontendController {
         $params = [];
         $params['editCampaign'] = $editCampaign;
         $params['campaigns'] = $user->getCampaigns($status)->orderBy('id DESC')->all();
+        
+        if ($isNewRecord){
+            $cloneCampaign = clone $editCampaign;
+            $cloneCampaign->name = $cloneCampaign->name ? $cloneCampaign->name : 'New Campaign';
+            array_unshift($params['campaigns'], $cloneCampaign);
+        }
+        
         $params['selectedCampaign'] = $selectedCampaign;
         $params['status'] = $status;
         
