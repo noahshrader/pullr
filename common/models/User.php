@@ -9,6 +9,8 @@ use common\models\Notification;
 use common\models\base\BaseImage;
 use common\models\Plan;
 use common\models\Campaign;
+use common\models\user\UserFields;
+
 /**
  * Class User
  * @package common\models
@@ -238,6 +240,11 @@ class User extends ActiveRecord implements IdentityInterface {
             $plan->id = $this->id;
             $plan->plan = Plan::PLAN_BASE;
             $plan->save();
+            
+            $userFields = new UserFields();
+            $userFields->userId = $this->id;
+            $userFields->systemNotificationDate = time();
+            $userFields->save();
         }
     }
     

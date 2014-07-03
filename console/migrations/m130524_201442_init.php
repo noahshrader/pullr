@@ -9,6 +9,7 @@ use frontend\models\site\DeactivateAccount;
 use yii\db\Schema;
 use frontend\models\site\EmailConfirmation;
 use common\models\mail\Mail;
+use common\models\user\UserFields;
 
 class m130524_201442_init extends \console\models\ExtendedMigration{
 
@@ -49,7 +50,12 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'url' => Schema::TYPE_STRING
                 ], $tableOptions);
         $this->addPrimaryKey('PRIMERY_KEY', OpenIDToUser::tableName(), ['serviceName', 'serviceId']);
-
+        
+        $this->createTable(UserFields::tableName(), [
+            'userId' => Schema::TYPE_PK,
+            'systemNotificationDate' => Schema::TYPE_INTEGER
+        ]);
+        
         $this->createTable(Notification::tableName(), [
             'userId' => Schema::TYPE_PK,
             Notification::$NOTIFY_NEVER => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT FALSE',
@@ -197,6 +203,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $this->dropTable(PlanHistory::tableName());
         $this->dropTable(DeactivateAccount::tableName());
         $this->dropTable(EmailConfirmation::tableName());
+        $this->dropTable(UserFields::tableName());
         $this->dropTable(Mail::tableName());
     }
 

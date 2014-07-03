@@ -6,14 +6,10 @@ use frontend\controllers\FrontendController;
 use common\models\LoginForm;
 use Yii;
 use common\models\OpenIDToUser;
-use frontend\models\PasswordResetRequestForm;
 use common\models\User;
-use common\models\mail\Mail;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-use frontend\models\site\EmailConfirmation;
 use ritero\SDK\TwitchTV\TwitchSDK;
-use frontend\models\ResetPasswordForm;
 /**
  * Site controller
  */
@@ -59,7 +55,8 @@ class SiteController extends FrontendController {
         if (\Yii::$app->user->isGuest){
             return $this->actionLogin();
         } else {
-            return $this->render('index');
+            $dashboard = new DashboardController('dashboard', $this->module);
+            return $dashboard->actionIndex();
         }
     }
 
