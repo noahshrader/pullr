@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 use frontend\assets\FrontendAsset;
 use common\assets\CommonAsset;
-use common\models\CampaignInvite;
 use yii\helpers\Url;
 /**
  * @var \yii\web\View $this
@@ -50,13 +49,6 @@ $this->registerJs($js);
                                 <li>
                                     <a class="campaign-link icon-campaigns" title="Campaigns" href="app/campaign"><span>Campaigns</span></a>
                                 </li>
-
-                            <? $campaignInvitesCount = CampaignInvite::find()->where(['userId' => \Yii::$app->user->id, 'status' => CampaignInvite::STATUS_PENDIND])->count(); ?>
-                            <? if ($campaignInvitesCount > 0): ?>
-                                <li>
-                                    <a class="campaign-invites icon-text" href="app/campaigninvite"><span>Invites (<?= $campaignInvitesCount?>)</span></a>
-                                </li>
-                            <? endif; ?>
                                 <li>
                                     <a class="streamboard icon-streamboard" title="Streamboard" href="app/streamboard" target="_blank"><span>Streamboard</span></a>
                                 </li>

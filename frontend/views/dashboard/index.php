@@ -18,3 +18,9 @@ $this->registerJsFile('@web/js/dashboard/index.js', common\assets\CommonAsset::c
 </div>
 <? endif; ?>
 
+<? if (sizeof($campaignInvites) > 0): ?>
+    <?= $this->render('campaignInvites', [
+        'campaignInvites' => $campaignInvites
+    ]) ?>
+<? endif ?>
+
