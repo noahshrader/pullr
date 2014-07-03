@@ -28,7 +28,7 @@ $this->registerJs($js);
             <div class="top-menu">
                 <ul class="quick-nav">
                     <li class="branding"><a class="logo icon-pullr"></a></li>
-                    <li class="add-campaign">Campaigns<a href="app/campaign/add"><i class="icon icon-add"></i></a></li>
+                    <li class="add-campaign"><?= Html::encode($this->title) ?><a href="app/campaign/add"><i class="icon icon-add"></i></a></li>
                 </ul>
                 <?= $this->render('@common/views/leftmenu/avatar'); ?>
 
