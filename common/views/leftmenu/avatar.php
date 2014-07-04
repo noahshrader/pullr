@@ -14,6 +14,6 @@ use common\components\Application;
         <? endif; ?>   
     </ul>
 	<div class="avatar dropdown-toggle" data-toggle="dropdown">
-		<?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'options' => ['class' => 'user-photo-menu']]) ?>
+		<?= UserPhoto::widget(['user' => Yii::$app->user->identity, 'hasLink' => false, 'showName'  => YII_ENV_DEV, 'options' => ['class' => 'user-photo-menu']]) ?>
 	</div>
 </div>
