@@ -5,7 +5,7 @@ use common\models\Campaign;
 use common\models\LayoutTeam;
 use common\models\CampaignInvite;
 
-class m140322_064650_layout extends \console\models\ExtendedMigration
+class m140322_064650_campaign extends \console\models\ExtendedMigration
 {
 	public function up()
 	{
@@ -111,12 +111,16 @@ class m140322_064650_layout extends \console\models\ExtendedMigration
             $campaign->goalAmount = 17000;
             $campaign->save();
 
+            CampaignInvite::addInvite(2, $campaign->id);
+            $invite = CampaignInvite::findOne(['userId' => 2, 'campaignId' => $campaign->id]);
+            $invite->approve();
+            
             $campaign = new Campaign;
             $campaign->name = 'Fun For Freedom 2';
             $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $campaign->channelTeam = "funforfreedom";
-            $campaign->userId = 5;
+            $campaign->userId = 2;
             $campaign->key = 'test_key';
             $campaign->eventId = 1;
             $campaign->goalAmount = 17000;

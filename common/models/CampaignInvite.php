@@ -5,6 +5,7 @@ namespace common\models;
 use yii\db\ActiveRecord;
 use common\models\Campaign;
 use common\models\User;
+use common\models\notifications\RecentActivityNotification;
 
 class CampaignInvite extends ActiveRecord {
     const STATUS_ACTIVE = 'active';
@@ -38,7 +39,7 @@ class CampaignInvite extends ActiveRecord {
     
     /**
      * 
-     * @param type $userId
+     * @param type $userId - id of user that was invited
      * @param type $campaignId
      * @return boolean true if invite was added, false in case if user already have active invitation to that campaign
      */
@@ -60,5 +61,15 @@ class CampaignInvite extends ActiveRecord {
         }
         
         return false;
+    }
+    
+    /**approve invite and add recent activity nofication to dashboard*/
+    public function approve(){
+        $this->status = self::STATUS_ACTIVE;
+        $this->save();
+        
+        $user = $this->campaign->user;
+        $message = $user->name.' just accepted your invite to fundraiser, '.$this->campaign->name;
+        RecentActivityNotification::createNotification($user->id, $message);
     }
 }

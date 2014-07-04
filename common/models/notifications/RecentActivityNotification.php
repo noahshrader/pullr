@@ -22,4 +22,11 @@ class RecentActivityNotification extends ActiveRecord {
         parent::init();
         $this->date = time();
     }
+    
+    public static function createNotification($userId, $message){
+        $notification = new RecentActivityNotification();
+        $notification->userId = $userId;
+        $notification->message = $message;
+        $notification->save();
+    }
 }

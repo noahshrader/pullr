@@ -132,7 +132,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user = new User();
         $user->setScenario('signup');
         $user->login = 's.klyukin@yandex.ru';
-        $user->name = 'Stanislav';
+        $user->name = 'S.Klyukin Yandex';
         $user->password = 'Stanislav';
         $user->confirmPassword = $user->password;
         $user->email = 's.klyukin@yandex.ru';

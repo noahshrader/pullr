@@ -4,7 +4,7 @@ use yii\db\Schema;
 use common\models\notifications\SystemNotification;
 use common\models\notifications\RecentActivityNotification;
 
-class m140703_121408_notifications extends \console\models\ExtendedMigration
+class m140312_121408_notifications extends \console\models\ExtendedMigration
 {
     public function up()
     {

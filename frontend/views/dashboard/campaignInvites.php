@@ -1,6 +1,6 @@
 <div>
     <div>
-        <h2>Campaign Invites</h2>
+        <h3>Campaign Invites</h3>
     </div>
     <br />
     <div class="row" style="font-weight: bold">

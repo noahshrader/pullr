@@ -24,3 +24,17 @@ $this->registerJsFile('@web/js/dashboard/index.js', common\assets\CommonAsset::c
     ]) ?>
 <? endif ?>
 
+<div class="row">
+    <div class="col-sm-6">
+        <? if (sizeof($recentActivity)>0): ?>
+        <h3>Recent Activity</h3>
+            <? foreach ($recentActivity as $notification): ?>
+            <i class="glyphicon glyphicon-heart-empty"></i> <?= $notification->message ?>
+            <? endforeach; ?>
+        <? endif; ?>
+    </div>
+    <div class="col-sm-6">
+        
+    </div>
+</div>
+
