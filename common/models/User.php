@@ -337,9 +337,12 @@ class User extends ActiveRecord implements IdentityInterface {
         }
         
         public function getCampaigns($status = Campaign::STATUS_ACTIVE){
-            return $this->hasMany(Campaign::className(), ['userId' => 'id'])
-                    ->where(['status' => $status])
-                    ->orderBy('date DESC, id DESC');
+            $userId = \Yii::$app->user->id;
+            $childIds = CampaignInvite::find()->where(['userId' => $userId, 'status' => CampaignInvite::STATUS_ACTIVE ])->select(['campaignId'])->column();
+            $userCampaigns = Campaign::find()->where(['userId' => $userId, 'status' => $status]);
+            $childQuery = Campaign::find()->where(['in', 'id', $childIds, 'status' => $status]);
+            
+            return $userCampaigns->union($childQuery);
         }
         
         private $_plan = null;

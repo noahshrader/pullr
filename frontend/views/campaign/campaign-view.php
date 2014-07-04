@@ -37,7 +37,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
     <div class="campaign-actions">
 
         <div class="col-md-6 campaign-nav">
-
+            <? if (!$campaign->isParentForCurrentUser()): ?>
             <ul class="campaign-quick-links">
 
                 <li class="active">
@@ -82,7 +82,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
                 <? endif ?>
 
             </ul>
-
+            <? endif ?>
         </div>
 
         <div class="col-md-6 campaign-nav">

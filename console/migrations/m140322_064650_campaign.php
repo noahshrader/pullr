@@ -26,6 +26,8 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             
             $this->createTable(Campaign::tableName(), [
             'id' => Schema::TYPE_PK,
+             /* equal to id if this is not child campaign */
+            'parentCampaignId' => Schema::TYPE_INTEGER. ' NOT NULL',
             'alias' => Schema::TYPE_STRING. ' NOT NULL',
             'key' => Schema::TYPE_STRING. ' NOT NULL',
             'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
@@ -133,31 +135,58 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             $campaign->name = 'LinkSonicK';
             $campaign->layoutType = Campaign::LAYOUT_TYPE_SINGLE;
             $campaign->userId = 1;
+            $campaign->goalAmount = 15000;
+            $campaign->save();
+            
+            $campaign = new Campaign();
+            $campaign->name = 'Awesome Games Done Quick';
+            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
+            $campaign->userId = 1;
+            $campaign->goalAmount = 15000;
+            $campaign->save();
+            
+            $campaign = new Campaign();
+            $campaign->name = 'Awesome Games Done Quick 2';
+            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
+            $campaign->userId = 1;
+            $campaign->goalAmount = 15000;
+            $campaign->save();
+            
+            $campaign = new Campaign();
+            $campaign->name = 'Awesome Games Done Quick 3';
+            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
+            $campaign->goalAmount = 15000;
+            $campaign->userId = 1;
+            $campaign->save();
+            
+            $campaign = new Campaign();
+            $campaign->name = 'Awesome Games Done Quick 4';
+            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
+            $campaign->userId = 1;
+            $campaign->goalAmount = 15000;
             $campaign->save();
             
             $campaign = new Campaign;
             $campaign->name = 'Awesome Games Done Quick';
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 1;
-            $campaign->save();
+            $campaign->userId = 6;
+            $campaign->goalAmount = 15000;
+            $campaign->save();   
+            
+            CampaignInvite::addInvite(1, $campaign->id);
+            $invite = CampaignInvite::findOne(['userId' => 1, 'campaignId' => $campaign->id]);
+            $invite->approve();
             
             $campaign = new Campaign;
-            $campaign->name = 'Awesome Games Done Quick';
+            $campaign->name = 'Awesome Games Done Quick 2';
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 1;
+            $campaign->userId = 6;
+            $campaign->goalAmount = 15000;
             $campaign->save();
             
-            $campaign = new Campaign;
-            $campaign->name = 'Awesome Games Done Quick';
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 1;
-            $campaign->save();
-            
-            $campaign = new Campaign;
-            $campaign->name = 'Awesome Games Done Quick';
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 1;
-            $campaign->save();
+            CampaignInvite::addInvite(1, $campaign->id);
+            $invite = CampaignInvite::findOne(['userId' => 1, 'campaignId' => $campaign->id]);
+            $invite->approve();
         }
 	public function down()
 	{

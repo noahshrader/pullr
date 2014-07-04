@@ -41,10 +41,18 @@ class CampaignController extends FrontendController {
     }
     
     public function actionView(){
-        $campaign = $this->getCampaign();
+        $campaign = $this->getCampaign(true);
         
         return $this->actionIndex(null, $campaign, $campaign->status);
     }
+    
+    /**
+     * 
+     * @param \common\models\Campaign $editCampaign - campaign to edit
+     * @param \common\models\Campaign $selectedCampaign - campaign to view
+     * @param type $status
+     * @return type
+     */
     public function actionIndex(Campaign $editCampaign = null, Campaign $selectedCampaign = null, $status = Campaign::STATUS_ACTIVE) {
         $isNewRecord = $editCampaign && $editCampaign->isNewRecord;
         
@@ -170,18 +178,29 @@ class CampaignController extends FrontendController {
 
     /**
      * get campaign and validate user has access to edit it.
+     * @param boolean $childCampaignsAllowed if false ForbiddenHttpException will be throwed for campaign for which use is invited
+     * true used when viewing campaign 
      * @return Campaign
      */
-    public function getCampaign() {
+    public function getCampaign($childCampaignsAllowed = false) {
         $id = $_REQUEST['id'];
         $campaign = Campaign::findOne($id);
 
         if (!$campaign) {
             throw new NotFoundHttpException('Layout not found');
         }
-
+        
+        
         if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
-            throw new \yii\web\ForbiddenHttpException();
+            $childFlag = false;
+            if ($childCampaignsAllowed){
+                $params = ['userId' => \Yii::$app->user->id, 'campaignId' => $campaign->id, 'status' => CampaignInvite::STATUS_ACTIVE];
+                $childFlag = CampaignInvite::find()->where($params)->count() > 0;
+            }
+            
+            if (!$childFlag){
+                throw new \yii\web\ForbiddenHttpException();
+            }
         }
 
         return $campaign;

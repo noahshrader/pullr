@@ -81,6 +81,27 @@ class Campaign extends ActiveRecord {
         
     }
     
+    public function beforeSave($insert) {
+        if ($insert) {
+            if (isset(\Yii::$app->user) && !\Yii::$app->user->isGuest) {
+                $this->userId = \Yii::$app->user->id;
+            }
+            if (!$this->key) {
+                //$this->key can be set only for test events
+                $this->key = md5(rand());
+            }
+        }
+        return parent::beforeSave($insert);
+    }
+    
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+        if ($insert){
+            $this->parentCampaignId = $this->id;
+            $this->save();
+        }
+    }
+    
     public function attributeLabels() {
         return [
             'type' => 'Type of Campaign',
@@ -114,7 +135,7 @@ class Campaign extends ActiveRecord {
     }
     
     /* @inheritdoc
-     * @return CommentQuery
+     * @return query\CampaignQuery
      */
     public static function find()
     {
@@ -173,18 +194,6 @@ class Campaign extends ActiveRecord {
         }
     }
 
-    public function beforeSave($insert) {
-        if ($insert) {
-            if (isset(\Yii::$app->user) && !\Yii::$app->user->isGuest) {
-                $this->userId = \Yii::$app->user->id;
-            }
-            if (!$this->key) {
-                //$this->key can be set only for test events
-                $this->key = md5(rand());
-            }
-        }
-        return parent::beforeSave($insert);
-    }
 
     /**
      * 
@@ -208,6 +217,32 @@ class Campaign extends ActiveRecord {
     
     public function getDonations(){
         return $this->hasMany(Donation::className(), ['campaignId' => 'id'])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
+    }
+    
+    
+    /**
+     * @return boolean true if that campaign is campaign for which user was invited
+     * and that invite is approved by user
+     */
+    public function isParentForCurrentUser(){
+        if ($this->isNewRecord) {
+            return false;
+        }
+        
+        $userId = \Yii::$app->user->id;
+        $invite = CampaignInvite::findOne(['userId' => $userId, 'campaignId' => $this->id]);
+        return $invite && $invite->status == CampaignInvite::STATUS_ACTIVE;
+    }
+    
+    /**
+     * @return boolean true if that campaign is child campaign, that mean is tied to another parent campaign
+     */
+    public function isChild(){
+        if ($this->isNewRecord) {
+            return false;
+        }
+        
+        return $this->id != $this->parentCampaignId;
     }
     
     /**

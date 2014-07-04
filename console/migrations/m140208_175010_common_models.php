@@ -44,7 +44,7 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'relatedId' => Schema::TYPE_INTEGER
         ], $tableOptions);
         
-        $user = User::find()->where(['name' => 'Stanislav'])->one();
+        $user = User::findOne(1);
         $user->prolong(\Yii::$app->params['yearSubscription']);
         
         $user = User::find()->where(['name' => 'Admin'])->one();

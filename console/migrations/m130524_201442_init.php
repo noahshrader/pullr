@@ -123,7 +123,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user = new User();
         $user->setScenario('signup');
         $user->login = 'stanislav@gmail.com';
-        $user->name = 'Stanislav';
+        $user->name = 'Stanislav Gmail';
         $user->password = 'Stanislav';
         $user->confirmPassword = $user->password;
         $user->email = 'stas.msu@gmail.com';
