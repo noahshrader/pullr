@@ -9,6 +9,7 @@ use yii\base\ErrorException;
 use common\models\base\BaseImage;
 
 class UserPhoto extends Widget{
+    public $showName = false;
     /**
      *
      * @var User
@@ -43,6 +44,11 @@ class UserPhoto extends Widget{
         }
         
         $img = Html::tag('img', '', $imgOptions);
+        
+        if ($this->showName){
+            $userName = Html::tag('span', '(DEV) '.\Yii::$app->user->identity->name, ['style' => 'color: red; display: inline']);
+            $img = $userName.' '.$img;
+        }
         
         if ($this->hasLink) {
             $this->options['href'] = $this->user->url;
