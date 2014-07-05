@@ -95,7 +95,7 @@ class Campaign extends ActiveRecord {
     
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
-        if ($insert){
+        if ($insert && !$this->parentCampaignId){
             $this->parentCampaignId = $this->id;
             $this->save();
         }
@@ -179,7 +179,7 @@ class Campaign extends ActiveRecord {
         }
         
         /*if Campaign::TYPE_CHARITY_EVENT and tiedToParent are selected */
-        $userId = \Yii::$app->user->id;
+        $userId = $this->userId;
         $count = CampaignInvite::find()->where(['userId' => $userId, 'campaignId' => $id, 'status' => CampaignInvite::STATUS_ACTIVE ])->count();
         
         /*so there are no such campaign*/
@@ -240,7 +240,7 @@ class Campaign extends ActiveRecord {
     }
     
     public function getDonations(){
-        return $this->hasMany(Donation::className(), ['campaignId' => 'id'])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
+        return Donation::find()->where(['campaignId' => $this->id])->orWhere(['parentCampaignId' => $this->id])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
     }
     
     
@@ -275,7 +275,10 @@ class Campaign extends ActiveRecord {
      */
     public static function updateDonationStatistics($id){
         $campaign = Campaign::findOne($id);
-        $sum = Donation::find()->where(['campaignId' => $campaign->id])->andWhere('paymentDate > 0')->sum('amount');
+        
+        $sum = Donation::find()->where(['campaignId' => $campaign->id])
+                ->orWhere(['parentCampaignId' => $campaign->id])->andWhere('paymentDate > 0')->sum('amount');
+        
         $campaign->amountRaised = $sum;
         $campaign->save();
     }

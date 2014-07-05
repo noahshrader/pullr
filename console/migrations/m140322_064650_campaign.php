@@ -153,19 +153,6 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             $campaign->goalAmount = 15000;
             $campaign->save();
             
-            $campaign = new Campaign();
-            $campaign->name = 'Awesome Games Done Quick 3';
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->goalAmount = 15000;
-            $campaign->userId = 1;
-            $campaign->save();
-            
-            $campaign = new Campaign();
-            $campaign->name = 'Awesome Games Done Quick 4';
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 1;
-            $campaign->goalAmount = 15000;
-            $campaign->save();
             
             $campaign = new Campaign;
             $campaign->name = 'Awesome Games Done Quick';
@@ -179,7 +166,7 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             $invite->approve();
             
             $campaign = new Campaign;
-            $campaign->name = 'Awesome Games Done Quick 2';
+            $campaign->name = 'Parent Campaign';
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $campaign->userId = 6;
             $campaign->goalAmount = 15000;
@@ -188,6 +175,28 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             CampaignInvite::addInvite(1, $campaign->id);
             $invite = CampaignInvite::findOne(['userId' => 1, 'campaignId' => $campaign->id]);
             $invite->approve();
+            
+            $parentCampaignId = $campaign->id;
+            
+            $campaign = new Campaign();
+            $campaign->name = 'Fun For Freedom Child';
+            $campaign->type = Campaign::TYPE_CHARITY_EVENT;
+            $campaign->tiedToParent = true;
+            $campaign->parentCampaignId = $parentCampaignId;
+            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
+            $campaign->goalAmount = 15000;
+            $campaign->userId = 1;
+            $campaign->save();
+
+            $campaign = new Campaign();
+            $campaign->name = 'Fun For Freedom Child 2';
+            $campaign->type = Campaign::TYPE_CHARITY_EVENT;
+            $campaign->tiedToParent = true;
+            $campaign->parentCampaignId = $parentCampaignId;
+            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
+            $campaign->userId = 1;
+            $campaign->goalAmount = 15000;
+            $campaign->save();
         }
 	public function down()
 	{

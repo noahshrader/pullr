@@ -7,12 +7,12 @@ use yii\db\Query;
 $this->registerJSFile('@web/js/campaign/donation-table.js',  \common\assets\CommonAsset::className());
 
 $user = \Yii::$app->user->identity;
-$donations = $campaign->donations;
+$donations = $campaign->getDonations()->all();
 
 $uniqueDonations = $campaign->getDonations()->count('DISTINCT email');
 
 $connection = \Yii::$app->db;
-$sql = 'SELECT id, SUM(amount) sum FROM '.Donation::tableName().' WHERE campaignId = '.$campaign->id.' AND email <> "" AND paymentDate > 0 GROUP BY email ORDER BY sum DESC';
+$sql = 'SELECT id, SUM(amount) sum FROM '.Donation::tableName().' WHERE (campaignId = '.$campaign->id.' or parentCampaignId = '.$campaign->id.') AND email <> "" AND paymentDate > 0 GROUP BY email ORDER BY sum DESC';
 $command = $connection->createCommand($sql);
 $topDonor = $command->queryScalar();
 $topDonorName = ($topDonor) ? Donation::findOne($command->queryScalar())->name : '';
@@ -90,7 +90,8 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
             <ul class="campaign-buttons">
 
                 <li>
-                    <a href='<?= $user->getUrl() . $campaign->alias ?>'>
+                    <? /* $campaign->user and $user can be different because of parent campaigns*/ ?>
+                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>'>
                         <!-- View -->
                         View Campaign
                     </a>

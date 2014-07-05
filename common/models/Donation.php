@@ -24,18 +24,34 @@ class Donation extends ActiveRecord
             'default' => ['nameFromForm','email','comments','amount','createdDate']
         ];
     }
-	/**
-	 * @inheritdoc
-	 */
-	public function rules()
-	{
-            return [
-                ['nameFromForm', 'filter', 'filter' => 'strip_tags'],
-                ['email', 'filter', 'filter' => 'strip_tags'],
-                ['comments', 'filter', 'filter' => 'strip_tags'],
-            ];
-	}
-        
+    
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            ['nameFromForm', 'filter', 'filter' => 'strip_tags'],
+            ['email', 'filter', 'filter' => 'strip_tags'],
+            ['comments', 'filter', 'filter' => 'strip_tags'],
+        ];
+    }
+    
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)){
+            if ($insert){
+                $campaign = Campaign::findOne($this->campaignId);
+                $this->campaignUserId = $campaign->userId;
+                $parentCampaign = $campaign->isChild() ? Campaign::findOne($campaign->parentCampaignId) : $campaign;
+                $this->parentCampaignId = $parentCampaign->id;
+                $this->parentCampaignUserId = $parentCampaign->userId;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     /**
      * 
      * @return Campaign
