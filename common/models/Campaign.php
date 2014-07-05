@@ -52,7 +52,7 @@ class Campaign extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['name', 'alias', 'description', 'goalAmount', 'streamService', 'type', 'startDate', 'endDate', 'layoutType',
+            'default' => ['name', 'alias', 'tiedToParent', 'parentCampaignId', 'description', 'goalAmount', 'streamService', 'type', 'startDate', 'endDate', 'layoutType',
                 'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 
                 'channelName', 'channelTeam', 'primaryColor', 'secondaryColor', 'themeId', 'twitterEnable',
                 'twitterName', 'facebookEnable', 'facebookUrl', 'youtubeEnable', 'youtubeUrl',
@@ -78,7 +78,6 @@ class Campaign extends ActiveRecord {
         $this->formVisibility = true;
         $this->enableDonorComments = true;
         $this->enableThankYouPage = false;
-        
     }
     
     public function beforeSave($insert) {
@@ -105,6 +104,7 @@ class Campaign extends ActiveRecord {
     public function attributeLabels() {
         return [
             'type' => 'Type of Campaign',
+            'tiedToParent' => 'Tie this event to a fundraiser',
             'description' => 'Campaign Description',
             'layoutType' => 'Type of Layout',
             'channelTeam' => 'Team Channel Name',
@@ -119,6 +119,7 @@ class Campaign extends ActiveRecord {
             ['name', 'required'],
             ['name', 'filter', 'filter' => 'strip_tags'],
             ['name', 'nameFilter'],
+            ['parentCampaignId', 'parentCampaignIdFilter'],
             ['description', 'filter', 'filter' => 'strip_tags'],
             ['description', 'string', 'length' => [0,self::DESCRIPTION_MAX_LENGTH]],
             ['goalAmount', 'required'],
@@ -161,6 +162,29 @@ class Campaign extends ActiveRecord {
             } else {
                 $this->alias = $alias;
             }
+        }
+    }
+    
+    /**
+     * validate parentCampaignId
+     */
+    public function parentCampaignIdFilter(){
+        $id = intval($this->parentCampaignId);
+        if ($this->id == $id){
+            return;
+        }
+        
+        if ( ($this->type != Campaign::TYPE_CHARITY_EVENT) || (!$this->tiedToParent) ){
+            $this->parentCampaignId = $this->id;
+        }
+        
+        /*if Campaign::TYPE_CHARITY_EVENT and tiedToParent are selected */
+        $userId = \Yii::$app->user->id;
+        $count = CampaignInvite::find()->where(['userId' => $userId, 'campaignId' => $id, 'status' => CampaignInvite::STATUS_ACTIVE ])->count();
+        
+        /*so there are no such campaign*/
+        if ($count == 0){
+            $this->parentCampaignId = $this->id;
         }
     }
     

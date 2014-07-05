@@ -336,13 +336,20 @@ class User extends ActiveRecord implements IdentityInterface {
             return $this->hasOne(OpenIDToUser::className(), ['userId' => 'id']);
         }
         
+        /**
+         * return ActiveQuery object for parent campaigns for current user
+         */
+        public function getParentCampaigns($status = Campaign::STATUS_ACTIVE){
+            $userId = \Yii::$app->user->id;
+            $parentIds = CampaignInvite::find()->where(['userId' => $userId, 'status' => CampaignInvite::STATUS_ACTIVE ])->select(['campaignId'])->column();
+            return Campaign::find()->where(['in', 'id', $parentIds])->andWhere(['status' => $status]);
+        }
+        
         public function getCampaigns($status = Campaign::STATUS_ACTIVE){
             $userId = \Yii::$app->user->id;
-            $childIds = CampaignInvite::find()->where(['userId' => $userId, 'status' => CampaignInvite::STATUS_ACTIVE ])->select(['campaignId'])->column();
             $userCampaigns = Campaign::find()->where(['userId' => $userId, 'status' => $status]);
-            $childQuery = Campaign::find()->where(['in', 'id', $childIds, 'status' => $status]);
             
-            return $userCampaigns->union($childQuery);
+            return $userCampaigns->union($this->getParentCampaigns($status));
         }
         
         private $_plan = null;

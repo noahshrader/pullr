@@ -165,6 +165,14 @@ function initBootstrapSwitch() {
         }
     });
     
+    $("#campaign-tiedtoparent").on('click', function() {
+        var value = $('#campaign-tiedtoparent').bootstrapSwitch('state');
+        if (value){
+            $('#collapseOne').addClass('isTied');
+        } else {
+            $('#collapseOne').removeClass('isTied');
+        }
+    });
 }
 
 function layoutChooseTheme(){

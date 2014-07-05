@@ -28,6 +28,7 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             'id' => Schema::TYPE_PK,
              /* equal to id if this is not child campaign */
             'parentCampaignId' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'tiedToParent' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'alias' => Schema::TYPE_STRING. ' NOT NULL',
             'key' => Schema::TYPE_STRING. ' NOT NULL',
             'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
