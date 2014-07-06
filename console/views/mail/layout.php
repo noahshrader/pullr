@@ -1,4 +1,4 @@
-<? 
+<?php 
 use common\components\Application;
 
 ?>
