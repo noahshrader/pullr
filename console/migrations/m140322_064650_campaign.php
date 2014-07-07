@@ -138,6 +138,7 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             
             $campaign = new Campaign;
             $campaign->name = 'LinkSonicK';
+            $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
             $campaign->layoutType = Campaign::LAYOUT_TYPE_SINGLE;
             $campaign->userId = 1;
             $campaign->goalAmount = 15000;
