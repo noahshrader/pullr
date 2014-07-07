@@ -173,9 +173,12 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             
             $campaign = new Campaign;
             $campaign->name = 'Parent Campaign';
+            $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $campaign->userId = 6;
             $campaign->goalAmount = 15000;
+            $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
+            $campaign->customCharityPaypal = 'donation.klyukin@gmail.com';
             $campaign->save();
             
             CampaignInvite::addInvite(1, $campaign->id);
