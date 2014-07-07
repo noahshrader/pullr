@@ -17,6 +17,13 @@ $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
             <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'form-control select-block']) ?>
         </div>
         
+        <div id="startEndContainer">
+            <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Start date tooltip"></i>'; ?>
+             <?= $form->field($campaign, 'startDate')->label("Start Date/Time: $tooltip")->input('datetime-local'); ?>
+            <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="End date tooltip"></i>'; ?>
+             <?= $form->field($campaign, 'endDate')->label("End Date/Time: $tooltip")->input('datetime-local'); ?>
+        </div>
+    
         <? if (sizeof($parentCampaigns) > 0): ?>
             <? 
             $keyValues = [ 0 => ''];
@@ -33,12 +40,6 @@ $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
             </div>
         <? endif; ?>
         <div id="notTiedCampaignContainer">
-            <div id="startEndContainer">
-                <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Start date tooltip"></i>'; ?>
-                 <?= $form->field($campaign, 'startDate')->label("Start Date/Time: $tooltip")->input('datetime-local'); ?>
-                <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="End date tooltip"></i>'; ?>
-                 <?= $form->field($campaign, 'endDate')->label("End Date/Time: $tooltip")->input('datetime-local'); ?>
-            </div>
 
             <?= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => true]); ?>
 

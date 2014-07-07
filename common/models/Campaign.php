@@ -247,7 +247,11 @@ class Campaign extends ActiveRecord {
         return Donation::find()->where(['campaignId' => $this->id])->orWhere(['parentCampaignId' => $this->id])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
     }
     
-    
+    public function getChildCampaigns(){
+        return Campaign::find()->where(['parentCampaignId' => $this->id, 'status' => self::STATUS_ACTIVE ])
+                ->andWhere('id <> ' . $this->id);
+    }
+           
     /**
      * @return boolean true if that campaign is campaign for which user was invited
      * and that invite is approved by user

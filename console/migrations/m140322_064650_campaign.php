@@ -196,6 +196,9 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
             $campaign->goalAmount = 15000;
             $campaign->userId = 1;
+            $campaign->startDate = 1405761880;
+            $campaign->endDate = 1408761880;
+            
             $campaign->save();
 
             $campaign = new Campaign();

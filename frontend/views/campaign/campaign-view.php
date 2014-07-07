@@ -160,6 +160,10 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
 
         </section>
         
+        <?= $this->render('campaign-view-childs', [
+                    'campaign' => $campaign
+        ]);?>
+        
         <?= $this->render('donations-table', [
                     'donations' => $donations
                 ]); ?>     
