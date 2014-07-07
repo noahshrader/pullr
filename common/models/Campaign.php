@@ -239,6 +239,10 @@ class Campaign extends ActiveRecord {
         return $this->hasOne(Charity::className(), ['id' => 'charityId']);
     }
     
+    public function getParentCampaign() {
+        return $this->hasOne(Campaign::className(), ['id' => 'parentCampaignId']);
+    }
+    
     public function getDonations(){
         return Donation::find()->where(['campaignId' => $this->id])->orWhere(['parentCampaignId' => $this->id])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
     }
@@ -269,6 +273,27 @@ class Campaign extends ActiveRecord {
         return $this->id != $this->parentCampaignId;
     }
     
+    public function getDonationEmail(){
+        if ($this->isChild()){
+            return $this->parentCampaign->donationEmail;
+        }
+        
+        if ($this->type == self::TYPE_PERSONAL_TIP_JAR){
+            return $this->paypalAddress;
+        }
+        
+        if (!$this->donationDestination){
+            return '';
+        }
+        
+        if ($this->donationDestination == self::DONATION_CUSTOM_FUNDRAISER){
+            return $this->customCharityPaypal;
+        }
+        
+        /* @var $charity Charity */
+        $charity = $this->charity;
+        return ($charity) ? $charity->paypal : '';
+    }
     /**
      * executed after successfull donation
      * @param type $id

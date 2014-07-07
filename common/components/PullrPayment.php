@@ -15,6 +15,7 @@ use common\models\Plan;
 use PayPal\Api\PaymentExecution;
 use common\models\Donation;
 use common\models\Campaign;
+use PayPal\Api\Payee;
 
 define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
 
@@ -108,12 +109,6 @@ class PullrPayment extends \yii\base\Component {
      * @param \common\models\Donation $donation
      */
     public static function donationPayment(Donation $donation) {
-        // A resource representing a Payer that funds a payment
-        // For paypal account payments, set payment method
-        // to 'paypal'.
-        $payer = new Payer();
-        $payer->setPaymentMethod("paypal");
-
         // ### Itemized information
         // (Optional) Lets you specify item wise
         // information
@@ -125,12 +120,20 @@ class PullrPayment extends \yii\base\Component {
         $itemList = new ItemList();
         $itemList->setItems([$item]);
 
-
+        
         $amount = new Amount();
         $amount->setCurrency("USD")
                 ->setTotal($donation->amount);
 
-        self::makePayment($amount, $itemList, \common\models\Payment::TYPE_DONATION, $donation->id);
+        $campaign = $donation->campaign;
+        $email = $campaign->donationEmail;
+        if (!$email){
+            throw new \Exception('Donation paypal account is not set');
+        }
+        $payee = new Payee();
+        $payee->setEmail($email);
+        
+        self::makePayment($amount, $itemList, \common\models\Payment::TYPE_DONATION, $donation->id, $payee);
     }
 
     public function proPayment($moneyAmount) {
@@ -155,7 +158,7 @@ class PullrPayment extends \yii\base\Component {
         self::makePayment($amount, $itemList, $params['paymentType']);
     }
 
-    public static function makePayment($amount, $itemList, $paymentType, $relatedId = null) {
+    public static function makePayment($amount, $itemList, $paymentType, $relatedId = null, $payee = null) {
         // A resource representing a Payer that funds a payment
         // For paypal account payments, set payment method
         // to 'paypal'.
@@ -170,6 +173,9 @@ class PullrPayment extends \yii\base\Component {
         $transaction->setAmount($amount)
                 ->setItemList($itemList);
 
+        if ($payee){
+            $transaction->setPayee($payee);
+        }
         $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $baseUrl = preg_replace('/\?.*/', '', $baseUrl);
 

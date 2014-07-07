@@ -112,6 +112,8 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             $campaign->key = 'test_key';
             $campaign->eventId = 1;
             $campaign->goalAmount = 17000;
+            $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
+            $campaign->customCharityPaypal = 'donation.klyukin@gmail.com';
             $campaign->save();
 
             CampaignInvite::addInvite(2, $campaign->id);
@@ -128,6 +130,8 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             $campaign->eventId = 1;
             $campaign->goalAmount = 17000;
             $campaign->charityId = 1;
+            $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
+            $campaign->customCharityPaypal = 'donation.klyukin@gmail.com';
             $campaign->save();
             
             CampaignInvite::addInvite(1, $campaign->id);
@@ -137,6 +141,8 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             $campaign->layoutType = Campaign::LAYOUT_TYPE_SINGLE;
             $campaign->userId = 1;
             $campaign->goalAmount = 15000;
+            $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
+            $campaign->customCharityPaypal = 'wrong.paypal@gmail.com';
             $campaign->save();
             
             $campaign = new Campaign();
