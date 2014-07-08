@@ -21,7 +21,7 @@ Select "yes" for install under Development Environment
 * ./init 
 
 Next step you should change you db connection settings in file
-* `common/config/main.php`
+* `common/config/main-localphp`
 
 Next step let's install db data, run from pullr project folder
 * `./yii migrate`
