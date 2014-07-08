@@ -105,13 +105,6 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
                     </a>
                 </li>
 
-                <li>
-                    <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
-                        <!-- Shortcodes -->
-                        XML
-                    </a>
-                </li>
-
             </ul>
 
         </div>
