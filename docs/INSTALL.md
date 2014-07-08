@@ -21,7 +21,7 @@ Select "yes" for install under Development Environment
 * ./init 
 
 Next step you should change you db connection settings in file
-* `common/config/main.php`
+* `common/config/main-localphp`
 
 Next step let's install db data, run from pullr project folder
 * `./yii migrate`
@@ -70,5 +70,14 @@ export DYLD_LIBRARY_PATH
 ```
 ####Mac issue with mcrypt 
 To install mcrypt extension php in case you have not it these link can be helpful: 
+
 http://topicdesk.com/downloads/mcrypt/mcrypt-download
-http://jenssegers.be/blog/49/installing-the-php-mcrypt-extension-on-osx-10-9
+
+All that is left is to enable the extension by editing /etc/php.ini. If this file is not present, copy /etc/php.ini.default and rename it:
+
+* sudo cp /etc/php.ini.default /etc/php.ini
+
+Edit the /etc/php.ini file and add the following:
+
+* extension=mcrypt.so
+
