@@ -73,4 +73,11 @@ To install mcrypt extension php in case you have not it these link can be helpfu
 
 http://topicdesk.com/downloads/mcrypt/mcrypt-download
 
-http://jenssegers.be/blog/49/installing-the-php-mcrypt-extension-on-osx-10-9
+All that is left is to enable the extension by editing /etc/php.ini. If this file is not present, copy /etc/php.ini.default and rename it:
+
+* sudo cp /etc/php.ini.default /etc/php.ini
+
+Edit the /etc/php.ini file and add the following:
+
+* extension=mcrypt.so
+
