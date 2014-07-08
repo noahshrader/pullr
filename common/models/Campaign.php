@@ -243,6 +243,10 @@ class Campaign extends ActiveRecord {
         return $this->hasOne(Campaign::className(), ['id' => 'parentCampaignId']);
     }
     
+    /**
+     * 
+     * @return \yii\db\ActiveQuery[]
+     */
     public function getDonations(){
         return Donation::find()->where(['campaignId' => $this->id])->orWhere(['parentCampaignId' => $this->id])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
     }

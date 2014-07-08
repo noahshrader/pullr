@@ -21,6 +21,7 @@ return [
                 'api/<action>' => 'api/<action>',
                 '<userAlias>/<campaignAlias>' => 'layoutview/view',
                 '<userAlias>/<campaignAlias>/donate' => 'layoutview/donate',
+                '<userAlias>/<campaignAlias>/json' => 'layoutview/json',
                 '<userAlias>/<campaignAlias>/thankyou' => 'layoutview/thankyou'
             ]
         ],

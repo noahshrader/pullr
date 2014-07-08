@@ -70,5 +70,25 @@ class LayoutviewController extends \yii\web\Controller {
             'donation' => $donation
         ]);
     }
+    
+    public function actionJson($userAlias, $campaignAlias){
+        $campaign = $this->getCampaign($userAlias, $campaignAlias);
+        
+        $response = $campaign->toArray(['amountRaised', 'goalAmount', 'startDate', 'endDate']);
+        
+        $response['numberOfDonations'] = $campaign->getDonations()->count();
+        $response['numberOfDonors'] = $campaign->getDonations()->count('DISTINCT email');
+        
+        $donationsArray = [];
+        
+        $donations = $campaign->getDonations()->all();
+        
+        foreach ($donations as $donation){
+            $donationsArray[] = $donation->toArray(['amount', 'nameFromForm', 'comments', 'paymentDate']);
+        }
+        $response['donations'] = $donationsArray;
+        echo json_encode($response);
+        die;
+    }
        
 }

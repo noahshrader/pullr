@@ -90,10 +90,18 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
             <ul class="campaign-buttons">
 
                 <li>
-                    <? /* $campaign->user and $user can be different because of parent campaigns*/ ?>
+                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>'>
                         <!-- View -->
                         View Campaign
+                    </a>
+                </li>
+                
+                <li>
+                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json'>
+                        <!-- View -->
+                        Json
                     </a>
                 </li>
 
