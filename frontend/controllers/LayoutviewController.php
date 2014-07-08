@@ -84,7 +84,7 @@ class LayoutviewController extends \yii\web\Controller {
         $donations = $campaign->getDonations()->all();
         
         foreach ($donations as $donation){
-            $donationsArray[] = $donation->toArray(['amount', 'nameFromForm', 'comments', 'paymentDate']);
+            $donationsArray[] = $donation->toArray(['id', 'amount', 'nameFromForm', 'comments', 'paymentDate']);
         }
         $response['donations'] = $donationsArray;
         echo json_encode($response);
