@@ -10,7 +10,7 @@ use common\widgets\user\TwitchLogin;
 $this->title = 'Login';
 ?>
 <div class="site-login">
-	   <?= TwitchLogin::widget() ?>
+	<?= TwitchLogin::widget() ?>
         <? if (YII_ENV_DEV): ?>
             <div class="alert alert-info" role="alert">User/Pass available here only at pullr/dev configuration
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -23,6 +23,5 @@ $this->title = 'Login';
             <?php ActiveForm::end(); ?>
             </div>
         <? endif ?>
-        
-	<p>By connecting Twitch with your Pullr account, you agree to our <a href="http://pullr.io/privacy">Privacy Policy</a> and our <a href="http://pullr.io/terms-of-service">Terms of service</a></p>
+	<p class="small">By connecting Twitch with your Pullr account, you agree to our <a href="http://pullr.io/privacy">Privacy Policy</a> and our <a href="http://pullr.io/terms-of-service">Terms of service</a></p>
 </div>
