@@ -10,9 +10,7 @@ use common\widgets\user\TwitchLogin;
 $this->title = 'Login';
 ?>
 <div class="site-login">
-    <div class="twitch-login-btn">
 	   <?= TwitchLogin::widget() ?>
-    </div>
         <? if (YII_ENV_DEV): ?>
             <div class="alert alert-info" role="alert">User/Pass available here only at pullr/dev configuration
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
