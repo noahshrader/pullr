@@ -4,31 +4,23 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Response;
+use common\models\Campaign;
+use common\models\User;
 
-
-class StreamboardController extends \yii\web\Controller
-{
-
+class StreamboardController extends FrontendController{
     public function actionIndex() {
         if (Yii::$app->user->isGuest) {
             return Yii::$app->user->loginRequired();
         }
 
         $user = Yii::$app->user->identity;
-
+        /*@var $user User */
+        $campaigns = $user->getCampaigns()->all();
+        
         $this->layout = 'streamboard';
-
-
-        $userId = \Yii::$app->user->id;
-        $sql = "SELECT * FROM tbl_campaign WHERE userId = '{$userId}'";
-        $campaigns = Yii::$app->db->createCommand($sql)->queryAll();
-//        var_dump($campaigns);exit;
-
         return $this->render('index', [
             'user' => $user,
             'campaigns' => $campaigns,
-            'csrf_token_name' => Yii::$app->request->csrfParam,
-            'csrf_token' => Yii::$app->request->getCsrfToken(),
         ]);
     }
 
@@ -51,12 +43,6 @@ class StreamboardController extends \yii\web\Controller
     }
 
     public function actionGet_donations_ajax() {
-        if (Yii::$app->user->isGuest
-//            || !Yii::$app->request->isAjax
-        ) {
-            return;
-        }
-
         $userId = \Yii::$app->user->id;
 
         $stats = array(

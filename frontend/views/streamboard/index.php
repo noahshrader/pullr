@@ -1,12 +1,5 @@
 <?
-
-use yii\helpers\Html;
 use yii\helpers\Url;
-//use frontend\assets\StreamboardAsset;
-
-//$this->registerJsFile('@web/js/campaign/edit.js', common\assets\CommonAsset::className());
-
-//StreamboardAsset::register($this);
 ?>
 <div data-ng-app="streamboardApp">
 
@@ -23,11 +16,7 @@ use yii\helpers\Url;
 	</div>
 	<div class="tab-content">
 		<!-- Accordion slide one (Donations) -->
-		<div class="tab-pane active" id="donations" data-ng-controller="DonationsController"
-            data-ng-init="start_time = <?php echo time(); ?>;
-            csrf_token_name = '<?php echo $csrf_token_name;?>';
-            csrf_token = '<?php echo $csrf_token;?>';
-            ">
+		<div class="tab-pane active" id="donations" data-ng-controller="DonationsController" data-ng-init="start_time = <?php echo time(); ?>;">
 
             <input type="button" value="Create donation" data-ng-click="addDonation()" >
             <div class="donations_list">

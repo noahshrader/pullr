@@ -1,12 +1,5 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
-
 namespace frontend\assets;
-
 use yii\web\AssetBundle;
 
 class StreamboardAsset extends AssetBundle
@@ -19,10 +12,10 @@ class StreamboardAsset extends AssetBundle
 	];
         
 	public $js = [
-//            '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
-        '//code.jquery.com/ui/1.10.4/jquery-ui.js',
-        '/js/streamboard/angular/angular.min.js',
-        'js/streamboard/streamboard.js',
+            '//code.jquery.com/ui/1.10.4/jquery-ui.js',
+            '//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js',
+            'js/streamboard/streamboard.js',
+            'js/streamboard/app.js',
 	];
 	public $depends = [
 		'yii\web\YiiAsset'
