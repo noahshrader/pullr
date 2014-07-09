@@ -10,7 +10,6 @@ use common\widgets\user\TwitchLogin;
 $this->title = 'Login';
 ?>
 <div class="site-login">
-	<h1><?= Html::encode($this->title) ?></h1>
 	<?= TwitchLogin::widget() ?>
         <br />
         <? if (YII_ENV_DEV): ?>
