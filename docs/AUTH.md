@@ -19,3 +19,6 @@ For password ask [@SKlyukin](http://github.com/sklyukin)
 To synchronize project with github repository type at project directory
     
     git pull
+
+Frontend link - http://95.78.252.18  
+Backend link  - http://flaper.info
