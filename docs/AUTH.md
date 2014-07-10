@@ -17,4 +17,5 @@ For password ask [@SKlyukin](http://github.com/sklyukin)
     cd /www/pullr
 
 To synchronize project with github repository type at project directory
+    
     git pull
