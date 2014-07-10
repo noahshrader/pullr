@@ -10,6 +10,7 @@ use common\models\base\BaseImage;
 use common\models\Plan;
 use common\models\Campaign;
 use common\models\user\UserFields;
+use common\models\Donation;
 
 /**
  * Class User
@@ -350,6 +351,20 @@ class User extends ActiveRecord implements IdentityInterface {
             $userCampaigns = Campaign::find()->where(['userId' => $userId, 'status' => $status]);
             
             return $userCampaigns->union($this->getParentCampaigns($status));
+        }
+        
+        /**
+         * @param int $sinceId return only donations with id > $sinceId
+         * @return ActiveQuery[] Return all donations which was made for all user's campaigns 
+         * including children campaigns. 
+         */
+        public function getDonations($sinceId = null){
+            $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId'])
+                    ->andWhere('paymentDate > 0')->addParams(['userId' => $this->id])->orderBy('paymentDate DESC');
+            if ($sinceId){
+                $query->andWhere('id > :sinceId')->addParams(['sinceId' => $sinceId]);
+            }
+            return $query;
         }
         
         private $_plan = null;

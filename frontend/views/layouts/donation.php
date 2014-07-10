@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\Html;
-use common\widgets\user\UserPhoto;
 use frontend\assets\DonationAsset;
 /**
  * @var \yii\web\View $this

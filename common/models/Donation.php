@@ -45,6 +45,9 @@ class Donation extends ActiveRecord
                 $parentCampaign = $campaign->isChild() ? Campaign::findOne($campaign->parentCampaignId) : $campaign;
                 $this->parentCampaignId = $parentCampaign->id;
                 $this->parentCampaignUserId = $parentCampaign->userId;
+                if (!$this->createdDate){
+                    $this->createdDate = time();
+                }
             }
             return true;
         } else {

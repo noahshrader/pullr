@@ -18,6 +18,6 @@ class StreamboardAsset extends AssetBundle
             'js/streamboard/app.js',
 	];
 	public $depends = [
-		'yii\web\YiiAsset'
+//                'frontend\assets\FrontendAsset',
 	];
 }
