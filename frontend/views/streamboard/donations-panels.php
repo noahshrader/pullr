@@ -5,23 +5,13 @@
 <div class="campaigns_list_panel slidepanel">
     <div class="campaigns_list">
         <h3>Campaigns</h3>
-        <?php
-        foreach ($campaigns as $campaign) {
-            ?>
-            <input type="checkbox" name="campaigns[]"
-                   value="<?php echo $campaign['id']; ?>" checked="checked"
-                   id="campaign_<?php echo $campaign['id']; ?>"
-                   data-ng-init="campaigns.<?php echo $campaign['id']; ?> = true"
-                   data-ng-model="campaigns.<?php echo $campaign['id']; ?>"
-                   />
-            <label for="campaign_<?php echo $campaign['id']; ?>">
-                <?php echo $campaign['name']; ?>
+        <div data-ng-repeat="campaign in campaigns">
+            <label>
+                <input type="checkbox" data-ng-model="campaign.streamboardSelected">
+                {{campaign.name}}
             </label>
             <br>
-            <?php
-        }
-        ?>
-
+        </div>
     </div>
     <a class="close icon-cross"></a>
 </div>

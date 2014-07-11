@@ -52,8 +52,12 @@ class StreamboardController extends FrontendController{
             $donationsArray[] = $donation->toArray(['id', 'campaignId', 'parentCampaignId', 'amount', 'nameFromForm', 'paymentDate']);
         }
         
-        $data = [];
-        $data['donations'] = $donationsArray;
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
+        $campaignsArray = [];
+        foreach ($campaigns as $campaign){
+            /*@var $campaign Campaign*/
+            $campaignsArray[] = $campaign->toArray(['id', 'name']);
+        }
         
         $stats = [
             'number_of_donations' => 0,
@@ -63,7 +67,12 @@ class StreamboardController extends FrontendController{
             'top_donation_name' => 0,
             'top_donors' => [],
         ];
+        
+        $data = [];
+        $data['donations'] = $donationsArray;
+        $data['campaigns'] = $campaignsArray;
         $data['stats'] = $stats;
+        
         echo json_encode($data);
         die;
     }

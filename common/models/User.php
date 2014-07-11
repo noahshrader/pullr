@@ -345,12 +345,19 @@ class User extends ActiveRecord implements IdentityInterface {
             $parentIds = CampaignInvite::find()->where(['userId' => $userId, 'status' => CampaignInvite::STATUS_ACTIVE ])->select(['campaignId'])->column();
             return Campaign::find()->where(['in', 'id', $parentIds])->andWhere(['status' => $status]);
         }
-        
-        public function getCampaigns($status = Campaign::STATUS_ACTIVE){
+        /**
+         * 
+         * @param type $status
+         * @return ActiveQuery user's campaigns + parent's campaigns
+         */
+        public function getCampaigns($status = Campaign::STATUS_ACTIVE, $withParentCampaigns = true){
             $userId = \Yii::$app->user->id;
-            $userCampaigns = Campaign::find()->where(['userId' => $userId, 'status' => $status]);
+            $query = Campaign::find()->where(['userId' => $userId, 'status' => $status]);
             
-            return $userCampaigns->union($this->getParentCampaigns($status));
+            if ($withParentCampaigns){
+                $query = $query->union($this->getParentCampaigns($status));
+            }
+            return $query;
         }
         
         /**

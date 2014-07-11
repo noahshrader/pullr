@@ -1,7 +1,20 @@
 (function() {
     var app = angular.module('streamboardApp', []);
+    app.filter('selectedCampaigns', function(){
+       return function(donations, $scope){
+           var filteredDonations = [];
+           for (var key in donations){
+               var donation = donations[key];
+               if ($scope.campaigns[donation.campaignId].streamboardSelected){
+                   filteredDonations.push(donation);
+               }
+           }
+           return filteredDonations;
+       }
+    });
     app.controller('DonationsController', function($scope, $http) {
         $scope.donations = [];
+        $scope.campaigns = {};
         $scope.unorderedDonations = {};
         $scope.stats = {};
         //$scope.campaigns = [];
@@ -9,11 +22,7 @@
         $scope.lastDonationId = 0;
         
         $scope.addDonation = function() {
-            $http({
-                method: 'POST',
-                url: 'app/streamboard/add_donation_ajax',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).success(function() {
+            $http.post('app/streamboard/add_donation_ajax').success(function() {
                 $scope.updateDonations();
             });
         };
@@ -32,35 +41,30 @@
             });
             $scope.donations = newDonations;
             
-        }
+        };
         $scope.updateDonations = function() {
-//            var selected_campaigns = [];
-//            if (typeof $scope.campaigns !== 'undefined') {
-//                $.each($scope.campaigns, function(index, value) {
-//                    if (String(value) == 'true') {
-//                        selected_campaigns.push(index);
-//                    }
-//                });
-//            }
-
-//            var request_data = {
-//                streamboard_launch_time: $scope.start_time,
-//                selected_campaigns: selected_campaigns,
-//            };
             $http.get('app/streamboard/get_donations_ajax', {params: {since_id: $scope.lastDonationId}}).success(function(data){
+                $scope.stats = data.stats;
+                if ($.isEmptyObject($scope.campaigns)){
+                    for (var key in data.campaigns){
+                        var campaign = data.campaigns[key];
+                        campaign.streamboardSelected = true;
+                        $scope.campaigns[campaign.id] = campaign; 
+                    }
+                }
                 for (var key in data.donations){
                     var donation = data.donations[key];
                     $scope.unorderedDonations[donation.id] = donation;
                 }
-                $scope.stats = data.stats;
                 if (data.donations.length > 0){
                     $scope.lastDonationId = data.donations[0].id;
                     $scope.sortDonations();
                 }
+                
             });
         };
-
         $scope.updateDonations();
+        
         setInterval(function() {
             $scope.updateDonations();
         }, 1000);
