@@ -1,9 +1,7 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use common\assets\CommonAsset;
-use common\widgets\user\UserPhoto;
 use common\components\Application;
 
 /**
@@ -12,7 +10,7 @@ use common\components\Application;
  */
 
 CommonAsset::register($this);
-\backend\assets\BackendAsset::register($this);
+\common\assets\BackendAsset::register($this);
 
 
 ?>
