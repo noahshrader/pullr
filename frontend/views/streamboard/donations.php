@@ -6,11 +6,10 @@
     </div>
     <div class="donations_list">
         <div data-ng-repeat="donation in donations | selectedCampaigns:this | limitTo: 20" class="donation">
-            <div class="donation_name">{{donation.name}}</div>
-            <div class="donation_amount">${{donation.amount}}</div>
-            <div class="donation_campaign">{{donation.campaign_name}}</div>
+            <h3 class="donation_name">{{donation.nameFromForm}}</h3>
+            <div><span class="donation_amount">${{donation.amount}}</span> {{donation.campaignName}}</div>
             <div class="donation_comments">{{donation.comments}}</div>
-            <div class="donation_date">{{donation.date_formatted}}</div>
+            <div class="donation_date">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</div>
         </div>
     </div>
     <?= $this->render('donations-panels') ?>

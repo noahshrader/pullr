@@ -49,7 +49,10 @@ class StreamboardController extends FrontendController{
         $donationsArray = [];
         foreach ($donations as $donation){
             /*@var $donation Donation*/
-            $donationsArray[] = $donation->toArray(['id', 'campaignId', 'parentCampaignId', 'amount', 'nameFromForm', 'paymentDate']);
+            $array = $donation->toArray(['id', 'campaignId', 'amount', 'nameFromForm', 'paymentDate', 'comments']);
+            $array['campaignName'] = $donation->campaign->name;
+            
+            $donationsArray[] = $array;
         }
         
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
