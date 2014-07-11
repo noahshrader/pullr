@@ -15,6 +15,7 @@ class CommonAsset extends AssetBundle {
         'js/lib/pace.min.js',
         'js/lib/jquery.mCustomScrollbar.js',
         'js/common.js',
+        'js/plugins-config.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
