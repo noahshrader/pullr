@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use frontend\assets\FrontendAsset;
+use common\assets\FrontendAsset;
 use common\assets\CommonAsset;
 use yii\helpers\Url;
 /**

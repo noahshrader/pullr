@@ -1,13 +1,12 @@
 <?php
 use yii\helpers\Html;
 use common\assets\CommonAsset;
-use frontend\assets\FrontendAsset;
 use frontend\assets\StreamboardAsset;
 
 //$this->registerJsFile('@web/js/campaign/edit.js', common\assets\CommonAsset::className());
 
 CommonAsset::register($this);
-FrontendAsset::register($this);
+//FrontendAsset::register($this);
 StreamboardAsset::register($this);
 
 ?>

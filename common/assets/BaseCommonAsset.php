@@ -4,6 +4,9 @@ namespace common\assets;
 
 use yii\web\AssetBundle;
 
+/**
+ * Frameworks and libraries used almost throughtout project.
+ */
 class BaseCommonAsset extends AssetBundle {
 
     public $sourcePath = '@common/web';

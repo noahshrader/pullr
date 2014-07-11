@@ -1,12 +1,15 @@
 <?php
-use frontend\assets\FrontendAsset;
+/**
+ * This layout is used for login page and some non-authenticated pages like "Privacy Policy" and "Terms of service".
+ */
 use common\assets\CommonAsset;
+use common\assets\AuthAsset;
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
 CommonAsset::register($this);
-FrontendAsset::register($this);
+AuthAsset::register($this);
 
 
 ?>
