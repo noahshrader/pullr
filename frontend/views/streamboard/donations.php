@@ -1,9 +1,9 @@
 <!-- Accordion slide one (Donations) -->
 <div id="donations" class="tab-pane active" data-ng-controller="DonationsController">
     <div class="text-center">
-        <button class="btn btn-primary" data-ng-click="clearList()">Clear list</button>
+        <button class="btn btn-primary" data-ng-click="clearDonations()">Clear list</button>
+        <button class="btn btn-primary" data-ng-click="addDonation()" >Add donation</button>
     </div>
-    <input type="button" value="Create donation" data-ng-click="addDonation()" >
     <div class="donations_list">
         <div data-ng-repeat="donation in donations" class="donation">
             <div class="donation_name">{{donation.name}}</div>

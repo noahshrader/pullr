@@ -360,7 +360,7 @@ class User extends ActiveRecord implements IdentityInterface {
          */
         public function getDonations($sinceId = null){
             $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId'])
-                    ->andWhere('paymentDate > 0')->addParams(['userId' => $this->id])->orderBy('paymentDate DESC');
+                    ->andWhere('paymentDate > 0')->addParams(['userId' => $this->id])->orderBy('paymentDate DESC, id DESC');
             if ($sinceId){
                 $query->andWhere('id > :sinceId')->addParams(['sinceId' => $sinceId]);
             }
