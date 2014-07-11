@@ -41,13 +41,10 @@ class PullrUserComponent extends \yii\web\User{
          return Yii::$app->getSession()->get($this->returnUrlParam);
     }
     
-    public function loginRequired($reason = null) {
-        if ($reason){
-            if (is_array($this->loginUrl)){
-                $this->loginUrl[0].='?reason='.urlencode($reason);
-            } else {
-                $this->loginUrl.='?reason='.urlencode($reason);
-            }
+    public function loginRequired() {
+        if (\Yii::getAlias($this->loginUrl) == ''){
+            /**that is workaround for bug fix (seems at yii) when website main page looks like http://pullr.io (haven't subdirectories)*/
+            $this->loginUrl = '/';
         }
         parent::loginRequired();
     }
