@@ -1,4 +1,5 @@
 *.map
+*.codekit
 donation.css
 frontend.css
 streamboard.css
