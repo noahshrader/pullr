@@ -12,8 +12,8 @@ class CommonAsset extends AssetBundle {
         'css/common.less'
     ];
     public $js = [
-        'js/pace.min.js',
-        'js/jquery.mCustomScrollbar.js',
+        'js/lib/pace.min.js',
+        'js/lib/jquery.mCustomScrollbar.js',
         'js/common.js',
     ];
     public $depends = [
