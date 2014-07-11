@@ -1,6 +1,8 @@
 $(function () {
     // Custom scrollbars
     $(".campaigns-list-wrap").mCustomScrollbar({
-        theme:"minimal"
+        theme:"minimal",
+        setTop: "60px",
+        scrollInertia: 0
     });
 });
