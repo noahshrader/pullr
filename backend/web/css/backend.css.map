@@ -1,1 +1,1 @@
-{"version":3,"file":"/usr/share/nginx/html/pullr/backend/web/css/backend.css","sources":["backend.less"],"names":[],"mappings":"AAAA,YAAa,aACT,eAAA,CACA,iBAGJ,2BAA4B,aACxB,cAAA,CACA,gBAGJ,2BAA4B,IACxB"}
+{"version":3,"file":"/var/www/pullr/backend/web/css/backend.css","sources":["backend.less"],"names":[],"mappings":"AAAA,YAAa,aACT,eAAA,CACA,iBAGJ,2BAA4B,aACxB,cAAA,CACA,gBAGJ,2BAA4B,IACxB,sBAEJ,YACI"}

@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use frontend\assets\DonationAsset;
+use common\assets\DonationAsset;
 /**
  * @var \yii\web\View $this
  * @var string $content

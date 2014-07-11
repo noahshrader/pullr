@@ -1,14 +1,14 @@
 <?php
-namespace frontend\assets;
+namespace common\assets;
 use yii\web\AssetBundle;
 
 class StreamboardAsset extends AssetBundle
 {
-	public $basePath = '@webroot';
+	public $sourcePath = '@common/web';
 	public $baseUrl = '@web';
 	public $css = [
             '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css',
-            'css/streamboard.less',
+            'css/frontend/streamboard.less',
 	];
         
 	public $js = [
