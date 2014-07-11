@@ -295,7 +295,7 @@ class CampaignController extends FrontendController {
             $campaign = $this->getCampaign();
             $donations = $campaign->donations;
         } else if (isset($_REQUEST['email'])) {
-            $donations = Donation::find()->where(['email' => $_REQUEST['email'], 'userId' => $user->id])->andWhere('paymentDate > 0')->all();
+            $donations = Donation::findByEmailAndUserId($_REQUEST['email'], $user->id)->all();
         } else {
             throw new NotFoundHttpException();
         }
@@ -316,7 +316,7 @@ class CampaignController extends FrontendController {
     /*viewing single donor*/
     public function actionDonor($email){
         $user = \Yii::$app->user->identity;
-        $donationsQuery = Donation::find()->where(['email' => $email, 'userId' => $user->id])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
+        $donationsQuery = Donation::findByEmailAndUserId($email, $user->id);
         $donations = $donationsQuery->all();
         if (sizeof($donations) == 0){
             throw new NotFoundHttpException('Donations for such email don\'t exist');

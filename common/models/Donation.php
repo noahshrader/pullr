@@ -78,5 +78,11 @@ class Donation extends ActiveRecord
             return $this->nameFromForm;
         }
     }
+    
+    public static function findByEmailAndUserId($email, $userId){
+        return Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId'])->
+                andWhere(['email' => $email])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC')
+                ->addParams(['userId' => $userId]);
+    }
 }
  
