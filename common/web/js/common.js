@@ -45,10 +45,6 @@ Pullr.setCurrentMenuActive = function(){
 
 (catchKeys());
 
-$(".campaigns-list-wrap").mCustomScrollbar({
-    theme:"minimal"
-});
-
 // Open streamer dashboard in separate window
 $('.streamboard').click(function(event) {
     event.preventDefault();
