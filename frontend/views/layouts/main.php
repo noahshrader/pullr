@@ -18,56 +18,48 @@ $this->registerJs($js);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <?= $this->render('baseHead') ?>
+    <!-- BEGIN body -->
     <body>
-
         <?php $this->beginBody() ?>
         
         <div class="main-wrapper">
-
-            <div class="top-menu">
+            <div class="top-menu"> <!-- BEGIN top bar -->
                 <ul class="quick-nav">
                     <li class="branding"><a class="logo icon-pullr"></a></li>
                     <li class="add-campaign"><?= Html::encode($this->title) ?>
                         <? if ($this->context->id == 'campaign'): ?>
-                            <a href="app/campaign/add"><i class="icon icon-add"></i></a>
+                            <a href="app/campaign/add" class="icon icon-add2"></a>
                         <? endif ?>
                     </li>
                 </ul>
                 <?= $this->render('@common/views/leftmenu/avatar'); ?>
-
                 <div class="clearfix"></div>
-
-            </div>
+            </div> <!-- END top bar -->
 
             <div class="site-content">
-
-                <div class="primary-navigation">
-
+                <div class="primary-navigation"> <!-- BEGIN main navigation -->
                     <nav class="sidebar-nav nav-top">
                         <ul> 
-                                <li><a class="dashboard icon-dashboard" title="Dashboard" href="app">Dashboard</a></li>
-                                <li>
-                                    <a class="campaign-link icon-campaigns" title="Campaigns" href="app/campaign"><span>Campaigns</span></a>
-                                </li>
-                                <li>
-                                    <a class="streamboard icon-streamboard" title="Streamboard" href="app/streamboard" target="_blank"><span>Streamboard</span></a>
-                                </li>
-                                <li>
-                                    <a class="icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
-                                </li>
+                            <li><a class="dashboard icon-dashboard" title="Dashboard" href="app">Dashboard</a></li>
+                            <li>
+                                <a class="campaign-link icon-campaigns" title="Campaigns" href="app/campaign"><span>Campaigns</span></a>
+                            </li>
+                             <li>
+                                <a class="streamboard icon-streamboard" title="Streamboard" href="app/streamboard" target="_blank"><span>Streamboard</span></a>
+                            </li>
+                            <li>
+                                <a class="icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
+                            </li>
                          </ul>
                     </nav>
-
-                </div><!-- /primary-navigation -->
+                </div> <!-- END main navigation -->
 
                 <?= $content ?>
 
                 <?php $this->endBody() ?>
 
-            </div><!--App Content-->
-
-        </div><!-- /main-wrapper -->
-
+            </div> <!--App Content-->
+        </div> <!-- /main-wrapper -->
     </body>
 </html>
 <?php $this->endPage() ?>
