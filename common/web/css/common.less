@@ -5,3 +5,165 @@
 body {
   font-size: 16px;
 }
+
+/* Buttons/Submits */
+/* ------------------------------------------------- */
+/* General */
+
+button,
+input[type="submit"] {
+	color: #FFF;
+	font-size: 1.2em;
+	font-weight: 600;
+	border: 0;
+	.border-radius;
+	background: @accent;
+	&:hover {
+		background: @accenthover;
+	}
+}
+/* Standard Action */
+a.btn,
+button.btn {
+	display: inline-block;
+	color: #FFF;
+	font-family: @mainfont;
+	font-size: @smalltext;
+	font-weight: 700;
+	text-align: center;
+	padding: .8em 1.2em;
+	background: @accent;
+	outline: 0;
+	border: 0;
+	.border-radius;
+	&:hover {
+		background: @accenthover;
+	}
+}
+
+/* General Form Styling */
+
+.form-control {
+	background-color: @gray5;
+	border-color: transparent;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+	background-color: @bgcolor;
+	border: 1px solid @dkgray;
+	border-color: transparent;	
+}
+
+/* Selection */
+::selection {
+  background: @accent;
+  color: #FFF;
+  text-shadow: none;
+}
+
+/* Table Styling */
+
+table {
+width: 100%;
+text-align: left;
+border-collapse: collapse;
+border-spacing: 0;
+}
+table th {
+color: @gray12;
+.smallcaps;
+}
+table td {
+color: @gray20;
+cursor: pointer;
+.trans;
+}
+table th, table td,
+table.dataTable tbody th, table.dataTable tbody td {
+padding: 1em .8em!important;
+}
+
+table tr.odd td {
+background: @gray5;
+}
+
+table tr:hover td {
+color: #FFF;
+}
+
+table.dataTable tbody tr {
+  background-color: transparent!important;
+  border-color: transparent!important;
+}
+
+table.dataTable.row-border tbody th, 
+table.dataTable.row-border tbody td, 
+table.dataTable.display tbody th, 
+table.dataTable.display tbody td,
+table.dataTable thead td,
+table.dataTable thead th   {
+  border-color: transparent!important;
+}
+
+table.dataTable thead th {
+  border-top: 1px solid @dkgray!important;
+}
+
+/* Expand/Collapse icon */
+table td a.icon-plus2 {
+display: block;
+text-align: center;
+margin: 0 auto;
+}
+
+td.details-control i.icon-add2:before {
+  color: @accent;
+}
+
+table.dataTable.no-footer {
+  border-bottom: 1px solid @dkgray!important;  
+}
+
+/* Search Field */
+
+.dataTables_filter input {
+.round-radius;
+background: @gray5;
+border-color: transparent;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+  padding: 0px!important;
+}
+
+.btn.btn-csv {
+  margin: 20px 0px;
+  padding: .53em 1.2em;
+}
+
+.dataTables_info {
+  margin-top: 15px;
+}
+
+.pagination>li>a, .pagination>li>span {
+  background: @gray20;
+  border-color: transparent;
+}
+
+.pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus {
+   background: @gray5;
+  border-color: transparent;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+  border-color: transparent;
+  background: @dkgray;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+ color: @gray20!important; 
+}
+
+.table-scrollable {
+    margin-top: 30px;
+}
