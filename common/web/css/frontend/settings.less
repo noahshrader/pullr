@@ -1,0 +1,69 @@
+.primary-navigation nav.nav-top ul li a.icon-settings.active {
+    background-color: @bgcolor;
+}
+
+.account-settings-wrap {
+    width: 100%;
+    padding-left: @primary-nav-width + 60px;
+    padding-top: 30px;  
+    padding-bottom: 60px;
+    height: 100%;
+    float: left;
+}
+
+.account-settings {
+    width: 60%;
+    float: left;
+    padding-bottom: 60px;
+}
+
+/* Pro Panel/Sidebar Styling */
+
+.pro-panel {
+    width: 30%;
+    position: fixed;
+    right: 0px;
+    top: @top-menu-height;
+    padding: 30px;
+    background: @gray8;
+    height: 100%;
+
+}
+
+.plan-show-Basic{
+    .plan-pro-advertisement{
+
+    }
+    .payment{
+        display: none;
+    }
+    .plan-pro{
+        display: none;
+    }
+}
+
+.plan-show-payment{
+    .plan-pro-advertisement{
+        display: none;
+    }
+
+    .payment{
+        select{
+            color: #000;
+        }
+    }
+    .plan-pro{
+        display: none;
+    }
+}
+
+.plan-show-Pro{
+    .plan-pro-advertisement{
+        display: none;
+    }
+    .payment{
+        display: none;
+    }
+    .plan-pro{
+    }
+}

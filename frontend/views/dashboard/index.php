@@ -9,6 +9,8 @@ $this->registerJsFile('@web/js/dashboard/index.js', common\assets\CommonAsset::c
 
 ?>
 
+<div class="dashboard-wrap">
+
 <? if ($systemNotification): ?>
 <div>
    <div class="alert alert-info alert-dismissible systemNotification">
@@ -36,5 +38,7 @@ $this->registerJsFile('@web/js/dashboard/index.js', common\assets\CommonAsset::c
     <div class="col-sm-6">
         
     </div>
+</div>
+
 </div>
 

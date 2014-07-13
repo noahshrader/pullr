@@ -82,35 +82,53 @@ input.form-control[disabled], input.form-control[readonly], fieldset[disabled] .
 	color: @gray30;
 }
 
-/* Table Styling */
+/* Search Field Styling */
+
+input[type='search'] {
+	.round-radius;
+	background: @gray5;
+	border-color: transparent;
+}
+
+/* Tables */
+/* ------------------------------------------------- */
+
+/* Basic Table Styles */
 
 table {
-width: 100%;
-text-align: left;
-border-collapse: collapse;
-border-spacing: 0;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
+
 table th {
-color: @gray12;
-.smallcaps;
+	color: @gray12;
+	.smallcaps;
 }
+
 table td {
-color: @gray20;
-cursor: pointer;
-.trans;
+	color: @gray20;
+	cursor: pointer;
+	.trans;
 }
-table th, table td,
-table.dataTable tbody th, table.dataTable tbody td {
-padding: 1em .8em!important;
+
+table th, 
+table td,
+table.dataTable tbody th, 
+table.dataTable tbody td {
+	padding: 1em .8em!important;
 }
 
 table tr.odd td {
-background: @gray5;
+	background: @gray5;
 }
 
 table tr:hover td {
-color: #FFF;
+	color: @white;
 }
+
+/* Data Table Overrides */
 
 table.dataTable tbody tr {
   background-color: transparent!important;
@@ -130,13 +148,6 @@ table.dataTable thead th {
   border-top: 1px solid @dkgray!important;
 }
 
-/* Expand/Collapse icon */
-table td a.icon-plus2 {
-display: block;
-text-align: center;
-margin: 0 auto;
-}
-
 td.details-control i.icon-add2:before {
   color: @accent;
 }
@@ -145,25 +156,43 @@ table.dataTable.no-footer {
   border-bottom: 1px solid @dkgray!important;  
 }
 
-/* Search Field */
-
-.dataTables_filter input {
-.round-radius;
-background: @gray5;
-border-color: transparent;
-}
-
-.dataTables_wrapper .dataTables_paginate {
-  padding: 0px!important;
-}
-
-.btn.btn-csv {
-  margin: 20px 0px;
-  padding: .53em 1.2em;
-}
-
 .dataTables_info {
   margin-top: 15px;
+}
+
+.dataTables_wrapper .dataTables_length, 
+.dataTables_wrapper .dataTables_filter, 
+.dataTables_wrapper .dataTables_info, 
+.dataTables_wrapper .dataTables_processing, 
+.dataTables_wrapper .dataTables_paginate {
+ color: @gray20!important; 
+}
+
+.table-scrollable {
+    margin-top: 30px;
+}
+
+/* Pagination */
+/* ------------------------------------------------- */
+
+.pagination>.disabled>span, 
+.pagination>.disabled>span:hover, 
+.pagination>.disabled>span:focus, 
+.pagination>.disabled>a, 
+.pagination>.disabled>a:hover, 
+.pagination>.disabled>a:focus {
+	background: @gray5;
+	border-color: transparent;
+}
+
+.pagination>.active>a, 
+.pagination>.active>span, 
+.pagination>.active>a:hover, 
+.pagination>.active>span:hover, 
+.pagination>.active>a:focus, 
+.pagination>.active>span:focus {
+  border-color: transparent;
+  background: @dkgray;
 }
 
 .pagination>li>a, .pagination>li>span {
@@ -171,20 +200,8 @@ border-color: transparent;
   border-color: transparent;
 }
 
-.pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus {
-   background: @gray5;
-  border-color: transparent;
-}
+/* Data Table Pagination Override */
 
-.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
-  border-color: transparent;
-  background: @dkgray;
-}
-
-.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
- color: @gray20!important; 
-}
-
-.table-scrollable {
-    margin-top: 30px;
+.dataTables_wrapper .dataTables_paginate {
+  padding: 0px!important;
 }
