@@ -10,7 +10,6 @@ $this->title = 'Campaigns';
 
 <div class="admin-content-wrap">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php $form = ActiveForm::begin(); ?>
     <label>
         Status:

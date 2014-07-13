@@ -42,6 +42,11 @@ CommonAsset::register($this);
             <div class="top-menu"> <!-- BEGIN top bar -->
                 <ul class="quick-nav">
                     <li class="branding"><a class="logo icon-pullr"></a></li>
+                    <li class="add-campaign"><?= Html::encode($this->title) ?>
+                        <? if ($this->context->id == 'charity'): ?>
+                            <a href="charity/add" class="icon icon-add2"></a>
+                        <? endif ?>
+                    </li>
                 </ul>
                 <? if (Application::IsAdmin()): ?>
                     <? if (!Yii::$app->user->isGuest): ?>

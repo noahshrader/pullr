@@ -9,8 +9,6 @@ $this->title = 'Users';
 
 <div class="admin-content-wrap">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <table id="users-management-table"  class="table table-striped table-bordered table-hover dataTable">
         <thead>
             <tr>

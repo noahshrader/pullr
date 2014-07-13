@@ -10,7 +10,6 @@ $this->title = 'Charities';
 
 <div class="admin-content-wrap">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <a href="charity/add" class="btn btn-primary"><i class="icon icon-add2"></i> Add new</a>
     <br />
     <br />
