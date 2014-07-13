@@ -3,62 +3,83 @@
 @import "type.less";
 
 body {
-  font-size: 16px;
+  font-size: 14px;
 }
 
-/* Buttons/Submits */
+/* Global Styles */
 /* ------------------------------------------------- */
-/* General */
 
-button,
-input[type="submit"] {
-	color: #FFF;
-	font-size: 1.2em;
-	font-weight: 600;
-	border: 0;
-	.border-radius;
-	background: @accent;
-	&:hover {
-		background: @accenthover;
-	}
-}
-/* Standard Action */
-a.btn,
-button.btn {
-	display: inline-block;
-	color: #FFF;
-	font-family: @mainfont;
-	font-size: @smalltext;
-	font-weight: 700;
-	text-align: center;
-	padding: .8em 1.2em;
-	background: @accent;
-	outline: 0;
-	border: 0;
-	.border-radius;
-	&:hover {
-		background: @accenthover;
-	}
-}
-
-/* General Form Styling */
-
-.form-control {
-	background-color: @gray5;
-	border-color: transparent;
-}
-
-.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-	background-color: @bgcolor;
-	border: 1px solid @dkgray;
-	border-color: transparent;	
-}
-
-/* Selection */
 ::selection {
   background: @accent;
   color: #FFF;
   text-shadow: none;
+}
+
+/* Buttons */
+/* ------------------------------------------------- */
+
+/* Bootstrap Overrides - Standard Button Styles */
+
+.btn {
+	font-family: @mainfont;
+	font-size: @smalltext;
+	font-weight: 700;
+	padding: .8em 1.2em;
+	outline: 0;
+	border: 0;
+	.border-radius();
+	.slowtrans();
+
+	&:hover {
+		outline: 0;
+		border: 0;
+	}
+}
+
+.btn-default {
+	background-color: @accent;
+	color: @white;
+
+	&:hover {
+		background-color: @accenthover;
+	}
+}
+
+.btn-primary {
+	background-color: @accent;
+	color: @white;
+
+	&:hover {
+		background-color: @accenthover;
+	}
+}
+
+/* Bootstrap Overrides - Button Link Styles */
+
+.btn-link {
+	color: @white;
+	text-decoration: underline;
+}
+
+
+/* Forms */
+/* ------------------------------------------------- */
+
+/* Bootstrap Overrides - Input Fields */
+
+
+input.form-control {
+	background-color: @inputbg;
+	color: @gray60;
+	border: 0;
+	outline: 0;
+}
+
+/* Bootstrap Overrides - Disabled, Read Only Fields */
+
+input.form-control[disabled], input.form-control[readonly], fieldset[disabled] .form-control {
+	background-color: @inputbg;
+	color: @gray30;
 }
 
 /* Table Styling */

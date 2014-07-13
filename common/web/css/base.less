@@ -17,10 +17,12 @@ html, body {
   background: @bgcolor;
   overflow-x: hidden;
 }
+html, body, p, div {
+   color: @gray20;
+}
 body {
   font-family: @mainfont;
   font-size: 100%;
-  color: #444;
   .fade-in;
 }
 
@@ -56,14 +58,7 @@ a:link,
 a:visited,
 a:active,
 a img {
-  -webkit-transition-duration: 0.33s;
-  -webkit-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-  -moz-transition-duration: 0.33s;
-  -moz-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-  -o-transition-duration: 0.33s;
-  -o-transition-property: color, background, text-shadow, border, opacity, text-decoration;
-  transition-duration: 0.33s;
-  transition-property: color, background, text-shadow, border, opacity, text-decoration;
+.slowtrans();
   text-decoration: none;
 }
 
