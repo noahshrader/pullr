@@ -6,7 +6,7 @@ use yii\helpers\Html;
  */
 $this->title = 'Reports';
 ?>
-<div>
+<div class="admin-content-wrap">
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="row report">
         <fieldset class="col-md-6">

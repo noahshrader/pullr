@@ -38,37 +38,52 @@ CommonAsset::register($this);
         ?>
         <?php $this->beginBody() ?>
         <div class="main-wrapper">
-        
-            <div class="page-sidebar">
+
+            <div class="top-menu"> <!-- BEGIN top bar -->
+                <ul class="quick-nav">
+                    <li class="branding"><a class="logo icon-pullr"></a></li>
+                </ul>
                 <? if (Application::IsAdmin()): ?>
                     <? if (!Yii::$app->user->isGuest): ?>
-                         <?= $this->render('@common/views/leftmenu/avatar'); ?>
+                        <?= $this->render('@common/views/leftmenu/avatar'); ?>
                     <? endif; ?>
-                    <ul> 
-
-                            <li>
-                                <a href=".">Reports</a>
-                            </li>
-                            <li>
-                                <a href="user">Users</a>
-                            </li>
-                            <li>
-                                <a href="campaign">Campaigns</a>
-                            </li>
-                            <li>
-                                <a href="charity">Charities</a>
-                            </li>
-                            <li>
-                                <a href="theme">Themes</a>
-                            </li>
-                    </ul>
                 <? endif; ?>
-            </div>
+                <div class="clearfix"></div>
+            </div> <!-- END top bar -->
 
-            <?= $content ?>
 
-<?php $this->endBody() ?>
-    </div>
+            <div class="site-content">
+                <div class="primary-navigation"> <!-- BEGIN main navigation -->
+                    <nav class="sidebar-nav nav-top">       
+                        <? if (Application::IsAdmin()): ?>
+                            <ul> 
+
+                                    <li>
+                                        <a href=".">Reports</a>
+                                    </li>
+                                    <li>
+                                        <a href="user">Users</a>
+                                    </li>
+                                    <li>
+                                        <a href="campaign">Campaigns</a>
+                                    </li>
+                                    <li>
+                                        <a href="charity">Charities</a>
+                                    </li>
+                                    <li>
+                                        <a href="theme">Themes</a>
+                                    </li>
+                            </ul>
+                        <? endif; ?>
+                    </nav>
+                </div><!-- END of main navigation -->
+
+                <?= $content ?>
+
+                <?php $this->endBody() ?>
+
+            </div><!-- END of site-content -->
+        </div><!-- END of main-wrapper -->
     </body>
 </html>
 <?php $this->endPage() ?>
