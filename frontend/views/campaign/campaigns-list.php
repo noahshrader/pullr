@@ -16,7 +16,7 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  CommonAsset::clas
             <a data-bind="attr: { href: href}, css: { active: isActive == true }" class='row campaign-item' >
                 <div class="main-info">
                     <h3 data-bind="text: name"></h3>
-                    //<h4 data-bind="text: type" class="layout-type"></h4>
+                    <!--<h4 data-bind="text: type" class="layout-type"></h4>-->
                     <p data-bind="text: amountRaised"></p>
                 </div>
             </a>
