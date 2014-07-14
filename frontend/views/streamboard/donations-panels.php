@@ -1,4 +1,4 @@
-<ul class="bottom-panel-nav two-tabs cf">
+<ul class="bottom-panel-nav two-tabs">
         <li><a data-panel="campaigns_list">Campaigns</a></li>
         <li><a data-panel="stats">Stats</a></li>
 </ul>
