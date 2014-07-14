@@ -40,7 +40,7 @@ $campaign = \Yii::$app->controller->campaign;
        <!-- ENG Progress Bar -->
        
        <?php $this->beginBody() ?>
-                       <?= $content ?>
+            <?= $content ?>
        <?php $this->endBody() ?>
        
        <!-- Footer -->

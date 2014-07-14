@@ -72,7 +72,7 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
                 </li>
                 <? endif ?>
 
-                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                 <li>
                     <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                         <i class="icon icon-recover"></i>
