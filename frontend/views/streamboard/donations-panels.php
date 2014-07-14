@@ -5,9 +5,9 @@
 <div class="campaigns_list_panel slidepanel">
     <div class="campaigns_list">
         <h3>Campaigns</h3>
-        <div data-ng-repeat="campaign in campaigns">
+        <div ng-repeat="campaign in campaigns">
             <label>
-                <input type="checkbox" data-ng-model="campaign.streamboardSelected">
+                <input type="checkbox" ng-model="campaign.streamboardSelected" ng-change="campaignChanged(campaign)">
                 {{campaign.name}}
             </label>
             <br>

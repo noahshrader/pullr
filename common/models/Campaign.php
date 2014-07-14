@@ -8,8 +8,10 @@ use common\models\Theme;
 use yii\helpers\HtmlPurifier;
 use common\models\Donation;
 use common\models\base\BaseImage;
+use frontend\models\streamboard\StreamboardCampaign;
 
 /**
+ * @property StreamboardCampaign $streamboard
  * to consider account on other the base you also should check expire field to be more than current time
  */
 class Campaign extends ActiveRecord {
@@ -95,9 +97,14 @@ class Campaign extends ActiveRecord {
     
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
-        if ($insert && !$this->parentCampaignId){
-            $this->parentCampaignId = $this->id;
-            $this->save();
+        if ($insert){
+            if (!$this->parentCampaignId){
+                $this->parentCampaignId = $this->id;
+                $this->save();
+            }
+            $streamboardCampaign = new StreamboardCampaign();
+            $streamboardCampaign->userId = $this->userId;
+            $this->link('streamboard', $streamboardCampaign);
         }
     }
     
@@ -314,5 +321,13 @@ class Campaign extends ActiveRecord {
         
         $campaign->amountRaised = $sum;
         $campaign->save();
+    }
+
+    /**
+     * If campaing is parent it can be at streamboard for a few users. So
+     */
+    public function getStreamboard(){
+        $userId = $this->userId;
+        return $this->hasOne(StreamboardCampaign::className(), ['campaignId' => 'id'])->where(['userId' =>  $userId ]);
     }
 }

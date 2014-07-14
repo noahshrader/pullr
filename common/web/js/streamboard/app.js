@@ -46,11 +46,7 @@
             $http.get('app/streamboard/get_donations_ajax', {params: {since_id: $scope.lastDonationId}}).success(function(data){
                 $scope.stats = data.stats;
                 if ($.isEmptyObject($scope.campaigns)){
-                    for (var key in data.campaigns){
-                        var campaign = data.campaigns[key];
-                        campaign.streamboardSelected = true;
-                        $scope.campaigns[campaign.id] = campaign; 
-                    }
+                    $scope.campaigns = data.campaigns;
                 }
                 for (var key in data.donations){
                     var donation = data.donations[key];
@@ -63,6 +59,9 @@
                 
             });
         };
+        $scope.campaignChanged = function(campaign){
+            $http.post('app/streamboard/set_campaign_selection', {id: campaign.id, streamboardSelected: campaign.streamboardSelected});
+        }
         $scope.updateDonations();
         
         setInterval(function() {

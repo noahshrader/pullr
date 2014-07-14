@@ -6,6 +6,8 @@ use Yii;
 use common\models\User;
 use common\models\Donation;
 use common\models\Campaign;
+use frontend\models\streamboard\StreamboardCampaign;
+use yii\web\ForbiddenHttpException;
 
 class StreamboardController extends FrontendController{
     public function actionIndex() {
@@ -42,26 +44,31 @@ class StreamboardController extends FrontendController{
 
     public function actionGet_donations_ajax($since_id = null) {
         $user = \Yii::$app->user->identity;
-        /*@var $user User */
+        /**@var $user User */
         /*we are limiting by 100 here, but on html after appling campaing's filter we will limit to just 10*/
         $donations = $user->getDonations($since_id)->limit(100)->all();
-        
+
         $donationsArray = [];
         foreach ($donations as $donation){
             /*@var $donation Donation*/
             $array = $donation->toArray(['id', 'campaignId', 'amount', 'nameFromForm', 'paymentDate', 'comments']);
             $array['campaignName'] = $donation->campaign->name;
-            
+
             $donationsArray[] = $array;
         }
-        
-        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
+
+        /**
+         * do not inlcude parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
+         */
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->all();
         $campaignsArray = [];
         foreach ($campaigns as $campaign){
             /*@var $campaign Campaign*/
-            $campaignsArray[] = $campaign->toArray(['id', 'name']);
+            $array = $campaign->toArray(['id', 'name']);
+            $array['streamboardSelected'] = $campaign->streamboard->selected ? true: false;
+            $campaignsArray[$campaign->id] = $array;
         }
-        
+
         $stats = [
             'number_of_donations' => 0,
             'total_amount' => 0,
@@ -78,5 +85,23 @@ class StreamboardController extends FrontendController{
         
         echo json_encode($data);
         die;
+    }
+
+    public function actionSet_campaign_selection(){
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $id = $data['id'];
+        $streamboardSelected = $data['streamboardSelected'];
+        $user = \Yii::$app->user->identity;
+        /**@var $user User */
+
+        $campaign = Campaign::findOne($id);
+
+        if (!$campaign || $campaign->userId != $user->id){
+            throw new ForbiddenHttpException();
+        }
+
+        $campaign->streamboard->selected = $streamboardSelected;
+        $campaign->streamboard->save();
     }
 }

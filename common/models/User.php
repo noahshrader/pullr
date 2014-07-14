@@ -11,6 +11,7 @@ use common\models\Plan;
 use common\models\Campaign;
 use common\models\user\UserFields;
 use common\models\Donation;
+use yii\db\ActiveQuery;
 
 /**
  * Class User
@@ -18,6 +19,7 @@ use common\models\Donation;
  *
  * @property integer $id
  * @property string $name
+ * @property string $name2
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
