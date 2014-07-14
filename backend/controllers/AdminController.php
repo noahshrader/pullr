@@ -43,11 +43,6 @@ class AdminController extends BackendController
 		];
 	}
 
-	public function actionIndex()
-	{
-		return $this->render('index');
-	}
-
 	public function actionLogin()
 	{
 		if (!\Yii::$app->user->isGuest) {
