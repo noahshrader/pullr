@@ -1,9 +1,10 @@
 <?
-use common\assets\DataTableAsset;
+use common\assets\CommonAsset;
+use common\models\Campaign;
 
-$campaigns = $user->campaigns;
+$campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
 $totalAmountRaised = $user->getCampaigns()->sum('amountRaised');
-$this->registerJSFile('@web/js/user/info.js', DataTableAsset::className());
+$this->registerJSFile('@web/js/user/info.js', CommonAsset::className());
 
 ?>
 <fieldset>
@@ -21,6 +22,7 @@ $this->registerJSFile('@web/js/user/info.js', DataTableAsset::className());
     <legend>Social networks</legend>
     <? $openId = \common\models\OpenIDToUser::findOne(['userId' => $user->id]) ?>
     <? if ($openId): ?>
+        <?php /**@var $openId \common\models\OpenIDToUser*/ ?>
         <div><span class="userinfo-label"><?= $openId->serviceName ?>:</span> <span class="userinfo-value"> <?= $openId->url ?> </span></div>
     <? else:  ?>
         <div>none</div>
