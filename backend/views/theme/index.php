@@ -10,7 +10,6 @@ $this->title = 'Themes';
 
 <div class="admin-content-wrap">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php $form = ActiveForm::begin(); ?>
     <label>
         Status:
@@ -22,7 +21,7 @@ $this->title = 'Themes';
     </label>
     <a href="theme/rescan" class="btn btn-primary">Rescan Themes</a>
 
-    <table id="themes-management-table"  class="table table-striped table-bordered table-hover dataTable">
+    <table id="themes-management-table"  class="table dataTable">
         <thead>
             <tr>
                 <th>

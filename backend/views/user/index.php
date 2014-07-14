@@ -9,7 +9,7 @@ $this->title = 'Users';
 
 <div class="admin-content-wrap">
 
-    <table id="users-management-table"  class="table table-striped table-bordered table-hover dataTable">
+    <table id="users-management-table"  class="table dataTable">
         <thead>
             <tr>
                 <th>

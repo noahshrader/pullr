@@ -22,7 +22,7 @@ $this->title = 'Charities';
             <?php endforeach; ?>
         </select>
     </label>
-    <table id="charities-management-table"  class="table table-striped table-bordered table-hover dataTable">
+    <table id="charities-management-table"  class="table dataTable">
         <thead>
             <tr>
                 <th>

@@ -64,19 +64,19 @@ CommonAsset::register($this);
                             <ul> 
 
                                     <li>
-                                        <a href=".">Reports</a>
+                                        <a class="reports icon-bargraph" href=".">Reports</a>
                                     </li>
                                     <li>
-                                        <a href="user">Users</a>
+                                        <a class="users icon-usergroup" href="user">Users</a>
                                     </li>
                                     <li>
-                                        <a href="campaign">Campaigns</a>
+                                        <a class="campaigns icon-campaigns" href="campaign">Campaigns</a>
                                     </li>
                                     <li>
-                                        <a href="charity">Charities</a>
+                                        <a class="charities icon-heart" href="charity">Charities</a>
                                     </li>
                                     <li>
-                                        <a href="theme">Themes</a>
+                                        <a class="themes icon-template" href="theme">Themes</a>
                                     </li>
                             </ul>
                         <? endif; ?>

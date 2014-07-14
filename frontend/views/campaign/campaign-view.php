@@ -122,29 +122,29 @@ $topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : 
         <? endif ?>
 
 
-        <section class="donation-overview">
+        <section class="stats-overview">
 
 
-                    <div class='col-xs-3 d-figure raised-total'>
+                    <div class='stats-box col-xs-3 raised-total'>
                         <span>$<?= number_format($campaign->amountRaised) ?></span>Raised
                     </div>
-                    <div class='col-xs-3 d-figure'>
+                    <div class='stats-box col-xs-3 '>
                         <span>$<?= number_format($campaign->goalAmount) ?></span>Goal
                     </div>
-                    <div class='col-xs-3 d-figure'>
+                    <div class='stats-box col-xs-3 '>
                         <span><?= sizeof($donations) ?></span>Donations
                     </div>
-                    <div class='col-xs-3 d-figure'>
+                    <div class='stats-box col-xs-3 '>
                         <span><?= $uniqueDonations ?></span>Unique
                     </div>
                 
                     <div class="clearfix"></div>
 
-                    <div class='col-xs-6 top-donor'>
+                    <div class='stats-box col-xs-6 top-donor'>
                         <h4><?= $topDonorName ?></h4>
                         <h5>Top Donor</h5>
                     </div>
-                    <div class='col-xs-6 top-donor'>
+                    <div class='stats-box col-xs-6 top-donor'>
                         <h4><?= $topDonationName ?></h4>
                         <h5>Top Donation</h5>
                     </div>

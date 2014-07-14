@@ -7,49 +7,63 @@ use yii\helpers\Html;
 $this->title = 'Reports';
 ?>
 <div class="admin-content-wrap">
-    <h1><?= Html::encode($this->title) ?></h1>
+
     <div class="row report">
-        <fieldset class="col-md-6">
-                <legend>Active Users</legend>
-                <div class="text-center">
-                    <div class='report-label'>Total Registered Users</div>
-                    <div class='report-value'><?= $totalUsers ?></div>
+        
+        <div class="col-md-6">
+
+            <h2>Active Users</h2>
+
+                <div class="text-center row stats-overview">
+                    <div class="stats-box">
+                        <span class='report-value'><?= $totalUsers ?></span>
+                        <div class='report-label'>Total Registered Users</div>
+                    </div>
                 </div>
-                <div class="text-center row">
-                    <div class="col-xs-6">
+
+                <div class="text-center row stats-overview">
+                    <div class="col-xs-6 stats-box">
+                        <span class='report-value'><?= $basicPlanUsers ?></span>
                         <div class='report-label'>Basic Plans Users</div>
-                        <div class='report-value'><?= $basicPlanUsers ?></div>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6 stats-box">
+                        <span class='report-value'><?= $proPlanUsers ?></span>
                         <div class='report-label'>Pro Plans Users</div>
-                        <div class='report-value'><?= $proPlanUsers ?></div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <div class='report-label'>Total Revenue From Pro Subscriptions</div>
-                    <div class='report-value'>$<?= number_format($totalRevenue, 0)?></div>
+
+                <div class="text-center row stats-overview">
+                    <div class="stats-box">
+                        <span class='report-value'>$<?= number_format($totalRevenue, 0)?></span>
+                        <div class='report-label'>Total Revenue From Pro Subscriptions</div>
+                    </div>
                 </div>
-                <div class="text-center row">
-                    <div class="col-xs-6">
+
+                <div class="text-center row stats-overview">
+                    <div class="col-xs-6 stats-box">
+                        <span class='report-value'><?= $proPlanUsersMonthlyBased ?></span>
                         <div class='report-label'># of Monthly-Based Subscriptions</div>
-                        <div class='report-value'><?= $proPlanUsersMonthlyBased ?></div>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6 stats-box">
+                        <span class='report-value'><?= $proPlanUsersYearlyBased ?></span>
                         <div class='report-label'># of Yearly-Based Subscriptions</div>
-                        <div class='report-value'><?= $proPlanUsersYearlyBased ?></div>
                     </div>
                 </div>
-                <div class="text-center row">
-                    <div class="col-xs-6">
+
+                <div class="text-center row stats-overview">
+                    <div class="col-xs-6 stats-box">
+                        <span class='report-value'><?= $averageMonths ?> Months</span>
                         <div class='report-label'>Average Length of Pro Subscription</div>
-                        <div class='report-value'><?= $averageMonths ?> months</div>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6 stats-box">
+                        <span class='report-value'><?= $retentionRate ?>%</span>
                         <div class='report-label'>Retention Rate</div>
-                        <div class='report-value'><?= $retentionRate ?>%</div>
                     </div>
                 </div>
-        </fieldset>
+
+        </div>
+
+
         <fieldset class="col-md-6">
                 <legend>Active Donations/Campaigns</legend>
                 <div class="text-center">
