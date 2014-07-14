@@ -4,6 +4,9 @@ namespace common\assets;
 
 use yii\web\AssetBundle;
 
+/**
+ * That is for login page. 
+ */
 class AuthAsset extends AssetBundle {
 
     public $sourcePath = '@common/web';

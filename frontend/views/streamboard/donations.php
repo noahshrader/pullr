@@ -1,6 +1,10 @@
+<?php
+    use yii\web\View;
+    /**@var $this View*/
+?>
 <!-- Accordion slide one (Donations) -->
 <div id="donations" class="tab-pane active" data-ng-controller="DonationsController">
-    <div class="text-center">
+    <div id="donations-header" class="text-center">
         <button class="btn btn-primary" data-ng-click="clearDonations()">Clear list</button>
         <button class="btn btn-primary" data-ng-click="addDonation()" >Add donation</button>
     </div>
@@ -12,5 +16,7 @@
             <div class="donation_date">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</div>
         </div>
     </div>
-    <?= $this->render('donations-panels') ?>
+    <div id="donations-footer">
+        <?= $this->render('donations-panels') ?>
+    </div>
 </div>

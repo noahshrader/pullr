@@ -1,50 +1,30 @@
+body {
+  color: white;
+}
 
 /* Right Sidebar */
-.sidepanel {
-  position: fixed;
-  top: 0;
-  right: -50%;
-  padding-top: 120px;
-  width: 50%;
-  height: 100%;
-  max-height: 100%;
-  z-index: 900;
-  -webkit-transition: all ease-in-out 0.2s;
-  transition: all ease-in-out 0.2s;
-}
-.sidepanel .field {
-  width: 100%;
-}
-/* Main Add/Edit Panel */
 #sidepanel {
   background: #2e3032;
-}
-#sidepanel.open {
-  right: 0;
-}
-#sidepanel.open.expand {
-  right: 50%;
-}
-#sidepanel .sidepanel-head {
   position: fixed;
   top: 0;
-  right: -50%;
-  width: 50%;
-  background: #3a3c40;
+  bottom: 0;
+  padding-top: 50px;
   z-index: 900;
-  -webkit-transition: all ease-in-out 0.2s;
-  transition: all ease-in-out 0.2s;
+  .sidepanel-head {
+    margin-top: -50px;
+    height: 50px;
+  }
+  .tab-content {
+    padding-top: 10px;
+    height: 100%;
+  }
 }
-#sidepanel.open .sidepanel-head {
-  right: 0;
-}
-#sidepanel.open.expand .sidepanel-head {
-  width: 100%;
-}
+
 #sidepanel.open .sidepanel-head.scroll {
   -webkit-box-shadow: 0 0 10px rgba(34, 35, 37, 0.5);
   box-shadow: 0 0 10px rgba(34, 35, 37, 0.5);
 }
+
 #sidepanel h4.section-header {
   color: #FFF;
   font-size: 1em;
@@ -57,6 +37,7 @@
   -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
+
 /* Extra Content Side Panel */
 #sidepaneltwo {
   top: 69px;
@@ -64,12 +45,15 @@
   background: #222325;
   z-index: 1000;
 }
+
 #sidepaneltwo.expand {
   right: 0;
 }
+
 #sidepaneltwo.hide {
   right: -50%;
 }
+
 /* Sidepanel Tab Menu */
 .sidepanel ul.nav-tabs {
   height: 50px;
@@ -78,29 +62,35 @@
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
+
 .sidepanel.expand ul.nav-tabs {
   width: 50%;
 }
+
 .sidepanel ul.nav-tabs li {
   position: relative;
   float: left;
   text-align: center;
 }
+
 .sidepanel ul.two-tabs li {
   width: 50%;
   width: -webkit-calc(50%);
   width: calc(50%);
 }
+
 .sidepanel ul.three-tabs li {
   width: 33.33%;
   width: -webkit-calc(33.33333333%);
   width: calc(33.33333333%);
 }
+
 .sidepanel ul.four-tabs li {
   width: 25%;
   width: -webkit-calc(25%);
   width: calc(25%);
 }
+
 .sidepanel ul.nav-tabs li a {
   display: inline-block;
   color: #d4d5d8;
@@ -110,14 +100,17 @@
   width: 100%;
   background: #3a3c40;
 }
+
 .sidepanel ul.nav-tabs li a:hover {
   background: #3f4145;
 }
+
 .sidepanel ul.nav-tabs li a:before {
   display: block;
   color: #FFF;
   line-height: 1;
 }
+
 .sidepanel ul.nav-tabs li.active a {
   background: #3f4145;
 }
@@ -127,20 +120,24 @@
 a.dashboard.show:before {
   color: #FFF !important;
 }
+
 .statsboard {
   height: 0;
   overflow: hidden;
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
+
 .statsboard .container {
   padding: 100px 2em 30px;
 }
+
 .statsboard.show {
   background: #1d1e20;
   height: 400px;
   width: 100%;
 }
+
 .statsboard .widget {
   text-align: center;
   float: left;
@@ -149,6 +146,7 @@ a.dashboard.show:before {
   width: -webkit-calc(33.33333333%);
   width: calc(33.33333333%);
 }
+
 .statsboard .widget span.icon {
   display: inline-block;
   color: #2e3032;
@@ -156,12 +154,14 @@ a.dashboard.show:before {
   padding: 0 5%;
   background: #1d1e20;
 }
+
 .statsboard .widget hr {
   margin: -0.6em 0 1.6em;
   height: 1px;
   background: #222325;
   border: 0;
 }
+
 /* Side Panel */
 /* ------------------------------------------------- */
 .sidepanel {
@@ -175,6 +175,7 @@ a.dashboard.show:before {
   right: 0;
   width: 100%;
 }
+
 /* Slidepanel */
 /* ------------------------------------------------- */
 .slidepanel {
@@ -188,9 +189,11 @@ a.dashboard.show:before {
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
+
 .slidepanel.selected {
   bottom: 0;
 }
+
 .slidepanel a.close {
   display: block;
   float: right;
@@ -198,13 +201,14 @@ a.dashboard.show:before {
   padding: 1em;
   margin-bottom: 2em;
 }
+
 .slidepanel a.close:before {
   color: #FFF;
 }
 
 .sidepanel ul.nav-tabs {
 
-margin-top: 0px;
+  margin-top: 0px;
 }
 
 .campaigns_list_panel input[type=checkbox] {
@@ -216,25 +220,40 @@ margin-top: 0px;
   margin: 20px;
 }
 
-body {
-  color: white;
-}
 
 .donation {
   border-bottom: 1px solid white;
-  .donation_name{
-      margin-bottom: 0px;
-      font-weight: bold;
-  } 
-  .donation_amount{
-      font-weight: bold;
+  .donation_name {
+    margin-bottom: 0px;
+    font-weight: bold;
   }
-  .donation_comments{
-      margin-top: 10px;
-      margin-bottom: 10px;
+  .donation_amount {
+    font-weight: bold;
   }
-  .donation_date{
-      font-size: 0.8em;
-      color: #aaa;
+  .donation_comments {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
+  .donation_date {
+    font-size: 0.8em;
+    color: #aaa;
+  }
+}
+#donations{
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  padding: 50px 0px;
+}
+#donations-header{
+  height: 50px;
+  margin-top: -50px;
+}
+#donations-footer{
+  height: 50px;
+  margin-bottom: -50px;
+}
+.donations_list{
+  height: 100%;
+  overflow-y: scroll;
 }
