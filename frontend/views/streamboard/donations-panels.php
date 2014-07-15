@@ -1,3 +1,6 @@
+<?php
+    use common\models\Donation;
+?>
 <ul class="bottom-panel-nav two-tabs">
         <li><a data-panel="campaigns_list"><i class="icon icon-campaigns"></i></a></li>
         <li><a data-panel="stats"><i class="icon icon-bargraph"></i></a></li>
@@ -19,8 +22,8 @@
     <h3>Stats</h3>
     <label>Your Top 3 Donors</label>
     <ul class="top_donors">
-        <li data-ng-repeat="donorName in stats.top_donors">
-            {{donorName}}
+        <li data-ng-repeat="donor in stats.top_donors">
+            {{donor.name ? donor.name : '<?= Donation::ANONYMOUS_NAME ?>'}}
         </li>
     </ul>
         <label>Total Donation Amount</label>
@@ -30,7 +33,7 @@
     <div ng-hide="stats.top_donation == null">
         <label>Top Donation Amount</label>
         <span class="top_donation" >
-            ${{stats.top_donation.amount}} ({{stats.top_donation.nameFromForm}})
+            ${{stats.top_donation.amount}} ({{stats.top_donation.nameFromForm ? stats.top_donation.nameFromForm : '<?= Donation::ANONYMOUS_NAME ?>'}})
         </span>
     </div>
 

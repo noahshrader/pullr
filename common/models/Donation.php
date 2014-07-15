@@ -17,7 +17,7 @@ use yii\db\Query;
  */
 class Donation extends ActiveRecord
 {
-
+    const ANONYMOUS_NAME = 'Anonymous';
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -81,7 +81,7 @@ class Donation extends ActiveRecord
         if ($this->firstName || $this->lastName){
             return $this->lastName.' '.$this->firstName;
         } else {
-            return $this->nameFromForm;
+            return $this->nameFromForm ? $this->nameFromForm : 'Anonymous';
         }
     }
     

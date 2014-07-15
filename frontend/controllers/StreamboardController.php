@@ -37,8 +37,8 @@ class StreamboardController extends FrontendController{
         $donation->userId = \Yii::$app->user->id;;
         $donation->campaignId = $campaignId;
         $donation->amount =  rand(100, 10000);
-        $donation->nameFromForm = 'rand_user_'.intval(rand(1,3));
         $donation->comments = 'test comments here'.rand(1,50);
+        $donation->email = 'email'.rand(1,100).'@gmail.com';
         $donation->paymentDate = time();
         $donation->save();
 

@@ -302,7 +302,7 @@ class CampaignController extends FrontendController {
         
         $rows = [];
         foreach ($donations as $donation){
-            $rows[] = implode(',', [$donation->amount, $donation->name, $donation->email, $donation->comments, date('M j Y H:i:s', $donation->paymentDate)]);
+            $rows[] = implode(',', [$donation->amount, $donation->name ? $donation->name : Donation::ANONYMOUS_NAME, $donation->email, $donation->comments, date('M j Y H:i:s', $donation->paymentDate)]);
         }
         // set the content type
         Header('Content-type: text/plain');
@@ -334,7 +334,7 @@ class CampaignController extends FrontendController {
         } else if ($firstName){
             $name = $firstName;
         } else {
-            $name = $donor['nameFromForm'];
+            $name = $donations[0]['nameFromForm'] ? $donations[0]['nameFromForm'] : Donation::ANONYMOUS_NAME;
         }
         
         $viewDonorParams['name'] = $name;
@@ -364,7 +364,7 @@ class CampaignController extends FrontendController {
             } else if ($firstName){
                 $donor['name'] = $firstName;
             } else {
-                $donor['name'] = $donor['nameFromForm'];
+                $donor['name'] = $donor['nameFromForm'] ? $donor['nameFromForm'] : Donation::ANONYMOUS_NAME;
             }
             
             $donor['sum'] = '$'.number_format($donor['sum']);
