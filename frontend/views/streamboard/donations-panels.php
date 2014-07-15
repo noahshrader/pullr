@@ -19,8 +19,8 @@
     <h3>Stats</h3>
     <label>Your Top 3 Donors</label>
     <ul class="top_donors">
-        <li data-ng-repeat="donor in stats.top_donors">
-            {{donor.name}}
+        <li data-ng-repeat="donorName in stats.top_donors">
+            {{donorName}}
         </li>
     </ul>
 

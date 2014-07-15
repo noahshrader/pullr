@@ -6,7 +6,7 @@ use Yii;
 use common\models\User;
 use common\models\Donation;
 use common\models\Campaign;
-use frontend\models\streamboard\StreamboardCampaign;
+use frontend\models\streamboard\Streamboard;
 use yii\web\ForbiddenHttpException;
 
 class StreamboardController extends FrontendController{
@@ -50,7 +50,7 @@ class StreamboardController extends FrontendController{
 
         $donationsArray = [];
         foreach ($donations as $donation){
-            /*@var $donation Donation*/
+            /**@var $donation Donation*/
             $array = $donation->toArray(['id', 'campaignId', 'amount', 'nameFromForm', 'paymentDate', 'comments']);
             $array['campaignName'] = $donation->campaign->name;
 
@@ -62,21 +62,20 @@ class StreamboardController extends FrontendController{
          */
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->all();
         $campaignsArray = [];
+        $selectedCampaigns = [];
+
         foreach ($campaigns as $campaign){
-            /*@var $campaign Campaign*/
+            /**@var $campaign Campaign*/
             $array = $campaign->toArray(['id', 'name']);
             $array['streamboardSelected'] = $campaign->streamboard->selected ? true: false;
             $campaignsArray[$campaign->id] = $array;
+            if ($campaign->streamboard->selected){
+                $selectedCampaigns[] = $campaign;
+            }
         }
 
-        $stats = [
-            'number_of_donations' => 0,
-            'total_amount' => 0,
-            'number_of_donors' => 0,
-            'top_donation_amount' => 0,
-            'top_donation_name' => 0,
-            'top_donors' => [],
-        ];
+        $stats = Streamboard::getStats($selectedCampaigns);
+
         
         $data = [];
         $data['donations'] = $donationsArray;

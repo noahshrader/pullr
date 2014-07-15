@@ -11,8 +11,9 @@ use common\models\base\BaseImage;
 use frontend\models\streamboard\StreamboardCampaign;
 
 /**
+ * @property integer $id
  * @property StreamboardCampaign $streamboard
- * to consider account on other the base you also should check expire field to be more than current time
+ * @description To consider account on other the base you also should check expire field to be more than current time
  */
 class Campaign extends ActiveRecord {
 

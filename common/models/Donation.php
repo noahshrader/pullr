@@ -5,9 +5,14 @@ use common\models\User;
 use yii\db\ActiveRecord;
 use Yii;
 use common\models\Campaign;
+use yii\db\Query;
 
 /**
- * Signup form
+ * @property integer $id
+ * @property string $name - Returns concatenation of [[firstName]] and [[lastName]] in case one of them exists and space symbol between them. In either case it returns [[nameFromForm]]
+ * @property string $nameFromForm
+ * @property string $firstName
+ * @property string $lastName
  */
 class Donation extends ActiveRecord
 {
@@ -83,6 +88,34 @@ class Donation extends ActiveRecord
         return Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId'])->
                 andWhere(['email' => $email])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC')
                 ->addParams(['userId' => $userId]);
+    }
+
+    /**
+     * @param $campaigns Campaign[]
+     * @param $limit integer
+     * @param $nameFromForm - if true, only names from Form will be returned
+     * @return string[]
+     */
+    public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false){
+        $ids = [];
+        foreach ($campaigns as $campaign){
+            $ids[] = $campaign->id;
+        }
+        $query = (new Query())->select('id, SUM(AMOUNT) sum')->from(Donation::tableName())->
+            where(['or', ['in', 'campaignId', $ids], ['in', 'campaignId', $ids]])
+            ->andWhere('email <> ""')->andWhere('paymentDate > 0')
+            ->groupBy('email')->orderBy('sum DESC')->limit($limit);
+        $donationIds = $query->column();
+        $donations = Donation::findAll($donationIds);
+        usort($donations, function(Donation $d1,Donation $d2) use (&$donationIds){
+            return (array_search($d1->id, $donationIds) > array_search($d2->id, $donationIds)) ? '1' : '-1';
+        });
+        /*we are using model function name, because logic maybe different to apply for getting names*/
+        $names = [];
+        foreach ($donations as $donation){
+            $names[] = $nameFromForm ? $donation->nameFromForm : $donation->name;
+        }
+        return $names;
     }
 }
  
