@@ -6,7 +6,7 @@ use yii\db\ActiveRecord;
 use common\models\User;
 
 /**
- * Class StreamboardConfig Is used to store user's settings for streamboard.
+ * Class StreamboardConfig is used to store user's settings for streamboard.
  * @package frontend\models\streamboard
  */
 class StreamboardConfig extends ActiveRecord {
