@@ -68,9 +68,8 @@ body {
 /* Bootstrap Overrides - Input Fields */
 
 
-input.form-control, textarea.form-control {
-	background-color: @inputbg;
-	color: @gray60;
+input.form-control, textarea.form-control, select.form-control {
+	color: @gray40;
 	border: 0;
 	outline: 0;
 }
@@ -78,8 +77,8 @@ input.form-control, textarea.form-control {
 /* Bootstrap Overrides - Disabled, Read Only Fields */
 
 input.form-control[disabled], input.form-control[readonly], fieldset[disabled] .form-control {
-	background-color: @inputbg;
-	color: @gray30;
+	color: @gray90;
+	background: @gray70;
 }
 
 /* Search Field Styling */
@@ -88,6 +87,15 @@ input[type='search'] {
 	.round-radius;
 	background: @gray5;
 	border-color: transparent;
+}
+
+legend {
+	color: @gray30;
+}
+
+label {
+	font-size: 1.12em;
+	color: @gray10;
 }
 
 /* Tables */
@@ -258,4 +266,3 @@ table.dataTable.no-footer {
     -webkit-animation: animate-bar 1s 1 ease;
     animation: animate-bar 1s 1 ease;
 }
-

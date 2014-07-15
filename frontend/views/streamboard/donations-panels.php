@@ -1,6 +1,6 @@
 <ul class="bottom-panel-nav two-tabs">
-        <li><a data-panel="campaigns_list">Campaigns</a></li>
-        <li><a data-panel="stats">Stats</a></li>
+        <li><a data-panel="campaigns_list"><i class="icon icon-campaigns"></i></a></li>
+        <li><a data-panel="stats"><i class="icon icon-bargraph"></i></a></li>
 </ul>
 <div class="campaigns_list_panel slidepanel">
     <div class="campaigns_list">

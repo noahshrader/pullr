@@ -1,5 +1,15 @@
-body {
-  color: white;
+// Need to Call to Variables
+@import "../variables.less";
+// Scrollbar Styles
+@import "../scrollbars.less";
+// Navigation Styles
+
+body, html {
+  background: @bgcolor;
+}
+
+label {
+  color: @gray80;
 }
 
 /* Right Sidebar */
@@ -215,28 +225,59 @@ a.dashboard.show:before {
   width: 18px;
 }
 
+.campaigns_list_panel {
+  label {
+    font-weight: normal;
+    font-size: 1em;
+  }
+}
+
+.stats_panel {
+
+  padding: 20px;
+
+  label {
+    font-weight: normal;
+    font-size: 1em;
+    display: block;
+  }
+
+  span {
+    color: @accent;
+  }
+}
+
 .campaigns_list {
   float: left;
   margin: 20px;
 }
 
+/* Statsboard Donation List Styling */
 
 .donation {
-  border-bottom: 1px solid white;
-  .donation_name {
+
+  display: block;
+  width: 100%;
+  border-bottom: solid 1px @bgcolor;
+  padding: 15px 36px;
+
+  .donation-name {
+    margin: 0px;
+    padding: 0px 0px 2px 0px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .donation-amount {
+    margin-top: 4px;
+    color: @accent;
     margin-bottom: 0px;
-    font-weight: bold;
   }
-  .donation_amount {
-    font-weight: bold;
+  .donation-comments {
+        font-size: 14px;
+        color: @gray50;
   }
-  .donation_comments {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .donation_date {
-    font-size: 0.8em;
-    color: #aaa;
+  .donation-date {
+  font-style: italic;
   }
 }
 #donations{
@@ -253,14 +294,64 @@ a.dashboard.show:before {
   height: 50px;
   margin-bottom: -50px;
 }
-.donations_list{
+.donations-list{
   height: 100%;
   overflow-y: scroll;
 }
 .bottom-panel-nav{
   position:relative;
   z-index: 1001;
-  background-color: #2e3032;
+  background-color: @dkgray;
   margin: 0px;
   height: 50px;
+  list-style: none;
+  padding: 0px;
+
+  li {
+    display: block;
+    width: 50%;
+    float: left;
+    text-align: center;
+
+    a {
+      line-height: 50px;
+      display: block;
+      font-size: 1.25em;
+    }
+  }
+}
+
+/* Nav Tab Boostrap Overrides */
+
+/* Tab Override */
+
+.nav-tabs > li > a {
+    background: @gray70;
+    border-radius: 0px;
+    color: @gray20;
+    border-width: 0px;
+}
+
+.nav-tabs > li > a:before {
+    padding-right: 10px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    background: @gray5;
+    border-color: @bgcolor;
+    border-radius: 0px;
+    color: @white;
+    border-width: 0px;
+}
+
+.nav-tabs>li>a:hover {
+    background: @gray20;
+    border-radius: 0px;
+    border-color: transparent;
+    color: @white;
+    border-width: 0px;
+}
+
+.nav-tabs {
+    border-color: transparent;
 }

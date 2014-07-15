@@ -1,8 +1,7 @@
 $(function () {
     // Custom scrollbars
-    $(".campaigns-list-wrap, .site-content").mCustomScrollbar({
+    $(".campaigns-list-wrap, .site-content, .donations-list").mCustomScrollbar({
         theme:"minimal",
-        setTop: "60px",
         mouseWheel:{preventDefault:true},
         scrollInertia: 0
     });

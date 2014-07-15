@@ -10,10 +10,10 @@ use yii\web\View;
 	<div class="sidepanel-head">
 		<ul class="nav nav-tabs three-tabs cf">
 			<li class="active">
-                <a href="<?= Url::to()?>#donations" data-toggle="tab" class="donations">Donations</a>
+                <a href="<?= Url::to()?>#donations" data-toggle="tab" class="donations"><i class="icon icon-cash"></i></a>
             </li>
-			<li><a href="<?= Url::to()?>#region_1" data-toggle="tab" class="region1">Region 1</a></li>
-			<li><a href="<?= Url::to()?>#region_2" data-toggle="tab" class="region2">Region 2</a></li>
+			<li><a href="<?= Url::to()?>#region_1" data-toggle="tab" class="region1">1</a></li>
+			<li><a href="<?= Url::to()?>#region_2" data-toggle="tab" class="region2">2</a></li>
 		</ul>
 	</div>
 	<div class="tab-content">

@@ -16,8 +16,7 @@ $this->title = 'Settings';
 <section class="account-settings-wrap">
 
     <div class="account-settings">
-
-            <h1><?= Html::encode($this->title) ?></h1>
+    
             <?php $form = ActiveForm::begin(['options' => [
                 'enctype' => 'multipart/form-data', 'method' => 'POST']])
             ?>
@@ -39,7 +38,7 @@ $this->title = 'Settings';
                 $timezones = timezone_identifiers_list();
                 $keyValues = array_combine($timezones, $timezones);
             ?>
-            <?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block']); ?>
+            <?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block form-control']); ?>
             
             <fieldset>
                 <legend>Notifications</legend>
