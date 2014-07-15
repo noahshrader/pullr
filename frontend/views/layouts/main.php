@@ -40,15 +40,15 @@ $this->registerJs($js);
                 <div class="primary-navigation"> <!-- BEGIN main navigation -->
                     <nav class="sidebar-nav nav-top">
                         <ul> 
-                            <li><a class="dashboard icon-dashboard" title="Dashboard" href="app">Dashboard</a></li>
+                            <li><a class="dashboard" title="Dashboard" href="app"><i class="icon-dashboard"></i></a></li>
                             <li>
-                                <a class="campaign-link icon-campaigns" title="Campaigns" href="app/campaign"><span>Campaigns</span></a>
+                                <a class="campaign" title="Campaigns" href="app/campaign"><i class="icon-campaigns"></i></a>
                             </li>
                              <li>
-                                <a class="streamboard icon-streamboard" title="Streamboard" href="app/streamboard" target="_blank"><span>Streamboard</span></a>
+                                <a class="streamboard" title="Streamboard" href="app/streamboard" target="_blank"><i class="icon-streamboard"></i></a>
                             </li>
                             <li>
-                                <a class="icon-settings" role="menuitem" tabindex="-1" href="app/settings">Settings</a>
+                                <a class="settings" role="menuitem" tabindex="-1" href="app/settings"><i class="icon-settings"></i></a>
                             </li>
                          </ul>
                     </nav>
