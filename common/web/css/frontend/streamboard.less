@@ -275,7 +275,56 @@ a.dashboard.show:before {
 .bottom-panel-nav{
   position:relative;
   z-index: 1001;
-  background-color: #2e3032;
+  background-color: @dkgray;
   margin: 0px;
   height: 50px;
+  list-style: none;
+  padding: 0px;
+
+  li {
+    display: block;
+    width: 50%;
+    float: left;
+    text-align: center;
+
+    a {
+      line-height: 50px;
+      display: block;
+    }
+  }
+}
+
+/* Nav Tab Boostrap Overrides */
+
+/* Tab Override */
+
+.nav-tabs > li > a {
+    background: @gray70;
+    border-radius: 0px;
+    color: @gray20;
+    border-width: 0px;
+}
+
+.nav-tabs > li > a:before {
+    padding-right: 10px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    background: @gray5;
+    border-color: @bgcolor;
+    border-radius: 0px;
+    color: @white;
+    border-width: 0px;
+}
+
+.nav-tabs>li>a:hover {
+    background: @gray20;
+    border-radius: 0px;
+    border-color: transparent;
+    color: @white;
+    border-width: 0px;
+}
+
+.nav-tabs {
+    border-color: transparent;
 }
