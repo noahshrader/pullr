@@ -26,23 +26,6 @@ function catchKeys() {
 
 }
 
-/*add class active to one item of main menu
-*/
-Pullr.setCurrentMenuActive = function(){
-    var regexp = new RegExp(Pullr.baseUrl+'/?([^/\?]*)', 'i');
-    var matchResult = location.href.match(regexp);
-    if (matchResult === null){
-        return;
-    }
-    var match = matchResult[1];
-    if (match != ""){
-        match = '/'+match;
-    }
-    match = 'app'+match;
-    var selector = '.sidebar-nav.nav-top a[href="'+match+'"]';
-    $(selector).addClass('active');
-};
-
 (catchKeys());
 
 // Open streamer dashboard in separate window

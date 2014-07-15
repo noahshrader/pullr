@@ -1,17 +1,20 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\NavBar;
 use common\assets\CommonAsset;
+use common\assets\BackendAsset;
 use common\components\Application;
-
+use yii\helpers\Url;
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
 
 CommonAsset::register($this);
-\common\assets\BackendAsset::register($this);
+BackendAsset::register($this);
 
+$js = 'Pullr.baseUrl = "'.Url::to('@web').'";';
+$js .= 'Pullr.setCurrentMenuActiveBackend();';
+$this->registerJs($js);
 
 ?>
 <?php $this->beginPage() ?>
@@ -25,17 +28,6 @@ CommonAsset::register($this);
         <?php $this->head() ?>
     </head>
     <body>
-        <?php
-        NavBar::begin([
-            'brandLabel' => 'pullr',
-            'brandUrl' => ".",
-            'options' => [
-                'class' => 'navbar-inverse navbar-fixed-top top-menu',
-            ],
-        ]);
-        
-        NavBar::end();
-        ?>
         <?php $this->beginBody() ?>
         <div class="main-wrapper">
 
@@ -64,7 +56,7 @@ CommonAsset::register($this);
                             <ul> 
 
                                     <li>
-                                        <a class="reports icon-bargraph" href=".">Reports</a>
+                                        <a class="reports icon-bargraph" href="">Reports</a>
                                     </li>
                                     <li>
                                         <a class="users icon-usergroup" href="user">Users</a>

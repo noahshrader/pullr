@@ -10,9 +10,10 @@ class FrontendAsset extends AssetBundle
             'css/frontend/frontend.less'
 	];
 	public $js = [
+        'js/frontend.js'
 	];
 	public $depends = [
 		'yii\web\YiiAsset',
-		'yii\bootstrap\BootstrapAsset',
+        'common\assets\CommonAsset'
 	];
 }
