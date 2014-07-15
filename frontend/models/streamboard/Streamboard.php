@@ -13,15 +13,12 @@ use common\models\Campaign;
 class Streamboard extends Model {
     /**
      * @param $selectedCampaigns Campaign[]
+     * @return array
      */
     public static function getStats($selectedCampaigns){
         $stats = [];
         $stats = [
-            'number_of_donations' => 0,
             'total_amount' => 0,
-            'number_of_donors' => 0,
-            'top_donation_amount' => 0,
-            'top_donation_name' => 0,
         ];
 
         $ids = [];
@@ -29,7 +26,13 @@ class Streamboard extends Model {
             $ids[] = $campaign->id;
         }
         $stats['top_donors'] = Donation::getTopDonorsForCampaigns($selectedCampaigns, 3, true);
-
+        foreach ($selectedCampaigns as $campaign){
+            $stats['total_amount']+=$campaign->amountRaised;
+        }
+        $topDonation = Donation::getTopDonation($selectedCampaigns);
+        $stats['top_donation'] = $topDonation ? $topDonation->toArray(['id', 'nameFromForm', 'amount']) : null;
+        $stats['number_of_donations'] = Donation::getDonationsForCampaigns($selectedCampaigns)->count();
+        $stats['number_of_donors']  = Donation::getDonationsForCampaigns($selectedCampaigns)->count('DISTINCT email');
         return $stats;
     }
 

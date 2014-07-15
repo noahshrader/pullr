@@ -32,14 +32,17 @@ class StreamboardController extends FrontendController{
      * @todo Should be removed at future. 
      */
     public function actionAdd_donation_ajax() {
+        $campaignId = 1;
         $donation = new Donation();
         $donation->userId = \Yii::$app->user->id;;
-        $donation->campaignId = 1;
+        $donation->campaignId = $campaignId;
         $donation->amount =  rand(100, 10000);
         $donation->nameFromForm = 'rand_user_'.intval(rand(1,3));
         $donation->comments = 'test comments here'.rand(1,50);
         $donation->paymentDate = time();
         $donation->save();
+
+        Campaign::updateDonationStatistics($campaignId);
     }
 
     public function actionGet_donations_ajax($since_id = null) {

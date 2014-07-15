@@ -2,6 +2,7 @@
 namespace common\models;
 
 use common\models\User;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use Yii;
 use common\models\Campaign;
@@ -92,18 +93,39 @@ class Donation extends ActiveRecord
 
     /**
      * @param $campaigns Campaign[]
+     * @return Query
+     */
+    public static function getDonationTableQueryForCampaigns($campaigns){
+        $ids = [];
+        foreach ($campaigns as $campaign){
+            $ids[] = $campaign->id;
+        }
+        return (new Query())->select('id, SUM(AMOUNT) sum')->from(Donation::tableName())->
+            where(['or', ['in', 'campaignId', $ids], ['in', 'parentCampaignId', $ids]])
+            ->andWhere('paymentDate > 0');
+    }
+
+    /**
+     * @param $campaigns Campaign[]
+     * @return ActiveQuery
+     */
+    public static function getDonationsForCampaigns($campaigns){
+        $ids = [];
+        foreach ($campaigns as $campaign){
+            $ids[] = $campaign->id;
+        }
+        return Donation::find()->where(['or', ['in', 'campaignId', $ids], ['in', 'parentCampaignId', $ids]])
+            ->andWhere('paymentDate > 0');
+    }
+
+    /**
+     * @param $campaigns Campaign[]
      * @param $limit integer
      * @param $nameFromForm - if true, only names from Form will be returned
      * @return string[]
      */
     public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false){
-        $ids = [];
-        foreach ($campaigns as $campaign){
-            $ids[] = $campaign->id;
-        }
-        $query = (new Query())->select('id, SUM(AMOUNT) sum')->from(Donation::tableName())->
-            where(['or', ['in', 'campaignId', $ids], ['in', 'campaignId', $ids]])
-            ->andWhere('email <> ""')->andWhere('paymentDate > 0')
+        $query = self::getDonationTableQueryForCampaigns($campaigns)->andWhere('email <> ""')
             ->groupBy('email')->orderBy('sum DESC')->limit($limit);
         $donationIds = $query->column();
         $donations = Donation::findAll($donationIds);
@@ -116,6 +138,14 @@ class Donation extends ActiveRecord
             $names[] = $nameFromForm ? $donation->nameFromForm : $donation->name;
         }
         return $names;
+    }
+
+    /**
+     * @param $campaigns Campaign[]
+     * @return Donation|null
+     */
+    public static function getTopDonation($campaigns){
+        return self::getDonationsForCampaigns($campaigns)->orderBy('amount DESC')->one();
     }
 }
  

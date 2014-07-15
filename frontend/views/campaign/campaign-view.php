@@ -10,14 +10,10 @@ $user = \Yii::$app->user->identity;
 $donations = $campaign->getDonations()->all();
 
 $uniqueDonations = $campaign->getDonations()->count('DISTINCT email');
-
-$connection = \Yii::$app->db;
-$sql = 'SELECT id, SUM(amount) sum FROM '.Donation::tableName().' WHERE (campaignId = '.$campaign->id.' or parentCampaignId = '.$campaign->id.') AND email <> "" AND paymentDate > 0 GROUP BY email ORDER BY sum DESC';
-$command = $connection->createCommand($sql);
-$topDonor = $command->queryScalar();
-$topDonorName = ($topDonor) ? Donation::findOne($command->queryScalar())->name : '';
-$topDonationId = $campaign->getDonations()->orderBy('amount DESC')->select('id')->scalar();
-$topDonationName = ($topDonationId) ? Donation::findOne($topDonationId)->name : '';
+$topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
+$topDonorName = sizeof($topDonors) > 0 ? $topDonors[0] : '';
+$topDonation = Donation::getTopDonation([$campaign]);
+$topDonationName = ($topDonation) ? $topDonation->name : '';
 ?>
 
 <script type="text/javascript">

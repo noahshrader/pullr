@@ -23,16 +23,16 @@
             {{donorName}}
         </li>
     </ul>
-
-    <label>Total Donation Amount</label>
-    <span class="total_amount" >
-        ${{stats.total_amount}}
-    </span>
-
-    <label>Top Donation Amount</label>
-    <span class="top_donation" >
-        ${{stats.top_donation_amount}} ( {{stats.top_donation_name}} )
-    </span>
+        <label>Total Donation Amount</label>
+        <span class="total_amount" >
+            ${{stats.total_amount}}
+        </span>
+    <div ng-hide="stats.top_donation == null">
+        <label>Top Donation Amount</label>
+        <span class="top_donation" >
+            ${{stats.top_donation.amount}} ({{stats.top_donation.nameFromForm}})
+        </span>
+    </div>
 
     <label>Number Of Donations</label>
     <span class="number_of_donations" >

@@ -13,6 +13,8 @@ use frontend\models\streamboard\StreamboardCampaign;
 /**
  * @property integer $id
  * @property StreamboardCampaign $streamboard
+ * @property float amountRaised
+ * @property float goalAmount
  * @description To consider account on other the base you also should check expire field to be more than current time
  */
 class Campaign extends ActiveRecord {
