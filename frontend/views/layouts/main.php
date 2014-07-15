@@ -42,7 +42,7 @@ $this->registerJs($js);
                         <ul> 
                             <li><a class="dashboard" title="Dashboard" href="app"><i class="icon-dashboard"></i></a></li>
                             <li>
-                                <a class="campaign" title="Campaigns" href="app/campaign"><i class="icon-campaigns"></i></a>
+                                <a class="campaign-link" title="Campaigns" href="app/campaign"><i class="icon-campaigns"></i></a>
                             </li>
                              <li>
                                 <a class="streamboard" title="Streamboard" href="app/streamboard" target="_blank"><i class="icon-streamboard"></i></a>

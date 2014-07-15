@@ -199,10 +199,9 @@ function selectTheme(el){
 }
 
 function campaignChooseCharity(){
-    $('#sidepaneltwo').addClass('open expand');
-    $('#sidepanel').addClass('expand');
-    $('.page-wrapper').addClass('charity-expand');
-    $('#modalCharity .charity-list').load('app/campaign/modalcharities');
+    $('#modalCharity .modal-content').load('app/campaign/modalcharities', function(){
+        $('#modalCharity').modal('show');
+    })
 }
 
 function selectCharity(el){
@@ -212,9 +211,7 @@ function selectCharity(el){
     $('#campaign-charityid').val(id);
     $('.charity-name span').text(name);
     $('.charity-name').removeClass('hidden');
-    $('#sidepaneltwo').removeClass('open expand');
-    $('#sidepanel').removeClass('expand');
-    $('.page-wrapper').removeClass('charity-expand');
+    $('#modalCharity').modal('hide');
 }
 
 $(function() {
