@@ -8,6 +8,10 @@ body, html {
   background: @bgcolor;
 }
 
+label {
+  color: @gray80;
+}
+
 /* Right Sidebar */
 #sidepanel {
   background: #2e3032;
@@ -219,6 +223,28 @@ a.dashboard.show:before {
 
 .campaigns_list_panel input[type=checkbox] {
   width: 18px;
+}
+
+.campaigns_list_panel {
+  label {
+    font-weight: normal;
+    font-size: 1em;
+  }
+}
+
+.stats_panel {
+
+  padding: 20px;
+
+  label {
+    font-weight: normal;
+    font-size: 1em;
+    display: block;
+  }
+
+  span {
+    color: @accent;
+  }
 }
 
 .campaigns_list {
