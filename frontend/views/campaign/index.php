@@ -35,23 +35,6 @@ $user = \Yii::$app->user->identity;
     
     <!-- Charity Browsing -->
 
-    <section id="sidepaneltwo" class="sidepanel">
-        
-        <div class="tab-content">
-
-            <div id="modalCharity">
-
-                <div class="charity-list">
-
-
-
-                </div>
-
-            </div>
-             
-        </div>
-    </section>
-
     <!-- Theme Browsing -->
 
     <section id="sidepanelthree" class="sidepanel">

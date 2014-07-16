@@ -15,11 +15,11 @@ $user = \Yii::$app->user->identity;
     </div>
     <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => true]); ?>
     <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => true]); ?>
-    <div id="campaign-multichannels">
+    <div id="campaign-multichannels" class="form-group">
         <? if ($campaign->isNewRecord): ?>
             <div class="label label-danger">Save campaign before adding channels</div>
         <? endif ?>
-        <input type="text" id="addLayoutTeam" placeholder="Add channel(s)"> <a class="btn btn-success btn-xs" onclick="addNewLayoutTeam()"> <i class="icon icon-add2"></i></a>
+        <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add channel(s)"> <a class="btn btn-default btn-xs" onclick="addNewLayoutTeam()"> <i class="icon icon-add2"></i></a>
         <div id="layoutTeams">
 
         </div>

@@ -2,7 +2,11 @@
     $title = $type ? $type : 'Choose a theme';
 ?>
 
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h5 class="modal-title" id="myModalLabel"><?= $title ?></h5>
+</div>
+<div class="modal-body">
 
     <div class="row">
         <? foreach ($themes as $theme):?>
@@ -14,5 +18,5 @@
         </div>
         <? endforeach; ?>
     </div>
-
+</div>
     

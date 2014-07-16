@@ -2,6 +2,11 @@
     $title = 'Choose a charity';
 ?>
 
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">
+
     <h5 class="modal-title" id="myModalLabel"><?= $title ?></h5>
     <div class="row">
         <? foreach ($charities as $charity):?>
@@ -16,4 +21,6 @@
         </div>
         <? endforeach; ?>
     </div>
+
+</div>
     

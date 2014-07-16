@@ -177,10 +177,8 @@ function initBootstrapSwitch() {
 
 function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
-    $('#sidepanelthree').addClass('open expand');
-    $('#sidepanel').addClass('expand');
-    $('.page-wrapper').addClass('choosetheme-expand');
-    $('#modalThemes .themes-list').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
+    $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
+        $('#modalThemes').modal('show');
 
     })
 }
