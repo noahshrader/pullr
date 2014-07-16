@@ -48,9 +48,9 @@ class CampaignController extends FrontendController {
     
     /**
      * 
-     * @param \common\models\Campaign $editCampaign - campaign to edit
-     * @param \common\models\Campaign $selectedCampaign - campaign to view
-     * @param type $status
+     * @param $editCampaign Campaign - campaign to edit
+     * @param $selectedCampaign Campaign  - campaign to view
+     * @param $status string
      * @return type
      */
     public function actionIndex(Campaign $editCampaign = null, Campaign $selectedCampaign = null, $status = Campaign::STATUS_ACTIVE) {
@@ -94,7 +94,11 @@ class CampaignController extends FrontendController {
         $params = [];
         $params['editCampaign'] = $editCampaign;
         $params['campaigns'] = $user->getCampaigns($status)->orderBy('id DESC')->all();
-        
+
+        /* let's select first campaign when no campaign is selected*/
+        if ( ($editCampaign == null) && ($selectedCampaign == null) && (sizeof($params['campaigns'])>0)){
+            $selectedCampaign = $params['campaigns'][0];
+        }
         if ($isNewRecord){
             $cloneCampaign = clone $editCampaign;
             $cloneCampaign->name = $cloneCampaign->name ? $cloneCampaign->name : 'New Campaign';
