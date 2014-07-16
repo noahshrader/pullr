@@ -19,11 +19,11 @@ use yii\web\View;
 	<div class="tab-content">
             <?= $this->render('donations') ?>
             <!-- Accordion slide two (Region 1) -->
-            <div class="tab-pane" id="design">
+            <div class="tab-pane" id="region_1">
                     <h3>Region 1</h3>
             </div>
             <!-- Accordion slide three (Region 2) -->
-            <div class="tab-pane" id="region_1">
+            <div class="tab-pane" id="region_2">
                     <h3>Region 2</h3>
             </div>
     </div>
