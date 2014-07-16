@@ -35,7 +35,12 @@ class Streamboard extends Model {
             $stats['total_amount']+=$campaign->amountRaised;
         }
         $topDonation = Donation::getTopDonation($selectedCampaigns);
-        $stats['top_donation'] = $topDonation ? $topDonation->toArray(['id', 'nameFromForm', 'amount']) : null;
+        if ($topDonation){
+            $stats['top_donation'] = $topDonation->toArray(['id', 'nameFromForm', 'amount']);
+            $stats['top_donation']['displayName'] = $topDonation->displayNameForDonation();
+        } else {
+            $stats['top_donation'] = null;
+        }
         $stats['number_of_donations'] = Donation::getDonationsForCampaigns($selectedCampaigns)->count();
         $stats['number_of_donors']  = Donation::getDonationsForCampaigns($selectedCampaigns)->count('DISTINCT email');
         return $stats;

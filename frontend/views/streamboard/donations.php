@@ -10,11 +10,13 @@
         <button class="btn btn-primary" data-ng-click="addDonation()" >Add donation</button>
     </div>
     <div class="donations-list data-list">
-        <div data-ng-repeat="donation in donations | selectedCampaigns:this | limitTo: 20" class="donation">
-            <h3 class="donation-name">{{donation.nameFromForm ? donation.nameFromForm : '<?= Donation::ANONYMOUS_NAME ?>'}}</h3>
-            <div><span class="donation-amount">${{donation.amount}}</span> {{selectedCampaignsNumber>1 ? donation.campaignName : ''}}</div>
+        <div data-ng-repeat="donation in donations | selectedCampaigns:this | limitTo: 20" class="donation" ng-class="{wasRead: donation.streamboard.wasRead}">
+            <h3 class="donation-name">{{donation.displayName}}
+                <i ng-hide="donation.nameFromForm == ''" ng-click="nameHiddenToggle(donation)" class="glyphicon glyphicon-eye-open" ng-class="{nameHidden: donation.streamboard.nameHidden}"></i>
+            </h3>
+            <div><span class="donation-amount">${{donation.amount}}</span> {{selectedCampaignsNumber > 1 ? donation.campaignName : ''}}</div>
             <div class="donation-comments">{{donation.comments}}</div>
-            <div class="donation-date">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</div>
+            <div><span class="donation-date">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</span> <a ng-hide="donation.streamboard.wasRead" ng-click="markAsRead(donation)">Mark as Read</a></div>
         </div>
     </div>
     <div id="donations-footer">

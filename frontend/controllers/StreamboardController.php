@@ -2,12 +2,14 @@
 
 namespace frontend\controllers;
 
+use frontend\models\streamboard\StreamboardDonation;
 use Yii;
 use common\models\User;
 use common\models\Donation;
 use common\models\Campaign;
 use frontend\models\streamboard\Streamboard;
 use yii\web\ForbiddenHttpException;
+use yii\web\NotFoundHttpException;
 
 class StreamboardController extends FrontendController{
     public function actionIndex() {
@@ -48,20 +50,28 @@ class StreamboardController extends FrontendController{
     public function actionGet_donations_ajax($since_id = null) {
         $user = \Yii::$app->user->identity;
         /**@var $user User */
-        /*we are limiting by 100 here, but on html after appling campaing's filter we will limit to just 10*/
-        $donations = $user->getDonations($since_id)->limit(100)->all();
+        /*we are limiting by 100 here, but on html after applying campaign's filter we will limit to just 20*/
+        $donations = $user->getDonations($since_id)->with('campaign', 'streamboard')->limit(100)->all();
 
         $donationsArray = [];
         foreach ($donations as $donation){
             /**@var $donation Donation*/
             $array = $donation->toArray(['id', 'campaignId', 'amount', 'nameFromForm', 'paymentDate', 'comments']);
             $array['campaignName'] = $donation->campaign->name;
-
+            $array['streamboard'] = [
+                'nameHidden' => false,
+                'wasRead' => false
+            ];
+            if ($donation->streamboard){
+                $array['streamboard']['nameHidden'] = $donation->streamboard->nameHidden;
+                $array['streamboard']['wasRead'] = $donation->streamboard->wasRead;
+            }
+            $array['displayName'] = $donation->displayNameForDonation();
             $donationsArray[] = $array;
         }
 
         /**
-         * do not inlcude parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
+         * we not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
          */
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->all();
         $campaignsArray = [];
@@ -106,4 +116,18 @@ class StreamboardController extends FrontendController{
         $campaign->streamboard->selected = $streamboardSelected;
         $campaign->streamboard->save();
     }
+
+    public function actionSet_donation_streamboard(){
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (!in_array($data['property'],['nameHidden', 'wasRead'])){
+           throw new NotFoundHttpException('Property not found');
+        }
+        $userId = \Yii::$app->user->id;
+        $donation = Donation::findOne($data['id']);
+        if (!(($donation->campaign->userId == $userId) || ($donation->campaign->parentCampaign->userId == $userId))){
+           throw new ForbiddenHttpException();
+        }
+        StreamboardDonation::setForDonation($donation->id, $userId, $data['property'], $data['value']);
+    }
+
 }

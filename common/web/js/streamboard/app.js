@@ -75,7 +75,18 @@
             $scope.selectedCampaignsNumber = number;
         };
         $scope.updateDonations();
-        
+
+        $scope.nameHiddenToggle = function(donation){
+            donation.streamboard.nameHidden = !donation.streamboard.nameHidden;
+            donation.displayName = donation.streamboard.nameHidden || !donation.nameFromForm ? Pullr.ANONYMOUS_NAME : donation.nameFromForm;
+            $http.post('app/streamboard/set_donation_streamboard', {id: donation.id, property: 'nameHidden', value: donation.streamboard.nameHidden });
+        }
+
+        $scope.markAsRead = function(donation){
+            donation.streamboard.wasRead = true;
+            $http.post('app/streamboard/set_donation_streamboard', {id: donation.id, property: 'wasRead', value: true });
+        }
+
         setInterval(function() {
             $scope.updateDonations();
         }, 1000);

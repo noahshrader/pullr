@@ -1,5 +1,9 @@
 <?
 use yii\helpers\Html;
+use common\models\Donation;
+/**
+ * @var \yii\web\View $this
+ */
 ?>
 <head>
         <meta charset="<?= Yii::$app->charset ?>"/>
@@ -11,5 +15,8 @@ use yii\helpers\Html;
     <!-- Load Typekit Fonts -->
     <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-
+<?
+$js = 'Pullr.ANONYMOUS_NAME = "'.Donation::ANONYMOUS_NAME.'";';
+$this->registerJs($js);
+?>
 </head>

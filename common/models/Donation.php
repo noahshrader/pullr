@@ -6,6 +6,7 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use Yii;
 use common\models\Campaign;
+use frontend\models\streamboard\StreamboardDonation;
 use yii\db\Query;
 
 /**
@@ -14,6 +15,8 @@ use yii\db\Query;
  * @property string $nameFromForm
  * @property string $firstName
  * @property string $lastName
+ * @property Campaign $campaign
+ * @property StreamboardDonation $streamboard
  */
 class Donation extends ActiveRecord
 {
@@ -62,13 +65,19 @@ class Donation extends ActiveRecord
     }
     
     /**
-     * 
-     * @return Campaign
+     * @return ActiveQuery
      */
     public function getCampaign() {
         return $this->hasOne(Campaign::className(), ['id' => 'campaignId']);
     }
-    
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getStreamboard(){
+        $userId = \Yii::$app->user->id;
+        return $this->hasOne(StreamboardDonation::className(), ['donationId' => 'id'])->andWhere(['userId' => $userId]);
+    }
     /**
      * 
      * @return User
@@ -81,7 +90,7 @@ class Donation extends ActiveRecord
         if ($this->firstName || $this->lastName){
             return $this->lastName.' '.$this->firstName;
         } else {
-            return $this->nameFromForm ? $this->nameFromForm : 'Anonymous';
+            return $this->nameFromForm ? $this->nameFromForm : self::ANONYMOUS_NAME;
         }
     }
     
@@ -146,6 +155,18 @@ class Donation extends ActiveRecord
      */
     public static function getTopDonation($campaigns){
         return self::getDonationsForCampaigns($campaigns)->orderBy('amount DESC')->one();
+    }
+
+    /**
+     * @param $donation Donation
+     * @return string NameFromForm or Anonymous depends if user hid donor's name or donor's name is empty
+     */
+    public function displayNameForDonation(){
+        $nameHidden = false;
+        if ($this->streamboard){
+            $nameHidden = $this->streamboard->nameHidden;
+        }
+        return $nameHidden || !$this->nameFromForm  ? Donation::ANONYMOUS_NAME : $this->nameFromForm;
     }
 }
  
