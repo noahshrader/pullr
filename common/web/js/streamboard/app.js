@@ -5,7 +5,8 @@
            var filteredDonations = [];
            for (var key in donations){
                var donation = donations[key];
-               if ($scope.campaigns[donation.campaignId].streamboardSelected){
+               var campaign = $scope.campaigns[donation.campaignId];
+               if (campaign && campaign.streamboardSelected){
                    filteredDonations.push(donation);
                }
            }
