@@ -18,6 +18,7 @@
         $scope.campaigns = {};
         $scope.unorderedDonations = {};
         $scope.stats = {};
+        $scope.selectedCampaignsNumber = 0;
         //$scope.campaigns = [];
         /*we will request only donations with id>$scope.lastDonationId*/
         $scope.lastDonationId = 0;
@@ -49,6 +50,7 @@
                 if ($.isEmptyObject($scope.campaigns)){
                     $scope.campaigns = data.campaigns;
                 }
+                $scope.calcSelectedCampaignsNumber();
                 for (var key in data.donations){
                     var donation = data.donations[key];
                     $scope.unorderedDonations[donation.id] = donation;
@@ -62,7 +64,16 @@
         };
         $scope.campaignChanged = function(campaign){
             $http.post('app/streamboard/set_campaign_selection', {id: campaign.id, streamboardSelected: campaign.streamboardSelected});
-        }
+            $scope.calcSelectedCampaignsNumber();
+        };
+
+        $scope.calcSelectedCampaignsNumber = function(){
+            var number = 0;
+            $.each($scope.campaigns, function(key, campaign){
+                campaign.streamboardSelected ? number++: null;
+            });
+            $scope.selectedCampaignsNumber = number;
+        };
         $scope.updateDonations();
         
         setInterval(function() {
