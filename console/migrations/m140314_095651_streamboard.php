@@ -13,7 +13,9 @@ class m140314_095651_streamboard extends ExtendedMigration
         $this->createTable(StreamboardConfig::tableName(), [
            'userId' => Schema::TYPE_PK,
             'streamboardWidth' => Schema::TYPE_INTEGER .' NOT NULL',
-            'streamboardHeight' => Schema::TYPE_INTEGER . ' NOT NULL'
+            'streamboardHeight' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'streamboardLeft' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'streamboardTop' => Schema::TYPE_INTEGER . ' NOT NULL'
         ]);
 
         $this->createTable(StreamboardCampaign::tableName(), [

@@ -14,7 +14,7 @@ FrontendAsset::register($this);
 $streamboardConfig = StreamboardConfig::get();
 $js = 'Pullr.baseUrl = "'.Url::to('app').'";';
 $js .= 'Pullr.setCurrentMenuActive();';
-$js .= 'Pullr.Streamboard = '.json_encode($streamboardConfig->toArray(['streamboardWidth', 'streamboardHeight'])).';';
+$js .= 'Pullr.Streamboard = '.json_encode($streamboardConfig->toArray(['streamboardWidth', 'streamboardHeight', 'streamboardLeft', 'streamboardTop'])).';';
 $this->registerJs($js);
 ?>
 <?php $this->beginPage() ?>

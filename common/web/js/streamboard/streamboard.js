@@ -24,4 +24,16 @@ $(function () {
         window.opener.Pullr.Streamboard.streamboardWidth = width;
         window.opener.Pullr.Streamboard.streamboardHeight = height;
     });
+
+    var currentStreamboardLeft = window.screenX;
+    var currentStreamboardTop = window.screenY;
+    setInterval(function(){
+        if ( (window.screenX != currentStreamboardLeft ) || (window.screenY != currentStreamboardTop)){
+            currentStreamboardLeft = window.screenX;
+            currentStreamboardTop = window.screenY;
+            $.post('app/streamboard/set_streamboard_window_position', {left: currentStreamboardLeft, top: currentStreamboardTop});
+            window.opener.Pullr.Streamboard.streamboardLeft = currentStreamboardLeft;
+            window.opener.Pullr.Streamboard.streamboardTop =  currentStreamboardTop;
+        }
+    }, 1000)
 });

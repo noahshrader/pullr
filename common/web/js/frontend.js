@@ -21,7 +21,10 @@ Pullr.setCurrentMenuActive = function(){
 // Open streamer dashboard in separate window
 $('.streamboard').click(function(event) {
     event.preventDefault();
-    var width = Pullr.Streamboard.streamboardWidth;
-    var height = Pullr.Streamboard.streamboardHeight;
-    window.open($(this).attr("href"),"popupWindow","width="+width+",height="+height+",scrollbars=yes");
+    var width = Math.min(screen.width,Pullr.Streamboard.streamboardWidth);
+    var height = Math.min(screen.height, Pullr.Streamboard.streamboardHeight);
+    var left = Math.min(screen.width-width, Pullr.Streamboard.streamboardLeft);
+    var top = Math.min(screen.height-height, Pullr.Streamboard.streamboardTop);
+    window.open($(this).attr("href"),"popupWindow","width="+width+",height="+height+
+        ",left="+left+",top="+top+",scrollbars=yes");
 });

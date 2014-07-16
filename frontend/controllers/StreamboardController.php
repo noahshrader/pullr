@@ -138,4 +138,12 @@ class StreamboardController extends FrontendController{
         $config->streamboardHeight = $height;
         $config->save();
     }
+    public function actionSet_streamboard_window_position(){
+        $left = intval($_POST['left']);
+        $top =intval($_POST['top']);
+        $config = StreamboardConfig::get();
+        $config->streamboardLeft = $left;
+        $config->streamboardTop = $top;
+        $config->save();
+    }
 }

@@ -17,8 +17,11 @@ class StreamboardConfig extends ActiveRecord {
     const DEFAULT_HEIGHT = 728;
 
     public function init(){
+        parent::init();
         $this->streamboardWidth = self::DEFAULT_WIDTH;
         $this->streamboardHeight = self::DEFAULT_HEIGHT;
+        $this->streamboardLeft = 0;
+        $this->streamboardTop = 0;
     }
     /**
      * @return string the name of the table associated with this ActiveRecord class.
