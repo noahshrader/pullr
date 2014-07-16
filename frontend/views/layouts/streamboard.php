@@ -6,6 +6,7 @@ use common\assets\StreamboardAsset;
 CommonAsset::register($this);
 StreamboardAsset::register($this);
 
+$this->title = 'Streamboard';
 ?>
 
 <?php $this->beginPage() ?>

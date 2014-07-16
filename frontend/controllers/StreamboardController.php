@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
 use Yii;
 use common\models\User;
@@ -129,5 +130,12 @@ class StreamboardController extends FrontendController{
         }
         StreamboardDonation::setForDonation($donation->id, $userId, $data['property'], $data['value']);
     }
-
+    public function actionSet_streamboard_window(){
+        $width = max(intval($_POST['width']),100);
+        $height = max(intval($_POST['height']), 100);
+        $config = StreamboardConfig::get();
+        $config->streamboardWidth = $width;
+        $config->streamboardHeight = $height;
+        $config->save();
+    }
 }

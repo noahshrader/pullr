@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use common\assets\FrontendAsset;
 use common\assets\CommonAsset;
 use yii\helpers\Url;
+use frontend\models\streamboard\StreamboardConfig;
 /**
  * @var \yii\web\View $this
  * @var string $content
@@ -10,8 +11,10 @@ use yii\helpers\Url;
 CommonAsset::register($this);
 FrontendAsset::register($this);
 
+$streamboardConfig = StreamboardConfig::get();
 $js = 'Pullr.baseUrl = "'.Url::to('app').'";';
 $js .= 'Pullr.setCurrentMenuActive();';
+$js .= 'Pullr.Streamboard = '.json_encode($streamboardConfig->toArray(['streamboardWidth', 'streamboardHeight'])).';';
 $this->registerJs($js);
 ?>
 <?php $this->beginPage() ?>

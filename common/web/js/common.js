@@ -27,9 +27,3 @@ function catchKeys() {
 }
 
 (catchKeys());
-
-// Open streamer dashboard in separate window
-$('.streamboard').click(function(event) {
-    event.preventDefault();
-    window.open($(this).attr("href"),"popupWindow","width=1200,height=728,scrollbars=yes");
-});

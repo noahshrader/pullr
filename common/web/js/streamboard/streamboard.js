@@ -1,8 +1,6 @@
 $(function () {
     $(".resizable").resizable({
-//        maxHeight: 150,
         maxWidth: (screen.width/2),
-//        minHeight: 150,
         minWidth: 287,
         handles: "w",
         animate: false,
@@ -19,6 +17,11 @@ $(function () {
    		$(this).closest('div').toggleClass('selected');
    	});
 
-//    $( ".resizable" ).resizable( "option", "maxWidth", '50%' );
-
+    $( window ).resize(function() {
+        var width = $(window).width();
+        var height = $(window).height();
+        $.post('app/streamboard/set_streamboard_window', {width: width, height: height});
+        window.opener.Pullr.Streamboard.streamboardWidth = width;
+        window.opener.Pullr.Streamboard.streamboardHeight = height;
+    });
 });

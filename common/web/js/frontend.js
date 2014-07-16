@@ -17,3 +17,11 @@ Pullr.setCurrentMenuActive = function(){
     var selector = '.sidebar-nav.nav-top a[href="'+match+'"]';
     $(selector).addClass('active');
 };
+
+// Open streamer dashboard in separate window
+$('.streamboard').click(function(event) {
+    event.preventDefault();
+    var width = Pullr.Streamboard.streamboardWidth;
+    var height = Pullr.Streamboard.streamboardHeight;
+    window.open($(this).attr("href"),"popupWindow","width="+width+",height="+height+",scrollbars=yes");
+});
