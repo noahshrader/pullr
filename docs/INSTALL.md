@@ -17,7 +17,6 @@ Next from pullr folder run
 
 Next step from "pullr" directory. 
 Select "yes" for install under Development Environment
-(for all "index.php" type "no")
 * ./init 
 
 Next step you should change you db connection settings in file
