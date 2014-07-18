@@ -1,0 +1,57 @@
+#campaignEdit{
+    #collapseTwo{
+        #layoutTeams {
+            ol{
+                padding: 0px;
+                li{
+                    border-bottom: 1px solid #000;
+                }
+                li:first-child{
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+
+    .logo{
+        max-width: 100px;
+        max-height: 100px;
+        margin: 10px;
+    }
+    .file-preview-image{
+        max-width: 200px;
+    }
+    #collapseThree{
+        input[type=color]{
+            float: right;
+            margin-right: 15px;
+        }
+        .user-images{
+            margin-top: 10px;
+        }
+    }
+    
+    #collapseFour{
+        .field-campaign-twittername, .field-campaign-youtubeurl, .field-campaign-facebookurl{
+            display: none;
+        }
+    }
+    
+    #collapseFour.twitterEnable{
+        .field-campaign-twittername{
+            display: block;
+        }
+    }
+    
+    #collapseFour.youtubeEnable{
+        .field-campaign-youtubeurl{
+            display: block;
+        }
+    }
+    
+    #collapseFour.facebookEnable{
+        .field-campaign-facebookurl{
+            display: block;
+        }
+    }
+}

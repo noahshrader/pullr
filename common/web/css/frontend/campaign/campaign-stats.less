@@ -254,10 +254,19 @@
     text-align: center;
 }
 
-.campaign-edit-wrap ul li {
+.campaign-edit-wrap>ul li {
     display: inline-block;
     text-align: center;
     float: none;
+}
+
+#campaignEdit[data-campaigntype="Charity Fundraiser"]{
+  #campaign-edit-team-li {
+    display: inline-block;
+  }
+  #campaign-edit-team{
+    display: block;
+  }
 }
 
 /* Tab Override */

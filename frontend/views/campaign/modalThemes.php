@@ -1,5 +1,6 @@
 <?
-    $title = $type ? $type : 'Choose a theme';
+$title = $type ? $type : 'Choose a theme';
+/*that file is loaded into*/
 ?>
 
 <div class="modal-header">
@@ -8,15 +9,22 @@
 </div>
 <div class="modal-body">
 
-    <div class="row">
-        <? foreach ($themes as $theme):?>
-        <div class='col-xs-3 text-center select-theme-container' data-name='<?= $theme->name ?>' data-id='<?= $theme->id ?>'>
-            <div class='select-theme text-center' >
-                <a href='javascript:void(0)' onclick="selectTheme(this)">Select Theme</a>
+    <? if (sizeof($themes) > 0): ?>
+        <div class="row">
+        <? foreach ($themes as $theme): ?>
+            <div class='col-xs-3 text-center select-theme-container' data-name='<?= $theme->name ?>'
+                 data-id='<?= $theme->id ?>'>
+                <div class='select-theme text-center'>
+                    <a href='javascript:void(0)' onclick="selectTheme(this)">Select Theme</a>
+                </div>
+                <div><?= $theme->name ?></div>
             </div>
-            <div ><?= $theme->name ?></div>
-        </div>
         <? endforeach; ?>
-    </div>
+        </div>
+    <? else: ?>
+        <div class="noThemes">
+            No themes are available for this type of layout - <b><?= $type ?></b>.
+        </div>
+    <? endif ?>
 </div>
     
