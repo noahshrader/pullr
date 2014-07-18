@@ -17,6 +17,7 @@ use frontend\models\streamboard\StreamboardCampaign;
  * @property float $goalAmount
  * @property Campaign $parentCampaign
  * @property StreamboardCampaign $streamboard
+ * @property string $donationDestination
  * @description To consider account on other the base you also should check expire field to be more than current time
  */
 class Campaign extends ActiveRecord {
@@ -85,6 +86,7 @@ class Campaign extends ActiveRecord {
         $this->formVisibility = true;
         $this->enableDonorComments = true;
         $this->enableThankYouPage = false;
+        $this->donationDestination = self::DONATION_PREAPPROVED_CHARITIES;
     }
     
     public function beforeSave($insert) {
