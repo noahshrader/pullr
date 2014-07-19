@@ -111,11 +111,12 @@ $topDonationName = ($topDonation) ? $topDonation->name : '';
         
     <div class="campaign-view-selected" data-id="<?= $campaign->id ?>">
 
-         <h1> <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
-
-        <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
-        <h3 class="campaign-date"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></h3>
-        <? endif ?>
+         <h1>
+            <?= ($campaign->name)?$campaign->name:'New campaign' ?>
+            <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
+            <span class="campaign-date"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></span>
+            <? endif ?>
+         </h1>
 
 
         <section class="stats-overview">
