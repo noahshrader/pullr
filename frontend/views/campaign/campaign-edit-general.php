@@ -63,10 +63,7 @@ $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
                         <span><?= $campaign->charity?$campaign->charity->name:''?></span>
                     </div>
 
-                    <button class="btn btn-primary opentwo" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
-
-                    <br/>
-                    <br/>
+                    <button class="btn btn-primary" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
                 </div>
                 <div class='customCharity'>
                     <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => true]); ?>
