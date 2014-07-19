@@ -14,6 +14,7 @@ use yii\web\View;
             </li>
 			<li><a href="<?= Url::to()?>#region_1" data-toggle="tab" class="region1">1</a></li>
 			<li><a href="<?= Url::to()?>#region_2" data-toggle="tab" class="region2">2</a></li>
+            <li><a href="<?= Url::to()?>#region_3" data-toggle="tab" class="region3"><i class="icon icon-settings"></i></a></li>
 		</ul>
 	</div>
 	<div class="tab-content">
@@ -25,6 +26,10 @@ use yii\web\View;
             <!-- Accordion slide three (Region 2) -->
             <div class="tab-pane" id="region_2">
                     <h3>Region 2</h3>
+            </div>
+            <!-- Accordion slide three (Region 2) -->
+            <div class="tab-pane" id="region_3">
+                    <h3>Settings</h3>
             </div>
     </div>
 </section>
