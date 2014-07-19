@@ -22,6 +22,7 @@
 
 #sidepanel  {
     padding-left: @campaigns-list-wrap-width + @primary-nav-width;
+    background: @gray80;
 }
 
 /* Site Error */
@@ -38,7 +39,7 @@
   z-index: 2000;
   top: 0;
   left: 0;
-  height: 3px;
+  height: 1px;
 
   -webkit-transition: width 1s;
   -moz-transition: width 1s;
@@ -48,4 +49,17 @@
 
 .pace-inactive {
   display: none;
+}
+
+/* Blur */
+.blur {
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  filter: blur(10px);
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  opacity: .6;
 }

@@ -179,7 +179,7 @@ function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
     $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
         $('#modalThemes').modal('show');
-
+        $('.site-content, .top-menu').addClass('blur');
     })
 }
 
@@ -191,6 +191,7 @@ function selectTheme(el){
     $('.theme-name span').text(name);
     $('.theme-name').removeClass('hidden');
     $('#modalThemes').modal('hide');
+    $('.site-content, .top-menu').removeClass('blur');
     $('#sidepanelthree').removeClass('open expand');
     $('#sidepanel').removeClass('expand');
     $('.page-wrapper').removeClass('choosetheme-expand');
@@ -199,7 +200,8 @@ function selectTheme(el){
 function campaignChooseCharity(){
     $('#modalCharity .modal-content').load('app/campaign/modalcharities', function(){
         $('#modalCharity').modal('show');
-    })
+        $('.site-content, .top-menu').addClass('blur');
+    });
 }
 
 function selectCharity(el){
@@ -210,14 +212,17 @@ function selectCharity(el){
     $('.charity-name span').text(name);
     $('.charity-name').removeClass('hidden');
     $('#modalCharity').modal('hide');
+    $('.site-content, .top-menu').removeClass('blur');
 }
 
 $(function() {
+    // move modals outside of main site wrapper on load
+    $('.modal').insertAfter('.site-content');
     $('#campaign-layouttype').change(layoutTypeChanged);
     $('[name="Campaign[type]"]').change(campaignTypeChanged);
     $('[name="Campaign[donationDestination]"').change(donationDestinationChanged);
     updateLayoutTeams();
     updateCampaignInvites();
-//    rememberAccordionState();
+    // rememberAccordionState();
     initBootstrapSwitch();
 });
