@@ -7,7 +7,7 @@
     top: 0;
     left: @primary-nav-width;
     padding: 60px 0px 0px 0px;
-    background-color: @bgcolor;
+    background-color: @gray5;
     overflow: auto;
 
     .main-info {
@@ -32,6 +32,7 @@
     width: 100%;
     line-height: 50px;
     height: 50px;
+    background: @bgcolor;
     border-bottom: solid 1px @bgcolor;
 
     ul {
@@ -62,30 +63,40 @@
 }
 
 .campaign-item {
+    color: @gray20;
     padding: 15px 0;
     margin: 0px;
     position: relative;
     display: block;
     width: 100%;
     border-bottom: solid 1px @bgcolor;
-    opacity: .3;
-
-    &.active, &:hover {
-        opacity: 1;
+    &:hover h3,
+    &.active h3 {
+        color: #FFF;
+        .trans;
     }
-
+    &:hover p,
+    &.active p {
+        color: @accent;
+        .trans;
+    }
     &.active:before {
         content: " ";
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 15px 15px 15px 0;
+        border-width: 10px 10px 10px 0;
         border-color: transparent @gray80 transparent transparent;
         position: absolute;
         right: 0px;
         top: 40%;       
     }
 
+    h3,
+    h4,
+    p {
+        color: @gray20;
+    }
     h3 {
         margin: 0px;
         padding: 0 0 2px 0;
@@ -95,12 +106,10 @@
 
     h4 {
         font-size: 14px;
-        color: @gray50;
     }
 
     p {
         margin-top: 4px;
-        color: @accent;
         margin-bottom: 0px;
     }
 
