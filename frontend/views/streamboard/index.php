@@ -8,7 +8,7 @@ use yii\web\View;
 <!-- // Layout Options Side Panel // -->
 <section id="sidepanel" class="sidepanel open resizable">
 	<div class="sidepanel-head">
-		<ul class="nav nav-tabs three-tabs cf">
+		<ul class="nav nav-tabs four-tabs cf">
 			<li class="active">
                 <a href="<?= Url::to()?>#donations" data-toggle="tab" class="donations"><i class="icon icon-cash"></i></a>
             </li>
