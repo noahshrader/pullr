@@ -44,8 +44,9 @@
             $scope.donations = newDonations;
             
         };
-        $scope.updateDonations = function() {
-            $http.get('app/streamboard/get_donations_ajax', {params: {since_id: $scope.lastDonationId}}).success(function(data){
+        $scope.updateDonations = function(forceAll) {
+            var params = {since_id: forceAll ? 0 : $scope.lastDonationId };
+            $http.get('app/streamboard/get_donations_ajax', {params: params }).success(function(data){
                 $scope.stats = data.stats;
                 if ($.isEmptyObject($scope.campaigns)){
                     $scope.campaigns = data.campaigns;
@@ -79,7 +80,10 @@
         $scope.nameHiddenToggle = function(donation){
             donation.streamboard.nameHidden = !donation.streamboard.nameHidden;
             donation.displayName = donation.streamboard.nameHidden || !donation.nameFromForm ? Pullr.ANONYMOUS_NAME : donation.nameFromForm;
-            $http.post('app/streamboard/set_donation_streamboard', {id: donation.id, property: 'nameHidden', value: donation.streamboard.nameHidden });
+            $http.post('app/streamboard/set_donation_streamboard', {id: donation.id, property: 'nameHidden', value: donation.streamboard.nameHidden }).success(function(){
+                /*let's update name for all donations*/
+                $scope.updateDonations(true);
+            });
         }
 
         $scope.markAsRead = function(donation){

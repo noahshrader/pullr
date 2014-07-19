@@ -29,7 +29,8 @@ class m140605_203258_donation extends \console\models\ExtendedMigration
         ]);
         
         $this->createIndex('DONATION_CAMPAIGN_ID', Donation::tableName(), ['campaignId']);
-        
+        $this->createIndex('DONATION_PARENT_CAMPAIGN_ID', Donation::tableName(), ['parentCampaignId']);
+
         $this->sampleData();
     }
 

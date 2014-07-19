@@ -9,6 +9,10 @@ use common\models\Campaign;
 /**
  * Class Streamboard is used to store user's settings for streamboard.
  * @package frontend\models\streamboard
+ * @property integer $donationId
+ * @property integer $userId
+ * @property boolean $nameHidden
+ * @property boolean $wasRead
  */
 class Streamboard extends Model {
     /**

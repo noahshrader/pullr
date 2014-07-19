@@ -144,7 +144,7 @@ class Donation extends ActiveRecord
         /*we are using model function name, because logic maybe different to apply for getting names*/
         $names = [];
         foreach ($donations as $donation){
-            $names[] = $nameFromForm ? $donation->nameFromForm : $donation->name;
+            $names[] = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
         }
         return $names;
     }

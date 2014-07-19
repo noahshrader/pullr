@@ -364,8 +364,7 @@ class User extends ActiveRecord implements IdentityInterface {
         
         /**
          * @param int $sinceId return only donations with id > $sinceId
-         * @return ActiveQuery[] Return all donations which was made for all user's campaigns 
-         * including children campaigns. 
+         * @return ActiveQuery Return all donations which was made for all user's campaigns including children campaigns.
          */
         public function getDonations($sinceId = null){
             $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId'])
@@ -377,8 +376,8 @@ class User extends ActiveRecord implements IdentityInterface {
         }
         
         private $_plan = null;
-        /*
-         * @return Plan::PLAN_BASE or Plan::PLAN_PRO
+        /**
+         * @return Plan::PLAN_BASE|Plan::PLAN_PRO
          */
         public function getPlan(){
             if (!$this->_plan){
@@ -393,8 +392,8 @@ class User extends ActiveRecord implements IdentityInterface {
         }
         
         /**
-         * prolong User plan
-         * @param type $amount - money amount
+         * @description prolong User plan
+         * @param float $amount - money amount
          */
         public function prolong($amount){
             $plan = Plan::findOne($this->id);
