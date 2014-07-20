@@ -93,12 +93,10 @@ $topDonationName = ($topDonation) ? $topDonation->name : '';
                     </a>
                 </li>
                 
-                <!--<li>
+                <li>
                     <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                        Json
-                    </a>
-                </li>-->
+                    <a class="icon-code" href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank"></a>
+                </li>
 
             </ul>
 
