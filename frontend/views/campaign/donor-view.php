@@ -12,17 +12,17 @@ $user = \Yii::$app->user->identity;
         
         <section class="stats-overview">
 
-            <div class='stats-box third'>
+            <div class='stats-box col-xs-4'>
                 <h2>$<?= number_format($totalDonated) ?></h2>
                 <h5>Total Donated</h5>
             </div>
 
-            <div class='stats-box third'>
+            <div class='stats-box col-xs-4'>
                 <h2>$<?= number_format($topDonation) ?></h2>
                 <h5>Top Donation</h5>
             </div>
 
-            <div class='stats-box third'>
+            <div class='stats-box col-xs-4'>
                 <h2><?= sizeof($donations) ?></h2>
                 <h5>Donations</h5>
             </div>

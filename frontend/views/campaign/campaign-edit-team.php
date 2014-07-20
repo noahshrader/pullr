@@ -6,7 +6,9 @@
     <? else: ?>
     <div id="campaign-invites">
         <div id="addCampaingInviteInfo" class="label label-danger"></div>
-        <input type="text" id="addCampaignInvite" placeholder="Add Email Address"> <a class="btn btn-success btn-xs" onclick="addNewCampaignInvite()"> <i class="icon icon-add2"></i></a>
+        <div class="form-horizontal">
+            <input type="text" id="addCampaignInvite" placeholder="Add Email Address" class="form-control"> <a class="btn btn-success btn-xs" onclick="addNewCampaignInvite()"> <i class="icon icon-add2"></i></a>
+        </div>
         <div id="campaignInvitesUsers">
             
         </div>
