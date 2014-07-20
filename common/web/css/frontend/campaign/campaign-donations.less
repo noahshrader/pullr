@@ -1,15 +1,11 @@
 /* Donations */
 /* ------------------------------------------------- */
-body.campaigns.main {
-height: 100%;
-overflow: hidden;
-}
+
 
 .donor-view-wrap {
 	width: 100%;
-	padding-left: @campaigns-list-wrap-width + @primary-nav-width + 60px;
+	padding-left: @campaigns-list-wrap-width + @primary-nav-width;
 	padding-top: 30px;
-	padding-right: 60px;
 	padding-bottom: 60px;
 }
 
@@ -198,10 +194,6 @@ height: 6px;
     display: none;
 }
 
-.dataTables_wrapper {
-  background: @gray75;
-}
-
 .dataTable .details-control{
     cursor: pointer;
 }
@@ -214,9 +206,17 @@ height: 6px;
     margin-bottom: 0.2em;
 }
 .donor-email{
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    color: @gray20;
 }
 
 .donations-table-for-donor .childTable .email{
     display: none;
+}
+
+/* Donations Tale */
+
+#donations-table {
+  border-top: 1px solid @gray75;
+  border-bottom: 1px solid @gray75;
 }
