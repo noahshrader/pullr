@@ -126,11 +126,11 @@ table th,
 table td,
 table.dataTable tbody th, 
 table.dataTable tbody td {
-	padding: 1em .8em!important;
+	padding: 1em 6% !important;
 }
 
 table tr.odd td {
-	background: @gray5;
+	background: @gray80;
 }
 
 table tr:hover td {
@@ -140,8 +140,12 @@ table tr:hover td {
 /* Data Table Overrides */
 
 table.dataTable tbody tr {
-  background-color: transparent!important;
-  border-color: transparent!important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+table.dataTable.no-footer {
+	border: 0;
 }
 
 table.dataTable.row-border tbody th, 
@@ -151,18 +155,6 @@ table.dataTable.display tbody td,
 table.dataTable thead td,
 table.dataTable thead th   {
   border-color: transparent!important;
-}
-
-table.dataTable thead th {
-  border-top: 1px solid @dkgray!important;
-}
-
-td.details-control i.icon-add2:before {
-  color: @accent;
-}
-
-table.dataTable.no-footer {
-  border-bottom: 1px solid @dkgray!important;  
 }
 
 .dataTables_info {
@@ -179,6 +171,11 @@ table.dataTable.no-footer {
 
 .table-scrollable {
     margin-top: 30px;
+}
+
+.row {
+	margin: 0;
+	padding: 0 6%;
 }
 
 /* Pagination */
@@ -236,9 +233,8 @@ table.dataTable.no-footer {
 		span {
 			display: block;
 			color: @gray80;
-			font-size: 2.6em;
+			font-size: 3em;
 			font-weight: 300;
-			letter-spacing: -1px;
 		}
 
 		&.raised-total span {
