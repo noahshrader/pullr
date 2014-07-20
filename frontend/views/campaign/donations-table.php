@@ -1,11 +1,10 @@
 <table id="donations-table" class="display donations-table extend" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th>Date &amp; Time</th>
-            <th>Donor Name</th>
-            <th>Amount</th>
-            <th>Comments</th>
-            <th></th>
+            <th width="45%">Date &amp; Time</th>
+            <th width="30%">Donor Name</th>
+            <th width="20%">Amount</th>
+            <th width="5%"></th>
         </tr>
     </thead>
     <tbody>
@@ -19,13 +18,6 @@
                 </td>
                 <td>
                     $<?= number_format($donation->amount) ?>
-                </td>
-                <td>
-                    <? if ($donation->comments): ?>
-                    Yes
-                    <? else: ?>
-                        No
-                    <? endif ?>
                 </td>
                 <td class="details-control">
                     <? if ($donation->email || $donation->comments): ?>
