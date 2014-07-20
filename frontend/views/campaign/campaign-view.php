@@ -119,26 +119,30 @@ $topDonationName = ($topDonation) ? $topDonation->name : '';
         <section class="stats-overview">
 
                     <div class='stats-box col-xs-3 raised-total'>
-                        <span>$<?= number_format($campaign->amountRaised) ?></span>Raised
+                        <h2>$<?= number_format($campaign->amountRaised) ?></h2>
+                        <h5>Raised</h5>
                     </div>
                     <div class='stats-box col-xs-3 '>
-                        <span>$<?= number_format($campaign->goalAmount) ?></span>Goal
+                        <h2>$<?= number_format($campaign->goalAmount) ?></h2>
+                        <h5>Goal</h5>
                     </div>
                     <div class='stats-box col-xs-3 '>
-                        <span><?= sizeof($donations) ?></span>Donations
+                        <h2><?= sizeof($donations) ?></h2>
+                        <h5>Donations</h5>
                     </div>
                     <div class='stats-box col-xs-3 '>
-                        <span><?= $uniqueDonations ?></span>Unique
+                        <h2><?= $uniqueDonations ?></h2>
+                        <h5>Donors</h5>
                     </div>
                 
                     <div class="clearfix"></div>
 
                     <div class='stats-box col-xs-6 top-donor'>
-                        <h4><?= $topDonorName ?></h4>
+                        <h3><?= $topDonorName ?></h3>
                         <h5>Top Donor</h5>
                     </div>
-                    <div class='stats-box col-xs-6 top-donor'>
-                        <h4><?= $topDonationName ?></h4>
+                    <div class='stats-box col-xs-6 top-donation'>
+                        <h3><?= $topDonationName ?></h3>
                         <h5>Top Donation</h5>
                     </div>
                     

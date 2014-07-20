@@ -112,7 +112,7 @@ table {
 }
 
 table th {
-	color: @gray12;
+	color: @gray40;
 	.smallcaps;
 }
 
@@ -169,13 +169,9 @@ table.dataTable thead th   {
  color: @gray20!important; 
 }
 
-.table-scrollable {
-    margin-top: 30px;
-}
-
 .row {
 	margin: 0;
-	padding: 0 6%;
+	padding: 20px 50px;
 }
 
 /* Pagination */
@@ -217,31 +213,28 @@ table.dataTable thead th   {
 .stats-overview {
 	position: relative;
 	text-align: center;
-	margin: 0 50px 50px;
+	margin-bottom: 40px;
 	background: @gray75;
-	.border-radius;
 	overflow: hidden;
 
 	.stats-box {
-		color: @gray30;
+		color: @bgcolor;
 		padding: 1.2em 2em;
 		border-left: solid 1px #FFF;
 
-		&:first-child {
-			border: 0px;
-		}
-
-		span {
+		h2,
+		h3 {
 			display: block;
-			color: @gray20;
-			font-size: 3em;
+			color: @bgcolor;
 			font-weight: 300;
 		}
+		&.raised-total {
+			border-left: 0 !important;
 
-		&.raised-total span {
-			color: @accent;
+			h2 {
+				color: @accent;
+			}
 		}
-
 	}
 
 }
@@ -251,12 +244,14 @@ table.dataTable thead th   {
 .progress {
     border-radius: 0px;
     margin-bottom: 0px;
-    background: @gray20;
+    background: @gray60;
 }
 
 .progress-line {
     position: relative;
     color: #FFF;
+    text-align: right;
+    padding-right: 5px;
     height: 20px;
     .smallcaps;
     background: @accent;

@@ -69,28 +69,6 @@ $user = \Yii::$app->user->identity;
 
         </div>
 
-        <div class="col-md-6 campaign-nav">
-
-            <ul class="campaign-buttons">
-
-                <li>
-                    <a href='<?= $user->getUrl() . $campaign->alias ?>' target="_blank">
-                        <!-- View -->
-                        View Campaign
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://github.com/noahshrader/pullr/blob/master/docs/SHORTCODES.md">
-                        <!-- Shortcodes -->
-                        XML
-                    </a>
-                </li>
-
-            </ul>
-
-        </div>
-
         <div class="clearfix"></div>
     
     </div>
