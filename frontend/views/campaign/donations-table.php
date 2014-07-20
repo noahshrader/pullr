@@ -1,7 +1,7 @@
 <table id="donations-table" class="display donations-table extend" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th>Date & Time</th>
+            <th>Date &amp; Time</th>
             <th>Donor Name</th>
             <th>Amount</th>
             <th>Comments</th>

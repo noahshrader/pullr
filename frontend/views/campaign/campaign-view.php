@@ -93,13 +93,12 @@ $topDonationName = ($topDonation) ? $topDonation->name : '';
                     </a>
                 </li>
                 
-                <li>
+                <!--<li>
                     <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                        <!-- View -->
                         Json
                     </a>
-                </li>
+                </li>-->
 
             </ul>
 
@@ -120,7 +119,6 @@ $topDonationName = ($topDonation) ? $topDonation->name : '';
 
 
         <section class="stats-overview">
-
 
                     <div class='stats-box col-xs-3 raised-total'>
                         <span>$<?= number_format($campaign->amountRaised) ?></span>Raised
