@@ -17,7 +17,7 @@
                     <? endif ?>
                 </td>
                 <td>
-                   <?= date('M j, Y', $donation->paymentDate) ?>
+                   <?= date('M j, Y h:mA', $donation->paymentDate) ?>
                 </td>
                 <td>
                     <?= $donation->name ? $donation->name : 'Anonymous' ?>

@@ -11,7 +11,7 @@
         <? foreach ($donations as $donation): ?>
             <tr data-email="<?= $donation->email ?>" data-comments="<?= $donation->comments ?>">
                 <td>
-                   <?= date('M j, Y', $donation->paymentDate) ?>
+                   <?= date('M j, Y h:mA', $donation->paymentDate) ?>
                 </td>
                 <td>
                     <?= $donation->name ? $donation->name : 'Anonymous' ?>
