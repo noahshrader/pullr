@@ -30,11 +30,10 @@ class Streamboard extends Model {
         foreach ($selectedCampaigns as $campaign){
             $ids[] = $campaign->id;
         }
-        /*angular doesn't allow duplicates, so let's add indexes*/
-        $topDonorNames = Donation::getTopDonorsForCampaigns($selectedCampaigns, 3, true);
-        foreach ($topDonorNames as $name){
-            $stats['top_donors'][] = ['name' => $name];
-        }
+        /*angular doesn't allow duplicates, so we should use indexes*/
+        $topDonors = Donation::getTopDonorsForCampaigns($selectedCampaigns, 3, true);
+        $stats['top_donors'] = $topDonors;
+
         foreach ($selectedCampaigns as $campaign){
             $stats['total_amount']+=$campaign->amountRaised;
         }

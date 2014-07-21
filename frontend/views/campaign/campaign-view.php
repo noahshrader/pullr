@@ -11,9 +11,9 @@ $donations = $campaign->getDonations()->all();
 
 $uniqueDonations = $campaign->getDonations()->count('DISTINCT email');
 $topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
-$topDonorName = sizeof($topDonors) > 0 ? $topDonors[0] : '';
+$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'].' ($'.number_format($topDonors[0]['amount']).')' : '';
 $topDonation = Donation::getTopDonation([$campaign]);
-$topDonationName = ($topDonation) ? $topDonation->name . ' ($'.number_format($topDonation->amount).')': '';
+$topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($topDonation->amount).')': '';
 ?>
 
 <script type="text/javascript">
@@ -138,11 +138,11 @@ $topDonationName = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <div class="clearfix"></div>
 
                     <div class='stats-box col-xs-6 top-donor'>
-                        <h3><?= $topDonorName ?></h3>
+                        <h3><?= $topDonorText ?></h3>
                         <h5>Top Donor</h5>
                     </div>
                     <div class='stats-box col-xs-6 top-donation'>
-                        <h3><?= $topDonationName ?></h3>
+                        <h3><?= $topDonationText ?></h3>
                         <h5>Top Donation</h5>
                     </div>
                     

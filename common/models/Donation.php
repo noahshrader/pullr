@@ -135,18 +135,26 @@ class Donation extends ActiveRecord
      */
     public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false){
         $query = self::getDonationTableQueryForCampaigns($campaigns)->andWhere('email <> ""')
-            ->groupBy('email')->orderBy('sum DESC')->limit($limit);
-        $donationIds = $query->column();
+            ->groupBy('email')->orderBy('sum DESC')->limit($limit)->select('id , SUM(AMOUNT) sum, email');
+        $rows = $query->all();
+        $sumByEmail = [];
+        $donationIds = [];
+        foreach ($rows as $row){
+            $donationIds[] = $row['id'];
+            $sumByEmail[$row['email']] = $row['sum'];
+        }
+
         $donations = Donation::findAll($donationIds);
         usort($donations, function(Donation $d1,Donation $d2) use (&$donationIds){
             return (array_search($d1->id, $donationIds) > array_search($d2->id, $donationIds)) ? '1' : '-1';
         });
         /*we are using model function name, because logic maybe different to apply for getting names*/
-        $names = [];
+        $donors = [];
         foreach ($donations as $donation){
-            $names[] = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
+            $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
+            $donors[] = [ 'name' => $name, 'amount' => $sumByEmail[$donation->email], 'email' => $donation->email];
         }
-        return $names;
+        return $donors;
     }
 
     /**
