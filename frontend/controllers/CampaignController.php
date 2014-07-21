@@ -296,8 +296,8 @@ class CampaignController extends FrontendController {
     public function actionExportdonations(){
         $user = \Yii::$app->user->identity;
         if (isset($_REQUEST['id'])){
-            $campaign = $this->getCampaign();
-            $donations = $campaign->donations;
+            $campaign = $this->getCampaign(true);
+            $donations = $campaign->getDonations()->all();
         } else if (isset($_REQUEST['email'])) {
             $donations = Donation::findByEmailAndUserId($_REQUEST['email'], $user->id)->all();
         } else {
