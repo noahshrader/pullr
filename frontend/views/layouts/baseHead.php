@@ -12,9 +12,9 @@ use common\models\Donation;
         <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">
         <?php $this->head() ?>
 
-    <!-- Load Typekit Fonts -->
-    <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	    <!-- Load Typekit Fonts -->
+	    <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
+	    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?
 $js = 'Pullr.ANONYMOUS_NAME = "'.Donation::ANONYMOUS_NAME.'";';
 $this->registerJs($js);
