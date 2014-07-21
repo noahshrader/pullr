@@ -344,7 +344,6 @@ class CampaignController extends FrontendController {
         $viewDonorParams['name'] = $name;
         $viewDonorParams['totalDonated'] = $donationsQuery->sum('amount');
         $viewDonorParams['topDonation'] = $donationsQuery->max('amount');
-        
         return $this->actionDonors($viewDonorParams);
     }
     
@@ -357,7 +356,11 @@ class CampaignController extends FrontendController {
                 ' AND paymentDate > 0 AND email<>"" GROUP BY email ORDER BY sum DESC, lastName ASC, firstName ASC';
         $command = $connection->createCommand($sql);
         $donors = $command->queryAll();
-        
+
+        if ( (sizeof($donors) > 0) && ($viewDonorParams == null)){
+            /*let's auto select first donor*/
+            return $this->actionDonor($donors[0]['email']);
+        }
         foreach ($donors as &$donor){
             $lastName = $donor['lastName'];
             $firstName = $donor['firstName'];
