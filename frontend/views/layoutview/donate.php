@@ -80,6 +80,7 @@ use yii\widgets\ActiveForm;
                         </div>
                         <? endif;?>
                     <button type="submit" class="btn donate">Donate $1</button>
+                    <p class="small">By submitting, I acknowledge that I have read the privacy policy and terms of service.</p>
                 </div>
         <?php ActiveForm::end(); ?>
 </section>
