@@ -13,7 +13,7 @@ $uniqueDonations = $campaign->getDonations()->count('DISTINCT email');
 $topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
 $topDonorName = sizeof($topDonors) > 0 ? $topDonors[0] : '';
 $topDonation = Donation::getTopDonation([$campaign]);
-$topDonationName = ($topDonation) ? $topDonation->name : '';
+$topDonationName = ($topDonation) ? $topDonation->name . ' ($'.number_format($topDonation->amount).')': '';
 ?>
 
 <script type="text/javascript">
