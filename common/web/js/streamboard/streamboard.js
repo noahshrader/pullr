@@ -21,8 +21,11 @@ $(function () {
         var width = $(window).width();
         var height = $(window).height();
         $.post('app/streamboard/set_streamboard_window', {width: width, height: height});
-        window.opener.Pullr.Streamboard.streamboardWidth = width;
-        window.opener.Pullr.Streamboard.streamboardHeight = height;
+        /*parent window can be closed*/
+        if (window.opener){
+            window.opener.Pullr.Streamboard.streamboardWidth = width;
+            window.opener.Pullr.Streamboard.streamboardHeight = height;
+        }
     });
 
     var currentStreamboardLeft = window.screenX;
