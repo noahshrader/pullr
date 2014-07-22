@@ -70,6 +70,9 @@ $this->registerJs($js);
                                     <li>
                                         <a class="themes icon-template" href="theme">Themes</a>
                                     </li>
+                                    <li>
+                                        <a class="themes icon-notification" href="notification">Notifications</a>
+                                    </li>
                             </ul>
                         <? endif; ?>
                     </nav>

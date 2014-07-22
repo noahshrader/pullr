@@ -13,6 +13,7 @@ use common\models\user\UserFields;
 class SystemNotification extends ActiveRecord {
     const STATUS_ACTIVE = 'active';
     const STATUS_DELETED = 'deleted';
+    const DATE_FORMAT = 'M j Y h:iA';
 
     public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_DELETED];
     
@@ -36,7 +37,24 @@ class SystemNotification extends ActiveRecord {
     public static function readNotificationForUser($userId, $notificationId){
         $notification = SystemNotification::findOne($notificationId);
         $userFields = UserFields::findOne($userId);
-        $userFields->systemNotificationDate = $notification->date+1;
+        $userFields->systemNotificationDate = $notification->date + 1;
         $userFields->save();
+    }
+
+    public function scenarios() {
+        return [
+            'default' => ['message', 'status', 'date'],
+        ];
+    }
+
+    public function rules() {
+        return [
+            ['message', 'required'],
+            ['message', 'filter', 'filter' => 'strip_tags'],
+            ['status', 'in', 'range' => self::$STATUSES],
+            ['date', 'required'],
+            ['date', 'filter', 'filter' => 'strip_tags'],
+            ['date', 'required'],
+        ];
     }
 }
