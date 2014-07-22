@@ -65,21 +65,21 @@ use yii\widgets\ActiveForm;
                 <?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?>
                 <!-- Other Fields -->
                 <div class="form-wrapper">
-                        <div class="field">
-                            <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
-                        </div>
-                        <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
-                        <div class="field">
-                            <input type="text" id="donation-email" name="Donation[email]" value='<?= htmlspecialchars($donation->email) ?>' placeholder="Email">
-                        </div>
-                        <? endif ?>
-                        <? if ($campaign->enableDonorComments): ?>
-                        <div class="field comments cf">
-                            <textarea type="text" id='donation-comments' name="Donation[comments]" placeholder="Comments"><?=htmlspecialchars($donation->comments) ?></textarea>
-                            <span class="counter"></span>
-                        </div>
-                        <? endif;?>
-                    <button type="submit" class="btn-primary btn donate">Donate $5</button>
+                    <div class="field">
+                        <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
+                    </div>
+                    <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
+                    <div class="field">
+                        <input type="text" id="donation-email" name="Donation[email]" value='<?= htmlspecialchars($donation->email) ?>' placeholder="Email">
+                    </div>
+                    <? endif ?>
+                    <? if ($campaign->enableDonorComments): ?>
+                    <div class="field comments cf">
+                        <textarea type="text" id='donation-comments' name="Donation[comments]" placeholder="Comments"><?=htmlspecialchars($donation->comments) ?></textarea>
+                        <span class="counter"></span>
+                    </div>
+                    <? endif;?>
+                    <button type="submit" class="btn-primary btn donate">Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_TIP_JAR) ? 1 : 5 ?></button>
                     <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">privacy policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">terms of service</a>.</p>
                 </div>
         <?php ActiveForm::end(); ?>
