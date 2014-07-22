@@ -22,7 +22,6 @@
         </div>
         
         <div id='pullr-player'>
-            
         </div>
         <div id='pullr-channels'></div>
         <script type='text/javascript'>
