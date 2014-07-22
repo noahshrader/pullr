@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
                     <!-- Amount Selections -->
                     <div id="donation-amount" class="cf">
                             <div class="choice fieldamount">
-                                    <label for="option1">$5<input type="radio" id="option1" name="donation-amount" class="toggle donation-amount" value="5"></label>
+                                    <label for="option1" class="active">$5<input type="radio" id="option1" name="donation-amount" class="toggle donation-amount" value="5"></label>
                             </div>
                             <div class="choice fieldamount">
                                     <label for="option2" class="">$15<input type="radio" id="option2" name="donation-amount" class="toggle donation-amount" value="15"></label>
@@ -79,7 +79,7 @@ use yii\widgets\ActiveForm;
                             <span class="counter"></span>
                         </div>
                         <? endif;?>
-                    <button type="submit" class="btn-primary btn donate">Donate $1</button>
+                    <button type="submit" class="btn-primary btn donate">Donate $5</button>
                     <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">privacy policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">terms of service</a>.</p>
                 </div>
         <?php ActiveForm::end(); ?>

@@ -86,7 +86,7 @@ function amountChangedEvent(){
         var value = $('[name=donation-amount]:checked').val();
         var undefinedFlag = false;
         if (typeof value === 'undefined'){
-            value = 1;
+            value = 5;
             undefinedFlag = true;
         }
 
