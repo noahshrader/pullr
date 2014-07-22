@@ -10,7 +10,8 @@ class NotificationController extends BackendController{
     */
     public function actionIndex() {
         $params = [];
-        $params['notifications'] = SystemNotification::find()->all();
+        $params['notifications'] = SystemNotification::find()->orderBy('date DESC')->all();
+
         return $this->render('index', $params);
     }
 
@@ -42,11 +43,8 @@ class NotificationController extends BackendController{
             }
         }
 
-
-        if ($notice->id) {
-            if (is_numeric($notice->date)) {
-                $notice->date = strftime('%Y-%m-%dT%H:%M', $notice->date);
-            }
+        if (is_numeric($notice->date)) {
+            $notice->date = strftime('%Y-%m-%dT%H:%M', $notice->date);
         }
 
         return $this->render('edit', ['notice' => $notice]);
