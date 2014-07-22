@@ -2,6 +2,7 @@ $(function(){
     $el = $('#notifications-management-table');
     $wrapper = $el.parent().parent();
     $el.dataTable({
+        "order": [[ 1, "desc" ]],
         "aLengthMenu": [
             [10, 20, 40, -1],
             [10, 20, 40, "All"] // change per page values here
