@@ -14,7 +14,7 @@
             <h3 class="donation-name">{{donation.displayName}}
                 <i ng-hide="donation.nameFromForm == ''" ng-click="nameHiddenToggle(donation)" class="glyphicon glyphicon-eye-open" ng-class="{nameHidden: donation.streamboard.nameHidden}"></i>
             </h3>
-            <div><span class="donation-amount">${{donation.amount}}</span> {{selectedCampaignsNumber > 1 ? donation.campaignName : ''}}</div>
+            <div><span class="donation-amount">${{number_format(donation.amount)}}</span> {{selectedCampaignsNumber > 1 ? donation.campaignName : ''}}</div>
             <div class="donation-comments">{{donation.comments}}</div>
             <div><span class="donation-date">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</span> <a ng-hide="donation.streamboard.wasRead" ng-click="markAsRead(donation)">Mark as Read</a></div>
         </div>

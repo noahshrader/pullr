@@ -26,4 +26,25 @@ function catchKeys() {
 
 }
 
+/**
+ *
+ * format number with ",". Example - 1,200,322
+ */
+function number_format(number){
+    var str = '';
+    var module = number % 1000;
+    str = module + str;
+    remainNumber = Math.floor(number/1000);
+    if (remainNumber > 0){
+        if (module<100){
+            str = '0'+str;
+        }
+        if (module<10){
+            str = '0'+str;
+        }
+        str = number_format(remainNumber) + ','+str;
+    }
+    return str;
+}
+
 (catchKeys());

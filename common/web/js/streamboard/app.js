@@ -21,6 +21,10 @@
             });
         };
         $rootScope.requestCampaigns();
+        setInterval(function() {
+            $rootScope.requestCampaigns();
+        }, 1000);
+        $rootScope.number_format = number_format;
     });
 
     app.controller('SourceCtrl', function ($scope, $rootScope){

@@ -54,28 +54,6 @@ function donatePageInit() {
     amountChangedEvent();
 }
 
-/**
- *
- * format number with ",". Example - 1,200,322 
- */
-function numberFormat(number){
-    var str = '';
-    var module = number % 1000;
-    str = module + str;
-    remainNumber = Math.floor(number/1000);
-    if (remainNumber > 0){
-        if (module<100){
-            str = '0'+str;
-        }
-        if (module<10){
-            str = '0'+str;
-        }
-        str = numberFormat(remainNumber) + ','+str;
-    }
-    
-    return str;
-}
-
 function amountChangedEvent(){
     if ($('.tip-jar').length>0){
         var value=parseInt($('#other-amount').val());
@@ -108,7 +86,7 @@ function amountChangedEvent(){
         var amountRaised = parseInt($progressContainer.data('amountraised'));
         var goalAmount = parseInt($progressContainer.data('goalamount'));
         amountRaised+=value;
-        $progressContainer.find('.amountRaised').text('$'+numberFormat(amountRaised));
+        $progressContainer.find('.amountRaised').text('$'+number_format(amountRaised));
         /*preventing division by zero*/
         goalAmount = Math.max(1, goalAmount);
         var percent = 100*amountRaised/goalAmount;
