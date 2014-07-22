@@ -79,7 +79,7 @@ use yii\widgets\ActiveForm;
                         <span class="counter"></span>
                     </div>
                     <? endif;?>
-                    <button type="submit" class="btn-primary btn donate" data-effect="mfp-zoom-in">Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_TIP_JAR) ? 1 : 5 ?></button>
+                    <button type="submit" class="btn-primary btn donate">Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_TIP_JAR) ? 1 : 5 ?></button>
                     <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">privacy policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">terms of service</a>.</p>
                 </div>
         <?php ActiveForm::end(); ?>
