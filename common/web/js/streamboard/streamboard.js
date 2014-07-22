@@ -32,8 +32,11 @@ $(function () {
             currentStreamboardLeft = window.screenX;
             currentStreamboardTop = window.screenY;
             $.post('app/streamboard/set_streamboard_window_position', {left: currentStreamboardLeft, top: currentStreamboardTop});
-            window.opener.Pullr.Streamboard.streamboardLeft = currentStreamboardLeft;
-            window.opener.Pullr.Streamboard.streamboardTop =  currentStreamboardTop;
+            /*parent window can be closed*/
+            if (window.opener){
+                window.opener.Pullr.Streamboard.streamboardLeft = currentStreamboardLeft;
+                window.opener.Pullr.Streamboard.streamboardTop =  currentStreamboardTop;
+            }
         }
     }, 1000)
 });
