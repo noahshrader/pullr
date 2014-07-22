@@ -14,28 +14,58 @@
        }
     });
     app.run(function($rootScope, $http){
+        $rootScope.selectedCampaignsNumber = 0;
         $rootScope.campaigns = {};
+        $rootScope.number_format = number_format;
+        $rootScope.length = function(obj){
+            return Object.keys(obj).length;
+        }
         $rootScope.requestCampaigns = function() {
-            $http.get('app/streamboard/get_campaigns_ajax').success(function(data){
-                $rootScope.campaigns = data;
+            $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
+                var oldCampaigns = $rootScope.campaigns;
+                /*We have asynchronous conflict between campaigns enabling/disabling and requestCampaigns request.
+                So first we prefer streamboardSelected value at client compared to server.
+                 */
+                for (var id in campaigns){
+                   if (oldCampaigns[id]){
+                      campaigns[id].streamboardSelected = oldCampaigns[id].streamboardSelected;
+                   }
+                }
+                $rootScope.campaigns = campaigns;
+                $rootScope.calcSelectedCampaignsNumber();
             });
+        };
+        $rootScope.calcSelectedCampaignsNumber = function(){
+            var number = 0;
+            $.each($rootScope.campaigns, function(key, campaign){
+                campaign.streamboardSelected ? number++: null;
+            });
+            $rootScope.selectedCampaignsNumber = number;
         };
         $rootScope.requestCampaigns();
         setInterval(function() {
             $rootScope.requestCampaigns();
         }, 1000);
-        $rootScope.number_format = number_format;
-    });
-
-    app.controller('SourceCtrl', function ($scope, $rootScope){
 
     });
 
-    app.controller('DonationsCtrl', function($scope, $http, $rootScope) {
+    app.controller('SourceCtrl', function ($rootScope, $scope, $http){
+        $scope.stats = {};
+        $scope.requestSourceStats = function(){
+           $http.get('app/streamboard/get_source_data').success(function(data){
+              $scope.stats = data['stats'];
+           });
+        }
+        $scope.requestSourceStats();
+        setInterval(function() {
+            $scope.requestSourceStats();
+        }, 1000);
+    });
+
+    app.controller('DonationsCtrl', function($rootScope, $scope, $http) {
         $scope.donations = [];
         $scope.unorderedDonations = {};
         $scope.stats = {};
-        $scope.selectedCampaignsNumber = 0;
         //$scope.campaigns = [];
         /*we will request only donations with id>$scope.lastDonationId*/
         $scope.lastDonationId = 0;
@@ -65,7 +95,6 @@
             var params = {since_id: forceAll ? 0 : $scope.lastDonationId };
             $http.get('app/streamboard/get_donations_ajax', {params: params }).success(function(data){
                 $scope.stats = data.stats;
-                $scope.calcSelectedCampaignsNumber();
                 for (var key in data.donations){
                     var donation = data.donations[key];
                     $scope.unorderedDonations[donation.id] = donation;
@@ -78,16 +107,9 @@
         };
         $scope.campaignChanged = function(campaign){
             $http.post('app/streamboard/set_campaign_selection', {id: campaign.id, streamboardSelected: campaign.streamboardSelected});
-            $scope.calcSelectedCampaignsNumber();
+            $rootScope.calcSelectedCampaignsNumber();
         };
 
-        $scope.calcSelectedCampaignsNumber = function(){
-            var number = 0;
-            $.each($scope.campaigns, function(key, campaign){
-                campaign.streamboardSelected ? number++: null;
-            });
-            $scope.selectedCampaignsNumber = number;
-        };
         $scope.updateDonations();
 
         $scope.nameHiddenToggle = function(donation){

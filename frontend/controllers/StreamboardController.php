@@ -96,7 +96,7 @@ class StreamboardController extends FrontendController{
         }
 
         /**
-         * we not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
+         * we do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
          */
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->all();
         $selectedCampaigns = [];
@@ -164,5 +164,22 @@ class StreamboardController extends FrontendController{
         $config->streamboardLeft = $left;
         $config->streamboardTop = $top;
         $config->save();
+    }
+
+    /**
+     * @description - ajax request from app/streamboard/source page
+     */
+    public function actionGet_source_data(){
+        $user = \Yii::$app->user->identity;
+        /**
+         * we do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
+         */
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
+        $stats = Streamboard::getStats($campaigns);
+        $data = [
+            'stats' => $stats
+        ];
+        echo json_encode($data);
+        die;
     }
 }

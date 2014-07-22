@@ -22,7 +22,8 @@ class Streamboard extends Model {
     public static function getStats($selectedCampaigns){
         $stats = [];
         $stats = [
-            'total_amount' => 0,
+            'total_amountRaised' => 0,
+            'total_goalAmount' => 0,
             'top_donors' => []
         ];
 
@@ -35,7 +36,8 @@ class Streamboard extends Model {
         $stats['top_donors'] = $topDonors;
 
         foreach ($selectedCampaigns as $campaign){
-            $stats['total_amount']+=$campaign->amountRaised;
+            $stats['total_amountRaised']+=$campaign->amountRaised;
+            $stats['total_goalAmount']+=$campaign->goalAmount;
         }
         $topDonation = Donation::getTopDonation($selectedCampaigns);
         if ($topDonation){
