@@ -7,9 +7,9 @@
   z-index: 1042;
   overflow: hidden;
   position: fixed;
-  background: #0b0b0b;
-  opacity: 0.8;
-  filter: alpha(opacity=80); }
+  background: #000;
+  opacity: 0.9;
+  filter: alpha(opacity=90); }
 
 .mfp-wrap {
   top: 0;
@@ -213,12 +213,12 @@ button::-moz-focus-inner {
     border-left: 27px solid #3f3f3f; }
 
 .mfp-iframe-holder {
-  padding-top: 40px;
+  padding-top: 100px;
   padding-bottom: 40px; }
   .mfp-iframe-holder .mfp-content {
     line-height: 0;
     width: 100%;
-    max-width: 900px; }
+    max-width: 760px; }
   .mfp-iframe-holder .mfp-close {
     top: -40px; }
 
@@ -234,7 +234,6 @@ button::-moz-focus-inner {
     left: 0;
     width: 100%;
     height: 100%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     background: black; }
 
 /* Main image in popup */

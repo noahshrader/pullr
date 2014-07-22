@@ -79,7 +79,7 @@ use yii\widgets\ActiveForm;
                             <span class="counter"></span>
                         </div>
                         <? endif;?>
-                    <button type="submit" class="btn donate">Donate $1</button>
+                    <button type="submit" class="btn-primary btn donate">Donate $1</button>
                     <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">privacy policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">terms of service</a>.</p>
                 </div>
         <?php ActiveForm::end(); ?>

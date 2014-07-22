@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Pullr Api Test</title>
@@ -17,7 +12,7 @@ and open the template in the editor.
         <link  rel="stylesheet" href="layoutview/api.css" />
     </head>
     <body>
-        <button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate">Donate</button>
+        <button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in">Donate</button>
         <div class='row'>
             <h1  data-pullr='campaign-name'></h1><h3>for <span data-pullr="campaign-charity-name"></span></h3>
             
@@ -32,7 +27,7 @@ and open the template in the editor.
         <div id='pullr-channels'></div>
         <script type='text/javascript'>
             Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
-//            Pullr.Ready(function(){alert(Pullr.event.name)});
+            // Pullr.Ready(function(){alert(Pullr.event.name)});
         </script>
     </body>
 </html>
