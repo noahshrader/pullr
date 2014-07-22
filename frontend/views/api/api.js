@@ -98,11 +98,13 @@ Pullr.loadMagnificPopup = function(){
             },
             type: 'iframe',
             iframe: {
-                markup: '<div class="mfp-iframe-scaler">'+
+                markup: '<div class="mfp-iframe-scaler mfp-with-anim">'+
                           '<div class="mfp-close"></div>'+
                           '<iframe class="mfp-iframe" frameborder="0"  onload="javascript:resizeIframe(this);" allowfullscreen></iframe>'+
                         '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
-            }
+            },
+            removalDelay: 300,
+            mainClass: 'mfp-fade'
         });
     });
 }
