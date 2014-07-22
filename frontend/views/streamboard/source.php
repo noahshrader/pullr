@@ -8,8 +8,8 @@ use yii\web\View;
     <div ng-controller="SourceCtrl">
         <div class="overall" ng-show="length(campaigns) > 1">
             <div class="name">Overall</div>
-            <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">{{number_format(stats.total_amountRaised)}}</span></div>
-            <div>Total Goal Amount: <span id="total_goal_amount" class="amount accent">{{number_format(stats.total_goalAmount)}}</span></div>
+            <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">${{number_format(stats.total_amountRaised)}}</span></div>
+            <div>Total Goal Amount: <span id="total_goal_amount" class="amount accent">${{number_format(stats.total_goalAmount)}}</span></div>
             <div>Total Donations: <span id="total_donations" class="amount accent">{{stats.number_of_donations}}</span></div>
             <div>Total Donors: <span id="total_donors" class="amount accent">{{stats.number_of_donors}}</span></div>
         </div>
