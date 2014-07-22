@@ -10,7 +10,8 @@ use yii\web\View;
             <div class="name">Overall</div>
             <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">{{number_format(stats.total_amountRaised)}}</span></div>
             <div>Total Goal Amount: <span id="total_goal_amount" class="amount accent">{{number_format(stats.total_goalAmount)}}</span></div>
-            <div>Total Donations: <span id="total_goal_amount" class="amount accent">{{stats.number_of_donations}}</span></div>
+            <div>Total Donations: <span id="total_donations" class="amount accent">{{stats.number_of_donations}}</span></div>
+            <div>Total Donors: <span id="total_donors" class="amount accent">{{stats.number_of_donors}}</span></div>
         </div>
         <div id="campaign_{{campaign.id}}" class="source-row" ng-repeat="campaign in campaigns">
             <div class="name" id="campaignName_{{campaign.id}}">{{campaign.name}}</div>

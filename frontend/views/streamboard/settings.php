@@ -11,6 +11,7 @@
                 <a href="<?= Url::to()?>#campaigns" data-toggle="tab" class="donations">Campaigns</a>
             </li>
             <li class="active"><a href="<?= Url::to()?>#source" data-toggle="tab" class="region1">Source</a></li>
+            <li class="active"><a href="<?= Url::to()?>#downloads" data-toggle="tab" class="region1">Downloads</a></li>
         </ul>
     </div>
     <hr>
