@@ -14,17 +14,24 @@ use yii\web\NotFoundHttpException;
 
 class StreamboardController extends FrontendController{
     public function actionIndex() {
-        if (Yii::$app->user->isGuest) {
-            return Yii::$app->user->loginRequired();
-        }
-
         $user = Yii::$app->user->identity;
-        
-        /*@var $user User */
+        /**@var $user User */
         $campaigns = $user->getCampaigns()->all();
-        
+
         $this->layout = 'streamboard';
         return $this->render('index', [
+            'user' => $user,
+            'campaigns' => $campaigns,
+        ]);
+    }
+
+    public function actionSource() {
+        $user = Yii::$app->user->identity;
+        /**@var $user User */
+        $campaigns = $user->getCampaigns()->all();
+
+        $this->layout = 'streamboard/source';
+        return $this->render('source', [
             'user' => $user,
             'campaigns' => $campaigns,
         ]);
@@ -46,6 +53,23 @@ class StreamboardController extends FrontendController{
         $donation->save();
 
         Campaign::updateDonationStatistics($campaignId);
+    }
+
+    public function actionGet_campaigns_ajax(){
+        $user = \Yii::$app->user->identity;
+        /**@var $user User */
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->orderBy('amountRaised DESC, id DESC')->all();
+        $campaignsArray = [];
+
+        foreach ($campaigns as $campaign){
+            /**@var $campaign Campaign*/
+            $array = $campaign->toArray(['id', 'name', 'goalAmount', 'amountRaised']);
+            $array['streamboardSelected'] = $campaign->streamboard->selected ? true: false;
+            $campaignsArray[$campaign->id] = $array;
+        }
+
+        echo json_encode($campaignsArray);
+        die;
     }
 
     public function actionGet_donations_ajax($since_id = null) {
@@ -75,14 +99,10 @@ class StreamboardController extends FrontendController{
          * we not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
          */
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->all();
-        $campaignsArray = [];
         $selectedCampaigns = [];
 
         foreach ($campaigns as $campaign){
             /**@var $campaign Campaign*/
-            $array = $campaign->toArray(['id', 'name']);
-            $array['streamboardSelected'] = $campaign->streamboard->selected ? true: false;
-            $campaignsArray[$campaign->id] = $array;
             if ($campaign->streamboard->selected){
                 $selectedCampaigns[] = $campaign;
             }
@@ -93,7 +113,6 @@ class StreamboardController extends FrontendController{
         
         $data = [];
         $data['donations'] = $donationsArray;
-        $data['campaigns'] = $campaignsArray;
         $data['stats'] = $stats;
         
         echo json_encode($data);

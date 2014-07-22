@@ -1,7 +1,7 @@
 // Need to Call to Variables
-@import "../variables.less";
+@import "../../variables";
 // Scrollbar Styles
-@import "../scrollbars.less";
+@import "../../scrollbars";
 // Navigation Styles
 
 body, html {
@@ -26,6 +26,9 @@ label {
   }
   .tab-content {
     padding-top: 10px;
+    height: 100%;
+  }
+  .tab-pane{
     height: 100%;
   }
 }
@@ -287,7 +290,6 @@ a.dashboard.show:before {
 #donations{
   position: relative;
   overflow: hidden;
-  height: 100%;
   padding: 50px 0px;
 }
 #donations-header{

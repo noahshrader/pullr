@@ -1,12 +1,13 @@
 <?php
 use yii\helpers\Html;
 use common\assets\CommonAsset;
-use common\assets\streamboard\StreamboardAsset;
 use common\assets\streamboard\StreamboardCommonAsset;
+use common\assets\streamboard\StreamboardSourceAsset;
 
 CommonAsset::register($this);
 StreamboardCommonAsset::register($this);
-StreamboardAsset::register($this);
+StreamboardSourceAsset::register($this);
+
 $this->title = 'Streamboard';
 ?>
 
@@ -14,7 +15,7 @@ $this->title = 'Streamboard';
 
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
-    <?= $this->render('baseHead') ?>
+    <?= $this->render('../baseHead') ?>
     <body>
        <?php $this->beginBody() ?>
                        <?= $content ?>

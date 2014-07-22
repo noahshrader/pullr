@@ -1,11 +1,11 @@
 (function() {
     var app = angular.module('streamboardApp', []);
     app.filter('selectedCampaigns', function(){
-       return function(donations, $scope){
+       return function(donations, $rootScope){
            var filteredDonations = [];
            for (var key in donations){
                var donation = donations[key];
-               var campaign = $scope.campaigns[donation.campaignId];
+               var campaign = $rootScope.campaigns[donation.campaignId];
                if (campaign && campaign.streamboardSelected){
                    filteredDonations.push(donation);
                }
@@ -13,9 +13,22 @@
            return filteredDonations;
        }
     });
-    app.controller('DonationsController', function($scope, $http) {
+    app.run(function($rootScope, $http){
+        $rootScope.campaigns = {};
+        $rootScope.requestCampaigns = function() {
+            $http.get('app/streamboard/get_campaigns_ajax').success(function(data){
+                $rootScope.campaigns = data;
+            });
+        };
+        $rootScope.requestCampaigns();
+    });
+
+    app.controller('SourceCtrl', function ($scope, $rootScope){
+
+    });
+
+    app.controller('DonationsCtrl', function($scope, $http, $rootScope) {
         $scope.donations = [];
-        $scope.campaigns = {};
         $scope.unorderedDonations = {};
         $scope.stats = {};
         $scope.selectedCampaignsNumber = 0;
@@ -48,9 +61,6 @@
             var params = {since_id: forceAll ? 0 : $scope.lastDonationId };
             $http.get('app/streamboard/get_donations_ajax', {params: params }).success(function(data){
                 $scope.stats = data.stats;
-                if ($.isEmptyObject($scope.campaigns)){
-                    $scope.campaigns = data.campaigns;
-                }
                 $scope.calcSelectedCampaignsNumber();
                 for (var key in data.donations){
                     var donation = data.donations[key];
@@ -60,7 +70,6 @@
                     $scope.lastDonationId = data.donations[0].id;
                     $scope.sortDonations();
                 }
-                
             });
         };
         $scope.campaignChanged = function(campaign){
