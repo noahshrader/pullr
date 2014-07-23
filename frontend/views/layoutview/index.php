@@ -21,6 +21,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
         <script src="api/js"></script>
+        <script src="global/themes/global.js"></script>
         <!-- Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700,500' rel='stylesheet' type='text/css'>
         <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -58,7 +59,6 @@
                 <div class="row">
                     <div class="project-progress status">
                             <div class="project-progressbar"></div>
-                            <span>$10,997</span>
                     </div>
                 </div>
             </div>
@@ -304,6 +304,12 @@
         <script type='text/javascript'>
             Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
             // Pullr.Ready(function(){alert(Pullr.event.name)});
+            function updatePage(){
+                var progress = Pullr.campaign.percentageOfGoal+'%';
+                $('.project-progressbar').css('width', progress);
+            } 
+             
+            Pullr.Ready(updatePage);
         </script>
         <script src="themes/bdteam-1/js/owl.carousel.js"></script>
         <script src="themes/bdteam-1/js/custom.js"></script>

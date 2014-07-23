@@ -707,9 +707,6 @@ header .menu-actions a:before {
   -webkit-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
-.stats .amount-progress .project-progress.status .project-progressbar {
-  width: 45%;
-}
 .feed {
   margin-top: 4.5em;
 }
