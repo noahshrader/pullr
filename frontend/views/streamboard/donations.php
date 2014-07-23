@@ -11,12 +11,15 @@
     </div>
     <div class="donations-list data-list">
         <div data-ng-repeat="donation in donations | selectedCampaigns:$root | limitTo: 20" class="donation" ng-class="{wasRead: donation.streamboard.wasRead}">
-            <h3 class="donation-name">{{donation.displayName}}
-                <i ng-hide="donation.nameFromForm == ''" ng-click="nameHiddenToggle(donation)" class="glyphicon glyphicon-eye-open" ng-class="{nameHidden: donation.streamboard.nameHidden}"></i>
+            <h3 class="donation-name">
+                {{donation.displayName}}
+                <a ng-hide="donation.nameFromForm == ''" ng-click="nameHiddenToggle(donation)" class="icon-view toggleview" ng-class="{nameHidden: donation.streamboard.nameHidden}"></a>
+                <a ng-hide="donation.streamboard.wasRead" ng-click="markAsRead(donation)" class="icon-check2 markread"></a>
             </h3>
-            <div><span class="donation-amount">${{number_format(donation.amount)}}</span> {{selectedCampaignsNumber > 1 ? donation.campaignName : ''}}</div>
-            <div class="donation-comments">{{donation.comments}}</div>
-            <div><span class="donation-date">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</span> <a ng-hide="donation.streamboard.wasRead" ng-click="markAsRead(donation)">Mark as Read</a></div>
+            <h4 class="donation-amount">${{number_format(donation.amount)}}</h4>
+            <p class="donation-comments">{{donation.comments}}</p>
+            <span>{{selectedCampaignsNumber > 1 ? donation.campaignName : ''}}</span>
+            <span class="donation-date">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</span>
         </div>
     </div>
     <div id="donations-footer">
