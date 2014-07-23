@@ -5,7 +5,7 @@ You can use any tag with **data-pullr** attribute set to some value. If that mod
 
 Code example:
 ```
-<h1  data-pullr='campaign-name'></h1>
+<h1 data-pullr='campaign-name'></h1>
 <span data-pullr='campaign-startDateFormatted'></span> -
 <span data-pullr='campaign-endDateFormatted'></span>
 ```
@@ -13,7 +13,7 @@ Code example:
 As result we can recieve something like:
 
 ```
-<h1  data-pullr='campaign-name'>Fun For Freedom</h1>
+<h1 data-pullr='campaign-name'>Fun For Freedom</h1>
 <span data-pullr='campaign-startDateFormatted'>June 12, 2014</span> -
 <span data-pullr='campaign-endDateFormatted'>June 16, 2014</span>
 
@@ -64,6 +64,7 @@ name: "Fun For Freedom"
 numberOfDonations: 0
 numberOfUniqueDonors: 0
 paypalAddress: ""
+percentageOfGoal: 35
 photoId: null
 primaryColor: "#000000"
 secondaryColor: "#000000"
