@@ -11,18 +11,11 @@ use common\models\Campaign;
 use frontend\models\streamboard\Streamboard;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
-use ritero\SDK\TwitchTV\TwitchSDK;
 
 class StreamboardController extends FrontendController{
     public function actionIndex() {
-        $user = Yii::$app->user->identity;
-        /**@var $user User */
-        $campaigns = $user->getCampaigns()->all();
-
         $this->layout = 'streamboard';
         return $this->render('index', [
-            'user' => $user,
-            'campaigns' => $campaigns,
         ]);
     }
 

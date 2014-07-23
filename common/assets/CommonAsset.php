@@ -16,6 +16,7 @@ class CommonAsset extends AssetBundle {
         'js/lib/jquery.mCustomScrollbar.js',
         'js/common.js',
         'js/plugins-config.js',
+        '//ttv-api.s3.amazonaws.com/twitch.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

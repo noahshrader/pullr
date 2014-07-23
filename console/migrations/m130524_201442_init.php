@@ -120,6 +120,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
     }
 
     public function sampleUsers() {
+        /*first user*/
         $user = new User();
         $user->setScenario('signup');
         $user->login = 'stanislav@gmail.com';
@@ -128,7 +129,22 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user->confirmPassword = $user->password;
         $user->email = 'stas.msu@gmail.com';
         $user->save();
-        
+
+        $openId = new OpenIDToUser();
+        $openId->userId = $user->id;
+        $openId->serviceName = 'twitter';
+        $openId->serviceId = '113944685';
+        $openId->url = 'http://twitter.com/SKlyukin';
+        $openId->save();
+
+        $user->setScenario('openId');
+        $user->name = 'Klyukin';
+        $user->uniqueName = 'klyukin';
+        $user->photo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
+        $user->smallPhoto = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
+        $user->save();
+        /*end of first user*/
+
         $user = new User();
         $user->setScenario('signup');
         $user->login = 's.klyukin@yandex.ru';
@@ -157,21 +173,6 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
         $user->setScenario('openId');
         $user->name = 'Stanislav Klyukin';
         $user->smallPhoto = 'http://pbs.twimg.com/profile_images/1410660514/a_e8c2fb55_normal.jpg';
-        $user->save();
-
-        $openId = new OpenIDToUser();
-        $openId->userId = $user->id;
-        $openId->serviceName = 'twitter';
-        $openId->serviceId = '113944685';
-        $openId->url = 'http://twitter.com/SKlyukin';
-        $openId->save();
-        
-        $user = new User();
-        $user->setScenario('openId');
-        $user->name = 'Klyukin';
-        $user->uniqueName = 'klyukin';
-        $user->photo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
-        $user->smallPhoto = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
         $user->save();
 
         $openId = new OpenIDToUser();
