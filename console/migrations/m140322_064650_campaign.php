@@ -68,7 +68,6 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             'facebookUrl' => Schema::TYPE_STRING. ' NOT NULL',     
             'youtubeEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'youtubeUrl' => Schema::TYPE_STRING. ' NOT NULL',
-            'youtubeLayout' => Schema::TYPE_STRING. ' NOT NULL',
             'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
                 ]);
              
