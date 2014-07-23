@@ -2,14 +2,16 @@
 
 use common\models\Campaign;
 use common\models\Donation;
-use yii\db\Query;
 
+/**
+ * @var $this View
+ * @var $campaign Campaign
+ */
 $this->registerJSFile('@web/js/campaign/donation-table.js',  \common\assets\CommonAsset::className());
 
 $user = \Yii::$app->user->identity;
 $donations = $campaign->getDonations()->all();
 
-$uniqueDonations = $campaign->getDonations()->count('DISTINCT email');
 $topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
 $topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'].' ($'.number_format($topDonors[0]['amount']).')' : '';
 $topDonation = Donation::getTopDonation([$campaign]);
@@ -127,11 +129,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                         <h5>Goal</h5>
                     </div>
                     <div class='stats-box col-xs-3 '>
-                        <h2><?= sizeof($donations) ?></h2>
+                        <h2><?= $campaign->numberOfDonations ?></h2>
                         <h5>Donations</h5>
                     </div>
                     <div class='stats-box col-xs-3 '>
-                        <h2><?= $uniqueDonations ?></h2>
+                        <h2><?= $campaign->numberOfUniqueDonors ?></h2>
                         <h5>Donors</h5>
                     </div>
                 

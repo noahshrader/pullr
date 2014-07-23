@@ -34,6 +34,9 @@ class ApiController extends \yii\web\Controller {
         $campaignArray = $campaign->toArray();
         $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? date('F j, Y', $campaignArray['startDate']) : null;
         $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? date('F j, Y', $campaignArray['endDate']) : null;
+        $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
+        $campaignArray['amountRaisedFormatted'] = '$'.number_format($campaign['amountRaised']);
+        $campaignArray['percentageOfGoal'] = round($campaign['amountRaised'] / $campaign['goalAmount'] * 100);
         if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES &&
                 in_array($campaign->type, [Campaign::TYPE_CHARITY_EVENT, Campaign::TYPE_CHARITY_FUNDRAISER]) && $campaign->charity) {
             $campaignArray['charity'] = $campaign->charity->toArray();

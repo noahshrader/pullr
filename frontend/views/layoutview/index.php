@@ -43,11 +43,11 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-4 raised">
                         <span>Amount raised</span>
-                        <h1 data-pullr='campaign-amountRaised'></h1>
+                        <h1 data-pullr='campaign-amountRaisedFormatted'></h1>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 center">
                         <span>Target Amount</span>
-                        <h1 data-pullr='campaign-goalAmount'></h1>
+                        <h1 data-pullr='campaign-goalAmountFormatted'></h1>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 right">
                         <span>No. of Donors</span>

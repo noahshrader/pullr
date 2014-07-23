@@ -12,9 +12,12 @@ use frontend\models\streamboard\StreamboardCampaign;
 
 /**
  * @property integer $id
+ * @property integer $parentCampaignId - equal to [[id]] if that campaigns hasn't got parent campaign.
  * @property string $name
  * @property float $amountRaised
  * @property float $goalAmount
+ * @property integer $numberOfDonations
+ * @property integer $numberOfUniqueDonors
  * @property Campaign $parentCampaign
  * @property StreamboardCampaign $streamboard
  * @property string $donationDestination
@@ -317,7 +320,7 @@ class Campaign extends ActiveRecord {
         return ($charity) ? $charity->paypal : '';
     }
     /**
-     * executed after successfull donation
+     * @description Fired after successful donation. It updates current campaign statistics and parent campaign statistics.
      * @param type $id
      */
     public static function updateDonationStatistics($id){
@@ -327,7 +330,13 @@ class Campaign extends ActiveRecord {
                 ->orWhere(['parentCampaignId' => $campaign->id])->andWhere('paymentDate > 0')->sum('amount');
         
         $campaign->amountRaised = $sum;
+        $donations = $campaign->getDonations()->count('DISTINCT email');
+        $campaign->numberOfDonations = $campaign->getDonations()->count('*');
+        $campaign->numberOfUniqueDonors = $campaign->getDonations()->count('DISTINCT email');
         $campaign->save();
+        if ($campaign->parentCampaignId != $campaign->id ){
+            self::updateDonationStatistics($campaign->parentCampaignId);
+        }
     }
 
     /**

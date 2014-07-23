@@ -57,6 +57,9 @@ Pullr.Show = function(){
     }
 }
 
+/**
+ * You can view available codes by typing Pullr.campaign
+ */
 Pullr.ShortCodes = function(){
     $('[data-pullr]').each(function(){
         var $el = $(this);
@@ -71,7 +74,7 @@ Pullr.ShortCodes = function(){
         var current = Pullr;
         while (array.length > 0){
             var name = array.shift();
-            if (!current[name]){
+            if (current[name] == undefined){
                 return;
             }
             

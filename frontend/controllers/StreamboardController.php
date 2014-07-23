@@ -63,7 +63,7 @@ class StreamboardController extends FrontendController{
 
         foreach ($campaigns as $campaign){
             /**@var $campaign Campaign*/
-            $array = $campaign->toArray(['id', 'name', 'goalAmount', 'amountRaised']);
+            $array = $campaign->toArray(['id', 'name', 'goalAmount', 'amountRaised', 'numberOfDonations', 'numberOfUniqueDonors']);
             $array['streamboardSelected'] = $campaign->streamboard->selected ? true: false;
             $campaignsArray[$campaign->id] = $array;
         }

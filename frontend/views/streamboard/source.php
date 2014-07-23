@@ -17,6 +17,8 @@ use yii\web\View;
             <div class="name" id="campaignName_{{campaign.id}}">{{campaign.name}}</div>
             <div>Amount Raised: <span class="amount accent" id="amountRaised_{{campaign.id}}">${{number_format(campaign.amountRaised)}}</span></div>
             <div>Goal Amount: <span class="amount accent" id="goalAmount_{{campaign.id}}">${{number_format(campaign.goalAmount)}}</span></div>
+            <div>Donations: <span class="amount accent" id="donations_{{campaign.id}}">{{number_format(campaign.numberOfDonations)}}</span></div>
+            <div>Donors: <span class="amount accent" id="donors_{{campaign.id}}">{{number_format(campaign.numberOfUniqueDonors)}}</span></div>
         </div>
     </div>
 </div>
