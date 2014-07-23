@@ -12,7 +12,7 @@ use frontend\models\streamboard\StreamboardCampaign;
 
 /**
  * @property integer $id
- * @property integer $parentCampaignId - equal to [[id]] if that campaigns hasn't got parent campaign.
+ * @property integer $parentCampaignId - equal to [[id]] if that campaign hasn't got parent campaign.
  * @property string $name
  * @property float $amountRaised
  * @property float $goalAmount
