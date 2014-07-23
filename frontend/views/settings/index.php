@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Notification;
-use common\widgets\file\ImageInput;
 
 /**
 * @var yii\web\View $this
@@ -20,17 +19,6 @@ $this->title = 'Settings';
             <?php $form = ActiveForm::begin(['options' => [
                 'enctype' => 'multipart/form-data', 'method' => 'POST']])
             ?>
-            <? if (!$user->openIDToUser): ?>
-            
-            <div class="form-group user-images <?= $user->hasErrors('images') ? 'has-error' : '' ?>">
-                <label class="control-label">Upload avatar</label> 
-                <?=ImageInput::widget();?>
-                <? if ($user->hasErrors('images')): ?>
-                <?= Html::error($user, 'images', ['class' => 'help-block']); ?>
-                <? endif; ?>
-            </div>
-
-            <? endif ?>
 
             <?= $form->field($user, 'name') ?>
             <?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
@@ -56,19 +44,20 @@ $this->title = 'Settings';
                 </div>
 
             </fieldset>
-                
-            <fieldset>
-                <legend>Change Password</legend>
-                <? if ($changePasswordForm->success): ?>
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    Password successfully changed
-                </div>
-                <? endif; ?>
-                <?= $form->field($changePasswordForm, 'oldPassword') ?>
-                <?= $form->field($changePasswordForm, 'newPassword')->passwordInput(['autocomplete' => 'off']) ?>
-                <?= $form->field($changePasswordForm, 'confirmPassword')->passwordInput() ?>
-            </fieldset>
+            <? if (!$user->openIDToUser): ?>
+                <fieldset>
+                    <legend>Change Password (Only for sample accounts)</legend>
+                    <? if ($changePasswordForm->success): ?>
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Password successfully changed
+                    </div>
+                    <? endif; ?>
+                    <?= $form->field($changePasswordForm, 'oldPassword') ?>
+                    <?= $form->field($changePasswordForm, 'newPassword')->passwordInput(['autocomplete' => 'off']) ?>
+                    <?= $form->field($changePasswordForm, 'confirmPassword')->passwordInput() ?>
+                </fieldset>
+            <? endif ?>
             
             <div class="form-group">
                 <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>

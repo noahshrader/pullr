@@ -3,15 +3,12 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\controllers\FrontendController;
 use frontend\models\site\ChangePasswordForm;
-use common\components\UploadImage;
 use common\models\Plan;
 use frontend\models\site\DeactivateAccount;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\models\mail\Mail;
-
 use common\components\PullrPayment;
 
 class SettingsController extends FrontendController {
@@ -23,9 +20,6 @@ class SettingsController extends FrontendController {
 
         $user = Yii::$app->user->identity;
         $user->setScenario('settings');
-        if ($user->load($_POST) && $user->save($_POST)) {
-            UploadImage::UploadLogo($user);
-        }
 
         $notification = $user->notification;
         $notification->load($_POST) && $notification->save($_POST);
