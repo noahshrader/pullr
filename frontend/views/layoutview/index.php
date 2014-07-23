@@ -36,7 +36,7 @@
                 </div>
             </div>  
         </header>
-        <section class="stats">
+        <section class="stats"> <!-- main stats -->
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-4 raised">
@@ -61,7 +61,232 @@
                 </div>
             </div>
         </section>
-        <button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in">Donate</button>
+        <section class="feed"> <!-- main content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-8 feed-details">
+                    <div class="feed-details-title">
+                        <h3 data-pullr='campaign-name'></h3>
+                        <p>November 23rd - 25th</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-4 feed-details">
+                    <div class="sharing">
+                        <div class="dropdown">
+                            <button class="btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">share
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Twitter</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Facebook</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 right feed-donate">
+                    <button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in">Donate</button>
+                </div>
+                
+            </div>
+            <div class="row stream">
+                    <div id="stream" class="clear">
+                    <div id="featured">
+                        <div class="featuredstreamcontainer">
+                            <div class="featuredstream">
+                                <object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=funforfreedom" bgcolor="#000000"><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&amp;channel=funforfreedom&amp;auto_play=true&amp;start_volume=25" /></object>
+                            </div>
+                        </div>
+                        <div class="featuredchat">
+                            <iframe frameborder="0" scrolling="no" id="twitchChat" src="http://twitch.tv/chat/embed?channel=funforfreedom&amp;popout_chat=true"></iframe>
+                        </div>
+                    </div>
+                    <div class="stream-controls">
+                        <a class="togglechat icon-chat" href="javascript:void(0);"></a>
+                    </div>
+                </div>
+
+            </div>  
+
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="user-details">
+                        <div class="username">
+                            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/chadengle/128.jpg" class="user-details-avatar" /> <a href="http://www.twitch.tv/kombatshift" class="user-details-twitch">username</a>
+                            <div class="user-details-social">
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a>
+                            </div>
+                            
+                        </div>
+                        <div class="user-viewers">
+                                <p>100,001 viewers</p>
+                            </div>
+                    </div>
+                    <div class="team-mates">
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div><div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                        <div class="team-mate-single">
+                        <a href="#" class="avatar-link">
+                            <img src="http://placehold.it/142x142&text=avatar" />
+                        </a>
+                                <div class="team-mate-single-social">
+                                <a href="#" class="team-mate-single-social-twitch-link">username</a><br />
+                                <a href="#" class="icon-twitter"></a>
+                                <a href="#" class="icon-facebook"></a>
+                                <a href="#" class="icon-youtube"></a>
+                                <a href="#" class="icon-twitch2"></a><br />
+                                <a href="#" class="team-mate-single-social-twitch-link">view stream</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        </section>
         <div class='row'>
             <h1 data-pullr='campaign-name'></h1><h3>for <span data-pullr="campaign-charity-name"></span></h3>
             
