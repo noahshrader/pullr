@@ -305,7 +305,7 @@
             Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
             // Pullr.Ready(function(){alert(Pullr.event.name)});
         </script>
-        <script src="../web/themes/bdteam-1/js/owl.carousel.js"></script>
-        <script src="../web/themes/bdteam-1/js/custom.js"></script>
+        <script src="/themes/bdteam-1/js/owl.carousel.js"></script>
+        <script src="/themes/bdteam-1/js/custom.js"></script>
     </body>
 </html>
