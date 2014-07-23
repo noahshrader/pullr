@@ -37,6 +37,25 @@ return [
             'yii',
         ],
     ],
+    'Testing' => [
+        'path' => 'test',
+        'writable' => [
+            "common/web/css",
+            "backend/runtime",
+            "backend/web/assets",
+            "backend/web/css",
+            "console/runtime",
+            "console/migrations",
+            "frontend/runtime",
+            "frontend/web/assets",
+            "frontend/web/css",
+            "frontend/web/userimages"
+            // handled by composer.json already
+        ],
+        'executable' => [
+            'yii',
+        ],
+    ],
     'Production' => [
         'path' => 'prod',
         'writable' => [
