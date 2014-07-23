@@ -57,7 +57,6 @@ facebookUrl: ""
 formVisibility: 1
 goalAmount: "17000"
 id: 1
-includeYoutubeFeed: 0
 key: "test_key"
 layoutType: "Team Stream"
 name: "Fun For Freedom"
@@ -79,7 +78,6 @@ twitterName: ""
 type: "Personal Tip Jar"
 userId: 1
 youtubeEnable: 0
-youtubeLayout: ""
 youtubeUrl: ""
 ```
 
