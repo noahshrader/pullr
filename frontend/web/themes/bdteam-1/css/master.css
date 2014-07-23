@@ -31,7 +31,7 @@ h5,
 h6 {
   margin-bottom: 0;
   margin-top: 0;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto', sans-serif;
 }
 p,
 ol,
@@ -523,12 +523,7 @@ body {
   font-size: 16px;
   padding: 0;
   margin: 0;
-  background: #0f1015;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #373238), color-stop(1, #0f1015));
-  background: -ms-linear-gradient(bottom, #373238, #0f1015);
-  background: -moz-linear-gradient(center bottom, #373238 0%, #0f1015 100%);
-  background: -o-linear-gradient(#0f1015, #373238);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0f1015', endColorstr='#373238', GradientType=0);
+  background: #222325;
   font-family: 'Roboto', sans-serif;
 }
 a,
@@ -578,25 +573,20 @@ img {
   border-bottom: 3px solid #169077;
   background: #1dbc9c;
   color: #ffffff;
+  outline: 0;
   padding: 0.4em 2em;
   position: relative;
   font-size: 1em;
   text-transform: uppercase;
-  border-top: 3px solid transparent;
+  border: 0;
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
 }
 .btn:hover {
   background: #1aa68a;
-  color: #ffffff;
 }
 .btn:active {
-  border-bottom: 0;
   background: #169077;
-  border-top: 3px solid #0f6453;
-  border-bottom: 3px transparent;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 .overlay-bg {
   min-height: 1000px;
@@ -608,7 +598,7 @@ header {
   width: 100%;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
-  background: rgba(36, 33, 37, 0.9);
+  background: #1d1e20;
   overflow: hidden;
   position: relative;
 }

@@ -21,6 +21,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
         <script src="api/js"></script>
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700,500' rel='stylesheet' type='text/css'>
         <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
     <body class="responsive" id="top">
@@ -66,8 +68,8 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-8 feed-details">
                     <div class="feed-details-title">
-                        <h3 data-pullr='campaign-name'></h3>
-                        <p>November 23rd - 25th</p>
+                        <h3 data-pullr='campaign-name'></h3> <!-- CAMPAIGN NAME -->
+                        <p><span data-pullr='campaign-startDateFormatted'></span> - <span data-pullr='campaign-endDateFormatted'></span></p> <!-- CAMPAIGN DATES -->
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-4 feed-details">
@@ -288,11 +290,7 @@
         </div>
         </section>
         <div class='row'>
-            <h1 data-pullr='campaign-name'></h1><h3>for <span data-pullr="campaign-charity-name"></span></h3>
-            
-            <span data-pullr='campaign-startDateFormatted'></span> -
-            <span data-pullr='campaign-endDateFormatted'></span>
-            
+            <span data-pullr="campaign-charity-name"></span>
         </div>
         
         <div id='pullr-player'>
