@@ -45,6 +45,11 @@ return [
         'errorHandler' => [
             'errorAction' => 'admin/error',
         ],
+        'request' => [
+            'enableCookieValidation' => true,
+            'enableCsrfValidation' => true,
+            'cookieValidationKey' => 'some_pullr_key'
+        ],
     ],
     'params' => $params,
     'defaultRoute' => 'report'

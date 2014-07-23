@@ -37,10 +37,5 @@ return [
         'mail' => [
             'class' => 'yii\swiftmailer\Mailer',
         ],
-        'request' => [
-		'enableCookieValidation' => true,
-		'enableCsrfValidation' => true,
-		'cookieValidationKey' => 'some_pullr_key'
-        ],
     ],
 ];

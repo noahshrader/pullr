@@ -53,6 +53,11 @@ return [
                     'basePath' => '@eauth/messages',
                 ],
             ],],
+        'request' => [
+            'enableCookieValidation' => true,
+            'enableCsrfValidation' => true,
+            'cookieValidationKey' => 'some_pullr_key'
+        ],
     ],
     'params' => $params,
 ];
