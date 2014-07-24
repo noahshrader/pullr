@@ -5,6 +5,7 @@
         <li><a data-panel="campaigns_list"><i class="icon icon-campaigns"></i></a></li>
         <li><a data-panel="stats"><i class="icon icon-bargraph"></i></a></li>
 </ul>
+
 <div class="campaigns_list_panel slidepanel">
     <div class="campaigns_list">
         <h3>Campaigns</h3>
@@ -18,6 +19,7 @@
     </div>
     <a class="close icon-cross"></a>
 </div>
+
 <div class="stats_panel slidepanel">
     <h3>Stats</h3>
     <label>Your Top 3 Donors</label>

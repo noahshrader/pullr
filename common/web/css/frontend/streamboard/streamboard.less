@@ -286,7 +286,8 @@ a.dashboard.show:before {
 	overflow: hidden;
 }
 #donations-header {
-	height: 50px;
+	padding: 10px 0px;
+	border-bottom: 1px solid @bgcolor;
 }
 #donations-footer {
 	position: absolute;
@@ -318,10 +319,37 @@ a.dashboard.show:before {
 	}
 }
 
+#streamboard-settings-header {
+  padding: 10px 0px;
+  border-bottom: 1px solid @bgcolor;
+}
+
 /* Settings Panel */
 /* ------------------------------------------------- */
-#settingsTab ul.nav-tabs li a {
-	font-size: .9em;
+
+#settingsTab {
+	ul.nav-tabs {
+		
+		li {
+			width: 33.33%;
+			width: -webkit-calc(33.33333333%);
+			width: calc(33.33333333%);
+
+			a {
+				display: block;
+				font-size: .9em;
+				line-height: 50px;
+			}
+		}
+	}
+}
+
+#settings-footer {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 50px;
 }
 
 /* Source View */
