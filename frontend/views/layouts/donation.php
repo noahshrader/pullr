@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use common\assets\DonationAsset;
 /**
+ * That is layout for Donation Form. Which is loaded by Magnific popup
  * @var \yii\web\View $this
  * @var string $content
  */
@@ -15,16 +16,7 @@ $campaign = \Yii::$app->controller->campaign;
 
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <title><?= Html::encode($this->title) ?></title>
-        <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">
-        <?php $this->head() ?>
-        <!-- Load Typekit Fonts -->
-        <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    </head>
+    <?= $this->render('baseHead') ?>
     <body>
        <!-- BEGIN Progress Bar -->
         <div class="form-progress" data-amountraised="<?= $campaign->amountRaised ?>" data-goalamount = <?= $campaign->goalAmount ?>>

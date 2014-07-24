@@ -16,6 +16,7 @@ class DonationAsset extends AssetBundle
         
 	public $js = [
             '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
+            'js/common.js',
             'js/donation/donation.js',
 	];
 	public $depends = [

@@ -48,14 +48,16 @@ function number_format(number) {
 }
 
 function twitchEventsMonitor() {
-    if (Pullr.user.uniqueName) {
-        Twitch.init({clientId: 'l7mj3pfjvxpk2zv6ivr9jpisodqd5h0'}, function (error, status) {
-            var method = 'channels/' + Pullr.user.uniqueName + '/follows';
-            log(method);
-            Twitch.api({method: method, params: {} }, function (error, list) {
-                console.debug(list);
+    if (window.Twitch) {
+        if (Pullr.user.uniqueName) {
+            Twitch.init({clientId: 'l7mj3pfjvxpk2zv6ivr9jpisodqd5h0'}, function (error, status) {
+                var method = 'channels/' + Pullr.user.uniqueName + '/follows';
+                log(method);
+                Twitch.api({method: method, params: {} }, function (error, list) {
+                    console.debug(list);
+                });
             });
-        });
+        }
     }
 }
 
