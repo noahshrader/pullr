@@ -55,7 +55,7 @@ return [
             ],],
         'request' => [
             'enableCookieValidation' => true,
-            'enableCsrfValidation' => true,
+            'enableCsrfValidation' => false,
             'cookieValidationKey' => 'some_pullr_key'
         ],
     ],

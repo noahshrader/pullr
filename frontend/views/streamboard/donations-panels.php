@@ -30,7 +30,7 @@
     </ul>
         <label>Total Donation Amount</label>
         <span class="total_amountRaised" >
-            ${{number_format(stats.total_amount)}}
+            ${{number_format(stats.total_amountRaised)}}
         </span>
     <div ng-hide="stats.top_donation == null">
         <label>Top Donation Amount</label>
