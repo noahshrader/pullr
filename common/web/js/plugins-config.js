@@ -1,8 +1,8 @@
 $(function () {
     // Custom scrollbars
-    $("#sidebar, .campaigns-list-wrap, .site-content, .donations-list").mCustomScrollbar({
+    $("#sidebar, .campaigns-list-wrap, .site-content, .donations-list, #settingsTab .tab-content").mCustomScrollbar({
         theme:"minimal",
         mouseWheel:{preventDefault:true},
-        scrollInertia: 200
+        scrollInertia: 100
     });
 });

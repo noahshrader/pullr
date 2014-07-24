@@ -4,7 +4,7 @@ use yii\web\View;
 
 /**@var $this View*/
 ?>
-<div ng-app="streamboardApp">
+<div ng-app="streamboardApp" class="poop">
     <div ng-controller="SourceCtrl">
         <div class="overall" ng-show="length(campaigns) > 1">
             <div class="name">Overall</div>

@@ -9,6 +9,7 @@ class StreamboardAsset extends AssetBundle
 	public $css = [
 	];
 	public $js = [
+		'js/streamboard/iframeheight.min.js',
             'js/streamboard/streamboard.js',
 	];
 	public $depends = [
