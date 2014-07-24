@@ -4,9 +4,7 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 use common\models\User;
-use common\models\Theme;
 use yii\helpers\HtmlPurifier;
-use common\models\Donation;
 use common\models\base\BaseImage;
 use frontend\models\streamboard\StreamboardCampaign;
 

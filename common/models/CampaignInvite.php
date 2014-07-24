@@ -3,7 +3,6 @@
 namespace common\models;
 
 use yii\db\ActiveRecord;
-use common\models\Campaign;
 use common\models\User;
 use common\models\notifications\RecentActivityNotification;
 

@@ -9,11 +9,6 @@ use common\models\Charity;
 class m140208_175010_common_models extends \console\models\ExtendedMigration {
 
     public function up() {
-        $tableOptions = null;
-        if ($this->db->driverName === 'mysql') {
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
-        }
-
         $statuses = implode('","', BaseImage::$STATUSES);
         $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . BaseImage::STATUS_APPROVED . '"';
 
@@ -28,7 +23,7 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'type' => $types,
             'subjectId' => Schema::TYPE_INTEGER . ' NOT NULL',
             'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
-                ], $tableOptions);
+                ]);
         
         $statuses = implode('","', Payment::$_STATUSES);
         $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Payment::STATUS_PENDING . '"';
@@ -42,7 +37,7 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'paymentDate' => Schema::TYPE_INTEGER. ' NOT NULL',
             'type' => Schema::TYPE_STRING,
             'relatedId' => Schema::TYPE_INTEGER
-        ], $tableOptions);
+        ]);
         
         $user = User::findOne(1);
         $user->prolong(\Yii::$app->params['yearSubscription']);
@@ -86,15 +81,6 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
         $charity->contact = 'Stanislav Klyukin';
         $charity->contactEmail = 'stas.msu@gmail.com';
         $charity->save();
-        
-//        $event = new Event();
-//        $event->name = 'Zeldathon St. Jude';
-//        $event->charityId = 1;
-//        $event->startDate = strtotime('27-12-2013');
-//        $event->endDate = strtotime('01-01-2014');
-//        $event->userId = 1;
-//        $event->status = Event::STATUS_ACTIVE;
-//        $event->save();
     }
     
     public function down() {

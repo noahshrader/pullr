@@ -23,7 +23,6 @@ function catchKeys() {
             }
         }
     });
-
 }
 
 /**
@@ -53,8 +52,9 @@ function twitchEventsMonitor() {
             Twitch.init({clientId: 'l7mj3pfjvxpk2zv6ivr9jpisodqd5h0'}, function (error, status) {
                 var method = 'channels/' + Pullr.user.uniqueName + '/follows';
                 log(method);
-                Twitch.api({method: method, params: {} }, function (error, list) {
-                    console.debug(list);
+                Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
+                    console.log(list);
+                    $.post('app/twitch/update_follows_ajax', {data: JSON.stringify(list)});
                 });
             });
         }

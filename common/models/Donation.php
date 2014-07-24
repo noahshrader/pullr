@@ -5,7 +5,6 @@ use common\models\User;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use Yii;
-use common\models\Campaign;
 use frontend\models\streamboard\StreamboardDonation;
 use yii\db\Query;
 

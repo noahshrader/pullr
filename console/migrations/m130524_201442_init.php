@@ -14,11 +14,6 @@ use common\models\user\UserFields;
 class m130524_201442_init extends \console\models\ExtendedMigration{
 
     public function up() {
-        $tableOptions = null;
-        if ($this->db->driverName === 'mysql') {
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
-        }
-
         $statuses = implode('","', User::$STATUSES);
         $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . User::STATUS_ACTIVE . '"';
         
@@ -41,15 +36,15 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             'last_login' => Schema::TYPE_INTEGER. ' NOT NULL',
             'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
-                ], $tableOptions);
+                ]);
 
         $this->createTable(OpenIDToUser::tableName(), [
             'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
             'serviceName' => Schema::TYPE_STRING . ' NOT NULL',
             'serviceId' => Schema::TYPE_STRING . ' NOT NULL',
             'url' => Schema::TYPE_STRING
-                ], $tableOptions);
-        $this->addPrimaryKey('PRIMERY_KEY', OpenIDToUser::tableName(), ['serviceName', 'serviceId']);
+                ]);
+        $this->addPrimaryKey('PRIMARY_KEY', OpenIDToUser::tableName(), ['serviceName', 'serviceId']);
         
         $this->createTable(UserFields::tableName(), [
             'userId' => Schema::TYPE_PK,
@@ -63,7 +58,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
             Notification::$NOTIFY_NEW_FEATURE_ADDED => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
             Notification::$NOTIFY_NEW_THEME_AVAILABLE => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
             Notification::$NOTIFY_SYSTEM_UPDATE => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
-                ], $tableOptions);
+                ]);
         
         $plans = implode('","', Plan::$PLANS);
         $plans = "ENUM (\"$plans\") NOT NULL DEFAULT \"" . Plan::PLAN_BASE . '"';
@@ -132,14 +127,14 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
 
         $openId = new OpenIDToUser();
         $openId->userId = $user->id;
-        $openId->serviceName = 'twitter';
-        $openId->serviceId = '113944685';
-        $openId->url = 'http://twitter.com/SKlyukin';
+        $openId->serviceName = 'twitch';
+        $openId->serviceId = '55052982';
+        $openId->url = 'http://twitch.tv/klyukin';
         $openId->save();
 
         $user->setScenario('openId');
         $user->name = 'Klyukin';
-        $user->uniqueName = 'klyukin';
+        $user->uniqueName = 'funforfreedom';
         $user->photo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
         $user->smallPhoto = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
         $user->save();
@@ -177,11 +172,10 @@ class m130524_201442_init extends \console\models\ExtendedMigration{
 
         $openId = new OpenIDToUser();
         $openId->userId = $user->id;
-        $openId->serviceName = 'twitch';
-        $openId->serviceId = '55052982';
-        $openId->url = 'http://twitch.tv/klyukin';
+        $openId->serviceName = 'twitter';
+        $openId->serviceId = '113944685';
+        $openId->url = 'http://twitter.com/SKlyukin';
         $openId->save();
-
 
         $user = new User();
         $user->setScenario('signup');

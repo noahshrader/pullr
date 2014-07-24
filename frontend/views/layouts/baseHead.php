@@ -27,7 +27,6 @@ use common\models\User;
        /**@var User $user*/
        $js .= 'window.Pullr.user = ' . json_encode($user->toArray()) . ';';
        $js .= 'twitchEventsMonitor()';
-
     }
     $this->registerJs($js);
     ?>

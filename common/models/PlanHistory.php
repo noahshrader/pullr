@@ -4,9 +4,6 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 use common\models\User;
-use common\components\PullrPayment;
-use common\components\Application;
-use common\models\mail\Mail;
 /**
  * To store when plan were upgraded and for how much time
  */

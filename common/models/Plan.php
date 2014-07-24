@@ -7,7 +7,6 @@ use common\models\User;
 use common\components\PullrPayment;
 use common\components\Application;
 use common\models\mail\Mail;
-use common\models\PlanHistory;
 /**
  * to consider account on other the base you also should check expire field to be more than current time
  */

@@ -3,11 +3,10 @@
 namespace common\models\user;
 
 use yii\db\ActiveRecord;
-use common\models\Campaign;
 use common\models\User;
 
 /**
- * we used these class to create dashboard system notifications to all users
+ * we used that class to store dashboard system notifications to all users
  */
 class UserFields extends ActiveRecord {
     /**
