@@ -26,7 +26,7 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700,500' rel='stylesheet' type='text/css'>
         <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
-    <body class="responsive" id="top">
+    <body class="responsive campaignflow" id="top">
         <header>
             <div class="container head">        
                 <div class="row">

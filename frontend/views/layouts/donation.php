@@ -17,7 +17,7 @@ $campaign = \Yii::$app->controller->campaign;
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <?= $this->render('baseHead') ?>
-    <body>
+    <body class="campaignflow">
        <!-- BEGIN Progress Bar -->
         <div class="form-progress" data-amountraised="<?= $campaign->amountRaised ?>" data-goalamount = <?= $campaign->goalAmount ?>>
                 <div class="form-progress-wrap">
