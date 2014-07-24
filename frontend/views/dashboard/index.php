@@ -13,7 +13,7 @@ $this->registerJsFile('@web/js/dashboard/index.js', common\assets\CommonAsset::c
 
 ?>
 
-<section id="content">
+<section id="content" class="dashboard">
     <? if ($systemNotification): ?>
        <div class="alert alert-info alert-dismissible systemNotification"> <!-- BEGIN notification -->
             <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)"><span>&times;</span></button>

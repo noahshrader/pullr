@@ -18,7 +18,9 @@ $(function () {
    	});
 
     // make source iframe adjsut to height of inner content
-    $('#sourcecode').iframeHeight();
+    $('iframe').iFrameResize({
+        heightCalculationMethod: 'documentElementScroll'
+    });
 
     $( window ).resize(function() {
         var width = $(window).width();
