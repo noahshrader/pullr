@@ -1,5 +1,5 @@
-/* Main Page Wraps */
-
+/* Content */
+/* ------------------------------------------------- */
 .site-content {
 	width: 100%;
 	height: 100%;
@@ -7,58 +7,65 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
-  background: #FFF;
+	background: #FFF;
 }
-
-.page-content-wrap {
+#content {
+	float: left;
+    padding-left: @primary-nav-width + 60px;
+    padding-right: @sidepanelwidth + 60px;
+    padding-top: @top-menu-height;  
+    padding-bottom: 60px;
     width: 100%;
-    padding-left: 141px;
 }
 
-.page-content {
-    padding: 0px;
-    height: 100%;
+/* Sidebar */
+/* ------------------------------------------------- */
+#sidebar {
+	position: fixed;
+	top: @top-menu-height;
+	height: 100%;
+	width: @sidepanelwidth;
+	background: @gray5;
 }
-
 #sidepanel  {
-    padding-left: @campaigns-list-wrap-width + @primary-nav-width;
+	padding-left: @sidepanelwidth + @primary-nav-width;
 }
 
-/* Site Error */
-
+/* Errors */
+/* ------------------------------------------------- */
 .site-error {
-    padding: 60px;
+	padding: 60px;
 }
 
-/* Pace Styles */
-
+/* Pace Loader Bar */
+/* ------------------------------------------------- */
 .pace .pace-progress {
-  background: @white;
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  left: 0;
-  height: 1px;
-
-  -webkit-transition: width 1s;
-  -moz-transition: width 1s;
-  -o-transition: width 1s;
-  transition: width 1s;
+	background: @white;
+	position: fixed;
+	z-index: 2000;
+	top: 0;
+	left: 0;
+	height: 1px;
+	-webkit-transition: width 1s;
+	-moz-transition: width 1s;
+	-o-transition: width 1s;
+	transition: width 1s;
 }
 
 .pace-inactive {
-  display: none;
+	display: none;
 }
 
-/* Blur */
+/* Misc */
+/* ------------------------------------------------- */
 .blur {
-  -webkit-filter: blur(16px);
-  -moz-filter: blur(16px);
-  filter: blur(16px);
-  -webkit-transform: translate3d(0,0,0);
-  -moz-transform: translate3d(0,0,0);
-  -ms-transform: translate3d(0,0,0);
-  -o-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
-  opacity: .8;
+	-webkit-filter: blur(16px);
+	-moz-filter: blur(16px);
+	filter: blur(16px);
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	-ms-transform: translate3d(0,0,0);
+	-o-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+	opacity: .8;
 }

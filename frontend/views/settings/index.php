@@ -12,76 +12,62 @@ use common\models\Notification;
 $this->title = 'Settings';
 ?>
 
-<section class="account-settings-wrap">
+<section id="content"> <!-- BEGIN main settings -->
+    <?php $form = ActiveForm::begin(['options' => [
+        'enctype' => 'multipart/form-data', 'method' => 'POST']])
+    ?>
 
-    <div class="account-settings">
-    
-            <?php $form = ActiveForm::begin(['options' => [
-                'enctype' => 'multipart/form-data', 'method' => 'POST']])
-            ?>
+    <?= $form->field($user, 'name') ?>
+    <?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
+    <?
+        $timezones = timezone_identifiers_list();
+        $keyValues = array_combine($timezones, $timezones);
+    ?>
+    <?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block form-control']); ?>
 
-            <?= $form->field($user, 'name') ?>
-            <?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
-            <?
-                $timezones = timezone_identifiers_list();
-                $keyValues = array_combine($timezones, $timezones);
-            ?>
-            <?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block form-control']); ?>
-            
-            <fieldset>
-                <legend>Notifications</legend>
-                <?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
-                <? $attributes = $notification->getNotificationsAttributes(); ?>
-                <div class="row">
-
-                    <h4>Email me </h4>
-
-                    <div class="col-xs-6">
-                        <? foreach ($attributes as $attribute): ?>
-                        <?= $form->field($notification, $attribute)->checkbox(); ?>
-                        <? endforeach; ?>
-                    </div>
-                </div>
-
-            </fieldset>
-            <? if (!$user->openIDToUser): ?>
-                <fieldset>
-                    <legend>Change Password (Only for sample accounts)</legend>
-                    <? if ($changePasswordForm->success): ?>
-                    <div class="alert alert-success alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        Password successfully changed
-                    </div>
-                    <? endif; ?>
-                    <?= $form->field($changePasswordForm, 'oldPassword') ?>
-                    <?= $form->field($changePasswordForm, 'newPassword')->passwordInput(['autocomplete' => 'off']) ?>
-                    <?= $form->field($changePasswordForm, 'confirmPassword')->passwordInput() ?>
-                </fieldset>
-            <? endif ?>
-            
-            <div class="form-group">
-                <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
+    <fieldset>
+        <legend>Notifications</legend>
+        <?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
+        <? $attributes = $notification->getNotificationsAttributes(); ?>
+        <div class="row">
+            <h4>Email me </h4>
+            <div class="col-xs-6">
+                 <? foreach ($attributes as $attribute): ?>
+                <?= $form->field($notification, $attribute)->checkbox(); ?>
+                <? endforeach; ?>
             </div>
-            <?php ActiveForm::end(); ?>
-            <?=
-            $this->render('deactivate', [
-            'user' => $user
-            ]);
-            ?>
-
         </div>
-
-        
-        <div class="pro-panel">
-            <div class='sidepanel basic'>
-            <?=
-            $this->render('plan', [
-            'user' => $user
-            ]);
-            ?>
+    </fieldset>
+    <? if (!$user->openIDToUser): ?>
+    <fieldset>
+        <legend>Change Password (Only for sample accounts)</legend>
+        <? if ($changePasswordForm->success): ?>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Password successfully changed
         </div>
+        <? endif; ?>
+        <?= $form->field($changePasswordForm, 'oldPassword') ?>
+        <?= $form->field($changePasswordForm, 'newPassword')->passwordInput(['autocomplete' => 'off']) ?>
+        <?= $form->field($changePasswordForm, 'confirmPassword')->passwordInput() ?>
+    </fieldset>
+    <? endif ?>
+    <div class="form-group">
+        <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
+    </div>
+    <?php ActiveForm::end(); ?>
+    <?=
+    $this->render('deactivate', [
+    'user' => $user
+    ]);
+    ?>
+</section> <!-- END main settings -->
 
-        <div class="clearfix"></div>
-
-
-</section>
+<div id="sidebar" class="plans"> <!-- BEGIN plans sidebar -->
+    <div class='sidepanel basic'>
+    <?=
+    $this->render('plan', [
+    'user' => $user
+    ]);
+    ?>
+</div> <!-- END plans sidebar -->

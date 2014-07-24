@@ -1,7 +1,7 @@
-/* Campaigns Sidebar List Styling */
-
+/* Campaigns Sidebar */
+/* ------------------------------------------------- */
 .campaigns-list-wrap {
-    width: @campaigns-list-wrap-width;
+    width: @sidepanelwidth;
     height: 100%;
     position: fixed;
     top: 0;
@@ -25,8 +25,8 @@
     }
 }
 
-/* Campaigns Quicknav */
-
+/* Campaigns QuickNav */
+/* ------------------------------------------------- */
 .campaign-quicknav {
     width: 100%;
     line-height: 50px;
@@ -61,6 +61,8 @@
 
 }
 
+/* Campaign Items */
+/* ------------------------------------------------- */
 .campaign-item {
     color: @gray20;
     padding: 18px 0;
@@ -115,6 +117,7 @@
 
 }
 
+/* Search */
 .list-search {
     padding: 18px 36px;
     border-bottom: solid 1px @bgcolor;
@@ -126,13 +129,12 @@
 
 }
 
-/* Campaign View Styling */
-
+/* Campaigns View */
+/* ------------------------------------------------- */
 .campaings-view-wrap {
   width: 100%;
-  padding-left: @campaigns-list-wrap-width + @primary-nav-width;
+  padding-left: @sidepanelwidth + @primary-nav-width;
 }
-
 .campaign-view-selected {
   padding-top: 60px;
 
@@ -142,7 +144,6 @@
   }
 
 }
-
 .campaign-date {
     display: block;
     color: @gray40;
@@ -151,9 +152,7 @@
     letter-spacing: 0;
 }
 
-
 /* Campaign Edit Styling */
-
 .campaign-actions {
   display: block;
   margin: 0px;
@@ -254,10 +253,7 @@
 
 }
 
-
-
 /* Top Donor/Donation */
-
 .top-donor,
 .top-donation {
   border-top: solid 1px @gray75;
@@ -267,23 +263,20 @@
     border-left: 0 !important;
 }
 
-/* Donor List */
-
 /* Campaign Edit Tabs */
-
 .campaign-edit-wrap {
   padding: 60px;
-}
 
-.campaign-edit-wrap ul {
-    margin-bottom: 30px;
-    text-align: center;
-}
+    ul {
+        margin-bottom: 30px;
+        text-align: center;
 
-.campaign-edit-wrap>ul li {
-    display: inline-block;
-    text-align: center;
-    float: none;
+        li {
+            display: inline-block;
+            text-align: center;
+            float: none;
+        }
+    }
 }
 
 #campaignEdit[data-campaigntype="Charity Fundraiser"]{
@@ -295,8 +288,8 @@
   }
 }
 
-/* Tab Override */
-
+/* Tabs Override (for Bootstrap) */
+/* ------------------------------------------------- */
 .nav-tabs > li > a {
     background: @gray70;
     border-radius: 0px;
