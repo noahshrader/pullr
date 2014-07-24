@@ -2,10 +2,13 @@
     use yii\web\View;
     use yii\helpers\Url;
     /**@var $this View*/
+    $sourceHref = Url::to('', true).'/source';
 ?>
 <!-- Accordion slide four (Settings) -->
 <div class="tab-pane active" id="settingsTab">
-    
+    <div id="streamboard-settings-header" class="text-center">
+        <button class="btn btn-primary" onclick="window.prompt('Copy to clipboard: CTRL+C, Enter', ' <?= $sourceHref ?>');">Copy Link</button>
+    </div>
     <div class="tab-content">
         <div class="tab-pane" id="campaigns">
         </div>
