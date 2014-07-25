@@ -37,8 +37,8 @@ Sometimes you need to update db, so run that (that will remove all tables and lo
 
 ####Useful commands
 * `./yii pullr/purge` - will remove all tables from db
-* `./yii migrate' - will load table's sheme at db
-* `./yii theme/scan' - will update themes
+* `./yii migrate` - will load table's sheme at db
+* `./yii theme/scan` - will update themes
 
 ####Mac
 If you use MAMP please enable "Allow Network access to MYSQL" 
