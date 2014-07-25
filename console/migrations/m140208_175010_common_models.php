@@ -39,12 +39,7 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'relatedId' => Schema::TYPE_INTEGER
         ]);
         
-        $user = User::findOne(1);
-        $user->prolong(\Yii::$app->params['yearSubscription']);
-        
-        $user = User::find()->where(['name' => 'Admin'])->one();
-        $user->prolong(\Yii::$app->params['monthSubscription']);
-        
+
         $statuses = implode('","', Charity::$STATUSES);
         $statuses = "ENUM (\"$statuses\") NOT NULL DEFAULT \"" . Charity::STATUS_ACTIVE . '"';
         $this->createTable(Charity::tableName(), [
@@ -61,28 +56,9 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'description' => Schema::TYPE_TEXT. ' NOT NULL',
             'date' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
         ]);
-        
-        $this->sampleData();
     }
 
-    public function sampleData(){
-        $charity = new Charity();
-        $charity->name = 'St. Jude';
-        $charity->type = 'Community';
-        $charity->paypal = 'paypal@stjude.org';
-        $charity->contact = 'Noah Shrader';
-        $charity->contactEmail = 'noahshrader@gmail.com';
-        $charity->save();
-        
-        $charity = new Charity();
-        $charity->name = 'PETA';
-        $charity->type = 'Animals';
-        $charity->paypal = 'paypal@peta.org';
-        $charity->contact = 'Stanislav Klyukin';
-        $charity->contactEmail = 'stas.msu@gmail.com';
-        $charity->save();
-    }
-    
+
     public function down() {
         $this->dropTable(BaseImage::tableName());
         $this->dropTable(Payment::tableName());

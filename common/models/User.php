@@ -15,6 +15,7 @@ use yii\db\ActiveQuery;
  *
  * @property integer $id
  * @property string $name
+ * @property string $uniqueName
  * @property OpenIDToUser $openIDToUser
  * @property string $password_hash
  * @property string $password_reset_token
