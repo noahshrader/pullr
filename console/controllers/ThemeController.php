@@ -12,6 +12,6 @@ class ThemeController extends Controller {
         echo "Starting theme rescan\n";
         $scanner = new ThemeScanner();
         $scanner->rescan();
-        echo "Themes here rescaned\n";
+        echo "Themes were rescaned\n";
     }
 }
