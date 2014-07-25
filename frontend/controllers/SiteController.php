@@ -86,7 +86,7 @@ class SiteController extends FrontendController {
         if (isset($_REQUEST['error'])){
             echo 'error: <b>'.$_REQUEST['error'].'</b>';
             echo '<br />';
-            echo "Possible pullr application return url should be changed at http://twitch.tv ";
+            echo "Seems pullr application's 'return url' should be changed at http://twitch.tv ";
             return;
         }
         $code = $_REQUEST['code'];
@@ -120,6 +120,8 @@ class SiteController extends FrontendController {
                 $openId->save();
             }
             $user = $openId->user;
+            $user->userFields->ifTwitchPartner = $userInfo->partnered;
+            $user->userFields->save();
             \Yii::$app->user->login($user);
             
             $this->goHome();
