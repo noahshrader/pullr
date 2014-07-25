@@ -37,7 +37,8 @@ class m140723_083930_first_giving_table extends Migration
             'revoked' => Schema::TYPE_BOOLEAN,
         ]);
 
-        $this->sampleData();
+        //data fixtures
+        //$this->sampleData();
     }
 
     public function sampleData() {

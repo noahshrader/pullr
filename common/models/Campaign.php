@@ -339,8 +339,8 @@ class Campaign extends ActiveRecord {
     }
 
     public function getFirstGiving() {
-        if ($charity = $this->getCharity()->one()) {
-            return $charity->getFirstGiving()->one()? : false;
+        if ($charity = $this->charity) {
+            return $charity->firstGiving ? : false;
         }
         return false;
     }

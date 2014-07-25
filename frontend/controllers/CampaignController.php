@@ -72,7 +72,7 @@ class CampaignController extends FrontendController {
 
                 $firstGivingCharity = FirstGiving::getFromAPI($orgUuid);
 
-                $editCampaign->charityId = $firstGivingCharity->getCharity()->one()->id;
+                $editCampaign->charityId = $firstGivingCharity->charity->id;
             }
 
             if ($editCampaign->save()){
@@ -96,14 +96,6 @@ class CampaignController extends FrontendController {
             }
             if (is_numeric($editCampaign->endDate)) {
                 $editCampaign->endDate = strftime('%Y-%m-%dT%H:%M', $editCampaign->endDate);
-            }
-
-            //selected charity
-            $charity = $editCampaign->getCharity()->one();
-            if ($charity) {
-                if ($firstGiving = $charity->getFirstGiving()->one()) {
-                    $params['firstgiving'] = $firstGiving;
-                }
             }
         }
 

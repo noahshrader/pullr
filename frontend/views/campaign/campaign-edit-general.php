@@ -2,16 +2,15 @@
 use common\models\Campaign;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\assets\Select2Asset;
 /* @var $form ActiveForm */
 
 
 $parentCampaigns = \Yii::$app->user->identity->getParentCampaigns()->all();
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 
-$this->registerJsFile('@web/js/select2/select2.js', common\assets\Select2Asset::className());
-$this->registerCssFile('@web/css/select2/select2.css', common\assets\Select2Asset::className());
+Select2Asset::register($this);
 $this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAsset::className());
-
 
 $firstGiving = $campaign->getFirstGiving();
 ?>
