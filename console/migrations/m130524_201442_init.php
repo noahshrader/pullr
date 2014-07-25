@@ -51,7 +51,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration
         $this->createTable(UserFields::tableName(), [
             'userId' => Schema::TYPE_PK,
             'systemNotificationDate' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'ifTwitchPartner' => Schema::TYPE_BOOLEAN . ' NOT NUL'
+            'ifTwitchPartner' => Schema::TYPE_BOOLEAN . ' NOT NULL'
         ]);
 
         $this->createTable(Notification::tableName(), [
