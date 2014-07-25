@@ -344,4 +344,11 @@ class Campaign extends ActiveRecord {
         $userId = $this->userId;
         return $this->hasOne(StreamboardCampaign::className(), ['campaignId' => 'id'])->where(['userId' =>  $userId ]);
     }
+
+    public function getFirstGiving() {
+        if ($charity = $this->charity) {
+            return $charity->firstGiving ? : false;
+        }
+        return false;
+    }
 }

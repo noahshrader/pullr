@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\FirstGiving;
 use frontend\controllers\FrontendController;
 use common\models\Campaign;
 use yii\web\NotFoundHttpException;
@@ -18,6 +19,7 @@ use common\models\User;
 use common\models\CampaignInvite;
 use common\models\mail\Mail;
 use common\models\Donation;
+use HttpRequest;
 
 class CampaignController extends FrontendController {
 
@@ -55,8 +57,6 @@ class CampaignController extends FrontendController {
      */
     public function actionIndex(Campaign $editCampaign = null, Campaign $selectedCampaign = null, $status = Campaign::STATUS_ACTIVE) {
         $isNewRecord = $editCampaign && $editCampaign->isNewRecord;
-        
-        
         if ($editCampaign && $editCampaign->load($_POST)){ 
             /*             * from html5 datetime-local tag to timestamp */
             if ($editCampaign->startDate && !is_numeric($editCampaign->startDate)) {
@@ -64,6 +64,15 @@ class CampaignController extends FrontendController {
             }
             if ($editCampaign->endDate && !is_numeric($editCampaign->endDate)) {
                 $editCampaign->endDate = (new \DateTime($editCampaign->endDate))->getTimestamp();
+            }
+
+            if (Yii::$app->request->getIsPost() && Yii::$app->request->post('firstgiving')) {
+
+                $orgUuid = strip_tags(Yii::$app->request->post('firstgiving'));
+
+                $firstGivingCharity = FirstGiving::getFromAPI($orgUuid);
+
+                $editCampaign->charityId = $firstGivingCharity->charity->id;
             }
 
             if ($editCampaign->save()){
