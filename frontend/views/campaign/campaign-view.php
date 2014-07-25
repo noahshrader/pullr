@@ -91,7 +91,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
         </div>
         <div class="clearfix"></div>
     </div>
-    <div class="campaign-view-selected" data-id="<?= $campaign->id ?>">
+    <div class="campaign-view-wrap" data-id="<?= $campaign->id ?>">
          <h1>
             <?= ($campaign->name)?$campaign->name:'New campaign' ?>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
