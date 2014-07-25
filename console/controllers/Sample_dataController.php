@@ -16,7 +16,7 @@ class Sample_dataController extends Controller
 {
     public function actionIndex()
     {
-        echo "Starting to load sample data\n";
+        echo "\nStarting to load sample data\n";
         echo "Starting to load sample users\n";
         $this->sampleUsers();
         echo "Starting to load sample charities\n";

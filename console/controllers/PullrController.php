@@ -4,8 +4,6 @@ namespace console\controllers;
 
 use Yii;
 use yii\console\Controller;
-use common\models\Theme;
-use common\components\ThemeScanner;
 
 class PullrController extends Controller
 {
@@ -35,5 +33,8 @@ SQL;
     public function actionSample(){
         $ctrl = new Sample_dataController($this->id, $this->module);
         $ctrl->actionIndex();
+
+        $ctrl = new ThemeController($this->id, $this->module);
+        $ctrl->actionRescan();
     }
 }
