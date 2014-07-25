@@ -275,7 +275,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function toArray(array $fields = [], array $expand = [], $recursive = true)
     {
         $allowed = ['id', 'name', 'uniqueName', 'photo', 'smallPhoto'];
-        return array_intersect_key(parent::toArray($fields, $expand, $recursive), array_flip($allowed));
+        $array = array_intersect_key(parent::toArray($fields, $expand, $recursive), array_flip($allowed));
+        $array['userFields'] = $this->userFields->toArray(['twitchPartner', 'twitchChannel']);
+        return $array;
     }
 
 
@@ -285,7 +287,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function toArrayPrivate(array $fields = [], array $expand = [], $recursive = true)
     {
-        $allowed = ['id', 'name', 'photo', 'smallPhoto', 'email'];
+        $allowed = ['id', 'name','uniqueName', 'photo', 'smallPhoto', 'email'];
         return array_intersect_key(parent::toArray($fields, $expand, $recursive), array_flip($allowed));
 
     }

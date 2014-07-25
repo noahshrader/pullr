@@ -112,6 +112,10 @@ class SiteController extends FrontendController {
                 $user->photo = $userInfo->logo;
                 $user->smallPhoto = $userInfo->logo;
                 $user->save();
+
+                $user->userFields->twitchChannel = $userInfo->name;
+                $user->userFields->save();
+
                 $openId = new OpenIDToUser();
                 $openId->serviceId = $userInfo->_id;
                 $openId->serviceName = 'twitch';
@@ -120,7 +124,7 @@ class SiteController extends FrontendController {
                 $openId->save();
             }
             $user = $openId->user;
-            $user->userFields->ifTwitchPartner = $userInfo->partnered;
+            $user->userFields->twitchPartner = $userInfo->partnered;
             $user->userFields->save();
             \Yii::$app->user->login($user);
             

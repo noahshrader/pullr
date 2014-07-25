@@ -8,6 +8,7 @@ use common\models\User;
 /**
  * class is responsible for associating OpenID accounts to User model
  * @property string serviceName
+ * @property User $user
  */
 class OpenIDToUser extends ActiveRecord {
 

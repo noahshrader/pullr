@@ -48,18 +48,21 @@ function number_format(number) {
 
 function twitchEventsMonitor() {
     if (window.Twitch) {
-        if (Pullr.user.uniqueName) {
+        var channelName = Pullr.user.userFields.twitchChannel;
+        log(channelName);
+        if (channelName) {
             Twitch.init({clientId: 'l7mj3pfjvxpk2zv6ivr9jpisodqd5h0'}, function (error, status) {
-                var method = 'channels/' + Pullr.user.uniqueName + '/follows';
+                var method = 'channels/' + channelName + '/follows';
                 Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
                     $.post('app/twitch/update_follows_ajax', {data: JSON.stringify(list)});
                 });
-                method = 'channels/' + Pullr.user.uniqueName + '/subscriptions'
-                Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-                    console.log('subscriptions');
-                    console.log(list);
-                    $.post('app/twitch/update_subscriptions_ajax', {data: JSON.stringify(list)});
-                });
+
+                if (Pullr.user.userFields.twitchPartner){
+                    method = 'channels/' + channelName + '/subscriptions'
+                    Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
+                        $.post('app/twitch/update_subscriptions_ajax', {data: JSON.stringify(list)});
+                    });
+                }
             });
         }
     }
