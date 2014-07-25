@@ -21,7 +21,8 @@ use common\models\User;
         } catch (e) {
         }</script>
     <?
-    $js = 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
+    $js = 'window.Pullr.twitchClientId = "'. \Yii::$app->params['twitchClientId'].'";';
+    $js .= 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
     if (!\Yii::$app->user->isGuest) {
        $user = \Yii::$app->user->identity;
        /**@var User $user*/
