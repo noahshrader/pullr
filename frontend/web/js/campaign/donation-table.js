@@ -48,7 +48,7 @@ $(function(){
             var href = 'app/campaign/exportdonations?id='+id;
         }
         var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).html
-            ('<i class="icon icon-download"></i> CSV');
+            ('<i class="icon icon-download"></i> Export All');
         csvButton.insertBefore($wrapper.find('.dataTables_paginate'));
     }
     

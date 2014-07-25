@@ -38,15 +38,6 @@ $user = \Yii::$app->user->identity;
                     </a>
                 </li>
 
-                <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
-                <li>
-                    <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                        <i class="icon icon-remove"></i>
-                        <!-- Remove -->
-                    </a>
-                </li>
-                <? endif ?>
-
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                 <li>
                     <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
@@ -56,7 +47,16 @@ $user = \Yii::$app->user->identity;
                 </li>
                 <? endif ?>
 
-                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
+                <li>
+                    <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
+                        <i class="icon icon-remove"></i>
+                        <!-- Remove -->
+                    </a>
+                </li>
+                <? endif ?>
+
+                <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                 <li>
                     <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                         <i class="icon icon-recover"></i>

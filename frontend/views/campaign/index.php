@@ -38,21 +38,12 @@ $user = \Yii::$app->user->identity;
     <!-- Theme Browsing -->
 
     <section id="sidepanelthree" class="sidepanel">
-        
         <div class="tab-content">
-
             <div id="modalThemes">
-
                 <div class="themes-list">
-
-                    
-
                 </div>
-
             </div>
-             
         </div>
     </section>
-
 
     <? endif; ?>

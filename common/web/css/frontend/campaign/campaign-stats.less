@@ -1,322 +1,314 @@
 /* Campaigns Sidebar */
 /* ------------------------------------------------- */
 .campaigns-list-wrap {
-    width: @sidepanelwidth;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: @primary-nav-width;
-    padding: 60px 0px 0px 0px;
-    background-color: @gray5;
-    overflow: auto;
+		width: @sidepanelwidth;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: @primary-nav-width;
+		padding-top: @top-menu-height;
+		background-color: @gray5;
+		overflow: auto;
 
-    .main-info {
-        padding-left: 36px;
-        padding-right: 36px;
-    }
+		.main-info {
+			padding-left: 36px;
+			padding-right: 36px;
+		}
 
-    h2 {
-        font-size: 24px;
-        color: @accent;
-        line-height: @top-menu-height;
-        padding-left: 15px;
-        padding-right: 15px;
-        font-weight: normal;       
-    }
+		h2 {
+			font-size: 24px;
+			color: @accent;
+			line-height: @top-menu-height;
+			padding-left: 15px;
+			padding-right: 15px;
+			font-weight: normal;       
+		}
 }
 
 /* Campaigns QuickNav */
 /* ------------------------------------------------- */
 .campaign-quicknav {
-    width: 100%;
-    line-height: 50px;
-    height: 50px;
-    background: @bgcolor;
-    border-bottom: solid 1px @bgcolor;
+		width: 100%;
+		line-height: 50px;
+		height: 50px;
+		background: @bgcolor;
+		border-bottom: solid 1px @bgcolor;
 
-    ul {
-        list-style: none;
-        margin: 0px;
-        padding: 0px;
-        text-align: center;
-        width: 100%;
+		ul {
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+				text-align: center;
+				width: 100%;
 
-        li {
-            display: inline-block;
+				li {
+						display: inline-block;
 
-            a {
-                display: inline-block;
-                padding: 6px 10px;
-                font-size: 12px;
-                line-height: 12px;
-                border-radius: 4px;
-                color: @gray20;
+						a {
+								display: inline-block;
+								padding: 6px 10px;
+								font-size: 12px;
+								line-height: 12px;
+								border-radius: 4px;
+								color: @gray20;
 
-                &:hover, &.active {
-                    color: @white;
-                }
-            }
-        }
-    }
-
+								&:hover, &.active {
+										color: @white;
+								}
+						}
+				}
+		}
 }
 
-/* Campaign Items */
+/* Campaign Items (Sidebar) */
 /* ------------------------------------------------- */
-.campaign-item {
-    color: @gray20;
-    padding: 18px 0;
-    margin: 0px;
-    position: relative;
-    display: block;
-    width: 100%;
-    border-bottom: solid 1px @bgcolor;
-    &:hover h3,
-    &.active h3 {
-        color: #FFF;
-        .trans;
-    }
-    &:hover p,
-    &.active p {
-        color: @accent;
-        .trans;
-    }
-    &.active:before {
-        content: " ";
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 10px 10px 10px 0;
-        border-color: transparent #FFF transparent transparent;
-        position: absolute;
-        right: 0px;
-        top: 40%;       
-    }
 
-    h3,
-    h4,
-    p {
-        color: @gray20;
-    }
-    h3 {
-        margin: 0px;
-        padding: 0 0 2px 0;
-        font-size: 17px;
-        font-weight: 600;
-        line-height: 1.1em;
-    }
-
-    h4 {
-        font-size: 14px;
-    }
-
-    p {
-        margin-top: 2px;
-        margin-bottom: 0px;
-    }
-
-}
-
-/* Search */
+/* Campaign Search */
 .list-search {
-    padding: 18px 36px;
-    border-bottom: solid 1px @bgcolor;
+		padding: 18px 36px;
+		border-bottom: solid 1px @bgcolor;
 
-    input[type='search'] {
-        background-color: @gray10;
-        border-color: transparent;
-    }
+		input[type='search'] {
+				background-color: @gray10;
+				border-color: transparent;
+		}
 
 }
 
-/* Campaigns View */
+/* Campaign Listings */
+.campaign-item {
+		color: @gray20;
+		padding: 18px 0;
+		margin: 0px;
+		position: relative;
+		display: block;
+		width: 100%;
+		border-bottom: solid 1px @bgcolor;
+		&:hover h3,
+		&.active h3 {
+				color: #FFF;
+				.trans;
+		}
+		&:hover p,
+		&.active p {
+				color: @accent;
+				.trans;
+		}
+		&.active:before {
+				content: " ";
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 10px 10px 10px 0;
+				border-color: transparent #FFF transparent transparent;
+				position: absolute;
+				right: 0px;
+				top: 40%;       
+		}
+		h3,
+		h4,
+		p {
+				color: @gray20;
+		}
+		h3 {
+				margin: 0px;
+				padding: 0 0 2px 0;
+				font-size: 17px;
+				font-weight: 600;
+				line-height: 1.1em;
+		}
+		h4 {
+				font-size: 14px;
+		}
+		p {
+				margin-top: 2px;
+				margin-bottom: 0px;
+		}
+}
+
+/* Main Campaigns View */
 /* ------------------------------------------------- */
-.campaings-view-wrap {
-  width: 100%;
-  padding-left: @sidepanelwidth + @primary-nav-width;
+.campaigns-view-wrap,
+.donor-view-wrap {
+	width: 100%;
+	padding-left: @sidepanelwidth + @primary-nav-width;
 }
 .campaign-view-selected {
-  padding-top: 60px;
+	padding-top: @top-menu-height;
 
-  h1 {
-    margin-bottom: 50px;
-    padding: 0 50px;
-  }
-
+	h1 {
+		margin-bottom: 50px;
+		padding: 0 50px;
+	}
 }
 .campaign-date {
-    display: block;
-    color: @gray40;
-    font-size: 18px;
-    line-height: 2em;
-    letter-spacing: 0;
+		display: block;
+		color: @gray40;
+		font-size: 18px;
+		line-height: 2em;
+		letter-spacing: 0;
 }
 
 /* Campaign Edit Styling */
 .campaign-actions {
-  display: block;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  height: 50px;
-  background: @gray75;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 50px;
+	background: @gray75;
 
-  .campaign-nav {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+	.campaign-nav {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+		ul {
+				li {
+				display: block;
+				float: left;
+				&.active .icon {
+						color: @bgcolor;
+				}
+						a {
+						display: block;
+						float: left;
+						font-size: 12px;
+						height: 50px;
+						color: @gray40;
+						text-transform: uppercase;
+						letter-spacing: 1px;
 
-    ul {
+								.icon {
+								font-size: 18px;
+								font-weight: bold;
+								line-height: 50px;
+								color: @gray50;
+								}
+						}
 
-        li {
+						a:hover, a:hover .icon {
+								color: @bgcolor;
+						}
+				}
+		}
+		.campaign-quick-links {
+				list-style: none;
+				text-align: left;
+				padding-right: 0px;
+				padding-left: 0px;
+						
+				li {
+						a {
+								width: 50px;
+								border-right: 1px solid @white;
+								text-align: center;
+						}
+				}
 
-        display: block;
-        float: left;
-        
-        &.active .icon {
-            color: @bgcolor;
-        }
+				li.active a {
+						background: #FFF;
+				}
 
-            a {
-            display: block;
-            float: left;
-            font-size: 12px;
-            height: 50px;
-            color: @gray40;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+				li.active .icon {
 
-                .icon {
-                font-size: 18px;
-                font-weight: bold;
-                line-height: 50px;
-                color: @gray50;
-                }
+				}
+		}
+		.campaign-buttons {
+				list-style: none;
+				text-align: right;
+				padding-right: 0px;
+				padding-left: 0px;
+				float: right;
+				margin-bottom: 0px;
 
-            }
+				li {
+						a {
+								padding-right: 20px;
+								padding-left: 20px;
+								border-left: 1px solid @white;
+								text-align: center;
+								line-height: 50px;
 
-            a:hover, a:hover .icon {
-                color: @bgcolor;
-            }
-
-        }
-
-    }
-
-    .campaign-quick-links {
-        list-style: none;
-        text-align: left;
-        padding-right: 0px;
-        padding-left: 0px;
-            
-        li {
-            a {
-                width: 50px;
-                border-right: 1px solid @white;
-                text-align: center;
-            }
-        }
-
-        li.active a {
-            background: #FFF;
-        }
-
-        li.active .icon {
-
-        }
-    }
-
-    .campaign-buttons {
-        list-style: none;
-        text-align: right;
-        padding-right: 0px;
-        padding-left: 0px;
-        float: right;
-        margin-bottom: 0px;
-
-        li {
-            a {
-                padding-right: 20px;
-                padding-left: 20px;
-                border-left: 1px solid @white;
-                text-align: center;
-                line-height: 50px;
-
-                .icon {
-                    float: left;
-                    line-height: 46px;
-                    padding-right: 10px;
-                }
-            }
-        }
-    }
-
+								.icon {
+										float: left;
+										line-height: 46px;
+										padding-right: 10px;
+								}
+						}
+				}
+		}
 }
 
 /* Top Donor/Donation */
 .top-donor,
 .top-donation {
-  border-top: solid 1px @gray75;
-  padding: 1.6em 2em;
+	border-top: solid 1px @gray75;
+	padding: 1.6em 2em;
 }
 .top-donor {
-    border-left: 0 !important;
+		border-left: 0 !important;
 }
 
 /* Campaign Edit Tabs */
 .campaign-edit-wrap {
-  padding: 60px;
+	padding: @top-menu-height;
 
-    ul {
-        margin-bottom: 30px;
-        text-align: center;
+		ul {
+				display: inline-block;
+				margin-bottom: 30px;
+				text-align: center;
+				overflow: hidden;
+				.round-radius;
 
-        li {
-            display: inline-block;
-            text-align: center;
-            float: none;
-        }
-    }
+				li {
+						display: inline-block;
+						text-align: center;
+						float: left;
+				}
+				&:first-child {
+
+				}
+		}
 }
 
 #campaignEdit[data-campaigntype="Charity Fundraiser"]{
-  #campaign-edit-team-li {
-    display: inline-block;
-  }
-  #campaign-edit-team{
-    display: block;
-  }
+	#campaign-edit-team-li {
+		display: inline-block;
+	}
+	#campaign-edit-team{
+		display: block;
+	}
 }
 
 /* Tabs Override (for Bootstrap) */
 /* ------------------------------------------------- */
 .nav-tabs > li > a {
-    background: @gray70;
-    border-radius: 0px;
-    color: @gray20;
-    border-width: 0px;
+		background: @gray75;
+		border-radius: 0px;
+		color: @gray20;
+		border-width: 0px;
 }
 
 .nav-tabs > li > a:before {
-    padding-right: 10px;
+		padding-right: 10px;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-    background: @gray5;
-    border-color: @bgcolor;
-    border-radius: 0px;
-    color: @white;
-    border-width: 0px;
+		background: @gray5;
+		border-color: @bgcolor;
+		border-radius: 0px;
+		color: @white;
+		border-width: 0px;
 }
 
 .nav-tabs>li>a:hover {
-    background: @gray20;
-    border-radius: 0px;
-    border-color: transparent;
-    color: @white;
-    border-width: 0px;
+		background: @gray20;
+		border-radius: 0px;
+		border-color: transparent;
+		color: @white;
+		border-width: 0px;
 }
 
 .nav-tabs {
-    border-color: transparent;
+		border-color: transparent;
 }

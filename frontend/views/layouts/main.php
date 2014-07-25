@@ -43,12 +43,17 @@ $this->registerJs($js);
                 <div class="primary-navigation"> <!-- BEGIN main navigation -->
                     <nav class="sidebar-nav nav-top">
                         <ul> 
-                            <li><a class="dashboard" title="Dashboard" href="app"><i class="icon-dashboard"></i></a></li>
                             <li>
-                                <a class="campaign-link" title="Campaigns" href="app/campaign"><i class="icon-campaigns"></i></a>
+                                <a class="dashboard" title="Dashboard" href="app"><i class="icon-dashboard"></i></a>
                             </li>
-                             <li>
+                            <li>
                                 <a class="streamboard" title="Streamboard" href="app/streamboard" target="_blank"><i class="icon-streamboard"></i></a>
+                            </li>
+                            <li>
+                                <a class="campaign-link" title="Campaigns" href="app/campaign"><i class="icon-bargraph"></i></a>
+                            </li>
+                            <li>
+                                <a class="settings" role="menuitem" tabindex="-1" href="app/campaign/donors"><i class="icon-usergroup"></i></a>
                             </li>
                             <li>
                                 <a class="settings" role="menuitem" tabindex="-1" href="app/settings"><i class="icon-settings"></i></a>
