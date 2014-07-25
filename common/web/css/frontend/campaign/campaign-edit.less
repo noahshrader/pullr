@@ -1,3 +1,46 @@
+/* Campaign Edit Tabs */
+/* ------------------------------------------------- */
+.campaign-edit-wrap {
+    padding: @top-menu-height 80px;
+    margin: 0 auto;
+    max-width: 980px;
+    
+    ul {
+        display: inline;
+        text-align: center;
+        overflow: hidden;
+
+        li {
+            display: inline-block;
+            text-align: center;
+            float: left;
+            border: 0;
+            &.active a {
+                background: @gray75;
+            }
+            a {
+                padding: 16px;
+                background: @white;
+            }
+        }
+    }
+
+    .tab-content {
+        padding: 30px;
+        background: @gray75;
+    }
+}
+#campaignEdit[data-campaigntype="Charity Fundraiser"]{
+    #campaign-edit-team-li {
+        display: inline-block;
+    }
+    #campaign-edit-team{
+        display: block;
+    }
+}
+
+/* General Campaign Edit */
+/* ------------------------------------------------- */
 #campaignEdit{
     #collapseTwo{
         #layoutTeams {

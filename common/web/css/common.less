@@ -3,20 +3,19 @@
 @import "type.less";
 @import "app-styles/modals.less";
 
+
+/* Global Styles */
+/* ------------------------------------------------- */
 body {
-  font-size: 14px;
+	font-size: 14px;
 }
 	body.campaignflow {
 		overflow: auto;
 	}
-
-/* Global Styles */
-/* ------------------------------------------------- */
-
 ::selection {
-  background: @accent;
-  color: #FFF;
-  text-shadow: none;
+	background: @accent;
+	color: #FFF;
+	text-shadow: none;
 }
 
 /* Buttons */
@@ -107,18 +106,15 @@ table.dataTable tbody th,
 table.dataTable tbody td {
 	padding: 1em 6% !important;
 }
-table tr td {
-
-}
 table tr.odd td {
-	background: @gray80;
+	background: @white;
 }
 table tr:hover td {
 	color: @bgcolor;
 }
 table.dataTable tbody tr {
-  background-color: transparent !important;
-  border-color: transparent !important;
+	background-color: transparent !important;
+	border-color: transparent !important;
 }
 table.dataTable.no-footer {
 	border: 0;
@@ -129,10 +125,10 @@ table.dataTable.display tbody th,
 table.dataTable.display tbody td,
 table.dataTable thead td,
 table.dataTable thead th   {
-  border-color: transparent!important;
+	border-color: transparent!important;
 }
 .dataTables_info {
-  margin-top: 15px;
+	margin-top: 15px;
 }
 .dataTables_wrapper {
 	background: @gray75;
@@ -142,19 +138,22 @@ table.dataTable thead th   {
 .dataTables_wrapper .dataTables_info, 
 .dataTables_wrapper .dataTables_processing, 
 .dataTables_wrapper .dataTables_paginate {
- color: @gray20!important; 
+	color: @gray20!important; 
+
+	label {
+		margin: 0;
+ 	}
 }
 .row {
 	margin: 0;
 	padding: 16px 50px;
-	border-bottom: solid 1px @gray80;
+	border-bottom: solid 1px @white;
 }
 .dataTables_wrapper .dataTables_paginate {
-  padding: 0px!important;
+	padding: 0px!important;
 }
 
 /* Statistic Global Styling */
-
 .stats-overview {
 	position: relative;
 	text-align: center;
@@ -187,21 +186,21 @@ table.dataTable thead th   {
 /* Progress Bars */
 /* ------------------------------------------------- */
 .progress {
-    border-radius: 0px;
-    margin-bottom: 0px;
-    height: 24px;
-    background: @bgcolor;
+	border-radius: 0px;
+	margin-bottom: 0px;
+	height: 24px;
+	background: @bgcolor;
 }
 
 .progress-line {
-    position: relative;
-    color: #FFF;
-    text-align: right;
-    padding-right: 5px;
-    line-height: 24px;
-    max-width: 100%;
-    .smallcaps;
-    background: @accent;
-    -webkit-animation: animate-bar 1s 1 ease;
-    animation: animate-bar 1s 1 ease;
+	position: relative;
+	color: #FFF;
+	text-align: right;
+	padding-right: 5px;
+	line-height: 24px;
+	max-width: 100%;
+	.smallcaps;
+	background: @accent;
+	-webkit-animation: animate-bar 1s 1 ease;
+	animation: animate-bar 1s 1 ease;
 }
