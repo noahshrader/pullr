@@ -67,12 +67,12 @@
 /* ------------------------------------------------- */
 /* Campaign Search */
 .list-search {
-		padding: 18px 36px;
-		border-bottom: solid 1px @bgcolor;
-		input[type='search'] {
-				background-color: @gray10;
-				border-color: transparent;
-		}
+	padding: 18px 36px;
+	border-bottom: solid 1px @bgcolor;
+	input[type='search'] {
+		background-color: @gray10;
+		border-color: transparent;
+	}
 }
 
 /* Campaign Listings */
@@ -128,27 +128,6 @@
 
 /* Main Campaigns View */
 /* ------------------------------------------------- */
-.campaigns-view-wrap,
-.donor-view-wrap {
-	width: 100%;
-	padding-left: @sidepanelwidth + @primary-nav-width;
-}
-.campaign-view-wrap,
-.campaign-edit-wrap {
-	padding-top: @top-menu-height;
-
-	h1 {
-		margin-bottom: 50px;
-		padding: 0 50px;
-	}
-}
-.campaign-date {
-		display: block;
-		color: @gray40;
-		font-size: 18px;
-		line-height: 2em;
-		letter-spacing: 0;
-}
 
 /* Campaign View Navigation */
 .campaign-actions {
@@ -164,33 +143,33 @@
 		padding-right: 0px;
 	}
 		ul {
-				li {
+			li {
+			display: block;
+			float: left;
+			&.active .icon {
+					color: @bgcolor;
+			}
+				a {
 				display: block;
 				float: left;
-				&.active .icon {
+				font-size: 12px;
+				height: 50px;
+				color: @gray40;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+
+					.icon {
+					font-size: 18px;
+					font-weight: bold;
+					line-height: 50px;
+					color: @gray50;
+					}
+				}
+
+				a:hover, a:hover .icon {
 						color: @bgcolor;
 				}
-						a {
-						display: block;
-						float: left;
-						font-size: 12px;
-						height: 50px;
-						color: @gray40;
-						text-transform: uppercase;
-						letter-spacing: 1px;
-
-								.icon {
-								font-size: 18px;
-								font-weight: bold;
-								line-height: 50px;
-								color: @gray50;
-								}
-						}
-
-						a:hover, a:hover .icon {
-								color: @bgcolor;
-						}
-				}
+			}
 		}
 		.campaign-quick-links {
 				list-style: none;
