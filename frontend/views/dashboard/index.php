@@ -21,11 +21,15 @@ $this->registerJsFile('@web/js/dashboard/index.js', common\assets\CommonAsset::c
        </div> <!-- END notification -->
     <? endif; ?>
     <? if ($twitchUser): ?>
-        <div class="row stats-overview">
+        <div class="row stats-overview"> <!-- BEGIN twitch followers -->
             <div class="col-xs-6 text-center stats-box">
                 <h2><?= $twitchUser->followersNumber ?></h2>
-                <h5>Twitch Followers</h5>
-            </div>
+                <h5>Twitch Followers</h5> 
+            </div> <!-- END twitch subscribers -->
+            <div class="col-xs-6 text-center stats-box"> <!-- BEGIN twitch subscribers -->
+                <h2></h2>
+                <h5>Twitch Subscribers</h5>
+            </div> <!-- BEGIN twitch subscribers -->
         </div>
     <? endif ?>
 </section>
