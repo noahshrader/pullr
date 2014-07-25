@@ -69,4 +69,8 @@ class Charity extends ActiveRecord {
         return $this->hasOne(User::className(), ['id' => 'userId']);
     }
 
+    public function getFirstGiving() {
+        return $this->hasOne(FirstGiving::className(), ['id' => 'firstGivingId']);
+    }
+
 }
