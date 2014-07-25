@@ -153,17 +153,16 @@ table.dataTable thead th   {
 	padding: 0px!important;
 }
 
-/* Statistic Global Styling */
+/* Statistics Global Styling */
 .stats-overview {
 	position: relative;
 	text-align: center;
-	margin-bottom: 30px;
 	border-top: solid 1px @gray75;
 	overflow: hidden;
 
 	.stats-box {
 		color: @bgcolor;
-		padding: 1em 2em;
+		padding: 1.4em 2em;
 		border-left: solid 1px @gray75;
 		&:first-child {
 			border-left: 0px;
@@ -181,6 +180,17 @@ table.dataTable thead th   {
 			}
 		}
 	}
+	.progress-wrap {
+		position: relative;
+
+		.progress {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 50%;
+			height: 8px;
+		}
+	}
 }
 
 /* Progress Bars */
@@ -188,16 +198,16 @@ table.dataTable thead th   {
 .progress {
 	border-radius: 0px;
 	margin-bottom: 0px;
-	height: 24px;
-	background: @bgcolor;
+	height: 20px;
+	background: @gray75;
 }
-
 .progress-line {
 	position: relative;
 	color: #FFF;
 	text-align: right;
 	padding-right: 5px;
-	line-height: 24px;
+	line-height: 20px;
+	height: 20px;
 	max-width: 100%;
 	.smallcaps;
 	background: @accent;

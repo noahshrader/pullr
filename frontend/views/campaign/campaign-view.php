@@ -115,8 +115,15 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                 <h2><?= $campaign->numberOfUniqueDonors ?></h2>
                 <h5>Donors</h5>
             </div>
-        
             <div class="clearfix"></div>
+            
+            <div class="progress-wrap">
+                <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
+                ?>
+                <div class="progress">
+                    <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
+                </div>
+            </div>
 
             <div class='stats-box col-xs-6 top-donor'>
                 <h3><?= $topDonorText ?></h3>
@@ -127,13 +134,6 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                 <h5>Top Donation</h5>
             </div>
             <div class="clearfix"></div>
-            <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
-            ?>
-            <div class="progress">
-                <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;">
-                    <?= round($progress) ?>%
-                </div>
-            </div>
         </section>
         <?= $this->render('campaign-view-childs', [
             'campaign' => $campaign
