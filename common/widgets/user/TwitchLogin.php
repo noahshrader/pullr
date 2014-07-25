@@ -5,6 +5,7 @@ namespace common\widgets\user;
 use yii\bootstrap\Widget;
 use yii\helpers\Html;
 use ritero\SDK\TwitchTV\TwitchSDK;
+use common\components\Application;
 
 class TwitchLogin extends Widget {
 
