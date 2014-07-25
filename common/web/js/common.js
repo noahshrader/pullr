@@ -5,6 +5,11 @@ function log(text) {
     }
 }
 
+/*enable tooltips*/
+$(function () {
+    $("[data-toggle='tooltip']").tooltip();
+});
+
 /*submit form on CTRL+ENTER*/
 function catchKeys() {
     $(document).on('keydown', function (event) {

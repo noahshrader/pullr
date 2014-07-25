@@ -18,7 +18,8 @@ $firstGiving = $campaign->getFirstGiving();
         <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
         <?= $form->field($campaign, 'description', ['autoPlaceholder' => true])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 6]); ?>
         <div class="form-group field-campaign-type">
-            <label>Campaign Type:</label><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
+            <label>Select a Campaign Type:</label>
+            <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
             <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'form-control select-block']) ?>
         </div>
         

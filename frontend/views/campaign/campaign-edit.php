@@ -63,6 +63,21 @@ $user = \Yii::$app->user->identity;
                 <? endif ?>
             </ul>
         </div>
+        <div class="col-md-6 campaign-nav">
+            <ul class="campaign-buttons">
+                <li>
+                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">
+                        <!-- View -->
+                        View Campaign
+                    </a>
+                </li>
+                <li>
+                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                    <a class="icon-code" href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank"></a>
+                </li>
+            </ul>
+        </div>
         <div class="clearfix"></div>
     </div>
     <? endif ?>
@@ -122,9 +137,9 @@ $user = \Yii::$app->user->identity;
                             'campaign' => $campaign, 
                         ]); ?>   
             </div>
-        </div>
-        <div class="text-center">
-            <button class="btn btn-primary">Update</button>
+            <div class="text-center">
+                <button class="btn btn-primary">Update</button>
+            </div>
         </div>
         <? ActiveForm::end() ?>
 

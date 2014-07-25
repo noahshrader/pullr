@@ -1,6 +1,5 @@
-/* Resets - Make sure to check this before production as to not duplicate boostrap */
+/* Resets
 /* ------------------------------------------------- */
-
 *,
 *:after,
 *:before {
@@ -28,6 +27,7 @@ body {
 	overflow: hidden;
 }
 
+/* Common UI Elements */
 a,
 button {
 	cursor: pointer;
@@ -54,7 +54,6 @@ button,
 button:active {
 	outline: 0;
 }
-
 a,
 a:link,
 a:visited,
@@ -63,7 +62,6 @@ a img {
 .slowtrans();
 	text-decoration: none;
 }
-
 input,
 button,
 textarea,
@@ -81,4 +79,18 @@ iframe {
 }
 ul {
 	.ulist
+}
+
+/* Placeholder styling */
+::-webkit-input-placeholder {
+   color: red;
+}
+:-moz-placeholder {
+   color: red;  
+}
+::-moz-placeholder {
+   color: red;  
+}
+:-ms-input-placeholder {  
+   color: red;  
 }
