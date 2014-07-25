@@ -6,7 +6,11 @@ use yii\db\ActiveRecord;
 use common\models\User;
 
 /**
- * we used that class to store dashboard system notifications to all users
+ * @property integer $userId
+ * @property integer $systemNotificationDate
+ * @property boolean $ifTwitchPartner
+ * @property string $twitchChannel
+ * @description we used that class to store dashboard system notifications to all users
  */
 class UserFields extends ActiveRecord {
     /**

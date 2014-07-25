@@ -1,5 +1,4 @@
 <?php
-
 namespace frontend\controllers;
 
 use common\models\twitch\TwitchFollow;
