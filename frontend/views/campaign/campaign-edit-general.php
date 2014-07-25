@@ -8,6 +8,12 @@ use yii\widgets\ActiveForm;
 $parentCampaigns = \Yii::$app->user->identity->getParentCampaigns()->all();
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 
+$this->registerJsFile('@web/js/select2/select2.js', common\assets\Select2Asset::className());
+$this->registerCssFile('@web/css/select2/select2.css', common\assets\Select2Asset::className());
+$this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAsset::className());
+
+
+$firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
         <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
@@ -54,6 +60,7 @@ $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
                     <?= Html::error($campaign, 'donationDestination', ['class' => 'help-block']) ?>
                 </div>
 
+                <?/*
                 <div class='preapprovedCharity'>
                     <?= $form->field($campaign, 'charityId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
                     <div class='charity-name <? if (!$campaign->charityId) { echo 'hidden';} ?>'>
@@ -65,6 +72,12 @@ $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 
                     <button class="btn btn-primary" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
                 </div>
+                */?>
+
+                <div class="preapprovedCharity">
+                    <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving']); ?>
+                </div>
+
                 <div class='customCharity'>
                     <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => true]); ?>
                     <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => true]); ?>
