@@ -51,10 +51,14 @@ function twitchEventsMonitor() {
         if (Pullr.user.uniqueName) {
             Twitch.init({clientId: 'l7mj3pfjvxpk2zv6ivr9jpisodqd5h0'}, function (error, status) {
                 var method = 'channels/' + Pullr.user.uniqueName + '/follows';
-                log(method);
                 Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-                    console.log(list);
                     $.post('app/twitch/update_follows_ajax', {data: JSON.stringify(list)});
+                });
+                method = 'channels/' + Pullr.user.uniqueName + '/subscriptions'
+                Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
+                    console.log('subscriptions');
+                    console.log(list);
+                    $.post('app/twitch/update_subscriptions_ajax', {data: JSON.stringify(list)});
                 });
             });
         }

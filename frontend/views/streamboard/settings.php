@@ -11,9 +11,11 @@
     </div>
     <div class="tab-content">
         <div class="tab-pane" id="campaigns">
+            campaigns
         </div>
         <?= $this->render('settings-source'); ?>
         <div class="tab-pane" id="downloads">
+            downloads
         </div>
     </div>
 
