@@ -10,8 +10,9 @@ class StreamboardSourceAsset extends AssetBundle
         'css/frontend/streamboard/streamboard-source.less',
 	];
 	public $js = [
+		'js/streamboard/iframeResizer.contentWindow.js',
 	];
 	public $depends = [
-                'common\assets\streamboard\StreamboardCommonAsset',
+		'common\assets\streamboard\StreamboardCommonAsset',
 	];
 }
