@@ -22,19 +22,23 @@ Select "yes" for install under Development Environment
 Next step you should change you db connection settings in file
 * `common/config/main-localphp`
 
-Next step let's install db data, run from pullr project folder
-* `./yii migrate`
+Next step let's load tables and sampe db data, run from pullr project folder
+* `./makesampe.sh`
 
 
 ####Update your local repository with new changes
 To update files use your GUI App to sync or use that to run via terminal:   
 * `git pull`
 
-Sometimes you need to update db, so run that (first line to remove previous db data, second to apply db data again): 
+Sometimes you need to update db, so run that (that will remove all tables and load data sample data again): 
 ```
-./yii migrate/down 10
-./yii migrate
+./makesample.sh
 ```
+
+####Useful commands
+* `./yii pullr/purge` - will remove all tables from db
+* `./yii migrate' - will load table's sheme at db
+* `./yii theme/scan' - will update themes
 
 ####Mac
 If you use MAMP please enable "Allow Network access to MYSQL" 
