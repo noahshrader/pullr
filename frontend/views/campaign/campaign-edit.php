@@ -17,13 +17,10 @@ $user = \Yii::$app->user->identity;
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
 
     <? if (!$campaign->isNewRecord): ?>
-    
+
     <div class="campaign-actions">
-
         <div class="col-md-6 campaign-nav">
-
             <ul class="campaign-quick-links">
-
                 <li>
                     <a href="app/campaign/view?id=<?= $campaign->id ?>">
                         <i class="icon icon-piechart"></i>
@@ -64,23 +61,15 @@ $user = \Yii::$app->user->identity;
                     </a>
                 </li>
                 <? endif ?>
-
             </ul>
-
         </div>
-
         <div class="clearfix"></div>
-    
     </div>
-        <? endif ?>
-
-        <? $form = ActiveForm::begin(['options' => [
-                            'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
-
+    <? endif ?>
+    <? $form = ActiveForm::begin(['options' => [
+        'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
     <div class="campaign-edit-wrap">
-
-    <h1>Editing: <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
-        
+        <h1>Editing: <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
         <ul class="nav nav-tabs">
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon icon-settings"><span>General</span></a>
@@ -100,35 +89,34 @@ $user = \Yii::$app->user->identity;
                 <a href="<?= Url::to()?>#social" data-toggle="tab" class="icon icon-share"><span>Social</span></a>
             </li>
         </ul>
-       
-       <div class="tab-content" id="accordion">
-            <div class="tab-pane fade in active" id="general">
+        <div class="tab-content" id="accordion">
+            <div class="tab-pane fade in active" id="general"> <!-- general settings -->
              <?= $this->render('campaign-edit-general', [
                             'form' => $form,
                             'campaign' => $campaign
                         ]); ?>    
             </div>
-           <div class="tab-pane" id="campaign-edit-form-container">
+            <div class="tab-pane" id="campaign-edit-form-container"> <!-- donation form settings -->
              <?= $this->render('campaign-edit-form', [
                             'form' => $form,
                             'campaign' => $campaign
                         ]); ?>    
-           </div>
+            </div>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
-            <div class="tab-pane" id="team">
+            <div class="tab-pane" id="team"> <!-- team settings -->
                  <?= $this->render('campaign-edit-team', [
                             'form' => $form,
                             'campaign' => $campaign, 
                         ]); ?>   
             </div>
             <? endif; ?>
-            <div class="tab-pane" id="layout">
+            <div class="tab-pane" id="layout"> <!-- layout settings -->
             <?= $this->render('campaign-edit-layout', [
                             'form' => $form,
                             'campaign' => $campaign, 
                         ]); ?>   
             </div>
-            <div class="tab-pane" id="social">
+            <div class="tab-pane" id="social"> <!-- social settings -->
             <?= $this->render('campaign-edit-social', [
                             'form' => $form,
                             'campaign' => $campaign, 
@@ -143,28 +131,23 @@ $user = \Yii::$app->user->identity;
     </div>
 <? else: ?>
 <? endif ?> 
-<!-- Modal -->
-
 </div>
-
+<!-- Modal -->
 <div class="modal fade" id="modalCharity" tabindex="-1" role="dialog" aria-labelledby="myModalCharity" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="modalThemes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         </div>
     </div>
 </div>
-
 <div id='modal-social-link' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            
         </div>
     </div>
 </div>
