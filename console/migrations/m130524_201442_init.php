@@ -13,7 +13,6 @@ use common\models\user\UserFields;
 
 class m130524_201442_init extends \console\models\ExtendedMigration
 {
-
     public function up()
     {
         $statuses = implode('","', User::$STATUSES);
@@ -50,8 +49,7 @@ class m130524_201442_init extends \console\models\ExtendedMigration
 
         $this->createTable(UserFields::tableName(), [
             'userId' => Schema::TYPE_PK,
-            'systemNotificationDate' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'ifTwitchPartner' => Schema::TYPE_BOOLEAN . ' NOT NULL'
+            'systemNotificationDate' => Schema::TYPE_INTEGER . ' NOT NULL'
         ]);
 
         $this->createTable(Notification::tableName(), [
@@ -113,85 +111,6 @@ class m130524_201442_init extends \console\models\ExtendedMigration
             'creationDate' => "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP",
             'processingDate' => Schema::TYPE_INTEGER
         ]);
-
-        $this->sampleUsers();
-    }
-
-    public function sampleUsers()
-    {
-        /*first user*/
-        $user = new User();
-        $user->setScenario('signup');
-        $user->login = 'stanislav@gmail.com';
-        $user->name = 'Stanislav Gmail';
-        $user->password = 'Stanislav';
-        $user->confirmPassword = $user->password;
-        $user->email = 'stas.msu@gmail.com';
-        $user->save();
-
-        $openId = new OpenIDToUser();
-        $openId->userId = $user->id;
-        $openId->serviceName = 'twitch';
-        $openId->serviceId = '55052982';
-        $openId->url = 'http://twitch.tv/klyukin';
-        $openId->save();
-
-        $user->setScenario('openId');
-        $user->name = 'Klyukin';
-        $user->uniqueName = 'funforfreedom';
-        $user->photo = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
-        $user->smallPhoto = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
-        $user->save();
-        /*end of first user*/
-
-        $user = new User();
-        $user->setScenario('signup');
-        $user->login = 's.klyukin@yandex.ru';
-        $user->name = 'S.Klyukin Yandex';
-        $user->password = 'Stanislav';
-        $user->confirmPassword = $user->password;
-        $user->email = 's.klyukin@yandex.ru';
-        $user->save();
-
-        $user = new User();
-        $user->setScenario('openId');
-        $user->name = 'Stanislav Klyukin';
-        $user->email = 'stas.msu@gmail.com';
-        $user->photo = 'https://plus.google.com/s2/photos/profile/116923822909679391954';
-        $user->smallPhoto = 'https://plus.google.com/s2/photos/profile/116923822909679391954?sz=50';
-        $user->save();
-
-        $openId = new OpenIDToUser();
-        $openId->userId = $user->id;
-        $openId->serviceName = 'google_oauth';
-        $openId->serviceId = '116923822909679391954';
-        $openId->url = 'https://plus.google.com/+StanislavKlyukin';
-        $openId->save();
-
-        $user = new User();
-        $user->setScenario('openId');
-        $user->name = 'Stanislav Klyukin';
-        $user->smallPhoto = 'http://pbs.twimg.com/profile_images/1410660514/a_e8c2fb55_normal.jpg';
-        $user->save();
-
-        $openId = new OpenIDToUser();
-        $openId->userId = $user->id;
-        $openId->serviceName = 'twitter';
-        $openId->serviceId = '113944685';
-        $openId->url = 'http://twitter.com/SKlyukin';
-        $openId->save();
-
-        $user = new User();
-        $user->setScenario('signup');
-        $user->login = 'admin@gmail.com';
-        $user->name = 'Admin';
-        $user->password = 'Admin';
-        $user->email = 'pullr@yandex.com';
-        $user->save();
-
-        $user->setScenario('roles');
-        $user->role = User::ROLE_ADMIN;
-        $user->save();
     }
 
     public function down()

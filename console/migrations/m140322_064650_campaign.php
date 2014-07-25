@@ -57,7 +57,6 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             'enableThankYouPage' => Schema::TYPE_BOOLEAN,
             'thankYouPageText' => Schema::TYPE_TEXT,
             'appearance' => Schema::TYPE_STRING. ' NOT NULL',   
-            'eventId' => Schema::TYPE_INTEGER,
             'themeId' => Schema::TYPE_INTEGER,
             'backgroundImageId' => Schema::TYPE_INTEGER,
             'primaryColor' => Schema::TYPE_STRING. ' NOT NULL',
@@ -98,118 +97,8 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
              $this->createIndex('campaignInviteCampaignId', CampaignInvite::tableName(), ['campaignId']);
              $this->createIndex('campaignInviteUserId', CampaignInvite::tableName(), ['userId']);
              $this->createIndex('campaignInviteUnique', CampaignInvite::tableName(),['userId', 'campaignId'], true);
-             $this->sampleData(); 
 	}
 
-        public function sampleData(){
-            $campaign = new Campaign;
-            $campaign->name = 'Fun For Freedom';
-            $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->channelTeam = "funforfreedom";
-            $campaign->userId = 1;
-            $campaign->key = 'test_key';
-            $campaign->eventId = 1;
-            $campaign->goalAmount = 17000;
-            $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
-            $campaign->customCharityPaypal = 'donation.klyukin@gmail.com';
-            $campaign->save();
-
-            CampaignInvite::addInvite(2, $campaign->id);
-            $invite = CampaignInvite::findOne(['userId' => 2, 'campaignId' => $campaign->id]);
-            $invite->approve();
-            
-            $campaign = new Campaign;
-            $campaign->name = 'Fun For Freedom 2';
-            $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->channelTeam = "funforfreedom";
-            $campaign->userId = 2;
-            $campaign->key = 'test_key';
-            $campaign->eventId = 1;
-            $campaign->goalAmount = 17000;
-            $campaign->charityId = 1;
-            $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
-            $campaign->customCharityPaypal = 'donation.klyukin@gmail.com';
-            $campaign->save();
-            
-            CampaignInvite::addInvite(1, $campaign->id);
-            
-            $campaign = new Campaign;
-            $campaign->name = 'LinkSonicK';
-            $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_SINGLE;
-            $campaign->userId = 1;
-            $campaign->goalAmount = 15000;
-            $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
-            $campaign->customCharityPaypal = 'wrong.paypal@gmail.com';
-            $campaign->save();
-            
-            $campaign = new Campaign();
-            $campaign->name = 'Awesome Games Done Quick';
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 1;
-            $campaign->goalAmount = 15000;
-            $campaign->save();
-            
-            $campaign = new Campaign();
-            $campaign->name = 'Awesome Games Done Quick 2';
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 1;
-            $campaign->goalAmount = 15000;
-            $campaign->save();
-            
-            
-            $campaign = new Campaign;
-            $campaign->name = 'Awesome Games Done Quick';
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 5;
-            $campaign->goalAmount = 15000;
-            $campaign->save();   
-            
-            CampaignInvite::addInvite(1, $campaign->id);
-            $invite = CampaignInvite::findOne(['userId' => 1, 'campaignId' => $campaign->id]);
-            $invite->approve();
-            
-            $campaign = new Campaign;
-            $campaign->name = 'Parent Campaign';
-            $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 5;
-            $campaign->goalAmount = 15000;
-            $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
-            $campaign->customCharityPaypal = 'donation.klyukin@gmail.com';
-            $campaign->save();
-            
-            CampaignInvite::addInvite(1, $campaign->id);
-            $invite = CampaignInvite::findOne(['userId' => 1, 'campaignId' => $campaign->id]);
-            $invite->approve();
-            
-            $parentCampaignId = $campaign->id;
-            
-            $campaign = new Campaign();
-            $campaign->name = 'Fun For Freedom Child';
-            $campaign->type = Campaign::TYPE_CHARITY_EVENT;
-            $campaign->tiedToParent = true;
-            $campaign->parentCampaignId = $parentCampaignId;
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->goalAmount = 15000;
-            $campaign->userId = 1;
-            $campaign->startDate = 1405761880;
-            $campaign->endDate = 1408761880;
-            
-            $campaign->save();
-
-            $campaign = new Campaign();
-            $campaign->name = 'Fun For Freedom Child 2';
-            $campaign->type = Campaign::TYPE_CHARITY_EVENT;
-            $campaign->tiedToParent = true;
-            $campaign->parentCampaignId = $parentCampaignId;
-            $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
-            $campaign->userId = 1;
-            $campaign->goalAmount = 15000;
-            $campaign->save();
-        }
 	public function down()
 	{
             $this->dropTable(LayoutTeam::tableName());

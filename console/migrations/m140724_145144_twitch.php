@@ -3,11 +3,18 @@
 use yii\db\Schema;
 use common\models\twitch\TwitchUser;
 use common\models\twitch\TwitchFollow;
+use common\models\user\UserFields;
 
 class m140724_145144_twitch extends \console\models\ExtendedMigration
 {
+    const COLUMN_TWITCH_PARTNER = 'twitchPartner';
+    const COLUMN_TWITCH_CHANNEL = 'twitchChannel';
+
     public function up()
     {
+        $this->addColumn(UserFields::tableName(), self::COLUMN_TWITCH_PARTNER, Schema::TYPE_BOOLEAN . ' NOT NULL');
+        $this->addColumn(UserFields::tableName(), self::COLUMN_TWITCH_CHANNEL, Schema::TYPE_STRING . ' NOT NULL');
+
         $this->createTable(TwitchUser::tableName(), [
             'userId' => Schema::TYPE_PK,
             'followersNumber' => Schema::TYPE_INTEGER . ' NOT NULL',
@@ -25,12 +32,15 @@ class m140724_145144_twitch extends \console\models\ExtendedMigration
             'updateDate' => Schema::TYPE_INTEGER . ' NOT NULL',
         ]);
 
-        $this->addPrimaryKey('twitch_follow_primary',TwitchFollow::tableName(),['userId', 'twitchFollowerId']);
-        $this->createIndex('twitch_follow_user_index',TwitchFollow::tableName(),['userId']);
+        $this->addPrimaryKey('twitch_follow_primary', TwitchFollow::tableName(), ['userId', 'twitchFollowerId']);
+        $this->createIndex('twitch_follow_user_index', TwitchFollow::tableName(), ['userId']);
     }
 
     public function down()
     {
+        $this->dropColumn(UserFields::tableName(), self::COLUMN_TWITCH_PARTNER);
+        $this->dropColumn(UserFields::tableName(), self::COLUMN_TWITCH_CHANNEL);
+
         $this->dropTable(TwitchFollow::tableName());
         $this->dropTable(TwitchUser::tableName());
     }
