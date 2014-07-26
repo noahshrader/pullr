@@ -8,7 +8,8 @@ use yii\web\IdentityInterface;
 use common\models\base\BaseImage;
 use common\models\user\UserFields;
 use yii\db\ActiveQuery;
-
+use common\models\twitch\TwitchUser;
+use frontend\models\streamboard\StreamboardConfig;
 /**
  * Class User
  * @package common\models
@@ -21,11 +22,15 @@ use yii\db\ActiveQuery;
  * @property string $password_reset_token
  * @property string $email
  * @property string $auth_key
+ * @property string $photo
+ * @property string $smallPhoto
  * @property integer $role
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
  * @property UserFields $userFields
+ * @property TwitchUser $twitchUser
+ * @property StreamboardConfig $streamboardConfig
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -200,11 +205,6 @@ class User extends ActiveRecord implements IdentityInterface
         }
     }
 
-    public static function getUserByUrl()
-    {
-
-    }
-
     public function verifyLogin()
     {
         $count = User::find()->where(['status' => User::STATUS_ACTIVE, 'login' => $this->login])->count();
@@ -247,10 +247,6 @@ class User extends ActiveRecord implements IdentityInterface
         return false;
     }
 
-    /**
-     *
-     * @param type $insert - if true - new record inserted
-     */
     public function afterSave($insert, $params = array())
     {
         parent::afterSave($insert, $params);
@@ -269,6 +265,11 @@ class User extends ActiveRecord implements IdentityInterface
             $userFields->userId = $this->id;
             $userFields->systemNotificationDate = time();
             $userFields->save();
+
+            $config = new StreamboardConfig();
+            $config->userId = $this->id;
+            $config->clearedDate = time();
+            $config->save();
         }
     }
 
@@ -375,6 +376,22 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUserFields()
     {
         return $this->hasOne(UserFields::className(), ['userId' => 'id']);
+    }
+
+    /**
+     * @return TwitchUser
+     */
+    public function getTwitchUser()
+    {
+        return $this->hasOne(TwitchUser::className(), ['userId' => 'id']);
+    }
+
+    /**
+     * @return TwitchUser
+     */
+    public function getStreamboardConfig()
+    {
+        return $this->hasOne(StreamboardConfig::className(), ['userId' => 'id']);
     }
 
     /**

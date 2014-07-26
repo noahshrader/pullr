@@ -1,28 +1,33 @@
 @import "../../variables.less";
 
 body {
-	background: @gray5;
-	height: 100%;
+  background: @gray5;
+  height: 100%;
 }
 
-.source-row, .overall {
-	display: block;
-	width: 100%;
-	border-bottom: solid 1px @bgcolor;
-	padding: 15px 36px;
+.source-row, .overall, .twitchStats, .activityFeed {
+  display: block;
+  width: 100%;
+  border-bottom: solid 1px @bgcolor;
+  padding: 15px 36px;
 
-	.name {
-		margin: 0px;
-		padding: 0px 0px 2px 0px;
-		font-size: 18px;
-		font-weight: 400;
-		color: @white;
-	}
-	.amount {
-		margin-top: 4px;
-		margin-bottom: 0px;
-	}
+  .name {
+    margin: 0px;
+    padding: 0px 0px 2px 0px;
+    font-size: 18px;
+    font-weight: 400;
+    color: @white;
+  }
+  .amount {
+    margin-top: 4px;
+    margin-bottom: 0px;
+  }
 }
+
 .view-source {
-	padding-bottom: 100px;
+  padding-bottom: 100px;
+}
+
+.activityFeedElement:not(:last-child):after{
+  content: ',';
 }

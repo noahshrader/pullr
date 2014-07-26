@@ -20,6 +20,7 @@
         $rootScope.length = function(obj){
             return Object.keys(obj).length;
         }
+        $rootScope.user = Pullr.user;
         $rootScope.requestCampaigns = function() {
             $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
                 var oldCampaigns = $rootScope.campaigns;
@@ -54,6 +55,8 @@
         $scope.requestSourceStats = function(){
            $http.get('app/streamboard/get_source_data').success(function(data){
               $scope.stats = data['stats'];
+              $scope.donors = data['donors'];
+              $scope.twitchUser = data['twitchUser'];
            });
         }
         $scope.requestSourceStats();
@@ -75,10 +78,13 @@
                 $scope.updateDonations();
             });
         };
+
         $scope.clearDonations = function(){
             $scope.unorderedDonations = {};
             $scope.donations = [];
+            $http.post('app/streamboard/clear_button_ajax');
         };
+
         $scope.sortDonations = function(){
             var newDonations = [];
             for (var key in $scope.unorderedDonations){

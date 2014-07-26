@@ -11,6 +11,9 @@ use common\models\User;
  * @property integer $userId
  * @property integer $streamboardWidth
  * @property integer $streamboardHeight
+ * @property integer $streamboardLeft
+ * @property integer $streamboardTop
+ * @property integer $clearedDate - last time "clear" button was clicked, by default it is equal to user registration date
  */
 class StreamboardConfig extends ActiveRecord {
     const DEFAULT_WIDTH = 1024;
@@ -23,6 +26,7 @@ class StreamboardConfig extends ActiveRecord {
         $this->streamboardLeft = 0;
         $this->streamboardTop = 0;
     }
+
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -34,13 +38,10 @@ class StreamboardConfig extends ActiveRecord {
      * @return StreamboardConfig for current user
      */
     public static function get(){
-        $userId = \Yii::$app->user->id;
-        $config = StreamboardConfig::findOne($userId);
-        if (!$config){
-            $config = new StreamboardConfig();
-            $config->userId = $userId;
-            $config->save();
-        }
-        return $config;
+        /**
+         * @var User $user
+         */
+        $user = \Yii::$app->user->identity;
+        return $user->streamboardConfig;
     }
 }

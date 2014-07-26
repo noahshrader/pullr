@@ -103,14 +103,19 @@ class Donation extends ActiveRecord
      * @param $campaigns Campaign[]
      * @return Query
      */
-    public static function getDonationTableQueryForCampaigns($campaigns){
+    public static function getDonationTableQueryForCampaigns($campaigns, $sinceDate = null){
         $ids = [];
         foreach ($campaigns as $campaign){
             $ids[] = $campaign->id;
         }
-        return (new Query())->select('id, SUM(AMOUNT) sum')->from(Donation::tableName())->
-            where(['or', ['in', 'campaignId', $ids], ['in', 'parentCampaignId', $ids]])
-            ->andWhere('paymentDate > 0');
+        $query = (new Query())->select('id, SUM(AMOUNT) sum')->from(Donation::tableName())->
+            where(['or', ['in', 'campaignId', $ids], ['in', 'parentCampaignId', $ids]]);
+        if ($sinceDate){
+           $query->andWhere('paymentDate > '.intval($sinceDate));
+        } else {
+           $query->andWhere('paymentDate > 0');
+        }
+        return $query;
     }
 
     /**
@@ -130,11 +135,15 @@ class Donation extends ActiveRecord
      * @param $campaigns Campaign[]
      * @param $limit integer
      * @param $nameFromForm - if true, only names from Form will be returned
+     * @param $sinceDate - if is set, only donations with paymentDate > $sinceDate will be taken in query
      * @return string[]
      */
-    public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false){
-        $query = self::getDonationTableQueryForCampaigns($campaigns)->andWhere('email <> ""')
-            ->groupBy('email')->orderBy('sum DESC')->limit($limit)->select('id , SUM(AMOUNT) sum, email');
+    public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false, $sinceDate = null){
+        $query = self::getDonationTableQueryForCampaigns($campaigns, $sinceDate)->andWhere('email <> ""')
+            ->groupBy('email')->orderBy('sum DESC')->select('id , SUM(AMOUNT) sum, email');
+        if ($limit){
+            $query->limit($limit);
+        }
         $rows = $query->all();
         $sumByEmail = [];
         $donationIds = [];

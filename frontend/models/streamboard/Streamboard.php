@@ -6,6 +6,8 @@ use common\models\Donation;
 use yii\base\Model;
 use common\models\User;
 use common\models\Campaign;
+use common\components\Application;
+
 /**
  * Class Streamboard is used to store user's settings for streamboard.
  * @package frontend\models\streamboard
@@ -49,6 +51,20 @@ class Streamboard extends Model {
         $stats['number_of_donations'] = Donation::getDonationsForCampaigns($selectedCampaigns)->count();
         $stats['number_of_donors']  = Donation::getDonationsForCampaigns($selectedCampaigns)->count('DISTINCT email');
         return $stats;
+    }
+
+    /**
+     * @return Campaign[]
+     * @description return selected campaigns for current user
+     */
+    public static function getSelectedCampaigns(){
+        $user = Application::getCurrentUser();
+        /*we select only user campaigns, without parent campaigns */
+        return Campaign::find()->from(Campaign::tableName().' campaign')->where(['campaign.userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE])
+            ->joinWith(['streamboard' => function($q) use ($user){
+                   $q->from(StreamboardCampaign::tableName().' streamboard')->where(['streamboard.userId' => $user->id]);
+                }])
+            ->andWhere('streamboard.selected = true')->orderBy('campaign.id DESC')->all();
     }
 
 }

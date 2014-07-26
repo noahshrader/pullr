@@ -20,15 +20,20 @@ use common\models\User;
             Typekit.load();
         } catch (e) {
         }</script>
-    <?
-    $js = 'window.Pullr.twitchClientId = "'. \Yii::$app->params['twitchClientId'].'";';
-    $js .= 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
-    if (!\Yii::$app->user->isGuest) {
-       $user = \Yii::$app->user->identity;
-       /**@var User $user*/
-       $js .= 'window.Pullr.user = ' . json_encode($user->toArray()) . ';';
-       $js .= 'twitchEventsMonitor()';
-    }
-    $this->registerJs($js);
-    ?>
+    <script type="text/javascript">
+        <?
+        $js = 'window.Pullr = window.Pullr || {}; ';
+        $js .= 'window.Pullr.twitchClientId = "'. \Yii::$app->params['twitchClientId'].'";';
+        $js .= 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
+        $onreadyJs = '';
+        if (!\Yii::$app->user->isGuest) {
+           $user = \Yii::$app->user->identity;
+           /**@var User $user*/
+           $js .= 'window.Pullr.user = ' . json_encode($user->toArray()) . ';';
+           $onreadyJs .= 'twitchEventsMonitor();';
+        }
+        echo $js;
+        $this->registerJs($onreadyJs);
+        ?>
+    </script>
 </head>
