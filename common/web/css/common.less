@@ -222,3 +222,34 @@ table.dataTable thead th   {
 	-webkit-animation: animate-bar 1s 1 ease;
 	animation: animate-bar 1s 1 ease;
 }
+
+/* Tabs Override (for Bootstrap) */
+/* ------------------------------------------------- */
+.nav-tabs > li > a {
+	background: @gray75;
+	border-radius: 0px;
+	color: @gray20;
+	border-width: 0px;
+}
+.nav-tabs > li > a:before {
+	padding-right: 10px;
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+	background: @gray5;
+	border-color: @bgcolor;
+	border-radius: 0px;
+	color: @white;
+	border-width: 0px;
+}
+.nav-tabs>li>a:hover {
+	background: @gray20;
+	border-radius: 0px;
+	border-color: transparent;
+	color: @white;
+	border-width: 0px;
+}
+.nav-tabs {
+	border-color: transparent;
+}
