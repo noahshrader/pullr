@@ -70,18 +70,16 @@ select.form-control {
 	height: 50px;
 	line-height: 50px;
 }
-
 legend {
 	color: @gray30;
 }
-
 label {
 	color: @gray10;
 }
 
 /* Search Field Styling */
 input[type='search'] {
-	padding: 20px;
+	padding: 18px 20px;
 	.round-radius;
 	background: #FFF;
 	border-color: transparent;
@@ -139,17 +137,20 @@ table.dataTable thead th   {
 .dataTables_wrapper {
 	background: @gray75;
 }
-.dataTables_wrapper .dataTables_length, 
-.dataTables_wrapper .dataTables_filter, 
-.dataTables_wrapper .dataTables_info, 
-.dataTables_wrapper .dataTables_processing, 
-.dataTables_wrapper .dataTables_paginate {
-	color: @gray20!important; 
+	.dataTables_wrapper .dataTables_length, 
+	.dataTables_wrapper .dataTables_filter, 
+	.dataTables_wrapper .dataTables_info, 
+	.dataTables_wrapper .dataTables_processing, 
+	.dataTables_wrapper .dataTables_paginate {
+		color: @gray20!important; 
 
-	label {
-		margin: 0;
- 	}
-}
+		label {
+			margin: 0;
+	 	}
+	}
+	.dataTables_wrapper select.form-control {
+		height: 38px;
+	}
 .row {
 	margin: 0;
 	padding: 16px 50px;
@@ -220,4 +221,35 @@ table.dataTable thead th   {
 	background: @accent;
 	-webkit-animation: animate-bar 1s 1 ease;
 	animation: animate-bar 1s 1 ease;
+}
+
+/* Tabs Override (for Bootstrap) */
+/* ------------------------------------------------- */
+.nav-tabs > li > a {
+	background: @gray75;
+	border-radius: 0px;
+	color: @gray20;
+	border-width: 0px;
+}
+.nav-tabs > li > a:before {
+	padding-right: 10px;
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+	background: @gray5;
+	border-color: @bgcolor;
+	border-radius: 0px;
+	color: @white;
+	border-width: 0px;
+}
+.nav-tabs>li>a:hover {
+	background: @gray20;
+	border-radius: 0px;
+	border-color: transparent;
+	color: @white;
+	border-width: 0px;
+}
+.nav-tabs {
+	border-color: transparent;
 }

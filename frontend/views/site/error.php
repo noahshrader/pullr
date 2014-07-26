@@ -10,6 +10,7 @@ use yii\helpers\Html;
  */
 
 $this->title = $name;
+$this->registerJsFile('@web/js/lib/bigvideo.js', common\assets\CommonAsset::className());
 ?>
 <div class="site-error">
 
