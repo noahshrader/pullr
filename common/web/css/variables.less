@@ -84,38 +84,31 @@
 
 /* Arrows */
 /* ------------------------------------------------- */
-.arrow-up {
-	content: '';
-	position: absolute;
-	width: 0; 
-	height: 0; 
-	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;
-	border-bottom: 12px solid;
-}
-.arrow-down {
-	content: '';
-	position: absolute;
-	width: 0; 
-	height: 0; 
-	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;
-	border-top: 12px solid;
-}
-.arrow-left {
-	content: '';
-	position: absolute;
-	width: 0; 
-	height: 0; 
-	border-bottom: 12px solid transparent;
-	border-top: 12px solid transparent;
-	border-right: 12px solid;
-}
+.arrow-up,
+.arrow-down,
+.arrow-down,
 .arrow-right {
 	content: '';
 	position: absolute;
 	width: 0; 
 	height: 0; 
+}
+.arrow-up {
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-bottom: 12px solid;
+}
+.arrow-down {
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-top: 12px solid;
+}
+.arrow-left {
+	border-bottom: 12px solid transparent;
+	border-top: 12px solid transparent;
+	border-right: 12px solid;
+}
+.arrow-right {
 	border-bottom: 12px solid transparent;
 	border-top: 12px solid transparent;
 	border-left: 12px solid;
@@ -147,11 +140,9 @@
 /* ------------------------------------------------- */
 @width: 90%; /* Default width */
 @maxwidth: 1140px; /* Default width */
-
 @sidepanelwidth: 280px; /* Sidebar width */
-
-@top-menu-height: 60px;
-@primary-nav-width: 64px;
+@top-menu-height: 60px; /* Top bar height */
+@primary-nav-width: 64px; /* Navigation width */
 
 
 /* Lists */
