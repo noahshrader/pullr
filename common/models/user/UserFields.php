@@ -8,8 +8,10 @@ use common\models\User;
 /**
  * @property integer $userId
  * @property integer $systemNotificationDate
- * @property boolean $ifTwitchPartner
+ * @property boolean $twitchPartner
  * @property string $twitchChannel
+ * @property string $twitchAccessToken
+ * @property integer $twitchAccessTokenDate
  * @description we used that class to store dashboard system notifications to all users
  */
 class UserFields extends ActiveRecord {

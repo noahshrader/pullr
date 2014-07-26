@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\Application;
 use frontend\controllers\FrontendController;
 use common\models\LoginForm;
 use Yii;
@@ -10,15 +11,18 @@ use common\models\User;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use ritero\SDK\TwitchTV\TwitchSDK;
+
 /**
  * Site controller
  */
-class SiteController extends FrontendController {
+class SiteController extends FrontendController
+{
 
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
@@ -39,7 +43,8 @@ class SiteController extends FrontendController {
     /**
      * @inheritdoc
      */
-    public function actions() {
+    public function actions()
+    {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -51,8 +56,9 @@ class SiteController extends FrontendController {
         ];
     }
 
-    public function actionIndex() {
-        if (\Yii::$app->user->isGuest){
+    public function actionIndex()
+    {
+        if (\Yii::$app->user->isGuest) {
             return $this->actionLogin();
         } else {
             $dashboard = new DashboardController('dashboard', $this->module);
@@ -60,7 +66,8 @@ class SiteController extends FrontendController {
         }
     }
 
-    public function actionLogin() {
+    public function actionLogin()
+    {
 //        /*         * let's save user for 30 days */
         $duration = 3600 * 24 * 30;
         $model = new LoginForm();
@@ -73,37 +80,36 @@ class SiteController extends FrontendController {
         if ($model->load($_POST) && $model->login($duration)) {
             return $this->goBack();
         }
-        
+
         $this->layout = 'auth';
         return $this->render('login', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
     /* login via twitch */
 
-    public function actionTwitch() {
-        if (isset($_REQUEST['error'])){
-            echo 'error: <b>'.$_REQUEST['error'].'</b>';
+    public function actionTwitch()
+    {
+        if (isset($_REQUEST['error'])) {
+            echo 'error: <b>' . $_REQUEST['error'] . '</b>';
             echo '<br />';
             echo "Seems pullr application's 'return url' should be changed at http://twitch.tv ";
             return;
         }
         $code = $_REQUEST['code'];
-        $twitch_config = [
-            'client_id' => \Yii::$app->params['twitchClientId'],
-            'client_secret' => \Yii::$app->params['twitchClientSecret'],
-            'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . \Yii::$app->urlManager->baseUrl . '/app/site/twitch',
-        ];
-        $twitch = new TwitchSDK($twitch_config);
-        
-        $token =  $twitch->authAccessTokenGet($code);
-        $userInfo = $twitch->authUserGet($token->access_token);
-        
-        if ($userInfo){
-        
-            $openId = OpenIDToUser::findOne(['serviceName' => 'twitch', 'serviceId' => $userInfo->_id ]);
-            if (!$openId){
+
+        /**
+         * @var TwitchSDK $twitchSDK
+         */
+        $twitchSDK = \Yii::$app->twitchSDK;
+        $token = $twitchSDK->authAccessTokenGet($code);
+        $userInfo = $twitchSDK->authUserGet($token->access_token);
+
+        if ($userInfo) {
+
+            $openId = OpenIDToUser::findOne(['serviceName' => 'twitch', 'serviceId' => $userInfo->_id]);
+            if (!$openId) {
                 $user = new User();
                 $user->setScenario('openId');
                 $user->name = $userInfo->display_name;
@@ -119,32 +125,37 @@ class SiteController extends FrontendController {
                 $openId = new OpenIDToUser();
                 $openId->serviceId = $userInfo->_id;
                 $openId->serviceName = 'twitch';
-                $openId->url = 'http://twitch.tv/'.$userInfo->name;
+                $openId->url = 'http://twitch.tv/' . $userInfo->name;
                 $openId->userId = $user->id;
                 $openId->save();
             }
             $user = $openId->user;
             $user->userFields->twitchPartner = $userInfo->partnered;
+            $user->userFields->twitchAccessToken = $token->access_token;
+            $user->userFields->twitchAccessTokenDate = time();
             $user->userFields->save();
             \Yii::$app->user->login($user);
-            
+
             $this->goHome();
         } else {
             $this->redirect('/');
         }
     }
 
-    public function actionLogout() {
+    public function actionLogout()
+    {
         Yii::$app->user->logout();
         return $this->goHome();
     }
 
-    public function actionTermsofservice() {
+    public function actionTermsofservice()
+    {
         $this->layout = 'auth';
         return $this->render('termsOfService');
     }
 
-    public function actionPrivacy() {
+    public function actionPrivacy()
+    {
         $this->layout = 'auth';
         return $this->render('privacyPolicy');
     }

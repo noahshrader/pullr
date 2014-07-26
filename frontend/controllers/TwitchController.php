@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\User;
+use ritero\SDK\TwitchTV\TwitchSDK;
 use common\models\twitch\TwitchFollow;
 use common\models\twitch\TwitchUser;
 
@@ -25,5 +27,28 @@ class TwitchController extends FrontendController {
             }
             TwitchFollow::updateFollows($userId, $follows);
         }
+    }
+
+    public function actionUpdate_subscriptions_ajax(){
+        /**
+         * @var User $user
+         */
+        $user = \Yii::$app->user->identity;
+
+        $accessToken = $user->userFields->twitchAccessToken;
+        $channel = $user->userFields->twitchChannel;
+        $twitchPartner = $user->userFields->twitchPartner;
+
+        if (!$accessToken || !$channel || !$twitchPartner){
+            return;
+        }
+
+        /**
+         * @var TwitchSDK $twitchSDK
+         */
+        $twitchSDK = \Yii::$app->twitchSDK;
+        $array = $twitchSDK->authChannelSubscriptions($accessToken, $channel);
+        var_dump($array);
+        return;
     }
 }

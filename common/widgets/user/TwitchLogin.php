@@ -10,14 +10,11 @@ use common\components\Application;
 class TwitchLogin extends Widget {
 
     public function run() {
-        
-        $twitch_config = [
-            'client_id' => \Yii::$app->params['twitchClientId'],
-            'client_secret' => \Yii::$app->params['twitchClientSecret'],
-            'redirect_uri' => 'http://' . $_SERVER['HTTP_HOST'] . \Yii::$app->urlManager->baseUrl . '/app/site/twitch',
-        ];
-        $twitch = new TwitchSDK($twitch_config);
-        $loginURL = $twitch->authLoginURL('user_read channel_subscriptions');
+        /**
+         * @var TwitchSDK $twitchSDK
+         */
+        $twitchSDK = \Yii::$app->twitchSDK;
+        $loginURL = $twitchSDK->authLoginURL('user_read channel_subscriptions');
         
         $this->options['href'] = $loginURL;
         $this->options['class'] = 'twitchLogin';

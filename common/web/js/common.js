@@ -65,10 +65,11 @@ function twitchEventsMonitor() {
                 });
 
                 if (Pullr.user.userFields.twitchPartner){
-                    method = 'channels/' + channelName + '/subscriptions'
-                    Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-                        $.post('app/twitch/update_subscriptions_ajax', {data: JSON.stringify(list)});
-                    });
+                    $.post('app/twitch/update_subscriptions_ajax', {});
+//                    method = 'channels/' + channelName + '/subscriptions'
+//                    Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
+//                        $.post('app/twitch/update_subscriptions_ajax', {data: JSON.stringify(list)});
+//                    });
                 }
             });
         }
