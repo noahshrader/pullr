@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\twitch\TwitchSubscription;
 use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
 use Yii;
@@ -89,9 +90,7 @@ class StreamboardController extends FrontendController
             $donationsArray[] = $array;
         }
 
-        /**
-         * we do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
-         */
+        /*We do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.*/
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->all();
         $selectedCampaigns = [];
 
@@ -172,9 +171,7 @@ class StreamboardController extends FrontendController
     public function actionGet_source_data()
     {
         $user = Application::getCurrentUser();
-        /**
-         * we do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.
-         */
+        /*We do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.*/
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
         $stats = Streamboard::getStats($campaigns);
 
@@ -185,10 +182,19 @@ class StreamboardController extends FrontendController
         $selectedCampaigns = Streamboard::getSelectedCampaigns();
         $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
 
+        $subscribers = [];
+        if ($user->userFields->twitchPartner){
+            $subscriptions = TwitchSubscription::find()->where(['userId' => $user->id])->andWhere('createdAt > '. $sinceDate)->orderBy('createdAt DESC')->all();
+            foreach ($subscriptions as $subscription){
+                /** @var TwitchSubscription $subscription*/
+                $subscribers[] = $subscription->toArray(['twitchUserId', 'display_name', 'createdAt']);
+            }
+        }
         $data = [
             'stats' => $stats,
             'twitchUser' => $twitchUserArray,
-            'donors' => $donors
+            'donors' => $donors,
+            'subscribers' => $subscribers
         ];
         echo json_encode($data);
         die;

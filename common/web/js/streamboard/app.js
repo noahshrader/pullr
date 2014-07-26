@@ -57,6 +57,7 @@
               $scope.stats = data['stats'];
               $scope.donors = data['donors'];
               $scope.twitchUser = data['twitchUser'];
+              $scope.subscribers = data['subscribers'];
            });
         }
         $scope.requestSourceStats();

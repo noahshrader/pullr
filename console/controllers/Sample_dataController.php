@@ -86,20 +86,25 @@ class Sample_dataController extends Controller
         $user->smallPhoto = 'http://static-cdn.jtvnw.net/jtv_user_pictures/klyukin-profile_image-c5ca1ccc61c3c330-300x300.jpeg';
         $user->save();
 
-        $user->userFields->twitchChannel = 'funforfreedom';
+        $user->userFields->twitchChannel = 'supermcgamer';
+        $user->userFields->twitchAccessToken = 'glijyh4npl1dl1414r8fxt3g9lljnz';
+        $user->userFields->twitchAccessTokenDate = time();
+        $user->userFields->twitchPartner = true;
         $user->userFields->save();
         /*end of first user*/
         $this->user1 = $user;
 
         $user = new User();
         $user->setScenario('signup');
-        $user->login = 's.klyukin@yandex.ru';
-        $user->uniqueName = 'klyukin2';
-        $user->name = 'S.Klyukin Yandex';
-        $user->password = 'Stanislav';
+        $user->login = 'funforfreedom@gmail.com';
+        $user->uniqueName = 'funforfreedom_test';
+        $user->name = 'Fun For Freedom';
+        $user->password = 'funforfreedom';
         $user->confirmPassword = $user->password;
         $user->email = 's.klyukin@yandex.ru';
         $user->save();
+        $user->userFields->twitchChannel = 'funforfreedom';
+        $user->userFields->save();
         $this->user2 = $user;
 
         $user = new User();

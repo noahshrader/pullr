@@ -9,7 +9,7 @@ use yii\db\QueryBuilder;
 
 /**
  * @property integer $userId
- * @property integer $twitchFollowerId - follower's id from Twitch
+ * @property integer $twitchUserId - follower's id from Twitch
  * @property integer $createdAt - date when follower started to follow [user]
  * @property string $name - unique name from Twitch
  * @property string $display_name - display_name from Twitch
@@ -17,25 +17,18 @@ use yii\db\QueryBuilder;
  * @property string $updateDate - last time when record was updated
  * @description That class is used to store twitch followers for user
  */
-class TwitchSubscription extends ActiveRecord {
-    /**
-     * @return string the name of the table associated with this ActiveRecord class.
-     */
-    public static function tableName() {
-        return 'tbl_twitch_follow';
-    }
-
-    public static function updateFollows($userId, $follows){
+abstract class TwitchFollowBase extends ActiveRecord {
+    protected static function updateFollowsBase($userId, $follows){
         $ids = [];
         foreach ($follows as $key => $follow){
            $ids[] = $follow['user']['_id'];
            $follows[$key]['created_at'] = strtotime($follow['created_at']);
         }
-        $currentIds = TwitchFollow::find()->where(['userId' => $userId])->select('twitchFollowerId')->column();
+        $currentIds = static::find()->where(['userId' => $userId])->select('twitchUserId')->column();
 
         $insertIds = array_diff($ids, $currentIds);
         $connection = \Yii::$app->db;
-        $fields = ['userId', 'twitchFollowerId', 'createdAt', 'name', 'display_name', 'jsonResponse', 'updateDate'];
+        $fields = ['userId', 'twitchUserId', 'createdAt', 'name', 'display_name', 'jsonResponse', 'updateDate'];
         $updateDate = time();
         if (sizeof($insertIds)>0){
             $rows = [];
@@ -46,14 +39,14 @@ class TwitchSubscription extends ActiveRecord {
                     $rows[] = $row;
                 }
             }
-            $connection->createCommand()->batchInsert(self::tableName(), $fields, $rows)->execute();
+            $connection->createCommand()->batchInsert(static::tableName(), $fields, $rows)->execute();
         }
         $updateIds = array_diff($ids, $insertIds);
         if (sizeof($updateIds)>0){
            /*now we are only updating [updateTime] because of possible performance issues*/
-            $connection->createCommand()->update(self::tableName(),['updateDate' => $updateDate],['and', ['userId' => $userId],['in','twitchFollowerId', $updateIds]])->execute();
+            $connection->createCommand()->update(static::tableName(),['updateDate' => $updateDate],['and', ['userId' => $userId],['in','twitchUserId', $updateIds]])->execute();
         }
         /*clearing old rows*/
-        TwitchFollow::deleteAll(['and',['userId' => $userId], 'updateDate < '.$updateDate]);
+        static::deleteAll(['and',['userId' => $userId], 'updateDate < '.$updateDate]);
     }
 }

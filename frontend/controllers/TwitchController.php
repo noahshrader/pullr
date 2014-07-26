@@ -1,10 +1,12 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\twitch\TwitchSubscription;
 use common\models\User;
 use ritero\SDK\TwitchTV\TwitchSDK;
 use common\models\twitch\TwitchFollow;
 use common\models\twitch\TwitchUser;
+use common\components\Application;
 
 
 /**
@@ -20,21 +22,12 @@ class TwitchController extends FrontendController {
         if (isset($data['follows'])){
             /*jquery post doesn't sent empty arrays, so isset is needed*/
             $follows = $data['follows'];
-            foreach ($follows as $key => $value){
-               $follow = &$follows[$key]['user'];
-               $follow['name'] = strip_tags($follow['name']);
-               $follow['display_name'] = strip_tags($follow['display_name']);
-            }
             TwitchFollow::updateFollows($userId, $follows);
         }
     }
 
     public function actionUpdate_subscriptions_ajax(){
-        /**
-         * @var User $user
-         */
-        $user = \Yii::$app->user->identity;
-
+        $user = Application::getCurrentUser();
         $accessToken = $user->userFields->twitchAccessToken;
         $channel = $user->userFields->twitchChannel;
         $twitchPartner = $user->userFields->twitchPartner;
@@ -47,8 +40,10 @@ class TwitchController extends FrontendController {
          * @var TwitchSDK $twitchSDK
          */
         $twitchSDK = \Yii::$app->twitchSDK;
-        $array = $twitchSDK->authChannelSubscriptions($accessToken, $channel);
-        var_dump($array);
-        return;
+        $data = $twitchSDK->authChannelSubscriptions($accessToken, $channel, 100);
+        /*to have array instead of object */
+        $data = json_decode(json_encode($data),true);
+        TwitchUser::updateSubscribersNumber($user->id, $data['_total']);
+        TwitchSubscription::updateSubscriptions($user->id, $data['subscriptions']);
     }
 }

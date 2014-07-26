@@ -9,16 +9,22 @@ use yii\web\View;
         <div class="twitchStats" ng-show="twitchUser">
             <div>Followers: <span id="followers_number" class="amount accent">{{twitchUser.followersNumber}}</span>
             </div>
-            <div ng-show="user.userFields.twitchPartner">Subscribers: <span id="subscriber_number"
-                                                                            class="amount accent">{{twitchUser.subscribersNumber}}</span>
+            <div ng-show="user.userFields.twitchPartner">Subscribers:
+                <span id="subscriber_number" class="amount accent">{{twitchUser.subscribersNumber}}</span>
             </div>
         </div>
         <div class="activityFeed">
             <div class="name">Activity Feed</div>
             <span ng-repeat="donor in donors" class="activityFeedElement">
+               <span class="nowrap">
                <span>{{donor.name}}</span>
                (<span class="amount accent">${{number_format(donor.amount)}}</span>)<!-- removing space before :after{content:} rule
-            --></span>
+            --></span></span>
+            <span ng-repeat="subscriber in subscribers" class="activityFeedElement">
+                <span class="nowrap">
+               <span>{{subscriber.display_name}}</span>
+               <span>(Subscribed)</span><!-- removing space before :after(content:} rule
+            --></span></span>
         </div>
         <div class="overall" ng-show="length(campaigns) > 1">
             <div class="name">Overall</div>
