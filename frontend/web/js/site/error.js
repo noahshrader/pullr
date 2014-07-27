@@ -1,3 +1,4 @@
+/*js at view/site/error.php page*/
 // initialize big video
 $(function() {
 	var BV = new $.BigVideo();

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use common\assets\BigVideoAsset;
 /**
  * @var yii\web\View $this
  * @var string $name
@@ -10,9 +10,8 @@ use yii\helpers\Html;
  */
 
 $this->title = $name;
-$this->registerJsFile('http://vjs.zencdn.net/c/video.js', common\assets\CommonAsset::className());
-$this->registerJsFile('@web/js/lib/bigvideo.js', common\assets\CommonAsset::className());
-$this->registerJsFile('@web/js/lib/bv-config.js', common\assets\CommonAsset::className());
+BigVideoAsset::register($this);
+$this->registerJsFile('@web/js/site/error.js', BigVideoAsset::className());
 ?>
 <div id="content" class="error">
 	<div class="site-error"></div>
