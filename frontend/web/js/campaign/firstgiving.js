@@ -37,6 +37,7 @@ $(document).ready(function() {
         },
         formatResult: formatCharity,
         formatSelection: formatCharity,
+        containerCssClass: 'form-control',
         escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
     });
 
