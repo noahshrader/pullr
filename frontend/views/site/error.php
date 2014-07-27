@@ -10,21 +10,13 @@ use yii\helpers\Html;
  */
 
 $this->title = $name;
+$this->registerJsFile('http://vjs.zencdn.net/c/video.js', common\assets\CommonAsset::className());
 $this->registerJsFile('@web/js/lib/bigvideo.js', common\assets\CommonAsset::className());
+$this->registerJsFile('@web/js/lib/bv-config.js', common\assets\CommonAsset::className());
 ?>
-<div class="site-error">
-
-	<h1><?= Html::encode($this->title) ?></h1>
-
-	<div class="alert alert-danger">
-		<?= nl2br(Html::encode($message)) ?>
+<div id="content" class="error">
+	<div class="site-error"></div>
+	<div class="site-error-msg">
+		<h1>Can't Find that</h1>
 	</div>
-
-	<p>
-		The above error occurred while the Web server was processing your request.
-	</p>
-	<p>
-		Please contact us if you think this is a server error. Thank you.
-	</p>
-
 </div>
