@@ -19,7 +19,6 @@ class CommonAsset extends AssetBundle {
         '//ttv-api.s3.amazonaws.com/twitch.min.js'
     ];
     public $depends = [
-        'yii\web\YiiAsset',
         'common\assets\BaseCommonAsset',
     ];
     public $publishOptions = [

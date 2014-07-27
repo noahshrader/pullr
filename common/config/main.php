@@ -13,7 +13,6 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'assetManager' => [
-            'class' => \yii\web\AssetManager::className(),
             'bundles' => [
                 'yii\bootstrap\BootstrapAsset' => [
                     'css' => [],

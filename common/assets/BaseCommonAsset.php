@@ -25,6 +25,9 @@ class BaseCommonAsset extends AssetBundle {
     ];
     public $depends = [
         'yii\web\YiiAsset',
+        /*we clearing css loading from yii\boostrap\BootstrapAsset at @common/config/main.php, but dependant assets will work correctly.
+        E.g. kartik\widgets\Select2Asset will load select2-bootstrap3.css file*/
+        'yii\bootstrap\BootstrapAsset'
     ];
     public $publishOptions = [
         'forceCopy' => true
