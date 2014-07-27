@@ -3,7 +3,7 @@ use yii\widgets\ActiveForm;
 use common\models\Plan;
 
 ?>
-<div class="plan-show-<?= $user->plan ?>">
+<div class="plan-show-<?= $user->plan ?> plan">
     <div class='plan-pro-advertisement'>
         <div style='min-height: 500px'>
         Some advertising text here - you can use pro-plan with more features

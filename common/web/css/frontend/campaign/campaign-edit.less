@@ -1,101 +1,109 @@
 /* Campaign Edit Tabs */
 /* ------------------------------------------------- */
 .campaign-edit-wrap {
-    padding-left: 80px;
-    padding-right: 80px;
-    margin: 0 auto;
-    max-width: 980px;
-    
-    ul {
-        display: inline;
-        text-align: center;
-        overflow: hidden;
+	padding-left: 80px;
+	padding-right: 80px;
+	padding-bottom: 60px;
+	margin: 0 auto;
+	max-width: 980px;
+	
+	ul {
+		display: inline;
+		text-align: center;
+		overflow: hidden;
 
-        li {
-            display: inline-block;
-            text-align: center;
-            float: left;
-            border: 0;
-            &.active a {
-                background: @gray75;
-            }
-            a {
-                padding: 16px;
-                background: @white;
-            }
-        }
-    }
+		li {
+			display: inline-block;
+			text-align: center;
+			float: left;
+			border: 0;
+			&.active a,
+			&.active a:hover {
+				color: @bgcolor;
+				background: @gray75;
+			}
+			a {
+				color: @gray60;
+				padding: 16px 20px;
+				background: @white;
+				&:hover {
+					color: @bgcolor;
+					background: transparent;
+				}
+			}
+		}
+	}
 
-    .tab-content {
-        padding: 30px;
-        background: @gray75;
-    }
+	.tab-content {
+		padding: 30px;
+		background: @gray75;
+	}
 }
 #campaignEdit[data-campaigntype="Charity Fundraiser"]{
-    #campaign-edit-team-li {
-        display: inline-block;
-    }
-    #campaign-edit-team{
-        display: block;
-    }
+	#campaign-edit-team-li {
+		display: inline-block;
+	}
+	#campaign-edit-team{
+		display: block;
+	}
 }
 
 /* General Campaign Edit */
 /* ------------------------------------------------- */
 #campaignEdit{
-    #collapseTwo{
-        #layoutTeams {
-            ol{
-                padding: 0px;
-                li{
-                    border-bottom: 1px solid #000;
-                }
-                li:first-child{
-                    margin-top: 10px;
-                }
-            }
-        }
-    }
+	#collapseTwo{
+		#layoutTeams {
+			ol {
+				padding: 0px;
+				li{
+					border-bottom: 1px solid #000;
+				}
+				li:first-child{
+					margin-top: 10px;
+				}
+			}
+		}
+	}
 
-    .logo{
-        max-width: 100px;
-        max-height: 100px;
-        margin: 10px;
-    }
-    .file-preview-image{
-        max-width: 200px;
-    }
-    #collapseThree{
-        input[type=color]{
-            float: right;
-            margin-right: 15px;
-        }
-        .user-images{
-            margin-top: 10px;
-        }
-    }
-    
-    #collapseFour{
-        .field-campaign-twittername, .field-campaign-youtubeurl, .field-campaign-facebookurl{
-            display: none;
-        }
-    }
-    
-    #collapseFour.twitterEnable{
-        .field-campaign-twittername{
-            display: block;
-        }
-    }
-    
-    #collapseFour.youtubeEnable{
-        .field-campaign-youtubeurl{
-            display: block;
-        }
-    }
-    
-    #collapseFour.facebookEnable{
-        .field-campaign-facebookurl{
-            display: block;
-        }
-    }
+	.logo{
+		max-width: 100px;
+		max-height: 100px;
+		margin: 10px;
+	}
+	.file-preview-image{
+		max-width: 200px;
+	}
+	#collapseThree{
+		input[type=color]{
+			float: right;
+			margin-right: 15px;
+		}
+		.user-images{
+			margin-top: 10px;
+		}
+	}
+	
+	#collapseFour{
+		.field-campaign-twittername, .field-campaign-youtubeurl, .field-campaign-facebookurl{
+			display: none;
+		}
+	}
+	
+	#collapseFour.twitterEnable{
+		.field-campaign-twittername{
+			display: block;
+		}
+	}
+	
+	#collapseFour.youtubeEnable{
+		.field-campaign-youtubeurl{
+			display: block;
+		}
+	}
+	
+	#collapseFour.facebookEnable{
+		.field-campaign-facebookurl{
+			display: block;
+		}
+	}
 }

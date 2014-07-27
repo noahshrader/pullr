@@ -8,4 +8,5 @@ $(function () {
         },
         scrollInertia: 40
     });
+    $('#sidebar.plans').mCustomScrollbar("destroy");
 });

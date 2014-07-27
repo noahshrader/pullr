@@ -4,41 +4,57 @@
 /* Plans Sidebar */
 /* ------------------------------------------------- */
 #sidebar.plans {
-    right: 0;
-    padding: 30px;
+	right: 0;
+
+	.plan {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 30px;
+		.background;
+	}
 }
+
+/* Basic users */
 .plan-show-Basic {
-    .plan-pro-advertisement {
+	background-color: @accent;
+	background-image: url(../../../../images/pullr.png);
 
-    }
-    .payment {
-        display: none;
-    }
-    .plan-pro {
-        display: none;
-    }
+	.plan-pro-advertisement {
+
+	}
+	.payment {
+		display: none;
+	}
 }
+
+/* Payment info */
 .plan-show-payment {
-    .plan-pro-advertisement {
-        display: none;
-    }
+	.plan-pro-advertisement {
+		display: none;
+	}
 
-    .payment {
-        select{
-            color: #000;
-        }
-    }
-    .plan-pro {
-        display: none;
-    }
+	.payment {
+		select{
+			color: #000;
+		}
+	}
+	.plan-pro {
+		display: none;
+	}
 }
+
+/* Pro users */
 .plan-show-Pro {
-    .plan-pro-advertisement {
-        display: none;
-    }
-    .payment {
-        display: none;
-    }
-    .plan-pro {
-    }
+	background-color: @accent;
+	background-image: url(../../../../images/pullr.png);
+
+	.plan-pro-advertisement {
+		display: none;
+	}
+	.payment {
+		display: none;
+	}
 }

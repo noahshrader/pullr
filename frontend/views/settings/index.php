@@ -64,7 +64,6 @@ $this->title = 'Settings';
 </section> <!-- END main settings -->
 
 <div id="sidebar" class="plans"> <!-- BEGIN plans sidebar -->
-    <div class='sidepanel basic'>
     <?=
     $this->render('plan', [
     'user' => $user

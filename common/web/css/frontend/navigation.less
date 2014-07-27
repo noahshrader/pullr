@@ -4,9 +4,9 @@
 	background-color: @dkgray;
 	width: 100%;
 	position: fixed;
-	z-index: 20;
 	height: @top-menu-height;
 	padding-right: 20px;
+	z-index: 9999;
 
 	ul {
 		list-style: none;
@@ -102,14 +102,13 @@
 /* Primary Navigation */
 /* ------------------------------------------------- */
 .primary-navigation {
-    	-webkit-transition: all ease-in-out 0.2s;
-    	transition: all ease-in-out 0.2s;
 	position: fixed;
 	height: 100%;
 	top: 0px;
 	padding-top: @top-menu-height;
 	width: @primary-nav-width;
 	background: @accent;
+	z-index: 1000;
 
 	nav.nav-top {
 		width: 100%;
@@ -168,7 +167,6 @@
 				a.active {
 					color: @white;
 				}
-
 			}
 		}
 	}

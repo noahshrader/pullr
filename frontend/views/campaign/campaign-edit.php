@@ -13,9 +13,7 @@ $user = \Yii::$app->user->identity;
 ?>
 
     <? if ($campaign): ?>
-
     <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
-
     <? if (!$campaign->isNewRecord): ?>
 
     <div class="campaign-actions">
@@ -27,14 +25,12 @@ $user = \Yii::$app->user->identity;
                         <!-- Overview -->
                     </a>
                 </li>
-
                 <li class="active">
                     <a href="app/campaign/edit?id=<?= $campaign->id ?>">
                         <i class="icon icon-edit"></i>
                         <!-- Edit -->
                     </a>
                 </li>
-
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                 <li>
                     <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
@@ -43,7 +39,6 @@ $user = \Yii::$app->user->identity;
                     </a>
                 </li>
                 <? endif ?>
-
                 <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                 <li>
                     <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
@@ -52,7 +47,6 @@ $user = \Yii::$app->user->identity;
                     </a>
                 </li>
                 <? endif ?>
-
                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                 <li>
                     <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
@@ -84,7 +78,7 @@ $user = \Yii::$app->user->identity;
     <? $form = ActiveForm::begin(['options' => [
         'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
     <div class="campaign-edit-wrap">
-        <h1>Editing: <?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
+        <h1><?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
         <ul class="nav nav-tabs">
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon icon-settings"><span>General</span></a>
