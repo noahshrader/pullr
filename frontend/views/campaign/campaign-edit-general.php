@@ -2,7 +2,7 @@
 use common\models\Campaign;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use common\assets\Select2Asset;
+use kartik\widgets\Select2Asset;
 /* @var $form ActiveForm */
 
 
