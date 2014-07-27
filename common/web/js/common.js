@@ -10,11 +10,6 @@ $(function () {
     $("[data-toggle='tooltip']").tooltip();
 });
 
-// top nav slideout
-$('.dropdown-toggle').click(function() {
-    $('.avatar-submenu').toggleClass('open');
-});
-
 // submit form on CTRL+ENTER
 function catchKeys() {
     $(document).on('keydown', function (event) {

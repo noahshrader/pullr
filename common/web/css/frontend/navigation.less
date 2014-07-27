@@ -62,14 +62,14 @@
 				}
 			}
 		}
-
-	} /* End of quicknav */
+	}
 
 	.avatar-container {
 		float: right;
 		height: @top-menu-height;
 		display: block;
 		position: relative;
+		background: @dkgray;
 
 		.avatar {
 
@@ -85,6 +85,27 @@
 					width: 32px;
 				}
 			}
+		}
+		.avatar,
+		ul.avatar-submenu {
+			float: right;
+		}
+		ul.avatar-submenu {
+			margin-right: -200px;
+			-webkit-transition: all ease-in-out 0.2s;
+			transition: all ease-in-out 0.2s;
+
+			li {
+				float: left;
+
+				a {
+					display: inline-block;
+					padding: 0 .8em;
+				}
+			}
+		}
+		&.open ul.avatar-submenu {
+			margin-right: 0;
 		}
 	}
 }
