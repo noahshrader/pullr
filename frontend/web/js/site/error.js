@@ -3,5 +3,5 @@
 $(function() {
 	var BV = new $.BigVideo();
     BV.init();
-    BV.show('bigvideo/404.mp4',{ambient:true});
+    BV.show('video/404.mp4',{altSource:'video/404.webm'},{ambient:true});
 });
