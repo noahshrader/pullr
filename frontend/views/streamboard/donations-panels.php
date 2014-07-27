@@ -1,24 +1,10 @@
 <?php
     use common\models\Donation;
 ?>
-<ul class="bottom-panel-nav two-tabs">
-        <li><a data-panel="campaigns_list"><i class="icon icon-campaigns"></i></a></li>
+<ul class="bottom-panel-nav one-tabs">
         <li><a data-panel="stats"><i class="icon icon-bargraph"></i></a></li>
 </ul>
 
-<div class="campaigns_list_panel slidepanel">
-    <div class="campaigns_list">
-        <h3>Campaigns</h3>
-        <div ng-repeat="campaign in campaigns">
-            <label>
-                <input type="checkbox" ng-model="campaign.streamboardSelected" ng-change="campaignChanged(campaign)">
-                {{campaign.name}}
-            </label>
-            <br>
-        </div>
-    </div>
-    <a class="close icon-cross"></a>
-</div>
 
 <div class="stats_panel slidepanel">
     <h3>Stats</h3>

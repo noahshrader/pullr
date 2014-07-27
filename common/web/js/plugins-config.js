@@ -1,6 +1,6 @@
 $(function () {
     // Custom scrollbars
-    $("#sidebar, .campaigns-list-wrap, .site-content, .donations-list, #settingsTab .tab-content").mCustomScrollbar({
+    $("#sidebar, .campaigns-list-wrap, .site-content, .donations-list, #settingsTab .tab-pane").mCustomScrollbar({
         theme:"minimal",
         mouseWheel:{
         	preventDefault: true,
