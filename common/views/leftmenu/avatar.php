@@ -5,7 +5,7 @@ use common\components\Application;
 ?>
 
 <div class="dropdown avatar-container">
-    <ul class="dropdown-menu avatar-submenu" role="menu" aria-labelledby="dropdownMenu1" style="right: 0px;">
+    <ul class="avatar-submenu" role="menu" aria-labelledby="dropdownMenu1">
         <? if (Application::IsBackend()): ?>
             <li role="presentation"><a role="menuitem" href="admin/logout">Logout</a></li>
         <? else: ?>

@@ -5,20 +5,23 @@ function log(text) {
     }
 }
 
-/*enable tooltips*/
+// enable tooltips
 $(function () {
     $("[data-toggle='tooltip']").tooltip();
 });
 
-/*submit form on CTRL+ENTER*/
+// top nav slideout
+$('.dropdown-toggle').click(function() {
+    $('.avatar-submenu').toggleClass('open');
+});
+
+// submit form on CTRL+ENTER
 function catchKeys() {
     $(document).on('keydown', function (event) {
         if (event.ctrlKey && event.keyCode === 13) {
             log(8);
             var $target = $(event.target);
-            /**
-             * first let's try to sumbit parents form if it exist.
-             */
+            // first let's try to sumbit parents form if it exist.
             var $form = $target.parents('form');
             if ($form.length === 0) {
                 $form = $('form');
@@ -30,10 +33,7 @@ function catchKeys() {
     });
 }
 
-/**
- *
- * format number with commas. Example - 1,200,322
- */
+//format number with commas. Example - 1,200,322
 function number_format(number) {
     var str = '';
     var module = number % 1000;
