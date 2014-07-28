@@ -16,6 +16,6 @@ $this->registerJsFile('@web/js/site/error.js', BigVideoAsset::className());
 <div id="content" class="error">
 	<div class="site-error"></div>
 	<div class="site-error-msg">
-		<h1>Can't Find that</h1>
+		<h3>Oops! We were unable to locate that :(</h3>
 	</div>
 </div>
