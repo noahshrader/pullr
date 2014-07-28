@@ -46,7 +46,7 @@ class UserPhoto extends Widget{
         $img = Html::tag('img', '', $imgOptions);
         
         if ($this->showName){
-            $userName = Html::tag('span', '(DEV) '.\Yii::$app->user->identity->name, ['style' => 'color: red; display: inline']);
+            $userName = Html::tag('span', '(DEV) '.\Yii::$app->user->identity->name);
             $img = $userName.' '.$img;
         }
         
