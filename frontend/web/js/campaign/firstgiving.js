@@ -15,9 +15,10 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: function (term) {
                 return {
-                    q: 'organization_name:*' + term + '*'
+                    q: 'organization_name:*' + term.replace(/'|"/g, '') + '*'
                 }
             },
+            quietMillis: 1000,
             url: 'http://graphapi.firstgiving.com/v1/list/organization?jsonpfunc=?',
             results: function(data) {
                 return { results: data.payload };
@@ -25,7 +26,6 @@ $(document).ready(function() {
         },
         initSelection: function (element, callback) {
             var uuid = $(element).val();
-            console.log();
             if (uuid !== "") {
                 $.ajax({
                     dataType: 'jsonp',
@@ -40,7 +40,4 @@ $(document).ready(function() {
         containerCssClass: 'form-control',
         escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
     });
-
-
-
 });
