@@ -28,3 +28,8 @@ $('.streamboard').click(function(event) {
     window.open($(this).attr("href"),"popupWindow","width="+width+",height="+height+
         ",left="+left+",top="+top+",scrollbars=yes");
 });
+
+// enable tooltips
+$(function () {
+    $("[data-toggle='tooltip']").tooltip();
+});
