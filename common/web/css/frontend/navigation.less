@@ -6,7 +6,6 @@
 	position: fixed;
 	top: 0;
 	height: @top-menu-height;
-	padding-right: 20px;
 	z-index: 9999;
 
 	ul {
@@ -69,8 +68,19 @@
 		height: @top-menu-height;
 		display: block;
 		position: relative;
-		background: @dkgray;
+		background: @gray10;
 		cursor: pointer;
+
+		&:before {
+			height: 0px;
+			width: 0px;
+			content: "";
+			display: block;
+			position: absolute;
+			border-bottom: @top-menu-height solid @gray10;
+			border-left: 50px solid transparent;
+			left: -50px;
+		}
 
 		.avatar {
 
@@ -79,6 +89,7 @@
 				color: @white;
 				line-height: @top-menu-height;
 				height: @top-menu-height;
+				padding: 0 .8em;
 				
 				img {
 					border-radius: 50%;
@@ -98,10 +109,15 @@
 
 			li {
 				float: left;
+				line-height: @top-menu-height;
+				height: @top-menu-height;
 
 				a {
 					display: inline-block;
 					padding: 0 .8em;
+					border-left: 1px solid @bgcolor;
+					font-size: 18px;
+					color: @white;
 				}
 			}
 		}
