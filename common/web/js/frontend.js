@@ -40,4 +40,5 @@ $(function () {
 // Toggle sidebar
 $(".primary-nav-toggle").click(function(){
     $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");
+    $(".logo").toggleClass("icon-pullr icon-pullr2");
 });

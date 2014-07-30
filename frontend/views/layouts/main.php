@@ -28,7 +28,7 @@ $this->registerJs($js);
         <div class="main-wrapper large-menu-toggled">
             <div class="top-menu"> <!-- BEGIN top bar -->
                 <ul class="quick-nav">
-                    <li class="branding"><a class="logo icon-pullr2"></a></li>
+                    <li class="branding"><a class="logo icon-pullr"></a></li>
                     <li class="add-campaign"><?= Html::encode($this->title) ?>
                         <? if ($this->context->id == 'campaign'): ?>
                             <a href="app/campaign/add" class="icon icon-add2"></a>
