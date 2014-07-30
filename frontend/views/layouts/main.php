@@ -25,7 +25,7 @@ $this->registerJs($js);
     <body>
         <?php $this->beginBody() ?>
         
-        <div class="main-wrapper">
+        <div class="main-wrapper large-menu-toggled">
             <div class="top-menu"> <!-- BEGIN top bar -->
                 <ul class="quick-nav">
                     <li class="branding"><a class="logo icon-pullr2"></a></li>
@@ -40,26 +40,43 @@ $this->registerJs($js);
             </div> <!-- END top bar -->
 
             <div class="site-content">
-                <div class="primary-navigation"> <!-- BEGIN main navigation -->
+                <div class="primary-navigation lg-toggle"> <!-- BEGIN main navigation -->
                     <nav class="sidebar-nav nav-top">
                         <ul> 
                             <li>
-                                <a class="dashboard" title="Dashboard" href="app"><i class="icon-dashboard"></i></a>
+                                <a class="dashboard" title="Dashboard" href="app">
+                                    <i class="icon icon-dashboard"></i>
+                                    <span class="nav-label">Dashboard</span>
+                                </a>
                             </li>
                             <li>
-                                <a class="streamboard" title="Streamboard" href="app/streamboard" target="_blank"><i class="icon-streamboard"></i></a>
+                                <a class="streamboard" title="Streamboard" href="app/streamboard" target="_blank">
+                                    <i class="icon icon-streamboard"></i>
+                                    <span class="nav-label">Streamboard</span>
+                                </a>
                             </li>
                             <li>
-                                <a class="campaign-link" title="Campaigns" href="app/campaign"><i class="icon-bargraph"></i></a>
+                                <a class="campaign-link" title="Campaigns" href="app/campaign">
+                                    <i class="icon icon-bargraph"></i>
+                                    <span class="nav-label">Campaigns</span>
+                                </a>
                             </li>
                             <li>
-                                <a class="settings" role="menuitem" tabindex="-1" href="app/campaign/donors"><i class="icon-usergroup"></i></a>
+                                <a class="donors" role="menuitem" tabindex="-1" href="app/campaign/donors">
+                                    <i class="icon icon-usergroup"></i>
+                                    <span class="nav-label">Donors</span>
+                                </a>
                             </li>
                             <li>
-                                <a class="settings" role="menuitem" tabindex="-1" href="app/settings"><i class="icon-settings"></i></a>
+                                <a class="settings" role="menuitem" tabindex="-1" href="app/settings">
+                                    <i class="icon icon-settings"></i>
+                                    <span class="nav-label">Settings</span>
+                                </a>
                             </li>
                          </ul>
                     </nav>
+
+                    <a class="primary-nav-toggle"><i class="icon icon-arrowright2"></i></a>
                 </div> <!-- END main navigation -->
 
                 <?= $content ?>

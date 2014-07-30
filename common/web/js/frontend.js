@@ -33,3 +33,11 @@ $('.streamboard').click(function(event) {
 $(function () {
     $("[data-toggle='tooltip']").tooltip();
 });
+
+
+// Toggle sidebar-nav
+
+// Toggle sidebar
+$(".primary-nav-toggle").click(function(){
+    $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");
+});

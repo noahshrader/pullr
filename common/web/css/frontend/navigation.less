@@ -1,5 +1,15 @@
 /* Top Menu */
 /* ------------------------------------------------- */
+
+.large-menu-toggled li.branding {
+	width: @primary-nav-lg-width;
+}
+
+.small-menu-toggled li.branding {
+	width: @primary-nav-width;
+}
+
+
 .top-menu {
 	background-color: @dkgray;
 	width: 100%;
@@ -16,7 +26,6 @@
 
 		li.branding {
 			background: @dkaccent;
-			width: @primary-nav-width;
 			text-align: center;
 			display: block;
 			float: left;
@@ -129,12 +138,12 @@
 
 /* Primary Navigation */
 /* ------------------------------------------------- */
+
 .primary-navigation {
 	position: fixed;
 	height: 100%;
 	top: 0px;
 	padding-top: @top-menu-height;
-	width: @primary-nav-width;
 	background: @accent;
 	z-index: 1000;
 
@@ -153,15 +162,14 @@
 				padding: 0px;
 				margin: 0px;
 				width: 100%;
+				line-height: 60px;
 
 				a {
 					display: block;
-					padding: 24px 0px;
-					text-align: center;
-					font-size: 22px;
-					line-height: 22px;
 					color: @dkgray;
 					position: relative;
+					padding-left: 24px;
+					padding-right: 24px;
 
 					&:before {
 						display: block;
@@ -178,6 +186,23 @@
 					position: absolute;
 					right: 0px;
 					top: 36%;       
+					}
+
+					.icon {
+						font-size: 22px;
+						vertical-align: middle;
+						display: inline-block;
+						padding-right: 10px;
+					}
+
+					.nav-label {
+						font-size: 14px;
+						font-weight: bold;
+						text-transform: uppercase;
+						letter-spacing: 2px;
+						vertical-align: middle;
+						padding-top: 4px;
+						display: inline-block;
 					}
 
 				}
@@ -197,44 +222,36 @@
 				}
 			}
 		}
+
 	}
 
-	.nav-bottom {
+	.primary-nav-toggle {
+		width: @primary-nav-width;
+		display: block;
+		padding: 24px 0px;
+		text-align: center;
+		font-size: 22px;
+		line-height: 22px;
+		color: @dkgray;
 		position: absolute;
-		left: 0px;
 		bottom: 0px;
-		width: 100%;
+		left: 0px;
+	}
+}
 
-		ul {
-			list-style: none;
-			margin: 0px;
-			padding: 0px;
-			display: block;
-			width: 100%;
-			float: left;
+.small-menu-toggled .primary-navigation {
+	width: @primary-nav-width;
 
-			li {
-				display: block;
-				margin: 0px;
-				padding: 0px;
-				width: 50%;
-				float: left;
-				text-align: center;
+	nav.nav-top ul li a  { 
+		text-align: center; 
 
-				a {
-					display: block;
-					text-align: center;
-					padding: 10px 15px;
-					width: 100%;
-
-					&:before {
-						font-size: 22px;
-						line-height: 22px;
-						display: block;
-						padding-bottom: 10px;
-					}
-				}
-			}
+		.nav-label {
+			display: none;
 		}
 	}
+
+}
+
+.large-menu-toggled .primary-navigation {
+	width: @primary-nav-lg-width;
 }

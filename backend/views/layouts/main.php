@@ -56,22 +56,40 @@ $this->registerJs($js);
                             <ul> 
 
                                     <li>
-                                        <a class="reports icon-bargraph" href="">Reports</a>
+                                        <a class="reports" href="">
+                                        <i class="icon-bargraph"></i>
+                                        <span class="nav-label">Reports</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="users icon-usergroup" href="user">Users</a>
+                                        <a class="users" href="user">
+                                            <i class="icon-usergroup"></i>
+                                            <span class="nav-label">Users</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="campaigns icon-campaigns" href="campaign">Campaigns</a>
+                                        <a class="campaigns" href="campaign">
+                                            <i class="icon-campaigns"></i>
+                                            <span class="nav-label">Campaigns</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="charities icon-heart" href="charity">Charities</a>
+                                        <a class="charities" href="charity">
+                                            <i class="icon-heart"></i>
+                                            <span class="nav-label">Charities</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="themes icon-template" href="theme">Themes</a>
+                                        <a class="themes" href="theme">
+                                            <i class="icon-template"></i>
+                                            <span class="nav-label">Themes</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="themes icon-notification" href="notification">Notifications</a>
+                                        <a class="notifications" href="charity">
+                                            <i class="icon-notifcation"></i>
+                                            <span class="nav-label">Notifications</span>
+                                        </a>
                                     </li>
                             </ul>
                         <? endif; ?>

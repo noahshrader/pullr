@@ -1,11 +1,19 @@
 /* Campaigns Sidebar */
 /* ------------------------------------------------- */
+
+.large-menu-toggled .campaigns-list-wrap {
+	left: @primary-nav-lg-width;
+}
+
+.small-menu-toggled .campaigns-list-wrap {
+	left: @primary-nav-width;
+}
+
 .campaigns-list-wrap {
-	width: @sidepanelwidth;
 	height: 100%;
 	position: fixed;
 	top: 0;
-	left: @primary-nav-width;
+	width: @sidepanelwidth;
 	padding-top: @top-menu-height;
 	background-color: @gray5;
 	overflow: auto;

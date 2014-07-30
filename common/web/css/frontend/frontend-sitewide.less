@@ -8,9 +8,17 @@
 	top: 0px;
 	left: 0px;
 }
+
+.large-menu-toggled #content {
+	padding-left: @primary-nav-lg-width + 60px;
+}
+
+.small-menu-toggled #content {
+	padding-left: @primary-nav-width + 60px;
+}
+
 #content {
 	float: left;
-    padding-left: @primary-nav-width + 60px;
     padding-right: @sidepanelwidth + 60px;
     padding-top: @top-menu-height;  
     padding-bottom: 60px;
@@ -20,10 +28,18 @@
 
 /* Donor/Campaign Views */
 /* ------------------------------------------------- */
+
+.large-menu-toggled .campaigns-view-wrap, .large-menu-toggled .donor-view-wrap {
+	padding-left: @sidepanelwidth + @primary-nav-lg-width;
+}
+
+.small-menu-toggled .campaigns-view-wrap, .small-menu-toggled .donor-view-wrap {
+	padding-left: @sidepanelwidth + @primary-nav-width;
+}
+
 .campaigns-view-wrap,
 .donor-view-wrap {
 	width: 100%;
-	padding-left: @sidepanelwidth + @primary-nav-width;
 }
 .campaign-view-wrap,
 .campaign-edit-wrap,
