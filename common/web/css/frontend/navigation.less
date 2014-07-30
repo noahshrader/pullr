@@ -226,7 +226,6 @@
 	}
 
 	.primary-nav-toggle {
-		width: @primary-nav-width;
 		display: block;
 		padding: 24px 0px;
 		text-align: center;
@@ -236,6 +235,7 @@
 		position: absolute;
 		bottom: 0px;
 		left: 0px;
+		text-align: center;
 	}
 }
 
@@ -253,5 +253,9 @@
 }
 
 .large-menu-toggled .primary-navigation {
+	width: @primary-nav-lg-width;
+}
+
+.large-menu-toggled .primary-nav-toggle {
 	width: @primary-nav-lg-width;
 }
