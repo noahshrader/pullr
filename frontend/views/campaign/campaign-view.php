@@ -71,6 +71,12 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     </a>
                 </li>
                 <? endif ?>
+                <li>
+                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
+                        <i class="icon icon-code"></i>
+                    </a>
+                </li>
             </ul>
             <? endif ?>
         </div>
@@ -82,10 +88,6 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                         <!-- View -->
                         View Campaign
                     </a>
-                </li>
-                <li>
-                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                    <a class="icon-code" href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank"></a>
                 </li>
             </ul>
         </div>
