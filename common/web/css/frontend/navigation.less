@@ -146,6 +146,7 @@
 	padding-top: @top-menu-height;
 	background: @accent;
 	z-index: 1000;
+	.slowtrans();
 
 	nav.nav-top {
 		width: 100%;
@@ -203,6 +204,7 @@
 						vertical-align: middle;
 						padding-top: 4px;
 						display: inline-block;
+						.fade-in();
 					}
 
 				}
@@ -250,6 +252,10 @@
 		}
 	}
 
+}
+
+.small-menu-toggled .primary-nav-toggle {
+	width: @primary-nav-width;
 }
 
 .large-menu-toggled .primary-navigation {

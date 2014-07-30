@@ -41,5 +41,5 @@ $(function () {
 $(".primary-nav-toggle").click(function(){
     $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");
     $(".logo").toggleClass("icon-pullr icon-pullr2");
-    $(".primary-nav-toggle icon").toggleClass("icon-arrowleft2 icon-arrowright2");
+    $(".primary-nav-toggle .icon").toggleClass("icon-arrowleft2 icon-arrowright2");
 });
