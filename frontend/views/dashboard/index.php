@@ -25,6 +25,8 @@ $twitchPartner = $user->userFields->twitchPartner;
         </div> <!-- END notification -->
     <? endif; ?>
     <? if ($twitchUser): ?>
+
+
         <div class="row stats-overview">
             <!-- BEGIN twitch followers -->
             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
@@ -32,6 +34,8 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <h5>Twitch Followers</h5>
             </div>
             <!-- END twitch followers -->
+
+            
             <? if ($twitchPartner): ?>
                 <!-- BEGIN twitch subscribers -->
                 <div class="col-xs-6 text-center stats-box">
@@ -41,6 +45,8 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <!-- END twitch subscribers -->
             <? endif ?>
         </div>
+
+
     <? endif ?>
 </section>
 
