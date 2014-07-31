@@ -9,7 +9,6 @@
 	width: @primary-nav-width;
 }
 
-
 .top-menu {
 	background-color: @dkgray;
 	width: 100%;
@@ -38,8 +37,12 @@
 				font-size: 28px;
 				vertical-align: middle;
 				padding: 0px;
+				transition: none;
 				&:before {
 					color: @white;
+				}
+				&.icon-pullr {
+					font-size: 34px;
 				}
 			}
 		}
@@ -146,7 +149,6 @@
 	padding-top: @top-menu-height;
 	background: @accent;
 	z-index: 1000;
-	.slowtrans();
 
 	nav.nav-top {
 		width: 100%;
@@ -169,24 +171,24 @@
 					display: block;
 					color: @dkgray;
 					position: relative;
-					padding-left: 24px;
-					padding-right: 24px;
-
+					padding-left: 20px;
+					padding-right: 20px;
+					height: 64px;
 					&:before {
 						display: block;
 						padding-bottom: 10px;
 					}
 
 					&.active:after {
-					content: " ";
-					width: 0;
-					height: 0;
-					border-style: solid;
-					border-width: 10px 10px 10px 0;
-					border-color: transparent @gray5 transparent transparent;
-					position: absolute;
-					right: 0px;
-					top: 36%;       
+						content: " ";
+						width: 0;
+						height: 0;
+						border-style: solid;
+						border-width: 10px 10px 10px 0;
+						border-color: transparent @gray5 transparent transparent;
+						position: absolute;
+						right: 0px;
+						top: 36%;       
 					}
 
 					.icon {
@@ -197,14 +199,13 @@
 					}
 
 					.nav-label {
-						font-size: 14px;
-						font-weight: bold;
+						font-size: 13px;
+						font-weight: 600;
 						text-transform: uppercase;
 						letter-spacing: 2px;
 						vertical-align: middle;
-						padding-top: 4px;
+						height: 55px;
 						display: inline-block;
-						.fade-in();
 					}
 
 				}
@@ -238,6 +239,7 @@
 		bottom: 0px;
 		left: 0px;
 		text-align: center;
+		transition: none;
 	}
 }
 
@@ -253,15 +255,12 @@
 	}
 
 }
-
 .small-menu-toggled .primary-nav-toggle {
 	width: @primary-nav-width;
 }
-
 .large-menu-toggled .primary-navigation {
 	width: @primary-nav-lg-width;
 }
-
 .large-menu-toggled .primary-nav-toggle {
 	width: @primary-nav-lg-width;
 }

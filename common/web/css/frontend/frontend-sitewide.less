@@ -8,15 +8,6 @@
 	top: 0px;
 	left: 0px;
 }
-
-.large-menu-toggled #content {
-	padding-left: @primary-nav-lg-width + 60px;
-}
-
-.small-menu-toggled #content {
-	padding-left: @primary-nav-width + 60px;
-}
-
 #content {
 	float: left;
     padding-right: @sidepanelwidth + 60px;
@@ -24,18 +15,16 @@
     padding-bottom: 60px;
     width: 100%;
 }
+.large-menu-toggled #content {
+	padding-left: @primary-nav-lg-width + 60px;
+}
+.small-menu-toggled #content {
+	padding-left: @primary-nav-width + 60px;
+}
 
 
 /* Donor/Campaign Views */
 /* ------------------------------------------------- */
-
-.large-menu-toggled .campaigns-view-wrap, .large-menu-toggled .donor-view-wrap {
-	padding-left: @sidepanelwidth + @primary-nav-lg-width;
-}
-
-.small-menu-toggled .campaigns-view-wrap, .small-menu-toggled .donor-view-wrap {
-	padding-left: @sidepanelwidth + @primary-nav-width;
-}
 
 .campaigns-view-wrap,
 .donor-view-wrap {
@@ -62,6 +51,15 @@
 	line-height: 2em;
 	letter-spacing: 0;
 	margin-bottom: 50px;
+}
+.large-menu-toggled .campaigns-view-wrap,
+.large-menu-toggled .donor-view-wrap {
+	padding-left: @sidepanelwidth + @primary-nav-lg-width;
+}
+
+.small-menu-toggled .campaigns-view-wrap,
+.small-menu-toggled .donor-view-wrap {
+	padding-left: @sidepanelwidth + @primary-nav-width;
 }
 
 
