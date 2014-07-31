@@ -46,6 +46,45 @@ $twitchPartner = $user->userFields->twitchPartner;
 
             <div class="tab-pane fade in active" id="today">
 
+                <div class="row stats-overview">
+                    <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
+                    <div class="col-xs-12 stats-box">
+                        <h2>$45,567</h2>
+                        <h5>Total Amount Raised</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>1</h2>
+                        <h5>Total Campaigns</h5>
+                    </div>
+                    <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>1245</h2>
+                        <h5>Total Donations</h5>
+                    </div>
+                    <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>456</h2>
+                        <h5>Total Donors</h5>
+                    </div>
+                </div>
+
+                <div class="row stats-overview">
+                    <!-- HTML MARKUP - RAISED FOR CHARITY -->
+                    <div class="col-xs-6 stats-box">
+                        <h2>$1245</h2>
+                        <h5>Raised for Charity</h5>
+                    </div>
+
+                    <!-- HTML MARKUP - RAISED PERSONALLY -->
+                    <div class="col-xs-6 stats-box">
+                        <h2>$1245</h2>
+                        <h5>Raised Personally</h5>
+                    </div>
+
+                </div>
+
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview">
                         <!-- BEGIN twitch followers -->
@@ -73,6 +112,45 @@ $twitchPartner = $user->userFields->twitchPartner;
 
             <div class="tab-pane fade in" id="month">
 
+               <div class="row stats-overview">
+                    <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
+                    <div class="col-xs-12 stats-box">
+                        <h2>$45,567</h2>
+                        <h5>Total Amount Raised</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>1</h2>
+                        <h5>Total Campaigns</h5>
+                    </div>
+                    <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>1245</h2>
+                        <h5>Total Donations</h5>
+                    </div>
+                    <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>456</h2>
+                        <h5>Total Donors</h5>
+                    </div>
+                </div>
+
+                <div class="row stats-overview">
+                    <!-- HTML MARKUP - RAISED FOR CHARITY -->
+                    <div class="col-xs-6 stats-box">
+                        <h2>$1245</h2>
+                        <h5>Raised for Charity</h5>
+                    </div>
+
+                    <!-- HTML MARKUP - RAISED PERSONALLY -->
+                    <div class="col-xs-6 stats-box">
+                        <h2>$1245</h2>
+                        <h5>Raised Personally</h5>
+                    </div>
+
+                </div>
+
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview">
                         <!-- BEGIN twitch followers -->
@@ -95,11 +173,51 @@ $twitchPartner = $user->userFields->twitchPartner;
 
 
                 <? endif ?>
+
 
             </div><!-- END Today Tab Pane -->
 
             <div class="tab-pane fade in" id="overall">
 
+               <div class="row stats-overview">
+                    <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
+                    <div class="col-xs-12 stats-box">
+                        <h2>$45,567</h2>
+                        <h5>Total Amount Raised</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>1</h2>
+                        <h5>Total Campaigns</h5>
+                    </div>
+                    <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>1245</h2>
+                        <h5>Total Donations</h5>
+                    </div>
+                    <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>456</h2>
+                        <h5>Total Donors</h5>
+                    </div>
+                </div>
+
+                <div class="row stats-overview">
+                    <!-- HTML MARKUP - RAISED FOR CHARITY -->
+                    <div class="col-xs-6 stats-box">
+                        <h2>$1245</h2>
+                        <h5>Raised for Charity</h5>
+                    </div>
+
+                    <!-- HTML MARKUP - RAISED PERSONALLY -->
+                    <div class="col-xs-6 stats-box">
+                        <h2>$1245</h2>
+                        <h5>Raised Personally</h5>
+                    </div>
+
+                </div>
+
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview">
                         <!-- BEGIN twitch followers -->
@@ -122,11 +240,51 @@ $twitchPartner = $user->userFields->twitchPartner;
 
 
                 <? endif ?>
+
 
             </div><!-- END Today Tab Pane -->
 
             <div class="tab-pane fade in" id="daterange">
 
+                <div class="row stats-overview">
+                    <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
+                    <div class="col-xs-12 stats-box">
+                        <h2>$45,567</h2>
+                        <h5>Total Amount Raised</h5>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>1</h2>
+                        <h5>Total Campaigns</h5>
+                    </div>
+                    <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>1245</h2>
+                        <h5>Total Donations</h5>
+                    </div>
+                    <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
+                    <div class="col-xs-4 stats-box">
+                        <h2>456</h2>
+                        <h5>Total Donors</h5>
+                    </div>
+                </div>
+
+                <div class="row stats-overview">
+                    <!-- HTML MARKUP - RAISED FOR CHARITY -->
+                    <div class="col-xs-6 stats-box">
+                        <h2>$1245</h2>
+                        <h5>Raised for Charity</h5>
+                    </div>
+
+                    <!-- HTML MARKUP - RAISED PERSONALLY -->
+                    <div class="col-xs-6 stats-box">
+                        <h2>$1245</h2>
+                        <h5>Raised Personally</h5>
+                    </div>
+
+                </div>
+
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview">
                         <!-- BEGIN twitch followers -->
@@ -149,6 +307,7 @@ $twitchPartner = $user->userFields->twitchPartner;
 
 
                 <? endif ?>
+
 
             </div><!-- END Today Tab Pane -->
 
