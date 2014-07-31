@@ -24,30 +24,136 @@ $twitchPartner = $user->userFields->twitchPartner;
             <?= $systemNotification->message ?>
         </div> <!-- END notification -->
     <? endif; ?>
-    <? if ($twitchUser): ?>
+    
+    <div class="dashboard-data-wrap">
+
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#today" data-toggle="tab">Today</a>
+            </li>
+            <li>
+                <a href="#month" data-toggle="tab">This Month</a>
+            </li>
+            <li>
+                <a href="#overall" data-toggle="tab">Overall</a>
+            </li>
+            <li>
+                <a href="#daterange" data-toggle="tab">Date Range</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+
+            <div class="tab-pane fade in active" id="today">
+
+                <? if ($twitchUser): ?>
+                    <div class="row stats-overview">
+                        <!-- BEGIN twitch followers -->
+                        <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
+                            <h2><?= $twitchUser->followersNumber ?></h2>
+                            <h5>Twitch Followers</h5>
+                        </div>
+                        <!-- END twitch followers -->
 
 
-        <div class="row stats-overview">
-            <!-- BEGIN twitch followers -->
-            <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                <h2><?= $twitchUser->followersNumber ?></h2>
-                <h5>Twitch Followers</h5>
-            </div>
-            <!-- END twitch followers -->
-
-            
-            <? if ($twitchPartner): ?>
-                <!-- BEGIN twitch subscribers -->
-                <div class="col-xs-6 text-center stats-box">
-                    <h2><?= $twitchUser->subscribersNumber ?></h2>
-                    <h5>Twitch Subscribers</h5>
-                </div>
-                <!-- END twitch subscribers -->
-            <? endif ?>
-        </div>
+                        <? if ($twitchPartner): ?>
+                            <!-- BEGIN twitch subscribers -->
+                            <div class="col-xs-6 text-center stats-box">
+                                <h2><?= $twitchUser->subscribersNumber ?></h2>
+                                <h5>Twitch Subscribers</h5>
+                            </div>
+                            <!-- END twitch subscribers -->
+                        <? endif ?>
+                    </div>
 
 
-    <? endif ?>
+                <? endif ?>
+
+            </div><!-- END Today Tab Pane -->
+
+            <div class="tab-pane fade in" id="month">
+
+                <? if ($twitchUser): ?>
+                    <div class="row stats-overview">
+                        <!-- BEGIN twitch followers -->
+                        <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
+                            <h2><?= $twitchUser->followersNumber ?></h2>
+                            <h5>Twitch Followers</h5>
+                        </div>
+                        <!-- END twitch followers -->
+
+
+                        <? if ($twitchPartner): ?>
+                            <!-- BEGIN twitch subscribers -->
+                            <div class="col-xs-6 text-center stats-box">
+                                <h2><?= $twitchUser->subscribersNumber ?></h2>
+                                <h5>Twitch Subscribers</h5>
+                            </div>
+                            <!-- END twitch subscribers -->
+                        <? endif ?>
+                    </div>
+
+
+                <? endif ?>
+
+            </div><!-- END Today Tab Pane -->
+
+            <div class="tab-pane fade in" id="overall">
+
+                <? if ($twitchUser): ?>
+                    <div class="row stats-overview">
+                        <!-- BEGIN twitch followers -->
+                        <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
+                            <h2><?= $twitchUser->followersNumber ?></h2>
+                            <h5>Twitch Followers</h5>
+                        </div>
+                        <!-- END twitch followers -->
+
+
+                        <? if ($twitchPartner): ?>
+                            <!-- BEGIN twitch subscribers -->
+                            <div class="col-xs-6 text-center stats-box">
+                                <h2><?= $twitchUser->subscribersNumber ?></h2>
+                                <h5>Twitch Subscribers</h5>
+                            </div>
+                            <!-- END twitch subscribers -->
+                        <? endif ?>
+                    </div>
+
+
+                <? endif ?>
+
+            </div><!-- END Today Tab Pane -->
+
+            <div class="tab-pane fade in" id="daterange">
+
+                <? if ($twitchUser): ?>
+                    <div class="row stats-overview">
+                        <!-- BEGIN twitch followers -->
+                        <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
+                            <h2><?= $twitchUser->followersNumber ?></h2>
+                            <h5>Twitch Followers</h5>
+                        </div>
+                        <!-- END twitch followers -->
+
+
+                        <? if ($twitchPartner): ?>
+                            <!-- BEGIN twitch subscribers -->
+                            <div class="col-xs-6 text-center stats-box">
+                                <h2><?= $twitchUser->subscribersNumber ?></h2>
+                                <h5>Twitch Subscribers</h5>
+                            </div>
+                            <!-- END twitch subscribers -->
+                        <? endif ?>
+                    </div>
+
+
+                <? endif ?>
+
+            </div><!-- END Today Tab Pane -->
+
+    </div>
+
 </section>
 
 <div id="sidebar" class="dashboard"> <!-- BEGIN side panel -->
