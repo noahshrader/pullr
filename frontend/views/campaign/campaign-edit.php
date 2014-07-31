@@ -31,6 +31,12 @@ $user = \Yii::$app->user->identity;
                         <!-- Edit -->
                     </a>
                 </li>
+                <li>
+                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
+                        <i class="icon icon-code"></i>
+                    </a>
+                </li>
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                 <li>
                     <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
@@ -55,12 +61,6 @@ $user = \Yii::$app->user->identity;
                     </a>
                 </li>
                 <? endif ?>
-                <li>
-                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                        <i class="icon icon-code"></i>
-                    </a>
-                </li>
             </ul>
         </div>
         <div class="col-md-6 campaign-nav">

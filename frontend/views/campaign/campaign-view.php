@@ -47,6 +47,12 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                         <!-- Edit -->
                     </a>
                 </li>
+                <li>
+                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
+                        <i class="icon icon-code"></i>
+                    </a>
+                </li>
                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                 <li>
                     <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
@@ -71,12 +77,6 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     </a>
                 </li>
                 <? endif ?>
-                <li>
-                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                        <i class="icon icon-code"></i>
-                    </a>
-                </li>
             </ul>
             <? endif ?>
         </div>
