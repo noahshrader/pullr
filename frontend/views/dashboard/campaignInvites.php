@@ -1,4 +1,4 @@
-<div class="campaign-invites"> <!-- BEGIN campaign invites -->
+<div class="campaign-invites module"> <!-- BEGIN campaign invites -->
     <h5>Campaign Invites</h5>
     <ul>
         <? foreach ($campaignInvites as $invite): ?>

@@ -14,6 +14,7 @@
     	padding-top: @top-menu-height;  
     	padding-bottom: 60px;
     	width: 100%;
+    	background: @white;
 }
 .large-menu-toggled #content {
 	padding-left: @primary-nav-lg-width + 60px;
@@ -34,6 +35,7 @@
 .campaign-edit-wrap,
 .donor-view-wrap {
 	padding-top: @top-menu-height;
+	background: @white;
 
 	h1 {
 		margin: 0 auto 60px;
@@ -70,10 +72,16 @@
 	top: @top-menu-height;
 	height: 100%;
 	width: @sidepanelwidth;
-	background: @dkgray;
+	background: @gray5;
 
 	h5 {
+		color: @gray30;
 		margin-bottom: 1em;
+	}
+
+	.module {
+		padding: 30px 0 0 30px;
+		border-bottom: dotted 1px @gray15;
 	}
 }
 
