@@ -14,12 +14,8 @@ use common\models\User;
     <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">
     <?php $this->head() ?>
 
-    <!-- Load Typekit Fonts -->
-    <script type="text/javascript" src="//use.typekit.net/qke3nuw.js"></script>
-    <script type="text/javascript">try {
-            Typekit.load();
-        } catch (e) {
-        }</script>
+    <!-- Load Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
     <script type="text/javascript">
         <?
         $js = 'window.Pullr = window.Pullr || {}; ';

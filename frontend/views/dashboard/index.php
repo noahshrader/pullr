@@ -65,7 +65,6 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
 
                 <div class="row stats-overview raised-group-stats">
-                    <i class="icon-usergroup"></i>
                     <!-- HTML MARKUP - RAISED FOR CHARITY -->
                     <div class="col-xs-6 stats-box">
                         <h2>$1245</h2>
@@ -82,7 +81,6 @@ $twitchPartner = $user->userFields->twitchPartner;
 
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview twitch-stats">
-                        <i class="icon-twitch2"></i>
                         <!-- BEGIN twitch followers -->
                         <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                             <h2><?= $twitchUser->followersNumber ?></h2>
