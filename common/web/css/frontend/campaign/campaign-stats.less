@@ -15,7 +15,7 @@
 	top: 0;
 	width: @sidepanelwidth;
 	padding-top: @top-menu-height;
-	background-color: @accent;
+	background-color: @dkaccent;
 	overflow: auto;
 
 	.main-info {
@@ -55,12 +55,13 @@
 			a {
 				display: block;
 				color: @gray30;
+				font-size: 14px;
 				line-height: 50px;
 				width: 100%;
 
 				&.active {
 					color: @white;
-					background: @accent;
+					background: @dkaccent;
 				}
 				&:hover {
 					background: @bgcolor;
@@ -90,16 +91,14 @@
 	position: relative;
 	display: block;
 	width: 100%;
-	border-bottom: solid 1px @dkaccent;
-	&:hover h3,
-	&.active h3 {
-		color: @white;
-		.trans;
-	}
-	&:hover p,
+	border-bottom: solid 1px @dkaccentshade;
+	.trans;
+	&.active h3,
 	&.active p {
 		color: @white;
-		.trans;
+	}
+	&.active {
+		background: @accent;
 	}
 	&.active:before {
 		content: " ";
@@ -112,16 +111,19 @@
 		right: 0px;
 		top: 40%;       
 	}
+	&:hover {
+		background: @dkaccenthover;
+	}
 	h3,
 	h4,
 	p {
-		color: @gray10;
+		color: @dkraccent;
 	}
 	h3 {
 		margin: 0px;
 		padding: 0 0 2px 0;
 		font-size: 17px;
-		font-weight: 600;
+		font-weight: 400;
 		line-height: 1.1em;
 	}
 	h4 {
@@ -159,7 +161,6 @@
 				a {
 				display: block;
 				float: left;
-				font-size: 14px;
 				height: 50px;
 				color: @gray40;
 
@@ -208,7 +209,7 @@
 			li {
 				a {
 					color: @white;
-					font-weight: 600;
+					font-weight: 400;
 					position: relative;
 					padding-right: 20px;
 					padding-left: 10px;

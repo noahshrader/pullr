@@ -46,21 +46,22 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <h1>$45,567</h1>
                         <h5>Total Amount Raised</h5>
                     </div>
-                    <div class="clearfix"></div>
-                    <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>1</h2>
-                        <h5>Total Campaigns</h5>
-                    </div>
-                    <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>1245</h2>
-                        <h5>Total Donations</h5>
-                    </div>
-                    <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>456</h2>
-                        <h5>Total Donors</h5>
+                    <div class="poop">
+                        <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
+                        <div class="col-xs-4 stats-box">
+                            <h2>1</h2>
+                            <h5>Total Campaigns</h5>
+                        </div>
+                        <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
+                        <div class="col-xs-4 stats-box">
+                            <h2>1245</h2>
+                            <h5>Total Donations</h5>
+                        </div>
+                        <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
+                        <div class="col-xs-4 stats-box">
+                            <h2>456</h2>
+                            <h5>Total Donors</h5>
+                        </div>
                     </div>
                 </div>
 

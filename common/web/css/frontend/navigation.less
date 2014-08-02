@@ -93,8 +93,8 @@
 				
 				img {
 					border-radius: 50%;
-					height: 32px;
-					width: 32px;
+					height: 36px;
+					width: 36px;
 				}
 			}
 		}
@@ -114,10 +114,11 @@
 
 				a {
 					display: inline-block;
-					padding: 0 .8em;
-					border-left: 1px solid @gray5;
-					font-size: 18px;
 					color: @white;
+					font-size: 18px;
+					text-align: center;
+					width: @top-menu-height;
+					border-left: 1px solid @gray5;
 				}
 			}
 		}
@@ -159,14 +160,14 @@
 					color: @gray30;
 					position: relative;
 					padding: 0 24px;
-					height: 60px;
+					height: 70px;
 					&:before {
 						display: block;
 						padding-bottom: 10px;
 					}
 
 					&.active:after {
-						content: " ";
+						content: "";
 						width: 0;
 						height: 0;
 						border-style: solid;
