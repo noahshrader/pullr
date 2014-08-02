@@ -17,13 +17,6 @@ $twitchPartner = $user->userFields->twitchPartner;
 ?>
 
 <section id="content" class="dashboard">
-    <? if ($systemNotification): ?>
-        <div class="alert alert-info alert-dismissible systemNotification"> <!-- BEGIN notification -->
-            <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
-                <span>&times;</span></button>
-            <?= $systemNotification->message ?>
-        </div> <!-- END notification -->
-    <? endif; ?>
     
     <div class="dashboard-data-wrap">
 
@@ -48,8 +41,9 @@ $twitchPartner = $user->userFields->twitchPartner;
 
                 <div class="row stats-overview">
                     <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
-                    <div class="col-xs-12 stats-box">
-                        <h2>$45,567</h2>
+                    <div class="col-xs-12 stats-box raised-total">
+                        <i class="icon-coin"></i>
+                        <h1>$45,567</h1>
                         <h5>Total Amount Raised</h5>
                     </div>
                     <div class="clearfix"></div>
@@ -70,7 +64,8 @@ $twitchPartner = $user->userFields->twitchPartner;
                     </div>
                 </div>
 
-                <div class="row stats-overview">
+                <div class="row stats-overview raised-group-stats">
+                    <i class="icon-usergroup"></i>
                     <!-- HTML MARKUP - RAISED FOR CHARITY -->
                     <div class="col-xs-6 stats-box">
                         <h2>$1245</h2>
@@ -86,15 +81,14 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
 
                 <? if ($twitchUser): ?>
-                    <div class="row stats-overview">
+                    <div class="row stats-overview twitch-stats">
+                        <i class="icon-twitch2"></i>
                         <!-- BEGIN twitch followers -->
                         <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                             <h2><?= $twitchUser->followersNumber ?></h2>
                             <h5>Twitch Followers</h5>
                         </div>
                         <!-- END twitch followers -->
-
-
                         <? if ($twitchPartner): ?>
                             <!-- BEGIN twitch subscribers -->
                             <div class="col-xs-6 text-center stats-box">
@@ -104,10 +98,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                             <!-- END twitch subscribers -->
                         <? endif ?>
                     </div>
-
-
                 <? endif ?>
-
             </div><!-- END Today Tab Pane -->
 
             <div class="tab-pane fade in" id="month">
@@ -304,18 +295,19 @@ $twitchPartner = $user->userFields->twitchPartner;
                             <!-- END twitch subscribers -->
                         <? endif ?>
                     </div>
-
-
                 <? endif ?>
-
-
             </div><!-- END Today Tab Pane -->
-
     </div>
-
 </section>
 
 <div id="sidebar" class="dashboard"> <!-- BEGIN side panel -->
+    <? if ($systemNotification): ?>
+        <div class="alert alert-info alert-dismissible systemNotification"> <!-- BEGIN notification -->
+            <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
+                <span>&times;</span></button>
+            <?= $systemNotification->message ?>
+        </div> <!-- END notification -->
+    <? endif; ?>
     <? if (sizeof($campaignInvites) > 0): ?>
         <?=
         $this->render('campaignInvites', [

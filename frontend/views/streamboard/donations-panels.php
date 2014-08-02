@@ -2,9 +2,8 @@
     use common\models\Donation;
 ?>
 <ul class="bottom-panel-nav one-tabs">
-        <li><a data-panel="stats"><i class="icon icon-bargraph"></i></a></li>
+        <li><a data-panel="stats"><i class="icon icon-bargraph"></i>Stats</a></li>
 </ul>
-
 
 <div class="stats_panel slidepanel">
     <h3>Stats</h3>

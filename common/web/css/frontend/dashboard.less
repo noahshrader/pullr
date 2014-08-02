@@ -10,18 +10,37 @@
 }
 
 #content.dashboard {
-    padding-right: @sidepanelwidth;
+	padding-top: 0;
+	padding-bottom: 0;
+    	padding-right: @sidepanelwidth;
 
-    .alert {
-    	margin-left: 65px;
-    	margin-right: 65px;
-    }
+	.alert {
+		margin-left: 65px;
+		margin-right: 65px;
+	}
+
+	.stats-overview {
+		margin: 0;
+		border: 0;
+
+		.stats-box {
+			border: 0;
+		}
+		&.raised-group-stats {
+			background: @gray75;
+		}
+		&.twitch-stats {
+			background: @twitchpurple;
+
+			h2 {
+				color: @white;
+			}
+		}
+	}
 }
 
 /* Dashboard Stats */
-
 .dashboard-data-wrap .nav-tabs {
-
 	text-align: center;
 	margin-bottom: 20px;
 
@@ -40,14 +59,6 @@
 			}
 		}
 	}
-}
-
-.stats-overview {
-	margin-bottom: 20px;
-}
-
-.stats-box {
-	border-bottom: solid 1px @gray75;
 }
 
 

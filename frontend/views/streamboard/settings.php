@@ -23,7 +23,7 @@ $sourceHref = Url::to('', true) . '/source';
         <li class="active">
             <a href="<?= Url::to() ?>#settings-general" data-toggle="tab">General</a>
         </li>
-        <li ><a href="<?= Url::to() ?>#settings-source" data-toggle="tab">Source</a></li>
-        <li class="disabled"><a href="<?= Url::to() ?>#settings-downloads">Downloads</a></li>
+        <li><a href="<?= Url::to() ?>#settings-source" data-toggle="tab">Source</a></li>
+        <li><a href="<?= Url::to() ?>#settings-downloads" data-toggle="tab">Downloads</a></li>
     </ul>
 </div>

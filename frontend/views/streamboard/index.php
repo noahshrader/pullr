@@ -35,5 +35,4 @@ use yii\web\View;
             </div>
         </div>
     </section>
-
 </div>

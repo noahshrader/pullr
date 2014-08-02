@@ -185,6 +185,7 @@ table.dataTable thead th   {
 		&:first-child {
 			border-left: 0px;
 		}
+
 		h2,
 		h3 {
 			display: block;
@@ -193,8 +194,15 @@ table.dataTable thead th   {
 		}
 		&.raised-total {
 			border-left: 0 !important;
+			
+			h1,
 			h2 {
 				color: @accent;
+				margin: 0;
+			}
+			i {
+				color: @gray75;
+				font-size: 3em;
 			}
 		}
 	}

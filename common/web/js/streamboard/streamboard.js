@@ -9,7 +9,12 @@ $(function () {
             $(".resizable").css('left', 'auto');
         }
     });
+    // streamboard loader
+    $(window).load(function() {
+        $(".spinner-wrap").fadeOut();
+    });
 
+    // panel toggles
     $('ul.bottom-panel-nav li a').click(function() {
    		$('.'+$(this).data('panel')+'_panel').toggleClass('selected');
    	});

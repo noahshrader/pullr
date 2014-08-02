@@ -13,6 +13,6 @@ class StreamboardAsset extends AssetBundle
 		'js/streamboard/streamboard.js',
 	];
 	public $depends = [
-                'common\assets\streamboard\StreamboardCommonAsset',
+            'common\assets\streamboard\StreamboardCommonAsset',
 	];
 }
