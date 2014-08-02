@@ -39,8 +39,7 @@
 	width: 100%;
 	line-height: 50px;
 	height: 50px;
-	background: @bgcolor;
-	border-bottom: solid 1px @bgcolor;
+	background: @dkgray;
 
 	ul {
 		list-style: none;
@@ -55,8 +54,8 @@
 
 			a {
 				display: block;
+				color: @gray30;
 				line-height: 50px;
-				color: @gray20;
 				width: 100%;
 
 				&.active {
@@ -64,7 +63,7 @@
 					background: @accent;
 				}
 				&:hover {
-					color: @white;
+					background: @bgcolor;
 				}
 			}
 		}
@@ -94,7 +93,7 @@
 	border-bottom: solid 1px @dkaccent;
 	&:hover h3,
 	&.active h3 {
-		color: #FFF;
+		color: @white;
 		.trans;
 	}
 	&:hover p,
@@ -116,7 +115,7 @@
 	h3,
 	h4,
 	p {
-		color: @gray20;
+		color: @gray10;
 	}
 	h3 {
 		margin: 0px;
@@ -163,13 +162,11 @@
 				font-size: 14px;
 				height: 50px;
 				color: @gray40;
-				text-transform: uppercase;
-				letter-spacing: 1px;
 
 					.icon {
-					font-size: 18px;
-					line-height: 50px;
-					color: @gray40;
+						font-size: 18px;
+						line-height: 50px;
+						color: @gray40;
 					}
 				}
 
@@ -211,7 +208,6 @@
 			li {
 				a {
 					color: @white;
-					font-size: ;
 					font-weight: 600;
 					position: relative;
 					padding-right: 20px;
@@ -219,7 +215,7 @@
 					text-align: center;
 					line-height: 50px;
 					background: @accent;
-					&:hover {
+					&:hover, {
 						color: @white;
 						background: @accenthover;
 					}
@@ -233,6 +229,9 @@
 						border-bottom: 50px solid @accent;
 						border-left: 30px solid transparent;
 						left: -30px;	
+					}
+					&:hover:before {
+						border-bottom: 50px solid @accenthover;
 					}
 				}
 			}

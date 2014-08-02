@@ -40,10 +40,14 @@ a, a:hover {
 a {
 	color: @accent;
 	text-decoration: none;
-	.trans;
 	&:hover {
 		color: @accenthover;
 	}
+}
+a,
+a:before,
+a:after {
+	.trans;
 }
 a:hover,
 a:focus,
@@ -53,14 +57,6 @@ input:focus,
 button,
 button:active {
 	outline: 0;
-}
-a,
-a:link,
-a:visited,
-a:active,
-a img {
-.slowtrans();
-	text-decoration: none;
 }
 input,
 button,

@@ -16,6 +16,7 @@
 	top: 0;
 	height: @top-menu-height;
 	z-index: 9999;
+	overflow: hidden;
 
 	ul {
 		list-style: none;
@@ -36,7 +37,6 @@
 				font-size: 26px;
 				vertical-align: middle;
 				padding: 0px;
-				transition: none;
 				&:before {
 					color: @white;
 				}
@@ -50,22 +50,26 @@
 			display: block;
 			float: left;
 			width: @sidepanelwidth;
-			height: @top-menu-height;
 			color: @white;
-			font-weight: bold;
+			font-size: 16px;
+			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: 2px;
 			line-height: @top-menu-height;
 
 			a {
 				display: inline-block;
-				margin-top: 20px;
+				color: @accent;
 				font-size: 18px;
 				font-weight: bold;
-				color: @accent;
+				padding: 0 .6em;
 
 				&:hover {
 					color: @accenthover;
+				}
+				&:before {
+					float: left;
+					margin-bottom: -.1em;
 				}
 			}
 		}
@@ -181,7 +185,6 @@
 					}
 
 					.nav-label {
-						font-size: 14px;
 						font-weight: 400;
 						vertical-align: middle;
 						height: 60px;
