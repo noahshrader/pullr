@@ -5,7 +5,7 @@
 /* Base */
 /* ------------------------------------------------- */
 body, html {
-	background: @bgcolor;
+	background: @base;
 }
 
 label {
@@ -13,7 +13,7 @@ label {
 }
 
 #sidepanel {
-	background: @gray5;
+	background: @maingray;
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -59,7 +59,7 @@ label {
 			float: left;
 			text-align: center;
 			&.active a {
-				background: @gray5;
+				background: @maingray;
 			}
 
 			a {
@@ -71,7 +71,7 @@ label {
 				width: 100%;
 				background: @dkgray;
 				&:hover {
-					background: @bgcolor;
+					background: @base;
 				}
 				&:before{
 					display: block;
@@ -255,7 +255,7 @@ a.dashboard.show:before {
 .donation {
 	display: block;
 	width: 100%;
-	border-bottom: solid 1px @bgcolor;
+	border-bottom: solid 1px @base;
 	padding: 15px 36px;
 
 	h3.donation-name {
@@ -290,7 +290,7 @@ a.dashboard.show:before {
 }
 #donations-header {
 	padding: 10px 0px;
-	border-bottom: 1px solid @bgcolor;
+	border-bottom: 1px solid @base;
 }
 #donations-footer {
 	position: absolute;
@@ -327,7 +327,7 @@ a.dashboard.show:before {
 
 .streamboard-settings-header {
   padding: 10px 0px;
-  border-bottom: 1px solid @bgcolor;
+  border-bottom: 1px solid @base;
 }
 
 /* Settings Panel */
@@ -361,7 +361,7 @@ a.dashboard.show:before {
 
 /* Source View */
 .source {
-	background: @gray5;
+	background: @maingray;
 }
 
 /* Tab Overwrites */
@@ -379,8 +379,8 @@ a.dashboard.show:before {
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover,
 .nav-tabs>li.active>a:focus {
-	background: @gray5;
-	border-color: @bgcolor;
+	background: @maingray;
+	border-color: @base;
 	border-radius: 0px;
 	color: @white;
 	border-width: 0px;
@@ -407,7 +407,7 @@ a.dashboard.show:before {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background: @bgcolor;
+	background: @base;
 	z-index: 9999;	
 }
 .spinner {

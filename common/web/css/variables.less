@@ -12,6 +12,7 @@
 @dkaccent: darken(@accent, 5%);
 @dkaccent3: darken(@accent, 3%);
 @dkaccent9: darken(@accent, 9%);
+@dkaccent15: darken(@accent, 9%);
 @dkaccent30: darken(@accent, 30%);
 
 /* Other Colors */
@@ -21,6 +22,7 @@
 @maingray: lighten(@base, 5%);
 @dkgray: darken(@base, 2%); /* 2% darker than background */
 
+@gray2: lighten(@base, 2%); /* 2% gray background */
 @gray10: lighten(@base, 10%); /* 10% gray background */
 @gray15: lighten(@base, 15%); /* 15% gray background */
 @gray20: lighten(@base, 20%); /* 20% gray background */
@@ -32,7 +34,7 @@
 @gray75: lighten(@base, 78%); /* 78% gray background */
 @gray80: lighten(@base, 80%); /* 80% gray background */
 
-@bgwhitefade: rgba(255,255,255,.2); /* Faded light background */
+@bgwhitefade: rgba(255,255,255,.1); /* Faded light background */
 @bgblackfade: rgba(34,35,37,.6); /* Faded dark background */
 
 /* Element Colors */
@@ -57,7 +59,6 @@
 
 .smallcaps {
 	font-size: @smalltext;
-	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }

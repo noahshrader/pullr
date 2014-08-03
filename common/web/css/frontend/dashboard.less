@@ -27,7 +27,7 @@
 			font-size: 4.8em;
 		}
 		h5 {
-			color: @dkaccent9;
+			color: @dkaccent15;
 		}
 
 		.stats-box {
@@ -37,11 +37,12 @@
 			&.raised-total {
 				float: left;
 				padding: 6em 0;
+				height: 354px;
 				width: 70%;
 				background: @accent;
 
 				i {
-					color: @dkaccent30;
+					color: @dkaccent15;
 					font-size: 3em;
 				}
 			}
@@ -94,20 +95,21 @@
 
 /* Dashboard Stats */
 .dashboard-data-wrap .nav-tabs {
-	text-align: center;
-	margin-bottom: 20px;
+	background: @base;
 
 	li {
-		float: none;
+		float: left;
 		display: inline-block;
+		&.active a {
+			color: @white;
+			background: @accent;
+		}
 
 		a {
-			padding: 16px 20px;
-			color: @gray10;
-			
+			padding: 18px 24px;
+			color: @gray30;
 			&:hover {
-				color: @white;
-				background: @gray70;
+				background: @gray2;
 			}
 		}
 	}
@@ -118,7 +120,7 @@
 /* ------------------------------------------------- */
 #sidebar.dashboard {
 	right: 0;
-	padding: 60px 30px 0 0;
+	padding: 60px 30px;
 
 	/* Campaign Invites Module */
 	.campaign-invites ul li {

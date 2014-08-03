@@ -137,17 +137,18 @@
 	padding-top: @top-menu-height;
 	background: @maingray;
 	z-index: 1000;
+	overflow: hidden;
 	&:after {
 		content: "";
 		position: absolute;
-		z-index: -1;
-		-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
-		-moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
-		box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
-		top: 0;
-		bottom: -10px;
-		left: -10px;
+		top: @top-menu-height + 20px;
+		left: 99%;
 		right: 0;
+		height: 620px;
+		z-index: -1;
+		-webkit-box-shadow: 0 0 16px rgba(0,0,0,0.8);
+		-moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
+		box-shadow: 0 0 16px rgba(0,0,0,0.8);
 	}
 
 	nav.nav-top {
@@ -155,7 +156,7 @@
 
 		ul {
 			margin: 0;
-			padding: 40px 0 0;
+			padding: 50px 0 0;
 			list-style: none;
 			width: 100%;
 			display: block;
@@ -199,7 +200,9 @@
 						padding-left: 10px;
 					}
 				}
-
+				a.dashboard.active:after {
+					border-color: transparent @accent transparent transparent;	
+				}
 				a.campaign-link.active:after {
 					border-color: transparent @dkaccent transparent transparent;	
 				}
