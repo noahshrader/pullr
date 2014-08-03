@@ -68,6 +68,22 @@ $twitchPartner = $user->userFields->twitchPartner;
                     </div>
                 </div>
 
+                <div class="row stats-overview raised-group-stats">
+                    <i class="group-header icon-coins"></i>
+                    <div class="group-stats-wrap">
+                        <div class="col-xs-6 stats-box">
+                            <h2>$1245</h2>
+                            <h5>Raised for Charity</h5>
+                        </div>
+
+                        <!-- HTML MARKUP - RAISED PERSONALLY -->
+                        <div class="col-xs-6 stats-box">
+                            <h2>$1245</h2>
+                            <h5>Raised Personally</h5>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Twitch Data -->
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview twitch-stats">

@@ -1,75 +1,95 @@
 /* Colors */
 /* ------------------------------------------------- */
 
-/* Accents */
+/* Base */
+@base: #222325;
+@white: #FFF;
+
+/* Main Accent */
 @accent: #1dbc9c;	/* Primary accent */
 @accenthover: lighten(@accent, 10%); /* Primary accent hover state */
-@dkaccent: darken(@accent, 5%);
-@dkaccenthover: darken(@accent, 3%);
-@dkaccentshade: darken(@accent, 9%);
-@dkraccent: darken(@accent, 30%);
 
+@dkaccent: darken(@accent, 5%);
+@dkaccent3: darken(@accent, 3%);
+@dkaccent9: darken(@accent, 9%);
+@dkaccent30: darken(@accent, 30%);
+
+/* Other Colors */
 @twitchpurple: #6441a5; /* Twitch purple */
 
-.accent{
-  color: @accent;
-}
-
 /* Gray Sets */
-@gray3:  lighten(@bgcolor, 3%); /* 3% gray background */
-@gray5:  lighten(@bgcolor, 5%); /* 5% gray background */
-@gray8:  lighten(@bgcolor, 8%); /* 8% gray background */
-@gray10: lighten(@bgcolor, 10%); /* 10% gray background */
-@gray15: lighten(@bgcolor, 15%); /* 15% gray background */
-@gray20: lighten(@bgcolor, 20%); /* 20% gray background */
-@gray30: lighten(@bgcolor, 30%); /* 30% gray background */
-@gray40: lighten(@bgcolor, 40%); /* 40% gray background */
-@gray50: lighten(@bgcolor, 50%); /* 50% gray background */
-@gray60: lighten(@bgcolor, 60%); /* 60% gray background */
-@gray70: lighten(@bgcolor, 70%); /* 70% gray background */
-@gray75: lighten(@bgcolor, 78%); /* 78% gray background */
-@gray80: lighten(@bgcolor, 80%); /* 80% gray background */
+@maingray: lighten(@base, 5%);
+@dkgray: darken(@base, 2%); /* 2% darker than background */
 
-@dkgray:	darken(@bgcolor, 2%); /* 2% darker than background */
-@dkrgray:	darken(@bgcolor, 5%); /* 5% darker than background */
-@white: 	#FFF;
+@gray10: lighten(@base, 10%); /* 10% gray background */
+@gray15: lighten(@base, 15%); /* 15% gray background */
+@gray20: lighten(@base, 20%); /* 20% gray background */
+@gray30: lighten(@base, 30%); /* 30% gray background */
+@gray40: lighten(@base, 40%); /* 40% gray background */
+@gray50: lighten(@base, 50%); /* 50% gray background */
+@gray60: lighten(@base, 60%); /* 60% gray background */
+@gray70: lighten(@base, 70%); /* 70% gray background */
+@gray75: lighten(@base, 78%); /* 78% gray background */
+@gray80: lighten(@base, 80%); /* 80% gray background */
+
+@bgwhitefade: rgba(255,255,255,.2); /* Faded light background */
+@bgblackfade: rgba(34,35,37,.6); /* Faded dark background */
+
+/* Element Colors */
+@inputbg: @gray10; /* Background for inputs */
+
 
 /* Backgrounds */
 /* ------------------------------------------------- */
-/* Main Background */
-@bgcolor: #222325;
 .background { /* Default background set */
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
-/* Transparent Backgrounds */
-@bgwhitefade: rgba(255,255,255,.2); /* Faded light background */
-@bgblackfade: rgba(34,35,37,.6); /* Faded dark background */
-
-/* Inputs */
-@inputbg: @gray10; /* Background for inputs */
-
 
 /* Typography */
 /* ------------------------------------------------- */
-@mainfont: 'Source Sans Pro', Helvetica, Arial, sans-serif; /* Proxima Nova */
+@mainfont: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 
 @smalltext: .9em;
+@fineprint: .8em;
+
 .smallcaps {
 	font-size: @smalltext;
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
-@fineprint: .8em;
 
 
 /* Links */
 /* ------------------------------------------------- */
 @darklink: #444; /* Link color for white on dark */
 @darklinkhover: #FFF; /* Hover state for white on dark */
+
+
+/* General */
+/* ------------------------------------------------- */
+@width: 90%; /* Default width */
+@maxwidth: 1140px; /* Default width */
+@sidepanelwidth: 260px; /* Sidebar width */
+@top-menu-height: 68px; /* Top bar height */
+@primary-nav-width: 76px; /* Navigation width */
+@primary-nav-lg-width: 190px; /* Large Primary Navigation Width */
+
+.nowrap{
+  white-space: nowrap;
+}
+
+
+/* Lists */
+/* ------------------------------------------------- */
+.ulist {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
 
 
 /* Borders & Box shadows */
@@ -91,33 +111,31 @@
 /* ------------------------------------------------- */
 .arrow-up,
 .arrow-down,
-.arrow-down,
+.arrow-left,
 .arrow-right {
 	content: '';
 	position: absolute;
 	width: 0; 
 	height: 0; 
+	border-style: solid;
 }
 .arrow-up {
-	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;
-	border-bottom: 12px solid;
+	border-width: 0 10px 10px 10px;
+	border-color: transparent transparent @white transparent;
 }
 .arrow-down {
-	border-left: 12px solid transparent;
-	border-right: 12px solid transparent;
-	border-top: 12px solid;
+	border-width: 10px 10px 0 10px;
+	border-color: @white transparent transparent transparent;
 }
 .arrow-left {
-	border-bottom: 12px solid transparent;
-	border-top: 12px solid transparent;
-	border-right: 12px solid;
+	border-width: 10px 10px 10px 0;
+	border-color: transparent @white transparent transparent;
 }
 .arrow-right {
-	border-bottom: 12px solid transparent;
-	border-top: 12px solid transparent;
-	border-left: 12px solid;
+	border-width: 10px 0 10px 0;
+	border-color: transparent transparent transparent @white;
 }
+
 
 /* Transitions/Animations */
 /* ------------------------------------------------- */
@@ -141,25 +159,6 @@
 }
 
 
-/* General */
-/* ------------------------------------------------- */
-@width: 90%; /* Default width */
-@maxwidth: 1140px; /* Default width */
-@sidepanelwidth: 260px; /* Sidebar width */
-@top-menu-height: 68px; /* Top bar height */
-@primary-nav-width: 76px; /* Navigation width */
-@primary-nav-lg-width: 190px; /* Large Primary Navigation Width */
-
-
-/* Lists */
-/* ------------------------------------------------- */
-.ulist {
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-
-
 /* Progress Bar Animations */
 /* ------------------------------------------------- */
 @-webkit-keyframes animate-bar {
@@ -176,7 +175,4 @@
   0% {
     width: 0%;
   }
-}
-.nowrap{
-  white-space: nowrap;
 }

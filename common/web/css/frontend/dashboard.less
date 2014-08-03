@@ -27,7 +27,7 @@
 			font-size: 4.8em;
 		}
 		h5 {
-			color: @dkaccentshade;
+			color: @dkaccent9;
 		}
 
 		.stats-box {
@@ -41,20 +41,28 @@
 				background: @accent;
 
 				i {
-					color: @dkraccent;
+					color: @dkaccent30;
 					font-size: 3em;
 				}
 			}
 		}
 			/* Other Totals Section */
 			.other-raised-totals {
+				position: relative;
 				float: left;
 				width: 30%;
+				&:before {
+					.arrow-left;
+					border-color: transparent @dkaccent transparent transparent;
+					margin-top: -10px;
+					left: -10px;
+					top: 50%; 
+				}
 
 				div {
 					padding: 20px 0;
-					border-bottom: solid 1px @dkaccentshade;
-				}	
+					border-bottom: solid 1px @dkaccent9;
+				}
 			}
 
 		i.group-header {
@@ -74,19 +82,12 @@
 
 		/* Amount Raised Bars */
 		&.raised-group-stats {
-			background: @gray60;
+			background: @gray75;
 		}
 
 		/* Twitch Bar */
 		&.twitch-stats {
-			background-color: #58029d;
-			background-image: -webkit-gradient(linear, left bottom, right top, from(rgb(88, 2, 157)), to(rgb(142, 49, 197)));
-			background-image: -webkit-linear-gradient(left bottom, rgb(88, 2, 157), rgb(142, 49, 197));
-			background-image: -moz-linear-gradient(left bottom, rgb(88, 2, 157), rgb(142, 49, 197));
-			background-image: -o-linear-gradient(left bottom, rgb(88, 2, 157), rgb(142, 49, 197));
-			background-image: -ms-linear-gradient(left bottom, rgb(88, 2, 157), rgb(142, 49, 197));
-			background-image: linear-gradient(left bottom, rgb(88, 2, 157), rgb(142, 49, 197));
-			filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#58029d', EndColorStr='#8e31c5');
+			background: @twitchpurple;
 		}
 	}
 }
