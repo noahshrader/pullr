@@ -50,7 +50,7 @@
 				}
 
 				i {
-					color: @dkaccent15;
+					color: @dkaccent9;
 					font-size: 3em;
 				}
 			}
@@ -134,20 +134,31 @@
 /* ------------------------------------------------- */
 #sidebar.dashboard {
 	right: 0;
-	padding: 60px 30px;
+	padding: 50px 30px;
 
 	/* Campaign Invites Module */
 	.campaign-invites ul li {
-		padding-bottom: 1em;
 
 		h4 {
 			color: @white;
+		}
+
+		.invite-actions {
+			display: inline-block;
+			font-size: .9em;
+			padding: 2px 12px;
+			margin-top: 4px;
+			background: @base;
+			border-radius: 30px;
 		}
 	}
 
 	/* Activity Feed */
 	ul.activity-feed li {
-		color: @white;
-		padding-bottom: 1em;
+		color: @gray30;
+
+		&:first-child {
+			color: @white;
+		}
 	}
 }

@@ -80,11 +80,19 @@
 	}
 	h5 {
 		color: @gray30;
-		margin-bottom: 1em;
+		margin-bottom: 0;
 	}
 
 	.module {
-		border-bottom: dotted 1px @gray15;
+		margin-bottom: 40px;
+
+		li {
+			padding: 1em 0;
+			border-top: dotted 1px @gray15;
+			&:first-child {
+				border: 0;
+			}
+		}
 	}
 }
 
@@ -98,18 +106,25 @@
 /* Errors/Alerts */
 /* ------------------------------------------------- */
 .alert-info {
-	position: relative;
-	color: @gray40;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	color: @white;
 	font-size: 14px;
 	text-align: center;
 	padding: 12px 30px;
-	background: @gray75;
+	margin: 0;
+	background: @bgblackfade;
 	border: 0;
 	border-radius: 0;
+	z-index: 9999;
 
 	button.close {
 		position: absolute;
-		right: 15px;
+		right: 20px;
+		color: @white !important;
+		text-shadow: none;
 	}
 }
 

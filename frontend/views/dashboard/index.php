@@ -17,15 +17,6 @@ $twitchPartner = $user->userFields->twitchPartner;
 ?>
 
 <section id="content" class="dashboard">
-    <? if ($systemNotification): ?>
-        <div class="alert alert-info alert-dismissible systemNotification"> <!-- BEGIN notification -->
-            <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
-                <span>&times;</span>
-            </button>
-            <?= $systemNotification->message ?>
-        </div> <!-- END notification -->
-    <? endif; ?>
-
     <div class="dashboard-data-wrap">
         <ul class="nav nav-tabs">
             <li class="active">
@@ -113,15 +104,37 @@ $twitchPartner = $user->userFields->twitchPartner;
             'campaignInvites' => $campaignInvites
         ]) ?>
     <? endif ?>
-    <ul class="activity-feed module"> <!-- BEGIN activity feed -->
+    <h5><i class="icon-chatbubble2"></i> Recent Activity</h5>
+    <ul class="activity-feed module">
         <li>
             <? if (sizeof($recentActivity) > 0): ?>
-                <h5>Recent Activity</h5>
+                <? foreach ($recentActivity as $notification): ?>
+                    <span><?= $notification->message ?></span>
+                <? endforeach; ?>
+            <? endif; ?>
+        </li>
+        <li>
+            <? if (sizeof($recentActivity) > 0): ?>
                 <? foreach ($recentActivity as $notification): ?>
                     <span><?= $notification->message ?></span>
                 <? endforeach; ?>
             <? endif; ?>
         </li>
     </ul>
-    <!-- END activity feed -->
 </div> <!-- END side panel -->
+
+        <div class="alert alert-info alert-dismissible systemNotification"> <!-- BEGIN notification -->
+            <button type="button" class="close">
+                <span>&times;</span>
+            </button>
+            This is a new system message so we can see it on the user side
+        </div> <!-- END notification -->
+    <? if ($systemNotification): ?>
+        <div class="alert alert-info alert-dismissible systemNotification"> <!-- BEGIN notification -->
+            <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
+                <span>&times;</span>
+            </button>
+            <?= $systemNotification->message ?>
+            This is a new system message so we can see it on the user side
+        </div> <!-- END notification -->
+    <? endif; ?>
