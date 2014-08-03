@@ -113,28 +113,14 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <? endforeach; ?>
             <? endif; ?>
         </li>
-        <li>
-            <? if (sizeof($recentActivity) > 0): ?>
-                <? foreach ($recentActivity as $notification): ?>
-                    <span><?= $notification->message ?></span>
-                <? endforeach; ?>
-            <? endif; ?>
-        </li>
     </ul>
 </div> <!-- END side panel -->
 
-        <div class="alert alert-info alert-dismissible systemNotification"> <!-- BEGIN notification -->
-            <button type="button" class="close">
-                <span>&times;</span>
-            </button>
-            This is a new system message so we can see it on the user side
-        </div> <!-- END notification -->
-    <? if ($systemNotification): ?>
-        <div class="alert alert-info alert-dismissible systemNotification"> <!-- BEGIN notification -->
-            <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
-                <span>&times;</span>
-            </button>
-            <?= $systemNotification->message ?>
-            This is a new system message so we can see it on the user side
-        </div> <!-- END notification -->
-    <? endif; ?>
+<? if ($systemNotification): ?> <!-- BEGIN notification -->
+    <div class="alert alert-info alert-dismissible systemNotification">
+        <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
+            <span>&times;</span>
+        </button>
+        <?= $systemNotification->message ?>
+    </div>
+<? endif; ?> <!-- END notification -->
