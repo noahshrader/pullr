@@ -26,8 +26,8 @@ $twitchPartner = $user->userFields->twitchPartner;
             <?= $systemNotification->message ?>
         </div> <!-- END notification -->
     <? endif; ?>
-    <div class="dashboard-data-wrap">
 
+    <div class="dashboard-data-wrap">
         <ul class="nav nav-tabs">
             <li class="active">
                 <a href="#today" data-toggle="tab">Today</a>
@@ -44,266 +44,50 @@ $twitchPartner = $user->userFields->twitchPartner;
         </ul>
 
         <div class="tab-content">
-
             <div class="tab-pane fade in active" id="today">
-
+                <!-- HTML MARKUP - Overview Stats -->
                 <div class="row stats-overview">
-                    <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
                     <div class="col-xs-12 stats-box raised-total">
                         <i class="icon-coin"></i>
                         <h1>$45,567</h1>
                         <h5>Total Amount Raised</h5>
                     </div>
-                    <div class="poop">
-                        <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
-                        <div class="col-xs-4 stats-box">
+                    <div class="other-raised-totals">
+                        <div>
                             <h2>1</h2>
                             <h5>Total Campaigns</h5>
                         </div>
-                        <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
-                        <div class="col-xs-4 stats-box">
+                        <div>
                             <h2>1245</h2>
                             <h5>Total Donations</h5>
                         </div>
-                        <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
-                        <div class="col-xs-4 stats-box">
+                        <div>
                             <h2>456</h2>
                             <h5>Total Donors</h5>
                         </div>
                     </div>
                 </div>
 
-                <div class="row stats-overview raised-group-stats">
-                    <!-- HTML MARKUP - RAISED FOR CHARITY -->
-                    <div class="col-xs-6 stats-box">
-                        <h2>$1245</h2>
-                        <h5>Raised for Charity</h5>
-                    </div>
-
-                    <!-- HTML MARKUP - RAISED PERSONALLY -->
-                    <div class="col-xs-6 stats-box">
-                        <h2>$1245</h2>
-                        <h5>Raised Personally</h5>
-                    </div>
-
-                </div>
-
+                <!-- Twitch Data -->
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview twitch-stats">
-                        <!-- BEGIN twitch followers -->
-                        <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                            <h2><?= $twitchUser->followersNumber ?></h2>
-                            <h5>Twitch Followers</h5>
-                        </div>
-                        <!-- END twitch followers -->
-                        <? if ($twitchPartner): ?>
-                            <!-- BEGIN twitch subscribers -->
+                        <i class="group-header icon-twitch2"></i>
+                        <div class="group-stats-wrap">
+                            <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
+                                <h2><?= $twitchUser->followersNumber ?></h2>
+                                <h5>Followers</h5>
+                            </div>
+                            <? if ($twitchPartner): ?>
                             <div class="col-xs-6 text-center stats-box">
                                 <h2><?= $twitchUser->subscribersNumber ?></h2>
-                                <h5>Twitch Subscribers</h5>
+                                <h5>Subscribers</h5>
                             </div>
-                            <!-- END twitch subscribers -->
-                        <? endif ?>
-                    </div>
-                <? endif ?>
-            </div><!-- END Today Tab Pane -->
-
-            <div class="tab-pane fade in" id="month">
-
-               <div class="row stats-overview">
-                    <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
-                    <div class="col-xs-12 stats-box">
-                        <h2>$45,567</h2>
-                        <h5>Total Amount Raised</h5>
-                    </div>
-                    <div class="clearfix"></div>
-                    <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>1</h2>
-                        <h5>Total Campaigns</h5>
-                    </div>
-                    <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>1245</h2>
-                        <h5>Total Donations</h5>
-                    </div>
-                    <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>456</h2>
-                        <h5>Total Donors</h5>
-                    </div>
-                </div>
-
-                <div class="row stats-overview">
-                    <!-- HTML MARKUP - RAISED FOR CHARITY -->
-                    <div class="col-xs-6 stats-box">
-                        <h2>$1245</h2>
-                        <h5>Raised for Charity</h5>
-                    </div>
-
-                    <!-- HTML MARKUP - RAISED PERSONALLY -->
-                    <div class="col-xs-6 stats-box">
-                        <h2>$1245</h2>
-                        <h5>Raised Personally</h5>
-                    </div>
-
-                </div>
-
-                <? if ($twitchUser): ?>
-                    <div class="row stats-overview">
-                        <!-- BEGIN twitch followers -->
-                        <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                            <h2><?= $twitchUser->followersNumber ?></h2>
-                            <h5>Twitch Followers</h5>
+                            <? endif ?>
                         </div>
-                        <!-- END twitch followers -->
-
-
-                        <? if ($twitchPartner): ?>
-                            <!-- BEGIN twitch subscribers -->
-                            <div class="col-xs-6 text-center stats-box">
-                                <h2><?= $twitchUser->subscribersNumber ?></h2>
-                                <h5>Twitch Subscribers</h5>
-                            </div>
-                            <!-- END twitch subscribers -->
-                        <? endif ?>
-                    </div>
-
-
-                <? endif ?>
-
-
-            </div><!-- END Today Tab Pane -->
-
-            <div class="tab-pane fade in" id="overall">
-
-               <div class="row stats-overview">
-                    <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
-                    <div class="col-xs-12 stats-box">
-                        <h2>$45,567</h2>
-                        <h5>Total Amount Raised</h5>
-                    </div>
-                    <div class="clearfix"></div>
-                    <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>1</h2>
-                        <h5>Total Campaigns</h5>
-                    </div>
-                    <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>1245</h2>
-                        <h5>Total Donations</h5>
-                    </div>
-                    <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>456</h2>
-                        <h5>Total Donors</h5>
-                    </div>
-                </div>
-
-                <div class="row stats-overview">
-                    <!-- HTML MARKUP - RAISED FOR CHARITY -->
-                    <div class="col-xs-6 stats-box">
-                        <h2>$1245</h2>
-                        <h5>Raised for Charity</h5>
-                    </div>
-
-                    <!-- HTML MARKUP - RAISED PERSONALLY -->
-                    <div class="col-xs-6 stats-box">
-                        <h2>$1245</h2>
-                        <h5>Raised Personally</h5>
-                    </div>
-
-                </div>
-
-                <? if ($twitchUser): ?>
-                    <div class="row stats-overview">
-                        <!-- BEGIN twitch followers -->
-                        <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                            <h2><?= $twitchUser->followersNumber ?></h2>
-                            <h5>Twitch Followers</h5>
-                        </div>
-                        <!-- END twitch followers -->
-
-
-                        <? if ($twitchPartner): ?>
-                            <!-- BEGIN twitch subscribers -->
-                            <div class="col-xs-6 text-center stats-box">
-                                <h2><?= $twitchUser->subscribersNumber ?></h2>
-                                <h5>Twitch Subscribers</h5>
-                            </div>
-                            <!-- END twitch subscribers -->
-                        <? endif ?>
-                    </div>
-
-
-                <? endif ?>
-
-
-            </div><!-- END Today Tab Pane -->
-
-            <div class="tab-pane fade in" id="daterange">
-
-                <div class="row stats-overview">
-                    <!-- HTML MARKUP - TOTAL AMOUNT RAISED FOR TODAY GOES HERE -->
-                    <div class="col-xs-12 stats-box">
-                        <h2>$45,567</h2>
-                        <h5>Total Amount Raised</h5>
-                    </div>
-                    <div class="clearfix"></div>
-                    <!-- HTML MARKUP - TOTAL CAMPAIGNS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>1</h2>
-                        <h5>Total Campaigns</h5>
-                    </div>
-                    <!-- HTML MARKUP - TOTAL DONTATIONS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>1245</h2>
-                        <h5>Total Donations</h5>
-                    </div>
-                    <!-- HTML MARKUP - TOTAL DONORS FOR TODAY -->
-                    <div class="col-xs-4 stats-box">
-                        <h2>456</h2>
-                        <h5>Total Donors</h5>
-                    </div>
-                </div>
-
-                <div class="row stats-overview">
-                    <!-- HTML MARKUP - RAISED FOR CHARITY -->
-                    <div class="col-xs-6 stats-box">
-                        <h2>$1245</h2>
-                        <h5>Raised for Charity</h5>
-                    </div>
-
-                    <!-- HTML MARKUP - RAISED PERSONALLY -->
-                    <div class="col-xs-6 stats-box">
-                        <h2>$1245</h2>
-                        <h5>Raised Personally</h5>
-                    </div>
-
-                </div>
-
-                <? if ($twitchUser): ?>
-                    <div class="row stats-overview">
-                        <!-- BEGIN twitch followers -->
-                        <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                            <h2><?= $twitchUser->followersNumber ?></h2>
-                            <h5>Twitch Followers</h5>
-                        </div>
-                        <!-- END twitch followers -->
-
-
-                        <? if ($twitchPartner): ?>
-                            <!-- BEGIN twitch subscribers -->
-                            <div class="col-xs-6 text-center stats-box">
-                                <h2><?= $twitchUser->subscribersNumber ?></h2>
-                                <h5>Twitch Subscribers</h5>
-                            </div>
-                            <!-- END twitch subscribers -->
-                        <? endif ?>
                     </div>
                 <? endif ?>
-            </div><!-- END Today Tab Pane -->
+            </div>
+        </div>
     </div>
 </section>
 

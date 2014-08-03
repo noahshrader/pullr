@@ -17,29 +17,67 @@
 	.stats-overview {
 		margin: 0;
 		border: 0;
+		background: @dkaccent;
+
+		h1,
+		h2 {
+			color: @white;
+		}
+		h1 {
+			font-size: 4.8em;
+		}
+		h5 {
+			color: @dkaccentshade;
+		}
 
 		.stats-box {
-			padding: 1.8em 2em;
 			border: 0;
 
+			/* Main Total Section */
 			&.raised-total {
 				float: left;
-				width: 50%;
-				background: @gray75;
+				padding: 6em 0;
+				width: 70%;
+				background: @accent;
+
 				i {
-					color: @gray75;
+					color: @dkraccent;
 					font-size: 3em;
 				}
 			}
 		}
-		.poop {
+			/* Other Totals Section */
+			.other-raised-totals {
+				float: left;
+				width: 30%;
+
+				div {
+					padding: 20px 0;
+					border-bottom: solid 1px @dkaccentshade;
+				}	
+			}
+
+		i.group-header {
+			display: inline-block;
 			float: left;
-			width: 50%;
-			background: @gray75;			
+			color: @white;
+			font-size: 1.8em;
+			line-height: 119px;
+			width: 10%;
+			background: @bgwhitefade;
 		}
+
+		.group-stats-wrap {
+			float: right;
+			width: 90%;
+		}
+
+		/* Amount Raised Bars */
 		&.raised-group-stats {
-			background: @gray75;
+			background: @gray60;
 		}
+
+		/* Twitch Bar */
 		&.twitch-stats {
 			background-color: #58029d;
 			background-image: -webkit-gradient(linear, left bottom, right top, from(rgb(88, 2, 157)), to(rgb(142, 49, 197)));
@@ -49,10 +87,6 @@
 			background-image: -ms-linear-gradient(left bottom, rgb(88, 2, 157), rgb(142, 49, 197));
 			background-image: linear-gradient(left bottom, rgb(88, 2, 157), rgb(142, 49, 197));
 			filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#58029d', EndColorStr='#8e31c5');
-
-			h2 {
-				color: @white;
-			}
 		}
 	}
 }
