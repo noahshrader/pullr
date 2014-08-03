@@ -107,24 +107,33 @@
 /* ------------------------------------------------- */
 .alert-info {
 	position: fixed;
-	bottom: 0;
+	bottom: -44px;
 	left: 0;
 	right: 0;
 	color: @white;
 	font-size: 14px;
+	line-height: 44px;
 	text-align: center;
-	padding: 12px 30px;
+	height: 44px;
 	margin: 0;
+	padding: 0;
 	background: @bgblackfade;
 	border: 0;
 	border-radius: 0;
 	z-index: 9999;
+	.slowtrans;
+	&.slideup {
+		bottom: 0;
+	}
 
 	button.close {
 		position: absolute;
 		right: 20px;
 		color: @white !important;
+		font-weight: 400;
 		text-shadow: none;
+		line-height: 44px;
+		opacity: 1;
 	}
 }
 

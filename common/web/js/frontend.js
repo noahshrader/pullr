@@ -18,7 +18,7 @@ Pullr.setCurrentMenuActive = function(){
     $(selector).addClass('active');
 };
 
-// Open streamer dashboard in separate window
+// open streamboard in separate window
 $('.streamboard').click(function(event) {
     event.preventDefault();
     var width = Math.min(screen.width,Pullr.Streamboard.streamboardWidth);
@@ -35,7 +35,10 @@ $(function () {
 });
 
 
-// Toggle sidebar-nav
+// dashboard alert
+$(window).load(function() {
+      $('.alert-info').addClass('slideup');
+});
 
 // Toggle sidebar
 $(".primary-nav-toggle").click(function(){
