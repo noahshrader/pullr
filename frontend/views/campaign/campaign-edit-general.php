@@ -15,21 +15,30 @@ $this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAss
 $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
-        <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
-        <?= $form->field($campaign, 'description', ['autoPlaceholder' => true])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 6]); ?>
+        <!-- Campaign Name -->
+        <div class="form-group">
+            <label>Campaign Name:</label>
+            <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
+        </div>
+        <!-- Campaign Description -->
+        <div class="form-group">
+            <label>Campaign Description:</label>
+            <?= $form->field($campaign, 'description', ['autoPlaceholder' => true])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 6]); ?>
+        </div>
+        <!-- Campaign Type -->
         <div class="form-group field-campaign-type">
             <label>Select a Campaign Type:</label>
             <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
             <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'form-control select-block']) ?>
         </div>
-        
+        <!-- Campaign Dates/Times -->
         <div id="startEndContainer">
             <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Start date tooltip"></i>'; ?>
              <?= $form->field($campaign, 'startDate')->label("Start Date/Time: $tooltip")->input('datetime-local'); ?>
             <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="End date tooltip"></i>'; ?>
              <?= $form->field($campaign, 'endDate')->label("End Date/Time: $tooltip")->input('datetime-local'); ?>
         </div>
-    
+        <!-- Parent Campaigns -->
         <? if (sizeof($parentCampaigns) > 0): ?>
             <? 
             $keyValues = [ 0 => ''];
@@ -46,45 +55,48 @@ $firstGiving = $campaign->getFirstGiving();
             </div>
         <? endif; ?>
         <div id="notTiedCampaignContainer">
-
+        <!-- Campaign Goal Amount -->
+        <div class="form-group">
+            <label>Goal Amount:</label>
             <?= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => true]); ?>
-
+        </div>
+        <!-- Personal Fundraiser PayPal -->
+        <div class="form-group">
             <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => true]); ?>
-
-            <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
-                <label> Donation Destination 
-                    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the donation destination."></i>
-                </label>
-                <div class="form-group field-campaign-donationDestination">
-                    <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'form-control select-block']) ?>
-                    <?= Html::error($campaign, 'donationDestination', ['class' => 'help-block']) ?>
-                </div>
-
-                <?/*
-                <div class='preapprovedCharity'>
-                    <?= $form->field($campaign, 'charityId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
-                    <div class='charity-name <? if (!$campaign->charityId) { echo 'hidden';} ?>'>
-                        <label>
-                            Selected charity:
-                        </label>
-                        <span><?= $campaign->charity?$campaign->charity->name:''?></span>
-                    </div>
-
-                    <button class="btn btn-primary" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
-                </div>
-                */?>
-
-                <div class="preapprovedCharity">
-                    <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving']); ?>
-                </div>
-
-                <div class='customCharity'>
-                    <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => true]); ?>
-                    <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => true]); ?>
-                    <?= $form->field($campaign, 'customCharityDescription', ['autoPlaceholder' => true])->textarea(); ?>
-                </div>
-
+        </div>
+        <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
+        <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
+            <label> Donation Destination 
+                <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the donation destination."></i>
+            </label>
+            <div class="form-group field-campaign-donationDestination">
+                <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'form-control select-block']) ?>
+                <?= Html::error($campaign, 'donationDestination', ['class' => 'help-block']) ?>
             </div>
+            <?/*
+            <div class='preapprovedCharity'>
+                <?= $form->field($campaign, 'charityId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
+                <div class='charity-name <? if (!$campaign->charityId) { echo 'hidden';} ?>'>
+                    <label>
+                        Selected charity:
+                    </label>
+                    <span><?= $campaign->charity?$campaign->charity->name:''?></span>
+                </div>
+
+                <button class="btn btn-primary" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
+            </div>
+            */?>
+            <div class="preapprovedCharity highlight-wrap">
+                <h4>Choose from one of our partnered organizations</h4>
+                <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving']); ?>
+            </div>
+            <div class="customCharity highlight-wrap">
+                <h4>Support your own charity</h4>
+                <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => true]); ?>
+                <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => true]); ?>
+                <?= $form->field($campaign, 'customCharityDescription', ['autoPlaceholder' => true])->textarea(); ?>
+            </div>
+        </div>
         </div>
         <div class="clearfix"></div>
     </div>

@@ -1,10 +1,8 @@
 /* Campaign Edit Tabs */
 /* ------------------------------------------------- */
 .campaign-edit-wrap {
-	padding-left: 80px;
-	padding-right: 80px;
-	padding-bottom: 60px;
 	margin: 0 auto;
+	padding: @top-menu-height 60px 60px;
 	max-width: 980px;
 	
 	ul {
@@ -64,7 +62,23 @@
 			}
 		}
 	}
-
+	.highlight-wrap,
+	.field-campaign-twittername,
+	.field-campaign-youtubeurl,
+	.field-campaign-facebookurl {
+		position: relative;
+		padding: 20px;
+		margin: 20px 0;
+		background: @gray70;
+		.border-radius;
+		&:before {
+			.arrow-up;
+			top: -10px;
+			left: 50%;
+			margin-left: -10px;
+			border-color: transparent transparent @gray70 transparent;
+		}
+	}
 	.logo{
 		max-width: 100px;
 		max-height: 100px;
@@ -82,25 +96,21 @@
 			margin-top: 10px;
 		}
 	}
-	
 	#collapseFour{
 		.field-campaign-twittername, .field-campaign-youtubeurl, .field-campaign-facebookurl{
 			display: none;
 		}
 	}
-	
 	#collapseFour.twitterEnable{
 		.field-campaign-twittername{
 			display: block;
 		}
 	}
-	
 	#collapseFour.youtubeEnable{
 		.field-campaign-youtubeurl{
 			display: block;
 		}
 	}
-	
 	#collapseFour.facebookEnable{
 		.field-campaign-facebookurl{
 			display: block;
