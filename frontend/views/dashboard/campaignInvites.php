@@ -1,6 +1,5 @@
 <div class="campaign-invites module"> <!-- BEGIN campaign invites -->
-    <h5><i class="icon-useradd"></i> Campaign Invites</h5>
-    <ul>
+    <ul class="hide">
         <? foreach ($campaignInvites as $invite): ?>
         <li>
             <h4><?= $invite->campaign->name ?></h4>

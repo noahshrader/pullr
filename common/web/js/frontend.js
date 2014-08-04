@@ -34,13 +34,25 @@ $(function () {
     $("[data-toggle='tooltip']").tooltip();
 });
 
-
 // dashboard alert
 $(window).load(function() {
       $('.alert-info').addClass('slideup');
 });
 
-// Toggle sidebar
+// dashboard notifications / campaign invites
+$(function () {
+    var invites = $('.campaign-invites ul li').length;
+    var invitelist = $('.campaign-invites ul');
+    $('.invites-count').html(invites);
+    if ($(invitelist).find('li').length >= 1) {
+        $('.icon-announcement').addClass('full');
+    }
+    $('.icon-announcement').click(function () {
+        $(invitelist).toggleClass('hide');
+    });
+});
+
+// toggle sidebar
 $(".primary-nav-toggle").click(function(){
     $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");
     $(".logo").toggleClass("icon-pullr icon-pullr2");

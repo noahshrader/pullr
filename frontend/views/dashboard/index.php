@@ -96,14 +96,16 @@ $twitchPartner = $user->userFields->twitchPartner;
         </div>
     </div>
 </section>
-
-<div id="sidebar" class="dashboard"> <!-- BEGIN side panel -->
-    <? if (sizeof($campaignInvites) > 0): ?>
-        <?=
-        $this->render('campaignInvites', [
-            'campaignInvites' => $campaignInvites
-        ]) ?>
-    <? endif ?>
+<div id="sidebar" class="dashboard">
+    <div class="invites-wrap"> <!-- BEGIN campaign invites -->
+        <a class="icon-announcement"><span class="invites-count"></span></a>
+        <? if (sizeof($campaignInvites) > 0): ?>
+             <?=
+            $this->render('campaignInvites', [
+                'campaignInvites' => $campaignInvites
+            ]) ?>
+         <? endif ?>
+    </div> <!-- END campaign invites -->
     <h5><i class="icon-chatbubble2"></i> Recent Activity</h5>
     <ul class="activity-feed module">
         <li>
@@ -114,7 +116,7 @@ $twitchPartner = $user->userFields->twitchPartner;
             <? endif; ?>
         </li>
     </ul>
-</div> <!-- END side panel -->
+</div>
 
 <? if ($systemNotification): ?> <!-- BEGIN notification -->
     <div class="alert alert-info alert-dismissible systemNotification">
