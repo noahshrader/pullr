@@ -15,6 +15,7 @@ $user = \Yii::$app->user->identity;
         <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control select-block']) ?>
     </div>
     <div class="form-group highlight-wrap">
+        <label>Channel Name:</label>
         <!-- Channel Single Name -->
         <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => true]); ?>
         <!-- Channel Team Name -->

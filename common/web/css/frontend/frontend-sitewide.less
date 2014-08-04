@@ -7,14 +7,15 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	background: @white;
 }
 #content {
 	float: left;
-    	padding-right: @sidepanelwidth + 60px;
-    	padding-top: @top-menu-height;  
-    	padding-bottom: 60px;
-    	width: 100%;
-    	background: @white;
+    padding-right: @sidepanelwidth + 60px;
+    padding-top: @top-menu-height;  
+    padding-bottom: 60px;
+    width: 100%;
+    background: @white;
 }
 .large-menu-toggled #content {
 	padding-left: @primary-nav-lg-width + 60px;
@@ -35,7 +36,6 @@
 .campaign-edit-wrap,
 .donor-view-wrap {
 	padding-top: @top-menu-height;
-	background: @white;
 
 	h1 {
 		margin: 0 auto 60px;
@@ -128,14 +128,3 @@
 
 /* Misc */
 /* ------------------------------------------------- */
-.blur {
-	-webkit-filter: blur(16px);
-	-moz-filter: blur(16px);
-	filter: blur(16px);
-	-webkit-transform: translate3d(0,0,0);
-	-moz-transform: translate3d(0,0,0);
-	-ms-transform: translate3d(0,0,0);
-	-o-transform: translate3d(0,0,0);
-	transform: translate3d(0,0,0);
-	opacity: .8;
-}

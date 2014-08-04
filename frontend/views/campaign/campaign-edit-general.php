@@ -92,9 +92,18 @@ $firstGiving = $campaign->getFirstGiving();
             </div>
             <div class="customCharity highlight-wrap">
                 <h4>Support your own charity</h4>
-                <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => true]); ?>
-                <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => true]); ?>
-                <?= $form->field($campaign, 'customCharityDescription', ['autoPlaceholder' => true])->textarea(); ?>
+                <div class="form-group">
+                    <label>Charity Name:</label>
+                    <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => true]); ?>
+                </div>
+                <div class="form-group">
+                    <label>Charity PayPal Address:</label>
+                    <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => true]); ?>
+                </div>
+                <div class="form-group">
+                    <label>Campaign Description:</label>
+                    <?= $form->field($campaign, 'customCharityDescription', ['autoPlaceholder' => true])->textarea(); ?>
+                </div>
             </div>
         </div>
         </div>
