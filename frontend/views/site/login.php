@@ -14,12 +14,12 @@ $this->title = 'Login';
         <? if (YII_ENV_DEV): ?>
             <div class="alert alert-info" role="alert">User/Pass available here only at pullr/dev configuration
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                    <?= $form->field($model, 'login') ?>
-                    <?= $form->field($model, 'password')->passwordInput() ?>
-                    <div class="form-group">
-                            <?= Html::submitButton('Login', ['class' => 'btn btn-primary']) ?>
-                    </div>
+                <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                <?= $form->field($model, 'login') ?>
+                <?= $form->field($model, 'password')->passwordInput() ?>
+                <div class="form-group">
+                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary']) ?>
+                </div>
             <?php ActiveForm::end(); ?>
             </div>
         <? endif ?>

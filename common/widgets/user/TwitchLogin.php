@@ -17,7 +17,7 @@ class TwitchLogin extends Widget {
         $loginURL = $twitchSDK->authLoginURL('user_read channel_subscriptions');
         
         $this->options['href'] = $loginURL;
-        $this->options['class'] = 'twitchLogin';
+        $this->options['class'] = 'twitchLogin icon-twitch2';
         
         $imageOptions = [];
         $imageOptions['src'] = Application::frontendUrl('images/connect_twitch_dark.png');

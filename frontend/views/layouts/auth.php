@@ -1,7 +1,4 @@
 <?php
-/**
- * This layout is used for login page and some non-authenticated pages like "Privacy Policy" and "Terms of service".
- */
 use common\assets\CommonAsset;
 use common\assets\AuthAsset;
 /**
