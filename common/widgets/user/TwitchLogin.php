@@ -17,12 +17,10 @@ class TwitchLogin extends Widget {
         $loginURL = $twitchSDK->authLoginURL('user_read channel_subscriptions');
         
         $this->options['href'] = $loginURL;
-        $this->options['class'] = 'twitchLogin icon-twitch2';
+        $this->options['class'] = 'btn btn-default';
         
-        $imageOptions = [];
-        $imageOptions['src'] = Application::frontendUrl('images/connect_twitch_dark.png');
-        $imageTag = Html::tag('img','', $imageOptions);
-        $a = Html::tag('a', $imageTag, $this->options);
+        $twitchTitle = '<i class="icon icon-twitch2"></i> Connect With Twitch';
+        $a = Html::tag('a', $twitchTitle, $this->options);
         
         return $a;
     }
