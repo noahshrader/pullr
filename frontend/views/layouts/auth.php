@@ -7,8 +7,6 @@ use common\assets\AuthAsset;
  */
 CommonAsset::register($this);
 AuthAsset::register($this);
-
-
 ?>
 
 <?php $this->beginPage() ?>

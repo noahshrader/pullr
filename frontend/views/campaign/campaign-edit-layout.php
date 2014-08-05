@@ -9,13 +9,13 @@ $user = \Yii::$app->user->identity;
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
     <!-- Campaign Page Layout -->
     <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
-        <label class="control-label">Layout Type:</label>
+        <label class="control-label">Layout Type</label>
         <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
         <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
         <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control select-block']) ?>
     </div>
     <div class="form-group highlight-wrap">
-        <label>Channel Name:</label>
+        <label>Channel Name</label>
         <!-- Channel Single Name -->
         <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => true]); ?>
         <!-- Channel Team Name -->

@@ -3,7 +3,6 @@ function donatePageInit() {
 
     $("#other").hide();
 
-
     $('.donationContainer').on('change', 'input[type="radio"].toggle', function() {
         if (this.checked) {
             $('input[name="' + this.name + '"].checked').removeClass('checked');

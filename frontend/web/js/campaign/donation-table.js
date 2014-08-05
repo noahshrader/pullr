@@ -18,8 +18,7 @@ $(function(){
                     }
           }
     });
-    
-    
+
     // Add event listener for opening and closing details
     $el.find('tbody').on('click', 'td.details-control i', function () {
         var dt = $el.DataTable();
@@ -47,7 +46,7 @@ $(function(){
             var id = $('.campaign-view-selected').data('id');
             var href = 'app/campaign/exportdonations?id='+id;
         }
-        var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm').attr('href', href).html
+        var csvButton = $('<a>').addClass('btn btn-info btn-csv btn-sm btn-secondary').attr('href', href).html
             ('<i class="icon icon-download"></i> Export All');
         csvButton.insertBefore($wrapper.find('.dataTables_paginate'));
     }

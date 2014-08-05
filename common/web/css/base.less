@@ -76,17 +76,22 @@ iframe {
 ul {
 	.ulist
 }
+::selection {
+	background: @gray75;
+	color: #FFF;
+	text-shadow: none;
+}
 
 /* Placeholder styling */
 ::-webkit-input-placeholder {
-   color: red;
+   color: @gray60 !important;
 }
 :-moz-placeholder {
-   color: red;  
+   color: @gray60 !important; 
 }
 ::-moz-placeholder {
-   color: red;  
+   color: @gray60 !important;  
 }
 :-ms-input-placeholder {  
-   color: red;  
+   color: @gray60 !important;  
 }
