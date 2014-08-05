@@ -25,6 +25,7 @@ AuthAsset::register($this);
                     </div>
             </div>
         <?php $this->endBody() ?>
+        <div class="login-back"></div>
     </body>
 </html>
 <?php $this->endPage() ?>
