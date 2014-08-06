@@ -4,6 +4,10 @@ body.app .site-content {
 	background: @maingray;
 }
 
+.primary-navigation nav.nav-top ul li a.dashboard.active:after {
+	border-color: transparent @white transparent transparent;	
+}
+
 .large-menu-toggled #content.dashboard {
 	padding-left: @primary-nav-lg-width;
 }
@@ -19,7 +23,7 @@ body.app .site-content {
 	.stats-overview {
 		margin: 0;
 		border: 0;
-		background: @dkaccent;
+		background: @white;
 
 		h1,
 		h2 {
@@ -42,17 +46,25 @@ body.app .site-content {
 				padding: 6em 0;
 				height: 354px;
 				width: 70%;
-				background: @accent;
+				background: @white;
 				&:after {
 					.arrow-up;
 					border-color: transparent transparent @dkaccent9 transparent;
 					margin-left: -10px;
 					left: 50%;
-					bottom: 0; 
+					bottom: -7px; 
+				}
+
+				h1 {
+					color: @accent;
+				}
+
+				h5 {
+					color: @gray60;
 				}
 
 				i {
-					color: @dkaccent9;
+					color: @gray80;;
 					font-size: 3em;
 				}
 			}
@@ -63,13 +75,22 @@ body.app .site-content {
 			position: relative;
 			float: left;
 			width: 30%;
+			background: @gray80;
 
 			div {
 				padding: 20px 0;
-				border-bottom: solid 1px @dkaccent9;
+				border-bottom: solid 2px @white;
+
+				&:last-child {
+					border-bottom: none;
+				}
 			}
+			h2 {
+				color: @gray60;
+			}
+
 			h5 {
-				color: @dkaccent20;
+				color: @gray40;
 			}
 		}
 
@@ -117,8 +138,8 @@ body.app .site-content {
 		float: left;
 		display: inline-block;
 		&.active a {
-			color: @white;
-			background: @accent;
+			color: @accent;
+			background: @white;
 		}
 
 		a {
