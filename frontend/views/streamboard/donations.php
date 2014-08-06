@@ -15,13 +15,13 @@ use common\models\Donation;
             {{donation.displayName}}
             <a ng-hide="donation.nameFromForm == ''" ng-click="nameHiddenToggle(donation)" class="icon-view toggleview"
                ng-class="{nameHidden: donation.streamboard.nameHidden}"></a>
-            <a ng-hide="donation.streamboard.wasRead" ng-click="markAsRead(donation)" class="icon-check2 markread"></a>
         </h3>
         <h4 class="donation-amount">${{number_format(donation.amount)}}</h4>
 
         <p class="donation-comments">{{donation.comments}}</p>
         <span>{{selectedCampaignsNumber > 1 ? donation.campaignName : ''}}</span>
         <span class="donation-date">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</span>
+        <a ng-hide="donation.streamboard.wasRead" ng-click="markAsRead(donation)" class="markread"><i class="icon-check2"></i>Mark as Read</a>
     </div>
 </div>
 <div id="donations-footer">
