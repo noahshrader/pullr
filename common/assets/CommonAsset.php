@@ -13,6 +13,7 @@ class CommonAsset extends AssetBundle {
     ];
     public $js = [
         'js/lib/pace.min.js',
+        'js/lib/jquery.mousewheel.min.js',
         'js/lib/jquery.mCustomScrollbar.js',
         'js/common.js',
         'js/plugins-config.js',
