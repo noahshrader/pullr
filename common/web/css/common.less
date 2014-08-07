@@ -65,7 +65,8 @@ select.form-control {
 	color: @gray40;
 	font-size: @basefontsize;
 	outline: 0;
-	padding: 20px;
+	padding: 0 20px;
+	min-height: 45px;
 	border: solid 1px @white;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.0);
 	box-shadow: 0;
@@ -73,7 +74,9 @@ select.form-control {
 select.form-control {
 	height: 42px;
 	line-height: 42px;
-	text-indent: 12px;
+}
+textarea.form-control {
+	padding: 14px 20px;
 }
 legend,
 label {
