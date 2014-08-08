@@ -20,16 +20,13 @@ $twitchPartner = $user->userFields->twitchPartner;
     <div class="dashboard-data-wrap">
         <ul class="nav nav-tabs">
             <li class="active">
+                <a href="#overall" data-toggle="tab">Overall</a>
+            </li>
+            <li>
                 <a href="#today" data-toggle="tab">Today</a>
             </li>
             <li>
                 <a href="#month" data-toggle="tab">This Month</a>
-            </li>
-            <li>
-                <a href="#overall" data-toggle="tab">Overall</a>
-            </li>
-            <li>
-                <a href="#daterange" data-toggle="tab">Date Range</a>
             </li>
             <div class="invites-wrap"> <!-- BEGIN campaign invites -->
                 <a class="icon-announcement"><!--<span class="invites-count"></span>--></a>
