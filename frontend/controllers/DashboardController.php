@@ -12,20 +12,26 @@ use common\models\Campaign;
 
 class DashboardController extends FrontendController {
     public function actionIndex() {
-        $userId = \Yii::$app->user->id;
+        //$userId = \Yii::$app->user->id;
+        $user = \Yii::$app->user->identity;
+        $userId = $user->getId();
         $systemNotification = SystemNotification::getNotificationForUser($userId);
         $campaignInvites = CampaignInvite::findAll(['userId' => $userId, 'status' => CampaignInvite::STATUS_PENDIND]);
         $recentActivity = RecentActivityNotification::find()->andWhere(['userId' => $userId])->orderBy('DATE DESC')->limit(10)->all();
         $twitchUser = TwitchUser::findOne($userId);
 
         // overall statistics calculations
-        $dashboard['overall'] = $this->calculateDashboardStats(Campaign::find()->where(['userId' => $userId]));
+        $dashboard['overall'] = $this->calculateDashboardStats($user->getCampaigns(Campaign::STATUS_ACTIVE)->orderBy('id DESC'));
 
         // today statistics calculations
-        $dashboard['today'] = $this->calculateDashboardStats(Campaign::find()->where(['userId' => $userId])->andWhere('DATE(date) = CURDATE()'));
+        $parentCampaigns = $user->getParentCampaigns()->andWhere('DATE(date) = CURDATE()');
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->andWhere('DATE(date) = CURDATE()');
+        $dashboard['today'] = $this->calculateDashboardStats($campaigns->union($parentCampaigns)->orderBy('id DESC'));
 
         // month statistics calculations
-        $dashboard['month'] = $this->calculateDashboardStats(Campaign::find()->where(['userId' => $userId])->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())'));
+        $parentCampaigns = $user->getParentCampaigns()->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())');
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())');
+        $dashboard['month'] = $this->calculateDashboardStats($campaigns->union($parentCampaigns)->orderBy('id DESC'));
 
         return $this->render('index',[
             'systemNotification' => $systemNotification, 
