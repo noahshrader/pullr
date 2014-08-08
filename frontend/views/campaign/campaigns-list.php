@@ -8,7 +8,9 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  CommonAsset::clas
 
 <div class="campaigns-list" >
     <? if (sizeof($campaigns) > 0): ?>
-        <input placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+        <div class="list-search">
+            <input placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off" class="form-control">
+        </div>
         <div data-bind="template: {name:'campaign', foreach:campaigns}">
         </div>
         <script type="text/html" id="campaign">
