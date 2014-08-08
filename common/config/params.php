@@ -16,5 +16,7 @@ return [
     * "http://www.twitch.tv/settings/connections"
      */
     'twitchClientId' => 'remsfof2g40lldoyt81lkldftlis4e7',
-    'twitchClientSecret' => '2xjixm2240k3gj7jwd90hupd9of4kwm'
+    'twitchClientSecret' => '2xjixm2240k3gj7jwd90hupd9of4kwm',
+
+    'googleAPIKey' => 'AIzaSyBCaACEmXOZ9F2u9DF9O-U-1-_BmTfNQfE'
 ];

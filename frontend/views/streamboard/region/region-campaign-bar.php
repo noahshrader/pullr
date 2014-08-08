@@ -1,0 +1,3 @@
+<div>
+    {{widget | json}}
+</div>

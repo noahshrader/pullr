@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module('streamboardApp', []);
+    var app = angular.module('streamboardApp', ['vr.directives.slider']);
     app.filter('selectedCampaigns', function(){
        return function(donations, $rootScope){
            var filteredDonations = [];
@@ -50,6 +50,21 @@
 
     });
 
+    app.directive('isolatedScope', function(){
+      return {
+          scope: true
+      }
+    });
+    app.controller('RegionCtrl', function ($rootScope, $scope, $http){
+        $scope.regions = {};
+        $http.get('app/streamboard/get_regions_ajax').success(function(data){
+            $scope.regions = data;
+        });
+        $scope.regionChanged = function(region){
+            $http.post('app/streamboard/update_region_ajax', region);
+        };
+    });
+
     app.controller('SourceCtrl', function ($rootScope, $scope, $http){
         $scope.stats = {};
         $scope.requestSourceStats = function(){
@@ -70,7 +85,6 @@
         $scope.donations = [];
         $scope.unorderedDonations = {};
         $scope.stats = {};
-        //$scope.campaigns = [];
         /*we will request only donations with id>$scope.lastDonationId*/
         $scope.lastDonationId = 0;
         

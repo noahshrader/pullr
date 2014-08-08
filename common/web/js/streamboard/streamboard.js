@@ -14,10 +14,14 @@ $(function () {
         $(".spinner-wrap").fadeOut();
     });
 
+    if (Pullr.ENV == 'dev'){
+        $(".spinner-wrap").fadeOut();
+    }
     // panel toggles
-    $('ul.bottom-panel-nav li a').click(function() {
+    $(document).on('click', 'ul.bottom-panel-nav li a', function() {
    		$('.'+$(this).data('panel')+'_panel').toggleClass('selected');
    	});
+
     $('a.close').click(function() {
    		$(this).closest('div').toggleClass('selected');
    	});
@@ -38,6 +42,13 @@ $(function () {
         }
     });
 
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+        /*workaround for known bug for angular-slider, when shown from hidden refreshSlider event should be issued*/
+        $('slider').parent().each(function(index, element){
+            var $scope = angular.element(element).scope();
+            $scope.$broadcast('refreshSlider');
+        });
+    });
     var currentStreamboardLeft = window.screenX;
     var currentStreamboardTop = window.screenY;
     setInterval(function(){

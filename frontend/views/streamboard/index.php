@@ -3,32 +3,31 @@ use yii\helpers\Url;
 use yii\web\View;
 
 /**@var $this View */
+$tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
 ?>
 <div ng-app="streamboardApp">
     <!-- // Layout Options Side Panel // -->
     <section id="sidepanel" class="sidepanel open resizable">
         <div class="sidepanel-head">
-            <ul class="nav nav-tabs four-tabs cf">
+            <ul class="nav nav-tabs <?= $tabsClass ?> cf">
                 <li class="active">
                     <a href="<?= Url::to() ?>#donations" data-toggle="tab" class="donations"><i
                             class="icon icon-coin"></i></a>
                 </li>
-                <li><a href="<?= Url::to() ?>#region_1" data-toggle="tab" class="region1">1</a></li>
-                <li><a href="<?= Url::to() ?>#region_2" data-toggle="tab" class="region2">2</a></li>
+                <? for ($regionNumber = 1; $regionNumber <= $regionsNumber; $regionNumber++): ?>
+                    <li><a href="<?= Url::to() ?>#region_<?= $regionNumber?>" data-toggle="tab" class="region<?=$regionNumber?>"><?= $regionNumber ?></a></li>
+                <? endfor ?>
                 <li><a href="<?= Url::to() ?>#settingsTab" data-toggle="tab"><i class="icon icon-settings"></i></a></li>
             </ul>
         </div>
-        <div class="tab-content">
-            <div id="donations" class="tab-pane active" data-ng-controller="DonationsCtrl">
+        <!-- We are using RegionCtrl here to be able to use ng-repeat in tab-regions -->
+        <div class="tab-content" ng-controller="RegionCtrl">
+            <div id="donations" class="tab-pane active" ng-controller="DonationsCtrl">
                 <?= $this->render('donations') ?>
             </div>
-            <!-- Accordion slide two (Region 1) -->
-            <div class="tab-pane" id="region_1">
-                <h3>Region 1</h3>
-            </div>
-            <!-- Accordion slide three (Region 2) -->
-            <div class="tab-pane" id="region_2">
-                <h3>Region 2</h3>
+            <!-- Accordion slide (Region 1) or (Region 2) -->
+            <div class="tab-pane region" id="region_{{region.regionNumber}}" ng-repeat="region in regions">
+                <?= $this->render('region/region') ?>
             </div>
             <div class="tab-pane" id="settingsTab">
                 <?= $this->render('settings') ?>

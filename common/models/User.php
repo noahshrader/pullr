@@ -438,7 +438,7 @@ class User extends ActiveRecord implements IdentityInterface
     private $_plan = null;
 
     /**
-     * @return Plan::PLAN_BASE|Plan::PLAN_PRO
+     * @return string Plan::PLAN_BASE|Plan::PLAN_PRO - current plan
      */
     public function getPlan()
     {

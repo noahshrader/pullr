@@ -21,6 +21,7 @@ use common\models\User;
         $js = 'window.Pullr = window.Pullr || {}; ';
         $js .= 'window.Pullr.twitchClientId = "'. \Yii::$app->params['twitchClientId'].'";';
         $js .= 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
+        $js .= 'Pullr.ENV = "'. YII_ENV.'";';
         $onreadyJs = '';
         if (!\Yii::$app->user->isGuest) {
            $user = \Yii::$app->user->identity;

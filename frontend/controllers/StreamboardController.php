@@ -2,14 +2,17 @@
 
 namespace frontend\controllers;
 
+use common\models\Plan;
 use common\models\twitch\TwitchSubscription;
 use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
+use frontend\models\streamboard\StreamboardRegion;
 use Yii;
 use common\models\User;
 use common\models\Donation;
 use common\models\Campaign;
 use frontend\models\streamboard\Streamboard;
+use yii\db\ActiveRecord;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
@@ -19,7 +22,10 @@ class StreamboardController extends FrontendController
     public function actionIndex()
     {
         $this->layout = 'streamboard';
+        $user = Application::getCurrentUser();
+        $regionsNumber = $user->getPlan() == Plan::PLAN_PRO ? 2 : 1;
         return $this->render('index', [
+            'regionsNumber' => $regionsNumber
         ]);
     }
 
@@ -197,7 +203,6 @@ class StreamboardController extends FrontendController
             'subscribers' => $subscribers
         ];
         echo json_encode($data);
-        die;
     }
 
     public function actionClear_button_ajax()
@@ -209,5 +214,38 @@ class StreamboardController extends FrontendController
         $user = Application::getCurrentUser();
         $user->streamboardConfig->clearedDate = time();
         $user->streamboardConfig->save();
+    }
+
+    public function actionGet_regions_ajax(){
+       $user = Application::getCurrentUser();
+
+       $regions = StreamboardRegion::GetRegions($user);
+
+       $data = [];
+       foreach ($regions as $region){
+           $data[] = $region->toArray();
+       }
+
+       echo json_encode($data);
+    }
+
+    public function actionUpdate_region_ajax()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $user = Application::getCurrentUser();
+        if ($user->id != $data['userId']){
+            throw new ForbiddenHttpException();
+        }
+        $region = StreamboardRegion::findOne(['userId' => $data['userId'], 'regionNumber' => $data['regionNumber']]);
+        /** @var $region StreamboardRegion */
+
+        if ($region->updateFromArray($data, '')){
+            $response = ['code' => 'success', 'region' => $region->toArray()];
+            echo json_encode($response);
+        }
+        else {
+            echo 'error';
+            var_dump($region->getErrors());
+        }
     }
 }

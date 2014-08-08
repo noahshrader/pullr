@@ -24,6 +24,6 @@ use common\models\Donation;
         <a ng-hide="donation.streamboard.wasRead" ng-click="markAsRead(donation)" class="markread"><i class="icon-check2"></i>Mark as Read</a>
     </div>
 </div>
-<div id="donations-footer">
+<div class="right-side-footer">
     <?= $this->render('donations-panels') ?>
 </div>

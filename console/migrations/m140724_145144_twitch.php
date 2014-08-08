@@ -56,6 +56,7 @@ class m140724_145144_twitch extends \console\models\ExtendedMigration
         $this->dropColumn(UserFields::tableName(), self::COLUMN_TWITCH_ACCESS_TOKEN_DATE);
 
         $this->dropTable(TwitchFollow::tableName());
+        $this->dropTable(TwitchSubscription::tableName());
         $this->dropTable(TwitchUser::tableName());
     }
 }
