@@ -6,9 +6,9 @@ use common\models\Donation;
 use common\models\notifications\SystemNotification;
 use common\models\CampaignInvite;
 use common\models\notifications\RecentActivityNotification;
+use common\models\query\CampaignQuery;
 use common\models\twitch\TwitchUser;
 use common\models\Campaign;
-
 
 class DashboardController extends FrontendController {
     public function actionIndex() {
@@ -18,35 +18,24 @@ class DashboardController extends FrontendController {
         $recentActivity = RecentActivityNotification::find()->andWhere(['userId' => $userId])->orderBy('DATE DESC')->limit(10)->all();
         $twitchUser = TwitchUser::findOne($userId);
 
-        $overallUserCampaigns = Campaign::find()->where(['userId' => $userId]);
+        // overall statistics calculations
+        $dashboard['overall'] = $this->calculateDashboardStats(Campaign::find()->where(['userId' => $userId]));
 
-        $overallTotalRaised = $overallUserCampaigns->sum('amountRaised');
-        $overallCharityRaised = Donation::getDonationsForCampaigns($overallUserCampaigns->all())->sum('amount');
-        $overallPersonalRaised = $overallTotalRaised - $overallCharityRaised;
+        // today statistics calculations
+        $dashboard['today'] = $this->calculateDashboardStats(Campaign::find()->where(['userId' => $userId])->andWhere('DATE(date) = CURDATE()'));
 
-        $overallTotalCampaigns = $overallUserCampaigns->count();
-        $overallTotalDonations = $overallUserCampaigns->sum('numberOfDonations');
-        $overallTotalDonors = $overallUserCampaigns->sum('numberOfUniqueDonors');
-
-        $overallTotalRaised = $overallTotalRaised ?: 0;
-        $overallCharityRaised = $overallCharityRaised ?: 0;
-        $overallTotalDonations = $overallTotalDonations ?: 0;
-        $overallTotalDonors = $overallTotalDonors ?: 0;
+        // month statistics calculations
+        $dashboard['month'] = $this->calculateDashboardStats(Campaign::find()->where(['userId' => $userId])->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())'));
 
         return $this->render('index',[
             'systemNotification' => $systemNotification, 
             'campaignInvites' => $campaignInvites,
             'recentActivity' => $recentActivity,
             'twitchUser' => $twitchUser,
-            'overallTotalRaised' => $overallTotalRaised,
-            'overallPersonalRaised' => $overallPersonalRaised,
-            'overallCharityRaised' =>  $overallCharityRaised,
-            'overallTotalCampaigns' => $overallTotalCampaigns,
-            'overallTotalDonations' => $overallTotalDonations,
-            'overallTotalDonors' => $overallTotalDonors
+            'dashboard' => $dashboard,
         ]);
     }
-    
+
     public function actionClosesystemmessage($id){
         $userId = \Yii::$app->user->id;
         SystemNotification::readNotificationForUser($userId, $id);
@@ -71,5 +60,29 @@ class DashboardController extends FrontendController {
             $invite->approve();
         }
         $this->redirect('app');
+    }
+
+    private function calculateDashboardStats(CampaignQuery $userCampaigns){
+        $totalRaised = $userCampaigns->sum('amountRaised');
+        $charityRaised = Donation::getDonationsForCampaigns($userCampaigns->all())->sum('amount');
+        $personalRaised = $totalRaised - $charityRaised;
+
+        $totalCampaigns = $userCampaigns->count();
+        $totalDonations = $userCampaigns->sum('numberOfDonations');
+        $totalDonors = $userCampaigns->sum('numberOfUniqueDonors');
+
+        $totalRaised = $totalRaised ?: 0;
+        $charityRaised = $charityRaised ?: 0;
+        $totalDonations = $totalDonations ?: 0;
+        $totalDonors = $totalDonors ?: 0;
+
+        return array(
+            'totalRaised' => $totalRaised,
+            'personalRaised' => $personalRaised,
+            'charityRaised' => $charityRaised,
+            'totalCampaigns' => $totalCampaigns,
+            'totalDonations' => $totalDonations,
+            'totalDonors' => $totalDonors
+        );
     }
 }
