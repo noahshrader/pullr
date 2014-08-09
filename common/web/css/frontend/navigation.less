@@ -141,14 +141,14 @@
 	&:after {
 		content: "";
 		position: absolute;
-		top: @top-menu-height + 12px;
-		right: -24px;
+		top: @top-menu-height + 20px;
+		left: 99%;
+		right: 0;
 		height: 620px;
-		width: 20px;
 		z-index: -1;
-		-webkit-box-shadow: 0 0 30px @bgblackfade;
-		-moz-box-shadow: 0 0 30px @bgblackfade;
-		box-shadow: 0 0 30px @bgblackfade;
+		-webkit-box-shadow: 0 0 16px rgba(0,0,0,0.8);
+		-moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
+		box-shadow: 0 0 16px rgba(0,0,0,0.8);
 	}
 
 	nav.nav-top {
@@ -203,7 +203,7 @@
 				a.dashboard.active:after {
 					border-color: transparent @accent transparent transparent;	
 				}
-				a.campaign-link.active:after {
+				a.campaign-link.active:after, a.donor-link.active:after {
 					border-color: transparent @dkaccent transparent transparent;	
 				}
 

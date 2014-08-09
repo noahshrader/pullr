@@ -11,7 +11,7 @@ $user = \Yii::$app->user->identity;
 ?>
 
     <section class="campaigns-list-wrap">
-                <?= $this->render('campaigns-sidebar', [ 'status' => null, 'donorsSelected' => true ]); ?>
+                <?//= $this->render('campaigns-sidebar', [ 'status' => null, 'donorsSelected' => true ]); ?>
         
                 <?= $this->render('donors-list', [
                     'donors' => $donors,
@@ -21,4 +21,4 @@ $user = \Yii::$app->user->identity;
     <? if ($viewDonorParams): ?>
          <?= $this->render('donor-view', $viewDonorParams
                 ); ?>   
-    <? endif ?> 
+    <? endif ?>
