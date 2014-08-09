@@ -55,8 +55,23 @@ body {
 	color: @white;
 	text-decoration: underline;
 }
+
+/* Selects */
 .btn.dropdown-toggle {
-	background: @white;
+	float: none;
+	line-height: 20px;
+	padding: 6px 12px;
+	background-color: @gray80;
+	background-image: -moz-linear-gradient(top, @white, @gray75);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@white), to(@gray75));
+	background-image: -webkit-linear-gradient(top, @white, @gray75);
+	background-image: -o-linear-gradient(top, @white, @gray75);
+	background-image: linear-gradient(to bottom, @white, @gray75);
+	border-color: @gray75 @gray75 @gray60;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	border: 1px solid @gray70;
+	border-bottom-color: @gray60;
 	&:focus {
 		outline: 0 !important;
 	}
@@ -100,6 +115,9 @@ input[type='search'] {
 }
 
 /* Bootstrap Overrides */
+.form-group {
+	margin-bottom: 20px;
+}
 .form-group .form-group,
 .help-block {
 	margin: 0;
@@ -214,6 +232,7 @@ table.dataTable thead th   {
 			h1,
 			h2 {
 				color: @accent;
+				font-weight: 400;
 				margin: 0;
 			}
 		}

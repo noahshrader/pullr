@@ -20,17 +20,20 @@ $firstGiving = $campaign->getFirstGiving();
             <label>Campaign Name</label>
             <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
         </div>
+
         <!-- Campaign Description -->
         <div class="form-group">
             <label>Campaign Description</label>
             <?= $form->field($campaign, 'description', ['autoPlaceholder' => true])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 6]); ?>
         </div>
+
         <!-- Campaign Type -->
         <div class="form-group field-campaign-type">
             <label>Select a Campaign Type</label>
             <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
             <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
         </div>
+
         <!-- Campaign Dates/Times -->
         <div id="startEndContainer">
             <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Start date tooltip"></i>'; ?>
@@ -38,6 +41,7 @@ $firstGiving = $campaign->getFirstGiving();
             <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="End date tooltip"></i>'; ?>
              <?= $form->field($campaign, 'endDate')->label("End Date/Time $tooltip")->input('datetime-local'); ?>
         </div>
+
         <!-- Parent Campaigns -->
         <? if (sizeof($parentCampaigns) > 0): ?>
             <? 
@@ -55,15 +59,18 @@ $firstGiving = $campaign->getFirstGiving();
             </div>
         <? endif; ?>
         <div id="notTiedCampaignContainer">
+
         <!-- Campaign Goal Amount -->
         <div class="form-group">
             <label>Goal Amount</label>
             <?= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => true]); ?>
         </div>
+
         <!-- Personal Fundraiser PayPal -->
         <div class="form-group">
             <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => true]); ?>
         </div>
+
         <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
         <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
             <label> Donation Destination 

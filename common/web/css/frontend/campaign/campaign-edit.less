@@ -2,8 +2,8 @@
 /* ------------------------------------------------- */
 .campaign-edit-wrap {
 	margin: 0 auto;
-	padding: @top-menu-height 50px 60px;
-	max-width: 980px;
+	padding: @top-menu-height 10% 60px;
+	max-width: 800px;
 	
 	ul {
 
@@ -33,6 +33,20 @@
 		background: @gray75;
 	}
 }
+
+
+/* Special Fields */
+/* ------------------------------------------------- */
+
+/* Start/End Dates */
+.field-campaign-startdate,
+.field-campaign-enddate {
+	float: left;
+	width: 50%;
+}
+.field-campaign-startdate {
+	padding-right: 2%;
+}
 #campaignEdit[data-campaigntype="Charity Fundraiser"]{
 	#campaign-edit-team-li {
 		display: inline-block;
@@ -41,6 +55,7 @@
 		display: block;
 	}
 }
+
 
 /* General Campaign Edit */
 /* ------------------------------------------------- */
@@ -70,13 +85,11 @@
 		&:before {
 			.arrow-up;
 			top: -10px;
-			left: 50%;
-			margin-left: -10px;
+			left: 100px;
 			border-color: transparent transparent @gray72 transparent;
 		}
 
 		h4 {
-			color: @maingray;
 			text-align: center;
 			padding: 16px 0;
 		}

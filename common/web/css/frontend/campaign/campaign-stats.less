@@ -1,10 +1,8 @@
 /* Campaigns Sidebar */
 /* ------------------------------------------------- */
-
 .large-menu-toggled .campaigns-list-wrap {
 	left: @primary-nav-lg-width;
 }
-
 .small-menu-toggled .campaigns-list-wrap {
 	left: @primary-nav-width;
 }
@@ -232,6 +230,24 @@
 				}
 			}
 		}
+}
+
+/* Children Campaigns */
+.campaign-view-childs {
+
+	th, td {
+		border-top: solid 1px @gray75;
+	}
+	th {
+		padding: 1.2em 6% .6em !important;
+	}
+	td {
+		padding: .6em 6% !important;
+		&.raised {
+			color: @accent;
+			font-weight: 600;
+		}
+	}
 }
 
 /* Top Donor/Donation */
