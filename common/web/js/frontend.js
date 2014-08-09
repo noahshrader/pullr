@@ -31,7 +31,7 @@ $('.streamboard').click(function(event) {
 
 // dashboard alert
 $(window).load(function() {
-      $('.alert-info').addClass('slideup');
+    $('.alert-info').addClass('slideup');
 });
 
 // dashboard notifications / campaign invites
@@ -47,9 +47,16 @@ $(function () {
     });
 });
 
+$(document).ready(function(){
+    if (localStorage.getItem('menu-collapse') === "true"){
+        $(".primary-nav-toggle").trigger("click");
+    }
+});
+
 // toggle sidebar
 $(".primary-nav-toggle").click(function(){
     $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");
+    localStorage.setItem('menu-collapse', $(".main-wrapper").hasClass("small-menu-toggled"))
     $(".logo").toggleClass("icon-pullr icon-pullr2");
     $(".primary-nav-toggle .icon").toggleClass("icon-arrowleft2 icon-arrowright3");
 });
