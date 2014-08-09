@@ -29,11 +29,6 @@ $('.streamboard').click(function(event) {
         ",left="+left+",top="+top+",scrollbars=yes");
 });
 
-// enable tooltips
-$("[data-toggle='tooltip']").tooltip();
-
-$('select').selectpicker();
-
 // dashboard alert
 $(window).load(function() {
       $('.alert-info').addClass('slideup');
