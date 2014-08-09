@@ -51,6 +51,14 @@ $(document).ready(function(){
     if (localStorage.getItem('menu-collapse') === "true"){
         $(".primary-nav-toggle").trigger("click");
     }
+
+    $('.icon-announcement.full').addClass('pulse')
+
+    $('.icon-announcement.full.pulse').click(function(){
+       $(this).removeClass('pulse');
+       $(this).removeClass('full');                   
+   });
+
 });
 
 // toggle sidebar
