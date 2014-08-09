@@ -40,7 +40,7 @@ $twitchPartner = $user->userFields->twitchPartner;
         </ul>
 
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="overall">
+            <div class="tab-pane in active" id="overall">
                 <!-- HTML MARKUP - Overview Stats -->
                 <div class="row stats-overview">
                     <div class="col-xs-12 stats-box raised-total">
@@ -99,7 +99,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     </div>
                 <? endif ?>
             </div>
-            <div class="tab-pane fade in" id="today">
+            <div class="tab-pane in" id="today">
                 <!-- HTML MARKUP - Overview Stats -->
                 <div class="row stats-overview">
                     <div class="col-xs-12 stats-box raised-total">
@@ -158,7 +158,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     </div>
                 <? endif ?>
             </div>
-            <div class="tab-pane fade in" id="month">
+            <div class="tab-pane in" id="month">
                 <!-- HTML MARKUP - Overview Stats -->
                 <div class="row stats-overview">
                     <div class="col-xs-12 stats-box raised-total">

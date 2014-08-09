@@ -1,6 +1,4 @@
 <h4>Preferences</h4>
-<br>
-<br>
 <div class="form-group">
     <label>Font style</label>
     <input type="text" ng-model="preference.fontStyle" ng-change="regionChanged(region)">

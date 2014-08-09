@@ -12,7 +12,7 @@ $user = \Yii::$app->user->identity;
         <label class="control-label">Layout Type</label>
         <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
         <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
-        <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'form-control select-block']) ?>
+        <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block']) ?>
     </div>
     <div class="form-group highlight-wrap">
         <label>Channel Name</label>
@@ -50,9 +50,9 @@ $user = \Yii::$app->user->identity;
         <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
             <label class="control-label">Upload a background image</label> 
                 <?=ImageInput::widget(['name' => 'backgroundImage']);?>
-             <? if ($campaign->hasErrors('backgroundImage')): ?>
+            <? if ($campaign->hasErrors('backgroundImage')): ?>
                 <?= Html::error($campaign, 'backgroundImage', ['class' => 'help-block']); ?>
-             <? endif ?>
+            <? endif ?>
         </div>
     </div>
     <? endif ?>

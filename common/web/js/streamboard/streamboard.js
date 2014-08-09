@@ -20,6 +20,7 @@ $(function () {
     // panel toggles
     $(document).on('click', 'ul.bottom-panel-nav li a', function() {
    		$('.'+$(this).data('panel')+'_panel').toggleClass('selected');
+        $('.donations-list, .form-group').toggleClass('mute');
    	});
 
     $('a.close').click(function() {

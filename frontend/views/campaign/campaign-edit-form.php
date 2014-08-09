@@ -8,7 +8,7 @@
             <label>Form Visibility</label><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select form visibility."></i>
             
             <? $keyValues = [ true => 'Visible', false => 'Hidden']; ?>
-            <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'form-control select-block']) ?>
+            <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
     </div>
     <!-- Donor Comments -->
     <div class="form-group">

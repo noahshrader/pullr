@@ -26,6 +26,17 @@ body {
 	overflow: hidden;
 	.fadein;
 }
+.cf:before,
+.cf:after {
+	content: '';
+	display: table;
+}
+.cf:after {
+	clear: both;
+}
+.cf {
+	*zoom: 1;
+}
 
 /* Common UI Elements */
 a,

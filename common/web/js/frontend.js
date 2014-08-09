@@ -30,9 +30,9 @@ $('.streamboard').click(function(event) {
 });
 
 // enable tooltips
-$(function () {
-    $("[data-toggle='tooltip']").tooltip();
-});
+$("[data-toggle='tooltip']").tooltip();
+
+$('select').selectpicker();
 
 // dashboard alert
 $(window).load(function() {

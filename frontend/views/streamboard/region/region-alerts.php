@@ -35,17 +35,17 @@ use yii\web\View;
 
     <div class="followers_panel slidepanel" isolated-scope>
         <div ng-init="preference = widget.followersPreference">
-        <?= $this->render('region-alerts-preference') ?>
-         </div>
+            <?= $this->render('region-alerts-preference') ?>
+        </div>
     </div>
     <div class="subscribers_panel slidepanel" isolated-scope>
         <div ng-init="preference = widget.subscribersPreference">
-        <?= $this->render('region-alerts-preference') ?>
-            </div>
+            <?= $this->render('region-alerts-preference') ?>
+        </div>
     </div>
     <div class="donations_panel slidepanel" isolated-scope>
         <div ng-init="preference = widget.donationsPreference">
-        <?= $this->render('region-alerts-preference') ?>
-            </div>
+            <?= $this->render('region-alerts-preference') ?>
+        </div>
     </div>
 </div>

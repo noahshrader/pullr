@@ -29,7 +29,7 @@ $firstGiving = $campaign->getFirstGiving();
         <div class="form-group field-campaign-type">
             <label>Select a Campaign Type</label>
             <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
-            <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'form-control select-block']) ?>
+            <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
         </div>
         <!-- Campaign Dates/Times -->
         <div id="startEndContainer">
@@ -50,7 +50,7 @@ $firstGiving = $campaign->getFirstGiving();
                 <?= $form->field($campaign, 'tiedToParent')->checkbox([], false); ?>
                  <div class="form-group field-campaign-parentcampaignid">
                     <label>Fundraiser Campaign</label>
-                    <?= Html::activeDropDownList($campaign, 'parentCampaignId', $keyValues, ['class' => 'form-control select-block']) ?>
+                    <?= Html::activeDropDownList($campaign, 'parentCampaignId', $keyValues, ['class' => 'select-block']) ?>
                 </div>
             </div>
         <? endif; ?>
@@ -70,7 +70,7 @@ $firstGiving = $campaign->getFirstGiving();
                 <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the donation destination."></i>
             </label>
             <div class="form-group field-campaign-donationDestination">
-                <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'form-control select-block']) ?>
+                <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'select-block']) ?>
                 <?= Html::error($campaign, 'donationDestination', ['class' => 'help-block']) ?>
             </div>
             <?/*

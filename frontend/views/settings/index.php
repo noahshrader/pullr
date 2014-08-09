@@ -23,7 +23,7 @@ $this->title = 'Settings';
         $timezones = timezone_identifiers_list();
         $keyValues = array_combine($timezones, $timezones);
     ?>
-    <?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block form-control']); ?>
+    <?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 
     <fieldset>
         <legend>Notifications</legend>
