@@ -8,9 +8,6 @@
 	ul {
 
 		li {
-			display: inline-block;
-			text-align: center;
-			float: left;
 			border: 0;
 			&.active a,
 			&.active a:hover {
@@ -18,8 +15,10 @@
 				background: @gray75;
 			}
 			a {
+				display: block;
 				color: @gray60;
-				padding: 16px 20px;
+				padding: 12px 20px;
+				width: 100%;
 				background: @white;
 				&:hover {
 					color: @base;
