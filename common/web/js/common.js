@@ -66,10 +66,4 @@ function twitchEventsMonitor() {
     }
 }
 
-// enable tooltips
-$("[data-toggle='tooltip']").tooltip();
-
-// enable bootstrap selects
-$('select').selectpicker();
-
 (catchKeys());

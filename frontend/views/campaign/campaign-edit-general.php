@@ -2,14 +2,12 @@
 use common\models\Campaign;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\widgets\Select2Asset;
 /* @var $form ActiveForm */
 
 
 $parentCampaigns = \Yii::$app->user->identity->getParentCampaigns()->all();
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 
-Select2Asset::register($this);
 $this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAsset::className());
 
 $firstGiving = $campaign->getFirstGiving();
@@ -95,7 +93,7 @@ $firstGiving = $campaign->getFirstGiving();
             */?>
             <div class="preapprovedCharity highlight-wrap">
                 <h4>Choose from one of our partnered organizations</h4>
-                <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving']); ?>
+                <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving', 'class' => 'select-block']); ?>
             </div>
             <div class="customCharity highlight-wrap">
                 <h4>Support your own charity</h4>
