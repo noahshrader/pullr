@@ -19,14 +19,15 @@ return [
     'twitchClientSecret' => '2xjixm2240k3gj7jwd90hupd9of4kwm',
 
     'googleAPIKey' => 'AIzaSyBCaACEmXOZ9F2u9DF9O-U-1-_BmTfNQfE',
+    //First Giving params
     'firstGiving' => [
-        'donateHost' => 'https://donate.firstgiving.com',
-        'formStyleSheetURL' => '/layoutview/payment.css',
-        'donationApiHost' => 'https://api.firstgiving.com/',
+        'donateHost' => 'https://donatenowstaging.firstgiving.com',
+        'formStyleSheetURL' => 'https://dl.dropboxusercontent.com/u/83287581/fgform.css',
+        'donationApiHost' => 'http://usapisandbox.fgdev.net/',
         //dont change keys of array
         'callbackSuccessPair' => [
-            'key' => 'pjrvodxtkh',
-            'value' => 'zyxkViEajImQdIM'
+            'key' => 'kobdffjuux',
+            'value' => 'ieDEaolClvseqLF'
         ]
     ]
 ];
