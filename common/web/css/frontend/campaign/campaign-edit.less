@@ -5,7 +5,7 @@
 	padding: @top-menu-height 10% 60px;
 	max-width: 800px;
 	
-	ul {
+	ul.nav {
 
 		li {
 			border: 0;
@@ -17,7 +17,8 @@
 			a {
 				display: block;
 				color: @gray60;
-				padding: 12px 20px;
+				line-height: 50px;
+				padding: 0 20px;
 				width: 100%;
 				background: @white;
 				&:hover {
@@ -85,7 +86,8 @@
 		&:before {
 			.arrow-up;
 			top: -10px;
-			left: 100px;
+			left: 50%;
+			margin-left: -10px;
 			border-color: transparent transparent @gray72 transparent;
 		}
 
