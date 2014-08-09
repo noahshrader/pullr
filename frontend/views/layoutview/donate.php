@@ -4,6 +4,8 @@ use yii\widgets\ActiveForm;
 
 ?>
 <!-- BEGIN Donation Form -->
+
+
 <section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_TIP_JAR) ? 'tip-jar' :'events-form' ?>">
         <h1 class="campaign-name"><?= $campaign->name ?></h1>
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
@@ -24,7 +26,7 @@ use yii\widgets\ActiveForm;
                 <? endif ?>
             <? endif ?>
         <? endif; ?>
-         <?php $form = ActiveForm::begin(['options' => ['target' => '_blank']]) ?>
+         <?php $form = ActiveForm::begin($campaign->firstGiving ? [] : ['options' => ['target' => '_blank']]) ?>
                 <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
                     <!-- Amount Selections -->
                     <div id="donation-amount" class="cf">
@@ -84,5 +86,6 @@ use yii\widgets\ActiveForm;
                 </div>
         <?php ActiveForm::end(); ?>
 </section>
+
 <!-- END Donation Form -->
 

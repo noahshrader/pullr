@@ -6,6 +6,9 @@ use common\models\User;
 use common\models\Campaign;
 use common\models\Donation;
 use common\components\PullrPayment;
+use common\components\FirstGivingPayment;
+use yii\web\Request;
+
 /*
 controller to view exported layout
  * donations
@@ -45,29 +48,46 @@ class LayoutviewController extends \yii\web\Controller {
     }
     public function actionDonate($userAlias, $campaignAlias){
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
-    
         /*passing campaign to layout*/
         $this->campaign = $campaign;
         $this->layout = 'donation';
         $donation = new Donation();
         $donation->createdDate = time();
         $donation->campaignId = $campaign->id;
+
         if (!\Yii::$app->user->isGuest){
             $donation->userId = \Yii::$app->user->id; 
         }
+
         if ($donation->load($_REQUEST) && $donation->save()){
-            PullrPayment::donationPayment($donation);
+            if ($firstGiving = $campaign->firstGiving) {
+
+                $firstGivingPayment = new FirstGivingPayment();
+
+                $thankYouPage = \Yii::$app->request->hostInfo . '/' .  $userAlias.'/'.$campaignAlias.'/thankyou';
+                $firstGivingPayment->setConfig(array_merge(\Yii::$app->params['firstGiving'], ['pb_success' => $thankYouPage, 'buttonText' => 'Donate']));
+                $firstGivingPayment->setDonation($donation);
+                $firstGivingPayment->setFirstGiving($firstGiving);
+
+                $formUrl = $firstGivingPayment->donationPayment();
+
+                return $this->render('firstgiving', ['url' => $formUrl]);
+
+            } else {
+                PullrPayment::donationPayment($donation);
+            }
         }
-        
-         if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
+
+        //paypal success donate
+        if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
             $payment = new PullrPayment();
             $payment->completePayment();
             $this->redirect($userAlias.'/'.$campaignAlias.'/thankyou');
         }
-        
+
         return $this->render('donate', [
             'campaign' => $campaign,
-            'donation' => $donation
+            'donation' => $donation,
         ]);
     }
     

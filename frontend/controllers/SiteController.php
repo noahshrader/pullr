@@ -11,6 +11,7 @@ use common\models\User;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use ritero\SDK\TwitchTV\TwitchSDK;
+use common\components\FirstGivingPayment;
 
 /**
  * Site controller
@@ -58,6 +59,20 @@ class SiteController extends FrontendController
 
     public function actionIndex()
     {
+        $request = \Yii::$app->request;
+
+        $key = ""; $value = "";
+        extract(\Yii::$app->params['firstGiving']['callbackSuccessPair']);
+
+        if ($request->get($key) == $value) {
+            $firstGivingPayment = new FirstGivingPayment();
+            $firstGivingPayment->setConfig(\Yii::$app->params['firstGiving']);
+
+            if ($firstGivingPayment->completePayment($request)) {
+                die();
+            }
+        }
+
         if (\Yii::$app->user->isGuest) {
             return $this->actionLogin();
         } else {

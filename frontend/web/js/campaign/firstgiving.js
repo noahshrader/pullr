@@ -1,6 +1,11 @@
 $(document).ready(function() {
 
-    function formatCharity(item) {
+    function formatResultCharity(item) {
+        //example
+        return '<span style="color: red">' +  item.organization_name + '</span><br><span style="color:green; font-size: 10px;">' + item.organization_name + '</span>';
+    }
+
+    function formatSelectionCharity(item) {
         return item.organization_name;
     }
 
@@ -35,8 +40,8 @@ $(document).ready(function() {
                 }).done(function(data) { callback(data.payload); });
             }
         },
-        formatResult: formatCharity,
-        formatSelection: formatCharity,
+        formatResult: formatResultCharity,
+        formatSelection: formatSelectionCharity,
         containerCssClass: 'form-control',
         escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
     });
