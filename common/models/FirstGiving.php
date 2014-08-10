@@ -8,8 +8,8 @@
 
 namespace common\models;
 
+use common\components\FirstGivingPayment;
 use yii\db\ActiveRecord;
-use HttpRequest;
 use SimpleXMLElement;
 
 class FirstGiving extends ActiveRecord {
@@ -55,34 +55,30 @@ class FirstGiving extends ActiveRecord {
     }
 
     public static function getFromAPI($organization_uuid = null) {
-        $request = new HttpRequest('http://graphapi.firstgiving.com/v1/object/organization/' . $organization_uuid, HttpRequest::METH_GET);
-        try {
-            $request->send();
-            if ($request->getResponseCode() == 200) {
-                $xmlDocument = simplexml_load_string($request->getResponseBody());
+        $responseString = FirstGivingPayment::sendCurlRequest('http://graphapi.firstgiving.com/v1/object/organization/' . $organization_uuid);
 
-                //new or updated First Giving Charity
-                $firstGivingCharity = FirstGiving::getFromXmlItem($xmlDocument->children()->children(), $organization_uuid);
+        if ($responseString) {
+            $xmlDocument = simplexml_load_string($responseString);
 
-                if ($firstGivingCharity->save()) {
+            //new or updated First Giving Charity
+            $firstGivingCharity = FirstGiving::getFromXmlItem($xmlDocument->children()->children(), $organization_uuid);
 
-                    //add or update same pullr's Charity
-                    $charity = Charity::findOne(['firstGivingId' => $firstGivingCharity->id]) ? : new Charity();
+            if ($firstGivingCharity->save()) {
 
-                    $charity->firstGivingId = $firstGivingCharity->id;
-                    $charity->name = $firstGivingCharity->organization_name;
-                    $charity->status = Charity::STATUS_ACTIVE;
-                    //$charity->type = //????????
-                    $charity->url = $firstGivingCharity->url ? : '';
-                    $charity->contactPhone = $firstGivingCharity->phone_number;
+                //add or update same pullr's Charity
+                $charity = Charity::findOne(['firstGivingId' => $firstGivingCharity->id]) ? : new Charity();
 
-                    if ($charity->save()) {
-                        return $firstGivingCharity;
-                    }
+                $charity->firstGivingId = $firstGivingCharity->id;
+                $charity->name = $firstGivingCharity->organization_name;
+                $charity->status = Charity::STATUS_ACTIVE;
+                //$charity->type = //????????
+                $charity->url = $firstGivingCharity->url ? : '';
+                $charity->contactPhone = $firstGivingCharity->phone_number;
+
+                if ($charity->save()) {
+                    return $firstGivingCharity;
                 }
             }
-        } catch (HttpException $ex) {
-            echo $ex;
         }
 
         return false;
