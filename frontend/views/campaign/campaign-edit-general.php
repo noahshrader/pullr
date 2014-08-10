@@ -13,6 +13,13 @@ $this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAss
 $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
+        <!-- Campaign Type -->
+        <div class="form-group field-campaign-type">
+            <label>Select a Campaign Type</label>
+            <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
+            <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
+        </div>
+        
         <!-- Campaign Name -->
         <div class="form-group">
             <label>Campaign Name</label>
@@ -23,13 +30,6 @@ $firstGiving = $campaign->getFirstGiving();
         <div class="form-group">
             <label>Campaign Description</label>
             <?= $form->field($campaign, 'description', ['autoPlaceholder' => true])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 6]); ?>
-        </div>
-
-        <!-- Campaign Type -->
-        <div class="form-group field-campaign-type">
-            <label>Select a Campaign Type</label>
-            <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
-            <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
         </div>
 
         <!-- Campaign Dates/Times -->
@@ -65,7 +65,8 @@ $firstGiving = $campaign->getFirstGiving();
         </div>
 
         <!-- Personal Fundraiser PayPal -->
-        <div class="form-group">
+        <div class="form-group pf-paypal">
+            <label>PayPal Address</label>
             <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => true]); ?>
         </div>
 

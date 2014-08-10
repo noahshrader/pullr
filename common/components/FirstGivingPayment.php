@@ -152,7 +152,10 @@ class FirstGivingPayment extends Component{
 
             $url = "";
 
-            $output = self::sendCurlRequest($ch, $url);
+            $output = self::sendCurlRequest($url);
+            if ($output === false) {
+                return false;
+            }
 
             $serviceResponse = json_decode($output, true);
 
@@ -198,7 +201,7 @@ class FirstGivingPayment extends Component{
         return false;
     }
 
-    public static function sendCurlRequest(&$ch, $url, $options = array(CURLOPT_RETURNTRANSFER => 1)) {
+    public static function sendCurlRequest($url, $options = array(CURLOPT_RETURNTRANSFER => 1)) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
 
@@ -209,6 +212,12 @@ class FirstGivingPayment extends Component{
         }
 
         $output = curl_exec($ch);
+
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        if ($httpCode != 200) {
+            $output = false;
+        }
+
         curl_close($ch);
 
         return $output;
