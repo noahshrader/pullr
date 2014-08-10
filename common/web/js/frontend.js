@@ -34,31 +34,10 @@ $(window).load(function() {
     $('.alert-info').addClass('slideup');
 });
 
-// dashboard notifications / campaign invites
-$(function () {
-    var invites = $('.campaign-invites ul li').length;
-    var invitelist = $('.campaign-invites ul');
-    $('.invites-count').html(invites);
-    if ($(invitelist).find('li').length >= 1) {
-        $('.icon-announcement').addClass('full');
-    }
-    $('.icon-announcement').click(function () {
-        $(invitelist).toggleClass('hide');
-    });
-});
-
 $(document).ready(function(){
     if (localStorage.getItem('menu-collapse') === "true"){
         $(".primary-nav-toggle").trigger("click");
     }
-
-    $("#campaign-type").on('change',function() {
-    var selectedVal = $(this).val();
-    if (selectedVal == 'Charity Fundraiser') {
-        $('.campaign-edit-wrap').addClass('team-tab');
-    }
-});
-
 });
 
 // toggle sidebar
