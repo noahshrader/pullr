@@ -64,7 +64,7 @@ use yii\widgets\ActiveForm;
                     </div>
                  </div>
                 <? endif;?>
-                <!--<?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?>-->
+                <?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?>
                 <!-- Other Fields -->
                 <div class="form-wrapper">
                     <div class="field">
