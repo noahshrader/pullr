@@ -20,7 +20,6 @@
 		padding-left: 36px;
 		padding-right: 36px;
 	}
-
 	h2 {
 		font-size: 24px;
 		color: @accent;
@@ -29,19 +28,24 @@
 		padding-right: 15px;
 		font-weight: normal;       
 	}
-
-	.campaigns-list div {
-		color: @dkaccent20;
+	.campaigns-list {
+		padding-top: 50px;
+		
+		div {
+			color: @dkaccent20;
+		}
 	}
 }
 
 /* Campaigns QuickNav */
 /* ------------------------------------------------- */
 .campaign-quicknav {
-	width: 100%;
+	position: fixed;
 	line-height: 50px;
+	width: @sidepanelwidth;
 	height: 50px;
 	background: @base;
+	z-index: 1000;
 
 	ul {
 		list-style: none;
@@ -77,7 +81,13 @@
 /* ------------------------------------------------- */
 /* Campaign Search */
 .list-search {
+	position: fixed;
 	padding: 18px 36px;
+	width: @sidepanelwidth;
+	z-index: 1000;
+	background: @dkaccent;
+	border-bottom: solid 1px @dkaccent9;
+
 	input[type='search'] {
 		color: @white;
 		background-color: @dkaccent9;
@@ -86,6 +96,15 @@
 }
 
 /* Campaign Listings */
+.campaigns-list {
+	padding-top: 50px;
+	&.padtop {
+		padding-top: 123px;
+	}
+}
+.donors-list {
+	padding-top: 73px;
+}
 .campaign-item {
 	padding: 18px 0;
 	margin: 0px;

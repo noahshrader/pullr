@@ -29,11 +29,7 @@ $('.streamboard').click(function(event) {
         ",left="+left+",top="+top+",scrollbars=yes");
 });
 
-// dashboard alert
-$(window).load(function() {
-    $('.alert-info').addClass('slideup');
-});
-
+// store sidebar memory
 $(document).ready(function(){
     if (localStorage.getItem('menu-collapse') === "true"){
         $(".primary-nav-toggle").trigger("click");
