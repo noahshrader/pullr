@@ -47,9 +47,6 @@ class LayoutviewController extends \yii\web\Controller {
         die;
     }
     public function actionDonate($userAlias, $campaignAlias){
-
-        FirstGivingPayment::sendCurlRequest("www.goosdfsdfsdgle.ru"); die();
-
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
         /*passing campaign to layout*/
         $this->campaign = $campaign;
