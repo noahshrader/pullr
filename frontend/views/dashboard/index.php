@@ -28,15 +28,6 @@ $twitchPartner = $user->userFields->twitchPartner;
             <li>
                 <a href="#month" data-toggle="tab">This Month</a>
             </li>
-            <div class="invites-wrap"> <!-- BEGIN campaign invites -->
-                <a class="icon-announcement"><!--<span class="invites-count"></span>--></a>
-                <? if (sizeof($campaignInvites) > 0): ?>
-                     <?=
-                    $this->render('campaignInvites', [
-                        'campaignInvites' => $campaignInvites
-                    ]) ?>
-                <? endif ?>
-            </div> <!-- END campaign invites -->
         </ul>
 
         <div class="tab-content">
@@ -221,6 +212,18 @@ $twitchPartner = $user->userFields->twitchPartner;
     </div>
 </section>
 <div id="sidebar" class="dashboard">
+
+    <div class="invites-wrap"> <!-- BEGIN campaign invites -->
+        <h5><i class="icon-announcement"></i> Campaign Invites</h5>
+        <? if (sizeof($campaignInvites) > 0): ?>
+             <?=
+            $this->render('campaignInvites', [
+                'campaignInvites' => $campaignInvites
+            ]) ?>
+        <? endif ?>
+    </div> <!-- END campaign invites -->
+
+
     <h5><i class="icon-chatbubble2"></i> Recent Activity</h5>
     <ul class="activity-feed module">
         <li>

@@ -1,70 +1,70 @@
 #campaignEdit{
-  .field-campaign-paypaladdress{
-    display: none;
-  }
-  #tieCampaignContainer{
-    display: none;
-  }
+	.pf-paypal {
+		display: none;
+	}
+	#tieCampaignContainer{
+		display: none;
+	}
 }
 
 #campaignEdit[data-campaignType="Personal Tip Jar"]{
-  .field-campaign-paypaladdress{
-    display: block;
-  }
-  #startEndContainer{
-    display: none;
-  }
+	.pf-paypal {
+		display: block;
+	}
+	#startEndContainer{
+		display: none;
+	}
 
-  #donationDestination{
-    display: none;
-  }
+	#donationDestination{
+		display: none;
+	}
 }
 
 #campaignEdit[data-campaigntype="Charity Event"]{
-  .field-campaign-parentcampaignid{
-    display: none;
-  }
+	.field-campaign-parentcampaignid{
+		display: none;
+	}
 
-  #tieCampaignContainer{
-    display: block;
-  }
+	#tieCampaignContainer{
+		display: block;
+	}
 
-  .isTied{
-    .field-campaign-parentcampaignid{
-      display: block;
-    }
+	.isTied{
+		.field-campaign-parentcampaignid{
+			display: block;
+		}
 
-    #notTiedCampaignContainer{
-      display: none;
-    }
-  }
+		#notTiedCampaignContainer{
+			display: none;
+		}
+	}
 }
 [data-donationDestination='Pre-approved Charities']{
-  .customCharity{
-    display: none;
-  }
+	.customCharity{
+		display: none;
+	}
 }
 
 [data-donationDestination='Custom Fundraiser']{
-  .preapprovedCharity{
-    display: none;
-  }
+	.preapprovedCharity{
+		display: none;
+	}
 }
 
 #modalCharity .microPhoto{
-  max-width: 150px;
-  max-height: 150px;
+	max-width: 150px;
+	max-height: 150px;
 }
 
 #modalCharity .select-charity-container{
-  cursor: pointer;
-  padding: 10px 0px 10px 0px;
+	cursor: pointer;
+	padding: 10px 0px 10px 0px;
 }
 
 #modalCharity .select-charity-container:hover{
-  background-color: #ccc;
+	background-color: #ccc;
 }
 
 #campaign-edit-team, #campaign-edit-team-li {
-  display: none;
+	display: none;
 }

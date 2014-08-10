@@ -3,3 +3,8 @@ function dashboardCloseSystemMessage(id){
         $('.systemNotification').remove();
     })
 }
+
+// dashboard alert
+$(window).load(function() {
+    $('.alert-info').addClass('slideup');
+});

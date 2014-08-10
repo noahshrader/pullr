@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
             <? if ($charityName):?>
                 <h3 class="charity-name">for <span><?= $charityName ?></span>
                 <? if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES): ?>
-                    <span class="approved icon-checkmark"></span></h3>
+                    <span class="approved icon-check2"></span></h3>
                 <? endif ?>
             <? endif ?>
         <? endif; ?>
@@ -64,7 +64,7 @@ use yii\widgets\ActiveForm;
                     </div>
                  </div>
                 <? endif;?>
-                <!--<?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?>-->
+                <?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?>
                 <!-- Other Fields -->
                 <div class="form-wrapper">
                     <div class="field">
