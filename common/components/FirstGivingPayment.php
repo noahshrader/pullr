@@ -150,16 +150,21 @@ class FirstGivingPayment extends Component{
 
             //build url for verify
 
-            $url = "";
+            $url = sprintf('%s/cbverify/%s?payload=%s',
+                $this->config['donateHost'],
+                $signature,
+                base64_encode($request->absoluteUrl)
+            );
 
             $output = self::sendCurlRequest($url);
+
             if ($output === false) {
                 return false;
             }
 
             $serviceResponse = json_decode($output, true);
 
-            if ($serviceResponse['status'] && $serviceResponse['message'] == self::VALID_CALLBACK_MESSAGE) {
+            if ($serviceResponse['status'] == '1' && $serviceResponse['Message'] == self::VALID_CALLBACK_MESSAGE) {
 
                 $pay = Payment::findOne(['id' => $request->get(self::PAYMENT_ID_PARAM)]);
                 if ($pay && $pay->status == Payment::STATUS_PENDING) {
