@@ -13,7 +13,7 @@ function campaignsWithFilter(campaigns){
     ko.applyBindings(viewModel);
 }
 
-// more top padding to campaigns view?
-if ($('.campaigns-list').find('.list-search').length) {
-    $('.campaigns-list').addClass('padtop');
-}
+// reduce top padding to campaigns view?
+if ($('.campaigns-list').find('.list-search').length == 0) {
+    $('.campaigns-list').addClass('redpad');
+} 

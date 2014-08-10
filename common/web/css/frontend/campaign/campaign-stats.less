@@ -77,12 +77,14 @@
 	}
 }
 
+
 /* Campaign Items (Sidebar) */
 /* ------------------------------------------------- */
 /* Campaign Search */
 .list-search {
 	position: fixed;
-	padding: 18px 36px;
+	padding: 16px 36px;
+	height: 69px;
 	width: @sidepanelwidth;
 	z-index: 1000;
 	background: @dkaccent;
@@ -98,12 +100,12 @@
 /* Campaign Listings */
 .campaigns-list {
 	padding-top: 50px;
-	&.padtop {
-		padding-top: 123px;
+	&.redpad {
+		padding-top: 50px !important;
 	}
 }
 .donors-list {
-	padding-top: 73px;
+	padding-top: 69px;
 }
 .campaign-item {
 	padding: 18px 0;
@@ -147,110 +149,100 @@
 		margin-bottom: 0px;
 	}
 }
+body.archive .campaigns-list,
+body.trash .campaigns-list {
+	padding-top: 119px;
+
+	.list-search {
+		top: @top-menu-height + 50px;
+	}
+}
+
 
 /* Main Campaigns View */
 /* ------------------------------------------------- */
 
 /* Campaign View Navigation */
 .campaign-actions {
+	position: fixed;
+	top: @top-menu-height;
 	display: block;
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
 	height: 50px;
-	background: @gray75;
+	background: @gray70;
+	z-index: 1000;
+	overflow: hidden;
 
 	.campaign-nav {
-		padding-left: 0px;
-		padding-right: 0px;
+		padding: 0;
 	}
 		ul {
+			padding: 0;
+
 			li {
-			display: block;
-			float: left;
-			&.active .icon {
-					color: @base;
-			}
-				a {
 				display: block;
 				float: left;
-				height: 50px;
-				color: @gray40;
+				&.active,
+				&.active .icon {
+					color: @maingray;
+					background: @gray75;
+				}
+				a {
+					display: block;
+					float: left;
+					color: @gray40;
+					text-align: center;
+					height: 50px;
+					width: 50px;
+					border-right: solid 1px @gray60;
+
+					&:hover,
+					&:hover .icon {
+						color: @base;
+					}
 
 					.icon {
 						font-size: 18px;
 						line-height: 50px;
 						color: @gray40;
 					}
-				}
-
-				a:hover, a:hover .icon {
-					color: @base;
-				}
-			}
-		}
-		.campaign-quick-links {
-			list-style: none;
-			text-align: left;
-			padding-right: 0px;
-			padding-left: 0px;
-					
-			li {
-				a {
-					width: 50px;
-					border-right: 1px solid @white;
-					text-align: center;
-				}
-			}
-
-			li.active a {
-				background: #FFF;
-			}
-
-			li.active .icon {
-
-			}
-		}
-		.campaign-buttons {
-			list-style: none;
-			text-align: right;
-			padding-right: 0;
-			padding-left: 0;
-			float: right;
-			margin-bottom: 0;
-
-			li {
-				a {
-					color: @white;
-					font-weight: 400;
-					position: relative;
-					padding-right: 20px;
-					padding-left: 10px;
-					text-align: center;
-					line-height: 50px;
-					background: @accent;
-					&:hover, {
-						color: @white;
-						background: @accenthover;
-					}
-
-					&:before {
-						height: 0px;
-						width: 0px;
-						content: "";
-						display: block;
-						position: absolute;
-						border-bottom: 50px solid @accent;
-						border-left: 30px solid transparent;
-						left: -30px;	
-					}
-					&:hover:before {
-						border-bottom: 50px solid @accenthover;
-					}
-				}
 			}
 		}
 }
+	a.view-campaign {
+		position: fixed;
+		right: 0;
+		display: block;
+		color: @white;
+		font-weight: 400;
+		padding-right: 24px;
+		padding-left: 16px;
+		text-align: center;
+		line-height: 50px;
+		width: auto;
+		background: @accent;
+		&:hover {
+			color: @white;
+			background: @accenthover;
+		}
+		&:before {
+			height: 0px;
+			width: 0px;
+			content: "";
+			display: block;
+			position: absolute;
+			border-bottom: 50px solid @accent;
+			border-left: 30px solid transparent;
+			left: -30px;	
+		}
+		&:hover:before {
+			border-bottom: 50px solid @accenthover;
+		}
+	}
+}
+
 
 /* Children Campaigns */
 .campaign-view-childs {

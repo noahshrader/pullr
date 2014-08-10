@@ -81,17 +81,9 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <? endif ?>
         </div>
         <div class="col-md-6 campaign-nav">
-            <ul class="campaign-buttons">
-                <li>
-                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">
-                        <!-- View -->
-                        View Campaign
-                    </a>
-                </li>
-            </ul>
+            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+            <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">View Campaign</a>
         </div>
-        <div class="clearfix"></div>
     </div>
     <div class="campaign-view-wrap" data-id="<?= $campaign->id ?>">
          <h1>

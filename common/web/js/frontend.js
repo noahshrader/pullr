@@ -43,7 +43,3 @@ $(".primary-nav-toggle").click(function(){
     $(".logo").toggleClass("icon-pullr icon-pullr2");
     $(".primary-nav-toggle .icon").toggleClass("icon-arrowleft2 icon-arrowright3");
 });
-
-// add class to body of current url segment
-var value = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-$('body').addClass(value);

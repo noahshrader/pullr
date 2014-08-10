@@ -64,17 +64,9 @@ $user = \Yii::$app->user->identity;
             </ul>
         </div>
         <div class="col-md-6 campaign-nav">
-            <ul class="campaign-buttons">
-                <li>
-                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">
-                        <!-- View -->
-                        View Campaign
-                    </a>
-                </li>
-            </ul>
+            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+            <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">View Campaign</a>
         </div>
-        <div class="clearfix"></div>
     </div>
     <? endif ?>
     <? $form = ActiveForm::begin(['options' => [
