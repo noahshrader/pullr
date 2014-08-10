@@ -16,7 +16,7 @@
                 <td>
                     <?= $donation->name ? $donation->name : 'Anonymous' ?>
                 </td>
-                <td>
+                <td class="raised">
                     $<?= number_format($donation->amount) ?>
                 </td>
                 <td class="details-control">

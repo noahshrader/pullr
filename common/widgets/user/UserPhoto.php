@@ -54,7 +54,7 @@ class UserPhoto extends Widget{
             $this->options['href'] = $this->user->url;
             return Html::tag('a', $img, $this->options);
         } else {
-            return Html::tag('span', $img, $this->options);
+            return Html::tag('div', $img, $this->options);
         }
     }
 }

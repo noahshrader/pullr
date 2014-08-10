@@ -7,8 +7,9 @@ $user = \Yii::$app->user->identity;
 
 <section class="donor-view-wrap">
     <div class="donor-view" data-email="<?= htmlspecialchars($email) ?>" >
-        <h1 class="text-center donor-name"> <?= htmlspecialchars($name) ?></h1>
-        <h3 class="text-center donor-email"><?= htmlspecialchars($email) ?></h3>
+        <h1 class="text-center donor-name"> <?= htmlspecialchars($name) ?>
+            <span class="text-center donor-email"><?= htmlspecialchars($email) ?></span>
+        </h1>
         <section class="stats-overview">
             <div class='stats-box col-xs-4'>
                 <h2>$<?= number_format($totalDonated) ?></h2>

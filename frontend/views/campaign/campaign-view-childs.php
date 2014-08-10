@@ -26,7 +26,7 @@
                     <?= date('M j Y', $child->startDate) ?> - <?= date('M j Y', $child->endDate) ?>
                 <? endif ?>
             </td>
-            <td>$<?= number_format($child->amountRaised) ?></td>
+            <td class="raised">$<?= number_format($child->amountRaised) ?></td>
         </tr>
         <? endforeach; ?>
         </tbody>

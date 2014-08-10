@@ -62,7 +62,7 @@ $this->registerJs($js);
                                 </a>
                             </li>
                             <li>
-                                <a class="donors" role="menuitem" tabindex="-1" href="app/campaign/donors">
+                                <a class="donor-link" title="Donors" href="app/donor">
                                     <i class="icon icon-usergroup"></i>
                                     <span class="nav-label">Donors</span>
                                 </a>

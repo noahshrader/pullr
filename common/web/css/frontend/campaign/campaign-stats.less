@@ -1,10 +1,8 @@
 /* Campaigns Sidebar */
 /* ------------------------------------------------- */
-
 .large-menu-toggled .campaigns-list-wrap {
 	left: @primary-nav-lg-width;
 }
-
 .small-menu-toggled .campaigns-list-wrap {
 	left: @primary-nav-width;
 }
@@ -118,6 +116,7 @@
 		line-height: 1.1em;
 	}
 	h4 {
+		display: none;
 		color: @bgwhitefade;
 		font-size: 14px;
 		margin-top: 2px;
@@ -232,6 +231,20 @@
 				}
 			}
 		}
+}
+
+/* Children Campaigns */
+.campaign-view-childs {
+
+	th, td {
+		border-top: solid 1px @gray75;
+	}
+	th {
+		padding: 1.2em 6% .6em !important;
+	}
+	td {
+		padding: .6em 6% !important;
+	}
 }
 
 /* Top Donor/Donation */
