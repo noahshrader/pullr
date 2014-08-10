@@ -14,23 +14,28 @@ $user = \Yii::$app->user->identity;
         <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
         <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block']) ?>
     </div>
-    <div class="form-group highlight-wrap">
+
+    <!-- if Single Channel -->
+    <div id="campaign-channelname" class="form-group highlight-wrap">
         <label>Channel Name</label>
-        <!-- Channel Single Name -->
         <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => true]); ?>
-        <!-- Channel Team Name -->
+    </div>
+
+    <!-- if Team Channel -->
+    <div id="campaign-channelteam" class="form-group highlight-wrap">
+        <label>Team Channel Name</label>
         <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => true]); ?>
     </div>
+
     <!-- if Multichannel -->
-    <div id="campaign-multichannels" class="form-group">
+    <div id="campaign-multichannels" class="form-group highlight-wrap">
         <? if ($campaign->isNewRecord): ?>
             <div class="label label-danger">Save campaign before adding channels</div>
         <? endif ?>
         <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add channel(s)"> <a class="btn btn-default btn-xs" onclick="addNewLayoutTeam()"> <i class="icon icon-add2"></i></a>
-        <div id="layoutTeams">
-
-        </div>
+        <div id="layoutTeams"></div>
     </div>
+
     <!-- Choose a Theme -->
     <div class="form-group">
         <?= $form->field($campaign, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
