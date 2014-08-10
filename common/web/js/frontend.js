@@ -52,12 +52,12 @@ $(document).ready(function(){
         $(".primary-nav-toggle").trigger("click");
     }
 
-    $('.icon-announcement.full').addClass('pulse')
-
-    $('.icon-announcement.full.pulse').click(function(){
-       $(this).removeClass('pulse');
-       $(this).removeClass('full');                   
-   });
+    $("#campaign-type").on('change',function() {
+    var selectedVal = $(this).val();
+    if (selectedVal == 'Charity Fundraiser') {
+        $('.campaign-edit-wrap').addClass('team-tab');
+    }
+});
 
 });
 
