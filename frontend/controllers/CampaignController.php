@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\FirstGiving;
+use common\models\notifications\RecentActivityNotification;
 use frontend\controllers\FrontendController;
 use common\models\Campaign;
 use yii\web\NotFoundHttpException;
@@ -77,6 +78,8 @@ class CampaignController extends FrontendController {
 
             if ($editCampaign->save()){
                 UploadImage::UploadCampaignBackground($editCampaign);
+
+                RecentActivityNotification::createNotification(\Yii::$app->user->id, sprintf(\Yii::$app->params['newCampaign'], $editCampaign->name));
 
                 if ($isNewRecord) {
                     $this->redirect('app/campaign/edit?id=' . $editCampaign->id);
