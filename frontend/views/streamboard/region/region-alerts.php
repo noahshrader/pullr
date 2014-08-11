@@ -27,7 +27,7 @@ use yii\web\View;
     <span>{{widget.animationDelaySeconds}} sec</span>
 </div>
 <div class="right-side-footer">
-    <ul class="bottom-panel-nav three-tabs">
+    <ul class="bottom-panel-nav paneltoggle">
         <li ng-show="widget.includeFollowers"><a data-panel="followers">Followers</a></li>
         <li ng-show="widget.includeSubscribers"><a data-panel="subscribers">Subscribers</a></li>
         <li ng-show="widget.includeDonations"><a data-panel="donations">Donations</a></li>

@@ -34,4 +34,3 @@ $typesList = [
         <?= $this->render('region-campaign-bar') ?>
     </div>
 </div>
-

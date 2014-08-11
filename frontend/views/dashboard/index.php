@@ -211,7 +211,7 @@ $twitchPartner = $user->userFields->twitchPartner;
         </div>
     </div>
 </section>
-<div id="sidebar" class="dashboard">
+<div id="sidebar" class="dashboard pane">
 
     <div class="invites-wrap"> <!-- BEGIN campaign invites -->
         <h5><i class="icon-announcement"></i> Campaign Invites</h5>

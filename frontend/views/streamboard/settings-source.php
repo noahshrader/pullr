@@ -8,4 +8,6 @@ $sourceHref = Url::to('', true) . '/source';
         Copy Link
     </button>
 </div>
-<iframe class="frame" src="<?= $sourceHref ?>" scrolling="no"></iframe>
+<div class="pane">
+	<iframe class="frame" src="<?= $sourceHref ?>" scrolling="no"></iframe>
+</div>

@@ -16,4 +16,4 @@ function campaignsWithFilter(campaigns){
 // reduce top padding to campaigns view?
 if ($('.campaigns-list').find('.list-search').length == 0) {
     $('.campaigns-list').addClass('redpad');
-} 
+}

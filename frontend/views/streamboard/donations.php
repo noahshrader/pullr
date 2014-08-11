@@ -5,10 +5,10 @@ use common\models\Donation;
 /**@var $this View */
 ?>
 <!-- Accordion slide one (Donations) -->
-<div id="donations-header" class="text-center">
-    <button class="btn btn-primary" data-ng-click="addDonation()">Add donation</button>
-</div>
-<div class="donations-list data-list">
+<!--<div id="donations-header" class="text-center">
+    <button data-ng-click="addDonation()">Test donation</button>
+</div>-->
+<div class="donations-list data-list pane">
     <div data-ng-repeat="donation in donations | selectedCampaigns:$root | limitTo: 20" class="donation"
          ng-class="{wasRead: donation.streamboard.wasRead}">
         <h3 class="donation-name">

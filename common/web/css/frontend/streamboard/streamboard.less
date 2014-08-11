@@ -20,7 +20,6 @@ label {
 /* ------------------------------------------------- */
 #region_1,
 #region_2,
-#settingsTab #settings-general,
 #settingsTab #settings-downloads {
 	padding: 30px;
 }
@@ -47,10 +46,7 @@ label {
 		width: 100%;
 	}
 
-	.tab-content {
-		height: 100%;
-	}
-
+	.tab-content,
 	.tab-pane {
 		height: 100%;
 	}
@@ -129,6 +125,7 @@ label {
 	position: absolute;
 	bottom: -400px;
 	right: 0;
+	padding: 30px;
 	width: 100%;
 	height: 400px;
 	background: @gray10;
@@ -202,8 +199,6 @@ a.dashboard.show:before {
 /* Donation Panel */
 /* ------------------------------------------------- */
 .donations-list {
-	height: 100%;
-	padding-bottom: 62px;
 	overflow-y: scroll;
 
 	span {
@@ -219,12 +214,13 @@ a.dashboard.show:before {
 		}
 	}
 	a.markread {
-		display: inline-block;
+		display: block;
 		color: @gray40;
 		font-size: 13px;
 		text-align: center;
 		padding: 4px 16px;
-		margin-top: 12px;
+		margin: 12px auto 0;
+		max-width: 140px;
 		background: @gray3;
 		.round-radius;
 		&:hover {

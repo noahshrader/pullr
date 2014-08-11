@@ -7,14 +7,19 @@ $sourceHref = Url::to('', true) . '/source';
 ?>
 <!-- Accordion slide four (Settings) -->
 <div class="tab-content">
+    <!-- General Settings (Campaigns) -->
     <div id="settings-general" class="tab-pane active">
         <?= $this->render('settings-general') ?>
     </div>
+    <!-- Source Access -->
     <div id="settings-source" class="tab-pane">
         <?= $this->render('settings-source'); ?>
     </div>
+    <!-- Downloads -->
     <div id="settings-downloads" class="tab-pane">
-        downloads
+        <a class="btn btn-default">Streamboard for Windows</a>
+        <a class="btn">Streamboard for Mac</a>
+        <a class="btn">Streamboard for Linux</a>
     </div>
 </div>
 

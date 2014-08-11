@@ -13,6 +13,12 @@ body {
 		overflow: auto;
 	}
 
+/* Components */
+/* ------------------------------------------------- */
+.pane {
+	height: 100%;
+}
+
 
 /* Buttons */
 /* ------------------------------------------------- */
@@ -20,7 +26,7 @@ body {
 	font-family: @mainfont;
 	font-size: @smalltext;
 	font-weight: 700;
-	padding: .8em 1.2em;
+	padding: .6em 1.2em;
 	outline: 0;
 	border: 0;
 	.border-radius();
@@ -45,10 +51,10 @@ body {
 	}
 }
 .btn-secondary {
-	background-color: @gray50;
+	background-color: @gray30;
 	color: @white;
 	&:hover {
-		background-color: @gray60;
+		background-color: @gray40;
 	}
 }
 .btn-link {
@@ -104,7 +110,6 @@ input[type='search'] {
 		color: @gray40;
 		font-family: @mainfont;
 		font-size: @basefontsize;
-		min-width: 220px;
 		border: solid 1px @gray70;
 		box-shadow: none;
 		&:focus {
@@ -160,8 +165,7 @@ table td {
 	cursor: pointer;
 	.trans;
 	&.raised {
-		color: @accent;
-		font-weight: 600;
+		color: @accent !important;
 	}
 }
 table th, 

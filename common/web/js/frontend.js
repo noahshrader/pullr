@@ -29,11 +29,15 @@ $('.streamboard').click(function(event) {
         ",left="+left+",top="+top+",scrollbars=yes");
 });
 
-// store sidebar memory
-$(document).ready(function(){
+$(function(){
+    // store sidebar memory
     if (localStorage.getItem('menu-collapse') === "true"){
         $(".primary-nav-toggle").trigger("click");
     }
+    // style selects
+    $('select').select2({
+        minimumResultsForSearch: -1
+    });
 });
 
 // toggle sidebar

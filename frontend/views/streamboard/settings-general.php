@@ -2,10 +2,11 @@
 use yii\helpers\Url;
 
 ?>
+
 <div class="text-center streamboard-settings-header">
-    <button class="btn btn-primary" ng-click="clearDonations()">Clear donations list</button>
+    <button class="btn btn-secondary" ng-click="clearDonations()">Clear donations list</button>
 </div>
-<div class="campaigns_list_panel">
+<div class="campaigns_list_panel pane">
     <div class="campaigns_list">
         <h3>Campaigns</h3>
 

@@ -18,7 +18,7 @@ $(function () {
         $(".spinner-wrap").fadeOut();
     }
     // panel toggles
-    $(document).on('click', 'ul.bottom-panel-nav li a', function() {
+    $(document).on('click', '.paneltoggle li a', function() {
    		$('.'+$(this).data('panel')+'_panel').toggleClass('selected');
         $('.donations-list, .form-group').toggleClass('mute');
    	});

@@ -72,7 +72,6 @@ $user = \Yii::$app->user->identity;
     <? $form = ActiveForm::begin(['options' => [
         'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
     <div class="campaign-edit-wrap">
-        <h1><?= ($campaign->name)?$campaign->name:'New campaign' ?></h1>
         <ul class="nav nav-tabs">
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab" class="icon icon-settings"><span>General</span></a>

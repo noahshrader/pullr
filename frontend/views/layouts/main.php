@@ -39,7 +39,7 @@ $this->registerJs($js);
                 <div class="clearfix"></div>
             </div> <!-- END top bar -->
 
-            <div class="site-content">
+            <div class="site-content pane">
                 <div class="primary-navigation lg-toggle"> <!-- BEGIN main navigation -->
                     <nav class="sidebar-nav nav-top">
                         <ul> 

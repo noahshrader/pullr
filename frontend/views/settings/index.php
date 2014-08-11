@@ -63,7 +63,7 @@ $this->title = 'Settings';
     ?>
 </section> <!-- END main settings -->
 
-<div id="sidebar" class="plans"> <!-- BEGIN plans sidebar -->
+<div id="sidebar" class="plans pane"> <!-- BEGIN plans sidebar -->
     <?=
     $this->render('plan', [
     'user' => $user
