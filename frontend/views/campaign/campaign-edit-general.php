@@ -2,6 +2,7 @@
 use common\models\Campaign;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 /* @var $form ActiveForm */
 
 
@@ -61,7 +62,26 @@ $firstGiving = $campaign->getFirstGiving();
         <!-- Campaign Goal Amount -->
         <div class="form-group">
             <label>Goal Amount</label>
-            <?= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => true]); ?>
+            <?//= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => true]); ?>
+            <div class="form-group field-campaign-goalamount required" style="text-align: left;">
+                <?= MaskedInput::widget([
+                    'name' => 'Campaign[goalAmount]',
+                    'value' => $campaign->goalAmount,
+                    'options' => [
+                        'class' => 'form-control',
+                        'id' => 'masked-input',
+                        'placeholder' => 'Goal amount',
+                    ],
+                    'clientOptions' => [
+                        'value' => $campaign->goalAmount,
+                        'alias' =>  'decimal',
+                        'groupSeparator' => ',',
+                        'autoGroup' => true,
+                        'autoUnmask' => true
+                    ],
+                ]) ?>
+                <div class="help-block"></div>
+            </div>
         </div>
 
         <!-- Personal Fundraiser PayPal -->
