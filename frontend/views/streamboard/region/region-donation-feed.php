@@ -12,7 +12,10 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 </div>
 <div class="form-group">
     <label>Font style</label>
-    <input type="text" ng-model="widget.fontStyle" ng-change="regionChanged(region)">
+    <select class="form-control select-block" ng-model="widget.fontStyle" ng-change="regionChanged(region)"
+            ng-options="font.value as font.name for font in GOOGLE_FONTS">
+        <option value="">Select one...</option>
+    </select>
 </div>
 <div class="form-group">
     <label>Font size</label>

@@ -22,6 +22,9 @@ use common\models\User;
         $js .= 'window.Pullr.twitchClientId = "'. \Yii::$app->params['twitchClientId'].'";';
         $js .= 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
         $js .= 'Pullr.ENV = "'. YII_ENV.'";';
+        $publicParams = ['googleAPIKey'];
+        $params = array_intersect_key(Yii::$app->params, array_flip($publicParams));
+        $js .= 'Pullr.params = '.json_encode($params).';';
         $onreadyJs = '';
         if (!\Yii::$app->user->isGuest) {
            $user = \Yii::$app->user->identity;

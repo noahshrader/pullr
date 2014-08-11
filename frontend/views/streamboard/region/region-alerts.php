@@ -28,9 +28,9 @@ use yii\web\View;
 </div>
 <div class="right-side-footer">
     <ul class="bottom-panel-nav paneltoggle">
-        <li ng-show="widget.includeFollowers"><a data-panel="followers">Followers</a></li>
-        <li ng-show="widget.includeSubscribers"><a data-panel="subscribers">Subscribers</a></li>
-        <li ng-show="widget.includeDonations"><a data-panel="donations">Donations</a></li>
+        <li ng-if="widget.includeFollowers"><a data-panel="followers">Followers</a></li>
+        <li ng-if="widget.includeSubscribers"><a data-panel="subscribers">Subscribers</a></li>
+        <li ng-if="widget.includeDonations"><a data-panel="donations">Donations</a></li>
     </ul>
 
     <div class="followers_panel slidepanel" isolated-scope>
