@@ -20,10 +20,10 @@ Select "yes" for install under Development Environment
 * ./init 
 
 Next step you should change you db connection settings in file
-* `common/config/main-localphp`
+* `common/config/main-local.php`
 
 Next step let's load tables and sampe db data, run from pullr project folder
-* `./makesampe.sh`
+* `./makesample.sh`
 
 
 ####Update your local repository with new changes
