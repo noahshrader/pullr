@@ -20,22 +20,19 @@ $(function(){
     });
 
     // Add event listener for opening and closing details
-    $el.find('tbody').on('click', 'td.details-control i', function () {
+    $el.find('tbody').on('click', 'tr.odd, tr.even', function () {
         var dt = $el.DataTable();
         $row = $(this).closest('tr');
         var row = dt.row( $row );
         if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
-            $row.find('td:first-child i').toggleClass('icon-add2 icon-minus2')
         }
         else {
             // Open this row
             row.child( formatChildRow($row) ).show();
-            $row.find('td:first-child i').toggleClass('icon-add2 icon-minus2')
         }
     } );
-    
     /*add csv button*/
     if ($table.fnSettings().fnRecordsTotal()){
         if ($('.donor-view').length > 0){
@@ -48,7 +45,7 @@ $(function(){
         }
         var csvButton = $('<a>').addClass('btn btn-csv btn-secondary btn-sm').attr('href', href).html
             ('<i class="icon icon-download"></i> Export All');
-        csvButton.insertBefore($wrapper.find('.dataTables_paginate'));
+        csvButton.insertAfter($wrapper.find('.dataTables_paginate'));
     }
     
     $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
@@ -60,7 +57,6 @@ function formatChildRow ( $row ) {
     return '<table class="childTable" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr class="open-row">'+
             '<td><em>Comments:</em> '+$row.data('comments')+'</td>'+
-            '<td class="email"><em>Email Address:</em> '+$row.data('email')+'</td>'+
         '</tr>'+
     '</table>';
 }

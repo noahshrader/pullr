@@ -17,3 +17,7 @@ function campaignsWithFilter(campaigns){
 if ($('.campaigns-list').find('.list-search').length == 0) {
     $('.campaigns-list').addClass('redpad');
 }
+// Rotate table details area on click
+$('tr.donation-entry').click(function() {
+    $(this).children('td.details-control').toggleClass('drop');
+});
