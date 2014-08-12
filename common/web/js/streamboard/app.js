@@ -21,6 +21,7 @@
             return Object.keys(obj).length;
         }
         $rootScope.user = Pullr.user;
+        $rootScope.Pullr = Pullr;
         $rootScope.requestCampaigns = function() {
             $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
                 var oldCampaigns = $rootScope.campaigns;
@@ -36,6 +37,18 @@
                 $rootScope.calcSelectedCampaignsNumber();
             });
         };
+
+        $rootScope.GOOGLE_FONTS = [];
+        $http.get('https://www.googleapis.com/webfonts/v1/webfonts?key='+$rootScope.Pullr.params.googleAPIKey).success(function(data){
+            var items = data.items;
+            var fonts = [];
+            for (var key in items){
+                var item = items[key];
+                fonts.push({name: item.family, value: item.family});
+            }
+            $rootScope.GOOGLE_FONTS = fonts;
+        });
+
         $rootScope.calcSelectedCampaignsNumber = function(){
             var number = 0;
             $.each($rootScope.campaigns, function(key, campaign){

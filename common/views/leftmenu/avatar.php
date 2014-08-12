@@ -1,5 +1,4 @@
 <?
-
 use common\widgets\user\UserPhoto;
 use common\components\Application;
 ?>

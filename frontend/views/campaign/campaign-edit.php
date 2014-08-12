@@ -129,7 +129,6 @@ $user = \Yii::$app->user->identity;
             </div>
         </div>
         <? ActiveForm::end() ?>
-
     </div>
 <? else: ?>
 <? endif ?> 

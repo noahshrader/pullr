@@ -24,14 +24,17 @@ body {
 /* ------------------------------------------------- */
 .btn {
 	font-family: @mainfont;
-	font-size: @smalltext;
+	font-size: 1em;
 	font-weight: 700;
-	padding: .6em 1.2em;
+	line-height: 46px;
+	padding: 0 1.6em;
+	height: 46px;
 	outline: 0;
 	border: 0;
 	.border-radius();
 	.slowtrans();
 	&:hover {
+		color: @white;
 		outline: 0;
 		border: 0;
 	}
@@ -57,11 +60,19 @@ body {
 		background-color: @gray40;
 	}
 }
+.btn-sm {
+	font-size: @smalltext;
+	line-height: 33px;
+	padding: 0 1.4em;
+	height: 33px;
+}
 .btn-link {
 	color: @white;
 	text-decoration: underline;
 }
-
+.btn-csv {
+	background: @gray60;
+}
 
 /* Forms */
 /* ------------------------------------------------- */
