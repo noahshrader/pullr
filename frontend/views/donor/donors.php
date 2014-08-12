@@ -10,15 +10,13 @@ $this->title = 'Donors';
 $user = \Yii::$app->user->identity;
 ?>
 
-    <section class="campaigns-list-wrap">
-                <?//= $this->render('campaigns-sidebar', [ 'status' => null, 'donorsSelected' => true ]); ?>
-        
-                <?= $this->render('donors-list', [
-                    'donors' => $donors,
-                ]); ?>    
-    </section>
-        
-    <? if ($viewDonorParams): ?>
-         <?= $this->render('donor-view', $viewDonorParams
-                ); ?>   
-    <? endif ?>
+<section class="campaigns-list-wrap pane">
+    <?//= $this->render('campaigns-sidebar', [ 'status' => null, 'donorsSelected' => true ]); ?>
+    <?= $this->render('donors-list', [
+        'donors' => $donors,
+    ]); ?>    
+</section>
+<? if ($viewDonorParams): ?>
+    <?= $this->render('donor-view', $viewDonorParams
+    ); ?>   
+<? endif ?>
