@@ -12,9 +12,9 @@ class CommonAsset extends AssetBundle {
         'css/common.less'
     ];
     public $js = [
-        'js/lib/pace.min.js',
-        'js/lib/jquery.mousewheel.min.js',
-        'js/lib/jquery.mCustomScrollbar.js',
+        'plugins/pace/pace.min.js',
+        'plugins/jquery.mousewheel/jquery.mousewheel.min.js',
+        'plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.js',
         'js/common.js',
         'js/plugins-config.js',
         '//ttv-api.s3.amazonaws.com/twitch.min.js'
