@@ -29,10 +29,10 @@ $this->title = 'Settings';
         <legend>Notifications</legend>
         <?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
         <? $attributes = $notification->getNotificationsAttributes(); ?>
-        <div class="row">
+        <div>
             <h4>Email me </h4>
-            <div class="col-xs-6">
-                 <? foreach ($attributes as $attribute): ?>
+            <div>
+                <? foreach ($attributes as $attribute): ?>
                 <?= $form->field($notification, $attribute)->checkbox(); ?>
                 <? endforeach; ?>
             </div>
