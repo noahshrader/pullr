@@ -47,3 +47,22 @@ $(".primary-nav-toggle").click(function(){
     $(".logo").toggleClass("icon-pullr icon-pullr2");
     $(".primary-nav-toggle .icon").toggleClass("icon-arrowleft2 icon-arrowright3");
 });
+
+// checkboxes
+$('.checkbox label').click(function(event){
+    event.preventDefault();
+    $cbox = $(this).children('input:checkbox');
+    if($cbox.attr('checked')) {
+        $(this).removeClass('on');
+        $cbox.removeAttr('checked');
+    } else {
+        $(this).addClass('on');
+        $cbox.attr('checked', 'checked');
+    }
+    $cbox.trigger('change');
+});
+$('input:checkbox').each(function(){
+    if($(this).attr('checked')) {
+        $("label[for='" + this.id + "']").addClass('on');
+    }
+});

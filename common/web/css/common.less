@@ -1,6 +1,7 @@
 @import "base.less";
 @import "variables.less";
 @import "type.less";
+@import "forms.less";
 @import "app-styles/modals.less";
 
 
@@ -74,93 +75,6 @@ body {
 	float: right;
 	margin: 20px 20px 20px 0;
 	background: @gray60;
-}
-
-/* Forms */
-/* ------------------------------------------------- */
-input.form-control,
-textarea.form-control,
-select.form-control {
-	color: @gray40;
-	font-size: @basefontsize;
-	outline: 0;
-	padding: 0 16px;
-	min-height: 45px;
-	border: 1px solid @gray70;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.0);
-	box-shadow: 0;
-}
-select.form-control {
-	height: 42px;
-	line-height: 42px;
-}
-textarea.form-control {
-	padding: 14px 16px;
-}
-legend,
-label {
-	color: @gray30;
-	font-size: 14px;
-}
-
-/* Search Field Styling */
-input[type='search'] {
-	font-weight: 400;
-	min-height: 36px;
-	.round-radius;
-	background: #FFF;
-	border-color: transparent;
-	border-color: @gray75;
-}
-
-/* Selects (Select2) */
-.select2-container {
-	display: block;
-
-	.select2-choices .select2-search-field input,
-	.select2-choice,
-	.select2-choices {
-		color: @gray40;
-		font-family: @mainfont;
-		font-size: @basefontsize;
-		border: solid 1px @gray70 !important;
-		box-shadow: none !important;
-		&:focus {
-			outline: 0 !important;
-		}
-	}
-}
-.select2-drop {
-	box-shadow: none;
-
-	&.select2-drop-active,
-	&.select2-drop-above.select2-drop-active {
-		border: solid 1px @gray70;
-		box-shadow: none;
-	}
-}
-.select2-search input {
-	margin-top: 4px;
-}
-.select2-results {
-	padding: 0;
-	margin: 4px 0;
-	
-	.select2-highlighted {
-		background: @gray70;
-	}
-	.select2-result-label {
-		padding: 3px 12px 4px;
-	}
-}
-
-/* Bootstrap Overrides */
-.form-group {
-	margin-bottom: 20px;
-}
-.form-group .form-group,
-.help-block {
-	margin: 0;
 }
 
 
