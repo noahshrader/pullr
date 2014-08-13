@@ -235,6 +235,18 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <? endforeach; ?>
             <? endif; ?>
         </li>
+        <li>
+            <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
+        </li>
+        <li>
+            <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
+        </li>
+        <li>
+            <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
+        </li>
+        <li>
+            <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
+        </li>
     </ul>
 </div>
 
