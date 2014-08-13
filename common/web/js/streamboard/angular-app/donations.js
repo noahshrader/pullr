@@ -1,54 +1,23 @@
-(function() {
-    var app = angular.module('streamboardApp', ['vr.directives.slider']);
-    app.filter('selectedCampaigns', function(){
-       return function(donations, $rootScope){
-           var filteredDonations = [];
-           for (var key in donations){
-               var donation = donations[key];
-               var campaign = $rootScope.campaigns[donation.campaignId];
-               if (campaign && campaign.streamboardSelected){
-                   filteredDonations.push(donation);
-               }
-           }
-           return filteredDonations;
-       }
-    });
+(function () {
+    var app = angular.module('pullr.streamboard.donations', ['pullr.common']);
     app.run(function($rootScope, $http){
         $rootScope.selectedCampaignsNumber = 0;
         $rootScope.campaigns = {};
-        $rootScope.number_format = number_format;
-        $rootScope.length = function(obj){
-            return Object.keys(obj).length;
-        }
-        $rootScope.user = Pullr.user;
-        $rootScope.Pullr = Pullr;
         $rootScope.requestCampaigns = function() {
             $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
                 var oldCampaigns = $rootScope.campaigns;
                 /*We have asynchronous conflict between campaigns enabling/disabling and requestCampaigns request.
-                So first we prefer streamboardSelected value at client compared to server.
+                 So first we prefer streamboardSelected value at client compared to server.
                  */
                 for (var id in campaigns){
-                   if (oldCampaigns[id]){
-                      campaigns[id].streamboardSelected = oldCampaigns[id].streamboardSelected;
-                   }
+                    if (oldCampaigns[id]){
+                        campaigns[id].streamboardSelected = oldCampaigns[id].streamboardSelected;
+                    }
                 }
                 $rootScope.campaigns = campaigns;
                 $rootScope.calcSelectedCampaignsNumber();
             });
         };
-
-        $rootScope.GOOGLE_FONTS = [];
-        $http.get('https://www.googleapis.com/webfonts/v1/webfonts?key='+$rootScope.Pullr.params.googleAPIKey).success(function(data){
-            var items = data.items;
-            var fonts = [];
-            for (var key in items){
-                var item = items[key];
-                fonts.push({name: item.family, value: item.family});
-            }
-            $rootScope.GOOGLE_FONTS = fonts;
-        });
-
         $rootScope.calcSelectedCampaignsNumber = function(){
             var number = 0;
             $.each($rootScope.campaigns, function(key, campaign){
@@ -60,58 +29,38 @@
         setInterval(function() {
             $rootScope.requestCampaigns();
         }, 1000);
-
-    });
-
-    app.directive('isolatedScope', function(){
-      return {
-          scope: true
-      }
-    });
-    app.controller('RegionCtrl', function ($rootScope, $scope, $http){
-        $scope.regions = {};
-        $http.get('app/streamboard/get_regions_ajax').success(function(data){
-            $scope.regions = data;
-        });
-        $scope.regionChanged = function(region){
-            $http.post('app/streamboard/update_region_ajax', region);
+        $rootScope.campaignChanged = function(campaign){
+            $http.post('app/streamboard/set_campaign_selection', {id: campaign.id, streamboardSelected: campaign.streamboardSelected});
+            $rootScope.calcSelectedCampaignsNumber();
         };
     });
 
-    app.controller('SourceCtrl', function ($rootScope, $scope, $http){
-        $scope.stats = {};
-        $scope.requestSourceStats = function(){
-           $http.get('app/streamboard/get_source_data').success(function(data){
-              $scope.stats = data['stats'];
-              $scope.donors = data['donors'];
-              $scope.twitchUser = data['twitchUser'];
-              $scope.subscribers = data['subscribers'];
-           });
+    app.filter('selectedCampaigns', function(){
+        return function(donations, $rootScope){
+            var filteredDonations = [];
+            for (var key in donations){
+                var donation = donations[key];
+                var campaign = $rootScope.campaigns[donation.campaignId];
+                if (campaign && campaign.streamboardSelected){
+                    filteredDonations.push(donation);
+                }
+            }
+            return filteredDonations;
         }
-        $scope.requestSourceStats();
-        setInterval(function() {
-            $scope.requestSourceStats();
-        }, 1000);
     });
-
     app.controller('DonationsCtrl', function($rootScope, $scope, $http) {
         $scope.donations = [];
         $scope.unorderedDonations = {};
         $scope.stats = {};
         /*we will request only donations with id>$scope.lastDonationId*/
         $scope.lastDonationId = 0;
-        
+
         $scope.addDonation = function() {
             $http.post('app/streamboard/add_donation_ajax').success(function() {
                 $scope.updateDonations();
             });
         };
 
-        $scope.clearDonations = function(){
-            $scope.unorderedDonations = {};
-            $scope.donations = [];
-            $http.post('app/streamboard/clear_button_ajax');
-        };
 
         $scope.sortDonations = function(){
             var newDonations = [];
@@ -123,7 +72,7 @@
                 return b.paymentDate - a.paymentDate;
             });
             $scope.donations = newDonations;
-            
+
         };
         $scope.updateDonations = function(forceAll) {
             var params = {since_id: forceAll ? 0 : $scope.lastDonationId };
@@ -138,10 +87,6 @@
                     $scope.sortDonations();
                 }
             });
-        };
-        $scope.campaignChanged = function(campaign){
-            $http.post('app/streamboard/set_campaign_selection', {id: campaign.id, streamboardSelected: campaign.streamboardSelected});
-            $rootScope.calcSelectedCampaignsNumber();
         };
 
         $scope.updateDonations();

@@ -11,6 +11,11 @@ class StreamboardSourceAsset extends AssetBundle
 	];
 	public $js = [
 		'plugins/iframeResizer/iframeResizer.contentWindow.js',
+        /*angular app begin*/
+        'js/streamboard/angular-app/pullr-common.js',
+        'js/streamboard/angular-app/campaigns.js',
+        'js/streamboard/angular-app/app-source.js',
+        /*angular app end*/
 	];
 	public $depends = [
 		'common\assets\streamboard\StreamboardCommonAsset',

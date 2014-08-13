@@ -4,7 +4,7 @@ use yii\web\View;
 
 /**@var $this View */
 ?>
-<div ng-app="streamboardApp" class="view-source">
+<div ng-app="pullr.streamboard.sourceApp" class="view-source">
     <div ng-controller="SourceCtrl">
         <div class="twitchStats" ng-show="twitchUser">
             <div>Followers: <span id="followers_number" class="amount accent">{{twitchUser.followersNumber}}</span>
