@@ -16,6 +16,7 @@ use PayPal\Api\PaymentExecution;
 use common\models\Donation;
 use common\models\Campaign;
 use PayPal\Api\Payee;
+use common\models\notifications\RecentActivityNotification;
 
 define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
 
@@ -98,6 +99,22 @@ class PullrPayment extends \yii\base\Component {
                         $donation->lastName = strip_tags($payerInfo->getLastName());
                         $donation->save();
                         Campaign::updateDonationStatistics($donation->campaignId);
+
+                        // dashboard "Donation received" notification
+                        RecentActivityNotification::createNotification(
+                            \Yii::$app->user->id,
+                            sprintf(\Yii::$app->params['donationReceived'], $donation->name, number_format($donation->amount), $donation->campaign->name)
+                        );
+
+                        // dashboard "Campaign goal reached" notification
+                        $campaign = Campaign::findOne($donation->campaignId);
+                        if (intval($campaign->amountRaised) >= intval($campaign->goalAmount)){
+                            RecentActivityNotification::createNotification(
+                                \Yii::$app->user->id,
+                                sprintf(\Yii::$app->params['goalReached'], number_format($campaign->goalAmount), $campaign->name)
+                            );
+                        }
+
                         break;
                 }
             }

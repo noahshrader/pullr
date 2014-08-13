@@ -230,10 +230,14 @@ $twitchPartner = $user->userFields->twitchPartner;
     <ul class="activity-feed module">
         <li>
             <? if (sizeof($recentActivity) > 0): ?>
+                <ul class="activities">
                 <? foreach ($recentActivity as $notification): ?>
-                    <span><?= $notification->message ?></span>
+                    <li><div><?= $notification->message ?></div></li>
                 <? endforeach; ?>
-            <? endif; ?>
+                </ul>
+            <? else: ?>
+                <div class="no-recent-activity">No recent activity</div>
+            <? endif ?>
         </li>
         <li>
             <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
