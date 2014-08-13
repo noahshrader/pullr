@@ -232,6 +232,10 @@
 		text-transform: none;
 	}
 
+	h4 {
+		color: @dkaccent20;
+	}
+
 	i {
 		display: block;
 		font-size: 24px;
@@ -257,7 +261,11 @@
 				font-size: 13px;
 				padding-left: 30px;
 				padding-right: 30px;
-				margin: 0px;			
+				margin: 0px;	
+
+				span {
+					color: @gray75;
+				}		
 			}
 
 			&:last-child {
@@ -274,16 +282,19 @@
 	/* Activity Feed */
 	ul.activity-feed {
 
+		border-top: 2px solid @bglightwhitefade;
+
 		li {
-		color: @gray30;
+		color: @dkaccent20;
 		font-size: 13px;
 		padding-left: 30px;
 		padding-right: 30px;
 		margin: 0px;
+		border-bottom: 2px solid @bglightwhitefade;
 		}
 
 		&:first-child {
-			color: @gray80;
+			color: @dkaccent20;
 		}
 	}
 }
