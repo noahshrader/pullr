@@ -228,29 +228,13 @@ $twitchPartner = $user->userFields->twitchPartner;
     <i class="icon-chatbubble2"></i>
     <h5>Recent Activity</h5>
     <ul class="activity-feed module">
-        <li>
             <? if (sizeof($recentActivity) > 0): ?>
-                <ul class="activities">
                 <? foreach ($recentActivity as $notification): ?>
-                    <li><div><?= $notification->message ?></div></li>
+                    <li><span><?= $notification->message ?></span></li>
                 <? endforeach; ?>
-                </ul>
             <? else: ?>
                 <div class="no-recent-activity">No recent activity</div>
             <? endif ?>
-        </li>
-        <li>
-            <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
-        </li>
-        <li>
-            <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
-        </li>
-        <li>
-            <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
-        </li>
-        <li>
-            <span>Klyukin just accepted your invite to fundraiser, Fun For Freedom</span>
-        </li>
     </ul>
 </div>
 
