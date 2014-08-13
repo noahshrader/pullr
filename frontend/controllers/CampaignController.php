@@ -3,7 +3,6 @@
 namespace frontend\controllers;
 
 use common\models\FirstGiving;
-use common\models\notifications\RecentActivityNotification;
 use frontend\controllers\FrontendController;
 use common\models\Campaign;
 use yii\web\NotFoundHttpException;
@@ -21,6 +20,7 @@ use common\models\CampaignInvite;
 use common\models\mail\Mail;
 use common\models\Donation;
 use HttpRequest;
+use common\models\notifications\RecentActivityNotification;
 
 class CampaignController extends FrontendController {
 
@@ -40,6 +40,12 @@ class CampaignController extends FrontendController {
         $status = $_REQUEST['status'];
         $campaign->status = $status;
         $campaign->save();
+
+        RecentActivityNotification::createNotification(
+            \Yii::$app->user->id,
+            sprintf(\Yii::$app->params['campaignEnded'], $campaign->name, number_format($campaign->amountRaised))
+        );
+
         $this->redirect('app/campaign');
     }
     
@@ -79,9 +85,13 @@ class CampaignController extends FrontendController {
             if ($editCampaign->save()){
                 UploadImage::UploadCampaignBackground($editCampaign);
 
-                RecentActivityNotification::createNotification(\Yii::$app->user->id, sprintf(\Yii::$app->params['newCampaign'], $editCampaign->name));
-
                 if ($isNewRecord) {
+                    // dashboard "Campaign created" notification
+                    RecentActivityNotification::createNotification(
+                        \Yii::$app->user->id,
+                        sprintf(\Yii::$app->params['newCampaign'], $editCampaign->name)
+                    );
+
                     $this->redirect('app/campaign/edit?id=' . $editCampaign->id);
                 }
             }
