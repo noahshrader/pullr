@@ -214,7 +214,8 @@ $twitchPartner = $user->userFields->twitchPartner;
 <div id="sidebar" class="dashboard pane">
 
     <div class="invites-wrap"> <!-- BEGIN campaign invites -->
-        <h5><i class="icon-announcement"></i> Campaign Invites</h5>
+        <i class="icon-announcement sidebar-icon"></i>
+        <h5>Campaign Invites</h5>
         <? if (sizeof($campaignInvites) > 0): ?>
              <?=
             $this->render('campaignInvites', [
@@ -224,7 +225,8 @@ $twitchPartner = $user->userFields->twitchPartner;
     </div> <!-- END campaign invites -->
 
 
-    <h5><i class="icon-chatbubble2"></i> Recent Activity</h5>
+    <i class="icon-chatbubble2"></i>
+    <h5>Recent Activity</h5>
     <ul class="activity-feed module">
         <li>
             <? if (sizeof($recentActivity) > 0): ?>
