@@ -1609,6 +1609,9 @@ html.dark footer a.logo:hover:before {
   margin: 0 auto;
   width: 100%;
 }
+.payment fieldset {
+  border: 0;
+}
 /* Animations */
 /* ------------------------------------------------- */
 /* Fade */
