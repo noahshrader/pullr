@@ -20,6 +20,7 @@ class DonationAsset extends AssetBundle
             'js/donation/donation.js',
 	];
 	public $depends = [
-		'yii\web\YiiAsset'
+		'yii\web\YiiAsset',
+		'kartik\widgets\Select2Asset'
 	];
 }
