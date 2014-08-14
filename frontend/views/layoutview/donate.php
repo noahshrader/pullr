@@ -87,5 +87,15 @@ use yii\widgets\ActiveForm;
         <?php ActiveForm::end(); ?>
 </section>
 
+<script type="text/javascript">
+
+// iframe resize used with iframe resizer
+
+$(document).ready(function() {
+    $('iframe').iFrameResize();
+});
+
+</script>
+
 <!-- END Donation Form -->
 
