@@ -1604,12 +1604,12 @@ html.dark footer a.logo:hover:before {
 }
 /* Payment Section */
 /* ------------------------------------------------- */
-.payment .group {
+.group {
   background: #ffffff;
   margin: 0 auto;
   width: 100%;
 }
-.payment fieldset {
+fieldset {
   border: 0;
 }
 /* Animations */
