@@ -16,7 +16,6 @@ use yii\widgets\ActiveForm;
            if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES && $campaign->charityId){
                $charityName = $campaign->charity->name;
            } 
-           
         ?>
         <? if ($charityName):?>
             <h3 class="charity-name">for <span><?= $charityName ?></span>
@@ -25,7 +24,7 @@ use yii\widgets\ActiveForm;
             <? endif ?>
         <? endif ?>
     <? endif; ?>
-     <?php $form = ActiveForm::begin($campaign->firstGiving ? [] : ['options' => ['target' => '_blank']]) ?>
+    <?php $form = ActiveForm::begin($campaign->firstGiving ? [] : ['options' => ['target' => '_blank']]) ?>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
                 <!-- Amount Selections -->
                 <div id="donation-amount" class="cf">
