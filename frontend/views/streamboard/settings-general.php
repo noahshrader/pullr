@@ -4,7 +4,7 @@ use yii\helpers\Url;
 ?>
 
 <div class="text-center streamboard-settings-header">
-    <button class="btn btn-secondary btn-sm" ng-click="clearDonations()">Clear donations list</button>
+    <button class="btn btn-secondary btn-sm" ng-click="clearButton()">Clear donations list</button>
 </div>
 <div class="campaigns_list_panel pane">
     <div class="campaigns_list">

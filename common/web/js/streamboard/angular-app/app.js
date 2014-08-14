@@ -1,12 +1,5 @@
 (function () {
     var app = angular.module('streamboardApp', ['vr.directives.slider', 'pullr.streamboard.donations', 'pullr.streamboard.regions', 'pullr.streamboard.settings']);
-    app.run(function ($rootScope, $http) {
-        $rootScope.clearDonations = function () {
-            $rootScope.unorderedDonations = {};
-            $rootScope.donations = [];
-            $http.post('app/streamboard/clear_button_ajax');
-        };
-    });
 
     app.controller('SourceCtrl', function ($rootScope, $scope, $http) {
         $scope.stats = {};
