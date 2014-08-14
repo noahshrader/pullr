@@ -1602,6 +1602,13 @@ html.dark footer a.logo:before {
 html.dark footer a.logo:hover:before {
   color: #ffffff;
 }
+/* Payment Section */
+/* ------------------------------------------------- */
+.payment .group {
+  background: #ffffff;
+  margin: 0 auto;
+  width: 100%;
+}
 /* Animations */
 /* ------------------------------------------------- */
 /* Fade */

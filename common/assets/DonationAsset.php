@@ -16,7 +16,6 @@ class DonationAsset extends AssetBundle
         
 	public $js = [
             'js/common.js',
-            'js/donation/iframeResizer.contentWindow.min.js',
             'js/donation/donation.js',
 	];
 	public $depends = [

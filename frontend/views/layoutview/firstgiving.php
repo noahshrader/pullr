@@ -1,1 +1,1 @@
-<iframe src="<?= $url; ?>"></iframe>
+<iframe src="<?= $url; ?>" class="payment"></iframe>
