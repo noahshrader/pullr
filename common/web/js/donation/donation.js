@@ -1,9 +1,3 @@
-// iframe resize used with iframe resizer
-
-$(document).ready(function() {
-    $('iframe').iFrameResize();
-});
-
 function donatePageInit() {
     $("#other-amount").on("change keyup paste",amountChangedEvent);
 
