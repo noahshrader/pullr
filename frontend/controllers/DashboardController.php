@@ -9,11 +9,12 @@ use common\models\notifications\RecentActivityNotification;
 use common\models\query\CampaignQuery;
 use common\models\twitch\TwitchUser;
 use common\models\Campaign;
+use common\models\User;
 
 class DashboardController extends FrontendController {
     public function actionIndex() {
-        //$userId = \Yii::$app->user->id;
         $user = \Yii::$app->user->identity;
+        /**@var User $user*/
         $userId = $user->getId();
         $systemNotification = SystemNotification::getNotificationForUser($userId);
         $campaignInvites = CampaignInvite::findAll(['userId' => $userId, 'status' => CampaignInvite::STATUS_PENDIND]);
