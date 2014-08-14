@@ -18,6 +18,7 @@ class DonationAsset extends AssetBundle
             '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
             'js/common.js',
             'js/donation/donation.js',
+            'js/donation/iframeResizer.contentWindow.min.js',
 	];
 	public $depends = [
 		'yii\web\YiiAsset'
