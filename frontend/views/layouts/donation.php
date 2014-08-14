@@ -8,12 +8,9 @@ use common\assets\DonationAsset;
  */
 DonationAsset::register($this);
 
-
 $campaign = \Yii::$app->controller->campaign;
 ?>
-
 <?php $this->beginPage() ?>
-
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <?= $this->render('baseHead') ?>
@@ -42,6 +39,17 @@ $campaign = \Yii::$app->controller->campaign;
                 <h5>Powered by</h5>
                 <a class="logo icon-pullr" href="http://www.pullr.io" target="_blank"></a>
         </footer>
+        <script type="text/javascript">
+
+        // iframe resize used with iframe resizer
+
+        $(document).ready(function() {
+            $('iframe')iFrameResize({
+            sizeWidth: true
+        });
+        });
+
+        </script>
     </body>
 </html>
 <?php $this->endPage() ?>
