@@ -1,46 +1,11 @@
 (function () {
-    var app = angular.module('pullr.streamboard.donations', ['pullr.common']);
-    app.run(function($rootScope, $http){
-        $rootScope.selectedCampaignsNumber = 0;
-        $rootScope.campaigns = {};
-        $rootScope.requestCampaigns = function() {
-            $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
-                var oldCampaigns = $rootScope.campaigns;
-                /*We have asynchronous conflict between campaigns enabling/disabling and requestCampaigns request.
-                 So first we prefer streamboardSelected value at client compared to server.
-                 */
-                for (var id in campaigns){
-                    if (oldCampaigns[id]){
-                        campaigns[id].streamboardSelected = oldCampaigns[id].streamboardSelected;
-                    }
-                }
-                $rootScope.campaigns = campaigns;
-                $rootScope.calcSelectedCampaignsNumber();
-            });
-        };
-        $rootScope.calcSelectedCampaignsNumber = function(){
-            var number = 0;
-            $.each($rootScope.campaigns, function(key, campaign){
-                campaign.streamboardSelected ? number++: null;
-            });
-            $rootScope.selectedCampaignsNumber = number;
-        };
-        $rootScope.requestCampaigns();
-        setInterval(function() {
-            $rootScope.requestCampaigns();
-        }, 1000);
-        $rootScope.campaignChanged = function(campaign){
-            $http.post('app/streamboard/set_campaign_selection', {id: campaign.id, streamboardSelected: campaign.streamboardSelected});
-            $rootScope.calcSelectedCampaignsNumber();
-        };
-    });
-
-    app.filter('selectedCampaigns', function(){
-        return function(donations, $rootScope){
+    var app = angular.module('pullr.streamboard.donations', ['pullr.common', 'pullr.streamboard.campaigns' ]);
+    app.filter('selectedCampaigns', function(campaigns){
+        return function(donations){
             var filteredDonations = [];
             for (var key in donations){
                 var donation = donations[key];
-                var campaign = $rootScope.campaigns[donation.campaignId];
+                var campaign = campaigns.campaigns[donation.campaignId];
                 if (campaign && campaign.streamboardSelected){
                     filteredDonations.push(donation);
                 }
@@ -48,7 +13,8 @@
             return filteredDonations;
         }
     });
-    app.controller('DonationsCtrl', function($rootScope, $scope, $http) {
+    app.controller('DonationsCtrl', function($rootScope, $scope, $http, campaigns) {
+        $scope.campaignsService = campaigns;
         $scope.donations = [];
         $scope.unorderedDonations = {};
         $scope.stats = {};
@@ -57,12 +23,12 @@
 
         $scope.addDonation = function() {
             $http.post('app/streamboard/add_donation_ajax').success(function() {
-                $scope.updateDonations();
+                updateDonations();
             });
         };
 
 
-        $scope.sortDonations = function(){
+        function sortDonations(){
             var newDonations = [];
             for (var key in $scope.unorderedDonations){
                 var donation = $scope.unorderedDonations[key];
@@ -74,7 +40,7 @@
             $scope.donations = newDonations;
 
         };
-        $scope.updateDonations = function(forceAll) {
+        function updateDonations(forceAll) {
             var params = {since_id: forceAll ? 0 : $scope.lastDonationId };
             $http.get('app/streamboard/get_donations_ajax', {params: params }).success(function(data){
                 $scope.stats = data.stats;
@@ -84,12 +50,12 @@
                 }
                 if (data.donations.length > 0){
                     $scope.lastDonationId = data.donations[0].id;
-                    $scope.sortDonations();
+                    sortDonations();
                 }
             });
         };
 
-        $scope.updateDonations();
+        updateDonations();
 
         $scope.nameHiddenToggle = function(donation){
             donation.streamboard.nameHidden = !donation.streamboard.nameHidden;
@@ -106,7 +72,7 @@
         }
 
         setInterval(function() {
-            $scope.updateDonations();
+            updateDonations();
         }, 1000);
     });
 })();

@@ -26,7 +26,7 @@ use yii\web\View;
                 <span>(Subscribed)</span><!-- removing space before :after(content:} rule
             --></span></span>
         </div>
-        <div class="overall" ng-show="length(campaigns) > 1">
+        <div class="overall" ng-show="length(campaignsService.campaigns) > 1">
             <h4>Overall</h4>
             <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">${{number_format(stats.total_amountRaised)}}</span>
             </div>
@@ -36,7 +36,7 @@ use yii\web\View;
             </div>
             <div>Total Donors: <span id="total_donors" class="amount accent">{{stats.number_of_donors}}</span></div>
         </div>
-        <div id="campaign_{{campaign.id}}" class="source-row" ng-repeat="campaign in campaigns">
+        <div id="campaign_{{campaign.id}}" class="source-row" ng-repeat="campaign in campaignsService.campaigns">
             <h4 id="campaignName_{{campaign.id}}">{{campaign.name}}</h4>
             <div>Amount Raised: <span class="amount accent" id="amountRaised_{{campaign.id}}">${{number_format(campaign.amountRaised)}}</span>
             </div>

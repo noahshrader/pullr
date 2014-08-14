@@ -29,7 +29,7 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
             <div class="tab-pane region" id="region_{{region.regionNumber}}" ng-repeat="region in regions">
                 <?= $this->render('region/region') ?>
             </div>
-            <div class="tab-pane" id="settingsTab">
+            <div class="tab-pane" id="settingsTab" ng-controller="SettingsCtrl">
                 <?= $this->render('settings') ?>
             </div>
         </div>
