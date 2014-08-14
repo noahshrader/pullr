@@ -92,7 +92,7 @@ use yii\widgets\ActiveForm;
 // iframe resize used with iframe resizer
 
 $(document).ready(function() {
-    $('iframe').iFrameResize();
+    $('iframe')iFrameResize({});
 });
 
 </script>
