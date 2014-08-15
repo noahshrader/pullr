@@ -14,9 +14,6 @@ $(function () {
         $(".spinner-wrap").fadeOut();
     });
 
-    if (Pullr.ENV == 'dev'){
-        $(".spinner-wrap").fadeOut();
-    }
     // panel toggles
     $(document).on('click', '.paneltoggle li a', function() {
    		$('.'+$(this).data('panel')+'_panel').toggleClass('selected');
