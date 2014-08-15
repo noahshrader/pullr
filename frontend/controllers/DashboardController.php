@@ -21,18 +21,10 @@ class DashboardController extends FrontendController {
         $recentActivity = RecentActivityNotification::find()->andWhere(['userId' => $userId])->orderBy('DATE DESC')->limit(10)->all();
         $twitchUser = TwitchUser::findOne($userId);
 
-        // overall statistics calculations
-        $dashboard['overall'] = $this->calculateDashboardStats($user->getCampaigns(Campaign::STATUS_ACTIVE)->orderBy('id DESC'));
-
-        // today statistics calculations
-        $parentCampaigns = $user->getParentCampaigns()->andWhere('DATE(date) = CURDATE()');
-        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->andWhere('DATE(date) = CURDATE()');
-        $dashboard['today'] = $this->calculateDashboardStats($campaigns->union($parentCampaigns)->orderBy('id DESC'));
-
-        // month statistics calculations
-        $parentCampaigns = $user->getParentCampaigns()->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())');
-        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())');
-        $dashboard['month'] = $this->calculateDashboardStats($campaigns->union($parentCampaigns)->orderBy('id DESC'));
+        // dashboard statistics calculations
+        $dashboard['overall'] = $this->calculateDashboardStats('overall');
+        $dashboard['today'] = $this->calculateDashboardStats('today');
+        $dashboard['month'] = $this->calculateDashboardStats('month');
 
         return $this->render('index',[
             'systemNotification' => $systemNotification, 
@@ -69,14 +61,42 @@ class DashboardController extends FrontendController {
         $this->redirect('app');
     }
 
-    private function calculateDashboardStats(CampaignQuery $userCampaigns){
-        $totalRaised = $userCampaigns->sum('amountRaised');
-        $charityRaised = Donation::getDonationsForCampaigns($userCampaigns->all())->sum('amount');
-        $personalRaised = $totalRaised - $charityRaised;
+    private function calculateDashboardStats($period = 'overall'){
+        $user = \Yii::$app->user->identity;
 
+        // total campaigns count
+        $userCampaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)
+                         ->union($user->getParentCampaigns()->andWhere('DATE(date) = CURDATE()'))
+                         ->orderBy('id DESC');
+        if($period == 'today'){
+            $userCampaigns->andWhere('DATE(date) = CURDATE()');
+        }
+        if($period == 'month'){
+            $userCampaigns->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())');
+        }
         $totalCampaigns = $userCampaigns->count();
-        $totalDonations = $userCampaigns->sum('numberOfDonations');
-        $totalDonors = $userCampaigns->sum('numberOfUniqueDonors');
+
+        // donations calculations
+        $todayDonations = Donation::find()->where(['campaignUserId' => \Yii::$app->user->id]) ->orWhere(['parentCampaignUserId' => \Yii::$app->user->id]);
+        if($period == 'today'){
+            $todayDonations->andWhere('DATE(FROM_UNIXTIME(createdDate)) = CURDATE()');
+        }
+        if($period == 'month'){
+            $todayDonations->andWhere('MONTH(DATE(FROM_UNIXTIME(createdDate))) = MONTH(CURDATE())');
+        }
+        $totalDonations = $todayDonations->count();
+        $totalDonors = $todayDonations->count('DISTINCT email');
+        $totalRaised = $todayDonations->sum('amount');
+        $personalRaisedRec = Donation::find()->joinWith('campaign', true, 'INNER JOIN')->where(['campaignUserId' => \Yii::$app->user->id])->andWhere(['type' => 'Personal Tip Jar']);
+        if($period == 'today'){
+            $personalRaisedRec->andWhere('DATE(FROM_UNIXTIME(createdDate)) = CURDATE()');
+        }
+        if($period == 'month'){
+            $personalRaisedRec->andWhere('MONTH(DATE(FROM_UNIXTIME(createdDate))) = MONTH(CURDATE())');
+        }
+        $personalRaised = $personalRaisedRec->sum('amount');
+        $charityRaised = $totalRaised - $personalRaised;
+
 
         $totalRaised = $totalRaised ?: 0;
         $charityRaised = $charityRaised ?: 0;
