@@ -1,4 +1,4 @@
-<select selectpicker ng-model="model" ng-change="regionChanged(region)"
-        ng-options="font.value as font.name for font in GOOGLE_FONTS">
+<select selectpicker ng-model="model" ng-change="regionChanged()"
+        ng-options="font.value as font.name for font in $root.GOOGLE_FONTS">
     <option value="">Select one...</option>
 </select>
