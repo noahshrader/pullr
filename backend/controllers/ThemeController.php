@@ -18,6 +18,6 @@ class ThemeController extends BackendController
         public function actionRescan(){
             $scanner = new ThemeScanner();
             $scanner->rescan();
-            $this->redirect('theme');
+            $this->redirect('index');
         }
 }

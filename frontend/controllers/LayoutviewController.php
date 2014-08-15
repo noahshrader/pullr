@@ -37,7 +37,16 @@ class LayoutviewController extends \yii\web\Controller {
     }
     public function actionView($userAlias, $campaignAlias) {
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
-        echo $this->renderPartial('index',['campaign' => $campaign]);
+        $campaignTheme = $campaign->getTheme()->one();
+
+        if(!is_null($campaignTheme)){
+            $theme = $campaignTheme->filename;
+        }
+        else
+        {
+            $theme = 'default';
+        }
+        echo $this->renderPartial("@app/web/themes/{$theme}/index",['campaign' => $campaign]);
         die;
     }
     
