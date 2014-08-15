@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Theme;
 use common\models\User;
 use common\models\Campaign;
 use common\models\Donation;
@@ -37,7 +38,16 @@ class LayoutviewController extends \yii\web\Controller {
     }
     public function actionView($userAlias, $campaignAlias) {
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
-        echo $this->renderPartial('index',['campaign' => $campaign]);
+        $campaignTheme = $campaign->getTheme()->one();
+
+        if(!is_null($campaignTheme) && ($campaignTheme->status == Theme::STATUS_ACTIVE)){
+            $theme = $campaignTheme->filename;
+        }
+        else
+        {
+            $theme = 'default';
+        }
+        echo $this->renderPartial("@app/web/themes/{$theme}/index", ['campaign' => $campaign]);
         die;
     }
     
