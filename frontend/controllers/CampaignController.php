@@ -294,7 +294,7 @@ class CampaignController extends FrontendController {
         $layoutType = $_POST['layoutType'];
         $plan = \Yii::$app->user->identity->getPlan();
 
-        $themesQuery = Theme::find()->where(['status' => Theme::STATUS_ACTIVE]);
+        $themesQuery = Theme::find()->where(['status' => Theme::STATUS_ACTIVE])->orderBy('addedDate DESC');
         if ($plan == Plan::PLAN_BASE) {
             $themesQuery->andWhere(['plan' => Plan::PLAN_BASE]);
         }

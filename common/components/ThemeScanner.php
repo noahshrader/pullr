@@ -82,6 +82,7 @@ class ThemeScanner extends \yii\base\Component
                 $theme->description = $themeParams['Description'] ?: null;
                 $theme->layoutType = $themeParams['LayoutType']?:null;
                 $theme->plan = $themeParams['Plan'] ?: null;
+                $theme->addedDate = time();
                 $theme->save();
             }
         }

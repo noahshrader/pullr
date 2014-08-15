@@ -21,9 +21,12 @@ $this->title = 'Themes';
     </label>
     <a href="theme/rescan" class="btn btn-primary">Rescan Themes</a>
 
-    <table id="themes-management-table"  class="table dataTable">
+    <table id="themes-management-table"  class="table dataTable" style="width: 700px;">
         <thead>
             <tr>
+                <th>
+                    Date added
+                </th>
                 <th>
                     Filename
                 </th>
@@ -42,11 +45,13 @@ $this->title = 'Themes';
                 <th>
                     Status
                 </th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <? foreach ($themes as $theme): ?>
                 <tr>
+                    <td><?= date('Y.m.d' ,$theme->addedDate) ?></td>
                     <td><?= $theme->filename ?></td>
                     <td><?= $theme->name?> </td>
                     <td><?= $theme->description ?></td>
@@ -64,6 +69,10 @@ $this->title = 'Themes';
                        } 
                     ?>
                     <td><span class="label label-<?= $class ?>"><?= $theme->status ?></span></td>
+                    <td>
+                            <a href="<?= \Yii::$app->urlManager->createUrl(['theme/enable', 'themeId' => $theme->id]); ?>">on</a>
+                            <a href="<?= \Yii::$app->urlManager->createUrl(['theme/disable', 'themeId' => $theme->id]); ?>">off</a>
+                    </td>
                 </tr>
             <? endforeach; ?>
         </tbody>
