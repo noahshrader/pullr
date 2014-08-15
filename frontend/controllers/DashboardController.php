@@ -65,34 +65,42 @@ class DashboardController extends FrontendController {
         $user = \Yii::$app->user->identity;
 
         // total campaigns count
-        $userCampaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)
-                         ->union($user->getParentCampaigns()->andWhere('DATE(date) = CURDATE()'))
-                         ->orderBy('id DESC');
+        $userCampaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->orderBy('id DESC');
         if($period == 'today'){
             $userCampaigns->andWhere('DATE(date) = CURDATE()');
         }
         if($period == 'month'){
-            $userCampaigns->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())');
+            $userCampaigns->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())')
+                          ->andWhere('YEAR(DATE(date)) = YEAR(CURDATE())');
         }
         $totalCampaigns = $userCampaigns->count();
 
         // donations calculations
-        $todayDonations = Donation::find()->where(['campaignUserId' => \Yii::$app->user->id]) ->orWhere(['parentCampaignUserId' => \Yii::$app->user->id]);
+        $todayDonations = Donation::find()
+                          ->where(['campaignUserId' => \Yii::$app->user->id])
+                          ->orWhere(['parentCampaignUserId' => \Yii::$app->user->id])
+                          ->andWhere('paymentDate > 0');
         if($period == 'today'){
-            $todayDonations->andWhere('DATE(FROM_UNIXTIME(createdDate)) = CURDATE()');
+            $todayDonations->andWhere('DATE(FROM_UNIXTIME(paymentDate)) = CURDATE()');
         }
         if($period == 'month'){
-            $todayDonations->andWhere('MONTH(DATE(FROM_UNIXTIME(createdDate))) = MONTH(CURDATE())');
+            $todayDonations->andWhere('MONTH(FROM_UNIXTIME(paymentDate)) = MONTH(CURDATE())')
+                           ->andWhere('YEAR(FROM_UNIXTIME(paymentDate)) = YEAR(CURDATE())');
         }
         $totalDonations = $todayDonations->count();
         $totalDonors = $todayDonations->count('DISTINCT email');
         $totalRaised = $todayDonations->sum('amount');
-        $personalRaisedRec = Donation::find()->joinWith('campaign', true, 'INNER JOIN')->where(['campaignUserId' => \Yii::$app->user->id])->andWhere(['type' => 'Personal Tip Jar']);
+        $personalRaisedRec = Donation::find()
+                             ->joinWith('campaign', true, 'INNER JOIN')
+                             ->where(['campaignUserId' => \Yii::$app->user->id])
+                             ->andWhere(['type' => 'Personal Tip Jar'])
+                             ->andWhere('paymentDate > 0');
         if($period == 'today'){
-            $personalRaisedRec->andWhere('DATE(FROM_UNIXTIME(createdDate)) = CURDATE()');
+            $personalRaisedRec->andWhere('DATE(FROM_UNIXTIME(paymentDate)) = CURDATE()');
         }
         if($period == 'month'){
-            $personalRaisedRec->andWhere('MONTH(DATE(FROM_UNIXTIME(createdDate))) = MONTH(CURDATE())');
+            $personalRaisedRec->andWhere('MONTH(FROM_UNIXTIME(paymentDate)) = MONTH(CURDATE())')
+                              ->andWhere('YEAR(FROM_UNIXTIME(paymentDate)) = YEAR(CURDATE())');
         }
         $personalRaised = $personalRaisedRec->sum('amount');
         $charityRaised = $totalRaised - $personalRaised;
