@@ -44,6 +44,8 @@
     });
     app.controller('RegionCtrl', function ($rootScope, $scope, $http) {
         $scope.regions = {};
+        $scope.MAX_FONT_SIZE = 72;
+        $scope.MIN_FONT_SIZE = 10;
         $http.get('app/streamboard/get_regions_ajax').success(function (data) {
             $scope.regions = data;
         });

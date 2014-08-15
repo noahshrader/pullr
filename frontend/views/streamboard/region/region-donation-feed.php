@@ -16,7 +16,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 </div>
 <div class="form-group">
     <label>Font size</label>
-    <slider ng-model="widget.fontSize" floor="10" ceiling="30" step="1"
+    <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
             ng-change="regionChanged(region)"></slider>
     <span>{{widget.fontSize}} px</span>
 </div>
@@ -31,11 +31,11 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
     <label>Scrolling</label>
 </div>
 
-<div class="form-group" ng-show="widget.scrolling">
+<div ng-show="widget.scrolling">
     <label>
         Scroll Speed
     </label>
-    <select class="form-control select-block" ng-model="widget.scrollingSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"
+    <select selectpicker ng-model="widget.scrollSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"
             ng-options="speed.value as speed.name for speed in WIDGET_SPEEDS">
         <option value="">Select one...</option>
     </select>
