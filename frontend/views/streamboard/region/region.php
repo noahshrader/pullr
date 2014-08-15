@@ -16,9 +16,8 @@ $typesList = [
     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left"
        data-original-title="Some hint here"></i>
 </div>
-
 <div class="form-group" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">
-    <select class="form-control select-block" ng-model="region.widgetType" ng-change="regionChanged(region)"
+    <select selectpicker ng-model="region.widgetType" ng-change="regionChanged(region)"
             ng-options="type.value as type.name for type in WIDGET_TYPES">
         <option value="">Select a widget...</option>
     </select>

@@ -10,6 +10,10 @@
     "tests"
   ],
   "dependencies": {
-    "venturocket-angular-slider": "~0.3.2"
+    "venturocket-angular-slider": "~0.3.2",
+    "angular-bootstrap-select": "~0.0.3"
+  },
+  "resolutions": {
+    "angular": "~1.x"
   }
 }

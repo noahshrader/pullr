@@ -1,5 +1,5 @@
 (function(){
-    var app = angular.module('pullr.streamboard.regions', ['pullr.common']);
+    var app = angular.module('pullr.streamboard.regions', ['pullr.common', 'angular-bootstrap-select', 'angular-bootstrap-select.extra']);
     app.run(function($rootScope, $http){
         $rootScope.GOOGLE_FONTS = [];
         $http.get('https://www.googleapis.com/webfonts/v1/webfonts?key='+$rootScope.Pullr.params.googleAPIKey).success(function(data){

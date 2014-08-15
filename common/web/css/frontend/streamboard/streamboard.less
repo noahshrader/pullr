@@ -404,3 +404,8 @@ a.dashboard.show:before {
 		-webkit-transform: rotate(-360deg);
 	}
 }
+/*that is css fix for duplication of angular-bootstrap-select
+can be removed in future, after plugin update*/
+.btn-group.bootstrap-select:not(.ng-pristine){
+  display: none;
+}

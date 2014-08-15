@@ -22,7 +22,7 @@ use yii\web\View;
 
 <div class="form-group">
     <label>Animation delay</label>
-    <slider ng-model="widget.animationDelaySeconds" floor="0" ceiling="10" step="1"
+    <slider ng-model="widget.animationDelaySeconds" floor="0" ceiling="30" step="1"
             ng-change="regionChanged(region)"></slider>
     <span>{{widget.animationDelaySeconds}} sec</span>
 </div>
