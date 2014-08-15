@@ -1,6 +1,6 @@
-(function(){
+(function () {
     var app = angular.module('pullr.streamboard.regions', ['pullr.common', 'angular-bootstrap-select', 'angular-bootstrap-select.extra']);
-    app.run(function($rootScope, $http){
+    app.run(function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];
         $http.get('https://www.googleapis.com/webfonts/v1/webfonts?key='+$rootScope.Pullr.params.googleAPIKey).success(function(data){
             var items = data.items;
@@ -12,17 +12,29 @@
             $rootScope.GOOGLE_FONTS = fonts;
         });
     });
-    app.directive('isolatedScope', function(){
+    app.directive('isolatedScope', function () {
         return {
             scope: true
         }
     });
-    app.controller('RegionCtrl', function ($rootScope, $scope, $http){
+    app.directive('fontStyle', function ($rootScope, $http) {
+        return {
+            scope: {
+                model: '=ngModel'
+//             GOOGLE_FONTS: [{name: 'test', value: 'test'}]
+            },
+            controller: function ($scope) {
+                $scope.GOOGLE_FONTS = $rootScope.GOOGLE_FONTS;
+            },
+            templateUrl: 'angular/views/streamboard/region/fontStyle.html'
+        }
+    });
+    app.controller('RegionCtrl', function ($rootScope, $scope, $http) {
         $scope.regions = {};
-        $http.get('app/streamboard/get_regions_ajax').success(function(data){
+        $http.get('app/streamboard/get_regions_ajax').success(function (data) {
             $scope.regions = data;
         });
-        $scope.regionChanged = function(region){
+        $scope.regionChanged = function (region) {
             $http.post('app/streamboard/update_region_ajax', region);
         };
     });
