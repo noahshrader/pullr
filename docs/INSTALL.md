@@ -86,3 +86,6 @@ Edit the /etc/php.ini file and add the following:
 
 * extension=mcrypt.so
 
+If you are installing to OSX Yosemite, here's a workaround for mcrypt:
+
+* http://coolestguidesontheplanet.com/install-mcrypt-php-mac-osx-10-10-yosemite-development-server/
