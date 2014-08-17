@@ -32,7 +32,6 @@ $twitchPartner = $user->userFields->twitchPartner;
 
         <div class="tab-content">
             <div class="tab-pane in active" id="overall">
-                <!-- HTML MARKUP - Overview Stats -->
                 <div class="row stats-overview">
                     <div class="col-xs-12 stats-box raised-total">
                         <i class="icon-coin"></i>
@@ -56,14 +55,11 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
 
                 <div class="row stats-overview raised-group-stats">
-                    <i class="group-header icon-coins"></i>
                     <div class="group-stats-wrap">
                         <div class="col-xs-6 stats-box">
                             <h2>$<?= number_format($dashboard['overall']['charityRaised']) ?></h2>
                             <h5>Raised for Charity</h5>
                         </div>
-
-                        <!-- HTML MARKUP - RAISED PERSONALLY -->
                         <div class="col-xs-6 stats-box">
                             <h2>$<?= number_format($dashboard['overall']['personalRaised']) ?></h2>
                             <h5>Raised Personally</h5>
@@ -74,7 +70,6 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <!-- Twitch Data -->
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview twitch-stats">
-                        <i class="group-header icon-twitch2"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= $twitchUser->followersNumber ?></h2>
@@ -91,7 +86,6 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <? endif ?>
             </div>
             <div class="tab-pane in" id="today">
-                <!-- HTML MARKUP - Overview Stats -->
                 <div class="row stats-overview">
                     <div class="col-xs-12 stats-box raised-total">
                         <i class="icon-coin"></i>
@@ -115,14 +109,11 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
 
                 <div class="row stats-overview raised-group-stats">
-                    <i class="group-header icon-coins"></i>
                     <div class="group-stats-wrap">
                         <div class="col-xs-6 stats-box">
                             <h2>$<?= number_format($dashboard['today']['charityRaised']) ?></h2>
                             <h5>Raised for Charity</h5>
                         </div>
-
-                        <!-- HTML MARKUP - RAISED PERSONALLY -->
                         <div class="col-xs-6 stats-box">
                             <h2>$<?= number_format($dashboard['today']['personalRaised']) ?></h2>
                             <h5>Raised Personally</h5>
@@ -133,7 +124,6 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <!-- Twitch Data -->
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview twitch-stats">
-                        <i class="group-header icon-twitch2"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= $twitchUser->followersNumber ?></h2>
@@ -150,7 +140,6 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <? endif ?>
             </div>
             <div class="tab-pane in" id="month">
-                <!-- HTML MARKUP - Overview Stats -->
                 <div class="row stats-overview">
                     <div class="col-xs-12 stats-box raised-total">
                         <i class="icon-coin"></i>
@@ -174,14 +163,11 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
 
                 <div class="row stats-overview raised-group-stats">
-                    <i class="group-header icon-coins"></i>
                     <div class="group-stats-wrap">
                         <div class="col-xs-6 stats-box">
                             <h2>$<?= number_format($dashboard['month']['charityRaised']) ?></h2>
                             <h5>Raised for Charity</h5>
                         </div>
-
-                        <!-- HTML MARKUP - RAISED PERSONALLY -->
                         <div class="col-xs-6 stats-box">
                             <h2>$<?= number_format($dashboard['month']['personalRaised']) ?></h2>
                             <h5>Raised Personally</h5>
@@ -192,7 +178,6 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <!-- Twitch Data -->
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview twitch-stats">
-                        <i class="group-header icon-twitch2"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= $twitchUser->followersNumber ?></h2>

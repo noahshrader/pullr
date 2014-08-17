@@ -115,19 +115,16 @@
 	width: 100%;
 	border-bottom: solid 1px @dkaccent9;
 	&.active h3 {
-		color: @white;
+		color: @base;
+	}
+	&.active p {
+		color: @accent;
 	}
 	&.active {
-		background: @accent !important;
-	}
-	&.active:before {
-		.arrow-left;
-		margin-top: -10px;
-		right: 0px;
-		top: 50%;
+		background: @white;
 	}
 	&:hover {
-		background: @dkaccent3;
+		background: @accent;
 	}
 	h3 {
 		color: @white;
