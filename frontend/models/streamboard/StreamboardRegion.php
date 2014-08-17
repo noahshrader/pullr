@@ -77,9 +77,7 @@ class StreamboardRegion extends ActiveRecord {
     public function updateFromArray($data){
         return $this->load($data, '') && $this->save() &&
             $this->widgetAlerts->updateFromArray($data['widgetAlerts']) &&
-            $this->widgetAlerts->save() &&
-            $this->widgetCampaignBar->load($data,'widgetCampaignBar') &&
-            $this->widgetCampaignBar->save() &&
+            $this->widgetCampaignBar->updateFromArray($data['widgetCampaignBar']) &&
             $this->widgetDonationFeed->load($data,'widgetDonationFeed') &&
             $this->widgetDonationFeed->save();
     }

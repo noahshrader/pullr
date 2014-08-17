@@ -30,6 +30,6 @@ $typesList = [
         <?= $this->render('region-donation-feed') ?>
     </div>
     <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'" ng-init="widget=region.widgetCampaignBar; initWidget()">
-        <?= $this->render('region-campaign-bar') ?>
+        <?= $this->render('campaignBar/campaign-bar') ?>
     </div>
 </div>

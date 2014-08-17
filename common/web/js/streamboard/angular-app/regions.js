@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('pullr.streamboard.regions', ['pullr.common', 'angular-bootstrap-select', 'angular-bootstrap-select.extra']);
+    var app = angular.module('pullr.streamboard.regions', ['pullr.common', 'angular-bootstrap-select', 'angular-bootstrap-select.extra', 'pullr.streamboard.campaigns']);
     app.run(function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];
         var fonts;
@@ -42,7 +42,10 @@
             templateUrl: 'angular/views/streamboard/region/fontStyle.html'
         }
     });
-    app.controller('RegionCtrl', function ($rootScope, $scope, $http) {
+    app.controller('RegionCtrl', function ($rootScope, $scope, $http, campaigns) {
+        $scope.campaignsService = campaigns;
+        console.log(campaigns);
+
         $scope.regions = {};
         $scope.MAX_FONT_SIZE = 72;
         $scope.MIN_FONT_SIZE = 10;
