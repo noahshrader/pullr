@@ -20,7 +20,6 @@ body {
 	height: 100%;
 }
 
-
 /* Buttons */
 /* ------------------------------------------------- */
 .btn {
@@ -105,7 +104,7 @@ table {
 	td,
 	&.dataTable tbody th
 	&.dataTable tbody td {
-		padding: 1em 6% !important;
+		padding: 1em 0 !important;
 	}
 	&.dataTable.display tbody td[colspan~="4"] {
 		padding-top: 0 !important;
@@ -150,7 +149,6 @@ table {
 		border: 0;
 	}
 }
-.dataTables_wrapper,
 table.dataTable.row-border tbody th, 
 table.dataTable.row-border tbody td, 
 table.dataTable.display tbody th, 
@@ -185,7 +183,6 @@ table.dataTable thead td {
 }
 .table-header,
 .table-footer {
-	background: @gray75;
 
 	.select2-container {
 		margin-right: 6px;
@@ -197,7 +194,7 @@ table.dataTable thead td {
 }
 .row {
 	margin: 0;
-	padding: 16px 6%;
+	padding: 12px 0;
 	border-bottom: solid 1px @white;
 }
 
@@ -206,8 +203,14 @@ table.dataTable thead td {
 	position: relative;
 	text-align: center;
 	padding: 0;
-	border-top: solid 1px @gray75;
-	overflow: hidden;
+	margin-bottom: 20px;
+	background: @gray75;
+	&:before {
+		.arrow-up;
+		top: -10px;
+		margin-left: -10px;
+		border-color: transparent transparent @gray75 transparent;
+	}
 
 	.stats-box {
 		padding: 1.6em 2em;
@@ -251,7 +254,7 @@ table.dataTable thead td {
 	border-radius: 0px;
 	margin-bottom: 0px;
 	height: 20px;
-	background: @gray75;
+	background: @gray70;
 }
 .progress-line {
 	position: relative;
@@ -286,3 +289,5 @@ table.dataTable thead td {
 .nav-tabs {
 	border-color: transparent;
 }
+
+@import "responsive.less";

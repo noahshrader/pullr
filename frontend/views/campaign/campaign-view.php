@@ -89,7 +89,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
          <h1>
             <?= ($campaign->name)?$campaign->name:'New campaign' ?>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
-            <span class="campaign-date"><?= date('M j Y', $campaign->startDate) ?> - <?= date('M j Y', $campaign->endDate) ?></span>
+            <span class="campaign-date"><?= date('M j, Y', $campaign->startDate) ?> - <?= date('M j, Y', $campaign->endDate) ?></span>
             <? endif ?>
          </h1>
         <section class="stats-overview">

@@ -76,7 +76,7 @@ function amountChangedEvent(){
     }
     
     $('input#donation-amount').val(value);
-    $('button.donate').text('Donate $'+value);
+    $('button.donate').text('Donate $'+number_format(value));
     
     /**casting to int*/
     value=parseInt(value);

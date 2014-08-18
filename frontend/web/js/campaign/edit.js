@@ -216,6 +216,8 @@ function selectCharity(el){
 }
 
 $(function() {
+    // move modals outside of main site wrapper on load
+    $('.modal').insertAfter('.site-content');
     $('#campaign-layouttype').change(layoutTypeChanged);
     $('[name="Campaign[type]"]').change(campaignTypeChanged);
     $('[name="Campaign[donationDestination]"').change(donationDestinationChanged);

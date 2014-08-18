@@ -48,6 +48,15 @@ $(".primary-nav-toggle").click(function(){
     $(".primary-nav-toggle .icon").toggleClass("icon-arrowleft2 icon-arrowright3");
 });
 
+// reduce sidebar if the window shrinks too much
+$(window).resize(function() {  
+    if($(window).width() < 600){
+        $(".main-wrapper").addClass("small-menu-toggled").removeClass("large-menu-toggled");
+    } else {
+        $(".main-wrapper").addClass("large-menu-toggled").removeClass("small-menu-toggled");
+    }
+});
+
 // checkboxes
 $('.checkbox label').click(function(event){
     event.preventDefault();
