@@ -1,14 +1,12 @@
 <?php
+
+namespace common\components\theme;
+
 /**
- * Created by PhpStorm.
- * User: alexander
- * Date: 13.08.14
- * Time: 17:29
+ * Represents theme manifest which contains all needed info
+ * Class ThemeManifest
+ * @package common\components\theme
  */
-
-namespace common\components;
-
-
 class ThemeManifest
 {
     protected $source = NULL;

@@ -1,7 +1,7 @@
 <?php
 namespace backend\controllers;
 
-use common\components\ThemeScanner;
+use common\components\theme\ThemeScanner;
 use common\models\Theme;
 
 class ThemeController extends BackendController
