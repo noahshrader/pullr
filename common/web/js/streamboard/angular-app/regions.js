@@ -74,7 +74,6 @@
     });
     app.controller('RegionCtrl', function ($rootScope, $scope, $http, campaigns) {
         $scope.campaignsService = campaigns;
-        console.log(campaigns);
 
         $scope.regions = {};
         $scope.MAX_FONT_SIZE = 72;
@@ -84,6 +83,15 @@
         });
         $scope.regionChanged = function (region) {
             $http.post('app/streamboard/update_region_ajax', region);
+        };
+        $scope.selectSound = function (preference,sound, region) {
+            preference.sound = sound;
+            $scope.regionChanged(region);
+        };
+        $scope.playSound = function (sound) {
+            var path = Pullr.Streamboard.WidgetCampaignBarAlerts.PATH_TO_SOUNDS+sound;
+            var audio = new Audio(path);
+            audio.play();
         };
     });
 })()

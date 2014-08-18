@@ -5,7 +5,6 @@
         $rootScope.length = function(obj){
             return Object.keys(obj).length;
         }
-        $rootScope.user = Pullr.user;
         $rootScope.Pullr = Pullr;
     });
 })();

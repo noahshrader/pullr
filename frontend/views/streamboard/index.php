@@ -6,13 +6,14 @@ use yii\web\View;
 $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
 ?>
 <div ng-app="streamboardApp">
+    <?= $this->render('streamboard-js-variables') ?>
     <!-- // Layout Options Side Panel // -->
     <section id="sidepanel" class="sidepanel open resizable">
         <div class="sidepanel-head">
             <ul class="nav nav-tabs <?= $tabsClass ?> cf">
                 <li class="active">
-                    <a href="<?= Url::to() ?>#donations" data-toggle="tab" class="donations"><i
-                            class="icon icon-coin"></i></a>
+                    <a href="<?= Url::to() ?>#donations" data-toggle="tab" class="donations">
+                        <i class="icon icon-coin"></i></a>
                 </li>
                 <? for ($regionNumber = 1; $regionNumber <= $regionsNumber; $regionNumber++): ?>
                     <li><a href="<?= Url::to() ?>#region_<?= $regionNumber?>" data-toggle="tab" class="region<?=$regionNumber?>"><?= $regionNumber ?></a></li>

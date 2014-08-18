@@ -25,10 +25,6 @@ body {
 .btn {
 	font-family: @mainfont;
 	font-size: 1em;
-	font-weight: 700;
-	line-height: 46px;
-	padding: 0 1.6em;
-	height: 46px;
 	outline: 0;
 	border: 0;
 	.border-radius();
@@ -38,6 +34,12 @@ body {
 		outline: 0;
 		border: 0;
 	}
+    &:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
+        font-weight: 700;
+        line-height: 46px;
+        padding: 0 1.6em;
+        height: 46px;
+    }
 }
 .btn-default {
 	background-color: @accent;
@@ -149,9 +151,9 @@ table {
 		border: 0;
 	}
 }
-table.dataTable.row-border tbody th, 
-table.dataTable.row-border tbody td, 
-table.dataTable.display tbody th, 
+table.dataTable.row-border tbody th,
+table.dataTable.row-border tbody td,
+table.dataTable.display tbody th,
 table.dataTable.display tbody td,
 table.dataTable thead td {
 	border-top: solid 1px @gray75;
@@ -163,11 +165,11 @@ table.dataTable thead td {
 }
 .dataTables_wrapper {
 
-	.dataTables_length, 
-	.dataTables_filter, 
-	.dataTables_processing, 
+	.dataTables_length,
+	.dataTables_filter,
+	.dataTables_processing,
 	.dataTables_paginate {
-		color: @gray20 !important; 
+		color: @gray20 !important;
 
 		label {
 			margin: 0;
@@ -226,7 +228,7 @@ table.dataTable thead td {
 		}
 		&.raised-total {
 			border-left: 0 !important;
-			
+
 			h1,
 			h2 {
 				color: @accent;

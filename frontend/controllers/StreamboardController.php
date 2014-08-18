@@ -7,12 +7,12 @@ use common\models\twitch\TwitchSubscription;
 use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
 use frontend\models\streamboard\StreamboardRegion;
+use frontend\models\streamboard\WidgetCampaignBarAlerts;
 use Yii;
 use common\models\User;
 use common\models\Donation;
 use common\models\Campaign;
 use frontend\models\streamboard\Streamboard;
-use yii\db\ActiveRecord;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
@@ -32,8 +32,7 @@ class StreamboardController extends FrontendController
     public function actionSource()
     {
         $this->layout = 'streamboard/source';
-        return $this->render('source', [
-        ]);
+        return $this->render('source', []);
     }
 
     /**
@@ -77,7 +76,7 @@ class StreamboardController extends FrontendController
         $user = Application::getCurrentUser();
         $sinceDate = $user->streamboardConfig->clearedDate;
         /*we are limiting by 100 here, but on html after applying campaign's filter we will limit to just 20*/
-        $donations = $user->getDonations($since_id)->andWhere('paymentDate > '.$sinceDate)->with('campaign', 'streamboard')->limit(100)->all();
+        $donations = $user->getDonations($since_id)->andWhere('paymentDate > ' . $sinceDate)->with('campaign', 'streamboard')->limit(100)->all();
 
         $donationsArray = [];
         foreach ($donations as $donation) {
@@ -189,10 +188,10 @@ class StreamboardController extends FrontendController
         $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
 
         $subscribers = [];
-        if ($user->userFields->twitchPartner){
-            $subscriptions = TwitchSubscription::find()->where(['userId' => $user->id])->andWhere('createdAt > '. $sinceDate)->orderBy('createdAt DESC')->all();
-            foreach ($subscriptions as $subscription){
-                /** @var TwitchSubscription $subscription*/
+        if ($user->userFields->twitchPartner) {
+            $subscriptions = TwitchSubscription::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
+            foreach ($subscriptions as $subscription) {
+                /** @var TwitchSubscription $subscription */
                 $subscribers[] = $subscription->toArray(['twitchUserId', 'display_name', 'createdAt']);
             }
         }
@@ -216,34 +215,34 @@ class StreamboardController extends FrontendController
         $user->streamboardConfig->save();
     }
 
-    public function actionGet_regions_ajax(){
-       $user = Application::getCurrentUser();
+    public function actionGet_regions_ajax()
+    {
+        $user = Application::getCurrentUser();
 
-       $regions = StreamboardRegion::GetRegions($user);
+        $regions = StreamboardRegion::GetRegions($user);
 
-       $data = [];
-       foreach ($regions as $region){
-           $data[] = $region->toArray();
-       }
+        $data = [];
+        foreach ($regions as $region) {
+            $data[] = $region->toArray();
+        }
 
-       echo json_encode($data);
+        echo json_encode($data);
     }
 
     public function actionUpdate_region_ajax()
     {
         $data = json_decode(file_get_contents("php://input"), true);
         $user = Application::getCurrentUser();
-        if ($user->id != $data['userId']){
+        if ($user->id != $data['userId']) {
             throw new ForbiddenHttpException();
         }
         $region = StreamboardRegion::findOne(['userId' => $data['userId'], 'regionNumber' => $data['regionNumber']]);
         /** @var $region StreamboardRegion */
 
-        if ($region->updateFromArray($data, '')){
+        if ($region->updateFromArray($data, '')) {
             $response = ['code' => 'success', 'region' => $region->toArray()];
             echo json_encode($response);
-        }
-        else {
+        } else {
             echo 'error';
             var_dump($region->getErrors());
         }
