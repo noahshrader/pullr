@@ -40,7 +40,7 @@ $this->registerJs($js);
             </div> <!-- END top bar -->
 
             <div class="site-content pane">
-                <div class="primary-navigation lg-toggle"> <!-- BEGIN main navigation -->
+                <div class="primary-navigation"> <!-- BEGIN main navigation -->
                     <nav class="sidebar-nav nav-top">
                         <ul> 
                             <li>
