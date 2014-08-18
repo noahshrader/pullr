@@ -9,13 +9,20 @@ use frontend\models\streamboard\StreamboardDonation;
 use yii\db\Query;
 
 /**
+ * @class Donation - only Donations with paymentDate > 0 represent real money donations, others just drafts which wait approvement of money transfering
  * @property integer $id
+ * @property integer $userId
+ * @property integer $campaignId
+ * @property float $amount
  * @property string $name - Returns concatenation of [[firstName]] and [[lastName]] in case one of them exists and space symbol between them. In either case it returns [[nameFromForm]]
  * @property string $nameFromForm
+ * @property string $comments
+ * @property string $email
  * @property string $firstName
  * @property string $lastName
  * @property Campaign $campaign
  * @property StreamboardDonation $streamboard
+ * @property integer $paymentDate if > 0 donation really was made.
  */
 class Donation extends ActiveRecord
 {
