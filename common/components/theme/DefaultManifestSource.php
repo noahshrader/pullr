@@ -1,7 +1,12 @@
 <?php
 
-namespace common\components;
+namespace common\components\theme;
 
+/**
+ * Defines methods for getting theme info from file 'manifest.php'
+ * Class DefaultManifestSource
+ * @package common\components\theme
+ */
 class DefaultManifestSource implements IManifestSource {
 
     protected $data = NULL;

@@ -1,14 +1,12 @@
 <?php
+
+namespace common\components\theme;
+
 /**
- * Created by PhpStorm.
- * User: alexander
- * Date: 13.08.14
- * Time: 17:38
+ * Defines methods for getting theme info from whatever source
+ * Interface IManifestSource
+ * @package common\components\theme
  */
-
-namespace common\components;
-
-
 interface IManifestSource {
     function getName();
     function getDescription();
