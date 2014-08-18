@@ -13,7 +13,7 @@
 	height: 100%;
 	width: @sidepanelwidth;
 	padding-top: @top-menu-height;
-	background-color: @dkaccent;
+	background-color: @accent;
 	overflow: auto;
 
 	.main-info {
@@ -67,7 +67,7 @@
 
 				&.active {
 					color: @white;
-					background: @dkaccent !important;
+					background: @accent !important;
 				}
 				&:hover {
 					background: @gray3;
@@ -113,7 +113,7 @@
 	position: relative;
 	display: block;
 	width: 100%;
-	border-bottom: solid 1px @dkaccent9;
+	border-bottom: solid 1px @dkaccent;
 	&.active h3 {
 		color: @base;
 	}
@@ -121,10 +121,10 @@
 		color: @accent;
 	}
 	&.active {
-		background: @white;
+		background: @white !important;
 	}
 	&:hover {
-		background: @accent;
+		background: @dkaccent3;
 	}
 	h3 {
 		color: @white;
@@ -141,7 +141,7 @@
 	}
 	p {
 		color: @dkaccent20;
-		font-weight: 700;
+		font-size: 17px;
 		margin-top: 2px;
 		margin-bottom: 0px;
 	}
@@ -259,7 +259,7 @@ body.trash .campaigns-list {
 .top-donor,
 .top-donation {
 	padding: 1.6em 2em;
-	border-top: solid 1px @gray75;
+	border-top: solid 8px @white;
 }
 .top-donor {
 	border-left: 0 !important;
