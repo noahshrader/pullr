@@ -87,12 +87,12 @@
 	height: 69px;
 	width: @sidepanelwidth;
 	z-index: 1000;
-	background: @dkaccent;
-	border-bottom: solid 1px @dkaccent9;
+	background: @accent;
+	border-bottom: solid 1px @dkaccent;
 
 	input[type='search'] {
 		color: @white;
-		background-color: @dkaccent9;
+		background-color: @dkaccent;
 		border-color: transparent;
 	}
 }
@@ -115,13 +115,16 @@
 	width: 100%;
 	border-bottom: solid 1px @dkaccent;
 	&.active h3 {
-		color: @base;
-	}
-	&.active p {
-		color: @accent;
+		color: @white;
 	}
 	&.active {
-		background: @white !important;
+		background: @dkaccent !important;
+		&:before {
+			.arrow-left;
+			margin-top: -10px;
+			right: 0px;
+			top: 50%;
+		}
 	}
 	&:hover {
 		background: @dkaccent3;
@@ -253,14 +256,4 @@ body.trash .campaigns-list {
 	td {
 		padding: .6em 6% !important;
 	}
-}
-
-/* Top Donor/Donation */
-.top-donor,
-.top-donation {
-	padding: 1.6em 2em;
-	border-top: solid 8px @white;
-}
-.top-donor {
-	border-left: 0 !important;
 }

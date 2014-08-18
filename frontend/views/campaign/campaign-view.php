@@ -93,31 +93,32 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <? endif ?>
          </h1>
         <section class="stats-overview">
-            <div class='stats-box col-xs-3 raised-total'>
-                <h2>$<?= number_format($campaign->amountRaised) ?></h2>
-                <h5>Raised</h5>
+            <div class="main-values">
+                <div class='stats-box col-xs-3 raised-total'>
+                    <h2>$<?= number_format($campaign->amountRaised) ?></h2>
+                    <h5>Raised</h5>
+                </div>
+                <div class='stats-box col-xs-3 campaign-goal'>
+                    <h2>$<?= number_format($campaign->goalAmount) ?></h2>
+                    <h5>Goal</h5>
+                </div>
+                <div class="progress-wrap">
+                    <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
+                    ?>
+                    <div class="progress">
+                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
+                    </div>
+                </div>
             </div>
-            <div class='stats-box col-xs-3 '>
-                <h2>$<?= number_format($campaign->goalAmount) ?></h2>
-                <h5>Goal</h5>
-            </div>
-            <div class='stats-box col-xs-3 '>
+            <div class='stats-box col-xs-3 total-donations'>
                 <h2><?= $campaign->numberOfDonations ?></h2>
                 <h5>Donations</h5>
             </div>
-            <div class='stats-box col-xs-3 '>
+            <div class='stats-box col-xs-3 total-donors'>
                 <h2><?= $campaign->numberOfUniqueDonors ?></h2>
                 <h5>Donors</h5>
             </div>
             <div class="clearfix"></div>
-            
-            <div class="progress-wrap">
-                <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
-                ?>
-                <div class="progress">
-                    <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
-                </div>
-            </div>
 
             <div class='stats-box col-xs-6 top-donor'>
                 <h3><?= $topDonorText ?></h3>

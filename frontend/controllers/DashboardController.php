@@ -64,7 +64,6 @@ class DashboardController extends FrontendController {
     private function calculateDashboardStats($period = 'overall'){
         // total campaigns count
         $userCampaigns = Donation::find()
-                            ->joinWith('campaign', true, 'INNER JOIN')
                             ->where(['campaignUserId' => \Yii::$app->user->id])
                             ->orWhere(['parentCampaignUserId' => \Yii::$app->user->id])
                             ->andWhere('paymentDate > 0');
@@ -75,7 +74,7 @@ class DashboardController extends FrontendController {
             $userCampaigns->andWhere('MONTH(DATE(FROM_UNIXTIME(paymentDate))) = MONTH(CURDATE())')
                           ->andWhere('YEAR(DATE(FROM_UNIXTIME(paymentDate))) = YEAR(CURDATE())');
         }
-        $totalCampaigns = $userCampaigns->count();
+        $totalCampaigns = $userCampaigns->count('DISTINCT parentCampaignUserId');
 
         // donations calculations
         $todayDonations = Donation::find()
