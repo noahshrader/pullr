@@ -41,10 +41,12 @@ class CampaignController extends FrontendController {
         $campaign->status = $status;
         $campaign->save();
 
-        RecentActivityNotification::createNotification(
-            \Yii::$app->user->id,
-            sprintf(\Yii::$app->params['campaignEnded'], $campaign->name, number_format($campaign->amountRaised))
-        );
+        if ($status == Campaign::STATUS_PENDING){
+            RecentActivityNotification::createNotification(
+                \Yii::$app->user->id,
+                sprintf(\Yii::$app->params['campaignEnded'], $campaign->name, number_format($campaign->amountRaised))
+            );
+        }
 
         $this->redirect('app/campaign');
     }

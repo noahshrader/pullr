@@ -62,16 +62,18 @@ class DashboardController extends FrontendController {
     }
 
     private function calculateDashboardStats($period = 'overall'){
-        $user = \Yii::$app->user->identity;
-
         // total campaigns count
-        $userCampaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->orderBy('id DESC');
+        $userCampaigns = Donation::find()
+                            ->joinWith('campaign', true, 'INNER JOIN')
+                            ->where(['campaignUserId' => \Yii::$app->user->id])
+                            ->orWhere(['parentCampaignUserId' => \Yii::$app->user->id])
+                            ->andWhere('paymentDate > 0');
         if($period == 'today'){
-            $userCampaigns->andWhere('DATE(date) = CURDATE()');
+            $userCampaigns->andWhere('DATE(FROM_UNIXTIME(paymentDate)) = CURDATE()');
         }
         if($period == 'month'){
-            $userCampaigns->andWhere('MONTH(DATE(date)) = MONTH(CURDATE())')
-                          ->andWhere('YEAR(DATE(date)) = YEAR(CURDATE())');
+            $userCampaigns->andWhere('MONTH(DATE(FROM_UNIXTIME(paymentDate))) = MONTH(CURDATE())')
+                          ->andWhere('YEAR(DATE(FROM_UNIXTIME(paymentDate))) = YEAR(CURDATE())');
         }
         $totalCampaigns = $userCampaigns->count();
 
