@@ -67,9 +67,3 @@ function twitchEventsMonitor() {
 }
 
 (catchKeys());
-
-// add class to body of current url segment
-$(function(){
-    var value = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-    $('body').addClass(value);
-});

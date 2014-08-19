@@ -38,22 +38,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <h1>$<?= number_format($dashboard['overall']['totalRaised']) ?></h1>
                         <h5>Total Amount Raised</h5>
                     </div>
-                    <div class="other-raised-totals">
-                        <div>
-                            <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
-                            <h5>Total Campaigns</h5>
-                        </div>
-                        <div>
-                            <h2><?= $dashboard['overall']['totalDonations'] ?></h2>
-                            <h5>Total Donations</h5>
-                        </div>
-                        <div>
-                            <h2><?= $dashboard['overall']['totalDonors'] ?></h2>
-                            <h5>Total Donors</h5>
-                        </div>
-                    </div>
                 </div>
-
                 <div class="row stats-overview raised-group-stats">
                     <div class="group-stats-wrap">
                         <div class="col-xs-6 stats-box">
@@ -66,7 +51,20 @@ $twitchPartner = $user->userFields->twitchPartner;
                         </div>
                     </div>
                 </div>
-
+                <div class="other-raised-totals cf">
+                    <div class="stats-box col-xs-3">
+                        <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
+                        <h5>Total Campaigns</h5>
+                    </div>
+                    <div class="stats-box col-xs-3">
+                        <h2><?= $dashboard['overall']['totalDonations'] ?></h2>
+                        <h5>Total Donations</h5>
+                    </div>
+                    <div class="stats-box col-xs-3">
+                        <h2><?= $dashboard['overall']['totalDonors'] ?></h2>
+                        <h5>Total Donors</h5>
+                    </div>
+                </div>
                 <!-- Twitch Data -->
                 <? if ($twitchUser): ?>
                     <div class="row stats-overview twitch-stats">
