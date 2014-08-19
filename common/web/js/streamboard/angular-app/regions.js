@@ -90,8 +90,13 @@
         };
         $scope.playSound = function (sound) {
             var path = Pullr.Streamboard.WidgetCampaignBarAlerts.PATH_TO_SOUNDS+sound;
-            var audio = new Audio(path);
-            audio.play();
+            /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
+            if ($rootScope.audio){
+                $rootScope.audio.pause();
+            }
+
+            $rootScope.audio = new Audio(path);
+            $rootScope.audio.play();
         };
     });
 })()
