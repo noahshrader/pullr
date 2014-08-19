@@ -226,3 +226,7 @@ $(function() {
     // rememberAccordionState();
     initBootstrapSwitch();
 });
+
+$( window ).load(function() {
+    $('#masked-input').css('text-align', 'left');
+});

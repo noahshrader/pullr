@@ -62,7 +62,6 @@ $firstGiving = $campaign->getFirstGiving();
         <!-- Campaign Goal Amount -->
         <div class="form-group">
             <label>Goal Amount</label>
-            <?//= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => true]); ?>
             <div class="form-group field-campaign-goalamount required" style="text-align: left;">
                 <?= MaskedInput::widget([
                     'name' => 'Campaign[goalAmount]',
@@ -70,7 +69,8 @@ $firstGiving = $campaign->getFirstGiving();
                     'options' => [
                         'class' => 'form-control',
                         'id' => 'masked-input',
-                        'placeholder' => 'Goal amount',
+                        'placeholder' => 'Goal amount'
+
                     ],
                     'clientOptions' => [
                         'value' => $campaign->goalAmount,
