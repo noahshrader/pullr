@@ -226,7 +226,7 @@ $(function() {
     // rememberAccordionState();
     initBootstrapSwitch();
 });
-
+/*We use js as Yii Js add text-aling right on load event*/
 $( window ).load(function() {
     $('#masked-input').css('text-align', 'left');
 });
