@@ -18,7 +18,8 @@
 
 	.stats-overview {
 		margin: 0;
-		border: 0;
+		padding-top: 50px;
+		border-bottom: solid 1px @gray75;
 		background: @white;
 
 		h1,
@@ -27,6 +28,7 @@
 		}
 		h1 {
 			font-size: 4.8em;
+			line-height: 1.2em;
 		}
 		h5 {
 			color: @dkaccent15;
@@ -39,10 +41,7 @@
 			&.raised-total {
 				position: relative;
 				float: left;
-				padding: 8em 0;
-				height: 400px;
-				width: 70%;
-				background: @white;
+				padding: 3em 0;
 
 				h1 {
 					color: @accent;
@@ -54,7 +53,7 @@
 
 				i {
 					color: @gray72;
-					font-size: 3em;
+					font-size: 3.2em;
 				}
 			}
 		}
@@ -157,7 +156,7 @@
 			line-height: 50px;
 			padding: 0 20px;
 			&:hover {
-				background: @gray3;
+				background: @gray72;
 			}
 		}
 	}
@@ -217,16 +216,14 @@
 #sidebar.dashboard {
 	right: 0;
 	padding: 0px;
-	background: @gray40;
 	z-index: 1000;
 
 	h5 {
-		text-align: center;
 		font-size: 17px;
 		line-height: 17px;
 		padding: 1em 30px;
 		font-weight: 400;
-		color: #fff;
+		color: @maingray;
 		text-transform: none;
 	}
 
@@ -235,24 +232,17 @@
 	}
 
 	i {
-		display: block;
+		color: @maingray;
 		font-size: 24px;
-		line-height: 50px;
-		text-align: center;
 		margin: 0px;
 		padding: 0px;
-		background: @bglightwhitefade;
-		border-bottom: solid 2px @dkaccent9;
-		color: @white;
 	}
 
 	.invites-wrap {
-
 		margin-bottom: 0px;
 		padding-bottom: 0px;
 
 		ul {
-
 			li {
 				text-align: center;
 				color: @gray30;
@@ -270,30 +260,23 @@
 				border-bottom: none;
 			}
 		}
-
 		.campaign-invites {
 			margin-bottom: 0px;
 		}
-
 	}
 
 	/* Activity Feed */
 	ul.activity-feed {
-
-		border-top: 2px solid @bglightwhitefade;
-
 		li {
-		color: @dkaccent20;
-		font-size: 13px;
-		padding-left: 30px;
-		padding-right: 30px;
-		margin: 0px;
-		border-bottom: 2px solid @bglightwhitefade;
-		border-top: none;
-		}
-
-		&:first-child {
-			color: @dkaccent20;
+			color: @gray60;
+			font-size: 14px;
+			padding-left: 30px;
+			padding-right: 30px;
+			margin: 0;
+			border-top: none;
+			&:first-child {
+				color: @white;
+			}
 		}
 	}
 }
@@ -302,6 +285,7 @@
 /* Alerts */
 /* ------------------------------------------------- */
 .alert-info {
+	display: none;
 	position: fixed;
 	bottom: -44px;
 	left: 0;

@@ -13,12 +13,11 @@
 	height: 100%;
 	width: @sidepanelwidth;
 	padding-top: @top-menu-height;
-	background-color: @accent;
+	background-color: @gray20;
 	overflow: auto;
 
 	.main-info {
-		padding-left: 36px;
-		padding-right: 36px;
+		padding: 0 30px;
 	}
 	h2 {
 		font-size: 24px;
@@ -32,7 +31,7 @@
 		padding-top: 50px;
 		
 		div {
-			color: @dkaccent20;
+			color: @gray50;
 		}
 	}
 }
@@ -60,14 +59,14 @@
 
 			a {
 				display: block;
-				color: @gray30;
+				color: @gray40;
 				font-size: 14px;
 				line-height: 50px;
 				width: 100%;
 
 				&.active {
 					color: @white;
-					background: @accent !important;
+					background: @gray20 !important;
 				}
 				&:hover {
 					background: @gray3;
@@ -87,12 +86,12 @@
 	height: 69px;
 	width: @sidepanelwidth;
 	z-index: 1000;
-	background: @accent;
-	border-bottom: solid 1px @dkaccent;
+	background: @gray20;
+	border-bottom: solid 1px @gray15;
 
 	input[type='search'] {
 		color: @white;
-		background-color: @dkaccent;
+		background-color: @gray15;
 		border-color: transparent;
 	}
 }
@@ -108,32 +107,29 @@
 	padding-top: 69px;
 }
 .campaign-item {
-	padding: 18px 0;
+	padding: 20px 0;
 	margin: 0px;
 	position: relative;
 	display: block;
 	width: 100%;
-	border-bottom: solid 1px @dkaccent;
+	border-bottom: solid 1px @gray15;
 	&.active h3 {
 		color: @white;
+		font-weight: 400;
 	}
 	&.active {
-		background: @dkaccent !important;
-		&:before {
-			.arrow-left;
-			margin-top: -10px;
-			right: 0px;
-			top: 50%;
-		}
+		background: @gray15 !important;
+		-webkit-box-shadow: inset 6px 0px 0px 0px rgb(29,188,156);
+		-moz-box-shadow: inset 6px 0px 0px 0px rgb(29,188,156);
+		box-shadow: inset 6px 0px 0px 0px rgb(29,188,156);
 	}
 	&:hover {
-		background: @dkaccent3;
+		background: @gray18;
 	}
 	h3 {
-		color: @white;
+		color: @gray60;
 		margin-bottom: 2px;
 		font-size: 17px;
-		font-weight: 400;
 		line-height: 1.1em;
 	}
 	h4 {
@@ -143,8 +139,7 @@
 		margin-top: 2px;
 	}
 	p {
-		color: @dkaccent20;
-		font-size: 17px;
+		color: @accent;
 		margin-top: 2px;
 		margin-bottom: 0px;
 	}

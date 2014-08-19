@@ -160,11 +160,13 @@ table.dataTable thead td {
 	border-top: solid 1px @gray75;
 }
 .dataTables_info {
-	color: @gray40 !important;
+	color: @gray60 !important;
 	font-size: .9em;
 	margin-top: 15px;
 }
 .dataTables_wrapper {
+	padding: 40px 0;
+	background: @gray75;
 
 	.dataTables_length,
 	.dataTables_filter,
@@ -176,6 +178,16 @@ table.dataTable thead td {
 			margin: 0;
 	 	}
 	}
+	.table-scrollable {
+		padding: 20px 50px;
+
+		.donations-table {
+			background: @white;
+			-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
+			-moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
+			box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
+		}
+	}
 	.dataTables_paginate {
 		padding: 0px !important;
 	}
@@ -184,8 +196,13 @@ table.dataTable thead td {
 		height: 38px;
 	}
 }
+.row {
+	margin: 0;
+	padding: 12px 6%;
+}
 .table-header,
 .table-footer {
+	padding: 0 50px;
 
 	.select2-container {
 		margin-right: 6px;
@@ -195,18 +212,13 @@ table.dataTable thead td {
 		color: @gray40;
 	}
 }
-.row {
-	margin: 0;
-	padding: 12px 6%;
-	border-bottom: solid 1px @white;
-}
 
 /* Statistics Global Styling */
 .stats-overview {
 	position: relative;
 	text-align: center;
 	padding: 0;
-	margin-bottom: 20px;
+	margin: 0 50px 50px;
 	border-top: solid 1px @gray75;
 	border-bottom: solid 1px @gray75;
 
