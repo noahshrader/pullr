@@ -45,6 +45,7 @@
 	height: 50px;
 	background: @base;
 	z-index: 1000;
+	overflow: hidden;
 
 	ul {
 		list-style: none;
@@ -60,7 +61,8 @@
 			a {
 				display: block;
 				color: @gray40;
-				font-size: 14px;
+				font-size: 15px;
+				font-weight: 400;
 				line-height: 50px;
 				width: 100%;
 
@@ -119,9 +121,9 @@
 	}
 	&.active {
 		background: @gray15 !important;
-		-webkit-box-shadow: inset 6px 0px 0px 0px rgb(29,188,156);
-		-moz-box-shadow: inset 6px 0px 0px 0px rgb(29,188,156);
-		box-shadow: inset 6px 0px 0px 0px rgb(29,188,156);
+		-webkit-box-shadow: inset 5px 0px 0px 0px rgb(29,188,156);
+		-moz-box-shadow: inset 5px 0px 0px 0px rgb(29,188,156);
+		box-shadow: inset 5px 0px 0px 0px rgb(29,188,156);
 	}
 	&:hover {
 		background: @gray18;
@@ -140,6 +142,7 @@
 	}
 	p {
 		color: @accent;
+		font-weight: 400;
 		margin-top: 2px;
 		margin-bottom: 0px;
 	}
@@ -181,8 +184,7 @@ body.trash .campaigns-list {
 				float: left;
 				&.active,
 				&.active .icon {
-					color: @maingray;
-					background: @white;
+					color: @white;
 				}
 				a {
 					display: block;
