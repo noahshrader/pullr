@@ -178,11 +178,6 @@ table.dataTable thead td {
 	}
 	.table-scrollable {
 		margin-bottom: 20px;
-
-		.donations-table {
-			background: @white;
-			.box-shadow;
-		}
 	}
 	.dataTables_paginate {
 		padding: 0px !important;
@@ -220,13 +215,21 @@ table.dataTable thead td {
 }
 
 /* Statistics Global Styling */
-.stats-overview {
+.module {
 	position: relative;
-	text-align: center;
-	padding: 0;
-	margin: 0 0 40px;
+	margin-bottom: @gutter;
 	background: @white;
+	.element-radius;
 	.box-shadow;
+
+	/* Decorative Section Headings */
+	i.module-head {
+	
+	}
+}
+
+.stats-overview {
+	text-align: center;
 
 	.stats-box {
 		padding: 1.4em 0;
