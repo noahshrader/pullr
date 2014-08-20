@@ -92,7 +92,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <span class="campaign-date"><?= date('M j, Y', $campaign->startDate) ?> - <?= date('M j, Y', $campaign->endDate) ?></span>
             <? endif ?>
          </h1>
-        <section class="stats-overview">
+        <section class="stats-overview module">
             <div class="main-values">
                 <div class='stats-box col-xs-3 raised-total'>
                     <h2>$<?= number_format($campaign->amountRaised) ?></h2>

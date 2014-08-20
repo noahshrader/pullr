@@ -108,7 +108,7 @@ class FirstGivingPayment extends Component{
         $key = ""; $value = "";
         extract($this->config['callbackSuccessPair']);
 
-        $callbackUrl = sprintf('%s/?%s=%s&%s=%d', Yii::$app->urlManager->createAbsoluteUrl('fgcallback'), $key, $value, self::PAYMENT_ID_PARAM, $pay->id);
+        $callbackUrl = sprintf('%s?%s=%s&%s=%d', Yii::$app->urlManager->createAbsoluteUrl('fgcallback'), $key, $value, self::PAYMENT_ID_PARAM, $pay->id);
 
         //build form url
 
