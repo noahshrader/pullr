@@ -57,6 +57,11 @@ $firstGiving = $campaign->getFirstGiving();
                 </div>
             </div>
         <? endif; ?>
+
+        <div class="form-group" id="teamQuestion">
+            <?= $form->field($campaign, 'teamEnable')->label('Are you adding a team?')->checkbox([], false); ?>
+        </div>
+
         <div id="notTiedCampaignContainer">
 
         <!-- Campaign Goal Amount -->

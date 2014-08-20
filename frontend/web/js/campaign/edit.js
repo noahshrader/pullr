@@ -155,6 +155,15 @@ function initBootstrapSwitch() {
             $('.field-campaign-facebookurl').hide('slow');
         }
     });
+
+    $("#campaign-teamenable").on('click', function() {
+        var value = $(this).bootstrapSwitch('state');
+        if (value){
+            $('#campaignEdit').addClass('team-enabled');
+        } else {
+            $('#campaignEdit').removeClass('team-enabled');
+        }
+    });
     
     $("#campaign-enablecustomlogo").on('click', function() {
         var value = $('#campaign-enablecustomlogo').bootstrapSwitch('state');

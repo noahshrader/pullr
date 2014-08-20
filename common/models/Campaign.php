@@ -51,6 +51,8 @@ class Campaign extends ActiveRecord {
     public static $DONATION_DESTINATIONS = [self::DONATION_PREAPPROVED_CHARITIES, self::DONATION_CUSTOM_FUNDRAISER];
     
     const DESCRIPTION_MAX_LENGTH = 1000;
+
+    public $teamEnable = 0;
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */

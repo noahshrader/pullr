@@ -49,12 +49,18 @@
 	padding-right: 2%;
 }
 #campaignEdit[data-campaigntype="Charity Fundraiser"]{
-	#campaign-edit-team-li {
-		display: inline-block;
-	}
-	#campaign-edit-team{
-		display: block;
-	}
+    #teamQuestion{
+      display: block;
+    }
+}
+
+#campaignEdit[data-campaigntype="Charity Fundraiser"].team-enabled{
+  #campaign-edit-team-li {
+    display: inline-block;
+  }
+  #campaign-edit-team{
+    display: block;
+  }
 }
 
 
