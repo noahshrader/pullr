@@ -233,7 +233,7 @@ class Sample_dataController extends Controller
 
         $campaign = new Campaign();
         $campaign->name = 'Fun For Freedom Child';
-        $campaign->type = Campaign::TYPE_CHARITY_EVENT;
+        $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
         $campaign->tiedToParent = true;
         $campaign->parentCampaignId = $parentCampaignId;
         $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
@@ -247,7 +247,7 @@ class Sample_dataController extends Controller
 
         $campaign = new Campaign();
         $campaign->name = 'Fun For Freedom Child 2';
-        $campaign->type = Campaign::TYPE_CHARITY_EVENT;
+        $campaign->type = Campaign::TYPE_CHARITY_FUNDRAISER;
         $campaign->tiedToParent = true;
         $campaign->parentCampaignId = $parentCampaignId;
         $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;

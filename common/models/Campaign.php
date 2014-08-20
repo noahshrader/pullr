@@ -35,9 +35,8 @@ class Campaign extends ActiveRecord {
     public static $STREAM_SERVICES = [self::STREAM_SERVICE_TWITCH, self::STREAM_SERVICE_HITBOX];
     
     const TYPE_PERSONAL_TIP_JAR = 'Personal Tip Jar';
-    const TYPE_CHARITY_EVENT = 'Charity Event';
     const TYPE_CHARITY_FUNDRAISER = 'Charity Fundraiser';
-    public static $TYPES = [self::TYPE_PERSONAL_TIP_JAR, self::TYPE_CHARITY_EVENT, self::TYPE_CHARITY_FUNDRAISER];
+    public static $TYPES = [self::TYPE_PERSONAL_TIP_JAR, self::TYPE_CHARITY_FUNDRAISER];
     
     const LAYOUT_TYPE_SINGLE = 'Single Stream';
     const LAYOUT_TYPE_TEAM = 'Team Stream';
@@ -189,7 +188,7 @@ class Campaign extends ActiveRecord {
             return;
         }
         
-        if ( ($this->type != Campaign::TYPE_CHARITY_EVENT) || (!$this->tiedToParent) ){
+        if ( ($this->type != Campaign::TYPE_CHARITY_FUNDRAISER) || (!$this->tiedToParent) ){
             $this->parentCampaignId = $this->id;
         }
         
