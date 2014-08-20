@@ -177,7 +177,7 @@ table.dataTable thead td {
 	 	}
 	}
 	.table-scrollable {
-		margin-bottom: 20px;
+		margin-bottom: @gutter;
 	}
 	.dataTables_paginate {
 		padding: 0px !important;
@@ -221,6 +221,15 @@ table.dataTable thead td {
 	background: @white;
 	.element-radius;
 	.box-shadow;
+	overflow: hidden;
+
+	h5.module-title {
+		color: @gray30;
+		font-weight: 600;
+		padding: .8em @gutter;
+		margin: 0;
+		background: @gray70;
+	}
 
 	/* Decorative Section Headings */
 	i.module-head {
