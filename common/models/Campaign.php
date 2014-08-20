@@ -106,6 +106,7 @@ class Campaign extends ActiveRecord {
     
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
+
         if ($insert){
             if (!$this->parentCampaignId){
                 $this->parentCampaignId = $this->id;
@@ -189,17 +190,18 @@ class Campaign extends ActiveRecord {
         if ($this->id == $id){
             return;
         }
-        
+
         if ( ($this->type != Campaign::TYPE_CHARITY_FUNDRAISER) || (!$this->tiedToParent) ){
             $this->parentCampaignId = $this->id;
         }
-        
-        /*if Campaign::TYPE_CHARITY_EVENT and tiedToParent are selected */
+
+        /*if Campaign::TYPE_CHARITY_FUNDRAISER and tiedToParent are selected */
         $userId = $this->userId;
-        $count = CampaignInvite::find()->where(['userId' => $userId, 'campaignId' => $id, 'status' => CampaignInvite::STATUS_ACTIVE ])->count();
+        $countInvite = CampaignInvite::find()->where(['userId' => $userId, 'campaignId' => $id, 'status' => CampaignInvite::STATUS_ACTIVE ])->count();
+        $countOwnCampaigns = Campaign::find()->where(['userId' => $userId, 'status' => Campaign::STATUS_ACTIVE])->count();
         
         /*so there are no such campaign*/
-        if ($count == 0){
+        if ($countInvite === 0 && $countOwnCampaigns === 0){
             $this->parentCampaignId = $this->id;
         }
     }
