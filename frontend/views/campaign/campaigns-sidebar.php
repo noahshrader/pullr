@@ -6,8 +6,8 @@ use yii\helpers\Html;
 
 <nav class="campaign-quicknav">
     <ul>
-        <li><a href="app/campaign" class="<?= $status == Campaign::STATUS_ACTIVE ? 'active': '' ?>">Current</a></li>
-        <li><a href="app/campaign/archive" class="<?= $status == Campaign::STATUS_PENDING ? 'active': '' ?>">Archive</a></li>
-        <li><a href="app/campaign/trash" class="<?= $status == Campaign::STATUS_DELETED ? 'active': '' ?>">Trash</a></li>
+        <li><a href="app/campaign" class="icon-piechart <?= $status == Campaign::STATUS_ACTIVE ? 'active': '' ?>"></a></li>
+        <li><a href="app/campaign/archive" class="icon-archivebox <?= $status == Campaign::STATUS_PENDING ? 'active': '' ?>"></a></li>
+        <li><a href="app/campaign/trash" class="icon-trash <?= $status == Campaign::STATUS_DELETED ? 'active': '' ?>"></a></li>
     </ul>
 </nav>

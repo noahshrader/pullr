@@ -24,12 +24,12 @@ $typesList = [
 </div>
 <div class="widgetContainer">
     <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_ALERTS ?>'" ng-init="widget=region.widgetAlerts; initWidget()">
-        <?= $this->render('region-alerts') ?>
+        <?= $this->render('region-alerts/alerts') ?>
     </div>
     <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_DONATION_FEED ?>'" ng-init="widget=region.widgetDonationFeed; initWidget()">
         <?= $this->render('region-donation-feed') ?>
     </div>
     <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'" ng-init="widget=region.widgetCampaignBar; initWidget()">
-        <?= $this->render('campaignBar/campaign-bar') ?>
+        <?= $this->render('campaign-bar/campaign-bar') ?>
     </div>
 </div>

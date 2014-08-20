@@ -9,7 +9,7 @@ use yii\web\View;
         <div class="twitchStats" ng-show="twitchUser">
             <div>Followers: <span id="followers_number" class="amount accent">{{twitchUser.followersNumber}}</span>
             </div>
-            <div ng-show="user.userFields.twitchPartner">Subscribers:
+            <div ng-show="Pullr.user.userFields.twitchPartner">Subscribers:
                 <span id="subscriber_number" class="amount accent">{{twitchUser.subscribersNumber}}</span>
             </div>
         </div>

@@ -15,6 +15,10 @@ use common\models\User;
  * @property boolean $includeDonations
  */
 class WidgetCampaignBarAlerts extends ActiveRecord {
+    /*related to @web directory*/
+    const PATH_TO_IMAGES = 'streamboard/alerts/images/';
+    const PATH_TO_SOUNDS = 'streamboard/alerts/sounds/';
+
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -37,5 +41,25 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
         $data['includeDonations'] = $this->includeDonations == 1;
 
         return $data;
+    }
+
+    public static function PREDEFINED_IMAGES(){
+        $mask = \Yii::getAlias('@app/web/'.self::PATH_TO_IMAGES.'*.{jpg,png,gif}');
+        $imagesWithPath = glob($mask, GLOB_BRACE);
+        $images = [];
+        foreach ($imagesWithPath as $image){
+           $images[] = basename($image);
+        }
+        return $images;
+    }
+
+    public static function PREDEFINED_SOUNDS(){
+        $mask = \Yii::getAlias('@app/web/'.self::PATH_TO_SOUNDS.'*.mp3');
+        $soundsWithPath = glob($mask);
+        $sounds = [];
+        foreach ($soundsWithPath as $sound){
+            $sounds[] = basename($sound);
+        }
+        return $sounds;
     }
 }

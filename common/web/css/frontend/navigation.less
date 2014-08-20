@@ -52,7 +52,6 @@
 			float: left;
 			width: @sidepanelwidth;
 			color: @white;
-			font-size: 16px;
 			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: 2px;
@@ -95,6 +94,7 @@
 
 				span {
 					color: @white;
+					font-size: 14px;
 					margin-right: 6px;
 				}
 				
@@ -149,18 +149,6 @@
 	background: @maingray;
 	z-index: 999;
 	overflow: hidden;
-	&:after {
-		content: "";
-		position: absolute;
-		top: @top-menu-height + 10px;
-		right: -22px;
-		height: 620px;
-		width: 20px;
-		z-index: -1;
-		-webkit-box-shadow: 0 0 24px rgba(0,0,0,.6);
-		-moz-box-shadow: 0 0 24px rgba(0,0,0,.6);
-		box-shadow: 0 0 24px rgba(0,0,0,.6);
-	}
 
 	nav.nav-top {
 		width: 100%;
@@ -181,9 +169,9 @@
 
 				a {
 					display: block;
-					color: @gray30;
+					color: @gray40;
 					position: relative;
-					padding: 0 28px;
+					padding: 0 30px;
 					height: 60px;
 					&:before {
 						display: block;
@@ -192,13 +180,12 @@
 
 					.icon {
 						display: inline-block;
-						font-size: 22px;
+						font-size: 20px;
 						vertical-align: middle;
 					}
 
 					.nav-label {
 						display: inline-block;
-						font-weight: 400;
 						vertical-align: middle;
 						height: 60px;
 						padding-left: 10px;

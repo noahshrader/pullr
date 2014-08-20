@@ -51,6 +51,8 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'fontColor' => Schema::TYPE_STRING.' NOT NULL',
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
             'volume' => Schema::TYPE_FLOAT.' NOT NULL',
+            'sound' => Schema::TYPE_STRING.' NOT NULL',
+            'filename' => Schema::TYPE_STRING.' NOT NULL',
         ]);
 
         $this->addPrimaryKey('streamboard_widget_alerts_preference', WidgetAlertsPreference::tableName(), ['userId', 'regionNumber', 'preferenceType']);
@@ -106,11 +108,11 @@ class m140729_125121_streamboard_region extends ExtendedMigration
         $this->createTable(WidgetCampaignBarMessages::tableName(),[
             'userId' => Schema::TYPE_INTEGER. ' NOT NULL',
             'regionNumber' => Schema::TYPE_INTEGER. ' NOT NULL',
-            'message1' => Schema::TYPE_TEXT. ' NOT NULL',
-            'message2' => Schema::TYPE_TEXT. ' NOT NULL',
-            'message3' => Schema::TYPE_TEXT. ' NOT NULL',
-            'message4' => Schema::TYPE_TEXT. ' NOT NULL',
-            'message5' => Schema::TYPE_TEXT. ' NOT NULL',
+            'message1' => Schema::TYPE_STRING. ' NOT NULL',
+            'message2' => Schema::TYPE_STRING. ' NOT NULL',
+            'message3' => Schema::TYPE_STRING. ' NOT NULL',
+            'message4' => Schema::TYPE_STRING. ' NOT NULL',
+            'message5' => Schema::TYPE_STRING. ' NOT NULL',
             'rotationSpeed' => Schema::TYPE_INTEGER. ' NOT NULL',
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar_messages', WidgetCampaignBarMessages::tableName(), ['userId', 'regionNumber']);

@@ -123,11 +123,11 @@ label {
 /* Slideup Panel */
 .slidepanel {
 	position: absolute;
-	bottom: -400px;
+//	bottom: -400px;
 	right: 0;
 	padding: 30px;
 	width: 100%;
-	height: 400px;
+//	height: 400px;
 	background: @gray10;
 	z-index: 1000;
 	-webkit-transition: all ease-in-out 0.2s;
@@ -342,6 +342,22 @@ a.dashboard.show:before {
 	}
 }
 
+/* Other Elements */
+/* ------------------------------------------------- */
+slider {
+	cursor: pointer;
+	
+	span.bar {
+		height: 1px;
+		background: @base;
+	}
+	span.pointer {
+		height: 15px;
+		.round-radius;
+		background: @gray20;
+	}
+}
+
 
 /* Loader */
 /* ------------------------------------------------- */
@@ -408,4 +424,26 @@ a.dashboard.show:before {
 can be removed in future, after plugin update*/
 .btn-group.bootstrap-select:not(.ng-pristine){
   display: none;
+}
+/*that is for alerts editing*/
+.sound-container, .images-container{
+  overflow-y: scroll;
+  max-height: 400px;
+  padding-right: 5px;
+  .media-item{
+    min-height: 25px;
+    overflow: hidden;
+    .mediaActions{
+      float:right;
+      i{
+        cursor: pointer;
+        &:hover{
+          color: @accenthover;
+        }
+      }
+    }
+  }
+  .media-item.selected{
+    background-color: @accent;
+  }
 }
