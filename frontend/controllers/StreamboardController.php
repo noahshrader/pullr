@@ -7,15 +7,19 @@ use common\models\twitch\TwitchSubscription;
 use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
 use frontend\models\streamboard\StreamboardRegion;
-use frontend\models\streamboard\WidgetCampaignBarAlerts;
+use frontend\models\streamboard\WidgetAlerts;
+use kartik\widgets\Alert;
 use Yii;
 use common\models\User;
 use common\models\Donation;
 use common\models\Campaign;
 use frontend\models\streamboard\Streamboard;
+use yii\base\ErrorException;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
+use yii\web\Response;
+use common\components\streamboard\alert\AlertMediaManager;
 
 class StreamboardController extends FrontendController
 {
@@ -246,5 +250,35 @@ class StreamboardController extends FrontendController
             echo 'error';
             var_dump($region->getErrors());
         }
+    }
+
+    /**
+     * @param string $type Can be either "sound" or "image"
+     * @throws \yii\web\ForbiddenHttpException
+     * @throws ErrorException
+     * @return array
+     */
+    public function actionUpload_alert_file_ajax($type)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $user = Application::getCurrentUser();
+        if (!$user) {
+            throw new ForbiddenHttpException();
+        }
+        switch ($type) {
+            case 'sound':
+                $result = AlertMediaManager::uploadSound();
+                break;
+            case 'image':
+                $result = AlertMediaManager::uploadImage();
+                break;
+            default:
+                throw new ErrorException('Upload type should either "image" or "sound"');
+        }
+        if (!$result){
+            throw new ErrorException('Error during upload');
+        }
+        $manager = new AlertMediaManager();
+        return $manager->getCustomSounds();
     }
 }

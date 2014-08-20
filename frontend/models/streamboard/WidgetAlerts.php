@@ -4,6 +4,7 @@ namespace frontend\models\streamboard;
 
 use yii\db\ActiveRecord;
 use common\models\User;
+use common\components\streamboard\alert\AlertMediaManager;
 
 /**
  * @package frontend\models\streamboard
@@ -36,7 +37,9 @@ class WidgetAlerts extends ActiveRecord {
     }
 
     public function fields(){
-        return ['userId', 'regionNumber', 'includeFollowers', 'includeSubscribers', 'includeDonations','animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference'];
+        return ['userId', 'regionNumber', 'includeFollowers', 'includeSubscribers', 'includeDonations',
+            'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference',
+        ];
     }
 
     public function afterSave($insert, $params = array())
@@ -72,6 +75,22 @@ class WidgetAlerts extends ActiveRecord {
 
     public function getDonationsPreference(){
         return $this->hasOne(WidgetAlertsPreference::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber'])->andWhere(['preferenceType' => self::PREFERENCE_DONATIONS]);
+    }
+
+    public function getCustomImages(){
+        return AlertMediaManager::getCustomImages();
+    }
+
+    public function getCustomSounds(){
+        return AlertMediaManager::getCustomSounds();
+    }
+
+    public function getLibraryImages(){
+        return AlertMediaManager::getLibraryImages();
+    }
+
+    public function getLibrarySounds(){
+        return AlertMediaManager::getLibrarySounds();
     }
 
     public function updateFromArray($data){

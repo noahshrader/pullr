@@ -24,18 +24,19 @@ use yii\web\View;
             ng-change="regionChanged(region)"></slider>
     <span>{{preference.animationDuration}} sec</span>
 </div>
-<h5>Media</h5>
+<h5 ng-init="baseLink='region-'+region.regionNumber+'-preference-'+preference.preferenceType">Media</h5>
+
 <div>
     <ul class="nav nav-tabs sounds-graphics-tabs">
-        <li class="active"><a href="<?= Url::to() ?>#region-{{region.regionNumber}}-preference-{{preference.preferenceType}}-sounds" data-toggle="tab">Sounds</a></li>
-        <li><a href="<?= Url::to() ?>#region-{{region.regionNumber}}-preference-{{preference.preferenceType}}-graphics" data-toggle="tab">Graphics</a></li>
+        <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">Sounds</a></li>
+        <li><a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab">Graphics</a></li>
     </ul>
 </div>
 <div class="tab-content sounds-graphics-content">
-    <div id="region-{{region.regionNumber}}-preference-{{preference.preferenceType}}-sounds" class="tab-pane active">
+    <div id="{{baseLink}}-sounds" class="tab-pane active">
         <?= $this->render('alerts-sounds') ?>
     </div>
-    <div id="region-{{region.regionNumber}}-preference-{{preference.preferenceType}}-images" class="tab-pane">
+    <div id="{{baseLink}}-images" class="tab-pane">
         <?= $this->render('alerts-sounds') ?>
     </div>
 </div>
