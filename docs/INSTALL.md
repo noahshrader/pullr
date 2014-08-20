@@ -18,7 +18,7 @@ Next from pullr folder run
 Install bower
 * http://bower.io/
 
-Run bower from your_project_path/common/web to download js
+Run bower from *your_project_path/common/web* to download js
 * `bower update`
 
 Next step from "pullr" directory. 
