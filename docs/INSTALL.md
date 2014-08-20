@@ -15,6 +15,12 @@ Download composer (e.g. to you home folder, next home folder will be supposed)
 Next from pullr folder run 
 * `~/composer.phar update`
 
+Install bower
+* http://bower.io/
+
+Run bower from your_project_path/common/web to download js
+* `bower update`
+
 Next step from "pullr" directory. 
 Select "yes" for install under Development Environment
 * ./init 
