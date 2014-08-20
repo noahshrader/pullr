@@ -37,7 +37,9 @@ As for June 2014 list of available fields looks like:
 ```
 alias: "Fun_For_Freedom"
 amountRaised: "0"
+amountRaisedFormatted: "$6,757"
 appearance: ""
+backgroundImageId: null
 channelName: ""
 channelTeam: "funforfreedom"
 charity: null
@@ -46,6 +48,7 @@ customCharity: ""
 customCharityDescription: ""
 customCharityPaypal: ""
 date: "2014-06-12 01:35:37"
+description: ""
 donationDestination: "Pre-approved Charities"
 enableDonorComments: 1
 enableThankYouPage: 0
@@ -62,9 +65,9 @@ layoutType: "Team Stream"
 name: "Fun For Freedom"
 numberOfDonations: 0
 numberOfUniqueDonors: 0
+parentCampaignId: 1
 paypalAddress: ""
 percentageOfGoal: 35
-photoId: null
 primaryColor: "#000000"
 secondaryColor: "#000000"
 startDate: 1402516140
@@ -73,6 +76,7 @@ status: "active"
 streamService: "Twitch"
 thankYouPageText: ""
 themeId: null
+tiedToParent: 0
 twitterEnable: 0
 twitterName: ""
 type: "Personal Tip Jar"
