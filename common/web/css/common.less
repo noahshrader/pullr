@@ -74,7 +74,7 @@ body {
 }
 .btn-csv {
 	float: right;
-	margin: 20px 20px 20px 0;
+	margin-right: 20px;
 	background: @gray60;
 }
 
@@ -160,12 +160,10 @@ table.dataTable thead td {
 	border-top: solid 1px @gray75;
 }
 .dataTables_info {
-	color: @gray60 !important;
+	color: @gray40 !important;
 	font-size: .9em;
-	margin-top: 15px;
 }
 .dataTables_wrapper {
-	padding: 40px 0;
 	background: @gray75;
 
 	.dataTables_length,
@@ -179,13 +177,11 @@ table.dataTable thead td {
 	 	}
 	}
 	.table-scrollable {
-		padding: 20px 50px;
+		margin-bottom: 20px;
 
 		.donations-table {
 			background: @white;
-			-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
-			-moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
-			box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
+			.box-shadow;
 		}
 	}
 	.dataTables_paginate {
@@ -202,7 +198,7 @@ table.dataTable thead td {
 }
 .table-header,
 .table-footer {
-	padding: 0 50px;
+	padding: 0;
 
 	.select2-container {
 		margin-right: 6px;
@@ -211,6 +207,10 @@ table.dataTable thead td {
 	label {
 		color: @gray40;
 	}
+
+	.pagination {
+		margin: 0;
+	}
 }
 
 /* Statistics Global Styling */
@@ -218,13 +218,12 @@ table.dataTable thead td {
 	position: relative;
 	text-align: center;
 	padding: 0;
-	margin: 0 50px 50px;
-	border-top: solid 1px @gray75;
-	border-bottom: solid 1px @gray75;
+	margin: 0 0 50px;
+	background: @white;
+	.box-shadow;
 
 	.stats-box {
 		padding: 1.2em 2em;
-		border-left: solid 1px @gray75;
 		&:first-child {
 			border-left: 0px;
 		}

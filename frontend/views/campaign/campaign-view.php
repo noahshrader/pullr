@@ -85,7 +85,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">View Campaign</a>
         </div>
     </div>
-    <div class="campaign-view-wrap" data-id="<?= $campaign->id ?>">
+    <div class="campaigns-content" data-id="<?= $campaign->id ?>">
          <h1>
             <?= ($campaign->name)?$campaign->name:'New campaign' ?>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>

@@ -118,15 +118,17 @@
 /* Borders & Box shadows */
 /* ------------------------------------------------- */
 .border-radius (@radius: 3px) {
-	border-radius:		@radius;
-	background-clip:		padding-box;
+	border-radius: @radius;
+	background-clip: padding-box;
 }
 .round-radius (@radius: 30px) {
-	border-radius:		@radius;
-	background-clip:		padding-box;
+	border-radius: @radius;
+	background-clip: padding-box;
 }
 .box-shadow (@shadow: 0 0 2px rgba(0,0,0,.1)) {
-	box-shadow:			@shadow;
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
+	box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
 }
 
 
