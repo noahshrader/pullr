@@ -39,13 +39,15 @@ class Donation extends ActiveRecord
             'default' => ['nameFromForm','email','comments','amount','createdDate']
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
+            ['email', 'email', 'message' => 'Invalid Email address'],
+            ['email', 'required', 'message' => 'Not empty'],
             ['nameFromForm', 'filter', 'filter' => 'strip_tags'],
             ['email', 'filter', 'filter' => 'strip_tags'],
             ['comments', 'filter', 'filter' => 'strip_tags'],

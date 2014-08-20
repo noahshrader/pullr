@@ -13,6 +13,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'app/fgcallback' => 'site/fgcallback',
                 'app/privacy' => 'site/privacy',
                 'app/termsofservice' => 'site/termsofservice',
                 'app/<controller>/<action>' => '<controller>/<action>',

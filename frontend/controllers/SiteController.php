@@ -29,7 +29,7 @@ class SiteController extends FrontendController
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'signup', 'login', 'twitch', 'termsofservice', 'privacy', 'logout'],
+                        'actions' => ['index', 'signup', 'login', 'twitch', 'termsofservice', 'privacy', 'logout', 'fgcallback'],
                         'allow' => true,
                     ],
                     [
@@ -59,20 +59,6 @@ class SiteController extends FrontendController
 
     public function actionIndex()
     {
-        $request = \Yii::$app->request;
-
-        $key = ""; $value = "";
-        extract(\Yii::$app->params['firstGiving']['callbackSuccessPair']);
-
-        if ($request->get($key) == $value) {
-            $firstGivingPayment = new FirstGivingPayment();
-            $firstGivingPayment->setConfig(\Yii::$app->params['firstGiving']);
-
-            if ($firstGivingPayment->completePayment($request)) {
-                die();
-            }
-        }
-
         if (\Yii::$app->user->isGuest) {
             return $this->actionLogin();
         } else {
@@ -175,4 +161,19 @@ class SiteController extends FrontendController
         return $this->render('privacyPolicy');
     }
 
+    public function actionFgcallback() {
+        $request = \Yii::$app->request;
+
+        $key = ""; $value = "";
+        extract(\Yii::$app->params['firstGiving']['callbackSuccessPair']);
+
+        if ($request->get($key) == $value) {
+            $firstGivingPayment = new FirstGivingPayment();
+            $firstGivingPayment->setConfig(\Yii::$app->params['firstGiving']);
+
+            if ($firstGivingPayment->completePayment($request)) {
+                die();
+            }
+        }
+    }
 }
