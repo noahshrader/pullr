@@ -42,6 +42,9 @@ class m140729_125121_streamboard_region extends ExtendedMigration
 
         $preferencesTypes = implode('","', WidgetAlerts::$PREFERENCES_TYPES);
         $preferencesTypes = "ENUM (\"$preferencesTypes\")";
+
+        $fileTypes = implode('","', WidgetAlertsPreference::$FILE_TYPES);
+        $fileTypes = "ENUM (\"$fileTypes\")";
         $this->createTable(WidgetAlertsPreference::tableName(), [
             'userId' => Schema::TYPE_INTEGER.' NOT NULL',
             'regionNumber' => $regionNumbers,
@@ -52,7 +55,9 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
             'volume' => Schema::TYPE_FLOAT.' NOT NULL',
             'sound' => Schema::TYPE_STRING.' NOT NULL',
-            'filename' => Schema::TYPE_STRING.' NOT NULL',
+            'soundType' => $fileTypes,
+            'image' => Schema::TYPE_STRING.' NOT NULL',
+            'imageType' => $fileTypes,
         ]);
 
         $this->addPrimaryKey('streamboard_widget_alerts_preference', WidgetAlertsPreference::tableName(), ['userId', 'regionNumber', 'preferenceType']);

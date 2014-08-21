@@ -51,11 +51,6 @@
            return fonts;
         }
     });
-    app.directive('isolatedScope', function () {
-        return {
-            scope: true
-        }
-    });
     app.directive('fontStyle', function ($rootScope, $http, $timeout) {
         return {
             scope: {
@@ -87,19 +82,10 @@
         $scope.regionChanged = function (region) {
             $http.post('app/streamboard/update_region_ajax', region);
         };
-        $scope.selectSound = function (preference,sound, region) {
+        $scope.selectSound = function (preference,sound,soundType, region) {
             preference.sound = sound;
+            preference.soundType = soundType;
             $scope.regionChanged(region);
-        };
-        $scope.playSound = function (sound) {
-            var path = alertMediaManager.PATH_TO_LIBRARY_SOUNDS+sound;
-            /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
-            if ($rootScope.audio){
-                $rootScope.audio.pause();
-            }
-
-            $rootScope.audio = new Audio(path);
-            $rootScope.audio.play();
         };
         $scope.onFileSelect = function($files) {
             //$files: an array of files selected, each file has name, size, and type.

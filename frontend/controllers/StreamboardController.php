@@ -281,4 +281,39 @@ class StreamboardController extends FrontendController
         $manager = new AlertMediaManager();
         return $manager->getCustomSounds();
     }
+
+    private function removeAlert_file_ajax($type){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $user = Application::getCurrentUser();
+        if (!$user) {
+            throw new ForbiddenHttpException();
+        }
+        $fileName = file_get_contents("php://input");
+
+        $manager = new AlertMediaManager();
+        switch ($type){
+            case 'sound' :
+                $result = AlertMediaManager::removeSound($fileName);
+                $files = $manager->getCustomSounds();
+                break;
+            case 'image' :
+                $result = AlertMediaManager::removeImage($fileName);
+                $files = $manager->getCustomImages();
+                break;
+        }
+
+        if ($result){
+            return $files;
+        } else {
+            throw new ErrorException('Cannot remove file');
+        }
+    }
+
+    public function actionAlert_remove_sound_ajax(){
+       return $this->removeAlert_file_ajax('sound');
+    }
+
+    public function actionAlert_remove_image_ajax(){
+        return $this->removeAlert_file_ajax('image');
+    }
 }

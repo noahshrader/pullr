@@ -7,6 +7,13 @@
             }
         }
     );
+    /*that mean new variables will be isolated inside new scope
+    * but old variables will be available is they will be taken from parent scope*/
+    app.directive('isolatedScope', function () {
+        return {
+            scope: true
+        }
+    });
     app.run(function ($rootScope) {
         $rootScope.number_format = number_format;
         $rootScope.length = function (obj) {

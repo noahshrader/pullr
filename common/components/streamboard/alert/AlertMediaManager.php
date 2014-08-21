@@ -2,7 +2,6 @@
 
 namespace common\components\streamboard\alert;
 
-use kartik\widgets\Alert;
 use yii\base\Model;
 use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
@@ -143,7 +142,6 @@ class AlertMediaManager extends Model
     /*common code for uploadSounds / uploadMedia*/
     private static function uploadMediaGeneral($params)
     {
-        $user = Application::getCurrentUser();
         $file = UploadedFile::getInstanceByName('file');
         if (!in_array($file->extension, $params['extensions'])) {
             throw new ErrorException('Wrong extension');
@@ -163,6 +161,28 @@ class AlertMediaManager extends Model
         }
         $file->saveAs($path);
         chmod($path, 0777);
+        return true;
+    }
+
+
+    public static function removeSound($fileName){
+        return self::removeFile(self::PATH_TO_CUSTOM_SOUNDS, $fileName);
+    }
+
+    public static function removeImage($fileName){
+        return self::removeFile(self::PATH_TO_CUSTOM_IMAGES, $fileName);
+    }
+
+    public static function removeFile($library, $fileName){
+        $library = self::addUserToPath($library);
+        $pathInfo = pathinfo($fileName);
+        if (!in_array($pathInfo['extension'], self::$SOUNDS_EXTENSIONS)){
+            throw new ErrorException('Wrong extension');
+        }
+
+        $fileName = self::filterName($pathInfo['filename']).'.'.$pathInfo['extension'];
+        $path = \Yii::getAlias('@frontend/web/' . $library . $fileName);
+        unlink($path);
         return true;
     }
 }
