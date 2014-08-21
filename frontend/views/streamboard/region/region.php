@@ -12,7 +12,7 @@ $typesList = [
 <h3>Region {{ region.regionNumber}}</h3>
 <div class="form-group">
     <label>Background color</label>
-    <input type="color" ng-model="region.backgroundColor" ng-change="regionChanged(region)">
+    <input type="color" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice">
     <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left"
        data-original-title="Some hint here"></i>
 </div>
