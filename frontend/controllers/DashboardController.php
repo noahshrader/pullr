@@ -94,7 +94,7 @@ class DashboardController extends FrontendController {
         $personalRaisedRec = Donation::find()
                              ->joinWith('campaign', true, 'INNER JOIN')
                              ->where(['campaignUserId' => \Yii::$app->user->id])
-                             ->andWhere(['type' => 'Personal Tip Jar'])
+                             ->andWhere(['type' => 'Personal Fundraiser'])
                              ->andWhere('paymentDate > 0');
         if($period == 'today'){
             $personalRaisedRec->andWhere('DATE(FROM_UNIXTIME(paymentDate)) = CURDATE()');

@@ -34,9 +34,9 @@ class Campaign extends ActiveRecord {
 
     public static $STREAM_SERVICES = [self::STREAM_SERVICE_TWITCH, self::STREAM_SERVICE_HITBOX];
     
-    const TYPE_PERSONAL_TIP_JAR = 'Personal Tip Jar';
+    const TYPE_PERSONAL_FUNDRAISER = 'Personal Fundraiser';
     const TYPE_CHARITY_FUNDRAISER = 'Charity Fundraiser';
-    public static $TYPES = [self::TYPE_PERSONAL_TIP_JAR, self::TYPE_CHARITY_FUNDRAISER];
+    public static $TYPES = [self::TYPE_PERSONAL_FUNDRAISER, self::TYPE_CHARITY_FUNDRAISER];
     
     const LAYOUT_TYPE_SINGLE = 'Single Stream';
     const LAYOUT_TYPE_TEAM = 'Team Stream';
@@ -52,7 +52,6 @@ class Campaign extends ActiveRecord {
     
     const DESCRIPTION_MAX_LENGTH = 1000;
 
-    public $teamEnable = 0;
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -66,7 +65,7 @@ class Campaign extends ActiveRecord {
                 'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 
                 'channelName', 'channelTeam', 'primaryColor', 'secondaryColor', 'themeId', 'twitterEnable',
                 'twitterName', 'facebookEnable', 'facebookUrl', 'youtubeEnable', 'youtubeUrl',
-                'enableDonorComments', 'enableThankYouPage', 'thankYouPageText']
+                'enableDonorComments', 'enableThankYouPage', 'thankYouPageText', 'teamEnable']
         ];
     }
 
@@ -74,7 +73,7 @@ class Campaign extends ActiveRecord {
         parent::__construct($config);
 
         if ($this->isNewRecord) {
-            $this->type = self::TYPE_PERSONAL_TIP_JAR;
+            $this->type = self::TYPE_PERSONAL_FUNDRAISER;
             $this->layoutType = self::LAYOUT_TYPE_SINGLE;
             if (isset(\Yii::$app->components['user']) && !\Yii::$app->user->isGuest){
                 $this->userId = \Yii::$app->user->id;
@@ -84,7 +83,7 @@ class Campaign extends ActiveRecord {
 
     public function init() {
         parent::init();
-        $this->type = self::TYPE_PERSONAL_TIP_JAR;
+        $this->type = self::TYPE_PERSONAL_FUNDRAISER;
         $this->formVisibility = true;
         $this->enableDonorComments = true;
         $this->enableThankYouPage = false;
@@ -198,7 +197,7 @@ class Campaign extends ActiveRecord {
         /*if Campaign::TYPE_CHARITY_FUNDRAISER and tiedToParent are selected */
         $userId = $this->userId;
         $countInvite = CampaignInvite::find()->where(['userId' => $userId, 'campaignId' => $id, 'status' => CampaignInvite::STATUS_ACTIVE ])->count();
-        $countOwnCampaigns = Campaign::find()->where(['userId' => $userId, 'status' => Campaign::STATUS_ACTIVE])->count();
+        $countOwnCampaigns = Campaign::find()->where(['userId' => $userId, 'id' => $id, 'status' => Campaign::STATUS_ACTIVE, 'type' => Campaign::TYPE_CHARITY_FUNDRAISER])->count();
         
         /*so there are no such campaign*/
         if ($countInvite === 0 && $countOwnCampaigns === 0){
@@ -304,7 +303,7 @@ class Campaign extends ActiveRecord {
             return $this->parentCampaign->donationEmail;
         }
         
-        if ($this->type == self::TYPE_PERSONAL_TIP_JAR){
+        if ($this->type == self::TYPE_PERSONAL_FUNDRAISER){
             return $this->paypalAddress;
         }
         

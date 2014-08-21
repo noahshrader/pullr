@@ -5,9 +5,9 @@ use yii\widgets\ActiveForm;
 ?>
 <!-- BEGIN Donation Form -->
 
-<section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_TIP_JAR) ? 'tip-jar' :'events-form' ?>">
+<section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 'tip-jar' :'events-form' ?>">
     <h1 class="campaign-name"><?= $campaign->name ?></h1>
-    <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
+    <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
         <? 
            $charityName = '';
            if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
         <? endif ?>
     <? endif; ?>
     <?php $form = ActiveForm::begin($campaign->firstGiving ? [] : ['options' => ['target' => '_blank']]) ?>
-            <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
+            <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
                 <!-- Amount Selections -->
                 <div id="donation-amount" class="cf">
                         <div class="choice fieldamount">
@@ -68,7 +68,7 @@ use yii\widgets\ActiveForm;
                 <div class="field">
                     <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
                 </div>
-                <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
+                <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
                 <div class="field">
                     <input type="text" id="donation-email" name="Donation[email]" value='<?= htmlspecialchars($donation->email) ?>' placeholder="Email">
                 </div>
@@ -79,7 +79,7 @@ use yii\widgets\ActiveForm;
                     <span class="counter"></span>
                 </div>
                 <? endif;?>
-                <button type="submit" class="btn-primary btn donate">Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_TIP_JAR) ? 1 : 5 ?></button>
+                <button type="submit" class="btn-primary btn donate">Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 1 : 5 ?></button>
                 <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">privacy policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">terms of service</a>.</p>
             </div>
     <?php ActiveForm::end(); ?>

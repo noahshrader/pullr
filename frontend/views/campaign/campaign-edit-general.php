@@ -6,7 +6,7 @@ use yii\widgets\MaskedInput;
 /* @var $form ActiveForm */
 
 
-$parentCampaigns = \Yii::$app->user->identity->getCampaigns()->all();
+$parentCampaigns = \Yii::$app->user->identity->getCampaigns()->andWhere(['type' => Campaign::TYPE_CHARITY_FUNDRAISER])->all();
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 
 $this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAsset::className());
