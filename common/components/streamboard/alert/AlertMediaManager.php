@@ -2,6 +2,7 @@
 
 namespace common\components\streamboard\alert;
 
+use kartik\widgets\Alert;
 use yii\base\Model;
 use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
@@ -25,6 +26,7 @@ class AlertMediaManager extends Model
     const MAX_FILE_NAME_LENGTH = 30;
     /*maximum number of uploads per user per one media type (sounds or images)*/
     const MAX_FILES_NUMBER = 30;
+    const MAX_FILES_NUMBER_MESSAGE = "File's number limit reached. Please remove one.";
     /*related to @web directory*/
     const PATH_TO_LIBRARY_IMAGES = 'streamboard/alerts/images/';
     const PATH_TO_LIBRARY_SOUNDS = 'streamboard/alerts/sounds/';
@@ -117,7 +119,8 @@ class AlertMediaManager extends Model
             'extensions' => self::$SOUNDS_EXTENSIONS,
             'maxSize' => self::MAX_SOUND_SIZE,
             'maxSizeMessage' => self::MAX_SOUND_SIZE_MESSAGE,
-            'pathToCustomLibrary' => self::PATH_TO_CUSTOM_SOUNDS
+            'pathToCustomLibrary' => self::PATH_TO_CUSTOM_SOUNDS,
+            'getFilesListMethod' => [new AlertMediaManager(), 'getCustomSounds']
         ];
         return self::uploadMediaGeneral($params);
     }
@@ -131,7 +134,8 @@ class AlertMediaManager extends Model
             'extensions' => self::$IMAGES_EXTENSIONS,
             'maxSize' => self::MAX_IMAGE_SIZE,
             'maxSizeMessage' => self::MAX_IMAGE_SIZE_MESSAGE,
-            'pathToCustomLibrary' => self::PATH_TO_CUSTOM_IMAGES
+            'pathToCustomLibrary' => self::PATH_TO_CUSTOM_IMAGES,
+            'getFilesListMethod' => [new AlertMediaManager(), 'getCustomImages']
         ];
         return self::uploadMediaGeneral($params);
     }
@@ -153,7 +157,10 @@ class AlertMediaManager extends Model
         $path = \Yii::getAlias('@frontend/web/' . $libraryPath . $fileName);
         $directory = dirname($path);
         FileHelper::createDirectory($directory, 0777);
-        /**@todo files' number check */
+        $files = call_user_func($params['getFilesListMethod']);
+        if (sizeof($files) >= self::MAX_FILES_NUMBER){
+            throw new ErrorException(self::MAX_FILES_NUMBER_MESSAGE);
+        }
         $file->saveAs($path);
         chmod($path, 0777);
         return true;
