@@ -3,7 +3,7 @@
     <ul>
         <? foreach ($campaignInvites as $invite): ?>
         <li>
-            <h4><?= $invite->campaign->name ?></h4>
+            <p><?= $invite->campaign->name ?></p>
             <span><?= $invite->campaign->user->name ?></span>
             <div class="invite-actions cf">
                 <a href="app/dashboard/inviteapprove?id=<?= $invite->id ?>"><i class="icon-check2"></i> Accept</a>
