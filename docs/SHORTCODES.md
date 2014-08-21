@@ -45,7 +45,6 @@ channelTeam: "funforfreedom"
 charity: null
 charityId: 2
 customCharity: ""
-customCharityDescription: ""
 customCharityPaypal: ""
 date: "2014-06-12 01:35:37"
 description: ""

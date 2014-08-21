@@ -126,10 +126,6 @@ $firstGiving = $campaign->getFirstGiving();
                     <label>Charity PayPal Address</label>
                     <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => true]); ?>
                 </div>
-                <div class="form-group">
-                    <label>Campaign Description</label>
-                    <?= $form->field($campaign, 'customCharityDescription', ['autoPlaceholder' => true])->textarea(); ?>
-                </div>
             </div>
         </div>
         </div>

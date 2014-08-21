@@ -62,7 +62,7 @@ class Campaign extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['name', 'alias', 'tiedToParent', 'parentCampaignId', 'description', 'goalAmount', 'streamService', 'type', 'startDate', 'endDate', 'layoutType',
-                'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 
+                'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal',
                 'channelName', 'channelTeam', 'primaryColor', 'secondaryColor', 'themeId', 'twitterEnable',
                 'twitterName', 'facebookEnable', 'facebookUrl', 'youtubeEnable', 'youtubeUrl',
                 'enableDonorComments', 'enableThankYouPage', 'thankYouPageText']
