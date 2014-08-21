@@ -21,6 +21,7 @@ class StreamboardAsset extends AssetBundle
         'js/streamboard/angular-app/pullr-common.js',
         'js/streamboard/angular-app/campaigns.js',
         'js/streamboard/angular-app/settings.js',
+        'js/streamboard/angular-app/alertMediaManager.js',
         'js/streamboard/angular-app/app.js',
         /*angular-app end*/
 	];

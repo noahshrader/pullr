@@ -1,9 +1,9 @@
 (function () {
     var app = angular.module('pullr.streamboard.campaigns', []).
-        service('campaigns', function ($http, $rootScope) {
+        service('campaigns', function ($http) {
+            var Service = this;
             this.selectedCampaignsNumber = 0;
             this.campaigns = {};
-            var Service = this;
             function requestCampaigns() {
                 $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
                     var oldCampaigns = Service.campaigns;

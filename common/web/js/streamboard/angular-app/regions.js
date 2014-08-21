@@ -1,6 +1,7 @@
 (function () {
-    var app = angular.module('pullr.streamboard.regions', ['pullr.common', 'angular-bootstrap-select',
-        'angular-bootstrap-select.extra', 'pullr.streamboard.campaigns','angularFileUpload']);
+    var app = angular.module('pullr.streamboard.regions', ['pullr.common', 'pullr.streamboard.alertMediaManager',
+        'angular-bootstrap-select', 'angular-bootstrap-select.extra', 'pullr.streamboard.campaigns',
+        'angularFileUpload']);
     app.run(function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];
 
@@ -73,14 +74,13 @@
             templateUrl: 'angular/views/streamboard/region/fontStyle.html'
         }
     });
-    app.controller('RegionCtrl', function ($rootScope, $scope, $http, $upload, campaigns) {
+    app.controller('RegionCtrl', function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager) {
+        $scope.alertMediaManagerService = alertMediaManager;
         $scope.campaignsService = campaigns;
 
         $scope.regions = {};
         $scope.MAX_FONT_SIZE = 72;
         $scope.MIN_FONT_SIZE = 10;
-        /*we are using global rootScope as we have two regions*/
-        $rootScope.AlertMediaManager = Pullr.Streamboard.AlertMediaManager;
         $http.get('app/streamboard/get_regions_ajax').success(function (data) {
             $scope.regions = data;
         });
@@ -92,7 +92,7 @@
             $scope.regionChanged(region);
         };
         $scope.playSound = function (sound) {
-            var path = $rootScope.AlertMediaManager.PATH_TO_LIBRARY_SOUNDS+sound;
+            var path = alertMediaManager.PATH_TO_LIBRARY_SOUNDS+sound;
             /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
             if ($rootScope.audio){
                 $rootScope.audio.pause();
@@ -121,7 +121,7 @@
                     console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
                 }).success(function(data, status, headers, config) {
                     // file is uploaded successfully
-                    $rootScope.AlertMediaManager.customSounds = data;
+                    alertMediaManager.customSounds = data;
                     $scope.soundUploadError = '';
                 }).error(function(data){
                     $scope.soundUploadError = data.message;

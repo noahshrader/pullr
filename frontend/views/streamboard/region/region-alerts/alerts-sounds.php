@@ -16,14 +16,14 @@ use yii\helpers\Url;
             Drops Files Here
         </div>
         <div class="sound-container">
-            <div ng-repeat="sound in $root.AlertMediaManager.customSounds" >
+            <div ng-repeat="sound in alertMediaManagerService.customSounds" >
                 <?= $this->render('alerts-sound') ?>
             </div>
         </div>
     </div>
     <div id="{{baseLink}}-sounds-library" class="tab-pane active">
         <div class="sound-container">
-            <div ng-repeat="sound in $root.AlertMediaManager.librarySounds" >
+            <div ng-repeat="sound in alertMediaManagerService.librarySounds" >
                 <?= $this->render('alerts-sound') ?>
             </div>
         </div>
