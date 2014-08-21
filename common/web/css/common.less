@@ -106,7 +106,7 @@ table {
 	td,
 	&.dataTable tbody th
 	&.dataTable tbody td {
-		padding: 1em 6% !important;
+		padding: .8em 6% !important;
 	}
 	&.dataTable.display tbody td[colspan~="4"] {
 		padding-top: 0 !important;
@@ -177,12 +177,7 @@ table.dataTable thead td {
 	 	}
 	}
 	.table-scrollable {
-		margin-bottom: 20px;
-
-		.donations-table {
-			background: @white;
-			.box-shadow;
-		}
+		margin-bottom: @gutter;
 	}
 	.dataTables_paginate {
 		padding: 0px !important;
@@ -194,7 +189,13 @@ table.dataTable thead td {
 }
 .row {
 	margin: 0;
-	padding: 12px 6%;
+	padding: 12px 0;
+}
+.table-header {
+	margin-bottom: 16px;
+}
+.table-footer {
+	margin-top: 20px;
 }
 .table-header,
 .table-footer {
@@ -214,24 +215,39 @@ table.dataTable thead td {
 }
 
 /* Statistics Global Styling */
-.stats-overview {
+.module {
 	position: relative;
-	text-align: center;
-	padding: 0;
-	margin: 0 0 50px;
+	margin-bottom: @gutter;
 	background: @white;
+	.element-radius;
 	.box-shadow;
+	overflow: hidden;
+
+	h5.module-title {
+		color: @gray30;
+		font-weight: 600;
+		padding: .8em @gutter;
+		margin: 0;
+		background: @gray70;
+	}
+
+	/* Decorative Section Headings */
+	i.module-head {
+	
+	}
+}
+
+.stats-overview {
+	text-align: center;
 
 	.stats-box {
-		padding: 1.2em 2em;
+		padding: 1.4em 0;
+		border-left: solid 1px @gray75;
 		&:first-child {
 			border-left: 0px;
 		}
 		&.col-xs-3 {
 			width: 50%;
-		}
-		h2 {
-			font-size: 2.8em;
 		}
 		h2,
 		h3 {
@@ -253,7 +269,7 @@ table.dataTable thead td {
 		}
 		&.top-donor,
 		&.top-donation {
-			padding: 1em 2em;
+			padding: 1.2em 2em;
 			border-top: solid 1px @gray75;
 		}
 		&.top-donor {

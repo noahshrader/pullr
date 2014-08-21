@@ -181,9 +181,12 @@ class Campaign extends ActiveRecord {
     }
     
     /**
-     * validate parentCampaignId
+     * Validate parentCampaignId.
+     * For a new record with [$this->id] is null [$this->parentCampaignId] can be filtered to null.
+     * Later new Campaign in that case it will be updated in [afterSave] method with "$this->parentCampaignId = $this->id"
      */
     public function parentCampaignIdFilter(){
+        var_dump($this->id);
         $id = intval($this->parentCampaignId);
         if ($this->id == $id){
             return;

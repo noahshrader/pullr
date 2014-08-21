@@ -16,12 +16,6 @@
 	width: 100%;
 	background: @white;
 }
-.large-menu-toggled #content {
-	padding-left: @primary-nav-lg-width + 60px;
-}
-.small-menu-toggled #content {
-	padding-left: @primary-nav-width + 60px;
-}
 
 
 /* Donor/Campaign Views */
@@ -31,8 +25,9 @@
 	width: 100%;
 
 	h1 {
-		margin: 80px auto 50px;
-		max-width: 750px;
+		font-size: 2.6em;
+		text-align: center;
+		margin: 60px auto 60px;
 	}
 }
 .donor-view-wrap h1 {
@@ -41,20 +36,11 @@
 .campaign-date,
 .donor-email {
 	display: block;
-	color: @gray50;
+	color: @gray40;
 	font-size: 20px;
 	line-height: 1.6em;
 	letter-spacing: 0;
 	margin-top: 2px;
-}
-.large-menu-toggled .campaigns-view-wrap,
-.large-menu-toggled .donor-view-wrap {
-	padding-left: @sidepanelwidth + @primary-nav-lg-width;
-}
-
-.small-menu-toggled .campaigns-view-wrap,
-.small-menu-toggled .donor-view-wrap {
-	padding-left: @sidepanelwidth + @primary-nav-width;
 }
 
 
@@ -64,36 +50,35 @@
 	position: fixed;
 	top: @top-menu-height;
 	width: @sidepanelwidth;
-	background: @gray20;
+	background: @gray15;
+}
 
-	h4 {
-		font-size: 15px;
-		font-weight: 700;
+/* Toggle Content Changes */
+.large-menu-toggled {
+	#content {
+		padding-left: @primary-nav-lg-width + 60px;
 	}
-	h5 {
-		color: @gray30;
-		margin-bottom: 0;
+	#sidepanel {
+		padding-left: @sidepanelwidth + @primary-nav-lg-width;
 	}
-
-	.module {
-		margin-bottom: 40px;
-
-		li {
-			padding: .8em 0;
-			border-top: dotted 1px @gray15;
-			&:first-child {
-				border: 0;
-			}
-		}
+	.campaigns-view-wrap,
+	.donor-view-wrap {
+		padding-left: @sidepanelwidth + @primary-nav-lg-width;
+	}
+}
+.small-menu-toggled {
+	#content {
+		padding-left: @primary-nav-width + 60px;
+	}
+	#sidepanel {
+		padding-left: @sidepanelwidth + @primary-nav-width;
+	}
+	.campaigns-view-wrap,
+	.donor-view-wrap {
+		padding-left: @sidepanelwidth + @primary-nav-width;
 	}
 }
 
-.large-menu-toggled #sidepanel {
-	padding-left: @sidepanelwidth + @primary-nav-lg-width;
-}
-.small-menu-toggled #sidepanel {
-	padding-left: @sidepanelwidth + @primary-nav-width;
-}
 
 /* Errors/Alerts */
 /* ------------------------------------------------- */

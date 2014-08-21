@@ -1,5 +1,6 @@
 (function () {
-    var app = angular.module('pullr.streamboard.regions', ['pullr.common', 'angular-bootstrap-select', 'angular-bootstrap-select.extra', 'pullr.streamboard.campaigns']);
+    var app = angular.module('pullr.streamboard.regions', ['pullr.common', 'angular-bootstrap-select',
+        'angular-bootstrap-select.extra', 'pullr.streamboard.campaigns','angularFileUpload']);
     app.run(function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];
 
@@ -72,12 +73,14 @@
             templateUrl: 'angular/views/streamboard/region/fontStyle.html'
         }
     });
-    app.controller('RegionCtrl', function ($rootScope, $scope, $http, campaigns) {
+    app.controller('RegionCtrl', function ($rootScope, $scope, $http, $upload, campaigns) {
         $scope.campaignsService = campaigns;
 
         $scope.regions = {};
         $scope.MAX_FONT_SIZE = 72;
         $scope.MIN_FONT_SIZE = 10;
+        /*we are using global rootScope as we have two regions*/
+        $rootScope.AlertMediaManager = Pullr.Streamboard.AlertMediaManager;
         $http.get('app/streamboard/get_regions_ajax').success(function (data) {
             $scope.regions = data;
         });
@@ -89,7 +92,7 @@
             $scope.regionChanged(region);
         };
         $scope.playSound = function (sound) {
-            var path = Pullr.Streamboard.WidgetCampaignBarAlerts.PATH_TO_SOUNDS+sound;
+            var path = $rootScope.AlertMediaManager.PATH_TO_LIBRARY_SOUNDS+sound;
             /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
             if ($rootScope.audio){
                 $rootScope.audio.pause();
@@ -98,5 +101,37 @@
             $rootScope.audio = new Audio(path);
             $rootScope.audio.play();
         };
+        $scope.onFileSelect = function($files) {
+            //$files: an array of files selected, each file has name, size, and type.
+            for (var i = 0; i < $files.length; i++) {
+                var file = $files[i];
+                $scope.upload = $upload.upload({
+                    url: 'app/streamboard/upload_alert_file_ajax?type=sound', //upload.php script, node.js route, or servlet url
+                    //method: 'POST' or 'PUT',
+                    //headers: {'header-key': 'header-value'},
+                    //withCredentials: true,
+//                   data: {myObj: $scope.myModelObj},
+                    file: file, // or list of files ($files) for html5 only
+                    //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
+                    // customize file formData name ('Content-Disposition'), server side file variable name.
+                    //fileFormDataName: myFile, //or a list of names for multiple files (html5). Default is 'file'
+                    // customize how data is added to formData. See #40#issuecomment-28612000 for sample code
+                    //formDataAppender: function(formData, key, val){}
+                }).progress(function(evt) {
+                    console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                }).success(function(data, status, headers, config) {
+                    // file is uploaded successfully
+                    $rootScope.AlertMediaManager.customSounds = data;
+                    $scope.soundUploadError = '';
+                }).error(function(data){
+                    $scope.soundUploadError = data.message;
+                    console.log(data);
+                });
+                //.error(...)
+                //.then(success, error, progress);
+                // access or attach event listeners to the underlying XMLHttpRequest.
+                //.xhr(function(xhr){xhr.upload.addEventListener(...)})
+            }
+        }
     });
 })()

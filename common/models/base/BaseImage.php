@@ -6,6 +6,7 @@ use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yii\web\ForbiddenHttpException;
 use common\components\Application;
+use yii\helpers\FileHelper;
 
 class BaseImage extends ActiveRecord implements IBaseImage {
     const MAX_IMAGES_PER_OBJECT = 10;
@@ -14,7 +15,8 @@ class BaseImage extends ActiveRecord implements IBaseImage {
     const STATUS_DELETED = 'deleted';
     
     const NO_PHOTO_PATH = 'images/no_photo.png';
-    
+    const IMAGES_PATH = 'usermedia/userimages/';
+
     public static function NO_PHOTO_LINK(){
         return Application::frontendUrl(self::NO_PHOTO_PATH);
     }
@@ -80,7 +82,7 @@ class BaseImage extends ActiveRecord implements IBaseImage {
      * @param integer $id
      */
     public static function getSubPathById($id) {
-        return 'userimages/' . round($id / 1000) . '/' . $id % 1000;
+        return self::IMAGES_PATH . round($id / 1000) . '/' . $id % 1000;
     }
 
     const MIDDLE_WIDTH = 300;
@@ -113,9 +115,7 @@ class BaseImage extends ActiveRecord implements IBaseImage {
         $middlePath = $basePath . '_middle.jpg';
         $image = \Yii::$app->image->load($file->tempName);
         $directory = dirname($originalPath);
-        if (!file_exists($directory)) {
-            mkdir($directory, 0777, true);
-        }
+        FileHelper::createDirectory($directory, 0777, true);
         $flag = $flag && $image->save($originalPath, 70);
 
         /** we have at least 150px width and 100px height */
@@ -144,7 +144,7 @@ class BaseImage extends ActiveRecord implements IBaseImage {
         $this->setScenario('status');
         $this->status = self::STATUS_DELETED;
         if (!$this->save()) {
-            throw new \yii\base\ErrorException('Unsuccefull delete call! Please report this error');
+            throw new \yii\base\ErrorException('Unsuccessful delete call! Please report this error');
         }
     }
 }

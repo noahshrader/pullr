@@ -15,7 +15,7 @@
 	height: 100%;
 	width: @sidepanelwidth;
 	padding-top: @top-menu-height;
-	background-color: @gray20;
+	background-color: @gray15;
 	overflow: auto;
 
 	.main-info {
@@ -37,8 +37,9 @@
 		}
 	}
 }
-.campaigns-content {
-	padding: 50px;
+.campaigns-content,
+.donor-content {
+	padding: @gutter;
 }
 
 /* Campaigns QuickNav */
@@ -48,7 +49,8 @@
 	line-height: 50px;
 	width: @sidepanelwidth;
 	height: 50px;
-	background: @base;
+	background: @gray15;
+	border-bottom: solid 1px @gray10;
 	z-index: 1000;
 	overflow: hidden;
 
@@ -66,17 +68,19 @@
 			a {
 				display: block;
 				color: @gray40;
-				font-size: 15px;
 				font-weight: 400;
 				line-height: 50px;
 				width: 100%;
 
 				&.active {
 					color: @white;
-					background: @gray20 !important;
+					background: @gray10 !important;
+					-webkit-box-shadow: inset 0 -4px 0 0 #1dbc9c;
+					-moz-box-shadow: inset 0 -4px 0 0 #1dbc9c;
+					box-shadow: inset 0 -4px 0 0 #1dbc9c;
 				}
 				&:hover {
-					background: @gray3;
+					background: @gray13;
 				}
 			}
 		}
@@ -93,12 +97,12 @@
 	height: 69px;
 	width: @sidepanelwidth;
 	z-index: 1000;
-	background: @gray20;
-	border-bottom: solid 1px @gray15;
+	background: @gray15;
+	border-bottom: solid 1px @gray10;
 
 	input[type='search'] {
 		color: @white;
-		background-color: @gray15;
+		background-color: @gray10;
 		border-color: transparent;
 	}
 }
@@ -114,24 +118,30 @@
 	padding-top: 69px;
 }
 .campaign-item {
-	padding: 20px 0;
+	padding: 24px 0;
 	margin: 0px;
 	position: relative;
 	display: block;
 	width: 100%;
-	border-bottom: solid 1px @gray15;
+	border-bottom: solid 1px @gray13;
 	&.active h3 {
 		color: @white;
 		font-weight: 400;
 	}
 	&.active {
-		background: @gray15 !important;
-		-webkit-box-shadow: inset 5px 0px 0px 0px rgb(29,188,156);
-		-moz-box-shadow: inset 5px 0px 0px 0px rgb(29,188,156);
-		box-shadow: inset 5px 0px 0px 0px rgb(29,188,156);
+		background: @gray10 !important;
+		border-bottom: solid 1px @gray10;
+
+		&:after {
+			.arrow-left;
+			right: 0;
+			top: 50%;
+			margin-top: -10px;
+			border-color: transparent @gray75 transparent transparent;
+		}
 	}
 	&:hover {
-		background: @gray18;
+		background: @gray13;
 	}
 	h3 {
 		color: @gray60;
@@ -174,7 +184,7 @@ body.trash .campaigns-list {
 	padding: 0px;
 	width: 100%;
 	height: 50px;
-	background: @gray75;
+	background: @gray70;
 	z-index: 1000;
 	overflow: hidden;
 
@@ -189,7 +199,8 @@ body.trash .campaigns-list {
 				float: left;
 				&.active,
 				&.active .icon {
-					color: @white;
+					color: @maingray;
+					background: @gray75;
 				}
 				a {
 					display: block;
@@ -206,7 +217,6 @@ body.trash .campaigns-list {
 					}
 
 					.icon {
-						font-size: 18px;
 						line-height: 50px;
 						color: @gray40;
 					}

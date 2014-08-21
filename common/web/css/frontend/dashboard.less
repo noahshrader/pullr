@@ -1,26 +1,12 @@
 /* Main Dashboard Area */
 /* ------------------------------------------------- */
-.primary-navigation nav.nav-top ul li a.dashboard.active:after {
-	border-color: transparent @white transparent transparent;	
-}
-
-.large-menu-toggled #content.dashboard {
-	padding-left: @primary-nav-lg-width;
-}
-.small-menu-toggled #content.dashboard {
-	padding-left: @primary-nav-width;
-}
-
 #content.dashboard {
 	padding-top: 0;
 	padding-bottom: 0;
 	padding-right: @sidepanelwidth;
+	background: @gray75;
 
 	.stats-overview {
-		margin: 0;
-		padding-top: 50px;
-		border-bottom: solid 1px @gray75;
-		background: @white;
 
 		h1,
 		h2 {
@@ -63,7 +49,6 @@
 			position: relative;
 			float: left;
 			width: 30%;
-			margin-top: 52px;
 
 			div {
 				padding: 20px 0;
@@ -99,7 +84,6 @@
 
 		/* Amount Raised Bars */
 		&.raised-group-stats {
-			margin-top: 2px;
 
 			.group-header {
 				background: @accent;
@@ -116,9 +100,6 @@
 
 		/* Twitch Bar */
 		&.twitch-stats {
-			background: @gray80;
-			margin-top: 2px;
-			margin-bottom: 2px;
 
 			.group-header {
 				background: @twitchpurple;
@@ -136,74 +117,32 @@
 }
 
 /* Dashboard Stats */
-.dashboard-data-wrap .nav-tabs {
-	position: fixed;
-	width: 100%;
-	height: 50px;
-	background: @gray75;
-	z-index: 1000;
+.dashboard-data-wrap {
+	padding: 80px @gutter @gutter;
 
-	li {
-		float: left;
-		display: inline-block;
-		&.active a {
-			color: @maingray;
-			background: @white !important;
-		}
+	.nav-tabs {
+		position: fixed;
+		top: @top-menu-height;
+		left: ;
+		width: 100%;
+		height: 50px;
+		background: @gray70;
+		z-index: 9999;
 
-		a {
-			color: @gray30;
-			line-height: 50px;
-			padding: 0 20px;
-			&:hover {
-				background: @gray72;
-			}
-		}
-	}
-
-	/* Campaign Invites */
-	.invites-wrap {
-		position: relative;
-		float: right;
-		text-align: center;
-
-		a.icon-announcement {
+		li {
+			float: left;
 			display: inline-block;
-			color: @gray30;
-			font-size: 18px;
-			line-height: 50px;
-			width: 50px;
-			&.full,
-			&.full span {
-				color: @white;
+			&.active a {
+				color: @maingray;
+				background: @gray75 !important;
 			}
 
-			span {
-				display: inline-block;
-				font-size: 14px;
-			}
-		}
-		.campaign-invites ul {
-			position: absolute;
-			right: 0;
-			width: 240px;
-			padding: 20px;
-			background: @gray10;
-			z-index: 9999;
-
-			li {
-
-				h4 {
-					color: @white;
-				}
-
-				.invite-actions {
-					display: inline-block;
-					font-size: .9em;
-					padding: 2px 12px;
-					margin-top: 4px;
-					background: @base;
-					border-radius: 30px;
+			a {
+				color: @gray30;
+				line-height: 50px;
+				padding: 0 20px;
+				&:hover {
+					background: @gray72;
 				}
 			}
 		}
@@ -215,20 +154,12 @@
 /* ------------------------------------------------- */
 #sidebar.dashboard {
 	right: 0;
-	padding: 0px;
+	padding: 80px @gutter 0 0;
 	z-index: 1000;
+	background: @gray75;
 
-	h5 {
-		font-size: 17px;
-		line-height: 17px;
-		padding: 1em 30px;
-		font-weight: 400;
-		color: @white;
-		text-transform: none;
-	}
-
-	h4 {
-		color: @dkaccent20;
+	.module {
+		margin-bottom: @halfgutter;
 	}
 
 	.invites-wrap {
@@ -239,39 +170,79 @@
 			li {
 				text-align: center;
 				color: @gray30;
-				font-size: 13px;
-				padding-left: 30px;
-				padding-right: 30px;
-				margin: 0px;	
+				margin: 0px;
+				padding-top: @halfgutter;
+				&:last-child .invite-actions {
+					border-bottom: 0;
+				}
 
 				span {
 					color: @gray75;
-				}		
+				}
+
+				.invite-actions {
+					margin-top: @halfgutter;
+					border-top: solid 1px @gray75;
+					border-bottom: solid 1px @gray75;
+
+					a {
+						float: left;
+						display: inline-block;
+						font-size: @smalltext;
+						font-weight: 400;
+						text-align: center;
+						padding: .6em 0;
+						width: 50%;
+						&:first-child {
+							border-right: solid 1px @gray75;
+						}
+						i {
+							margin-right: 2px;
+						}
+					}
+				}
 			}
 
 			&:last-child {
 				border-bottom: none;
 			}
 		}
-		.campaign-invites {
-			margin-bottom: 0px;
-		}
 	}
 
 	/* Activity Feed */
 	ul.activity-feed {
 		li {
-			color: @gray60;
-			font-size: 14px;
-			padding-left: 30px;
-			padding-right: 30px;
+			color: @gray30;
+			font-size: @smalltext;
+			padding: @halfgutter @gutter;
 			margin: 0;
-			border-top: none;
+			border-bottom: solid 1px @gray75;
 			&:first-child {
-				color: @white;
-				font-weight: 600;
+				color: @maingray;
+			}
+			&:last-child {
+				padding-bottom: @gutter;
+				border: 0;
 			}
 		}
+	}
+}
+
+/* Toggle Changes */
+.large-menu-toggled {
+	#content.dashboard, {
+		padding-left: @primary-nav-lg-width;
+	}
+	.dashboard-data-wrap .nav-tabs, {
+		left: @primary-nav-lg-width;
+	}
+}
+.small-menu-toggled {
+	#content.dashboard {
+		padding-left: @primary-nav-width;
+	}
+	.dashboard-data-wrap .nav-tabs, {
+		left: @primary-nav-width;
 	}
 }
 
@@ -279,34 +250,22 @@
 /* Alerts */
 /* ------------------------------------------------- */
 .alert-info {
-	display: none;
-	position: fixed;
-	bottom: -44px;
-	left: 0;
-	right: 0;
 	color: @white;
-	font-size: 14px;
-	line-height: 44px;
-	text-align: center;
-	height: 44px;
-	margin: 0;
-	padding: 0;
-	background: @bgblackfade;
+	font-weight: 600;
+	padding: @halfgutter 45px @halfgutter @gutter;
+	background: @gray60;
 	border: 0;
-	border-radius: 0;
-	z-index: 9999;
-	.slowtrans;
-	&.slideup {
-		bottom: 0;
-	}
+	box-shadow: none;
 
 	button.close {
 		position: absolute;
-		right: 20px;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 45px;
 		color: @white !important;
-		font-weight: 400;
+		font-weight: 600;
 		text-shadow: none;
-		line-height: 44px;
 		opacity: 1;
 	}
 }

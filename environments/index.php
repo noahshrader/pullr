@@ -30,7 +30,7 @@ return [
             "frontend/runtime",
             "frontend/web/assets",
             "frontend/web/css",
-            "frontend/web/userimages"
+            "frontend/web/usermedia"
         // handled by composer.json already
         ],
         'executable' => [
@@ -49,7 +49,7 @@ return [
             "frontend/runtime",
             "frontend/web/assets",
             "frontend/web/css",
-            "frontend/web/userimages"
+            "frontend/web/usermedia"
             // handled by composer.json already
         ],
         'executable' => [
@@ -68,7 +68,7 @@ return [
             "frontend/runtime",
             "frontend/web/assets",
             "frontend/web/css",
-            "frontend/web/userimages"
+            "frontend/web/usermedia"
         // handled by composer.json already
         ],
         'executable' => [

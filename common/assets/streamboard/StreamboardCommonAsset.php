@@ -23,9 +23,6 @@ class StreamboardCommonAsset extends AssetBundle
         '//code.jquery.com/ui/1.10.4/jquery-ui.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-touch/angular-touch.min.js',
-        'bower_components/venturocket-angular-slider/build/angular-slider.min.js',
-        'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js',
-        'bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js',
     ];
     public $depends = [
     ];

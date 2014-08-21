@@ -69,9 +69,9 @@ use yii\widgets\ActiveForm;
                     <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
                 </div>
                 <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
-                <div class="field">
-                    <input type="text" id="donation-email" name="Donation[email]" value='<?= htmlspecialchars($donation->email) ?>' placeholder="Email">
-                </div>
+                    <div class="field">
+                        <?= $form->field($donation, 'email', ['inputOptions' => ['placeholder' => 'Email']])->label(false); ?>
+                    </div>
                 <? endif ?>
                 <? if ($campaign->enableDonorComments): ?>
                 <div class="field comments cf">

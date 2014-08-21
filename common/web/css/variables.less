@@ -15,7 +15,7 @@
 @pullr-bg-lighter : #666;
 
 /* Base */
-@base: #222325;
+@base: #222225;
 @white: #FFF;
 
 /* Main Accent */
@@ -40,8 +40,8 @@
 @dkgray: darken(@base, 2%); /* 2% darker than background */
 @gray3: lighten(@base, 3%); /* 2% gray background */
 @gray10: lighten(@base, 10%); /* 10% gray background */
+@gray13: lighten(@base, 13%); /* 15% gray background */
 @gray15: lighten(@base, 15%); /* 15% gray background */
-@gray18: lighten(@base, 18%); /* 15% gray background */
 @gray20: lighten(@base, 20%); /* 20% gray background */
 @gray25: lighten(@base, 25%); /* 25% gray background */
 @gray30: lighten(@base, 30%); /* 30% gray background */
@@ -100,6 +100,8 @@
 @top-menu-height: 68px; /* Top bar height */
 @primary-nav-width: 78px; /* Navigation width */
 @primary-nav-lg-width: 180px; /* Large Primary Navigation Width */
+@gutter: 30px; /* Default spacing between main elements */
+@halfgutter: 15px; /* Half the gutter spacing */
 
 .nowrap{
   white-space: nowrap;
@@ -120,6 +122,9 @@
 .border-radius (@radius: 3px) {
 	border-radius: @radius;
 	background-clip: padding-box;
+}
+.element-radius (@radius: 10px) {
+	border-radius: @radius;
 }
 .round-radius (@radius: 30px) {
 	border-radius: @radius;
