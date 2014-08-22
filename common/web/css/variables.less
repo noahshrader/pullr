@@ -21,14 +21,8 @@
 /* Main Accent */
 @accent: #1dbc9c;	/* Primary accent */
 @accenthover: lighten(@accent, 5%); /* Primary accent hover state */
-
-@dkaccent: darken(@accent, 5%);
-
-@dkaccent3: darken(@accent, 3%);
-@dkaccent9: darken(@accent, 9%);
-@dkaccent15: darken(@accent, 15%);
-@dkaccent20: darken(@accent, 20%);
-@dkaccent30: darken(@accent, 30%);
+@dkaccent: darken(@accent, 4%);
+@dkraccent: darken(@accent, 16%);
 
 /* Other Colors */
 @twitchpurple: #6441a5; /* Twitch purple */
@@ -119,15 +113,19 @@
 
 /* Borders & Box shadows */
 /* ------------------------------------------------- */
-.border-radius (@radius: 3px) {
+.border-radius (@radius: 4px) {
 	border-radius: @radius;
 	background-clip: padding-box;
 }
-.element-radius (@radius: 8px) {
+.element-radius (@radius: 10px) {
 	border-radius: @radius;
 }
 .round-radius (@radius: 30px) {
 	border-radius: @radius;
+	background-clip: padding-box;
+}
+.topcut-radius (@radius: 10px) {
+	border-top-left-radius: @radius;
 	background-clip: padding-box;
 }
 .box-shadow (@shadow: 0 0 2px rgba(0,0,0,.1)) {

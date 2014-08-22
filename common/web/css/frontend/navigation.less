@@ -86,12 +86,23 @@
 		.avatar {
 
 			.user-photo-menu {
+				position: relative;
 				display: inline-block;
 				color: @gray30;
 				line-height: @top-menu-height;
 				height: @top-menu-height;
 				padding: 0 1.6em;
-
+				&:after {
+					.arrow-right;
+					top: 50%;
+					right: 14px;
+					margin-top: -2px;
+					border-width: 4px 0 4px 4px;
+					border-color: transparent transparent transparent @gray20;
+				}
+				&:hover:after {
+					border-color: transparent transparent transparent @gray30;
+				}
 				span {
 					color: @white;
 					font-size: 14px;
@@ -111,29 +122,35 @@
 			float: right;
 		}
 		ul.avatar-submenu {
-			margin-right: -120px;
+			margin-right: -215px;
 			background: @base;
 			.trans;
 
 			li {
 				float: left;
 				line-height: @top-menu-height;
+				padding: 0 @halfgutter;
 				height: @top-menu-height;
 
 				a {
 					display: inline-block;
-					color: @gray30;
-					font-size: 18px;
+					color: @gray20;
+					font-size: 14px;
 					text-align: center;
-					width: 60px;
 					&:hover {
 						color: @white;
+					}
+					i {
+						margin-right: 4px;
 					}
 				}
 			}
 		}
+		&.open .user-photo-menu:after {
+			border-color: transparent transparent transparent @gray30;
+		}
 		&.open ul.avatar-submenu {
-			padding: 0 10px;
+			padding: 0 @halfgutter;
 			margin-right: 0;
 		}
 	}
