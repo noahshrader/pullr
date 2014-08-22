@@ -45,8 +45,9 @@ $firstGiving = $campaign->getFirstGiving();
         <div class="form-group">
             <label>Goal Amount</label>
             <div class="form-group field-campaign-goalamount required" style="text-align: left;">
+                <?= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => true])->hiddenInput(); ?>
                 <?= MaskedInput::widget([
-                    'name' => 'Campaign[goalAmount]',
+                    'name' => 'goal',
                     'value' => $campaign->goalAmount ?: 0,
                     'options' => [
                         'class' => 'form-control',

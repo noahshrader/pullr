@@ -238,6 +238,9 @@ $(function() {
 /*We use js as Yii Js add text-aling right on load event*/
 $( window ).load(function() {
     $('#masked-input').css('text-align', 'left');
+    $('#masked-input').on('change', function(){
+       $('#campaign-goalamount').val($(this).val());
+    });
     $.extend($.inputmask.defaults, {
         'autoUnmask': true
     });
