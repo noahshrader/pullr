@@ -19,9 +19,8 @@ $('tr.donation-entry').click(function() {
 });
 
 // Show/hide campaign actions menu
-$('ul.campaign-quick-links > li > a').click(function () {
+$('ul.campaign-quick-links > li > a').click(function() {
     $('ul.campaign-quick-links').toggleClass('drop');
-    $('ul.campaign-quick-links ul').toggleClass('fadeOutDown fadeInUp');
 });
 
 $(window).load(function() {
