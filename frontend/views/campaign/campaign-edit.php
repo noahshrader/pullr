@@ -13,7 +13,7 @@ $user = \Yii::$app->user->identity;
 ?>
 
     <? if ($campaign): ?>
-    <div id="campaignEdit" class="layout-edit" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
+    <div id="campaignEdit" class="layout-edit <? if($campaign->teamEnable):?>team-enabled<? endif ?>" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
     <? if (!$campaign->isNewRecord): ?>
 
     <div class="campaign-actions">

@@ -98,7 +98,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
     <div class="campaigns-content" data-id="<?= $campaign->id ?>">
          <h1>
             <?= ($campaign->name)?$campaign->name:'New campaign' ?>
-            <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
+            <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER && $campaign->startDate && $campaign->endDate): ?>
             <span class="campaign-date"><?= date('M j, Y', $campaign->startDate) ?> - <?= date('M j, Y', $campaign->endDate) ?></span>
             <? endif ?>
          </h1>

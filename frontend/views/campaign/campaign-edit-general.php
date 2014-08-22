@@ -6,7 +6,7 @@ use yii\widgets\MaskedInput;
 /* @var $form ActiveForm */
 
 
-$parentCampaigns = \Yii::$app->user->identity->getParentCampaigns()->all();
+$parentCampaigns = \Yii::$app->user->identity->getCampaigns()->andWhere(['type' => Campaign::TYPE_CHARITY_FUNDRAISER])->all();
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 
 $this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAsset::className());
@@ -41,6 +41,34 @@ $firstGiving = $campaign->getFirstGiving();
              <?= $form->field($campaign, 'endDate')->label("End Date/Time $tooltip")->input('datetime-local'); ?>
         </div>
 
+        <!-- Campaign Goal Amount -->
+        <div class="form-group">
+            <label>Goal Amount</label>
+            <div class="form-group field-campaign-goalamount required" style="text-align: left;">
+                <?= MaskedInput::widget([
+                    'name' => 'Campaign[goalAmount]',
+                    'value' => $campaign->goalAmount ?: 0,
+                    'options' => [
+                        'class' => 'form-control',
+                        'id' => 'masked-input',
+                        'placeholder' => 'Goal amount'
+                    ],
+                    'clientOptions' => [
+                        'value' => $campaign->goalAmount,
+                        'alias' =>  'decimal',
+                        'groupSeparator' => ',',
+                        'autoGroup' => true,
+                        'autoUnmask' => true
+                    ],
+                ]) ?>
+                <div class="help-block"></div>
+            </div>
+        </div>
+
+        <div class="form-group" id="teamQuestion">
+            <?= $form->field($campaign, 'teamEnable')->label('Are you adding a team?')->checkbox([], false); ?>
+        </div>
+
         <!-- Parent Campaigns -->
         <? if (sizeof($parentCampaigns) > 0): ?>
             <? 
@@ -57,33 +85,8 @@ $firstGiving = $campaign->getFirstGiving();
                 </div>
             </div>
         <? endif; ?>
+
         <div id="notTiedCampaignContainer">
-
-        <!-- Campaign Goal Amount -->
-        <div class="form-group">
-            <label>Goal Amount</label>
-            <div class="form-group field-campaign-goalamount required" style="text-align: left;">
-                <?= MaskedInput::widget([
-                    'name' => 'Campaign[goalAmount]',
-                    'value' => $campaign->goalAmount,
-                    'options' => [
-                        'class' => 'form-control',
-                        'id' => 'masked-input',
-                        'placeholder' => 'Goal amount'
-
-                    ],
-                    'clientOptions' => [
-                        'value' => $campaign->goalAmount,
-                        'alias' =>  'decimal',
-                        'groupSeparator' => ',',
-                        'autoGroup' => true,
-                        'autoUnmask' => true
-                    ],
-                ]) ?>
-                <div class="help-block"></div>
-            </div>
-        </div>
-
         <!-- Personal Fundraiser PayPal -->
         <div class="form-group pf-paypal">
             <label>PayPal Address</label>

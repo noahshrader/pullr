@@ -155,6 +155,15 @@ function initBootstrapSwitch() {
             $('.field-campaign-facebookurl').hide('slow');
         }
     });
+
+    $("#campaign-teamenable").on('click', function() {
+        var value = $(this).bootstrapSwitch('state');
+        if (value){
+            $('#campaignEdit').addClass('team-enabled');
+        } else {
+            $('#campaignEdit').removeClass('team-enabled');
+        }
+    });
     
     $("#campaign-enablecustomlogo").on('click', function() {
         var value = $('#campaign-enablecustomlogo').bootstrapSwitch('state');
@@ -229,4 +238,7 @@ $(function() {
 /*We use js as Yii Js add text-aling right on load event*/
 $( window ).load(function() {
     $('#masked-input').css('text-align', 'left');
+    $.extend($.inputmask.defaults, {
+        'autoUnmask': true
+    });
 });
