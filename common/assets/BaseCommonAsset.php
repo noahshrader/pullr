@@ -15,6 +15,7 @@ class BaseCommonAsset extends AssetBundle {
         'css/bootstrap/less/bootstrap.less',
         'plugins/bootstrapSwitch/css/bootstrap3/bootstrap-switch.min.css',
         'plugins/datatables/jquery.dataTables.css',
+        'css/animate.css'
     ];
     public $js = [
         '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',

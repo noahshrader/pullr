@@ -36,24 +36,27 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <? if (!$campaign->isParentForCurrentUser()): ?>
             <ul class="campaign-quick-links">
                 <li>
-                    <a>Hello</a>
-                    <ul>
+                    <a class="actions-toggle icon-mobile"></a>
+                    <ul class="animated fadeInUp">
                         <li class="active">
                             <a href="app/campaign/view?id=<?= $campaign->id ?>">
                                 <i class="icon icon-piechart"></i>
                                 <!-- Overview -->
+                                Overview
                             </a>
                         </li>
                         <li>
                             <a href="app/campaign/edit?id=<?= $campaign->id ?>">
                                 <i class="icon icon-edit"></i>
                                 <!-- Edit -->
+                                Edit
                             </a>
                         </li>
                         <li>
                             <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
                             <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
                                 <i class="icon icon-code"></i>
+                                JSON
                             </a>
                         </li>
                         <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
@@ -61,6 +64,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
                                 <i class="icon icon-archive"></i>
                                 <!-- Archive -->
+                                Archive
                             </a>
                         </li>
                         <? endif ?>
@@ -69,6 +73,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                                 <i class="icon icon-remove"></i>
                                 <!-- Remove -->
+                                Delete
                             </a>
                         </li>
                         <? endif ?>
@@ -97,34 +102,32 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <span class="campaign-date"><?= date('M j, Y', $campaign->startDate) ?> - <?= date('M j, Y', $campaign->endDate) ?></span>
             <? endif ?>
          </h1>
-        <section class="stats-overview module">
-            <div class="main-values">
-                <div class='stats-box col-xs-3 raised-total'>
-                    <h2>$<?= number_format($campaign->amountRaised) ?></h2>
-                    <h5>Raised</h5>
-                </div>
-                <div class='stats-box col-xs-3 campaign-goal'>
-                    <h2>$<?= number_format($campaign->goalAmount) ?></h2>
-                    <h5>Goal</h5>
-                </div>
-                <div class="progress-wrap">
-                    <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
-                    ?>
-                    <div class="progress">
-                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
-                    </div>
+        <section class="stats-overview main-values module">
+            <div class='stats-box col-xs-3 raised-total'>
+                <h2>$<?= number_format($campaign->amountRaised) ?></h2>
+                <h5>Raised</h5>
+            </div>
+            <div class='stats-box col-xs-3 campaign-goal'>
+                <h2>$<?= number_format($campaign->goalAmount) ?></h2>
+                <h5>Goal</h5>
+            </div>
+            <div class="progress-wrap">
+                <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
+                ?>
+                <div class="progress">
+                    <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
                 </div>
             </div>
-            <div class='stats-box col-xs-3 total-donations'>
+        </section>
+        <section class="stats-overview module">
+            <div class='stats-box col-xs-6 total-donations'>
                 <h2><?= $campaign->numberOfDonations ?></h2>
                 <h5>Donations</h5>
             </div>
-            <div class='stats-box col-xs-3 total-donors'>
+            <div class='stats-box col-xs-6 total-donors'>
                 <h2><?= $campaign->numberOfUniqueDonors ?></h2>
                 <h5>Donors</h5>
             </div>
-            <div class="clearfix"></div>
-
             <div class='stats-box col-xs-6 top-donor'>
                 <h3><?= $topDonorText ?></h3>
                 <h5>Top Donor</h5>

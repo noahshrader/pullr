@@ -20,6 +20,7 @@ body {
 	height: 100%;
 }
 
+
 /* Buttons */
 /* ------------------------------------------------- */
 .btn {
@@ -109,7 +110,7 @@ table {
 	td,
 	&.dataTable tbody th
 	&.dataTable tbody td {
-		padding: .8em 6% !important;
+		padding: .9em 6% !important;
 	}
 	&.dataTable.display tbody td[colspan~="4"] {
 		padding-top: 0 !important;
@@ -237,8 +238,18 @@ table.dataTable thead td {
 	}
 }
 
+/* Main Data Containers */
 .stats-overview {
 	text-align: center;
+
+	&.main-values {
+		background: @accent;
+
+		.stats-box {
+			width: 50%;
+			border-left: solid 1px @dkaccent;
+		}
+	}
 
 	.stats-box {
 		padding: 1.4em 0;
@@ -259,8 +270,21 @@ table.dataTable thead td {
 
 			h1,
 			h2 {
-				color: @accent;
+				color: @white;
 				margin: 0;
+			}
+			h5 {
+				color: @dkraccent;
+			}
+		}
+		&.campaign-goal {
+			h1,
+			h2 {
+				color: @white;
+				margin: 0;
+			}
+			h5 {
+				color: @dkraccent;
 			}
 		}
 		&.raised-total,
@@ -273,16 +297,7 @@ table.dataTable thead td {
 			border-top: solid 1px @gray75;
 		}
 		&.top-donor {
-			border-left: 0 !important;
-		}
-	}
-	.main-values {
-		position: relative;
-		float: left;
-		width: 100%;
-
-		.stats-box {
-			width: 50%;
+			border-left: 0;
 		}
 	}
 	.progress-wrap {
@@ -304,7 +319,7 @@ table.dataTable thead td {
 	border-radius: 0px;
 	margin-bottom: 0px;
 	height: 20px;
-	background: @gray75;
+	background: @dkaccent;
 }
 .progress-line {
 	position: relative;
@@ -315,7 +330,7 @@ table.dataTable thead td {
 	height: 20px;
 	max-width: 100%;
 	.smallcaps;
-	background: @accent;
+	background: @dkraccent;
 	.animate-bar;
 }
 

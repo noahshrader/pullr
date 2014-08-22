@@ -13,11 +13,19 @@ function campaignsWithFilter(campaigns){
     ko.applyBindings(viewModel);
 }
 
-// reduce top padding to campaigns view?
-if ($('.campaigns-list').find('.list-search').length == 0) {
-    $('.campaigns-list').addClass('redpad');
-}
 // Rotate table details area on click
 $('tr.donation-entry').click(function() {
     $(this).children('td.details-control').toggleClass('drop');
+});
+
+// Show/hide campaign actions menu
+$('ul.campaign-quick-links > li > a').click(function () {
+    $('ul.campaign-quick-links').toggleClass('drop');
+});
+
+$(window).load(function() {
+    // Add top padding to campaigns view?
+    if ($('section.campaign-status-pending').find('.campaign-item').length > 0) {
+        $('section.campaign-status-pending .campaigns-list').addClass('addpad');
+    }
 });

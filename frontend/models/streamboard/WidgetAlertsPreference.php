@@ -15,6 +15,10 @@ use common\models\User;
  * @property string $image - filename of predefined image
  */
 class WidgetAlertsPreference extends ActiveRecord {
+    const FILE_TYPE_LIBRARY = 'Library';
+    const FILE_TYPE_CUSTOM = 'Custom';
+    public static $FILE_TYPES = [self::FILE_TYPE_CUSTOM, self::FILE_TYPE_LIBRARY];
+
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -25,7 +29,7 @@ class WidgetAlertsPreference extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['fontStyle', 'fontSize', 'fontColor', 'animationDuration', 'volume',
-                'sound', 'image']
+                'sound','soundType', 'image', 'imageType']
         ];
     }
 }

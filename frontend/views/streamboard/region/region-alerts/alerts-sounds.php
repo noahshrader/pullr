@@ -1,5 +1,6 @@
 <?
 use yii\helpers\Url;
+use frontend\models\streamboard\WidgetAlertsPreference;
 ?>
 <!--main variable - preference -->
 <ul class="nav nav-tabs custrom-or-library-tabs">
@@ -16,14 +17,14 @@ use yii\helpers\Url;
             Drops Files Here
         </div>
         <div class="sound-container">
-            <div ng-repeat="sound in alertMediaManagerService.customSounds" >
+            <div ng-repeat="sound in alertMediaManagerService.customSounds" ng-init='soundType=<?= json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>' >
                 <?= $this->render('alerts-sound') ?>
             </div>
         </div>
     </div>
     <div id="{{baseLink}}-sounds-library" class="tab-pane active">
         <div class="sound-container">
-            <div ng-repeat="sound in alertMediaManagerService.librarySounds" >
+            <div ng-repeat="sound in alertMediaManagerService.librarySounds" ng-init='soundType=<?= json_encode(WidgetAlertsPreference::FILE_TYPE_LIBRARY) ?>'>
                 <?= $this->render('alerts-sound') ?>
             </div>
         </div>

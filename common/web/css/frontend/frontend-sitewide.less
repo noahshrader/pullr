@@ -10,11 +10,13 @@
 }
 #content {
 	float: left;
-	padding-right: @sidepanelwidth + 60px;
-	padding-top: @top-menu-height;  
-	padding-bottom: 60px;
+	padding-right: @sidepanelwidth + @gutter;
+	padding-top: @gutter;
 	width: 100%;
-	background: @white;
+
+	.module {
+		padding: @gutter;
+	}
 }
 
 
@@ -56,7 +58,7 @@
 /* Toggle Content Changes */
 .large-menu-toggled {
 	#content {
-		padding-left: @primary-nav-lg-width + 60px;
+		padding-left: @primary-nav-lg-width + @gutter;
 	}
 	#sidepanel {
 		padding-left: @sidepanelwidth + @primary-nav-lg-width;
@@ -64,11 +66,14 @@
 	.campaigns-view-wrap,
 	.donor-view-wrap {
 		padding-left: @sidepanelwidth + @primary-nav-lg-width;
+	}
+	.corner {
+		left: @primary-nav-lg-width;
 	}
 }
 .small-menu-toggled {
 	#content {
-		padding-left: @primary-nav-width + 60px;
+		padding-left: @primary-nav-width + @gutter;
 	}
 	#sidepanel {
 		padding-left: @sidepanelwidth + @primary-nav-width;
@@ -76,6 +81,9 @@
 	.campaigns-view-wrap,
 	.donor-view-wrap {
 		padding-left: @sidepanelwidth + @primary-nav-width;
+	}
+	.corner {
+		left: @primary-nav-width;
 	}
 }
 
@@ -105,3 +113,23 @@
 
 /* Misc */
 /* ------------------------------------------------- */
+
+/* Corner */
+.corner {
+	position: fixed;
+	top: @top-menu-height;
+	height: 10px;
+	width: 10px;
+	background: @maingray;
+	z-index: 9999;
+	overflow: hidden;
+
+	&:after {
+		content:'';
+		display: block;
+		height: 10px;
+		width: 10px;
+		background: @gray75;
+		.topcut-radius;
+	}
+}
