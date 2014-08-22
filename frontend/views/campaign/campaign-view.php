@@ -37,7 +37,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <ul class="campaign-quick-links">
                 <li>
                     <a class="actions-toggle icon-mobile"></a>
-                    <ul class="animated fadeInUp">
+                    <ul class="animated fadeOutDown">
                         <li class="active">
                             <a href="app/campaign/view?id=<?= $campaign->id ?>">
                                 <i class="icon icon-piechart"></i>

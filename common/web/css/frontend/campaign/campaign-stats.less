@@ -224,25 +224,22 @@ body.trash .campaigns-list {
 							border-color: @maingray transparent transparent transparent;
 						}
 					}
-					ul {
-						display: block;
-						background: @white;
-						.box-shadow;
-						&:before {
-							.arrow-up;
-							top: -8px;
-							left: 20px;
-						}
-					}
 				}
 
 				ul {
-					display: none;
 					position: absolute;
 					top: 65px;
 					left: 15px;
 					min-width: 160px;
+					background: @white;
+					.box-shadow;
 					.border-radius;
+					opacity: 0;
+					&:before {
+						.arrow-up;
+						top: -8px;
+						left: 20px;
+					}
 
 					li {
 						a {
