@@ -71,7 +71,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                         <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                         <li>
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                                <i class="icon icon-remove"></i>
+                                <i class="icon icon-trash"></i>
                                 <!-- Remove -->
                                 Delete
                             </a>

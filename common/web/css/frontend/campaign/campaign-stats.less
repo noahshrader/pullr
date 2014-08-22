@@ -11,10 +11,8 @@
 /* ------------------------------------------------- */
 .campaigns-list-wrap {
 	position: fixed;
-	top: 0;
-	height: 100%;
+	top: @top-menu-height + 50px;
 	width: @sidepanelwidth;
-	margin-top: @top-menu-height + 50px;
 	background-color: @gray20;
 	overflow: auto;
 
@@ -266,8 +264,9 @@ body.trash .campaigns-list {
 								background: @gray80;
 							}
 							.icon {
-								line-height: 45px;
 								color: @gray40;
+								line-height: 45px;
+								margin-right: 4px;
 							}
 					}
 				}

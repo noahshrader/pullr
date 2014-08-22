@@ -56,7 +56,7 @@ $user = \Yii::$app->user->identity;
                         <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                         <li>
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                                <i class="icon icon-remove"></i>
+                                <i class="icon icon-trash"></i>
                                 <!-- Remove -->
                                 Delete
                             </a>
@@ -67,6 +67,7 @@ $user = \Yii::$app->user->identity;
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                                 <i class="icon icon-recover"></i>
                                 <!-- Restore -->
+                                Restore
                             </a>
                         </li>
                     </ul>
