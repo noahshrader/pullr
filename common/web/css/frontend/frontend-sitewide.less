@@ -1,20 +1,31 @@
-/* Content */
+/* Main Content */
 /* ------------------------------------------------- */
 .site-content {
 	position: absolute;
 	top: @top-menu-height;
 	left: 0;
 	width: 100%;
+	height: 100%;
 	background: @gray75;
 }
 #content {
-	float: left;
-	padding-right: @sidepanelwidth + @gutter;
-	padding-top: @gutter;
-	width: 100%;
+	position: fixed;
+	top: @top-menu-height;
+	right: @sidepanelwidth;
+	padding: 0 @gutter;
+	background: @gray75;
 
-	.module {
-		padding: @gutter;
+	&.adv {
+		top: @top-menu-height + 50px;
+		right: 0;
+
+		&.red {
+			top: @top-menu-height;
+
+			.list-search {
+				top: @top-menu-height;
+			}
+		}
 	}
 }
 
@@ -45,6 +56,70 @@
 	margin-top: 2px;
 }
 
+/*  Side Listings */
+.list-wrap {
+	position: fixed;
+	top: @top-menu-height + 50px;
+	width: @sidepanelwidth;
+	background-color: @gray20;
+	overflow: auto;
+
+	.main-info {
+		padding: 0 30px;
+	}
+	h2 {
+		font-size: 24px;
+		color: @accent;
+		line-height: @top-menu-height;
+		padding-left: 15px;
+		padding-right: 15px;
+		font-weight: normal;       
+	}
+	.campaigns-list {
+		div {
+			color: @gray50;
+		}
+	}
+
+	/* donor specific */
+	&.donors {
+		top: @top-menu-height + @listsearch;
+
+		.list-search {
+			top: @top-menu-height;
+
+			span {
+				.topcut-radius;
+			}
+		}
+	}
+}
+
+/* List Search */
+.list-search {
+	position: fixed;
+	top: @top-menu-height + 50px;
+	height: @listsearch;
+	width: @sidepanelwidth;
+	z-index: 1000;
+	background: @maingray;
+	border-bottom: solid 1px @gray17;
+
+	span {
+		display: block;
+		padding: @halfgutter;
+		width: 100%;
+		height: 100%;
+		background: @gray20;
+	}
+
+	input[type='search'] {
+		color: @white;
+		background-color: @gray15;
+		border-color: transparent;
+	}
+}
+
 
 /* Sidebar */
 /* ------------------------------------------------- */
@@ -55,13 +130,22 @@
 	background: @gray15;
 }
 
+
 /* Toggle Content Changes */
+/* ------------------------------------------------- */
 .large-menu-toggled {
 	#content {
-		padding-left: @primary-nav-lg-width + @gutter;
+		left: @primary-nav-lg-width;
+		&.adv {
+			left: @primary-nav-lg-width + @sidepanelwidth;
+		}
 	}
 	#sidepanel {
 		padding-left: @sidepanelwidth + @primary-nav-lg-width;
+	}
+	.dashboard-wrap,
+	.list-wrap {
+		left: @primary-nav-lg-width;
 	}
 	.campaigns-view-wrap,
 	.donor-view-wrap {
@@ -73,10 +157,17 @@
 }
 .small-menu-toggled {
 	#content {
-		padding-left: @primary-nav-width + @gutter;
+		left: @primary-nav-width + @gutter;
+		&.adv {
+			left: @primary-nav-width + @sidepanelwidth;
+		}
 	}
 	#sidepanel {
 		padding-left: @sidepanelwidth + @primary-nav-width;
+	}
+	.dashboard-wrap,
+	.list-wrap {
+		left: @primary-nav-width;
 	}
 	.campaigns-view-wrap,
 	.donor-view-wrap {

@@ -1,14 +1,13 @@
 /* Main Dashboard Area */
 /* ------------------------------------------------- */
 .dashboard-wrap {
-	float: left;
-	position: relative;
-	width: 100%;
+	position: fixed;
+	top: @top-menu-height;
+	right: 0;
 }
 #content.dashboard {
-	padding-top: 0;
-	padding-bottom: 0;
-	padding-right: @sidepanelwidth;
+	position: static;
+	padding-right: @sidepanelwidth + @gutter;
 
 	.stats-overview {
 		padding: 0;
@@ -111,7 +110,6 @@
 
 /* Dashboard Stats */
 .dashboard-data-wrap {
-	padding: 80px @gutter @gutter;
 
 	.nav-tabs {
 		position: fixed;
@@ -220,24 +218,6 @@
 				border: 0;
 			}
 		}
-	}
-}
-
-/* Toggle Changes */
-.large-menu-toggled {
-	#content.dashboard, {
-		padding-left: @primary-nav-lg-width;
-	}
-	.dashboard-data-wrap .nav-tabs, {
-		left: @primary-nav-lg-width;
-	}
-}
-.small-menu-toggled {
-	#content.dashboard {
-		padding-left: @primary-nav-width;
-	}
-	.dashboard-data-wrap .nav-tabs, {
-		left: @primary-nav-width;
 	}
 }
 

@@ -6,7 +6,7 @@ $user = \Yii::$app->user->identity;
 ?>
 
 <section class="donor-view-wrap">
-    <div class="donor-content" data-email="<?= htmlspecialchars($email) ?>" >
+    <div id="content" class="adv red pane" data-email="<?= htmlspecialchars($email) ?>" >
         <h1 class="text-center donor-name"> <?= htmlspecialchars($name) ?>
             <span class="text-center donor-email"><?= htmlspecialchars($email) ?></span>
         </h1>

@@ -12,7 +12,7 @@ use common\models\Notification;
 $this->title = 'Settings';
 ?>
 
-<section id="content"> <!-- BEGIN main settings -->
+<section id="content" class="pane"> <!-- BEGIN main settings -->
 	<span class="corner"></span>
 	<div class="module">
 		<?php $form = ActiveForm::begin(['options' => [

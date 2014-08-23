@@ -10,7 +10,7 @@ $this->title = 'Donors';
 $user = \Yii::$app->user->identity;
 ?>
 
-<section class="campaigns-list-wrap pane">
+<section class="list-wrap donors pane">
     <?//= $this->render('campaigns-sidebar', [ 'status' => null, 'donorsSelected' => true ]); ?>
     <?= $this->render('donors-list', [
         'donors' => $donors,

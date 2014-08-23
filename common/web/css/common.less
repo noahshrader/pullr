@@ -199,10 +199,10 @@ table.dataTable thead td {
 	padding: 12px 0;
 }
 .table-header {
-	margin-bottom: 16px;
+	margin-bottom: @halfgutter;
 }
 .table-footer {
-	margin-top: 20px;
+	margin-bottom: @gutter;
 }
 .table-header,
 .table-footer {
@@ -276,10 +276,6 @@ table.dataTable thead td {
 		&.raised-total,
 		&.top-donor {
 			border-left: 0;
-		}
-		&.raised-total,
-		&.campaign-goal {
-			border-bottom: 1px solid @gray75;
 		}
 		&.top-donor,
 		&.top-donation {
