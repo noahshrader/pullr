@@ -27,12 +27,10 @@
 /* Other Colors */
 @twitchpurple: #6441a5; /* Twitch purple */
 @twitchhover: #714EB2; /* Twitch hover state */
-@twitchaccent: #B18EF2; /* Twitch purple */
 
 /* Gray Sets */
 @maingray: lighten(@base, 5%);
-@dkgray: darken(@base, 2%); /* 2% darker than background */
-@gray3: lighten(@base, 3%); /* 2% gray background */
+@dkgray: darken(@base, 1%); /* 2% darker than background */
 @gray10: lighten(@base, 10%); /* 10% gray background */
 @gray15: lighten(@base, 15%); /* 15% gray background */
 @gray17: lighten(@base, 17%); /* 17% gray background */
@@ -49,8 +47,8 @@
 
 @bgwhitefade: rgba(255,255,255,.5); /* Faded light background */
 @bglightwhitefade: rgba(255,255,255,.1); /* Faded light background */
-@bgblackfade: rgba(34,35,37,.8); /* Faded dark background */
-@bglightblackfade: rgba(34,35,37,.5); /* Faded dark background */
+@bgblackfade: rgba(34,34,37,.7); /* Faded dark background */
+@bglightblackfade: rgba(34,34,37,.5); /* Faded dark background */
 
 /* Element Colors */
 @inputbg: @gray10; /* Background for inputs */
@@ -78,6 +76,9 @@
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
+
+/* Icons */
+@iconspace: 3px; /* Right margin for icons on buttons */
 
 
 /* Links */
@@ -202,7 +203,7 @@
 	-ms-animation: @fade-in;
 	animation: @fade-in;
 }
-.longfadein (@fade-in: fadein 6s) {
+.longfadein (@fade-in: fadein 1s) {
 	-webkit-animation: @fade-in;
 	-moz-animation: @fade-in;
 	-ms-animation: @fade-in;
@@ -213,6 +214,12 @@
 	-moz-animation: @animate-bar;
 	-ms-animation: @animate-bar;
 	animation: @animate-bar;
+}
+.adjusthue (@adjusthue: 6s ease 0s alternate none infinite adjustHue) {
+	-webkit-animation: @adjusthue;
+	-moz-animation: @adjusthue;
+	-ms-animation: @adjusthue;
+	animation: @adjusthue;
 }
 
 
@@ -247,13 +254,26 @@
     to   { opacity: 1; }
 }
 
-@-webkit-keyframes pulse_animation {
-	0% { -webkit-transform: scale(1); }
-	30% { -webkit-transform: scale(1); }
-	40% { -webkit-transform: scale(1.25); }
-	50% { -webkit-transform: scale(1); }
-	60% { -webkit-transform: scale(1); }
-	70% { -webkit-transform: scale(1.25); }
-	80% { -webkit-transform: scale(1); }
-	100% { -webkit-transform: scale(1); }
+/* Adjust Hue */
+@-webkit-keyframes adjustHue {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    -webkit-filter: hue-rotate(30deg);
+    filter: hue-rotate(30deg);
+  }
+  50% {
+    -webkit-filter: hue-rotate(60deg);
+    filter: hue-rotate(60deg);
+  }
+  75% {
+    -webkit-filter: hue-rotate(90deg);
+    filter: hue-rotate(90deg);
+  }
+  100% {
+    -webkit-filter: hue-rotate(120deg);
+    filter: hue-rotate(120deg);
+  }
 }

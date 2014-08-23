@@ -18,8 +18,10 @@ AuthAsset::register($this);
         <?php $this->beginBody() ?>
              <div class="intro-content-wrapper">
                     <div class="intro-content">
-                        <h1><a class="login-logo icon-pullr"></a></h1>
-                        <?= $content ?>
+                        <div class="login-box animated zoomInRight">
+                            <a class="login-logo icon-pullr"></a>
+                            <?= $content ?>
+                        </div>
                     </div>
             </div>
         <?php $this->endBody() ?>
