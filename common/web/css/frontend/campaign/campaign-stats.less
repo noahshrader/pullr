@@ -117,7 +117,7 @@ body.trash .campaigns-list {
 	padding: 0px;
 	width: 100%;
 	height: 50px;
-	background: @gray70;
+	background: @gray72;
 	z-index: 1000;
 
 	.campaign-nav {
@@ -247,16 +247,17 @@ a.view-campaign {
 }
 }
 
-/* Children Campaigns */
+/* Child Campaigns */
 .campaign-view-childs {
 
-	th, td {
-		border-top: solid 1px @gray75;
+	td.raised {
+		text-align: right;
 	}
-	th {
-		padding: 1.2em 6% .6em !important;
-	}
-	td {
-		padding: .6em 6% !important;
+	.child-totals {
+		float: right;
+		color: @white;
+		padding: 0 .6em;
+		background: @accent;
+		.round-radius;
 	}
 }

@@ -90,8 +90,7 @@ table {
 	border-spacing: 0;
 
 	th {
-		color: @gray50;
-		font-weight: 300;
+		background: @modulehead;
 	}
 	tr:hover td {
 		color: @base;
@@ -138,11 +137,11 @@ table {
 			}
 		}
 	}
+	th,
 	&.dataTable thead th {
-		color: @gray60;
-		font-size: 14px;
-		font-weight: 400;
-		border-bottom: solid 1px @gray75;
+		color: @white;
+		font-weight: 600;
+		border-bottom: solid 1px @modulehead;
 	}
 	&.dataTable tbody tr {
 		background-color: transparent !important;
@@ -235,7 +234,7 @@ table.dataTable thead td {
 		font-weight: 600;
 		padding: .8em @gutter;
 		margin: 0;
-		background: @gray70;
+		background: @modulehead;
 	}
 }
 

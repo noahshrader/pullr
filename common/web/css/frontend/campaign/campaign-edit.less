@@ -2,17 +2,24 @@
 /* ------------------------------------------------- */
 .campaign-edit-wrap {
 	margin: 0 auto;
-	padding: @top-menu-height+52 50px 60px;
+	padding: 0 60px;
 	max-width: 800px;
 	
 	ul.nav {
 		text-align: center;
-		margin-bottom: 20px;
+		margin: @gutter+@gutter 0 0;
 
 		li {
+			position: relative;
 			float: none;
 			display: inline-block;
 			border: 0;
+			&.active a:after {
+				.arrow-up;
+				bottom: 0;
+				left: 50%;
+				margin-left: -10px;
+			}
 			&.active a,
 			&.active a:hover {
 				color: @maingray;
@@ -21,8 +28,9 @@
 				display: block;
 				color: @gray60;
 				line-height: 50px;
-				padding: 0 16px;
+				padding: 0 @halfgutter @halfgutter;
 				width: 100%;
+				background: transparent;
 				&:hover {
 					color: @maingray;
 					background: transparent;
@@ -30,8 +38,11 @@
 			}
 		}
 	}
+	.module {
+		margin: 0 @gutter @gutter+@gutter;
+	}
 	.tab-content {
-		padding: 50px;
+		padding: @halfgutter+@gutter @gutter+@gutter;
 	}
 }
 
@@ -87,14 +98,14 @@
 		position: relative;
 		padding: 20px 30px;
 		margin: 20px 0;
-		background: @gray72;
+		background: @gray75;
 		.border-radius;
 		&:before {
 			.arrow-up;
 			top: -10px;
 			left: 50%;
 			margin-left: -10px;
-			border-color: transparent transparent @gray72 transparent;
+			border-color: transparent transparent @gray75 transparent;
 		}
 
 		h4 {

@@ -78,13 +78,13 @@ a.twitchLogin {
 	right: 0;
 	bottom: 0;
 	z-index: 0;
-	background-color: #2e2e32;
-	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(rgb(34, 34, 37)), to(rgb(46, 46, 50)));
-	background-image: -webkit-radial-gradient(50% 50%, rgb(46, 46, 50), rgb(34, 34, 37));
-	background-image: -moz-radial-gradient(50% 50%, rgb(46, 46, 50), rgb(34, 34, 37));
-	background-image: -o-radial-gradient(50% 50%, rgb(46, 46, 50), rgb(34, 34, 37));
-	background-image: -ms-radial-gradient(50% 50%, rgb(46, 46, 50), rgb(34, 34, 37));
-	background-image: radial-gradient(50% 50%, rgb(46, 46, 50), rgb(34, 34, 37));
+	background-color: @maingray;
+	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(@base), to(@maingray));
+	background-image: -webkit-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -moz-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -o-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -ms-radial-gradient(50% 50%, @maingray, @base);
+	background-image: radial-gradient(50% 50%, @maingray, @base);
 	.fadein;
 }
 
