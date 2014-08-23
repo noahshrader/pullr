@@ -19,6 +19,7 @@ Pullr.Init = function (requestParams){
     Pullr.loadMagnificPopup();
     Pullr.Ready(Pullr.Show);
     Pullr.Ready(Pullr.ShortCodes);
+    Pullr.Ready(Pullr.Preformat);
     Pullr.Run();
 };
 
@@ -57,6 +58,15 @@ Pullr.Show = function(){
     }
 }
 
+Pullr.Preformat = function(){
+    $('[data-pullr]').each(function(){
+        var $el = $(this);
+        if($el.data('pullr') == 'campaign-twitterName'){
+            $el.attr('href', 'http://twitter.com/'+$el.text().replace('@', ''));
+        }
+    });
+}
+
 /**
  * You can view available codes by typing Pullr.campaign
  */
@@ -70,7 +80,7 @@ Pullr.ShortCodes = function(){
          * [2] - maybe more variables in tree (unlimited)
          */
         var array = $el.data('pullr').split('-');
-        
+
         var current = Pullr;
         while (array.length > 0){
             var name = array.shift();
@@ -80,7 +90,7 @@ Pullr.ShortCodes = function(){
             
             current = current[name];
         }
-        
+
         $el.text(current);
     })
 }
