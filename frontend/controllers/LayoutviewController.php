@@ -58,6 +58,12 @@ class LayoutviewController extends \yii\web\Controller {
     }
     public function actionDonate($userAlias, $campaignAlias){
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
+        
+        if ($campaign->formVisibility == false){
+            $this->layout = 'donationWithoutBar';
+            return $this->render('donationDisabled');
+        }
+
         /*passing campaign to layout*/
         $this->campaign = $campaign;
         $this->layout = 'donation';
