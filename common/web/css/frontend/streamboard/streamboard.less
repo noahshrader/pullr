@@ -72,7 +72,7 @@ input.color-choice {
 #sidepanel {
 	background: @maingray;
 	position: absolute;
-	top: @sidenavheight;
+	top: 0;
 	bottom: @sidenavheight;
 	right: 0;
 	width: @sidepanelwidth;
@@ -80,16 +80,36 @@ input.color-choice {
 	z-index: 900;
 
 	.sidepanel-head {
-		position: absolute;
-		right: 0;
-		margin-top: -50px;
-		height: 50px;
+		height: @sidenavheight;
 		width: 100%;
+
+		/* Sidepanel Tab Menu */
+		ul.panel-nav {
+			top: 0;
+			border-bottom: solid 1px @maingray;
+
+			li {
+				width: 25%;
+				background: @gray10;
+			}
+		}
 	}
 
 	.tab-content,
 	.tab-pane {
+		position: relative;
 		height: 100%;
+	}
+	.tab-pane {
+		
+		.main-panel.pane {
+			position: absolute;
+			top: 0;
+			bottom: @sidenavheight;
+			&.adv {
+				top: @sidenavheight;
+			}
+		}
 	}
 
 	h3,
@@ -108,25 +128,20 @@ input.color-choice {
 		background: #1dbc9c;
 	}
 
-	/* Sidepanel Tab Menu */
-	ul.panel-nav {
-		top: 0;
-		border-bottom: solid 1px @maingray;
-
-		li {
-			width: 25%;
-			background: @gray10;
+	.region {
+		&.pane {
+			position: absolute;
 		}
 	}
 }
 
 /* Slideup Panel */
 .slidepanel {
-	position: fixed;
+	position: absolute;
 	bottom: -420px;
 	right: 0;
 	padding: @gutter 0 @halfgutter;
-	width: @sidepanelwidth;
+	width: 100%;
 	height: 420px;
 	background: @gray10;
 	z-index: 1000;
@@ -197,7 +212,6 @@ a.dashboard.show:before {
 /* Donation Panel */
 /* ------------------------------------------------- */
 .donations-list {
-	overflow-y: scroll;
 
 	span {
 		display: block;
@@ -274,68 +288,9 @@ a.dashboard.show:before {
 	border-bottom: 1px solid @base;
 }
 
-.right-side-footer{
-	position: absolute;
-	right: 0px;
-	bottom: 0px;
-	width: 100%;
-	height: 50px;
-}
-
-.bottom-panel-nav {
-	position: fixed;
-	bottom: 0;
-	z-index: 1001;
-	margin: 0px;
-	height: 50px;
-	width: @sidepanelwidth;
-	list-style: none;
-	padding: 0px;
-	background-color: @gray10;
-
-	li {
-		display: block;
-		text-align: center;
-        	float: left;
-        	&.stats {
-        		width: 100%;
-        	}
-		&:first-child:nth-last-child(1) {
-			width: 100%;
-		}
-		&:first-child:nth-last-child(2),
-		&:first-child:nth-last-child(2) ~ li {
-			width: 50%;
-		}
-		&:first-child:nth-last-child(3),
-		&:first-child:nth-last-child(3) ~ li {
-			width: 33.3333%;
-		}
-		&:first-child:nth-last-child(4),
-		&:first-child:nth-last-child(4) ~ li {
-			width: 25%;
-		}
-		a {
-			display: block;
-			color: @white;
-			font-size: 1em;
-			line-height: 50px;
-			
-			i {
-				margin-right: .4em;
-			}
-		}
-	}
-}
-.streamboard-settings-header {
-	padding: 10px 0px;
-	border-bottom: 1px solid @base;
-}
-
 
 /* Settings Panel */
 /* ------------------------------------------------- */
-
 #settingsTab {
 	ul.nav-tabs {
 		
@@ -353,9 +308,64 @@ a.dashboard.show:before {
 		}
 	}
 }
+.streamboard-settings-header {
+	padding: 10px 0px;
+	border-bottom: 1px solid @base;
+}
+
+
+/* Panel Footer Navigation */
+/* ------------------------------------------------- */
+.right-side-footer{
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 50px;
+
+	ul.panel-nav {
+		position: relative;
+		background: @gray10;
+		border-bottom: 0;
+
+		li {
+	        	&.stats {
+	        		width: 100%;
+	        		i {
+	        			margin-right: @iconspace;
+	        		}
+	        	}
+			&:first-child:nth-last-child(1) {
+				width: 100%;
+			}
+			&:first-child:nth-last-child(2),
+			&:first-child:nth-last-child(2) ~ li {
+				width: 50%;
+			}
+			&:first-child:nth-last-child(3),
+			&:first-child:nth-last-child(3) ~ li {
+				width: 33.3333%;
+			}
+			&:first-child:nth-last-child(4),
+			&:first-child:nth-last-child(4) ~ li {
+				width: 25%;
+			}
+			&.active a {
+				color: @white;
+				background: @gray10;
+				-webkit-box-shadow: inset 0 4px 0 0 @accent;
+				-moz-box-shadow: inset 0 4px 0 0 @accent;
+				box-shadow: inset 0 4px 0 0 @accent;
+			}
+		}
+	}
+}
+
 
 /* Other Elements */
 /* ------------------------------------------------- */
+
+/* Sliders */
 slider {
 	cursor: pointer;
 	
@@ -373,6 +383,15 @@ slider {
 
 /* Loader */
 /* ------------------------------------------------- */
+.spinner-wrap {
+	background-color: @maingray;
+	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(@base), to(@maingray));
+	background-image: -webkit-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -moz-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -o-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -ms-radial-gradient(50% 50%, @maingray, @base);
+	background-image: radial-gradient(50% 50%, @maingray, @base);
+}
 .spinner-wrap,
 .spinner {
 	position: absolute;
@@ -380,7 +399,6 @@ slider {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background: @base;
 	z-index: 9999;	
 }
 .spinner {

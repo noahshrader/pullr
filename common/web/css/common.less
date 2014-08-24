@@ -363,7 +363,7 @@ ul.panel-nav {
 	text-align: center;
 	background: @maingray;
 	border-bottom: solid 1px @gray17;
-	z-index: 1000;
+	z-index: 9999;
 	overflow: hidden;
 
 	li {
@@ -374,9 +374,9 @@ ul.panel-nav {
 		&.active a {
 			color: @white;
 			background: @gray10;
-			-webkit-box-shadow: inset 0 -4px 0 0 #1dbc9c;
-			-moz-box-shadow: inset 0 -4px 0 0 #1dbc9c;
-			box-shadow: inset 0 -4px 0 0 #1dbc9c;
+			-webkit-box-shadow: inset 0 -4px 0 0 @accent;
+			-moz-box-shadow: inset 0 -4px 0 0 @accent;
+			box-shadow: inset 0 -4px 0 0 @accent;
 		}
 		a {
 			display: block;
