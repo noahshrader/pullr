@@ -7,9 +7,16 @@
             }
         }
     );
+    /*return filename without extension*/
+    app.filter('fileName', function () {
+            return function (input) {
+                return input.substr(0, input.lastIndexOf('.')) || input;
+            }
+        }
+    );
     /*that mean new variables will be isolated inside new scope
     * but old variables will be available is they will be taken from parent scope*/
-    app.directive('isolatedScope', function () {
+    app.directive('childScope', function () {
         return {
             scope: true
         }
