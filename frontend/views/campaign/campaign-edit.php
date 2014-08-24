@@ -85,7 +85,7 @@ $user = \Yii::$app->user->identity;
     <? $form = ActiveForm::begin(['options' => [
         'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
     <section id="content" class="campaign-edit-wrap pane adv">
-        <ul class="nav nav-tabs">
+        <ul class="content-nav">
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab">Settings</a>
             </li>

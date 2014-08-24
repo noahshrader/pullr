@@ -316,7 +316,39 @@ table.dataTable thead td {
 
 /* Content Navigation */
 /* ------------------------------------------------- */
+ul.content-nav {
+	text-align: center;
+	margin: @gutter+@gutter 0 0;
 
+	li {
+		position: relative;
+		float: none;
+		display: inline-block;
+		border: 0;
+		&.active a:after {
+			.arrow-up;
+			bottom: 0;
+			left: 50%;
+			margin-left: -10px;
+		}
+		&.active a,
+		&.active a:hover {
+			color: @gray10;
+		}
+		a {
+			display: block;
+			color: @gray50;
+			line-height: 50px;
+			padding: 0 @halfgutter @halfgutter;
+			width: 100%;
+			background: transparent;
+			&:hover {
+				color: @maingray;
+				background: transparent;
+			}
+		}
+	}
+}
 
 
 /* Sidebar Navigation */
@@ -357,28 +389,6 @@ ul.panel-nav {
 			}
 		}
 	}
-}
-
-
-/* Tabs Override (for Bootstrap) */
-/* ------------------------------------------------- */
-.nav-tabs > li > a {
-	margin: 0;
-}
-.nav-tabs > li > a:before {
-	padding-right: 6px;
-}
-.nav-tabs > li > a,
-.nav-tabs > li > a:hover,
-.nav-tabs >li.active > a,
-.nav-tabs >li.active > a:hover,
-.nav-tabs >li.active > a:focus {
-	border-color: transparent;
-	border-radius: 0;
-	border-width: 0;
-}
-.nav-tabs {
-	border-color: transparent;
 }
 
 @import "responsive.less";

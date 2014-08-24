@@ -4,40 +4,7 @@
 	margin: 0 auto;
 	padding: 0 60px;
 	max-width: 800px;
-	
-	ul.nav {
-		text-align: center;
-		margin: @gutter+@gutter 0 0;
 
-		li {
-			position: relative;
-			float: none;
-			display: inline-block;
-			border: 0;
-			&.active a:after {
-				.arrow-up;
-				bottom: 0;
-				left: 50%;
-				margin-left: -10px;
-			}
-			&.active a,
-			&.active a:hover {
-				color: @maingray;
-			}
-			a {
-				display: block;
-				color: @gray60;
-				line-height: 50px;
-				padding: 0 @halfgutter @halfgutter;
-				width: 100%;
-				background: transparent;
-				&:hover {
-					color: @maingray;
-					background: transparent;
-				}
-			}
-		}
-	}
 	.module {
 		margin: 0 @gutter @gutter+@gutter;
 	}
