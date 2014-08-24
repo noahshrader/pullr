@@ -8,7 +8,7 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
 <div ng-app="streamboardApp">
     <?= $this->render('streamboard-js-variables') ?>
     <!-- // Layout Options Side Panel // -->
-    <section id="sidepanel" class="sidepanel open resizable pane">
+    <section id="sidepanel" class="sidepanel open resizable">
         <div class="sidepanel-head">
             <ul class="<?= $tabsClass ?> panel-nav cf">
                 <li class="active">

@@ -33,17 +33,17 @@ use yii\web\View;
         <li ng-if="widget.includeDonations"><a data-panel="donations">Donations</a></li>
     </ul>
 
-    <div class="followers_panel slidepanel" isolated-scope>
+    <div class="followers_panel slidepanel pane" isolated-scope>
         <div ng-init="preference = widget.followersPreference">
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
-    <div class="subscribers_panel slidepanel" isolated-scope>
+    <div class="subscribers_panel slidepanel pane" isolated-scope>
         <div ng-init="preference = widget.subscribersPreference">
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
-    <div class="donations_panel slidepanel" isolated-scope>
+    <div class="donations_panel slidepanel pane" isolated-scope>
         <div ng-init="preference = widget.donationsPreference">
             <?= $this->render('alerts-preference') ?>
         </div>

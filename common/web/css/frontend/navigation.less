@@ -166,26 +166,6 @@
 	background: @maingray;
 	z-index: 999;
 	overflow: hidden;
-	&:before {
-		content: "";
-		position: absolute;
-		top: 490px;
-		bottom: 0;
-		width: @sidepanelwidth;
-		background: @bglightblackfade;
-	}
-	&:after {
-		height: 0;
-		width: 0;
-		content: "";
-		display: block;
-		position: absolute;
-		border-bottom: @sidepanelwidth+165px solid @bglightblackfade;
-		border-left: @sidepanelwidth solid transparent;
-		right: 0;
-		top: 75px;
-		z-index: 0;
-	}
 
 	nav.nav-top {
 		position: relative;
