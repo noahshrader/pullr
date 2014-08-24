@@ -1,7 +1,7 @@
 $(function () {
     $(".resizable").resizable({
         maxWidth: (screen.width/2),
-        minWidth: 287,
+        minWidth: 250,
         handles: "w",
         animate: false,
         delay: 0,

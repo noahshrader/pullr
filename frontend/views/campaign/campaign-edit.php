@@ -87,13 +87,13 @@ $user = \Yii::$app->user->identity;
     <section id="content" class="campaign-edit-wrap pane adv">
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="<?= Url::to()?>#general" data-toggle="tab">General Settings</a>
+                <a href="<?= Url::to()?>#general" data-toggle="tab">Settings</a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#layout" data-toggle="tab">Campaign Page</a>
+                <a href="<?= Url::to()?>#layout" data-toggle="tab">Layout</a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Donation Form</a>
+                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Form</a>
             </li>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
                 <li id="campaign-edit-team-li">
@@ -101,7 +101,7 @@ $user = \Yii::$app->user->identity;
                 </li>
             <? endif ?>
             <li>
-                <a href="<?= Url::to()?>#social" data-toggle="tab">Social Links</a>
+                <a href="<?= Url::to()?>#social" data-toggle="tab">Social</a>
             </li>
         </ul>
         <div class="module">

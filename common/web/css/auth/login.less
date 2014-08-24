@@ -24,7 +24,7 @@ html, body {
 		p {
 			color: @gray30;
 			font-size: @fineprint;
-			max-width: 260px;
+			max-width: 220px;
 			margin: 15px auto;
 			a {
 				color: @white;
@@ -48,16 +48,17 @@ html, body {
 			max-width: 400px;
 			background: @base;
 			.element-radius;
+			.box-shadow;
 
 			.site-login {
-				margin-top: 2em;
+				margin-top: 1.8em;
 			}
 		}
 	}
 
 a.login-logo.icon-pullr {
 	color: @white;
-	font-size: 50px;
+	font-size: 48px;
 }
 a.twitchLogin {
 	display: inline-block;
@@ -79,12 +80,12 @@ a.twitchLogin {
 	bottom: 0;
 	z-index: 0;
 	background-color: @maingray;
-	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(@base), to(@maingray));
-	background-image: -webkit-radial-gradient(50% 50%, @maingray, @base);
-	background-image: -moz-radial-gradient(50% 50%, @maingray, @base);
-	background-image: -o-radial-gradient(50% 50%, @maingray, @base);
-	background-image: -ms-radial-gradient(50% 50%, @maingray, @base);
-	background-image: radial-gradient(50% 50%, @maingray, @base);
+	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(@base), to(@gray10));
+	background-image: -webkit-radial-gradient(50% 50%, @gray10, @base);
+	background-image: -moz-radial-gradient(50% 50%, @gray10, @base);
+	background-image: -o-radial-gradient(50% 50%, @gray10, @base);
+	background-image: -ms-radial-gradient(50% 50%, @gray10, @base);
+	background-image: radial-gradient(50% 50%, @gray10, @base);
 	.fadein;
 }
 

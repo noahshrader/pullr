@@ -1,4 +1,4 @@
-<table id="donations-table" class="display donations-table extend module" cellspacing="0" width="100%">
+<table id="donations-table" class="display donations-table extend" cellspacing="0" width="100%">
     <thead>
         <tr>
             <th width="30%">Donor Name</th>

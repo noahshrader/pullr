@@ -43,21 +43,22 @@ $twitchPartner = $user->userFields->twitchPartner;
             <div class="tab-content">
                 <div class="tab-pane in active" id="overall">
                     <div class="row stats-overview module">
+                        <i class="icon-coin"></i>
                         <div class="col-xs-12 stats-box raised-total">
                             <h1>$<?= number_format($dashboard['overall']['totalRaised']) ?></h1>
                             <h5>Total Amount Raised</h5>
                         </div>
                     </div>
                     <div class="other-raised-totals module cf">
-                        <div class="stats-box col-xs-3">
+                        <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
                             <h5>Total Campaigns</h5>
                         </div>
-                        <div class="stats-box col-xs-3">
+                        <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalDonations'] ?></h2>
                             <h5>Total Donations</h5>
                         </div>
-                        <div class="stats-box col-xs-3">
+                        <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalDonors'] ?></h2>
                             <h5>Total Donors</h5>
                         </div>
