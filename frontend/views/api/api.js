@@ -61,8 +61,14 @@ Pullr.Show = function(){
 Pullr.Preformat = function(){
     $('[data-pullr]').each(function(){
         var $el = $(this);
+
         if($el.data('pullr') == 'campaign-twitterName'){
             $el.attr('href', 'http://twitter.com/'+$el.text().replace('@', ''));
+        }
+
+        if($el.data('pullr') == 'donate-button'){
+            $el.text("Donate");
+            $el.attr('href', Pullr.campaign.donationUrl);
         }
     });
 }
@@ -82,6 +88,7 @@ Pullr.ShortCodes = function(){
         var array = $el.data('pullr').split('-');
 
         var current = Pullr;
+
         while (array.length > 0){
             var name = array.shift();
             if (current[name] == undefined){

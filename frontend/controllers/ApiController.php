@@ -32,6 +32,7 @@ class ApiController extends \yii\web\Controller {
     public function actionCampaign() {
         $campaign = $this->validateRequest();
         $campaignArray = $campaign->toArray();
+        $campaignArray['donationUrl'] = $campaign->user->getUrl() . $campaign->alias;
         $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? date('F j, Y', $campaignArray['startDate']) : null;
         $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? date('F j, Y', $campaignArray['endDate']) : null;
         $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
