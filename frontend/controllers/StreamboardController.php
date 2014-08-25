@@ -7,15 +7,19 @@ use common\models\twitch\TwitchSubscription;
 use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
 use frontend\models\streamboard\StreamboardRegion;
-use frontend\models\streamboard\WidgetCampaignBarAlerts;
+use frontend\models\streamboard\WidgetAlerts;
+use kartik\widgets\Alert;
 use Yii;
 use common\models\User;
 use common\models\Donation;
 use common\models\Campaign;
 use frontend\models\streamboard\Streamboard;
+use yii\base\ErrorException;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
+use yii\web\Response;
+use common\components\streamboard\alert\AlertMediaManager;
 
 class StreamboardController extends FrontendController
 {
@@ -246,5 +250,76 @@ class StreamboardController extends FrontendController
             echo 'error';
             var_dump($region->getErrors());
         }
+    }
+
+    /**
+     * @param string $type Can be either "sound" or "image"
+     * @throws \yii\web\ForbiddenHttpException
+     * @throws ErrorException
+     * @return array
+     */
+    public function actionUpload_alert_file_ajax()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $type = Yii::$app->request->post('type');
+        $user = Application::getCurrentUser();
+        if (!$user) {
+            throw new ForbiddenHttpException();
+        }
+        switch ($type) {
+            case 'sound':
+                $result = AlertMediaManager::uploadSound();
+                break;
+            case 'image':
+                $result = AlertMediaManager::uploadImage();
+                break;
+            default:
+                throw new ErrorException('Upload type should be either "image" or "sound"');
+        }
+        if (!$result){
+            throw new ErrorException('Error during upload');
+        }
+        $manager = new AlertMediaManager();
+        switch ($type){
+            case 'sound':
+                return $manager->getCustomSounds();
+            case 'image':
+                return $manager->getCustomImages();
+        }
+    }
+
+    private function removeAlert_file_ajax($type){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $user = Application::getCurrentUser();
+        if (!$user) {
+            throw new ForbiddenHttpException();
+        }
+        $fileName = file_get_contents("php://input");
+
+        $manager = new AlertMediaManager();
+        switch ($type){
+            case 'sound' :
+                $result = AlertMediaManager::removeSound($fileName);
+                $files = $manager->getCustomSounds();
+                break;
+            case 'image' :
+                $result = AlertMediaManager::removeImage($fileName);
+                $files = $manager->getCustomImages();
+                break;
+        }
+
+        if ($result){
+            return $files;
+        } else {
+            throw new ErrorException('Cannot remove file');
+        }
+    }
+
+    public function actionAlert_remove_sound_ajax(){
+       return $this->removeAlert_file_ajax('sound');
+    }
+
+    public function actionAlert_remove_image_ajax(){
+        return $this->removeAlert_file_ajax('image');
     }
 }

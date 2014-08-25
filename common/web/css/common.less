@@ -14,11 +14,13 @@ body {
 		overflow: auto;
 	}
 
+
 /* Components */
 /* ------------------------------------------------- */
 .pane {
-	height: 100%;
+	bottom: 0;
 }
+
 
 /* Buttons */
 /* ------------------------------------------------- */
@@ -88,16 +90,18 @@ table {
 	border-spacing: 0;
 
 	th {
-		color: @gray50;
-		font-weight: 300;
+		background: @modulehead;
 	}
 	tr:hover td {
 		color: @base;
 	}
 	td {
-		color: @gray20;
+		color: @gray40;
 		cursor: pointer;
 		.trans;
+		&:hover {
+			color: @maingray;
+		}
 		&.raised {
 			color: @accent !important;
 		}
@@ -106,7 +110,7 @@ table {
 	td,
 	&.dataTable tbody th
 	&.dataTable tbody td {
-		padding: .8em 6% !important;
+		padding: .9em 6% !important;
 	}
 	&.dataTable.display tbody td[colspan~="4"] {
 		padding-top: 0 !important;
@@ -133,9 +137,11 @@ table {
 			}
 		}
 	}
+	th,
 	&.dataTable thead th {
-		color: @gray60;
-		border-bottom: solid 1px @gray75;
+		color: @white;
+		font-weight: 600;
+		border-bottom: solid 1px @modulehead;
 	}
 	&.dataTable tbody tr {
 		background-color: transparent !important;
@@ -160,11 +166,10 @@ table.dataTable thead td {
 	border-top: solid 1px @gray75;
 }
 .dataTables_info {
-	color: @gray40 !important;
+	color: @gray60 !important;
 	font-size: .9em;
 }
 .dataTables_wrapper {
-	background: @gray75;
 
 	.dataTables_length,
 	.dataTables_filter,
@@ -175,9 +180,6 @@ table.dataTable thead td {
 		label {
 			margin: 0;
 	 	}
-	}
-	.table-scrollable {
-		margin-bottom: 20px;
 	}
 	.dataTables_paginate {
 		padding: 0px !important;
@@ -191,15 +193,8 @@ table.dataTable thead td {
 	margin: 0;
 	padding: 12px 0;
 }
-.table-header {
-	margin-bottom: 16px;
-}
-.table-footer {
-	margin-top: 20px;
-}
 .table-header,
 .table-footer {
-	padding: 0;
 
 	.select2-container {
 		margin-right: 6px;
@@ -213,23 +208,37 @@ table.dataTable thead td {
 		margin: 0;
 	}
 }
-
-/* Statistics Global Styling */
-.module {
-	position: relative;
-	margin-bottom: @gutter;
-	background: @white;
-	.element-radius;
-	.box-shadow;
-
-	/* Decorative Section Headings */
-	i.module-head {
-	
-	}
+.table-header {
+	padding: @halfgutter @gutter;
+	background: @modulehead;
+	border-bottom: solid 1px @gray75;
+}
+.table-footer {
+	padding: @gutter;
 }
 
+
+/* Main Data Containers */
 .stats-overview {
 	text-align: center;
+
+	/* Main Number Values */
+	&.main-values {
+		background: @accent;
+
+		.stats-box {
+			width: 50%;
+			border-left: solid 1px @dkaccent;
+		}
+		h1,
+		h2 {
+			color: @white;
+			margin: 0;
+		}
+		h5 {
+			color: @dkraccent;
+		}
+	}
 
 	.stats-box {
 		padding: 1.4em 0;
@@ -237,43 +246,20 @@ table.dataTable thead td {
 		&:first-child {
 			border-left: 0px;
 		}
-		&.col-xs-3 {
-			width: 50%;
-		}
+
 		h2,
 		h3 {
 			display: block;
 			font-weight: 300;
 		}
-		&.raised-total {
-			border-left: 0 !important;
-
-			h1,
-			h2 {
-				color: @accent;
-				margin: 0;
-			}
-		}
 		&.raised-total,
-		&.campaign-goal {
-			border-bottom: 1px solid @gray75;
+		&.top-donor {
+			border-left: 0;
 		}
 		&.top-donor,
 		&.top-donation {
 			padding: 1.2em 2em;
 			border-top: solid 1px @gray75;
-		}
-		&.top-donor {
-			border-left: 0 !important;
-		}
-	}
-	.main-values {
-		position: relative;
-		float: left;
-		width: 100%;
-
-		.stats-box {
-			width: 50%;
 		}
 	}
 	.progress-wrap {
@@ -295,7 +281,7 @@ table.dataTable thead td {
 	border-radius: 0px;
 	margin-bottom: 0px;
 	height: 20px;
-	background: @gray75;
+	background: @dkaccent;
 }
 .progress-line {
 	position: relative;
@@ -306,29 +292,83 @@ table.dataTable thead td {
 	height: 20px;
 	max-width: 100%;
 	.smallcaps;
-	background: @accent;
+	background: @dkraccent;
 	.animate-bar;
 }
 
-/* Tabs Override (for Bootstrap) */
+
+/* Content Navigation */
 /* ------------------------------------------------- */
-.nav-tabs > li > a {
+ul.content-nav {
+	text-align: left;
+	margin: @gutter+@gutter 0 0;
+
+	li {
+		position: relative;
+		float: left;
+		display: inline-block;
+		margin-right: 3px;
+		border: 0;
+		&.active a,
+		&.active a:hover {
+			color: @gray10;
+			background: @white;
+		}
+		a {
+			display: block;
+			color: @white;
+			font-weight: 600;
+			line-height: 40px;
+			padding: 0 20px;
+			width: 100%;
+			background: @gray72;
+			.tab-radius;
+			&:hover {
+				background: @gray70;
+			}
+		}
+	}
+}
+
+
+/* Sidebar Navigation */
+/* ------------------------------------------------- */
+ul.panel-nav {
+	line-height: @sidenavheight;
+	height: @sidenavheight;
+	list-style: none;
 	margin: 0;
-}
-.nav-tabs > li > a:before {
-	padding-right: 6px;
-}
-.nav-tabs > li > a,
-.nav-tabs > li > a:hover,
-.nav-tabs >li.active > a,
-.nav-tabs >li.active > a:hover,
-.nav-tabs >li.active > a:focus {
-	border-color: transparent;
-	border-radius: 0;
-	border-width: 0;
-}
-.nav-tabs {
-	border-color: transparent;
+	padding: 0;
+	width: 100%;
+	text-align: center;
+	background: @maingray;
+	border-bottom: solid 1px @gray17;
+	z-index: 9999;
+	overflow: hidden;
+
+	li {
+		position: relative;
+		float: left;
+		overflow: hidden;
+
+		&.active a {
+			color: @white;
+			background: @gray10;
+			-webkit-box-shadow: inset 0 -4px 0 0 @accent;
+			-moz-box-shadow: inset 0 -4px 0 0 @accent;
+			box-shadow: inset 0 -4px 0 0 @accent;
+		}
+		a {
+			display: block;
+			color: @gray40;
+			font-weight: 400;
+			line-height: @sidenavheight;
+			width: 100%;
+			&:hover {
+				background: @gray17;
+			}
+		}
+	}
 }
 
 @import "responsive.less";

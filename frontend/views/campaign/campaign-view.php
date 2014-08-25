@@ -35,46 +35,56 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
         <div class="col-md-6 campaign-nav">
             <? if (!$campaign->isParentForCurrentUser()): ?>
             <ul class="campaign-quick-links">
-                <li class="active">
-                    <a href="app/campaign/view?id=<?= $campaign->id ?>">
-                        <i class="icon icon-piechart"></i>
-                        <!-- Overview -->
-                    </a>
-                </li>
                 <li>
-                    <a href="app/campaign/edit?id=<?= $campaign->id ?>">
-                        <i class="icon icon-edit"></i>
-                        <!-- Edit -->
-                    </a>
-                </li>
-                <li>
-                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                        <i class="icon icon-code"></i>
-                    </a>
-                </li>
-                <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
-                <li>
-                    <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                        <i class="icon icon-archive"></i>
-                        <!-- Archive -->
-                    </a>
-                </li>
-                <? endif ?>
-                <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
-                <li>
-                    <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                        <i class="icon icon-remove"></i>
-                        <!-- Remove -->
-                    </a>
-                </li>
-                <? endif ?>
-                <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
-                <li>
-                    <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                        <i class="icon icon-recover"></i>
-                        <!-- Restore -->
-                    </a>
+                    <a class="actions-toggle icon-mobile"></a>
+                    <ul>
+                        <li class="active">
+                            <a href="app/campaign/view?id=<?= $campaign->id ?>">
+                                <i class="icon icon-piechart"></i>
+                                <!-- Overview -->
+                                Overview
+                            </a>
+                        </li>
+                        <li>
+                            <a href="app/campaign/edit?id=<?= $campaign->id ?>">
+                                <i class="icon icon-edit"></i>
+                                <!-- Edit -->
+                                Edit
+                            </a>
+                        </li>
+                        <li>
+                            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                            <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
+                                <i class="icon icon-code"></i>
+                                JSON
+                            </a>
+                        </li>
+                        <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
+                        <li>
+                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
+                                <i class="icon icon-archive"></i>
+                                <!-- Archive -->
+                                Archive
+                            </a>
+                        </li>
+                        <? endif ?>
+                        <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
+                        <li>
+                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
+                                <i class="icon icon-trash"></i>
+                                <!-- Remove -->
+                                Delete
+                            </a>
+                        </li>
+                        <? endif ?>
+                        <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                        <li>
+                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                                <i class="icon icon-recover"></i>
+                                <!-- Restore -->
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <? endif ?>
             </ul>
@@ -85,15 +95,15 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">View Campaign</a>
         </div>
     </div>
-    <div class="campaigns-content" data-id="<?= $campaign->id ?>">
-         <h1>
-            <?= ($campaign->name)?$campaign->name:'New campaign' ?>
-            <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR && $campaign->startDate && $campaign->endDate): ?>
-            <span class="campaign-date"><?= date('M j, Y', $campaign->startDate) ?> - <?= date('M j, Y', $campaign->endDate) ?></span>
-            <? endif ?>
-         </h1>
-        <section class="stats-overview module">
-            <div class="main-values">
+    <div id="content" class="adv pane" data-id="<?= $campaign->id ?>">
+        <div class="content-wrap">
+            <h1>
+                <?= ($campaign->name)?$campaign->name:'New campaign' ?>
+                <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER && $campaign->startDate && $campaign->endDate): ?>
+                <span class="campaign-date"><?= date('M j, Y', $campaign->startDate) ?> - <?= date('M j, Y', $campaign->endDate) ?></span>
+                <? endif ?>
+            </h1>
+            <section class="stats-overview main-values module">
                 <div class='stats-box col-xs-3 raised-total'>
                     <h2>$<?= number_format($campaign->amountRaised) ?></h2>
                     <h5>Raised</h5>
@@ -109,33 +119,34 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                         <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
                     </div>
                 </div>
-            </div>
-            <div class='stats-box col-xs-3 total-donations'>
-                <h2><?= $campaign->numberOfDonations ?></h2>
-                <h5>Donations</h5>
-            </div>
-            <div class='stats-box col-xs-3 total-donors'>
-                <h2><?= $campaign->numberOfUniqueDonors ?></h2>
-                <h5>Donors</h5>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class='stats-box col-xs-6 top-donor'>
-                <h3><?= $topDonorText ?></h3>
-                <h5>Top Donor</h5>
-            </div>
-            <div class='stats-box col-xs-6 top-donation'>
-                <h3><?= $topDonationText ?></h3>
-                <h5>Top Donation</h5>
-            </div>
-            <div class="clearfix"></div>
-        </section>
-        <?= $this->render('campaign-view-childs', [
-            'campaign' => $campaign
-        ]);?>
-        
-        <?= $this->render('donations-table', [
-            'donations' => $donations
-        ]); ?>     
+            </section>
+            <section class="stats-overview module">
+                <div class='stats-box col-xs-6 total-donations'>
+                    <h2><?= $campaign->numberOfDonations ?></h2>
+                    <h5>Donations</h5>
+                </div>
+                <div class='stats-box col-xs-6 total-donors'>
+                    <h2><?= $campaign->numberOfUniqueDonors ?></h2>
+                    <h5>Donors</h5>
+                </div>
+                <div class='stats-box col-xs-6 top-donor'>
+                    <h3><?= $topDonorText ?></h3>
+                    <h5>Top Donor</h5>
+                </div>
+                <div class='stats-box col-xs-6 top-donation'>
+                    <h3><?= $topDonationText ?></h3>
+                    <h5>Top Donation</h5>
+                </div>
+                <div class="clearfix"></div>
+            </section>
+            <?= $this->render('campaign-view-childs', [
+                'campaign' => $campaign
+            ]);?>
+            <section class="module">
+                <?= $this->render('donations-table', [
+                    'donations' => $donations
+                ]); ?>
+            </section>
+        </div>
     </div>
 </section>

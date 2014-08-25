@@ -45,11 +45,6 @@ class UserPhoto extends Widget{
         
         $img = Html::tag('img', '', $imgOptions);
         
-        if ($this->showName){
-            $userName = Html::tag('span', '(DEV) '.\Yii::$app->user->identity->name);
-            $img = $userName.' '.$img;
-        }
-        
         if ($this->hasLink) {
             $this->options['href'] = $this->user->url;
             return Html::tag('a', $img, $this->options);

@@ -47,17 +47,17 @@
         <li ng-if="widget.timerEnable"><a data-panel="timerModule">Timer</a></li>
     </ul>
 
-    <div class="alertsModule_panel slidepanel" isolated-scope>
+    <div class="alertsModule_panel slidepanel" child-scope>
         <div ng-init="module = widget.alertsModule">
             <?= $this->render('module-alerts') ?>
         </div>
     </div>
-    <div class="messagesModule_panel slidepanel" isolated-scope>
+    <div class="messagesModule_panel slidepanel" child-scope>
         <div ng-init="module = widget.messagesModule">
             <?= $this->render('module-messages') ?>
         </div>
     </div>
-    <div class="timerModule_panel slidepanel" isolated-scope>
+    <div class="timerModule_panel slidepanel" child-scope>
         <div ng-init="module = widget.timerModule">
             <?= $this->render('module-timer') ?>
         </div>

@@ -23,5 +23,5 @@ $this->title = 'Login';
             <?php ActiveForm::end(); ?>
             </div>
         <? endif ?>
-	<p class="small">By connecting Twitch with your Pullr account, you agree to our <a href="http://pullr.io/privacy">Privacy Policy</a> and our <a href="http://pullr.io/terms-of-service">Terms of Service</a>.</p>
+	<p class="small">By connecting Twitch with Pullr, you agree to our <a href="http://pullr.io/terms-of-service">Terms of Service</a>.</p>
 </div>

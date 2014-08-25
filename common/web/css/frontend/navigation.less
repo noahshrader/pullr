@@ -86,12 +86,23 @@
 		.avatar {
 
 			.user-photo-menu {
+				position: relative;
 				display: inline-block;
 				color: @gray30;
 				line-height: @top-menu-height;
 				height: @top-menu-height;
 				padding: 0 1.6em;
-
+				&:after {
+					.arrow-right;
+					top: 50%;
+					right: 14px;
+					margin-top: -2px;
+					border-width: 4px 0 4px 4px;
+					border-color: transparent transparent transparent @gray20;
+				}
+				&:hover:after {
+					border-color: transparent transparent transparent @gray30;
+				}
 				span {
 					color: @white;
 					font-size: 14px;
@@ -99,8 +110,8 @@
 				}
 				
 				img {
-					height: 36px;
-					width: 36px;
+					height: 40px;
+					width: 40px;
 					border: solid 2px @gray10;
 					border-radius: 50%;
 				}
@@ -111,29 +122,35 @@
 			float: right;
 		}
 		ul.avatar-submenu {
-			margin-right: -120px;
+			margin-right: -215px;
 			background: @base;
 			.trans;
 
 			li {
 				float: left;
 				line-height: @top-menu-height;
+				padding: 0 @halfgutter;
 				height: @top-menu-height;
 
 				a {
 					display: inline-block;
-					color: @gray30;
-					font-size: 18px;
+					color: @gray20;
+					font-size: 14px;
 					text-align: center;
-					width: 60px;
 					&:hover {
 						color: @white;
+					}
+					i {
+						margin-right: 4px;
 					}
 				}
 			}
 		}
+		&.open .user-photo-menu:after {
+			border-color: transparent transparent transparent @gray30;
+		}
 		&.open ul.avatar-submenu {
-			padding: 0 10px;
+			padding: 0 @halfgutter;
 			margin-right: 0;
 		}
 	}
@@ -151,11 +168,13 @@
 	overflow: hidden;
 
 	nav.nav-top {
+		position: relative;
 		width: 100%;
+		z-index: 1000;
 
 		ul {
 			margin: 0;
-			padding: 50px 0 0;
+			padding: @sidenavheight+5px 0 0;
 			list-style: none;
 			width: 100%;
 			display: block;
@@ -169,7 +188,7 @@
 
 				a {
 					display: block;
-					color: @gray40;
+					color: @gray30;
 					position: relative;
 					padding: 0 30px;
 					height: 60px;
@@ -186,6 +205,7 @@
 
 					.nav-label {
 						display: inline-block;
+						font-size: 15px;
 						vertical-align: middle;
 						height: 60px;
 						padding-left: 10px;

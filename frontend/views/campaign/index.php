@@ -8,7 +8,7 @@ $this->title = 'Campaigns';
 $user = \Yii::$app->user->identity;
 ?>
 
-    <section class="campaigns-list-wrap pane campaign-status-<?=$status?> campaigns-left-menu <?= $editCampaign ? 'sidebar-container': 'panels-wrap open' ?>">
+    <section class="list-wrap pane campaign-status-<?=$status?> campaigns-left-menu <?= $editCampaign ? 'sidebar-container': 'panels-wrap open' ?>">
                 <?= $this->render('campaigns-sidebar', [ 'status' => $status, 'donorsSelected' => false ]); ?>
                 <?= $this->render('campaigns-list', [
                     'campaigns' => $campaigns,

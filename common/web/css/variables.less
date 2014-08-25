@@ -21,27 +21,19 @@
 /* Main Accent */
 @accent: #1dbc9c;	/* Primary accent */
 @accenthover: lighten(@accent, 5%); /* Primary accent hover state */
-
-@dkaccent: darken(@accent, 5%);
-
-@dkaccent3: darken(@accent, 3%);
-@dkaccent9: darken(@accent, 9%);
-@dkaccent15: darken(@accent, 15%);
-@dkaccent20: darken(@accent, 20%);
-@dkaccent30: darken(@accent, 30%);
+@dkaccent: darken(@accent, 4%);
+@dkraccent: darken(@accent, 16%);
 
 /* Other Colors */
 @twitchpurple: #6441a5; /* Twitch purple */
 @twitchhover: #714EB2; /* Twitch hover state */
-@twitchaccent: #B18EF2; /* Twitch purple */
 
 /* Gray Sets */
 @maingray: lighten(@base, 5%);
-@dkgray: darken(@base, 2%); /* 2% darker than background */
-@gray3: lighten(@base, 3%); /* 2% gray background */
+@dkgray: darken(@base, 1%); /* 2% darker than background */
 @gray10: lighten(@base, 10%); /* 10% gray background */
-@gray13: lighten(@base, 13%); /* 15% gray background */
 @gray15: lighten(@base, 15%); /* 15% gray background */
+@gray17: lighten(@base, 17%); /* 17% gray background */
 @gray20: lighten(@base, 20%); /* 20% gray background */
 @gray25: lighten(@base, 25%); /* 25% gray background */
 @gray30: lighten(@base, 30%); /* 30% gray background */
@@ -53,13 +45,16 @@
 @gray75: lighten(@base, 78%); /* 78% gray background */
 @gray80: lighten(@base, 80%); /* 80% gray background */
 
-@bgwhitefade: rgba(255,255,255,.5); /* Faded light background */
-@bglightwhitefade: rgba(255,255,255,.1); /* Faded light background */
-@bgblackfade: rgba(34,35,37,.8); /* Faded dark background */
-@bglightblackfade: rgba(34,35,37,.5); /* Faded dark background */
+@bgwhitefade: rgba(255,255,255,.7); /* Faded light background */
+@bglightwhitefade: rgba(255,255,255,.2); /* Faded light background */
+@bgblackfade: rgba(34,34,37,.7); /* Faded dark background */
+@bglightblackfade: rgba(34,34,37,.2); /* Faded dark background */
 
 /* Element Colors */
 @inputbg: @gray10; /* Background for inputs */
+@modulehead: @gray72; /* Background for module headers */
+
+@errorred: #e74c3c;
 
 
 /* Backgrounds */
@@ -85,6 +80,9 @@
 	letter-spacing: 1px;
 }
 
+/* Icons */
+@iconspace: 2px; /* Right margin for icons on buttons */
+
 
 /* Links */
 /* ------------------------------------------------- */
@@ -97,10 +95,17 @@
 @width: 90%; /* Default width */
 @maxwidth: 1140px; /* Default width */
 @sidepanelwidth: 250px; /* Sidebar width */
+@sidenavheight: 50px; /* Sidebar width */
 @top-menu-height: 68px; /* Top bar height */
 @primary-nav-width: 78px; /* Navigation width */
-@primary-nav-lg-width: 180px; /* Large Primary Navigation Width */
+@primary-nav-lg-width: 190px; /* Large Primary Navigation Width */
+
+/* Padding */
 @gutter: 30px; /* Default spacing between main elements */
+@halfgutter: 15px; /* Half the gutter spacing */
+
+/* List Search */
+@listsearch: 65px;
 
 .nowrap{
   white-space: nowrap;
@@ -118,7 +123,7 @@
 
 /* Borders & Box shadows */
 /* ------------------------------------------------- */
-.border-radius (@radius: 3px) {
+.border-radius (@radius: 4px) {
 	border-radius: @radius;
 	background-clip: padding-box;
 }
@@ -128,6 +133,16 @@
 .round-radius (@radius: 30px) {
 	border-radius: @radius;
 	background-clip: padding-box;
+}
+.topcut-radius (@radius: 10px) {
+	border-top-left-radius: @radius;
+	background-clip: padding-box;
+}
+.tab-radius (@radius: 10px) {
+	border-top-left-radius: @radius;
+	border-top-right-radius: @radius;
+	-moz-border-radius-topleft: @radius;
+	-moz-border-radius-topright: @radius;
 }
 .box-shadow (@shadow: 0 0 2px rgba(0,0,0,.1)) {
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
@@ -198,7 +213,7 @@
 	-ms-animation: @fade-in;
 	animation: @fade-in;
 }
-.longfadein (@fade-in: fadein 6s) {
+.longfadein (@fade-in: fadein 1s) {
 	-webkit-animation: @fade-in;
 	-moz-animation: @fade-in;
 	-ms-animation: @fade-in;
@@ -210,13 +225,11 @@
 	-ms-animation: @animate-bar;
 	animation: @animate-bar;
 }
-
-.pulse {
-	-webkit-animation-name: 'pulse_animation';
-	-webkit-animation-duration: 5000ms;
-	-webkit-transform-origin:70% 70%;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
+.adjusthue (@adjusthue: 6s ease 0s alternate none infinite adjustHue) {
+	-webkit-animation: @adjusthue;
+	-moz-animation: @adjusthue;
+	-ms-animation: @adjusthue;
+	animation: @adjusthue;
 }
 
 
@@ -251,13 +264,26 @@
     to   { opacity: 1; }
 }
 
-@-webkit-keyframes pulse_animation {
-	0% { -webkit-transform: scale(1); }
-	30% { -webkit-transform: scale(1); }
-	40% { -webkit-transform: scale(1.25); }
-	50% { -webkit-transform: scale(1); }
-	60% { -webkit-transform: scale(1); }
-	70% { -webkit-transform: scale(1.25); }
-	80% { -webkit-transform: scale(1); }
-	100% { -webkit-transform: scale(1); }
+/* Adjust Hue */
+@-webkit-keyframes adjustHue {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    -webkit-filter: hue-rotate(30deg);
+    filter: hue-rotate(30deg);
+  }
+  50% {
+    -webkit-filter: hue-rotate(60deg);
+    filter: hue-rotate(60deg);
+  }
+  75% {
+    -webkit-filter: hue-rotate(90deg);
+    filter: hue-rotate(90deg);
+  }
+  100% {
+    -webkit-filter: hue-rotate(120deg);
+    filter: hue-rotate(120deg);
+  }
 }

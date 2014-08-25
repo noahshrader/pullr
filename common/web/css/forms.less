@@ -8,7 +8,7 @@ select.form-control {
 	outline: 0;
 	padding: 0 16px;
 	min-height: 45px;
-	border: 1px solid @gray70;
+	border: 2px solid @gray75;
 	box-shadow: none;
 }
 select.form-control {
@@ -21,7 +21,7 @@ textarea.form-control {
 legend,
 label {
 	color: @gray30;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 /* Search Field Styling */
@@ -30,7 +30,7 @@ input[type='search'] {
 	min-height: 36px;
 	.round-radius;
 	background: #FFF;
-	border-color: @gray70;
+	border: 0;
 }
 
 /* Checkboxes */
@@ -71,17 +71,17 @@ input[type='search'] {
 			margin-right: 10px;
 			speak: none;
 			-webkit-font-smoothing: antialiased;
-			border: 1px solid @gray60;
+			border: 2px solid @gray60;
 		}
 		&:hover:before {
 			color: @gray75;
 		}
 		&.focused:before {
-			border: 1px solid @gray30;
+			border: 2px solid @gray30;
 		}
 		&.on:before {
 			color: @gray30;
-			border: 1px solid @gray30;
+			border: 2px solid @gray30;
 		}
 	}
 	input {
@@ -101,7 +101,7 @@ input[type='search'] {
 		color: @gray40;
 		font-family: @mainfont;
 		font-size: @basefontsize;
-		border: solid 1px @gray70 !important;
+		border: solid 2px @gray75 !important;
 		box-shadow: none !important;
 		&:focus {
 			outline: 0 !important;
@@ -113,7 +113,7 @@ input[type='search'] {
 
 	&.select2-drop-active,
 	&.select2-drop-above.select2-drop-active {
-		border: solid 1px @gray70;
+		border: solid 2px @gray70;
 		box-shadow: none;
 	}
 }

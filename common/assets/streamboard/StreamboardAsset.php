@@ -9,6 +9,10 @@ class StreamboardAsset extends AssetBundle
 	public $css = [
 	];
 	public $js = [
+        'bower_components/venturocket-angular-slider/build/angular-slider.min.js',
+        'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js',
+        'bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js',
+        'bower_components/ng-file-upload/angular-file-upload.min.js',
         'plugins/iframeResizer/iframeResizer.js',
 		'js/streamboard/streamboard.js',
         /**angular-app begin*/
@@ -17,6 +21,7 @@ class StreamboardAsset extends AssetBundle
         'js/streamboard/angular-app/pullr-common.js',
         'js/streamboard/angular-app/campaigns.js',
         'js/streamboard/angular-app/settings.js',
+        'js/streamboard/angular-app/alertMediaManager.js',
         'js/streamboard/angular-app/app.js',
         /*angular-app end*/
 	];

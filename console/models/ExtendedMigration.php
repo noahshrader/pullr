@@ -1,8 +1,9 @@
 <?php
 
 namespace console\models;
+use yii\db\Migration;
 
-class ExtendedMigration extends \yii\db\Migration {
+class ExtendedMigration extends Migration {
     public function dropTable($table) {
         if ($this->db->schema->getTableSchema($table, true) !== null) {
             parent::dropTable($table);

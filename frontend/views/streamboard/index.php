@@ -10,7 +10,7 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
     <!-- // Layout Options Side Panel // -->
     <section id="sidepanel" class="sidepanel open resizable">
         <div class="sidepanel-head">
-            <ul class="nav nav-tabs <?= $tabsClass ?> cf">
+            <ul class="<?= $tabsClass ?> panel-nav cf">
                 <li class="active">
                     <a href="<?= Url::to() ?>#donations" data-toggle="tab" class="donations">
                         <i class="icon icon-coin"></i></a>

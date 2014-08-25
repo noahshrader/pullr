@@ -10,6 +10,9 @@ use yii\db\ActiveRecord;
 class UploadImage extends \yii\base\Component {
 
     /**
+     * @param $id integer
+     * @param $type
+     * @param $errors
      * @return int number of successfully uploaded files
      */
     public static function Upload($id, $type, &$errors) {

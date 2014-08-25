@@ -1,7 +1,7 @@
 @import "../variables.less";
 
 html, body {
-	background: @maingray;
+	background: @base;
 }
 
 .intro-content-wrapper {
@@ -22,11 +22,16 @@ html, body {
 			margin: 0;
 		}
 		p {
-			max-width: 320px;
+			color: @gray30;
+			font-size: @fineprint;
+			max-width: 220px;
 			margin: 15px auto;
-		}
-		a {
-			color: @white;
+			a {
+				color: @white;
+				&:hover {
+					color: @white;
+				}
+			}
 		}
 		.form-control {
 			width: 100%;
@@ -35,24 +40,36 @@ html, body {
 		.checkbox {
 			display: inline-block;
 		}
+
+		.login-box {
+			padding: @gutter + @halfgutter;
+			margin: 0 auto;
+			width: 90%;
+			max-width: 400px;
+			background: @bglightblackfade;
+			.element-radius;
+			.box-shadow;
+
+			.site-login {
+				margin-top: 1.8em;
+			}
+		}
 	}
 
 a.login-logo.icon-pullr {
-	color: @darklinkhover;
-	font-size: 56px;
-	&:before {
-		color: @darklinkhover;
-	}
+	color: @white;
+	font-size: 48px;
 }
 a.twitchLogin {
 	display: inline-block;
-	width: 100%;
-	margin: 1.2em 0;
-	max-width: 180px;
+	margin-bottom: .3em;
 	background: @twitchpurple;
 	&:hover {
-		color: @white;
 		background: @twitchhover;
+	}
+
+	i {
+		margin-right: @iconspace;
 	}
 }
 .login-back {
@@ -62,7 +79,12 @@ a.twitchLogin {
 	right: 0;
 	bottom: 0;
 	z-index: 0;
-	background-image: url(/images/loginback.jpg);
-	.background;
-	.longfadein;
+	background-color: @maingray;
+	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(@base), to(@maingray));
+	background-image: -webkit-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -moz-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -o-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -ms-radial-gradient(50% 50%, @maingray, @base);
+	background-image: radial-gradient(50% 50%, @maingray, @base);
+	.fadein;
 }

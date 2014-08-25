@@ -1,4 +1,4 @@
-<table id="donations-table" class="display donations-table extend donations-table-for-donor module" cellspacing="0" width="100%">
+<table id="donations-table" class="display donations-table extend donations-table-for-donor" cellspacing="0" width="100%">
     <thead>
         <tr>
             <th widths="25%">Display Name</th>
@@ -14,7 +14,7 @@
                 <td>
                     <?= $donation->name ? $donation->name : 'Anonymous' ?>
                 </td>
-                <td>
+                <td class="raised">
                     $<?= number_format($donation->amount) ?>
                 </td>
                 <td>

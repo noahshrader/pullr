@@ -1,13 +1,9 @@
 <?
-use frontend\models\streamboard\WidgetCampaignBarAlerts;
+use common\components\streamboard\alert\AlertMediaManager;
+
 
 $streamboard = [];
-$streamboard['WidgetCampaignBarAlerts'] = [
-        'PATH_TO_IMAGES' =>  WidgetCampaignBarAlerts::PATH_TO_IMAGES,
-        'PATH_TO_SOUNDS' =>  WidgetCampaignBarAlerts::PATH_TO_SOUNDS,
-        'PREDEFINED_IMAGES' => WidgetCampaignBarAlerts::PREDEFINED_IMAGES(),
-        'PREDEFINED_SOUNDS' => WidgetCampaignBarAlerts::PREDEFINED_SOUNDS(),
-    ];
+$streamboard['AlertMediaManager'] =  (new AlertMediaManager())->toArray();
 ?>
 <script type="text/javascript">
     <?

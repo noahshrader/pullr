@@ -8,7 +8,7 @@ body, html {
 	background: @base;
 }
 label {
-	color: @gray80;
+	color: @gray70;
 }
 .mute {
 	opacity: .2;
@@ -24,31 +24,92 @@ label {
 	padding: 30px;
 }
 
+/* Color Picker */
+input.color-choice {
+	-webkit-appearance: none;
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	vertical-align: middle;
+	background: transparent;
+}
+
+/* Selects */
+.bootstrap-select {
+	color: #85888e;
+	font-family: @mainfont;
+	font-size: 16px;
+	border: solid 1px #d4d5d8 !important;
+	box-shadow: none !important;
+	line-height: 1.42857;
+	background: none repeat scroll 0 0 @white;
+	padding: 0px;
+	display: block;
+	position: relative;
+	white-space: nowrap;
+	text-decoration: none;
+	border-radius: 4px;
+	background-color: @white;
+	overflow: visible;
+
+	.btn:not(.btn-xs):not(.btn-sm):not(.bnt-lg) {
+		font-weight: normal;
+		line-height: 34px;
+		padding: 6px 12px;
+		height: 34px;
+		background: transparent;
+		border: none;
+		color: #85888e;
+	}
+}
+
 
 /* Sidepanel (Sidebar) */
 /* ------------------------------------------------- */
 #sidepanel {
 	background: @maingray;
-	position: fixed;
+	position: absolute;
 	top: 0;
-	bottom: 0;
+	bottom: @sidenavheight;
 	right: 0;
-	padding-top: 50px;
-	width: 280px;
+	width: @sidepanelwidth;
 	max-width: 50%;
 	z-index: 900;
 
 	.sidepanel-head {
-		position: absolute;
-		right: 0;
-		margin-top: -50px;
-		height: 50px;
+		height: @sidenavheight;
 		width: 100%;
+
+		/* Sidepanel Tab Menu */
+		ul.panel-nav {
+			top: 0;
+			border-bottom: solid 1px @maingray;
+
+			li {
+				width: 25%;
+				background: @gray10;
+			}
+		}
 	}
 
 	.tab-content,
 	.tab-pane {
+		position: relative;
 		height: 100%;
+	}
+	.tab-pane {
+		
+		.main-panel.pane {
+			position: absolute;
+			top: 0;
+			bottom: @sidenavheight;
+			&.adv {
+				top: @sidenavheight;
+			}
+		}
 	}
 
 	h3,
@@ -67,55 +128,9 @@ label {
 		background: #1dbc9c;
 	}
 
-	/* Sidepanel Tab Menu */
-	ul.nav-tabs {
-		height: 50px;
-		overflow: hidden;
-		width: 100%;
-		border-bottom: 0;
-		-webkit-transition: all ease-in-out 0.2s;
-		transition: all ease-in-out 0.2s;
-
-		li {
-			position: relative;
-			float: left;
-			text-align: center;
-			&.active a {
-				background: @maingray !important;
-			}
-			&:first-child:nth-last-child(1) {
-				width: 100%;
-			}
-			&:first-child:nth-last-child(2),
-			&:first-child:nth-last-child(2) ~ li {
-				width: 50%;
-			}
-			&:first-child:nth-last-child(3),
-			&:first-child:nth-last-child(3) ~ li {
-				width: 33.3333%;
-			}
-			&:first-child:nth-last-child(4),
-			&:first-child:nth-last-child(4) ~ li {
-				width: 25%;
-			}
-
-			a {
-				display: inline-block;
-				color: @white;
-				font-size: 1.2em;
-				font-weight: 500;
-				padding: .8em 1.2em;
-				width: 100%;
-				background: @dkgray;
-				&:hover {
-					background: @base;
-				}
-				&:before{
-					display: block;
-					color: @white;
-					line-height: 1;
-				}
-			}
+	.region {
+		&.pane {
+			position: absolute;
 		}
 	}
 }
@@ -123,17 +138,17 @@ label {
 /* Slideup Panel */
 .slidepanel {
 	position: absolute;
-//	bottom: -400px;
+	bottom: -420px;
 	right: 0;
-	padding: 30px;
+	padding: @gutter 0 @halfgutter;
 	width: 100%;
-//	height: 400px;
+	height: 420px;
 	background: @gray10;
 	z-index: 1000;
 	-webkit-transition: all ease-in-out 0.2s;
 	transition: all ease-in-out 0.2s;
 	&.selected {
-		bottom: 0;
+		bottom: @sidenavheight;
 	}
 
 	a.close {
@@ -143,7 +158,7 @@ label {
 		padding: 1em;
 		margin-bottom: 2em;
 		&:before {
-			color: #FFF;
+			color: @white;
 		}
 	}
 }
@@ -152,14 +167,12 @@ label {
 /* Statsboard */
 /* ------------------------------------------------- */
 a.dashboard.show:before {
-	color: #FFF !important;
+	color: @white !important;
 }
-
 .statsboard {
 	height: 0;
 	overflow: hidden;
-	-webkit-transition: all ease-in-out 0.2s;
-	transition: all ease-in-out 0.2s;
+	.trans;
 	&.show {
 		background: #1d1e20;
 		height: 400px;
@@ -199,7 +212,6 @@ a.dashboard.show:before {
 /* Donation Panel */
 /* ------------------------------------------------- */
 .donations-list {
-	overflow-y: scroll;
 
 	span {
 		display: block;
@@ -221,7 +233,7 @@ a.dashboard.show:before {
 		padding: 4px 16px;
 		margin: 12px auto 0;
 		max-width: 140px;
-		background: @gray3;
+		background: @gray10;
 		.round-radius;
 		&:hover {
 			color: @white;
@@ -270,52 +282,8 @@ a.dashboard.show:before {
 }
 #donations {
 	position: relative;
-	padding-bottom: 50px;
-	overflow: hidden;
 }
 #donations-header {
-	padding: 10px 0px;
-	border-bottom: 1px solid @base;
-}
-
-.right-side-footer{
-	position: absolute;
-	right: 0px;
-	bottom: 0px;
-	width: 100%;
-	height: 50px;
-}
-
-.bottom-panel-nav {
-	position:relative;
-	z-index: 1001;
-	margin: 0px;
-	height: 50px;
-	list-style: none;
-	padding: 0px;
-	background-color: @gray10;
-
-	li {
-		display: block;
-		text-align: center;
-        	float: left;
-        	&.stats {
-        		width: 100%;
-        	}
-
-		a {
-			display: block;
-			color: @white;
-			font-size: 1em;
-			line-height: 50px;
-			
-			i {
-				margin-right: .4em;
-			}
-		}
-	}
-}
-.streamboard-settings-header {
 	padding: 10px 0px;
 	border-bottom: 1px solid @base;
 }
@@ -323,7 +291,6 @@ a.dashboard.show:before {
 
 /* Settings Panel */
 /* ------------------------------------------------- */
-
 #settingsTab {
 	ul.nav-tabs {
 		
@@ -341,9 +308,64 @@ a.dashboard.show:before {
 		}
 	}
 }
+.streamboard-settings-header {
+	padding: 10px 0px;
+	border-bottom: 1px solid @base;
+}
+
+
+/* Panel Footer Navigation */
+/* ------------------------------------------------- */
+.right-side-footer{
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: @sidenavheight;
+
+	ul.panel-nav {
+		position: relative;
+		background: @gray10;
+		border-bottom: 0;
+
+		li {
+	        	&.stats {
+	        		width: 100%;
+	        		i {
+	        			margin-right: @iconspace;
+	        		}
+	        	}
+			&:first-child:nth-last-child(1) {
+				width: 100%;
+			}
+			&:first-child:nth-last-child(2),
+			&:first-child:nth-last-child(2) ~ li {
+				width: 50%;
+			}
+			&:first-child:nth-last-child(3),
+			&:first-child:nth-last-child(3) ~ li {
+				width: 33.3333%;
+			}
+			&:first-child:nth-last-child(4),
+			&:first-child:nth-last-child(4) ~ li {
+				width: 25%;
+			}
+			&.active a {
+				color: @white;
+				background: @gray10;
+				-webkit-box-shadow: inset 0 4px 0 0 @accent;
+				-moz-box-shadow: inset 0 4px 0 0 @accent;
+				box-shadow: inset 0 4px 0 0 @accent;
+			}
+		}
+	}
+}
+
 
 /* Other Elements */
 /* ------------------------------------------------- */
+
+/* Sliders */
 slider {
 	cursor: pointer;
 	
@@ -361,6 +383,15 @@ slider {
 
 /* Loader */
 /* ------------------------------------------------- */
+.spinner-wrap {
+	background-color: @maingray;
+	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(@base), to(@maingray));
+	background-image: -webkit-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -moz-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -o-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -ms-radial-gradient(50% 50%, @maingray, @base);
+	background-image: radial-gradient(50% 50%, @maingray, @base);
+}
 .spinner-wrap,
 .spinner {
 	position: absolute;
@@ -368,7 +399,6 @@ slider {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background: @base;
 	z-index: 9999;	
 }
 .spinner {
@@ -446,4 +476,25 @@ can be removed in future, after plugin update*/
   .media-item.selected{
     background-color: @accent;
   }
+}
+/*for drag&drop uploading*/
+.sounds-graphics-content{
+  .media-item.selected{
+    background-color: @accent;
+  }
+  .uploader{
+    min-height: 90px;
+    background-color: @bgwhitefade;
+  }
+  .uploader.uploader-drag-over{
+    background-color: @bglightwhitefade;
+  }
+  .error{
+    color: red;
+  }
+}
+
+.alert-image-preview{
+  max-width: 100px;
+  max-height: 50px;
 }

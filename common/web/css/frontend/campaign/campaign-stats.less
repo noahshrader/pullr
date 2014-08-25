@@ -1,88 +1,15 @@
-/* Campaigns Sidebar */
-/* ------------------------------------------------- */
-.large-menu-toggled .campaigns-list-wrap {
-	left: @primary-nav-lg-width;
-}
-.small-menu-toggled .campaigns-list-wrap {
-	left: @primary-nav-width;
-}
-
-/* Campaigns Main */
-/* ------------------------------------------------- */
-.campaigns-list-wrap {
-	position: fixed;
-	top: 0;
-	height: 100%;
-	width: @sidepanelwidth;
-	padding-top: @top-menu-height;
-	background-color: @gray15;
-	overflow: auto;
-
-	.main-info {
-		padding: 0 30px;
-	}
-	h2 {
-		font-size: 24px;
-		color: @accent;
-		line-height: @top-menu-height;
-		padding-left: 15px;
-		padding-right: 15px;
-		font-weight: normal;       
-	}
-	.campaigns-list {
-		padding-top: 50px;
-		
-		div {
-			color: @gray50;
-		}
-	}
-}
-.campaigns-content,
-.donor-content {
-	padding: @gutter;
-}
-
 /* Campaigns QuickNav */
 /* ------------------------------------------------- */
-.campaign-quicknav {
+ul.campaign-quicknav {
 	position: fixed;
-	line-height: 50px;
+	top: @top-menu-height;
 	width: @sidepanelwidth;
-	height: 50px;
-	background: @gray15;
-	border-bottom: solid 1px @gray10;
-	z-index: 1000;
-	overflow: hidden;
 
-	ul {
-		list-style: none;
-		margin: 0px;
-		padding: 0px;
-		text-align: center;
-		width: 100%;
-
-		li {
-			float: left;
-			width: 33.33%;
-
-			a {
-				display: block;
-				color: @gray40;
-				font-weight: 400;
-				line-height: 50px;
-				width: 100%;
-
-				&.active {
-					color: @white;
-					background: @gray10 !important;
-					-webkit-box-shadow: inset 0 -4px 0 0 #1dbc9c;
-					-moz-box-shadow: inset 0 -4px 0 0 #1dbc9c;
-					box-shadow: inset 0 -4px 0 0 #1dbc9c;
-				}
-				&:hover {
-					background: @gray13;
-				}
-			}
+	li {
+		width: 33.33%;
+		background: @gray20;
+		&:first-child {
+			.topcut-radius;
 		}
 	}
 }
@@ -90,32 +17,12 @@
 
 /* Campaign Items (Sidebar) */
 /* ------------------------------------------------- */
-/* Campaign Search */
-.list-search {
-	position: fixed;
-	padding: 16px 36px;
-	height: 69px;
-	width: @sidepanelwidth;
-	z-index: 1000;
-	background: @gray15;
-	border-bottom: solid 1px @gray10;
-
-	input[type='search'] {
-		color: @white;
-		background-color: @gray10;
-		border-color: transparent;
-	}
-}
 
 /* Campaign Listings */
 .campaigns-list {
-	padding-top: 50px;
-	&.redpad {
-		padding-top: 50px !important;
+	&.addpad {
+		padding-top: @listsearch;
 	}
-}
-.donors-list {
-	padding-top: 69px;
 }
 .campaign-item {
 	padding: 24px 0;
@@ -123,28 +30,19 @@
 	position: relative;
 	display: block;
 	width: 100%;
-	border-bottom: solid 1px @gray13;
+	border-bottom: solid 1px @gray17;
 	&.active h3 {
 		color: @white;
-		font-weight: 400;
 	}
 	&.active {
 		background: @gray10 !important;
 		border-bottom: solid 1px @gray10;
-
-		&:after {
-			.arrow-left;
-			right: 0;
-			top: 50%;
-			margin-top: -10px;
-			border-color: transparent @gray75 transparent transparent;
-		}
 	}
 	&:hover {
-		background: @gray13;
+		background: @gray17;
 	}
 	h3 {
-		color: @gray60;
+		color: @gray50;
 		margin-bottom: 2px;
 		font-size: 17px;
 		line-height: 1.1em;
@@ -167,7 +65,7 @@ body.trash .campaigns-list {
 	padding-top: 119px;
 
 	.list-search {
-		top: @top-menu-height + 50px;
+		top: @top-menu-height + @sidenavheight;
 	}
 }
 
@@ -183,89 +81,148 @@ body.trash .campaigns-list {
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
-	height: 50px;
+	height: @sidenavheight;
 	background: @gray72;
 	z-index: 1000;
-	overflow: hidden;
 
 	.campaign-nav {
 		padding: 0;
-	}
+
+		/* Toggle Button */
+		a.actions-toggle {
+			display: inline-block;
+			position: relative;
+			color: @gray40;
+			font-size: 20px;
+			line-height: @sidenavheight;
+			padding: 0 @gutter;
+			width: auto;
+			transition: none;
+			&:after {
+				.arrow-down;
+				top: 50%;
+				right: 18px;
+				margin-top: -1px;
+				border-width: 4px 4px 0 4px;
+				border-color: @gray50 transparent transparent transparent;
+			}
+			&:hover {
+				color: @maingray;
+				&:after {
+					border-color: @maingray transparent transparent transparent;
+				}
+			}
+		}
 		ul {
 			padding: 0;
 
-			li {
-				display: block;
-				float: left;
-				&.active,
-				&.active .icon {
-					color: @maingray;
-					background: @gray75;
+			&.campaign-quick-links {
+
+				/* when dropped */
+				&.drop {
+					a.actions-toggle {
+						color: @maingray;
+						&:after {
+							border-color: @maingray transparent transparent transparent;
+						}
+					}
+					ul {
+						opacity: 1;
+						top: 65px;
+						left: 15px;
+						webkit-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s ease-in-out;
+						-moz-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s ease-in-out;
+						-o-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s ease-in-out;
+						transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s ease-in-out;
+					}
 				}
-				a {
-					display: block;
-					float: left;
-					color: @gray40;
-					text-align: center;
-					height: 50px;
-					width: 50px;
-
-					&:hover,
-					&:hover .icon {
-						color: @base;
-						background: @gray72;
+				ul {
+					position: absolute;
+					top: 80px;
+					left: -5000px;
+					min-width: 160px;
+					background: @white;
+					.box-shadow;
+					.border-radius;
+					opacity: 0;
+					-webkit-transition-delay: 0s,0s,.1s;
+					-webkit-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s linear;
+					-moz-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s linear .1s;
+					-o-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s linear .1s;
+					transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s linear .1s;
+					&:before {
+						.arrow-up;
+						top: -8px;
+						left: 14px;
 					}
 
-					.icon {
-						line-height: 50px;
-						color: @gray40;
+					li {
+						a {
+							display: block;
+							color: @gray40;
+							padding: 0 @gutter;
+							width: 100%;
+
+							&:hover {
+								color: @base;
+								background: @gray80;
+							}
+							.icon {
+								color: @gray40;
+								line-height: 45px;
+								margin-right: 4px;
+							}
 					}
+				}
 			}
 		}
-}
-	a.view-campaign {
-		position: fixed;
-		right: 0;
-		display: block;
-		color: @white;
-		font-weight: 400;
-		padding-right: 24px;
-		padding-left: 16px;
-		text-align: center;
-		line-height: 50px;
-		width: auto;
-		background: @accent;
-		&:hover {
-			color: @white;
-			background: @accenthover;
-		}
-		&:before {
-			height: 0px;
-			width: 0px;
-			content: "";
-			display: block;
-			position: absolute;
-			border-bottom: 50px solid @accent;
-			border-left: 30px solid transparent;
-			left: -30px;	
-		}
-		&:hover:before {
-			border-bottom: 50px solid @accenthover;
-		}
 	}
 }
 
+/* View Campaign */
+a.view-campaign {
+	position: fixed;
+	right: 0;
+	display: block;
+	color: @white;
+	font-weight: 400;
+	padding-right: 24px;
+	padding-left: 16px;
+	text-align: center;
+	line-height: @sidenavheight;
+	width: auto;
+	background: @accent;
+	&:hover {
+		color: @white;
+		background: @accenthover;
+	}
+	&:before {
+		height: 0px;
+		width: 0px;
+		content: "";
+		display: block;
+		position: absolute;
+		border-bottom: @sidenavheight solid @accent;
+		border-left: 30px solid transparent;
+		left: -30px;	
+	}
+	&:hover:before {
+		border-bottom: @sidenavheight solid @accenthover;
+	}
+}
+}
 
-/* Children Campaigns */
+/* Child Campaigns */
 .campaign-view-childs {
 
-	th, td {
-		border-top: solid 1px @gray75;
+	td.raised {
+		text-align: right;
 	}
-	th {
-		padding: 1.2em 6% .6em !important;
-	}
-	td {
-		padding: .6em 6% !important;
+	.child-totals {
+		float: right;
+		color: @white;
+		padding: 0 .6em;
+		background: @accent;
+		.round-radius;
 	}
 }

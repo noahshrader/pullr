@@ -9,7 +9,9 @@ $this->registerJsFile('@web/js/campaign/donors-filter.js',  CommonAsset::classNa
 
 <? if (sizeof($donors) > 0): ?>
 <div class="list-search">
-    <input placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off" class="form-control">
+    <span>
+        <input placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off" class="form-control">
+    </span>
 </div>
 <div class="donors-list" >
         <div data-bind="template: {name:'donor', foreach:donors}">
@@ -28,7 +30,6 @@ $this->registerJsFile('@web/js/campaign/donors-filter.js',  CommonAsset::classNa
         $this->registerJs($js);
         ?>
 </div>
-
 <? else: ?>
 <br>
 <div class="text-center">
