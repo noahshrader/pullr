@@ -9,6 +9,7 @@ use common\models\User;
  * @package frontend\models\streamboard
  * @property integer $userId
  * @property integer $regionNumber - either 1 / 2
+ * @property boolean $scrolling
  */
 class WidgetDonationFeed extends ActiveRecord {
     const SCROLL_SPEED_SLOW = 'Slow';

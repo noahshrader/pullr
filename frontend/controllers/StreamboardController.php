@@ -258,9 +258,10 @@ class StreamboardController extends FrontendController
      * @throws ErrorException
      * @return array
      */
-    public function actionUpload_alert_file_ajax($type)
+    public function actionUpload_alert_file_ajax()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
+        $type = Yii::$app->request->post('type');
         $user = Application::getCurrentUser();
         if (!$user) {
             throw new ForbiddenHttpException();
@@ -273,13 +274,18 @@ class StreamboardController extends FrontendController
                 $result = AlertMediaManager::uploadImage();
                 break;
             default:
-                throw new ErrorException('Upload type should either "image" or "sound"');
+                throw new ErrorException('Upload type should be either "image" or "sound"');
         }
         if (!$result){
             throw new ErrorException('Error during upload');
         }
         $manager = new AlertMediaManager();
-        return $manager->getCustomSounds();
+        switch ($type){
+            case 'sound':
+                return $manager->getCustomSounds();
+            case 'image':
+                return $manager->getCustomImages();
+        }
     }
 
     private function removeAlert_file_ajax($type){
