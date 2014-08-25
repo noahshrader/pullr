@@ -30,7 +30,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
             <? endif; ?> <!-- END notification -->
             
-            <ul class="content-nav">
+            <ul class="content-nav cf">
                 <li class="active">
                     <a href="#overall" data-toggle="tab">Overall</a>
                 </li>

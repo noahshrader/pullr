@@ -24,7 +24,7 @@ $sourceHref = Url::to('', true) . '/source';
 </div>
 
 <div class="right-side-footer">
-    <ul class="nav nav-tabs bottom-panel-nav settings-bottom-tabs">
+    <ul class="panel-nav">
         <li class="active">
             <a href="<?= Url::to() ?>#settings-general" data-toggle="tab">General</a>
         </li>

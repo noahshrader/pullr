@@ -2,7 +2,7 @@
 		use common\models\Donation;
 ?>
 <!-- Stats Panel Link -->
-<ul class="bottom-panel-nav paneltoggle">
+<ul class="panel-nav paneltoggle">
 	<li class="stats"><a data-panel="stats"><i class="icon icon-bargraph"></i>Stats</a></li>
 </ul>
 
