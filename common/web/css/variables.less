@@ -138,6 +138,12 @@
 	border-top-left-radius: @radius;
 	background-clip: padding-box;
 }
+.tab-radius (@radius: 10px) {
+	border-top-left-radius: @radius;
+	border-top-right-radius: @radius;
+	-moz-border-radius-topleft: @radius;
+	-moz-border-radius-topright: @radius;
+}
 .box-shadow (@shadow: 0 0 2px rgba(0,0,0,.1)) {
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
 	-moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);

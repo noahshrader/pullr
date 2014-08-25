@@ -26,6 +26,10 @@
 			h5 {
 				color: @dkraccent;
 			}
+			&.module {
+				border-top-left-radius: 0;
+				-moz-border-radius-topleft: 0;
+			}
 		}
 
 		/* Main Total Section */
@@ -43,7 +47,18 @@
 
 		/* Secondary Totals */
 		.raised-group-stats {
+			position: relative;
+			float: left;
+			padding: 0 15%;
+			width: 100%;
 			background: @dkaccent;
+			&:before {
+				.arrow-up;
+				left: 50%;
+				top: -10px;
+				margin-left: -10px;
+				border-color: transparent transparent @dkaccent transparent;
+			}
 
 			.stats-box {
 				padding: 1.2em 0;
@@ -94,8 +109,11 @@
 	ul.content-nav {
 		margin-top: @gutter;
 
-		li.active a:after {
-			border-color: transparent transparent @accent transparent;
+		li {
+			&.active a {
+				color: @white;
+				background: @accent;
+			}
 		}
 	}
 }

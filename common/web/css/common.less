@@ -317,34 +317,31 @@ table.dataTable thead td {
 /* Content Navigation */
 /* ------------------------------------------------- */
 ul.content-nav {
-	text-align: center;
+	text-align: left;
 	margin: @gutter+@gutter 0 0;
 
 	li {
 		position: relative;
-		float: none;
+		float: left;
 		display: inline-block;
+		margin-right: 3px;
 		border: 0;
-		&.active a:after {
-			.arrow-up;
-			bottom: 0;
-			left: 50%;
-			margin-left: -10px;
-		}
 		&.active a,
 		&.active a:hover {
 			color: @gray10;
+			background: @white;
 		}
 		a {
 			display: block;
-			color: @gray50;
+			color: @white;
+			font-weight: 600;
 			line-height: 50px;
-			padding: 0 @halfgutter @halfgutter;
+			padding: 0 @gutter;
 			width: 100%;
-			background: transparent;
+			background: @gray72;
+			.tab-radius;
 			&:hover {
-				color: @maingray;
-				background: transparent;
+				background: @gray70;
 			}
 		}
 	}
