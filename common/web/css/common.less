@@ -371,4 +371,27 @@ ul.panel-nav {
 	}
 }
 
+
+/* Tooltips */
+/* ------------------------------------------------- */
+.tooltip {
+	font-size: @smalltext;
+
+	&.tooltip.in {
+		opacity: 1;
+	}
+	.tooltip-inner {
+		padding: @halfgutter;
+		background: @gray30;
+	}
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: @gray30;
+	border-width: 5px 5px 0;
+}
+.tooltip.bottom .tooltip-arrow {
+	border-bottom-color: @gray30;
+	border-width: 0 5px 5px;
+}
+
 @import "responsive.less";

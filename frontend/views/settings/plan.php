@@ -8,7 +8,9 @@ use common\models\Plan;
         <div>
             <p>ome advertising text here - you can use pro-plan with more features</p>
         </div>
-        <button class='btn btn-primary' onclick="$('.plan-show-Basic').toggleClass('plan-show-Basic plan-show-payment')">Go pro</button>
+        <div class="account-action">
+            <button class="btn btn-primary" onclick="$('.plan-show-Basic').toggleClass('plan-show-Basic plan-show-payment')">Go Pro</button>
+        </div>
     </div>
 
     <!-- Pullr Basic -->

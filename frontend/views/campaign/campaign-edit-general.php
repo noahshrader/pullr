@@ -14,17 +14,17 @@ $this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAss
 $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
+        <!-- Campaign Name -->
+        <div class="form-group">
+            <label>Campaign Name</label>
+            <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
+        </div>
+
         <!-- Campaign Type -->
         <div class="form-group field-campaign-type">
             <label>Select a Campaign Type</label>
             <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
             <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
-        </div>
-        
-        <!-- Campaign Name -->
-        <div class="form-group">
-            <label>Campaign Name</label>
-            <?= $form->field($campaign, 'name', ['autoPlaceholder' => true]); ?>
         </div>
 
         <!-- Campaign Description -->
@@ -35,10 +35,8 @@ $firstGiving = $campaign->getFirstGiving();
 
         <!-- Campaign Dates/Times -->
         <div id="startEndContainer">
-            <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Start date tooltip"></i>'; ?>
-             <?= $form->field($campaign, 'startDate')->label("Start Date/Time $tooltip")->input('datetime-local'); ?>
-            <? $tooltip = '<i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="End date tooltip"></i>'; ?>
-             <?= $form->field($campaign, 'endDate')->label("End Date/Time $tooltip")->input('datetime-local'); ?>
+            <?= $form->field($campaign, 'startDate')->label("Start Date/Time")->input('datetime-local'); ?>
+            <?= $form->field($campaign, 'endDate')->label("End Date/Time")->input('datetime-local'); ?>
         </div>
 
         <!-- Campaign Goal Amount -->
@@ -88,6 +86,7 @@ $firstGiving = $campaign->getFirstGiving();
         <? endif; ?>
 
         <div id="notTiedCampaignContainer">
+
         <!-- Personal Fundraiser PayPal -->
         <div class="form-group pf-paypal">
             <label>PayPal Address</label>
@@ -97,7 +96,7 @@ $firstGiving = $campaign->getFirstGiving();
         <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
         <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
             <label> Donation Destination 
-                <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select the donation destination."></i>
+                <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i>
             </label>
             <div class="form-group field-campaign-donationDestination">
                 <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'select-block']) ?>

@@ -3,25 +3,34 @@
 input.form-control,
 textarea.form-control,
 select.form-control {
-	color: @gray40;
+	color: @gray10;
 	font-size: @basefontsize;
 	outline: 0;
-	padding: 0 16px;
+	padding: 0 @halfgutter;
 	min-height: 45px;
 	border: 2px solid @gray75;
 	box-shadow: none;
+	background: @gray75;
+	&:focus {
+		border: 2px solid @gray60;
+	}
 }
 select.form-control {
 	height: 42px;
 	line-height: 42px;
 }
 textarea.form-control {
-	padding: 14px 16px;
+	padding: @halfgutter;
 }
 legend,
 label {
-	color: @gray30;
+	color: @gray60;
 	font-weight: 400;
+}
+.glyphicon-question-sign {
+	color: @gray30;
+	font-size: 14px;
+	margin-left: @iconspace;
 }
 
 /* Search Field Styling */
@@ -32,6 +41,18 @@ input[type='search'] {
 	background: #FFF;
 	border: 0;
 }
+
+/* Color Picker */
+input[type='color'] {
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	border: 0;
+	.round-radius;
+	overflow: hidden;
+	cursor: pointer;
+}
+
 
 /* Checkboxes */
 .checkbox {
@@ -93,19 +114,44 @@ input[type='search'] {
 
 /* Selects (Select2) */
 .select2-container {
+	position: relative;
 	display: block;
+	&:after {
+		position: absolute;
+		.arrow-down;
+		top: 50%;
+		right: @halfgutter;
+		margin-top: -4px;
+		border-width: 6px 4px 0 4px;
+		border-color: @gray60 transparent transparent transparent;
+	}
 
 	.select2-choices .select2-search-field input,
 	.select2-choice,
 	.select2-choices {
-		color: @gray40;
+		color: @gray10;
 		font-family: @mainfont;
 		font-size: @basefontsize;
-		border: solid 2px @gray75 !important;
+		background: @gray75;
+		border: 0;
 		box-shadow: none !important;
 		&:focus {
 			outline: 0 !important;
 		}
+	}
+	.select2-choice {
+		height: 45px;
+	}
+	.select2-choice > span:first-child,
+	.select2-choices .select2-search-field input {
+		padding: 11px @halfgutter;
+	}
+	.select2-choice .select2-arrow, .select2-choice div {
+		border: 0;
+		width: 20px;
+	}
+	.select2-choice .select2-arrow b, .select2-choice div b {
+		background: none;
 	}
 }
 .select2-drop {
@@ -113,7 +159,9 @@ input[type='search'] {
 
 	&.select2-drop-active,
 	&.select2-drop-above.select2-drop-active {
-		border: solid 2px @gray70;
+		border: 0;
+		border-top: solid 1px @white;
+		background: @gray75;
 		box-shadow: none;
 	}
 }
@@ -125,11 +173,18 @@ input[type='search'] {
 	margin: 4px 0;
 	
 	.select2-highlighted {
-		background: @gray75;
+		background: @gray72;
 	}
 	.select2-result-label {
-		padding: 3px 12px 4px;
+		padding: 10px @halfgutter;
 	}
+}
+
+/* Switch Buttons */
+.bootstrap-switch {
+	display: block;
+	max-width: 120px;
+	border: solid 2px @gray75 !important;
 }
 
 /* Bootstrap Overrides */
@@ -139,4 +194,7 @@ input[type='search'] {
 .form-group .form-group,
 .help-block {
 	margin: 0;
+}
+.form-control {
+	height: auto;
 }
