@@ -19,7 +19,7 @@ $twitchPartner = $user->userFields->twitchPartner;
 <div class="dashboard-wrap pane">
     <section id="content" class="dashboard">
         <span class="corner"></span>
-        <div class="dashboard-data-wrap">
+        <div class="content-wrap">
             <? if ($systemNotification): ?> <!-- BEGIN notification -->
                 <div class="alert alert-info alert-dismissible systemNotification module">
                     <i class="icon-console2"></i>

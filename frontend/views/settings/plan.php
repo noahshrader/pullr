@@ -4,44 +4,39 @@ use common\models\Plan;
 
 ?>
 <div class="plan-show-<?= $user->plan ?> plan">
-    <div class='plan-pro-advertisement'>
-        <div style='min-height: 500px'>
-        Some advertising text here - you can use pro-plan with more features
+    <div class="plan-pro-advertisement">
+        <div>
+            <p>ome advertising text here - you can use pro-plan with more features</p>
         </div>
-        <div class='text-center'>
-            <button class='btn btn-primary' onclick="$('.plan-show-Basic').toggleClass('plan-show-Basic plan-show-payment')">Go pro</button>
-        </div>
+        <button class='btn btn-primary' onclick="$('.plan-show-Basic').toggleClass('plan-show-Basic plan-show-payment')">Go pro</button>
     </div>
 
-    <div class='payment'>
+    <!-- Pullr Basic -->
+    <div class="payment">
         <? $form = ActiveForm::begin(['options' => ['method' => 'POST']]) ?>
-            <h2>Go Pro</h2>
-            <div style='min-height: 50px; margin-top: 100px;'>
-                <select name="subscription" class='form-control select-block'>
-                    <option label="Yearly recurring $(<?= \Yii::$app->params['yearSubscription'] ?>/yr)"><?= \Yii::$app->params['yearSubscription'] ?></option>
-                    <option label="Monthly recurring $(<?= \Yii::$app->params['monthSubscription']?>/mo)"><?= \Yii::$app->params['monthSubscription'] ?></option>
-                </select>
-            </div>
-            <button class='btn btn-primary'>Complete purchase</button>
+        <h2>Go Pro</h2>
+        <div>
+            <select name="subscription" class="form-control select-block">
+                <option label="Yearly recurring $(<?= \Yii::$app->params['yearSubscription'] ?>/yr)"><?= \Yii::$app->params['yearSubscription'] ?></option>
+                <option label="Monthly recurring $(<?= \Yii::$app->params['monthSubscription']?>/mo)"><?= \Yii::$app->params['monthSubscription'] ?></option>
+            </select>
+        </div>
+        <button class="btn btn-primary">Complete purchase</button>
         <? ActiveForm::end() ?>
     </div>
 
-    <div class='plan-pro text-center'>
-        <h2><i class='glyphicon glyphicon-ok'></i></h2>
-        <h4>You are currently on the Pullr Pro account.</h4>
-        
+    <!-- Pullr Pro -->
+    <div class="account-confirmation">
+        <i class="icon-controller"></i>
+        <h5>You are currently on Pullr Pro</h5>
         <?
             $plan = Plan::findOne($user->id);
         ?>
-        <br>
-        <br>
-        <div><span>Payed till:</span> <?= date('M j Y', $plan->expire) ?></div>
-        
+    </div>
+    <div class="account-action">
+        <span>Payed until</span> <?= date('M j Y', $plan->expire) ?>
         <? if ($user->id < 10): ?>
-        <div style="margin-top: 150px">
-            <div class="alert alert-info">That is debug option available for users with id < 10 </div>
-            <a class="btn btn-danger" href="app/settings/deactivatepro"><i class="icon icon-minus2"></i> Deactive pro-account</a>
-        </div>
+            <a class="deactivate" href="app/settings/deactivatepro">Deactive account</a>
         <? endif;?>
     </div>
 </div>
