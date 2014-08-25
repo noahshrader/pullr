@@ -44,8 +44,11 @@ function donatePageInit() {
                 setCount($(this)[0], elem);
             }
     });
-    var elem = $(".counter");
-    $('textarea#donation-comments').limiter(600, elem);
+
+    if($('textarea#donation-comments').length){
+        var elem = $(".counter");
+        $('textarea#donation-comments').limiter(600, elem);
+    }
     
     $('#otheramount').click(function(){
         $('#other').css('display','block');
