@@ -34,6 +34,9 @@ function donatePageInit() {
                     setCount(this, elem);
                 });
                 function setCount(src, elem) {
+                    if (!src){
+                        return;
+                    }
                     var chars = src.value.length;
                     if (chars > limit) {
                         src.value = src.value.substr(0, limit);
