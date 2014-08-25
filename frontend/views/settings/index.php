@@ -16,6 +16,7 @@ $this->title = 'Settings';
 	<div class="content-wrap">
 		<span class="corner"></span>
 		<div class="module">
+			<h3>General</h3>
 			<?php $form = ActiveForm::begin(['options' => [
 					'enctype' => 'multipart/form-data', 'method' => 'POST']])
 			?>
@@ -29,17 +30,13 @@ $this->title = 'Settings';
 		</div>
 		<div class="module">
 			<fieldset>
-					<legend>Notifications</legend>
-					<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
-					<? $attributes = $notification->getNotificationsAttributes(); ?>
-					<div>
-						<h4>Email me </h4>
-						<div>
-								<? foreach ($attributes as $attribute): ?>
-								<?= $form->field($notification, $attribute)->checkbox(); ?>
-								<? endforeach; ?>
-						</div>
-					</div>
+				<h3>Notifications</h3>
+				<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
+				<? $attributes = $notification->getNotificationsAttributes(); ?>
+				<h5>Email me </h5>
+				<? foreach ($attributes as $attribute): ?>
+				<?= $form->field($notification, $attribute)->checkbox(); ?>
+				<? endforeach; ?>
 			</fieldset>
 			<? if (!$user->openIDToUser): ?>
 			<fieldset>
@@ -56,8 +53,8 @@ $this->title = 'Settings';
 			</fieldset>
 			<? endif ?>
 		</div>
-		<div class="form-group">
-				<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
+		<div class="form-group text-center">
+			<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
 		</div>
 		<?php ActiveForm::end(); ?>
 		<?=

@@ -87,7 +87,7 @@ $user = \Yii::$app->user->identity;
     <section id="content" class="campaign-edit-wrap pane adv">
         <ul class="content-nav cf">
             <li class="active">
-                <a href="<?= Url::to()?>#general" data-toggle="tab">Settings</a>
+                <a href="<?= Url::to()?>#general" data-toggle="tab">General</a>
             </li>
             <li>
                 <a href="<?= Url::to()?>#layout" data-toggle="tab">Layout</a>

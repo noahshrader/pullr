@@ -10,7 +10,6 @@ select.form-control {
 	min-height: 45px;
 	border: 2px solid @gray75;
 	box-shadow: none;
-	background: @gray75;
 	&:focus {
 		border: 2px solid @gray60;
 	}
@@ -18,6 +17,7 @@ select.form-control {
 select.form-control {
 	height: 42px;
 	line-height: 42px;
+	background: @gray72;
 }
 textarea.form-control {
 	padding: @halfgutter;
@@ -28,17 +28,19 @@ label {
 	font-weight: 400;
 }
 .glyphicon-question-sign {
-	color: @gray30;
+	color: @gray60;
 	font-size: 14px;
 	margin-left: @iconspace;
 }
 
 /* Search Field Styling */
-input[type='search'] {
+input[type='search'],
+.select2-search input {
 	font-weight: 400;
 	min-height: 36px;
+	padding: 0 @halfgutter 0 40px;
 	.round-radius;
-	background: #FFF;
+	background: @white;
 	border: 0;
 }
 
@@ -55,19 +57,20 @@ input[type='color'] {
 
 
 /* Checkboxes */
+.radio,
 .checkbox {
+	padding: 0;
+}
+.checkbox {
+	margin: 0;
+
 	label {
 		float: left;
 		display: block;
-		position: static;
-		font-size: 1em;
 		font-weight: 400;
-		line-height: 1.4em;
-		text-indent: -36px;
 		text-align: left;
+		margin: 0;
 		width: auto;
-		padding-top: 2px;
-		padding-left: 2.3em;
 		white-space: normal;
 		cursor: pointer;
 		&:before {
@@ -75,16 +78,16 @@ input[type='color'] {
 			position: relative;
 			top: 0;
 			left: 0;
+			float: left;
 			color: @white;
 			font-family: 'Glyphicons Halflings';
-			font-size: 14px;
+			font-size: 10px;
 			font-style: normal;
 			font-weight: normal;
 			font-variant: normal;
 			text-transform: none;
-			line-height: 18px;
+			line-height: 14px;
 			text-align: center;
-			text-indent: 0;
 			width: 18px;
 			height: 18px;
 			.border-radius;
@@ -92,7 +95,7 @@ input[type='color'] {
 			margin-right: 10px;
 			speak: none;
 			-webkit-font-smoothing: antialiased;
-			border: 2px solid @gray60;
+			border: 2px solid @gray75;
 		}
 		&:hover:before {
 			color: @gray75;
@@ -101,8 +104,8 @@ input[type='color'] {
 			border: 2px solid @gray30;
 		}
 		&.on:before {
-			color: @gray30;
-			border: 2px solid @gray30;
+			color: @gray60;
+			border: 2px solid @gray60;
 		}
 	}
 	input {
@@ -154,6 +157,11 @@ input[type='color'] {
 		background: none;
 	}
 }
+	.select2-dropdown-open.select2-drop-above .select2-choice,
+	.select2-dropdown-open.select2-drop-above .select2-choices {
+		border: 0;
+		background: @gray75;
+	}
 .select2-drop {
 	box-shadow: none;
 
@@ -165,8 +173,25 @@ input[type='color'] {
 		box-shadow: none;
 	}
 }
-.select2-search input {
-	margin-top: 4px;
+.select2-search {
+	position: relative;
+	margin: @halfgutter 0 0;
+	padding: 0 @halfgutter;
+	&:before {
+		position: absolute;
+		top: 50%;
+		content: '\e664';
+		color: @gray70;
+		font-family: 'icomoon';
+		font-size: 14px;
+		font-weight: 600;
+		text-align: center;
+		margin-top: -7px;
+		width: 40px;
+	}
+	input {
+		margin-top: 4px;
+	}
 }
 .select2-results {
 	padding: 0;
@@ -176,7 +201,20 @@ input[type='color'] {
 		background: @gray72;
 	}
 	.select2-result-label {
-		padding: 10px @halfgutter;
+		padding: 5px @halfgutter 10px;
+
+		span {
+			color: @gray10 !important;
+		}
+	}
+	.select2-no-results,
+	.select2-searching,
+	.select2-selection-limit {
+		color: @gray50;
+		font-size: @smalltext;
+		text-align: center;
+		padding: 6px;
+		background: transparent;
 	}
 }
 
@@ -189,10 +227,12 @@ input[type='color'] {
 
 /* Bootstrap Overrides */
 .form-group {
-	margin-bottom: 20px;
+	padding-bottom: 10px;
+	margin: 0;
 }
 .form-group .form-group,
 .help-block {
+	padding: 0;
 	margin: 0;
 }
 .form-control {

@@ -36,7 +36,7 @@ use common\models\Plan;
         ?>
     </div>
     <div class="account-action">
-        <span>Payed until</span> <?= date('M j Y', $plan->expire) ?>
+        <span>Paid until</span> <?= date('M j Y', $plan->expire) ?>
         <? if ($user->id < 10): ?>
             <a class="deactivate" href="app/settings/deactivatepro">Deactive account</a>
         <? endif;?>

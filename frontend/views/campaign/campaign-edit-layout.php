@@ -17,14 +17,12 @@ $user = \Yii::$app->user->identity;
 
     <!-- if Single Channel -->
     <div id="campaign-channelname" class="form-group highlight-wrap">
-        <label>Channel Name</label>
-        <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => true]); ?>
+        <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->label("Channel Name"); ?>
     </div>
 
     <!-- if Team Channel -->
     <div id="campaign-channelteam" class="form-group highlight-wrap">
-        <label>Team Channel Name</label>
-        <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => true]); ?>
+        <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => false])->label("Team Channel Name"); ?>
     </div>
 
     <!-- if Multichannel -->
