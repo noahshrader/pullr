@@ -229,8 +229,10 @@ table.dataTable thead td {
 	h5.module-title {
 		color: @white;
 		font-weight: 600;
-		padding: .8em @gutter;
+		line-height: @sidenavheight;
+		padding: 0 @gutter;
 		margin: 0;
+		height: @sidenavheight;
 		background: @modulehead;
 	}
 }
@@ -335,7 +337,7 @@ ul.content-nav {
 			display: block;
 			color: @white;
 			font-weight: 600;
-			line-height: 50px;
+			line-height: @sidenavheight;
 			padding: 0 @gutter;
 			width: 100%;
 			background: @gray72;
@@ -351,8 +353,8 @@ ul.content-nav {
 /* Sidebar Navigation */
 /* ------------------------------------------------- */
 ul.panel-nav {
-	line-height: 50px;
-	height: 50px;
+	line-height: @sidenavheight;
+	height: @sidenavheight;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -379,7 +381,7 @@ ul.panel-nav {
 			display: block;
 			color: @gray40;
 			font-weight: 400;
-			line-height: 50px;
+			line-height: @sidenavheight;
 			width: 100%;
 			&:hover {
 				background: @gray17;

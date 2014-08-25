@@ -20,7 +20,7 @@
 	background: @gray75;
 
 	&.adv {
-		top: @top-menu-height + 50px;
+		top: @top-menu-height + @sidenavheight;
 		right: 0;
 
 		&.red {
@@ -63,7 +63,7 @@
 /*  Side Listings */
 .list-wrap {
 	position: fixed;
-	top: @top-menu-height + 50px;
+	top: @top-menu-height + @sidenavheight;
 	width: @sidepanelwidth;
 	background-color: @gray20;
 	overflow: auto;
@@ -102,7 +102,7 @@
 /* List Search */
 .list-search {
 	position: fixed;
-	top: @top-menu-height + 50px;
+	top: @top-menu-height + @sidenavheight;
 	height: @listsearch;
 	width: @sidepanelwidth;
 	z-index: 1000;

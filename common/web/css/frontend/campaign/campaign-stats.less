@@ -65,7 +65,7 @@ body.trash .campaigns-list {
 	padding-top: 119px;
 
 	.list-search {
-		top: @top-menu-height + 50px;
+		top: @top-menu-height + @sidenavheight;
 	}
 }
 
@@ -81,7 +81,7 @@ body.trash .campaigns-list {
 	margin: 0px;
 	padding: 0px;
 	width: 100%;
-	height: 50px;
+	height: @sidenavheight;
 	background: @gray72;
 	z-index: 1000;
 
@@ -94,7 +94,7 @@ body.trash .campaigns-list {
 			position: relative;
 			color: @gray40;
 			font-size: 20px;
-			line-height: 50px;
+			line-height: @sidenavheight;
 			padding: 0 @gutter;
 			width: auto;
 			transition: none;
@@ -189,7 +189,7 @@ a.view-campaign {
 	padding-right: 24px;
 	padding-left: 16px;
 	text-align: center;
-	line-height: 50px;
+	line-height: @sidenavheight;
 	width: auto;
 	background: @accent;
 	&:hover {
@@ -202,12 +202,12 @@ a.view-campaign {
 		content: "";
 		display: block;
 		position: absolute;
-		border-bottom: 50px solid @accent;
+		border-bottom: @sidenavheight solid @accent;
 		border-left: 30px solid transparent;
 		left: -30px;	
 	}
 	&:hover:before {
-		border-bottom: 50px solid @accenthover;
+		border-bottom: @sidenavheight solid @accenthover;
 	}
 }
 }
