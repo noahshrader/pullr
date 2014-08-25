@@ -65,7 +65,7 @@ class Campaign extends ActiveRecord {
                 'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal', 'customCharityDescription', 
                 'channelName', 'channelTeam', 'primaryColor', 'secondaryColor', 'themeId', 'twitterEnable',
                 'twitterName', 'facebookEnable', 'facebookUrl', 'youtubeEnable', 'youtubeUrl',
-                'enableDonorComments', 'enableThankYouPage', 'thankYouPageText', 'teamEnable']
+                'enableDonorComments', 'enableThankYouPage', 'thankYouPageText', 'teamEnable', 'formVisibility']
         ];
     }
 

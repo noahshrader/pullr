@@ -9,12 +9,13 @@
         $amountRaised+=$child->amountRaised;
     }
 ?>
+<div class="module">
     <table class="campaign-view-childs">
         <thead>
         <tr>
-            <th><?= sizeof($childCampaigns) ?> Active <span>$<?= number_format($amountRaised) ?></span></th>
+            <th><?= sizeof($childCampaigns) ?> Connected Campaigns</th>
             <th></th>
-            <th></th>
+            <th><span class="child-totals">$<?= number_format($amountRaised) ?></span></th>
         </tr>
         </thead>
         <tbody>
@@ -31,4 +32,5 @@
         <? endforeach; ?>
         </tbody>
     </table>
+</div>
 <? endif; ?>

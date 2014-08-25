@@ -37,9 +37,27 @@
                 this.audio = new Audio(path);
                 this.audio.play();
             };
+            this.getImageUrl = function(image, imageType){
+                switch (imageType){
+                    case 'Library':
+                        path = Service.PATH_TO_LIBRARY_IMAGES+image;
+                        break;
+                    case 'Custom':
+                        path = addUserToPath(Service.PATH_TO_CUSTOM_IMAGES)+image;
+                        break;
+                    default:
+                        throw new Exception('Wrong type for getImageUrl method');
+                }
+                return path;
+            }
             this.removeSound = function(sound){
                 $http.post('app/streamboard/alert_remove_sound_ajax', sound).success(function(data){
                     Service.customSounds = data;
+                });
+            }
+            this.removeImage = function(image){
+                $http.post('app/streamboard/alert_remove_image_ajax', image).success(function(data){
+                    Service.customImages = data;
                 });
             }
         });

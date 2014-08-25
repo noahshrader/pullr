@@ -34,6 +34,9 @@ function donatePageInit() {
                     setCount(this, elem);
                 });
                 function setCount(src, elem) {
+                    if (!src){
+                        return;
+                    }
                     var chars = src.value.length;
                     if (chars > limit) {
                         src.value = src.value.substr(0, limit);
@@ -44,8 +47,11 @@ function donatePageInit() {
                 setCount($(this)[0], elem);
             }
     });
-    var elem = $(".counter");
-    $('textarea#donation-comments').limiter(600, elem);
+
+    if($('textarea#donation-comments').length){
+        var elem = $(".counter");
+        $('textarea#donation-comments').limiter(600, elem);
+    }
     
     $('#otheramount').click(function(){
         $('#other').css('display','block');

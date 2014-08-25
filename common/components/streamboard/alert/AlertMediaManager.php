@@ -70,9 +70,10 @@ class AlertMediaManager extends Model
     public static function filterName($baseName)
     {
         $baseName = strip_tags($baseName);
-        $baseName = trim($baseName);
         $baseName = preg_replace('~[\\\\/:*?"<>|]~', '', $baseName);
+        $baseName = trim($baseName);
         $baseName = substr($baseName, 0, self::MAX_FILE_NAME_LENGTH);
+        $baseName = trim($baseName);
         return $baseName;
     }
 
@@ -166,17 +167,17 @@ class AlertMediaManager extends Model
 
 
     public static function removeSound($fileName){
-        return self::removeFile(self::PATH_TO_CUSTOM_SOUNDS, $fileName);
+        return self::removeFile(self::PATH_TO_CUSTOM_SOUNDS, $fileName, self::$SOUNDS_EXTENSIONS);
     }
 
     public static function removeImage($fileName){
-        return self::removeFile(self::PATH_TO_CUSTOM_IMAGES, $fileName);
+        return self::removeFile(self::PATH_TO_CUSTOM_IMAGES, $fileName, self::$IMAGES_EXTENSIONS);
     }
 
-    public static function removeFile($library, $fileName){
+    public static function removeFile($library, $fileName, $extensions){
         $library = self::addUserToPath($library);
         $pathInfo = pathinfo($fileName);
-        if (!in_array($pathInfo['extension'], self::$SOUNDS_EXTENSIONS)){
+        if (!in_array($pathInfo['extension'], $extensions)){
             throw new ErrorException('Wrong extension');
         }
 

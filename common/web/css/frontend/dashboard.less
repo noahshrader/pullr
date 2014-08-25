@@ -5,6 +5,7 @@
 	top: @top-menu-height;
 	right: 0;
 }
+
 #content.dashboard {
 	position: static;
 	padding-right: @sidepanelwidth + @gutter;
@@ -17,92 +18,87 @@
 			color: @white;
 		}
 		h1 {
-			font-size: 4.8em;
-			line-height: 1.2em;
-		}
-		h5 {
+			font-size: 5.2em;
+			line-height: 1.3em;
 		}
 
-		.stats-box {
-			border: 0;
+		&.main-totals {
+			h5 {
+				color: @dkraccent;
+			}
+			&.module {
+				border-top-left-radius: 0;
+				-moz-border-radius-topleft: 0;
+			}
+		}
 
-			/* Main Total Section */
-			&.raised-total {
-				position: relative;
-				float: left;
-				padding: 120px 0 120px 80px;
+		/* Main Total Section */
+		.raised-total.stats-box {
+			position: relative;
+			float: left;
+			padding: @gutter+@halfgutter 0;
+			background: @accent;
 
-				h1 {
-					color: @accent;
-				}
+			h1 {
+				color: @white;
+				margin: 0;
+			}
+		}
 
-				h5 {
-					color: @gray60;
-				}
+		/* Secondary Totals */
+		.raised-group-stats {
+			position: relative;
+			float: left;
+			padding: 0 15%;
+			width: 100%;
+			background: @dkaccent;
+			&:before {
+				.arrow-up;
+				left: 50%;
+				top: -10px;
+				margin-left: -10px;
+				border-color: transparent transparent @dkaccent transparent;
+			}
 
-				i {
-					color: @gray72;
-					font-size: 3.2em;
-				}
+			.stats-box {
+				padding: 1.2em 0;
+				border: 0;
 			}
 		}
 
 		/* Other Totals Section */
-		.other-raised-totals {
-			position: relative;
-			float: left;
-			width: 30%;
+		&.other-raised-totals {
 
-			div {
-				padding: 20px 0;
-				border-bottom: solid 2px @white;
-
-				&:last-child {
-					border-bottom: none;
-				}
+			.stats-box {
+				width: 33.33%;
 			}
 			h2 {
-				color: @gray40;
-			}
-
-			h5 {
-				color: @gray60;
-			}
-		}
-
-		.group-stats-wrap {
-			float: right;
-			width: 90%;
-		}
-
-		/* Amount Raised Bars */
-		&.raised-group-stats {
-
-			.group-header {
-				background: @accent;
-			}
-
-			h2 {
-				color: @accent;
-			}
-
-			h5 {
+				color: @gray10;
 			}
 		}
 
 		/* Twitch Bar */
 		&.twitch-stats {
+			padding-left: 80px;
 
 			.group-header {
+				position: absolute;
+				left: 0;
+				font-size: 24px;
+				height: 100%;
+				width: 80px;
+				color: @white;
 				background: @twitchpurple;
+				&:before {
+					position: absolute;
+					top: 50%;
+					left: 0;
+					margin-top: -12px;
+					width: 80px;
+				}
 			}
-
 			h2 {
 				color: @twitchpurple;
-			}
-
-			h5 {
-				color: @twitchaccent;
 			}
 		}
 	}
@@ -110,31 +106,13 @@
 
 /* Dashboard Stats */
 .dashboard-data-wrap {
-
-	.nav-tabs {
-		position: fixed;
-		top: @top-menu-height;
-		left: ;
-		width: 100%;
-		height: 50px;
-		background: @gray75;
-		z-index: 1001;
+	ul.content-nav {
+		margin-top: @gutter;
 
 		li {
-			float: left;
-			display: inline-block;
 			&.active a {
-				color: @maingray;
-				background: @gray75 !important;
-			}
-
-			a {
-				color: @gray30;
-				line-height: 50px;
-				padding: 0 20px;
-				&:hover {
-					background: @gray72;
-				}
+				color: @white;
+				background: @accent;
 			}
 		}
 	}
@@ -147,7 +125,7 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	padding: 80px @gutter 0 0;
+	padding: @gutter @gutter 0 0;
 	z-index: 1000;
 	background: @gray75;
 
@@ -181,16 +159,23 @@
 					a {
 						float: left;
 						display: inline-block;
+						color: @gray10;
 						font-size: @smalltext;
 						font-weight: 600;
 						text-align: center;
 						padding: .6em 0;
 						width: 50%;
+						&.accept:hover {
+							color: @accent;
+						}
+						&.decline:hover {
+							color: @errorred;
+						}
 						&:first-child {
 							border-right: solid 1px @gray75;
 						}
 						i {
-							margin-right: 2px;
+							margin-right: @iconspace;
 						}
 					}
 				}
@@ -227,10 +212,22 @@
 .alert-info {
 	color: @white;
 	font-weight: 400;
-	padding: @halfgutter 45px @halfgutter @gutter;
+	padding: @halfgutter 45px @halfgutter 80px;
+	margin-top: @gutter;
 	background: @gray60;
 	border: 0;
 	box-shadow: none;
+
+	i {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		color: @gray72;
+		font-size: 24px;
+		text-align: center;
+		margin-top: -12px;
+		width: 80px;
+	}
 
 	button.close {
 		position: absolute;

@@ -141,9 +141,10 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
         <?= $this->render('campaign-view-childs', [
             'campaign' => $campaign
         ]);?>
-        
-        <?= $this->render('donations-table', [
-            'donations' => $donations
-        ]); ?>     
+        <section class="module">
+            <?= $this->render('donations-table', [
+                'donations' => $donations
+            ]); ?>
+        </section>  
     </div>
 </section>

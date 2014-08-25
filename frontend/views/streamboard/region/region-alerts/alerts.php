@@ -27,23 +27,22 @@ use yii\web\View;
     <span>{{widget.animationDelaySeconds}} sec</span>
 </div>
 <div class="right-side-footer">
-    <ul class="bottom-panel-nav paneltoggle">
-        <li ng-if="widget.includeFollowers"><a data-panel="followers">Followers</a></li>
+    <ul class="panel-nav paneltoggle">
+        <li ng-if="widget.includeFollowers" class="active"><a data-panel="followers">Followers</a></li>
         <li ng-if="widget.includeSubscribers"><a data-panel="subscribers">Subscribers</a></li>
         <li ng-if="widget.includeDonations"><a data-panel="donations">Donations</a></li>
     </ul>
-
-    <div class="followers_panel slidepanel" isolated-scope>
+    <div class="followers_panel slidepanel pane" isolated-scope>
         <div ng-init="preference = widget.followersPreference">
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
-    <div class="subscribers_panel slidepanel" isolated-scope>
+    <div class="subscribers_panel slidepanel pane" isolated-scope>
         <div ng-init="preference = widget.subscribersPreference">
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
-    <div class="donations_panel slidepanel" isolated-scope>
+    <div class="donations_panel slidepanel pane" isolated-scope>
         <div ng-init="preference = widget.donationsPreference">
             <?= $this->render('alerts-preference') ?>
         </div>

@@ -22,6 +22,7 @@ $twitchPartner = $user->userFields->twitchPartner;
         <div class="dashboard-data-wrap">
             <? if ($systemNotification): ?> <!-- BEGIN notification -->
                 <div class="alert alert-info alert-dismissible systemNotification module">
+                    <i class="icon-console2"></i>
                     <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
                         <span>&times;</span>
                     </button>
@@ -29,7 +30,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
             <? endif; ?> <!-- END notification -->
             
-            <ul class="nav nav-tabs">
+            <ul class="content-nav cf">
                 <li class="active">
                     <a href="#overall" data-toggle="tab">Overall</a>
                 </li>
@@ -41,29 +42,16 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </li>
             </ul>
             <div class="tab-content">
+                <!-- Overall -->
                 <div class="tab-pane in active" id="overall">
-                    <div class="row stats-overview module">
-                        <div class="col-xs-12 stats-box raised-total">
+                    <section class="stats-overview main-totals module cf">
+                        <!-- main total -->
+                        <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['overall']['totalRaised']) ?></h1>
                             <h5>Total Amount Raised</h5>
                         </div>
-                    </div>
-                    <div class="other-raised-totals module cf">
-                        <div class="stats-box col-xs-3">
-                            <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
-                            <h5>Total Campaigns</h5>
-                        </div>
-                        <div class="stats-box col-xs-3">
-                            <h2><?= $dashboard['overall']['totalDonations'] ?></h2>
-                            <h5>Total Donations</h5>
-                        </div>
-                        <div class="stats-box col-xs-3">
-                            <h2><?= $dashboard['overall']['totalDonors'] ?></h2>
-                            <h5>Total Donors</h5>
-                        </div>
-                    </div>
-                    <div class="row stats-overview raised-group-stats module">
-                        <div class="group-stats-wrap">
+                        <!-- secondary totals -->
+                        <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['overall']['charityRaised']) ?></h2>
                                 <h5>Raised for Charity</h5>
@@ -73,50 +61,50 @@ $twitchPartner = $user->userFields->twitchPartner;
                                 <h5>Raised Personally</h5>
                             </div>
                         </div>
-                    </div>
-                    <!-- Twitch Data -->
-                    <? if ($twitchUser): ?>
-                        <div class="row stats-overview twitch-stats module">
-                            <div class="group-stats-wrap">
-                                <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                                    <h2><?= $twitchUser->followersNumber ?></h2>
-                                    <h5>Followers</h5>
-                                </div>
-                                <? if ($twitchPartner): ?>
-                                <div class="col-xs-6 text-center stats-box">
-                                    <h2><?= $twitchUser->subscribersNumber ?></h2>
-                                    <h5>Subscribers</h5>
-                                </div>
-                                <? endif ?>
-                            </div>
+                    </section>
+                    <section class="stats-overview other-raised-totals module cf">
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
+                            <h5>Total Campaigns</h5>
                         </div>
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['overall']['totalDonations'] ?></h2>
+                            <h5>Total Donations</h5>
+                        </div>
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['overall']['totalDonors'] ?></h2>
+                            <h5>Total Donors</h5>
+                        </div>
+                    </section>
+                    <!-- Twitch Stats -->
+                    <? if ($twitchUser): ?>
+                    <section class="row stats-overview twitch-stats module">
+                        <i class="icon-twitch2 group-header"></i>
+                        <div class="group-stats-wrap">
+                            <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
+                                <h2><?= $twitchUser->followersNumber ?></h2>
+                                <h5>Followers</h5>
+                            </div>
+                            <? if ($twitchPartner): ?>
+                            <div class="col-xs-6 text-center stats-box">
+                                <h2><?= $twitchUser->subscribersNumber ?></h2>
+                                <h5>Subscribers</h5>
+                            </div>
+                            <? endif ?>
+                        </div>
+                    </section>
                     <? endif ?>
                 </div>
+                <!-- Today -->
                 <div class="tab-pane in" id="today">
-                    <div class="row stats-overview">
-                        <div class="col-xs-12 stats-box raised-total module">
-                            <i class="icon-coin"></i>
+                    <section class="stats-overview main-totals module cf">
+                        <!-- main total -->
+                        <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['today']['totalRaised']) ?></h1>
                             <h5>Total Amount Raised</h5>
                         </div>
-                        <div class="other-raised-totals module">
-                            <div>
-                                <h2><?= $dashboard['today']['totalCampaigns'] ?></h2>
-                                <h5>Total Campaigns</h5>
-                            </div>
-                            <div>
-                                <h2><?= $dashboard['today']['totalDonations'] ?></h2>
-                                <h5>Total Donations</h5>
-                            </div>
-                            <div>
-                                <h2><?= $dashboard['today']['totalDonors'] ?></h2>
-                                <h5>Total Donors</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row stats-overview raised-group-stats module">
-                        <div class="group-stats-wrap">
+                        <!-- secondary totals -->
+                        <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['today']['charityRaised']) ?></h2>
                                 <h5>Raised for Charity</h5>
@@ -126,50 +114,49 @@ $twitchPartner = $user->userFields->twitchPartner;
                                 <h5>Raised Personally</h5>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Twitch Data -->
-                    <? if ($twitchUser): ?>
-                        <div class="row stats-overview twitch-stats module">
-                            <div class="group-stats-wrap">
-                                <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                                    <h2><?= $twitchUser->followersNumber ?></h2>
-                                    <h5>Followers</h5>
-                                </div>
-                                <? if ($twitchPartner): ?>
-                                    <div class="col-xs-6 text-center stats-box">
-                                        <h2><?= $twitchUser->subscribersNumber ?></h2>
-                                        <h5>Subscribers</h5>
-                                    </div>
-                                <? endif ?>
-                            </div>
+                    </section>
+                    <section class="stats-overview other-raised-totals module cf">
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['today']['totalCampaigns'] ?></h2>
+                            <h5>Total Campaigns</h5>
                         </div>
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['today']['totalDonations'] ?></h2>
+                            <h5>Total Donations</h5>
+                        </div>
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['today']['totalDonors'] ?></h2>
+                            <h5>Total Donors</h5>
+                        </div>
+                    </section>
+                    <!-- Twitch Stats -->
+                    <? if ($twitchUser): ?>
+                    <section class="row stats-overview twitch-stats module">
+                        <i class="icon-twitch2 group-header"></i>
+                        <div class="group-stats-wrap">
+                            <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
+                                <h2><?= $twitchUser->followersNumber ?></h2>
+                                <h5>Followers</h5>
+                            </div>
+                            <? if ($twitchPartner): ?>
+                            <div class="col-xs-6 text-center stats-box">
+                                <h2><?= $twitchUser->subscribersNumber ?></h2>
+                                <h5>Subscribers</h5>
+                            </div>
+                            <? endif ?>
+                        </div>
+                    </section>
                     <? endif ?>
                 </div>
                 <div class="tab-pane in" id="month">
-                    <div class="row stats-overview">
-                        <div class="col-xs-12 stats-box raised-total module">
-                            <i class="icon-coin"></i>
+                    <section class="stats-overview main-totals module cf">
+                        <!-- main total -->
+                        <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['month']['totalRaised']) ?></h1>
                             <h5>Total Amount Raised</h5>
                         </div>
-                        <div class="other-raised-totals module">
-                            <div>
-                                <h2><?= $dashboard['month']['totalCampaigns'] ?></h2>
-                                <h5>Total Campaigns</h5>
-                            </div>
-                            <div>
-                                <h2><?= $dashboard['month']['totalDonations'] ?></h2>
-                                <h5>Total Donations</h5>
-                            </div>
-                            <div>
-                                <h2><?= $dashboard['month']['totalDonors'] ?></h2>
-                                <h5>Total Donors</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row stats-overview raised-group-stats module">
-                        <div class="group-stats-wrap">
+                        <!-- secondary totals -->
+                        <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['month']['charityRaised']) ?></h2>
                                 <h5>Raised for Charity</h5>
@@ -179,24 +166,38 @@ $twitchPartner = $user->userFields->twitchPartner;
                                 <h5>Raised Personally</h5>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Twitch Data -->
-                    <? if ($twitchUser): ?>
-                        <div class="row stats-overview twitch-stats module">
-                            <div class="group-stats-wrap">
-                                <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                                    <h2><?= $twitchUser->followersNumber ?></h2>
-                                    <h5>Followers</h5>
-                                </div>
-                                <? if ($twitchPartner): ?>
-                                    <div class="col-xs-6 text-center stats-box">
-                                        <h2><?= $twitchUser->subscribersNumber ?></h2>
-                                        <h5>Subscribers</h5>
-                                    </div>
-                                <? endif ?>
-                            </div>
+                    </section>
+                    <section class="stats-overview other-raised-totals module cf">
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['month']['totalCampaigns'] ?></h2>
+                            <h5>Total Campaigns</h5>
                         </div>
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['month']['totalDonations'] ?></h2>
+                            <h5>Total Donations</h5>
+                        </div>
+                        <div class="stats-box col-xs-6">
+                            <h2><?= $dashboard['month']['totalDonors'] ?></h2>
+                            <h5>Total Donors</h5>
+                        </div>
+                    </section>
+                    <!-- Twitch Stats -->
+                    <? if ($twitchUser): ?>
+                    <section class="row stats-overview twitch-stats module">
+                        <i class="icon-twitch2 group-header"></i>
+                        <div class="group-stats-wrap">
+                            <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
+                                <h2><?= $twitchUser->followersNumber ?></h2>
+                                <h5>Followers</h5>
+                            </div>
+                            <? if ($twitchPartner): ?>
+                            <div class="col-xs-6 text-center stats-box">
+                                <h2><?= $twitchUser->subscribersNumber ?></h2>
+                                <h5>Subscribers</h5>
+                            </div>
+                            <? endif ?>
+                        </div>
+                    </section>
                     <? endif ?>
                 </div>
             </div>

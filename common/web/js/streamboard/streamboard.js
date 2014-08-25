@@ -1,7 +1,7 @@
 $(function () {
     $(".resizable").resizable({
         maxWidth: (screen.width/2),
-        minWidth: 287,
+        minWidth: 250,
         handles: "w",
         animate: false,
         delay: 0,
@@ -9,9 +9,18 @@ $(function () {
             $(".resizable").css('left', 'auto');
         }
     });
-    // streamboard loader
+    
+    // onload functions
     $(window).load(function() {
+        // streamboard loader
         $(".spinner-wrap").fadeOut();
+        // bottom menu appends
+        $('#region_1 .right-side-footer').appendTo('#region_1');
+        $('#region_2 .right-side-footer').appendTo('#region_2');
+        // make source iframe adjust to height of inner content
+        $('iframe').iFrameResize({
+            heightCalculationMethod: 'documentElementScroll'
+        });
     });
 
     // panel toggles
@@ -24,12 +33,7 @@ $(function () {
    		$(this).closest('div').toggleClass('selected');
    	});
 
-    // make source iframe adjsut to height of inner content
-    $('iframe').iFrameResize({
-        heightCalculationMethod: 'documentElementScroll'
-    });
-
-    $( window ).resize(function() {
+    $(window).resize(function() {
         var width = $(window).width();
         var height = $(window).height();
         $.post('app/streamboard/set_streamboard_window', {width: width, height: height});
