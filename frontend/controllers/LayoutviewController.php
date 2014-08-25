@@ -81,7 +81,7 @@ class LayoutviewController extends \yii\web\Controller {
 
                 $formUrl = $firstGivingPayment->donationPayment();
 
-                return $this->render('firstgiving', ['url' => $formUrl]);
+                return $this->render('firstgiving', ['url' => $formUrl, 'campaign' => $campaign, 'back_url' => "/{$userAlias}/{$campaignAlias}/donate"]);
 
             } else {
                 PullrPayment::donationPayment($donation);
