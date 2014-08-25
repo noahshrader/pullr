@@ -1,9 +1,17 @@
 /* Main Settings Area */
 /* ------------------------------------------------- */
+.settings {
+
+	.module {
+		margin: @gutter;
+		padding: @gutter @gutter+@gutter;
+	}
+}
 
 /* Plans Sidebar */
 /* ------------------------------------------------- */
 #sidebar.plans {
+	text-align: center;
 	right: 0;
 
 	.plan {
@@ -20,20 +28,75 @@
 	}
 }
 
-/* Basic users */
-.plan-show-Basic {
-	background-color: @accent;
-	background-image: url(../../../../images/pullrbasic.jpg);
-
-	.plan-pro-advertisement {
-
-	}
+.plan-show-Basic,
+.plan-show-Pro {
 	.payment {
 		display: none;
 	}
 }
 
-/* Payment info */
+/* Basic */
+.plan-show-Basic {
+	background-color: @accent;
+	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(@base), to(@maingray));
+	background-image: -webkit-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -moz-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -o-radial-gradient(50% 50%, @maingray, @base);
+	background-image: -ms-radial-gradient(50% 50%, @maingray, @base);
+	background-image: radial-gradient(50% 50%, @maingray, @base);
+
+	.plan-pro-advertisement {
+
+	}
+}
+
+/* Pro */
+.plan-show-Pro {
+	background-color: #222225;
+	background-image: -webkit-gradient(linear, left bottom, right top, from(@maingray), to(@gray30));
+	background-image: -webkit-linear-gradient(left bottom, @maingray, @gray30);
+	background-image: -moz-linear-gradient(left bottom, @maingray, @gray30);
+	background-image: -o-linear-gradient(left bottom, @maingray, @gray30);
+	background-image: -ms-linear-gradient(left bottom, @maingray, @gray30);
+	background-image: linear-gradient(left bottom, @maingray, @gray30);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='@maingray', EndColorStr='@gray30');
+
+	.plan-pro-advertisement {
+		display: none;
+	}
+	.account-confirmation {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		padding: 0 @gutter+@halfgutter;
+		margin-top: -80px;
+
+		i {
+			color: @gray30;
+			font-size: 48px;
+		}
+		h5 {
+			color: @white;
+		}
+	}
+	.account-action {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		color: @gray30;
+		font-size: @fineprint;
+		padding: @gutter;
+
+		a {
+			display: block;
+			color: @gray30;
+		}
+	}
+}
+
+/* Payment */
 .plan-show-payment {
 	.plan-pro-advertisement {
 		display: none;
@@ -45,19 +108,6 @@
 		}
 	}
 	.plan-pro {
-		display: none;
-	}
-}
-
-/* Pro users */
-.plan-show-Pro {
-	background-color: @accent;
-	background-image: url(../../../../images/pullrpro.jpg);
-
-	.plan-pro-advertisement {
-		display: none;
-	}
-	.payment {
 		display: none;
 	}
 }
