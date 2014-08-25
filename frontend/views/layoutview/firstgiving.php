@@ -1,9 +1,9 @@
 <?
     use common\models\Campaign;
 ?>
-<section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_TIP_JAR) ? 'tip-jar' :'events-form' ?>">
+<section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 'tip-jar' :'events-form' ?>">
     <h1 class="campaign-name"><?= $campaign->name ?></h1>
-    <? if ($campaign->type != Campaign::TYPE_PERSONAL_TIP_JAR): ?>
+    <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
         <?
         $charityName = '';
         if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
