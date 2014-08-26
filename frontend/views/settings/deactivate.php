@@ -5,7 +5,7 @@ use kartik\widgets\ActiveForm;
 $deactivateAccount = new DeactivateAccount();
 ?>
 
-<a data-toggle="modal" data-target="#deactivateModal">Deactivate my account</a>
+<a class="account-deactivate" data-toggle="modal" data-target="#deactivateModal">Deactivate my account</a>
 
 <!-- Modal -->
 <div class="modal fade" id="deactivateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

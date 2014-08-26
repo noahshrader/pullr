@@ -36,6 +36,12 @@ body {
 		outline: 0;
 		border: 0;
 	}
+	&:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
+	  font-weight: 700;
+	  line-height: 46px;
+	  padding: 0 1.4em;
+	  height: 46px;
+	}
 }
 .btn-default {
 	background-color: @accent;
@@ -337,7 +343,7 @@ ul.content-nav {
 			color: @gray50;
 			font-weight: 600;
 			line-height: 45px;
-			padding: 0 20px;
+			padding: 0 24px;
 			width: 100%;
 			.tab-radius;
 			&:hover {
@@ -415,7 +421,7 @@ ul.panel-nav {
 /* Content Loader */
 /* ------------------------------------------------- */
 .spinner-wrap {
-	background-color: rgba(255,255,255,.9);
+	background: @white;
 }
 .spinner-wrap,
 .spinner {
@@ -429,7 +435,7 @@ ul.panel-nav {
 .spinner {
 	width: 32px;
 	height: 32px;
-	margin: 0 auto;
+	margin: 40% auto;
 }
 .cube1,
 .cube2 {

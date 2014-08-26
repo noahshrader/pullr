@@ -66,7 +66,9 @@ input[type='color'] {
 
 	label {
 		float: left;
+		position: relative;
 		display: block;
+		color: @gray50;
 		font-weight: 400;
 		text-align: left;
 		margin: 0;
@@ -76,7 +78,7 @@ input[type='color'] {
 		&:before {
 			content:"\e013";
 			position: relative;
-			top: 0;
+			top: 2px;
 			left: 0;
 			float: left;
 			color: @white;
@@ -128,6 +130,9 @@ input[type='color'] {
 		border-width: 6px 4px 0 4px;
 		border-color: @gray60 transparent transparent transparent;
 	}
+	&.select2-dropdown-open a.select2-choice {
+		background: @gray72;
+	}
 
 	.select2-choices .select2-search-field input,
 	.select2-choice,
@@ -140,6 +145,9 @@ input[type='color'] {
 		box-shadow: none !important;
 		&:focus {
 			outline: 0 !important;
+		}
+		&:hover {
+			background: @gray72;
 		}
 	}
 	.select2-choice {
@@ -168,8 +176,7 @@ input[type='color'] {
 	&.select2-drop-active,
 	&.select2-drop-above.select2-drop-active {
 		border: 0;
-		border-top: solid 1px @white;
-		background: @gray75;
+		background: @gray72;
 		box-shadow: none;
 	}
 }
@@ -198,7 +205,7 @@ input[type='color'] {
 	margin: 4px 0;
 	
 	.select2-highlighted {
-		background: @gray72;
+		background: @gray70;
 	}
 	.select2-result-label {
 		padding: 5px @halfgutter 10px;
@@ -227,13 +234,12 @@ input[type='color'] {
 
 /* Bootstrap Overrides */
 .form-group {
-	padding-bottom: 10px;
-	margin: 0;
+	margin-bottom: 20px;
 }
 .form-group .form-group,
 .help-block {
 	padding: 0;
-	margin: 0;
+	margin-bottom: @halfgutter;
 }
 .form-control {
 	height: auto;

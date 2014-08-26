@@ -5,14 +5,15 @@ use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
 /* @var $form ActiveForm */
 
-
 $parentCampaigns = \Yii::$app->user->identity->getCampaigns()->andWhere(['type' => Campaign::TYPE_CHARITY_FUNDRAISER])->all();
+
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 
 $this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAsset::className());
 
 $firstGiving = $campaign->getFirstGiving();
 ?>
+
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
         <!-- Campaign Name -->
         <div class="form-group">
@@ -32,14 +33,14 @@ $firstGiving = $campaign->getFirstGiving();
         </div>
 
         <!-- Campaign Dates/Times -->
-        <div id="startEndContainer">
+        <div id="startEndContainer" class="cf">
             <?= $form->field($campaign, 'startDate')->label("Start Date/Time")->input('datetime-local'); ?>
             <?= $form->field($campaign, 'endDate')->label("End Date/Time")->input('datetime-local'); ?>
         </div>
 
         <!-- Campaign Goal Amount -->
         <div class="form-group">
-            <div class="form-group field-campaign-goalamount required" style="text-align: left;">
+            <div class="field-campaign-goalamount required">
                 <?= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => false])->label("Goal Amount")->hiddenInput(); ?>
                 <?= MaskedInput::widget([
                     'name' => 'goal',

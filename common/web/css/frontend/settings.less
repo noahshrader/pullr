@@ -4,6 +4,14 @@
 
 	.module {
 		padding: @gutter @gutter+@gutter;
+
+		&.email-notifications div:first-child {
+			margin-bottom: 1em;
+		}
+	}
+	a.account-deactivate {
+		color: @gray60;
+		font-size: @smalltext;
 	}
 }
 
@@ -60,13 +68,13 @@
 /* Pro */
 .plan-show-Pro {
 	background-color: @gray30;
-	background-image: -webkit-gradient(linear, left bottom, right top, from(@maingray), to(@gray30));
-	background-image: -webkit-linear-gradient(left bottom, @maingray, @gray30);
-	background-image: -moz-linear-gradient(left bottom, @maingray, @gray30);
-	background-image: -o-linear-gradient(left bottom, @maingray, @gray30);
-	background-image: -ms-linear-gradient(left bottom, @maingray, @gray30);
-	background-image: linear-gradient(left bottom, @maingray, @gray30);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='@maingray', EndColorStr='@gray30');
+	background-image: -webkit-gradient(linear, left bottom, right top, from(@maingray), to(@gray20));
+	background-image: -webkit-linear-gradient(left bottom, @maingray, @gray20);
+	background-image: -moz-linear-gradient(left bottom, @maingray, @gray20);
+	background-image: -o-linear-gradient(left bottom, @maingray, @gray20);
+	background-image: -ms-linear-gradient(left bottom, @maingray, @gray20);
+	background-image: linear-gradient(left bottom, @maingray, @gray20);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='@maingray', EndColorStr='@gray20');
 
 	.plan-pro-advertisement {
 		display: none;
