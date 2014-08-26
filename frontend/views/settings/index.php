@@ -12,14 +12,14 @@ use common\models\Notification;
 $this->title = 'Settings';
 ?>
 
+<?php $form = ActiveForm::begin(['options' => [
+    'enctype' => 'multipart/form-data', 'method' => 'POST']])
+?>
 <section id="content" class="settings pane"> <!-- BEGIN main settings -->
 	<div class="content-wrap">
 		<span class="corner"></span>
 		<section class="module">
 			<h3>General</h3>
-			<?php $form = ActiveForm::begin(['options' => [
-					'enctype' => 'multipart/form-data', 'method' => 'POST']])
-			?>
 			<?= $form->field($user, 'name') ?>
 			<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
 			<?
@@ -65,9 +65,9 @@ $this->title = 'Settings';
 		<div class="form-group text-center">
 			<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
 		</div>
-		<?php ActiveForm::end(); ?>
 	</div>
 </section> <!-- END main settings -->
+<?php ActiveForm::end(); ?>
 
 <div id="sidebar" class="plans pane"> <!-- BEGIN plans sidebar -->
 	<?=

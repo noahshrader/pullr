@@ -21,6 +21,11 @@ class SettingsController extends FrontendController {
         $user = Yii::$app->user->identity;
         $user->setScenario('settings');
 
+        if (isset($_POST['User'])){
+            $user->setAttributes($_POST['User']);
+            $user->save();
+        }
+
         $notification = $user->notification;
         $notification->load($_POST) && $notification->save($_POST);
 

@@ -164,7 +164,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'photo' => ['photo', 'smallPhoto'],
-            'settings' => ['fullName', 'timezone'],
+            'settings' => ['name', 'timezone'],
             'openId' => ['name', 'email', 'birthday', 'photo', 'smallPhoto'],
             'signup' => ['login', 'name', 'email', 'password', 'confirmPassword', '!status', '!role'],
             'emailConfirm' => ['role', 'email'],
