@@ -67,7 +67,8 @@ class LayoutviewController extends \yii\web\Controller {
         /*passing campaign to layout*/
         $this->campaign = $campaign;
         $this->layout = 'donation';
-        $donation = new Donation();
+        $donation =  new Donation();
+        $donation->scenario = $campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER ? Campaign::TYPE_PERSONAL_FUNDRAISER : 'default';
         $donation->createdDate = time();
         $donation->campaignId = $campaign->id;
 

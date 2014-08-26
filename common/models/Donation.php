@@ -36,7 +36,8 @@ class Donation extends ActiveRecord
     
     public function scenarios() {
         return [
-            'default' => ['nameFromForm','email','comments','amount','createdDate']
+            'default' => ['nameFromForm','email','comments','amount','createdDate'],
+            Campaign::TYPE_PERSONAL_FUNDRAISER => ['nameFromForm','comments','amount','createdDate']
         ];
     }
 
