@@ -8,8 +8,8 @@ $user = \Yii::$app->user->identity;
 <section class="donor-view-wrap">
     <div id="content" class="adv red pane" data-email="<?= htmlspecialchars($email) ?>" >
         <div class="content-wrap">
-            <h1 class="text-center donor-name"> <?= htmlspecialchars($name) ?>
-                <span class="text-center donor-email"><?= htmlspecialchars($email) ?></span>
+            <h1 class="donor-name"> <?= htmlspecialchars($name) ?>
+                <span class="donor-email"><?= htmlspecialchars($email) ?></span>
             </h1>
             <section class="stats-overview module">
                 <div class='stats-box col-xs-4'>

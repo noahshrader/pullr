@@ -48,32 +48,32 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['overall']['totalRaised']) ?></h1>
-                            <h5>Total Amount Raised</h5>
+                            <h5>Raised Overall</h5>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['overall']['charityRaised']) ?></h2>
-                                <h5>Raised for Charity</h5>
+                                <h5>Charity</h5>
                             </div>
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['overall']['personalRaised']) ?></h2>
-                                <h5>Raised Personally</h5>
+                                <h5>Personal</h5>
                             </div>
                         </div>
                     </section>
                     <section class="stats-overview other-raised-totals module cf">
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
-                            <h5>Total Campaigns</h5>
+                            <h5>Campaigns</h5>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalDonations'] ?></h2>
-                            <h5>Total Donations</h5>
+                            <h5>Donations</h5>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalDonors'] ?></h2>
-                            <h5>Total Donors</h5>
+                            <h5>Donors</h5>
                         </div>
                     </section>
                     <!-- Twitch Stats -->
@@ -101,32 +101,32 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['today']['totalRaised']) ?></h1>
-                            <h5>Total Amount Raised</h5>
+                            <h5>Raised Today</h5>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['today']['charityRaised']) ?></h2>
-                                <h5>Raised for Charity</h5>
+                                <h5>Charity</h5>
                             </div>
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['today']['personalRaised']) ?></h2>
-                                <h5>Raised Personally</h5>
+                                <h5>Personal</h5>
                             </div>
                         </div>
                     </section>
                     <section class="stats-overview other-raised-totals module cf">
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['today']['totalCampaigns'] ?></h2>
-                            <h5>Total Campaigns</h5>
+                            <h5>Campaigns</h5>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['today']['totalDonations'] ?></h2>
-                            <h5>Total Donations</h5>
+                            <h5>Donations</h5>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['today']['totalDonors'] ?></h2>
-                            <h5>Total Donors</h5>
+                            <h5>Donors</h5>
                         </div>
                     </section>
                     <!-- Twitch Stats -->
@@ -153,32 +153,32 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['month']['totalRaised']) ?></h1>
-                            <h5>Total Amount Raised</h5>
+                            <h5>Raised This Month</h5>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['month']['charityRaised']) ?></h2>
-                                <h5>Raised for Charity</h5>
+                                <h5>Charity</h5>
                             </div>
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= number_format($dashboard['month']['personalRaised']) ?></h2>
-                                <h5>Raised Personally</h5>
+                                <h5>Personal</h5>
                             </div>
                         </div>
                     </section>
                     <section class="stats-overview other-raised-totals module cf">
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['month']['totalCampaigns'] ?></h2>
-                            <h5>Total Campaigns</h5>
+                            <h5>Campaigns</h5>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['month']['totalDonations'] ?></h2>
-                            <h5>Total Donations</h5>
+                            <h5>Donations</h5>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['month']['totalDonors'] ?></h2>
-                            <h5>Total Donors</h5>
+                            <h5>Donors</h5>
                         </div>
                     </section>
                     <!-- Twitch Stats -->
