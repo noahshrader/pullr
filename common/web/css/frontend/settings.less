@@ -1,9 +1,25 @@
 /* Main Settings Area */
 /* ------------------------------------------------- */
+.settings {
+
+	.module {
+		padding: @gutter @gutter+@gutter;
+
+		&.email-notifications div:first-child {
+			margin-bottom: 2em;
+		}
+	}
+	a.account-deactivate {
+		color: @gray60;
+		font-size: @smalltext;
+	}
+}
+
 
 /* Plans Sidebar */
 /* ------------------------------------------------- */
 #sidebar.plans {
+	text-align: center;
 	right: 0;
 
 	.plan {
@@ -18,22 +34,80 @@
 	.mCSB_container {
 		height: 100% !important;
 	}
+	.account-action {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: @gutter;
+	}
 }
 
-/* Basic users */
-.plan-show-Basic {
-	background-color: @accent;
-	background-image: url(../../../../images/pullrbasic.jpg);
-
-	.plan-pro-advertisement {
-
-	}
+.plan-show-Basic,
+.plan-show-Pro {
 	.payment {
 		display: none;
 	}
 }
 
-/* Payment info */
+/* Basic */
+.plan-show-Basic {
+	background-color: @accent;
+	background-image: -webkit-gradient(linear, left bottom, right top, from(@dkraccent), to(@accent));
+	background-image: -webkit-linear-gradient(left bottom, @dkraccent, @accent);
+	background-image: -moz-linear-gradient(left bottom, @dkraccent, @accent);
+	background-image: -o-linear-gradient(left bottom, @dkraccent, @accent);
+	background-image: -ms-linear-gradient(left bottom, @dkraccent, @accent);
+	background-image: linear-gradient(left bottom, @dkraccent, @accent);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='@dkraccent', EndColorStr='@accent');
+	p {
+		color: @white;
+	}
+}
+
+/* Pro */
+.plan-show-Pro {
+	background-color: @gray30;
+	background-image: -webkit-gradient(linear, left bottom, right top, from(@maingray), to(@gray20));
+	background-image: -webkit-linear-gradient(left bottom, @maingray, @gray20);
+	background-image: -moz-linear-gradient(left bottom, @maingray, @gray20);
+	background-image: -o-linear-gradient(left bottom, @maingray, @gray20);
+	background-image: -ms-linear-gradient(left bottom, @maingray, @gray20);
+	background-image: linear-gradient(left bottom, @maingray, @gray20);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='@maingray', EndColorStr='@gray20');
+
+	.plan-pro-advertisement {
+		display: none;
+	}
+	.account-confirmation {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		padding: 0 @gutter+@halfgutter;
+		margin-top: -80px;
+
+		i {
+			color: @gray30;
+			font-size: 48px;
+		}
+		h4 {
+			color: @white;
+			font-weight: 600;
+		}
+	}
+	.account-action {
+		color: @gray30;
+		font-size: @fineprint;
+
+		a {
+			display: block;
+			color: @gray30;
+		}
+	}
+}
+
+/* Payment */
 .plan-show-payment {
 	.plan-pro-advertisement {
 		display: none;
@@ -45,19 +119,6 @@
 		}
 	}
 	.plan-pro {
-		display: none;
-	}
-}
-
-/* Pro users */
-.plan-show-Pro {
-	background-color: @accent;
-	background-image: url(../../../../images/pullrpro.jpg);
-
-	.plan-pro-advertisement {
-		display: none;
-	}
-	.payment {
 		display: none;
 	}
 }

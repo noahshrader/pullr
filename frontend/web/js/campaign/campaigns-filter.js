@@ -32,4 +32,6 @@ $(window).load(function() {
     if ($('section.campaign-status-pending').find('.campaign-item').length > 0) {
         $('section.campaign-status-pending .campaigns-list').addClass('addpad');
     }
+    // streamboard loader
+    $(".spinner-wrap").fadeOut();
 });

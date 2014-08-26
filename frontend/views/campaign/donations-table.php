@@ -3,7 +3,7 @@
         <tr>
             <th width="30%">Donor Name</th>
             <th width="20%">Amount</th>
-            <th width="45%">Date &amp; Time</th>
+            <th width="45%">Date</th>
             <th width="5%"></th>
         </tr>
     </thead>

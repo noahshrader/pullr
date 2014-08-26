@@ -21,6 +21,7 @@ html, body, p, div {
 	 color: @gray20;
 }
 body {
+	color: @gray50;
 	font-family: @mainfont;
 	font-size: 100%;
 	font-weight: 400;
@@ -95,14 +96,22 @@ ul {
 
 /* Placeholder styling */
 ::-webkit-input-placeholder {
-   color: @gray60 !important;
+   color: @gray50 !important;
 }
 :-moz-placeholder {
-   color: @gray60 !important; 
+   color: @gray50 !important; 
 }
 ::-moz-placeholder {
-   color: @gray60 !important;  
+   color: @gray50 !important;  
 }
 :-ms-input-placeholder {  
-   color: @gray60 !important;  
+   color: @gray50 !important;  
+}
+
+/* Color swatch styling */
+::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+::-webkit-color-swatch {
+	border: none;
 }

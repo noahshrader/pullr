@@ -36,12 +36,12 @@ body {
 		outline: 0;
 		border: 0;
 	}
-    &:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
-        font-weight: 700;
-        line-height: 46px;
-        padding: 0 1.6em;
-        height: 46px;
-    }
+	&:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
+	  font-weight: 700;
+	  line-height: 46px;
+	  padding: 0 1.4em;
+	  height: 46px;
+	}
 }
 .btn-default {
 	background-color: @accent;
@@ -71,8 +71,7 @@ body {
 	height: 33px;
 }
 .btn-link {
-	color: @white;
-	text-decoration: underline;
+	padding: 0;
 }
 .btn-csv {
 	float: right;
@@ -110,7 +109,7 @@ table {
 	td,
 	&.dataTable tbody th
 	&.dataTable tbody td {
-		padding: .9em 6% !important;
+		padding: .9em 4% !important;
 	}
 	&.dataTable.display tbody td[colspan~="4"] {
 		padding-top: 0 !important;
@@ -139,7 +138,7 @@ table {
 	}
 	th,
 	&.dataTable thead th {
-		color: @white;
+		color: @gray50;
 		font-weight: 600;
 		border-bottom: solid 1px @modulehead;
 	}
@@ -181,6 +180,20 @@ table.dataTable thead td {
 			margin: 0;
 	 	}
 	}
+	.dataTables_filter {
+		position: relative;
+		&:before {
+			position: absolute;
+			top: 50%;
+			left: 30px;
+			content: '\e664';
+			color: @gray60;
+			font-family: 'icomoon';
+			font-size: 12px;
+			font-weight: 600;
+			margin-top: -7px;
+		}
+	}
 	.dataTables_paginate {
 		padding: 0px !important;
 	}
@@ -198,8 +211,19 @@ table.dataTable thead td {
 
 	.select2-container {
 		margin-right: 6px;
-	}
 
+		.select2-choice {
+			height: 36px;
+		}
+		.select2-choices .select2-search-field input,
+		.select2-choice, .select2-choices {
+			background: @white;
+		}
+		.select2-choice > span:first-child,
+		.select2-choices .select2-search-field input {
+			padding: 6px 12px;
+		}
+	}
 	label {
 		color: @gray40;
 	}
@@ -215,27 +239,9 @@ table.dataTable thead td {
 }
 .table-footer {
 	padding: @gutter;
+	border-top: solid 1px @gray75;
 }
 
-/* Statistics Global Styling */
-.module {
-	position: relative;
-	margin-bottom: @gutter;
-	background: @white;
-	.element-radius;
-	.box-shadow;
-	overflow: hidden;
-
-	h5.module-title {
-		color: @white;
-		font-weight: 600;
-		line-height: @sidenavheight;
-		padding: 0 @gutter;
-		margin: 0;
-		height: @sidenavheight;
-		background: @modulehead;
-	}
-}
 
 /* Main Data Containers */
 .stats-overview {
@@ -335,15 +341,14 @@ ul.content-nav {
 		}
 		a {
 			display: block;
-			color: @white;
+			color: @gray50;
 			font-weight: 600;
-			line-height: @sidenavheight;
-			padding: 0 @gutter;
+			line-height: 45px;
+			padding: 0 24px;
 			width: 100%;
-			background: @gray72;
 			.tab-radius;
 			&:hover {
-				background: @gray70;
+				background: @gray72;
 			}
 		}
 	}
@@ -388,6 +393,64 @@ ul.panel-nav {
 			}
 		}
 	}
+}
+
+
+/* Tooltips */
+/* ------------------------------------------------- */
+.tooltip {
+	font-size: @smalltext;
+
+	&.tooltip.in {
+		opacity: 1;
+	}
+	.tooltip-inner {
+		padding: @halfgutter;
+		background: @gray20;
+	}
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: @gray20;
+	border-width: 5px 5px 0;
+}
+.tooltip.bottom .tooltip-arrow {
+	border-bottom-color: @gray20;
+	border-width: 0 5px 5px;
+}
+
+
+/* Content Loader */
+/* ------------------------------------------------- */
+.spinner-wrap {
+	background: @white;
+}
+.spinner-wrap,
+.spinner {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 9999;	
+}
+.spinner {
+	width: 32px;
+	height: 32px;
+	margin: 40% auto;
+}
+.cube1,
+.cube2 {
+	background-color: @gray70;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	.cubemove;
+}
+.cube2 {
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
 }
 
 @import "responsive.less";

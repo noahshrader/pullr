@@ -16,7 +16,6 @@
 	position: fixed;
 	top: @top-menu-height;
 	right: @sidepanelwidth;
-	padding: 0 @gutter;
 	background: @gray75;
 
 	&.adv {
@@ -32,6 +31,50 @@
 		}
 	}
 }
+.content-wrap {
+	padding: @gutter;
+}
+
+/* Modules */
+.module {
+	position: relative;
+	margin-bottom: @gutter;
+	background: @white;
+	.element-radius;
+	.box-shadow;
+	overflow: hidden;
+	&:last-child {
+		margin: 0;
+	}
+
+	h3 {
+		margin-bottom: 1em;
+	}
+
+	h5.module-title {
+		color: @gray50;
+		font-weight: 600;
+		line-height: 45px;
+		padding: 0 @gutter;
+		margin: 0;
+		height: 45px;
+		background: @modulehead;
+	}
+}
+
+
+/* Sidebar */
+/* ------------------------------------------------- */
+#sidebar {
+	position: fixed;
+	top: @top-menu-height;
+	width: @sidepanelwidth;
+	background: @gray15;
+
+	.module {
+		margin-bottom: @gutter;
+	}
+}
 
 
 /* Donor/Campaign Views */
@@ -41,10 +84,11 @@
 	width: 100%;
 	background: @gray75;
 
-	h1 {
+	h1.campaign-title,
+	h1.donor-name {
 		font-size: 2.6em;
 		text-align: center;
-		margin: @gutter+@gutter auto;
+		margin: @gutter auto @gutter+@gutter;
 	}
 }
 .donor-view-wrap h1 {
@@ -108,6 +152,17 @@
 	z-index: 1000;
 	background: @maingray;
 	border-bottom: solid 1px @gray17;
+	&:before {
+		position: absolute;
+		top: 50%;
+		left: 30px;
+		content: '\e664';
+		color: @gray30;
+		font-family: 'icomoon';
+		font-size: 12px;
+		font-weight: 600;
+		margin-top: -6px;
+	}
 
 	span {
 		display: block;
@@ -119,19 +174,9 @@
 
 	input[type='search'] {
 		color: @white;
-		background-color: @gray15;
+		background: @gray15;
 		border-color: transparent;
 	}
-}
-
-
-/* Sidebar */
-/* ------------------------------------------------- */
-#sidebar {
-	position: fixed;
-	top: @top-menu-height;
-	width: @sidepanelwidth;
-	background: @gray15;
 }
 
 

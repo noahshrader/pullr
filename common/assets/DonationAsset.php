@@ -22,4 +22,7 @@ class DonationAsset extends AssetBundle
 		'yii\web\YiiAsset',
 		'kartik\widgets\Select2Asset'
 	];
+    public $publishOptions = [
+        'forceCopy' => true
+    ];
 }
