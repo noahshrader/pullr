@@ -46,7 +46,6 @@ class m140322_064650_campaign extends \console\models\ExtendedMigration
             'charityId' => Schema::TYPE_INTEGER,
             'customCharity' => Schema::TYPE_STRING,
             'customCharityPaypal' => Schema::TYPE_STRING,
-            'customCharityDescription' => Schema::TYPE_STRING,
             'status' => $statuses,
             'streamService' => $streamServices,
             'layoutType' => $layoutTypes,
