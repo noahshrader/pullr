@@ -2,7 +2,25 @@ $(document).ready(function() {
 
     function formatResultCharity(item) {
         //example
-        return '<span style="color: red">' +  item.organization_name + '</span><br><span style="color:green; font-size: 10px;">' + item.organization_name + '</span>';
+        var view = '<span>' +  item.organization_name + '</span>';
+        var additional = [];
+        if (item.city != '') {
+            additional.push(item.city);
+        }
+
+        if (item.region != '') {
+            additional.push(item.region);
+        }
+
+        if (item.postal_code != '') {
+            additional.push(item.postal_code);
+        }
+
+        if (additional.length > 0) {
+            view += '<br><span style="font-size: 10px;">' + additional.join(', ') + '</span>';
+        }
+
+        return view;
     }
 
     function formatSelectionCharity(item) {

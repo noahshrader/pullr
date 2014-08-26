@@ -37,6 +37,7 @@ class Donation extends ActiveRecord
     public function scenarios() {
         return [
             'default' => ['nameFromForm','email','comments','amount','createdDate'],
+            'firstGiving' => ['nameFromForm','email','comments','amount','createdDate'],
             Campaign::TYPE_PERSONAL_FUNDRAISER => ['nameFromForm','comments','amount','createdDate']
         ];
     }
@@ -48,7 +49,7 @@ class Donation extends ActiveRecord
     {
         return [
             ['email', 'email', 'message' => 'Invalid Email address'],
-            ['email', 'required', 'message' => 'Not empty'],
+            ['email', 'required', 'message' => 'Email is required', 'on' => 'firstGiving'],
             ['nameFromForm', 'filter', 'filter' => 'strip_tags'],
             ['email', 'filter', 'filter' => 'strip_tags'],
             ['comments', 'filter', 'filter' => 'strip_tags'],
