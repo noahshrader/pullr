@@ -97,19 +97,19 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
     </div>
     <div id="content" class="adv pane" data-id="<?= $campaign->id ?>">
         <div class="content-wrap">
-            <h1>
-                <?= ($campaign->name)?$campaign->name:'New campaign' ?>
+            <h1 class="campaign-title">
+                <?= ($campaign->name)?$campaign->name:'New Campaign' ?>
                 <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER && $campaign->startDate && $campaign->endDate): ?>
                 <span class="campaign-date"><?= date('M j, Y', $campaign->startDate) ?> - <?= date('M j, Y', $campaign->endDate) ?></span>
                 <? endif ?>
             </h1>
             <section class="stats-overview main-values module">
                 <div class='stats-box col-xs-3 raised-total'>
-                    <h2>$<?= number_format($campaign->amountRaised) ?></h2>
+                    <h1>$<?= number_format($campaign->amountRaised) ?></h1>
                     <h5>Raised</h5>
                 </div>
                 <div class='stats-box col-xs-3 campaign-goal'>
-                    <h2>$<?= number_format($campaign->goalAmount) ?></h2>
+                    <h1>$<?= number_format($campaign->goalAmount) ?></h1>
                     <h5>Goal</h5>
                 </div>
                 <div class="progress-wrap">
@@ -130,11 +130,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <h5>Donors</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donor'>
-                    <h3><?= $topDonorText ?></h3>
+                    <h2><?= $topDonorText ?></h2>
                     <h5>Top Donor</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donation'>
-                    <h3><?= $topDonationText ?></h3>
+                    <h2><?= $topDonationText ?></h2>
                     <h5>Top Donation</h5>
                 </div>
                 <div class="clearfix"></div>

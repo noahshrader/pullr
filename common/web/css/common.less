@@ -36,12 +36,6 @@ body {
 		outline: 0;
 		border: 0;
 	}
-    &:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
-        font-weight: 700;
-        line-height: 46px;
-        padding: 0 1.6em;
-        height: 46px;
-    }
 }
 .btn-default {
 	background-color: @accent;
@@ -71,8 +65,7 @@ body {
 	height: 33px;
 }
 .btn-link {
-	color: @white;
-	text-decoration: underline;
+	padding: 0;
 }
 .btn-csv {
 	float: right;
@@ -110,7 +103,7 @@ table {
 	td,
 	&.dataTable tbody th
 	&.dataTable tbody td {
-		padding: .9em 6% !important;
+		padding: .9em 4% !important;
 	}
 	&.dataTable.display tbody td[colspan~="4"] {
 		padding-top: 0 !important;
@@ -139,7 +132,7 @@ table {
 	}
 	th,
 	&.dataTable thead th {
-		color: @white;
+		color: @gray50;
 		font-weight: 600;
 		border-bottom: solid 1px @modulehead;
 	}
@@ -180,6 +173,20 @@ table.dataTable thead td {
 		label {
 			margin: 0;
 	 	}
+	}
+	.dataTables_filter {
+		position: relative;
+		&:before {
+			position: absolute;
+			top: 50%;
+			left: 30px;
+			content: '\e664';
+			color: @gray60;
+			font-family: 'icomoon';
+			font-size: 12px;
+			font-weight: 600;
+			margin-top: -7px;
+		}
 	}
 	.dataTables_paginate {
 		padding: 0px !important;
@@ -402,6 +409,41 @@ ul.panel-nav {
 .tooltip.bottom .tooltip-arrow {
 	border-bottom-color: @gray20;
 	border-width: 0 5px 5px;
+}
+
+
+/* Content Loader */
+/* ------------------------------------------------- */
+.spinner-wrap {
+	background-color: rgba(255,255,255,.9);
+}
+.spinner-wrap,
+.spinner {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 9999;	
+}
+.spinner {
+	width: 32px;
+	height: 32px;
+	margin: 0 auto;
+}
+.cube1,
+.cube2 {
+	background-color: @gray70;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	.cubemove;
+}
+.cube2 {
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
 }
 
 @import "responsive.less";

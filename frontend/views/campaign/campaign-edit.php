@@ -105,6 +105,12 @@ $user = \Yii::$app->user->identity;
             </li>
         </ul>
         <div class="module">
+            <div class="spinner-wrap">
+                <div class="spinner">
+                    <div class="cube1"></div>
+                    <div class="cube2"></div>
+                </div>
+            </div>
             <div class="tab-content" id="accordion">
                 <div class="tab-pane fade in active" id="general"> <!-- general settings -->
                  <?= $this->render('campaign-edit-general', [

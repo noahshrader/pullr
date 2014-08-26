@@ -30,7 +30,7 @@ use common\models\Plan;
     <!-- Pullr Pro -->
     <div class="account-confirmation">
         <i class="icon-controller"></i>
-        <h5>You are currently on Pullr Pro</h5>
+        <h4>You are currently on Pullr Pro!</h4>
         <?
             $plan = Plan::findOne($user->id);
         ?>

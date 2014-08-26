@@ -15,7 +15,7 @@ $this->title = 'Settings';
 <section id="content" class="settings pane"> <!-- BEGIN main settings -->
 	<div class="content-wrap">
 		<span class="corner"></span>
-		<div class="module">
+		<section class="module">
 			<h3>General</h3>
 			<?php $form = ActiveForm::begin(['options' => [
 					'enctype' => 'multipart/form-data', 'method' => 'POST']])
@@ -27,10 +27,10 @@ $this->title = 'Settings';
 					$keyValues = array_combine($timezones, $timezones);
 			?>
 			<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
-		</div>
-		<div class="module">
+		</section>
+		<section class="module">
 			<fieldset>
-				<h3>Notifications</h3>
+				<h3>Email Notifications</h3>
 				<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
 				<? $attributes = $notification->getNotificationsAttributes(); ?>
 				<h5>Email me </h5>
@@ -52,16 +52,18 @@ $this->title = 'Settings';
 					<?= $form->field($changePasswordForm, 'confirmPassword')->passwordInput() ?>
 			</fieldset>
 			<? endif ?>
-		</div>
+		</section>
+		<section class="module">
+			<?=
+			$this->render('deactivate', [
+			'user' => $user
+			]);
+			?>
+		</section>
 		<div class="form-group text-center">
 			<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
 		</div>
 		<?php ActiveForm::end(); ?>
-		<?=
-		$this->render('deactivate', [
-		'user' => $user
-		]);
-		?>
 	</div>
 </section> <!-- END main settings -->
 

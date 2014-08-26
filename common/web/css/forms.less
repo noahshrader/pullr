@@ -11,7 +11,7 @@ select.form-control {
 	border: 2px solid @gray75;
 	box-shadow: none;
 	&:focus {
-		border: 2px solid @gray60;
+		border: 2px solid @gray50;
 	}
 }
 select.form-control {
@@ -41,7 +41,7 @@ input[type='search'],
 	padding: 0 @halfgutter 0 40px;
 	.round-radius;
 	background: @white;
-	border: 0;
+	border: 0 !important;
 }
 
 /* Color Picker */
@@ -154,7 +154,7 @@ input[type='color'] {
 		width: 20px;
 	}
 	.select2-choice .select2-arrow b, .select2-choice div b {
-		background: none;
+		background: none !important;
 	}
 }
 	.select2-dropdown-open.select2-drop-above .select2-choice,
