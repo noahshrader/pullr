@@ -28,6 +28,10 @@ return [
         'callbackSuccessPair' => [
             'key' => 'kobdffjuux',
             'value' => 'ieDEaolClvseqLF'
+        ],
+        'affiliate' =>[
+            'common' => 'Pullr',
+            'pro' => 'Pull-pro'
         ]
     ]
 ];

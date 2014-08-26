@@ -8,6 +8,10 @@ return [
         'callbackSuccessPair' => [
             'key' => 'pjrvodxtkh',
             'value' => 'zyxkViEajImQdIM'
+        ],
+        'affiliate' =>[
+            'common' => 'Pullr',
+            'pro' => 'Pull-pro'
         ]
     ]
 ];

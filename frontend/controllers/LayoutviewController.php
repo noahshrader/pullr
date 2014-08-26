@@ -102,6 +102,10 @@ class LayoutviewController extends \yii\web\Controller {
             $this->redirect($userAlias.'/'.$campaignAlias.'/thankyou');
         }
 
+        if ($campaign->firstGiving) {
+            $donation->setScenario('firstGiving');
+        }
+
         return $this->render('donate', [
             'campaign' => $campaign,
             'donation' => $donation,
