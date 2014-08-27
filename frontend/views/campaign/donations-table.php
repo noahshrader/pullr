@@ -21,7 +21,7 @@
                 </td>
                 <td class="details-control">
                     <? if ($donation->email || $donation->comments): ?>
-                        <i class="icon-arrowbottom"></i>
+                        <i class="icon-arrow-down"></i>
                     <? endif ?>
                 </td>
             </tr>

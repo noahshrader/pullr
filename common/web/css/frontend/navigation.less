@@ -31,11 +31,11 @@
 
 			a {
 				display: inline-block;
-				line-height: @top-menu-height;
 				width: 100%;
 				cursor: pointer;
-				font-size: 26px;
+				font-size: 32px;
 				vertical-align: middle;
+				line-height: @top-menu-height;
 				padding: 0px;
 				&:before {
 					color: @white;
@@ -57,11 +57,16 @@
 			letter-spacing: 2px;
 			line-height: @top-menu-height;
 
+			span {
+				float: left;
+				line-height: @top-menu-height;
+			}
 			a {
+				float: left;
 				display: inline-block;
 				color: @accent;
-				font-size: 18px;
-				font-weight: bold;
+				font-size: 20px;
+				line-height: @top-menu-height;
 				padding: 0 .6em;
 
 				&:hover {
@@ -199,7 +204,7 @@
 
 					.icon {
 						display: inline-block;
-						font-size: 20px;
+						font-size: 24px;
 						vertical-align: middle;
 					}
 
@@ -208,7 +213,7 @@
 						font-size: 15px;
 						vertical-align: middle;
 						height: 60px;
-						padding-left: 10px;
+						padding-left: 8px;
 					}
 				}
 				a.dashboard.active:after {
@@ -230,7 +235,7 @@
 		display: block;
 		padding: 16px 0px;
 		text-align: center;
-		font-size: 18px;
+		font-size: 22px;
 		line-height: 20px;
 		color: @gray20;
 		position: absolute;

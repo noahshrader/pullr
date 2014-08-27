@@ -36,7 +36,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <? if (!$campaign->isParentForCurrentUser()): ?>
             <ul class="campaign-quick-links">
                 <li>
-                    <a class="actions-toggle icon-mobile"></a>
+                    <a class="actions-toggle icon-menu"></a>
                     <ul>
                         <li class="active">
                             <a href="app/campaign/view?id=<?= $campaign->id ?>">
@@ -47,7 +47,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                         </li>
                         <li>
                             <a href="app/campaign/edit?id=<?= $campaign->id ?>">
-                                <i class="icon icon-edit"></i>
+                                <i class="icon icon-pencil"></i>
                                 <!-- Edit -->
                                 Edit
                             </a>
@@ -55,7 +55,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                         <li>
                             <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
                             <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                                <i class="icon icon-code"></i>
+                                <i class="icon icon-code2"></i>
                                 JSON
                             </a>
                         </li>
