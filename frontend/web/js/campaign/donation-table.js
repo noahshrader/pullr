@@ -44,7 +44,7 @@ $(function(){
             var href = 'app/campaign/exportdonations?id='+id;
         }
         var csvButton = $('<a>').addClass('btn btn-csv btn-secondary btn-sm').attr('href', href).html
-            ('<i class="icon icon-download"></i> Export All');
+            ('<i class="icon icon-download2"></i> Export All');
         csvButton.insertAfter($wrapper.find('.dataTables_paginate'));
     }
     
@@ -56,7 +56,7 @@ $(function(){
 function formatChildRow ( $row ) {
     return '<table class="childTable" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr class="open-row">'+
-            '<td><em>Comments:</em> '+$row.data('comments')+'</td>'+
+            '<td>'+$row.data('comments')+'</td>'+
         '</tr>'+
     '</table>';
 }
