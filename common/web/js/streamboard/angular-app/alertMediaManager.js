@@ -18,6 +18,9 @@
             var Service = this;
             $.extend(this, Pullr.Streamboard.AlertMediaManager);
             this.playSound = function (sound,soundType) {
+                if (!sound || !soundType){
+                    return;
+                }
                 var path;
                 switch (soundType){
                     case 'Library':
@@ -38,6 +41,9 @@
                 this.audio.play();
             };
             this.getImageUrl = function(image, imageType){
+                if (!image || !imageType){
+                    return null;
+                }
                 switch (imageType){
                     case 'Library':
                         path = Service.PATH_TO_LIBRARY_IMAGES+image;

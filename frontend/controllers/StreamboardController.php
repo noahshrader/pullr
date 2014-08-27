@@ -27,16 +27,45 @@ class StreamboardController extends FrontendController
     {
         $this->layout = 'streamboard';
         $user = Application::getCurrentUser();
+
+        /*to get 'donations/followers/subscribers/" only since opening of streamboard*/
+        $user->streamboardConfig->streamRequestLastDate = time();
+        $user->streamboardConfig->save();
+
         $regionsNumber = $user->getPlan() == Plan::PLAN_PRO ? 2 : 1;
         return $this->render('index', [
             'regionsNumber' => $regionsNumber
         ]);
     }
 
+    /*return new events (donations/followers/subscribers)*/
+    public function actionGet_stream_data(){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $user = Application::getCurrentUser();
+        $streamboardConfig = $user->streamboardConfig;
+        $time = time();
+        /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
+        $sinceTime = $streamboardConfig->streamRequestLastDate - 5000;
+        $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC')->all();
+        $streamboardConfig->streamRequestLastDate = $time;
+
+        $notifications = [];
+        foreach ($donations as $donation){
+            /**@var $donation Donation*/
+            $notifications[] = [
+                'type' => 'donations',
+                'id' => $donation->id,
+                'donation' => $donation
+            ];
+        }
+        return $notifications;
+    }
+
     public function actionSource()
     {
         $this->layout = 'streamboard/source';
-        return $this->render('source', []);
+        return $this->render('config/settings/source', []);
     }
 
     /**
@@ -60,6 +89,7 @@ class StreamboardController extends FrontendController
 
     public function actionGet_campaigns_ajax()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $user = Application::getCurrentUser();
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->orderBy('amountRaised DESC, id DESC')->all();
         $campaignsArray = [];
@@ -71,8 +101,7 @@ class StreamboardController extends FrontendController
             $campaignsArray[$campaign->id] = $array;
         }
 
-        echo json_encode($campaignsArray);
-        die;
+        return $campaignsArray;
     }
 
     public function actionGet_donations_ajax($since_id = null)
@@ -80,7 +109,7 @@ class StreamboardController extends FrontendController
         $user = Application::getCurrentUser();
         $sinceDate = $user->streamboardConfig->clearedDate;
         /*we are limiting by 100 here, but on html after applying campaign's filter we will limit to just 20*/
-        $donations = $user->getDonations($since_id)->andWhere('paymentDate > ' . $sinceDate)->with('campaign', 'streamboard')->limit(100)->all();
+        $donations = $user->getDonations(['sinceId' => $since_id])->andWhere('paymentDate > ' . $sinceDate)->with('campaign', 'streamboard')->limit(100)->all();
 
         $donationsArray = [];
         foreach ($donations as $donation) {

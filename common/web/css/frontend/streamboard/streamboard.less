@@ -15,7 +15,6 @@ label {
 	.trans;
 }
 
-
 /* Components & Elements */
 /* ------------------------------------------------- */
 #region_1,
@@ -452,4 +451,17 @@ can be removed in future, after plugin update*/
 .alert-image-preview{
   max-width: 100px;
   max-height: 50px;
+}
+
+.regionsContainer{
+  height: 100%;
+  .region{
+     height: 100%;
+    background-color: green;
+  }
+  &.regionsNumber2{
+    .region{
+      height: 50%;
+    }
+  }
 }

@@ -17,7 +17,10 @@ class StreamboardAsset extends AssetBundle
 		'js/streamboard/streamboard.js',
         /**angular-app begin*/
         'js/streamboard/angular-app/donations.js',
-        'js/streamboard/angular-app/regions.js',
+        'js/streamboard/angular-app/stream.js',
+        'js/streamboard/angular-app/regionsService.js',
+        'js/streamboard/angular-app/regionsPanels.js',
+        'js/streamboard/angular-app/regionsConfigs.js',
         'js/streamboard/angular-app/pullr-common.js',
         'js/streamboard/angular-app/campaigns.js',
         'js/streamboard/angular-app/settings.js',

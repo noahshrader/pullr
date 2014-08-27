@@ -323,7 +323,7 @@ class Campaign extends ActiveRecord {
     }
     /**
      * @description Fired after successful donation. It updates current campaign statistics and parent campaign statistics.
-     * @param type $id
+     * @param integer $id
      */
     public static function updateDonationStatistics($id){
         $campaign = Campaign::findOne($id);
