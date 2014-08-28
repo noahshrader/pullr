@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Plan;
+use common\models\twitch\TwitchFollow;
 use common\models\twitch\TwitchSubscription;
 use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
@@ -38,7 +39,9 @@ class StreamboardController extends FrontendController
         ]);
     }
 
-    /*return new events (donations/followers/subscribers)*/
+    /**return new events (donations/followers/subscribers)
+     * sorting is "date ASC" for array
+    */
     public function actionGet_stream_data(){
         Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -46,9 +49,19 @@ class StreamboardController extends FrontendController
         $streamboardConfig = $user->streamboardConfig;
         $time = time();
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
-        $sinceTime = $streamboardConfig->streamRequestLastDate - 5000;
+        $sinceTime = $streamboardConfig->streamRequestLastDate - 10*60*60;
+
         $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC')->all();
-        $streamboardConfig->streamRequestLastDate = $time;
+
+        /*created date at Twitch is less for 1 hour then $sinceTime, as it possible we will have enough rare request to Twitch API,
+        but notifications still should be shown, even if they are delayed*/
+
+        $twitchSinceTime = $sinceTime - 60*60;
+        $condition = 'createdAt > :twitchSinceTime and createdAtPullr > :sinceTime ';
+        $params = ['twitchSinceTime' => $twitchSinceTime ,'sinceTime' => $sinceTime];
+
+        $followers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere($condition)->addParams($params)->all();
+        $subscriptions = TwitchSubscription::find()->where(['userId' => $user->id])->andWhere($condition)->addParams($params)->all();
 
         $notifications = [];
         foreach ($donations as $donation){
@@ -56,9 +69,36 @@ class StreamboardController extends FrontendController
             $notifications[] = [
                 'type' => 'donations',
                 'id' => $donation->id,
-                'donation' => $donation
+                'donation' => $donation,
+                'date' => $donation->paymentDate
             ];
         }
+
+        foreach ($followers as $follow){
+            /**@var $follow TwitchFollow*/
+            $notifications[] = [
+                'type' => 'followers',
+                'id' => $follow->twitchUserId,
+                'follow' => $follow,
+                'date' => $follow->createdAtPullr
+            ];
+        }
+
+        foreach ($subscriptions as $subscription){
+            /**@var $subscription TwitchSubscription*/
+            $notifications[] = [
+                'type' => 'subscribers',
+                'id' => $subscription->twitchUserId,
+                'subscription' => $subscription,
+                'date' => $subscription->createdAtPullr
+            ];
+        }
+
+        usort($notifications, function($a, $b){
+            return $a['date'] > $b['date'] ? 1 : -1;
+        });
+
+        $streamboardConfig->streamRequestLastDate = $time;
         return $notifications;
     }
 

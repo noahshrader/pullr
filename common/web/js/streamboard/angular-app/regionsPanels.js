@@ -5,6 +5,10 @@
         $scope.streamService = stream;
         $scope.regionsService = regions;
 
+        function capitaliseFirstLetter(string)
+        {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
 
         function showAlert(region) {
             var stream = $scope.streamService.streams[region.regionNumber];
@@ -12,6 +16,10 @@
             if (region.widgetType == 'widget_alerts') {
                 while (stream.length > 0 && notification == false) {
                     notification = stream.shift();
+                    /**checking includeDonations, includeFollowers, includeSubscribers*/
+                    if (!region.widgetAlerts['include'+capitaliseFirstLetter(notification.type)]){
+                        notification = false;
+                    }
                 }
             } else {
                 $scope.streamService.streams[region.regionNumber] = [];
@@ -55,7 +63,7 @@
                     }};
                     $timeout(function () {
                         showAlert(region)
-                    }, 100);
+                    });
                 });
             }, 3000);
         })

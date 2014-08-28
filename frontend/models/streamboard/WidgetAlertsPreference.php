@@ -11,6 +11,9 @@ use common\models\User;
  * @property integer $userId
  * @property integer $regionNumber - either 1 / 2
  * @property string $preferenceType
+ * @property string $fontSize
+ * @property string $fontColor
+ * @property string $animationDuration
  * @property string $sound - filename of predefined sound
  * @property string $image - filename of predefined image
  */
