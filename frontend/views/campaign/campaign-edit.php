@@ -155,13 +155,13 @@ $user = \Yii::$app->user->identity;
 <? endif ?> 
 </div>
 <!-- Modal -->
-<div id="modalCharity" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalCharity" aria-hidden="true">
+<div id="modalCharity" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalCharity" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         </div>
     </div>
 </div>
-<div id="modalThemes" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="modalThemes" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         </div>

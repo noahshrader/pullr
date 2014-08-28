@@ -187,8 +187,9 @@ function initBootstrapSwitch() {
 function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
     $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
+        $('#modalThemes').addClass('in');
         $('#modalThemes').modal('show');
-        $('.site-content, .top-menu').addClass('blur');
+
     })
 }
 
