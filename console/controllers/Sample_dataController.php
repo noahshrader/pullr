@@ -324,8 +324,9 @@ class Sample_dataController extends Controller
         $region1->widgetAlerts->save();
 
         $region1->widgetAlerts->followersPreference->animationDuration = 10;
-        $region1->widgetAlerts->followersPreference->fontSize = 16;
+        $region1->widgetAlerts->followersPreference->fontSize = 46;
         $region1->widgetAlerts->followersPreference->fontColor = '#ff0000';
+        $region1->widgetAlerts->followersPreference->fontStyle = 'Ubuntu';
         $region1->widgetAlerts->followersPreference->sound = '8-Bit-Arpeggio.mp3';
         $region1->widgetAlerts->followersPreference->soundType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
         $region1->widgetAlerts->followersPreference->image = 'Gnome300.gif';
@@ -333,8 +334,9 @@ class Sample_dataController extends Controller
         $region1->widgetAlerts->followersPreference->save();
 
         $region1->widgetAlerts->subscribersPreference->animationDuration = 5;
-        $region1->widgetAlerts->subscribersPreference->fontSize = 16;
+        $region1->widgetAlerts->subscribersPreference->fontSize = 30;
         $region1->widgetAlerts->subscribersPreference->fontColor = '#00ff00';
+        $region1->widgetAlerts->subscribersPreference->fontStyle = 'Shadows Into Light';
         $region1->widgetAlerts->subscribersPreference->sound = 'Bonus-Coin-1.mp3';
         $region1->widgetAlerts->subscribersPreference->soundType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
         $region1->widgetAlerts->subscribersPreference->image = 'LeagueOfLegends300.gif';
@@ -344,6 +346,7 @@ class Sample_dataController extends Controller
         $region1->widgetAlerts->donationsPreference->animationDuration = 5;
         $region1->widgetAlerts->donationsPreference->fontSize = 16;
         $region1->widgetAlerts->donationsPreference->fontColor = '#0000ff';
+        $region1->widgetAlerts->donationsPreference->fontStyle = 'Lobster';
         $region1->widgetAlerts->donationsPreference->sound = 'Dark-Win.mp3';
         $region1->widgetAlerts->donationsPreference->soundType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
         $region1->widgetAlerts->donationsPreference->image = 'Mascot300.gif';

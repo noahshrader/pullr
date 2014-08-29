@@ -13,6 +13,7 @@ use common\models\User;
  * @property string $preferenceType
  * @property string $fontSize
  * @property string $fontColor
+ * @property string $fontStyle
  * @property string $animationDuration
  * @property string $sound - filename of predefined sound
  * @property string $soundType - FILE_TYPE_LIBRARY | FILE_TYPE_CUSTOM
