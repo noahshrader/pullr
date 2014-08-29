@@ -15,6 +15,7 @@ use common\models\Donation;
 use common\models\Campaign;
 use common\models\notifications\RecentActivityNotification;
 use common\models\Plan;
+use common\components\message\ActivityMessage;
 
 class FirstGivingPayment extends Component{
 
@@ -198,7 +199,7 @@ class FirstGivingPayment extends Component{
                             // dashboard "Donation received" notification
                             RecentActivityNotification::createNotification(
                                 \Yii::$app->user->id,
-                                sprintf(\Yii::$app->params['donationReceived'], $donation->name, number_format($donation->amount), $donation->campaign->name)
+                                ActivityMessage::messageDonationReceived($donation)
                             );
 
                             // dashboard "Campaign goal reached" notification
@@ -206,7 +207,7 @@ class FirstGivingPayment extends Component{
                             if (intval($campaign->amountRaised) >= intval($campaign->goalAmount)){
                                 RecentActivityNotification::createNotification(
                                     \Yii::$app->user->id,
-                                    sprintf(\Yii::$app->params['goalReached'], number_format($campaign->goalAmount), $campaign->name)
+                                    ActivityMessage::messageGoalReached($campaign)
                                 );
                             }
                             break;

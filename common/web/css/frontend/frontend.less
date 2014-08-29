@@ -156,12 +156,11 @@
 		position: absolute;
 		top: 50%;
 		left: 30px;
-		content: '\e664';
+		content: '\e68e';
 		color: @gray30;
 		font-family: 'icomoon';
-		font-size: 12px;
-		font-weight: 600;
-		margin-top: -6px;
+		font-size: 14px;
+		margin-top: -8px;
 	}
 
 	span {
@@ -205,6 +204,9 @@
 	}
 }
 .small-menu-toggled {
+	.top-menu ul li.branding a {
+		font-size: 26px;
+	}
 	#content {
 		left: @primary-nav-width + @gutter;
 		&.adv {
@@ -250,6 +252,23 @@
 .pace-inactive {
 	display: none;
 }
+
+
+/* Modals */
+/* ------------------------------------------------- */
+.modal-backdrop {
+	background: @maingray;
+	z-index: 1000;
+}
+.modal-dialog {
+	.element-radius;
+
+	.modal-content {
+		border: 0;
+		background: transparent;
+	}
+}
+
 
 /* Misc */
 /* ------------------------------------------------- */

@@ -10,6 +10,7 @@ use common\models\User;
  * @package frontend\models\streamboard
  * @property integer $userId
  * @property integer $regionNumber - either 1 / 2
+ * @property string $backgroundColor
  * @property string $widgetType
  * @property WidgetAlerts $widgetAlerts
  * @property WidgetDonationFeed $widgetDonationFeed
@@ -45,6 +46,7 @@ class StreamboardRegion extends ActiveRecord {
         parent::afterSave($insert, $params);
         if ($insert) {
             /** so we have new record*/
+            $this->backgroundColor = '#000';
             $widgetAlerts = new WidgetAlerts();
             $widgetAlerts->userId = $this->userId;
             $widgetAlerts->regionNumber = $this->regionNumber;

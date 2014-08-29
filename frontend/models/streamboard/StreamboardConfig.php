@@ -14,6 +14,7 @@ use common\models\User;
  * @property integer $streamboardLeft
  * @property integer $streamboardTop
  * @property integer $clearedDate - last time "clear" button was clicked, by default it is equal to user registration date
+ * @property integer $streamRequestLastDate - last time "donations/followers/subscriber" were requested to be showed in the region
  */
 class StreamboardConfig extends ActiveRecord {
     const DEFAULT_WIDTH = 1024;

@@ -28,10 +28,11 @@ $this->registerJs($js);
         <div class="main-wrapper large-menu-toggled">
             <div class="top-menu"> <!-- BEGIN top bar -->
                 <ul class="quick-nav">
-                    <li class="branding"><a class="logo icon-pullr"></a></li>
-                    <li class="add-campaign"><?= Html::encode($this->title) ?>
+                    <li class="branding"><a class="logo icon-pullr-logo"></a></li>
+                    <li class="add-campaign">
+                        <span><?= Html::encode($this->title) ?></span>
                         <? if ($this->context->id == 'campaign'): ?>
-                            <a href="app/campaign/add" class="icon icon-add2"></a>
+                            <a href="app/campaign/add" class="icon icon-plus-round"></a>
                         <? endif ?>
                     </li>
                 </ul>
@@ -51,19 +52,19 @@ $this->registerJs($js);
                         </li>
                         <li>
                             <a class="streamboard" title="Streamboard" href="app/streamboard" target="_blank">
-                                <i class="icon icon-streamboard"></i>
+                                <i class="icon icon-board2"></i>
                                 <span class="nav-label">Streamboard</span>
                             </a>
                         </li>
                         <li>
                             <a class="campaign-link" title="Campaigns" href="app/campaign">
-                                <i class="icon icon-bargraph"></i>
+                                <i class="icon icon-piechart2"></i>
                                 <span class="nav-label">Campaigns</span>
                             </a>
                         </li>
                         <li>
                             <a class="donor-link" title="Donors" href="app/donor">
-                                <i class="icon icon-usergroup"></i>
+                                <i class="icon icon-users"></i>
                                 <span class="nav-label">Donors</span>
                             </a>
                         </li>
@@ -76,7 +77,7 @@ $this->registerJs($js);
                      </ul>
                 </nav>
 
-                <a class="primary-nav-toggle"><i class="icon icon-arrowleft3"></i></a>
+                <a class="primary-nav-toggle"><i class="icon icon-arrow-left2"></i></a>
             </div> <!-- END main navigation -->
             <?= $content ?>
 

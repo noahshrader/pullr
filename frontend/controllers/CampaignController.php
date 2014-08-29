@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\message\ActivityMessage;
 use common\models\FirstGiving;
 use frontend\controllers\FrontendController;
 use common\models\Campaign;
@@ -44,7 +45,7 @@ class CampaignController extends FrontendController {
         if ($status == Campaign::STATUS_PENDING){
             RecentActivityNotification::createNotification(
                 \Yii::$app->user->id,
-                sprintf(\Yii::$app->params['campaignEnded'], $campaign->name, number_format($campaign->amountRaised))
+                ActivityMessage::messageCampaignEnded($campaign)
             );
         }
 
@@ -91,7 +92,7 @@ class CampaignController extends FrontendController {
                     // dashboard "Campaign created" notification
                     RecentActivityNotification::createNotification(
                         \Yii::$app->user->id,
-                        sprintf(\Yii::$app->params['newCampaign'], $editCampaign->name)
+                        ActivityMessage::messageNewCampaign($editCampaign)
                     );
 
                     $this->redirect('app/campaign/edit?id=' . $editCampaign->id);

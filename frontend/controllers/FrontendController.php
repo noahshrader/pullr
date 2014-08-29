@@ -2,10 +2,9 @@
 namespace frontend\controllers;
 
 use yii\web\Controller;
-
+use yii\filters\AccessControl;
 /**
  * That is a default controller, for all controllers in frontend application. 
- * @author klyukin 
  */
 class FrontendController extends Controller
 {
@@ -13,7 +12,7 @@ class FrontendController extends Controller
 	{
 		return [
 			'access' => [
-				'class' => \yii\filters\AccessControl::className(),
+				'class' => AccessControl::className(),
 				'rules' => [
 					[
 						'allow' => true,

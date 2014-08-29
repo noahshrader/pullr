@@ -2,6 +2,8 @@
 
 namespace console\controllers;
 
+use frontend\models\streamboard\WidgetAlertsPreference;
+use PayPal\Common\PPReflectionUtil;
 use Yii;
 use yii\console\Controller;
 use common\models\User;
@@ -11,6 +13,7 @@ use common\models\Campaign;
 use common\models\notifications\SystemNotification;
 use common\models\CampaignInvite;
 use common\models\Donation;
+use frontend\models\streamboard\StreamboardRegion;
 
 class Sample_dataController extends Controller
 {
@@ -29,6 +32,8 @@ class Sample_dataController extends Controller
         $this->sampleDonations();
         echo "Starting to make pro-accounts\n";
         $this->sampleProAccounts();
+        echo "Starting to make streamboard\n";
+        $this->sampleStreamboard();
         echo "Data was loaded successfully\n\n";
     }
 
@@ -301,5 +306,54 @@ class Sample_dataController extends Controller
     private function sampleProAccounts(){
        $this->user1->prolong(\Yii::$app->params['yearSubscription']);
        $this->adminUser->prolong(\Yii::$app->params['monthSubscription']);
+    }
+
+    public function sampleStreamboard(){
+        $regions = StreamboardRegion::GetRegions($this->user1);
+        $region1 = $regions[0];
+        $region2 = $regions[1];
+
+        $region1->backgroundColor = '#953a3a';
+        $region1->widgetType = StreamboardRegion::WIDGET_ALERTS;
+        $region1->save();
+
+        $region1->widgetAlerts->includeFollowers = true;
+        $region1->widgetAlerts->includeSubscribers = true;
+        $region1->widgetAlerts->includeDonations = true;
+        $region1->widgetAlerts->animationDelaySeconds = 2;
+        $region1->widgetAlerts->save();
+
+        $region1->widgetAlerts->followersPreference->animationDuration = 10;
+        $region1->widgetAlerts->followersPreference->fontSize = 46;
+        $region1->widgetAlerts->followersPreference->fontColor = '#ff0000';
+        $region1->widgetAlerts->followersPreference->fontStyle = 'Ubuntu';
+        $region1->widgetAlerts->followersPreference->sound = '8-Bit-Arpeggio.mp3';
+        $region1->widgetAlerts->followersPreference->soundType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
+        $region1->widgetAlerts->followersPreference->image = 'Gnome300.gif';
+        $region1->widgetAlerts->followersPreference->imageType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
+        $region1->widgetAlerts->followersPreference->save();
+
+        $region1->widgetAlerts->subscribersPreference->animationDuration = 5;
+        $region1->widgetAlerts->subscribersPreference->fontSize = 30;
+        $region1->widgetAlerts->subscribersPreference->fontColor = '#00ff00';
+        $region1->widgetAlerts->subscribersPreference->fontStyle = 'Shadows Into Light';
+        $region1->widgetAlerts->subscribersPreference->sound = 'Bonus-Coin-1.mp3';
+        $region1->widgetAlerts->subscribersPreference->soundType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
+        $region1->widgetAlerts->subscribersPreference->image = 'LeagueOfLegends300.gif';
+        $region1->widgetAlerts->subscribersPreference->imageType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
+        $region1->widgetAlerts->subscribersPreference->save();
+
+        $region1->widgetAlerts->donationsPreference->animationDuration = 5;
+        $region1->widgetAlerts->donationsPreference->fontSize = 16;
+        $region1->widgetAlerts->donationsPreference->fontColor = '#0000ff';
+        $region1->widgetAlerts->donationsPreference->fontStyle = 'Lobster';
+        $region1->widgetAlerts->donationsPreference->sound = 'Dark-Win.mp3';
+        $region1->widgetAlerts->donationsPreference->soundType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
+        $region1->widgetAlerts->donationsPreference->image = 'Mascot300.gif';
+        $region1->widgetAlerts->donationsPreference->imageType = WidgetAlertsPreference::FILE_TYPE_LIBRARY;
+        $region1->widgetAlerts->donationsPreference->save();
+
+        $region2->backgroundColor = '#80a99e';
+        $region2->save();
     }
 }

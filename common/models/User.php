@@ -10,6 +10,7 @@ use common\models\user\UserFields;
 use yii\db\ActiveQuery;
 use common\models\twitch\TwitchUser;
 use frontend\models\streamboard\StreamboardConfig;
+
 /**
  * Class User
  * @package common\models
@@ -295,7 +296,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function toArrayPrivate(array $fields = [], array $expand = [], $recursive = true)
     {
-        $allowed = ['id', 'name','uniqueName', 'photo', 'smallPhoto', 'email'];
+        $allowed = ['id', 'name', 'uniqueName', 'photo', 'smallPhoto', 'email'];
         return array_intersect_key(parent::toArray($fields, $expand, $recursive), array_flip($allowed));
 
     }
@@ -429,15 +430,21 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @param int $sinceId return only donations with id > $sinceId
+     * @param Array $params
      * @return ActiveQuery Return all donations which was made for all user's campaigns including children campaigns.
      */
-    public function getDonations($sinceId = null)
+    public function getDonations($params = null)
     {
+        /**@var $query ActiveQuery */
         $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId'])
             ->andWhere('paymentDate > 0')->addParams(['userId' => $this->id])->orderBy('paymentDate DESC, id DESC');
-        if ($sinceId) {
-            $query->andWhere('id > :sinceId')->addParams(['sinceId' => $sinceId]);
+        if ($params) {
+            if (isset($params['sinceId'])) {
+                $query->andWhere('id > :sinceId')->addParams(['sinceId' => $params['sinceId']]);
+            }
+            if (isset($params['sincePaymentDate'])) {
+                $query->andWhere('paymentDate > :sincePaymentDate')->addParams(['sincePaymentDate' => $params['sincePaymentDate']]);
+            }
         }
         return $query;
     }

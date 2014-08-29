@@ -11,8 +11,14 @@ use common\models\User;
  * @property integer $userId
  * @property integer $regionNumber - either 1 / 2
  * @property string $preferenceType
+ * @property string $fontSize
+ * @property string $fontColor
+ * @property string $fontStyle
+ * @property string $animationDuration
  * @property string $sound - filename of predefined sound
+ * @property string $soundType - FILE_TYPE_LIBRARY | FILE_TYPE_CUSTOM
  * @property string $image - filename of predefined image
+ * @property string $imageType - FILE_TYPE_LIBRARY | FILE_TYPE_CUSTOM
  */
 class WidgetAlertsPreference extends ActiveRecord {
     const FILE_TYPE_LIBRARY = 'Library';

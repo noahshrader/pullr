@@ -36,52 +36,53 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <? if (!$campaign->isParentForCurrentUser()): ?>
             <ul class="campaign-quick-links">
                 <li>
-                    <a class="actions-toggle icon-mobile"></a>
+                    <a class="actions-toggle icon-menu"></a>
                     <ul>
-                        <li class="active">
+                        <li class="active cf">
                             <a href="app/campaign/view?id=<?= $campaign->id ?>">
-                                <i class="icon icon-piechart"></i>
+                                <i class="icon icon-piechart2"></i>
                                 <!-- Overview -->
                                 Overview
                             </a>
                         </li>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign/edit?id=<?= $campaign->id ?>">
-                                <i class="icon icon-edit"></i>
+                                <i class="icon icon-pencil"></i>
                                 <!-- Edit -->
                                 Edit
                             </a>
                         </li>
-                        <li>
+                        <li class="cf">
                             <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
                             <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                                <i class="icon icon-code"></i>
+                                <i class="icon icon-code2"></i>
                                 JSON
                             </a>
                         </li>
                         <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                                <i class="icon icon-archive"></i>
+                                <i class="icon icon-archiveit"></i>
                                 <!-- Archive -->
                                 Archive
                             </a>
                         </li>
                         <? endif ?>
+                        <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                        <li class="cf">
+                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                                <i class="icon icon-recover"></i>
+                                <!-- Restore -->
+                                Restore
+                            </a>
+                        </li>
+                        <? endif ?>
                         <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                                 <i class="icon icon-trash"></i>
                                 <!-- Remove -->
                                 Delete
-                            </a>
-                        </li>
-                        <? endif ?>
-                        <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
-                        <li>
-                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                                <i class="icon icon-recover"></i>
-                                <!-- Restore -->
                             </a>
                         </li>
                     </ul>
@@ -135,11 +136,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <h5>Donors</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donor'>
-                    <h2><?= $topDonorText ?></h2>
+                    <h3><?= $topDonorText ?></h3>
                     <h5>Top Donor</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donation'>
-                    <h2><?= $topDonationText ?></h2>
+                    <h3><?= $topDonationText ?></h3>
                     <h5>Top Donation</h5>
                 </div>
                 <div class="clearfix"></div>

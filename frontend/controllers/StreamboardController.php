@@ -3,12 +3,11 @@
 namespace frontend\controllers;
 
 use common\models\Plan;
+use common\models\twitch\TwitchFollow;
 use common\models\twitch\TwitchSubscription;
 use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
 use frontend\models\streamboard\StreamboardRegion;
-use frontend\models\streamboard\WidgetAlerts;
-use kartik\widgets\Alert;
 use Yii;
 use common\models\User;
 use common\models\Donation;
@@ -20,6 +19,7 @@ use yii\web\NotFoundHttpException;
 use common\components\Application;
 use yii\web\Response;
 use common\components\streamboard\alert\AlertMediaManager;
+use common\components\message\ActivityMessage;
 
 class StreamboardController extends FrontendController
 {
@@ -27,16 +27,87 @@ class StreamboardController extends FrontendController
     {
         $this->layout = 'streamboard';
         $user = Application::getCurrentUser();
+
+        /*to get 'donations/followers/subscribers/" only since opening of streamboard*/
+        $user->streamboardConfig->streamRequestLastDate = time();
+        $user->streamboardConfig->save();
+
         $regionsNumber = $user->getPlan() == Plan::PLAN_PRO ? 2 : 1;
         return $this->render('index', [
             'regionsNumber' => $regionsNumber
         ]);
     }
 
+    /**return new events (donations/followers/subscribers)
+     * sorting is "date ASC" for array
+    */
+    public function actionGet_stream_data(){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $user = Application::getCurrentUser();
+        $streamboardConfig = $user->streamboardConfig;
+        $time = time();
+        /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
+        $sinceTime = $streamboardConfig->streamRequestLastDate - 3*60*60;
+
+        $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC')->all();
+
+        /*created date at Twitch is less for 1 hour then $sinceTime, as it possible we will have enough rare request to Twitch API,
+        but notifications still should be shown, even if they are delayed*/
+
+        $twitchSinceTime = $sinceTime - 60*60;
+        $condition = 'createdAt > :twitchSinceTime and createdAtPullr > :sinceTime ';
+        $params = ['twitchSinceTime' => $twitchSinceTime ,'sinceTime' => $sinceTime];
+
+        $followers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere($condition)->addParams($params)->all();
+        $subscriptions = TwitchSubscription::find()->where(['userId' => $user->id])->andWhere($condition)->addParams($params)->all();
+
+        $notifications = [];
+        foreach ($donations as $donation){
+            /**@var $donation Donation*/
+            $notifications[] = [
+                'id' => $donation->id,
+                'type' => 'donations',
+                'message' => ActivityMessage::messageDonationReceived($donation),
+                'donation' => $donation,
+                'date' => $donation->paymentDate
+            ];
+        }
+
+        foreach ($followers as $follow){
+            /**@var $follow TwitchFollow*/
+            $notifications[] = [
+                'id' => $follow->twitchUserId,
+                'type' => 'followers',
+                'message' => ActivityMessage::messageNewTwitchFollower($follow),
+                'follow' => $follow,
+                'date' => $follow->createdAtPullr
+            ];
+        }
+
+        foreach ($subscriptions as $subscription){
+            /**@var $subscription TwitchSubscription*/
+            $notifications[] = [
+                'id' => $subscription->twitchUserId,
+                'type' => 'subscribers',
+                'message' => ActivityMessage::messageNewTwitchSubscriber($subscription),
+                'subscription' => $subscription,
+                'date' => $subscription->createdAtPullr
+            ];
+        }
+
+        usort($notifications, function($a, $b){
+            return $a['date'] > $b['date'] ? 1 : -1;
+        });
+
+        $streamboardConfig->streamRequestLastDate = $time;
+        return $notifications;
+    }
+
     public function actionSource()
     {
         $this->layout = 'streamboard/source';
-        return $this->render('source', []);
+        return $this->render('config/settings/source', []);
     }
 
     /**
@@ -60,6 +131,7 @@ class StreamboardController extends FrontendController
 
     public function actionGet_campaigns_ajax()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $user = Application::getCurrentUser();
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->orderBy('amountRaised DESC, id DESC')->all();
         $campaignsArray = [];
@@ -71,8 +143,7 @@ class StreamboardController extends FrontendController
             $campaignsArray[$campaign->id] = $array;
         }
 
-        echo json_encode($campaignsArray);
-        die;
+        return $campaignsArray;
     }
 
     public function actionGet_donations_ajax($since_id = null)
@@ -80,7 +151,7 @@ class StreamboardController extends FrontendController
         $user = Application::getCurrentUser();
         $sinceDate = $user->streamboardConfig->clearedDate;
         /*we are limiting by 100 here, but on html after applying campaign's filter we will limit to just 20*/
-        $donations = $user->getDonations($since_id)->andWhere('paymentDate > ' . $sinceDate)->with('campaign', 'streamboard')->limit(100)->all();
+        $donations = $user->getDonations(['sinceId' => $since_id])->andWhere('paymentDate > ' . $sinceDate)->with('campaign', 'streamboard')->limit(100)->all();
 
         $donationsArray = [];
         foreach ($donations as $donation) {

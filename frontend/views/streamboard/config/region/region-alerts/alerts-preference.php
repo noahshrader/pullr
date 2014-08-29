@@ -5,7 +5,7 @@ use yii\web\View;
 /**@var $this View */
 ?>
 <h4>Preferences</h4>
-<div class="hidden">
+<div>
     <div>
         <label>Font style</label>
 

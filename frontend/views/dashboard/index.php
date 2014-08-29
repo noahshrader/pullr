@@ -22,7 +22,7 @@ $twitchPartner = $user->userFields->twitchPartner;
         <div class="content-wrap">
             <? if ($systemNotification): ?> <!-- BEGIN notification -->
                 <div class="alert alert-info alert-dismissible systemNotification module">
-                    <i class="icon-console2"></i>
+                    <i class="icon-gamepad4"></i>
                     <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
                         <span>&times;</span>
                     </button>

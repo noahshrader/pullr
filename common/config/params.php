@@ -22,7 +22,7 @@ return [
     //First Giving params
     'firstGiving' => [
         'donateHost' => 'https://donatenowstaging.firstgiving.com',
-        'formStyleSheetURL' => 'https://www.dropbox.com/s/s7d43ysw7nppro1/donation.css',
+        'formStyleSheetURL' => 'https://dl.dropbox.com/s/s7d43ysw7nppro1/donation.css',
         'donationApiHost' => 'http://usapisandbox.fgdev.net/',
         //dont change keys of array
         'callbackSuccessPair' => [

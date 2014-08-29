@@ -8,21 +8,12 @@ use common\models\User;
 use common\models\Campaign;
 use common\components\Application;
 
-/**
- * Class Streamboard is used to store user's settings for streamboard.
- * @package frontend\models\streamboard
- * @property integer $donationId
- * @property integer $userId
- * @property boolean $nameHidden
- * @property boolean $wasRead
- */
 class Streamboard extends Model {
     /**
      * @param $selectedCampaigns Campaign[]
      * @return array
      */
     public static function getStats($selectedCampaigns){
-        $stats = [];
         $stats = [
             'total_amountRaised' => 0,
             'total_goalAmount' => 0,

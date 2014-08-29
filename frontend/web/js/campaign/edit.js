@@ -110,14 +110,6 @@ function rememberAccordionState() {
 
 function initBootstrapSwitch() {
     $("#campaignEdit input[type='checkbox']").bootstrapSwitch();
-    $("#campaign-chat").on('click', function() {
-        var value = $('#campaign-chat').bootstrapSwitch('state');
-        if (value){
-            $('.field-campaign-chattoggle').show('slow');
-        } else {
-            $('.field-campaign-chattoggle').hide('slow');
-        }
-    });
     $("#campaign-enabledonations").on('click', function() {
         var value = $('#campaign-enabledonations').bootstrapSwitch('state');
         if (value){
@@ -130,29 +122,27 @@ function initBootstrapSwitch() {
     $("#campaign-twitterenable").on('click', function() {
         var value = $('#campaign-twitterenable').bootstrapSwitch('state');
         if (value){
-            $('.field-campaign-twittername').show('slow');
+            $('.field-campaign-twittername').addClass('show');
         } else {
-            $('.field-campaign-twittername').hide('slow');
+            $('.field-campaign-twittername').removeClass('show');
         }
     });
     
     $("#campaign-youtubeenable").on('click', function() {
         var value = $('#campaign-youtubeenable').bootstrapSwitch('state');
         if (value){
-            $('.field-campaign-youtubeurl').show('slow');
-            $('.field-campaign-includeyoutubefeed').show('slow');
+            $('.field-campaign-youtubeurl').addClass('show');
         } else {
-            $('.field-campaign-youtubeurl').hide('slow');
-            $('.field-campaign-includeyoutubefeed').hide('slow');
+            $('.field-campaign-youtubeurl').removeClass('show');
         }
     });
     
     $("#campaign-facebookenable").on('click', function() {
         var value = $('#campaign-facebookenable').bootstrapSwitch('state');
         if (value){
-            $('.field-campaign-facebookurl').show('slow');
+            $('.field-campaign-facebookurl').addClass('show');
         } else {
-            $('.field-campaign-facebookurl').hide('slow');
+            $('.field-campaign-facebookurl').removeClass('show');
         }
     });
 
@@ -165,14 +155,14 @@ function initBootstrapSwitch() {
         }
     });
     
-    $("#campaign-enablecustomlogo").on('click', function() {
-        var value = $('#campaign-enablecustomlogo').bootstrapSwitch('state');
-        if (value){
-            $('#logo-container').show('slow');
-        } else {
-            $('#logo-container').hide('slow');
-        }
-    });
+    //$("#campaign-enablecustomlogo").on('click', function() {
+    //    var value = $('#campaign-enablecustomlogo').bootstrapSwitch('state');
+    //    if (value){
+    //        $('#logo-container').show('slow');
+    //    } else {
+    //        $('#logo-container').hide('slow');
+    //    }
+    //});
     
     $("#campaign-tiedtoparent").on('click', function() {
         var value = $('#campaign-tiedtoparent').bootstrapSwitch('state');
@@ -188,7 +178,7 @@ function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
     $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
         $('#modalThemes').modal('show');
-        $('.site-content, .top-menu').addClass('blur');
+
     })
 }
 
@@ -199,17 +189,15 @@ function selectTheme(el){
     $('#campaign-themeid').val(id);
     $('.theme-name span').text(name);
     $('.theme-name').removeClass('hidden');
-    $('#modalThemes').modal('hide');
-    $('.site-content, .top-menu').removeClass('blur');
     $('#sidepanelthree').removeClass('open expand');
     $('#sidepanel').removeClass('expand');
     $('.page-wrapper').removeClass('choosetheme-expand');
+    $('#modalThemes').modal('hide');
 }
 
 function campaignChooseCharity(){
     $('#modalCharity .modal-content').load('app/campaign/modalcharities', function(){
         $('#modalCharity').modal('show');
-        $('.site-content, .top-menu').addClass('blur');
     });
 }
 
@@ -221,12 +209,9 @@ function selectCharity(el){
     $('.charity-name span').text(name);
     $('.charity-name').removeClass('hidden');
     $('#modalCharity').modal('hide');
-    $('.site-content, .top-menu').removeClass('blur');
 }
 
 $(function() {
-    // move modals outside of main site wrapper on load
-    $('.modal').insertAfter('.site-content');
     $('#campaign-layouttype').change(layoutTypeChanged);
     $('[name="Campaign[type]"]').change(campaignTypeChanged);
     $('[name="Campaign[donationDestination]"').change(donationDestinationChanged);

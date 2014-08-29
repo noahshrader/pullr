@@ -13,6 +13,7 @@ use common\components\streamboard\alert\AlertMediaManager;
  * @property boolean $includeFollowers
  * @property boolean $includeSubscribers
  * @property boolean $includeDonations
+ * @property boolean $animationDelaySeconds
  * @property WidgetAlertsPreference $followersPreference
  * @property WidgetAlertsPreference $subscribersPreference
  * @property WidgetAlertsPreference $donationsPreference
@@ -47,6 +48,9 @@ class WidgetAlerts extends ActiveRecord {
         parent::afterSave($insert, $params);
         if ($insert) {
             /** so we have new record*/
+            if (!$this->animationDelaySeconds){
+              $this->animationDelaySeconds = 1;
+            }
 
             $followersPreference = new WidgetAlertsPreference();
             $followersPreference->userId = $this->userId;

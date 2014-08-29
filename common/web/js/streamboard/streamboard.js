@@ -25,8 +25,11 @@ $(function () {
 
     // panel toggles
     $(document).on('click', '.paneltoggle li a', function() {
-   		$('.'+$(this).data('panel')+'_panel').toggleClass('selected');
-        $('.donations-list, .form-group').toggleClass('mute');
+        $(this).parent('li').toggleClass('active').siblings().removeClass('active');
+   		$('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
+        if($('').hasClass('')) {
+            $('.donations-list, .form-group').toggleClass('mute');
+    }
    	});
 
     $('a.close').click(function() {

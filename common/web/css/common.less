@@ -9,6 +9,10 @@
 /* ------------------------------------------------- */
 body {
 	font-size: @basefontsize;
+    height: 100%;
+}
+.streamboardContainer{
+  height: 100%;
 }
 	body.campaignflow {
 		overflow: auto;
@@ -91,16 +95,11 @@ table {
 	th {
 		background: @modulehead;
 	}
-	tr:hover td {
-		color: @base;
-	}
 	td {
 		color: @gray40;
+		border-top: solid 1px @gray75;
 		cursor: pointer;
 		.trans;
-		&:hover {
-			color: @maingray;
-		}
 		&.raised {
 			color: @accent !important;
 		}
@@ -114,6 +113,9 @@ table {
 	&.dataTable.display tbody td[colspan~="4"] {
 		padding-top: 0 !important;
 		border: 0;
+		&.dataTables_empty {
+			padding: .9em 4% !important;
+		}
 	}
 	&.dataTable td.details-control {
 		padding: 0 !important;
@@ -127,6 +129,7 @@ table {
 
 		i {
 			display: block;
+			font-size: 12px;
 			text-align: center;
 			padding: 1em 6%;
 			.trans;
@@ -185,13 +188,12 @@ table.dataTable thead td {
 		&:before {
 			position: absolute;
 			top: 50%;
-			left: 30px;
-			content: '\e664';
+			left: 26px;
+			content: '\e68e';
 			color: @gray60;
 			font-family: 'icomoon';
-			font-size: 12px;
-			font-weight: 600;
-			margin-top: -7px;
+			font-size: 14px;
+			margin-top: -9px;
 		}
 	}
 	.dataTables_paginate {
@@ -244,8 +246,13 @@ table.dataTable thead td {
 
 
 /* Main Data Containers */
+/* ------------------------------------------------- */
 .stats-overview {
 	text-align: center;
+
+	h5 {
+		margin-top: .2em;
+	}
 
 	/* Main Number Values */
 	&.main-values {
@@ -276,6 +283,7 @@ table.dataTable thead td {
 		h3 {
 			display: block;
 			font-weight: 300;
+			margin: 0;
 		}
 		&.raised-total,
 		&.top-donor {
@@ -283,7 +291,6 @@ table.dataTable thead td {
 		}
 		&.top-donor,
 		&.top-donation {
-			padding: 1.2em 2em;
 			border-top: solid 1px @gray75;
 		}
 	}
@@ -325,12 +332,11 @@ table.dataTable thead td {
 /* Content Navigation */
 /* ------------------------------------------------- */
 ul.content-nav {
-	text-align: left;
+	text-align: center;
 	margin: @gutter+@gutter 0 0;
 
 	li {
 		position: relative;
-		float: left;
 		display: inline-block;
 		margin-right: 3px;
 		border: 0;
@@ -385,6 +391,7 @@ ul.panel-nav {
 		a {
 			display: block;
 			color: @gray40;
+			font-size: 18px;
 			font-weight: 400;
 			line-height: @sidenavheight;
 			width: 100%;

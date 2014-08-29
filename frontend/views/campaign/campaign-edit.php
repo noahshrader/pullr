@@ -21,40 +21,40 @@ $user = \Yii::$app->user->identity;
             <? if (!$campaign->isParentForCurrentUser()): ?>
             <ul class="campaign-quick-links">
                 <li>
-                    <a class="actions-toggle icon-mobile"></a>
+                    <a class="actions-toggle icon-menu"></a>
                     <ul>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign/view?id=<?= $campaign->id ?>">
-                                <i class="icon icon-piechart"></i>
+                                <i class="icon icon-piechart2"></i>
                                 <!-- Overview -->
                                 Overview
                             </a>
                         </li>
-                        <li class="active">
+                        <li class="active cf">
                             <a href="app/campaign/edit?id=<?= $campaign->id ?>">
-                                <i class="icon icon-edit"></i>
+                                <i class="icon icon-pencil"></i>
                                 <!-- Edit -->
                                 Edit
                             </a>
                         </li>
-                        <li>
+                        <li class="cf">
                             <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
                             <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                                <i class="icon icon-code"></i>
+                                <i class="icon icon-code2"></i>
                                 JSON
                             </a>
                         </li>
                         <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                                <i class="icon icon-archive"></i>
+                                <i class="icon icon-archiveit"></i>
                                 <!-- Archive -->
                                 Archive
                             </a>
                         </li>
                         <? endif ?>
                         <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                                 <i class="icon icon-trash"></i>
                                 <!-- Remove -->
@@ -63,7 +63,7 @@ $user = \Yii::$app->user->identity;
                         </li>
                         <? endif ?>
                         <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                                 <i class="icon icon-recover"></i>
                                 <!-- Restore -->
@@ -155,13 +155,13 @@ $user = \Yii::$app->user->identity;
 <? endif ?> 
 </div>
 <!-- Modal -->
-<div class="modal fade" id="modalCharity" tabindex="-1" role="dialog" aria-labelledby="myModalCharity" aria-hidden="true">
+<div id="modalCharity" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalCharity" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         </div>
     </div>
 </div>
-<div class="modal fade" id="modalThemes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="modalThemes" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         </div>
