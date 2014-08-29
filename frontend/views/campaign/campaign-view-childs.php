@@ -24,7 +24,8 @@
             <td><?= $child->name ?></td> 
             <td>
                 <? if ($child->startDate && $child->endDate): ?>
-                    <?= date('M j Y', $child->startDate) ?> - <?= date('M j Y', $child->endDate) ?>
+                    <? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
+                    <?=$date->setTimestamp($child->startDate)->format('M j Y'); ?> - <?=$date->setTimestamp($child->endDate)->format('M j Y'); ?>
                 <? endif ?>
             </td>
             <td class="raised">$<?= number_format($child->amountRaised) ?></td>

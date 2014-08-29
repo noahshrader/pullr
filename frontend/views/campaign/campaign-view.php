@@ -101,7 +101,12 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <h1 class="campaign-title">
                 <?= ($campaign->name)?$campaign->name:'New Campaign' ?>
                 <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER && $campaign->startDate && $campaign->endDate): ?>
-                <span class="campaign-date"><?= date('M j, Y', $campaign->startDate) ?> - <?= date('M j, Y', $campaign->endDate) ?></span>
+                <span class="campaign-date">
+                    <? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
+                    <?= $date->setTimestamp($campaign->startDate)->format('M j, Y'); ?>
+                    -
+                    <?= $date->setTimestamp($campaign->endDate)->format('M j, Y'); ?>
+                </span>
                 <? endif ?>
             </h1>
             <section class="stats-overview main-values module">

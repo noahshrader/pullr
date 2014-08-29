@@ -197,6 +197,13 @@ class User extends ActiveRecord implements IdentityInterface
         }
     }
 
+    public function getTimezone(){
+        if (empty($this->timezone)){
+            return date_default_timezone_get();
+        }
+        return $this->timezone;
+    }
+
     public function getUrl()
     {
         if ($this->uniqueName && !(ctype_digit($this->uniqueName))) {
