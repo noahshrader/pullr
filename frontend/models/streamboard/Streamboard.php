@@ -14,7 +14,6 @@ class Streamboard extends Model {
      * @return array
      */
     public static function getStats($selectedCampaigns){
-        $stats = [];
         $stats = [
             'total_amountRaised' => 0,
             'total_goalAmount' => 0,

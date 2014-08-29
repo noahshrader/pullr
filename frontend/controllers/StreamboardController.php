@@ -8,8 +8,6 @@ use common\models\twitch\TwitchSubscription;
 use frontend\models\streamboard\StreamboardConfig;
 use frontend\models\streamboard\StreamboardDonation;
 use frontend\models\streamboard\StreamboardRegion;
-use frontend\models\streamboard\WidgetAlerts;
-use kartik\widgets\Alert;
 use Yii;
 use common\models\User;
 use common\models\Donation;
@@ -21,6 +19,7 @@ use yii\web\NotFoundHttpException;
 use common\components\Application;
 use yii\web\Response;
 use common\components\streamboard\alert\AlertMediaManager;
+use common\components\message\ActivityMessage;
 
 class StreamboardController extends FrontendController
 {
@@ -49,7 +48,7 @@ class StreamboardController extends FrontendController
         $streamboardConfig = $user->streamboardConfig;
         $time = time();
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
-        $sinceTime = $streamboardConfig->streamRequestLastDate - 10*60*60;
+        $sinceTime = $streamboardConfig->streamRequestLastDate - 3*60*60;
 
         $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC')->all();
 
@@ -67,8 +66,9 @@ class StreamboardController extends FrontendController
         foreach ($donations as $donation){
             /**@var $donation Donation*/
             $notifications[] = [
-                'type' => 'donations',
                 'id' => $donation->id,
+                'type' => 'donations',
+                'message' => ActivityMessage::messageDonationReceived($donation),
                 'donation' => $donation,
                 'date' => $donation->paymentDate
             ];
@@ -77,8 +77,9 @@ class StreamboardController extends FrontendController
         foreach ($followers as $follow){
             /**@var $follow TwitchFollow*/
             $notifications[] = [
-                'type' => 'followers',
                 'id' => $follow->twitchUserId,
+                'type' => 'followers',
+                'message' => ActivityMessage::messageNewTwitchFollower($follow),
                 'follow' => $follow,
                 'date' => $follow->createdAtPullr
             ];
@@ -87,8 +88,9 @@ class StreamboardController extends FrontendController
         foreach ($subscriptions as $subscription){
             /**@var $subscription TwitchSubscription*/
             $notifications[] = [
-                'type' => 'subscribers',
                 'id' => $subscription->twitchUserId,
+                'type' => 'subscribers',
+                'message' => ActivityMessage::messageNewTwitchSubscriber($subscription),
                 'subscription' => $subscription,
                 'date' => $subscription->createdAtPullr
             ];

@@ -9,6 +9,9 @@ use common\models\User;
 /**
  * we used these class to create recent activity notifications for user, 
  * which showed at dashboard
+ * @property $userId integer
+ * @property $message string
+ * @property $date integer
  */
 class RecentActivityNotification extends ActiveRecord {
     /**

@@ -29,7 +29,7 @@
                 console.log(['WE HAVE NOTIFICATION FOR REGION ' + region.regionNumber]);
                 console.log(notification);
                 var toShow = region.toShow.alert;
-                toShow.message = notification.id;
+                toShow.message = notification.message;
                 toShow.preference = region.widgetAlerts[notification.type + 'Preference']
                 var preference = toShow.preference;
                 toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);
@@ -65,7 +65,7 @@
                         showAlert(region)
                     });
                 });
-            }, 3000);
+            }, 4000);
         })
     });
 })()

@@ -95,8 +95,12 @@ class Donation extends ActiveRecord
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'userId']);
     }
-    
-    public function getName(){
+
+    /**
+     * @param bool $realNames - real names will be used when possible
+     * @return string
+     */
+    public function getName($realNames = true){
         if ($this->firstName || $this->lastName){
             return $this->lastName.' '.$this->firstName;
         } else {
