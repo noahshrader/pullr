@@ -27,6 +27,11 @@ use frontend\models\streamboard\WidgetAlertsPreference;
                 </div>
             </div>
         </div>
+        <div>
+            <i class="glyphicon glyphicon-volume-up"></i>
+            <slider ng-model="preference.volume" floor="0" ceiling="100" step="1"
+                    ng-change="regionChanged(region)"></slider>
+        </div>
         <div id="{{baseLink}}-{{fileType}}s-library" class="tab-pane active">
             <div class="files-container">
                 <div ng-repeat="file in (fileType=='sound' ? alertMediaManagerService.librarySounds : alertMediaManagerService.libraryImages)"

@@ -50,7 +50,7 @@ class StreamboardController extends FrontendController
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
         $sinceTime = $streamboardConfig->streamRequestLastDate - 3*60*60;
 
-        $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC')->all();
+        $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC, id ASC')->all();
 
         /*created date at Twitch is less for 1 hour then $sinceTime, as it possible we will have enough rare request to Twitch API,
         but notifications still should be shown, even if they are delayed*/

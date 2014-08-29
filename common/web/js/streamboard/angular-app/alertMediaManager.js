@@ -17,7 +17,7 @@
             }
             var Service = this;
             $.extend(this, Pullr.Streamboard.AlertMediaManager);
-            this.playSound = function (sound,soundType) {
+            this.playSound = function (sound,soundType, volume) {
                 if (!sound || !soundType){
                     return;
                 }
@@ -37,7 +37,12 @@
                     this.audio.pause();
                 }
 
+//                console.log('[VOLUME]');
+//                console.log(volume/100)
+//                console.log('[PATH]');
+//                console.log(path);
                 this.audio = new Audio(path);
+                this.audio.volume = volume / 100;
                 this.audio.play();
             };
             this.getImageUrl = function(image, imageType){
