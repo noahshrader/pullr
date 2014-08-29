@@ -17,7 +17,11 @@
                     $<?= number_format($donation->amount) ?>
                 </td>
                 <td>
-                   <?= date('M j, Y h:mA', $donation->paymentDate) ?>
+                   <?= (new DateTime())
+                       ->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone()))
+                       ->setTimestamp($donation->paymentDate)
+                       ->format('M j, Y h:iA');
+                   ?>
                 </td>
                 <td class="details-control">
                     <? if ($donation->email || $donation->comments): ?>

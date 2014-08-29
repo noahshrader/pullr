@@ -36,7 +36,12 @@ use common\models\Plan;
         ?>
     </div>
     <div class="account-action">
-        <span>Paid until</span> <?= date('M j Y', $plan->expire) ?>
+        <span>Paid until</span>
+        <?= (new DateTime())
+            ->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone()))
+            ->setTimestamp($plan->expire)
+            ->format('M j Y');
+        ?>
         <? if ($user->id < 10): ?>
             <a class="deactivate" href="app/settings/deactivatepro">Downgrade my plan</a>
         <? endif;?>
