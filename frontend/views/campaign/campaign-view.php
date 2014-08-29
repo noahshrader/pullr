@@ -38,21 +38,21 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                 <li>
                     <a class="actions-toggle icon-menu"></a>
                     <ul>
-                        <li class="active">
+                        <li class="active cf">
                             <a href="app/campaign/view?id=<?= $campaign->id ?>">
                                 <i class="icon icon-piechart2"></i>
                                 <!-- Overview -->
                                 Overview
                             </a>
                         </li>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign/edit?id=<?= $campaign->id ?>">
                                 <i class="icon icon-pencil"></i>
                                 <!-- Edit -->
                                 Edit
                             </a>
                         </li>
-                        <li>
+                        <li class="cf">
                             <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
                             <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
                                 <i class="icon icon-code2"></i>
@@ -60,7 +60,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                             </a>
                         </li>
                         <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
                                 <i class="icon icon-archiveit"></i>
                                 <!-- Archive -->
@@ -68,20 +68,21 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                             </a>
                         </li>
                         <? endif ?>
+                        <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                        <li class="cf">
+                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                                <i class="icon icon-recover"></i>
+                                <!-- Restore -->
+                                Restore
+                            </a>
+                        </li>
+                        <? endif ?>
                         <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
-                        <li>
+                        <li class="cf">
                             <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                                 <i class="icon icon-trash"></i>
                                 <!-- Remove -->
                                 Delete
-                            </a>
-                        </li>
-                        <? endif ?>
-                        <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
-                        <li>
-                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                                <i class="icon icon-recover"></i>
-                                <!-- Restore -->
                             </a>
                         </li>
                     </ul>

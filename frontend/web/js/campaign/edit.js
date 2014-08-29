@@ -187,7 +187,6 @@ function initBootstrapSwitch() {
 function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
     $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
-        $('#modalThemes').addClass('in');
         $('#modalThemes').modal('show');
 
     })
@@ -203,6 +202,7 @@ function selectTheme(el){
     $('#sidepanelthree').removeClass('open expand');
     $('#sidepanel').removeClass('expand');
     $('.page-wrapper').removeClass('choosetheme-expand');
+    $('#modalThemes').modal('hide');
 }
 
 function campaignChooseCharity(){
