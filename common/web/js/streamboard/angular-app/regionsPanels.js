@@ -30,7 +30,9 @@
                 console.log(notification);
                 var toShow = region.toShow.alert;
                 toShow.message = notification.message;
-                toShow.preference = region.widgetAlerts[notification.type + 'Preference']
+                toShow.preference = region.widgetAlerts[notification.type + 'Preference'];
+                window.requireGoogleFont(toShow.preference.fontStyle);
+
                 var preference = toShow.preference;
                 toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);
 

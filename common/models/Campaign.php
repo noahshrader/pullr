@@ -80,7 +80,6 @@ class Campaign extends ActiveRecord {
             }
         }
     }
-
     public function init() {
         parent::init();
         $this->type = self::TYPE_PERSONAL_FUNDRAISER;

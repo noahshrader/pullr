@@ -9,6 +9,7 @@ class StreamboardAsset extends AssetBundle
 	public $css = [
 	];
 	public $js = [
+        '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js',
         'bower_components/venturocket-angular-slider/build/angular-slider.min.js',
         'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js',
         'bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js',

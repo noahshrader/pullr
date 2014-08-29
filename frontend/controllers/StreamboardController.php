@@ -148,6 +148,8 @@ class StreamboardController extends FrontendController
 
     public function actionGet_donations_ajax($since_id = null)
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $user = Application::getCurrentUser();
         $user = Application::getCurrentUser();
         $sinceDate = $user->streamboardConfig->clearedDate;
         /*we are limiting by 100 here, but on html after applying campaign's filter we will limit to just 20*/
@@ -188,8 +190,7 @@ class StreamboardController extends FrontendController
         $data['donations'] = $donationsArray;
         $data['stats'] = $stats;
 
-        echo json_encode($data);
-        die;
+        return $data;
     }
 
     public function actionSet_campaign_selection()

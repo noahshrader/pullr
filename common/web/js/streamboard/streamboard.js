@@ -69,3 +69,15 @@ $(function () {
         }
     }, 1000)
 });
+
+function requireGoogleFont(fontFamily){
+   if (!fontFamily){
+       return;
+   }
+   console.log(fontFamily);
+   WebFont.load({
+       google: {
+           families: [fontFamily]
+        }
+   });
+}
