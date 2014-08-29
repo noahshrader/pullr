@@ -3,7 +3,7 @@
 ?>
 <!-- Stats Panel Link -->
 <ul class="panel-nav paneltoggle">
-	<li class="stats"><a data-panel="stats"><i class="icon icon-bargraph"></i>Stats</a></li>
+	<li class="stats"><a data-panel="stats"><i class="icon icon-reports"></i>Stats</a></li>
 </ul>
 
 <div class="stats_panel slidepanel">

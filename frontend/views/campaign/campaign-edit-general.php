@@ -22,6 +22,8 @@ $firstGiving = $campaign->getFirstGiving();
 ?>
 
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
+        <h3>General Settings</h3>
+        
         <!-- Campaign Name -->
         <div class="form-group">
             <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name"); ?>
@@ -30,7 +32,7 @@ $firstGiving = $campaign->getFirstGiving();
         <!-- Campaign Type -->
         <div class="form-group field-campaign-type">
             <label>Campaign Type</label>
-            <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
+            <i class="icon-help" data-toggle="tooltip" data-placement="top" title="Some tooltip here."></i>
             <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
         </div>
 
@@ -98,7 +100,7 @@ $firstGiving = $campaign->getFirstGiving();
 
         <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
         <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
-            <label> Fundraiser Type <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i>
+            <label> Fundraiser Type <i class="icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i>
             </label>
             <div class="form-group field-campaign-donationDestination">
                 <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'select-block']) ?>
