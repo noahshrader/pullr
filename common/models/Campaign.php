@@ -99,6 +99,14 @@ class Campaign extends ActiveRecord {
                 //$this->key can be set only for test events
                 $this->key = md5(rand());
             }
+
+            if(($this->type == Campaign::TYPE_CHARITY_FUNDRAISER) && ($this->tiedToParent) && !empty($this->parentCampaignId)){
+                $parentCampaign = Campaign::findOne($this->parentCampaignId);
+                $this->charityId = $parentCampaign->charityId;
+                $this->donationDestination = $parentCampaign->donationDestination;
+                $this->customCharity = $parentCampaign->customCharity;
+                $this->customCharityPaypal = $parentCampaign->customCharityPaypal;
+            }
         }
         return parent::beforeSave($insert);
     }
