@@ -14,8 +14,6 @@ $typesList = [
     <div class="form-group">
         <label>Background color</label>
         <input type="color" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice">
-        <i class="icon-help" data-toggle="tooltip" data-placement="left"
-           data-original-title="Some hint here"></i>
     </div>
     <div class="form-group" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">
         <select selectpicker ng-model="region.widgetType" ng-change="regionChanged(region)"

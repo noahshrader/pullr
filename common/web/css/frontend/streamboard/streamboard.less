@@ -15,13 +15,8 @@ label {
 	.trans;
 }
 
-/* Components & Elements */
+/* Forms */
 /* ------------------------------------------------- */
-#region_1,
-#region_2,
-#settingsTab #settings-downloads {
-	padding: 30px;
-}
 
 /* Selects */
 .bootstrap-select {
@@ -51,6 +46,21 @@ label {
 	}
 }
 
+
+/* Components & Elements */
+/* ------------------------------------------------- */
+#region_1,
+#region_2,
+#settingsTab #settings-downloads {
+	padding: 30px;
+}
+
+/* Moveable Elements (jQuery UI) */
+.movable {
+	position: absolute;
+	cursor: move;
+}
+
 /* Sliders */
 slider {
 	cursor: pointer;
@@ -72,8 +82,9 @@ slider {
 #sidepanel {
 	position: absolute;
 	top: 0;
-	bottom: @sidenavheight;
+	bottom: 0;
 	right: 0;
+	padding-bottom: @sidenavheight;
 	width: @sidepanelwidth;
 	max-width: 50%;
 	background: @maingray;
@@ -90,7 +101,13 @@ slider {
 
 			li {
 				width: 25%;
-				background: @gray10;
+
+				a {
+					background: @gray10;
+					&:hover {
+						color: @white;
+					}
+				}
 			}
 		}
 	}
@@ -98,7 +115,10 @@ slider {
 	.tab-content,
 	.tab-pane {
 		position: relative;
+		top: 0;
+		bottom: 50px;
 		height: 100%;
+		overflow: hidden;
 	}
 	.tab-pane {
 		
@@ -136,12 +156,25 @@ slider {
 	}
 }
 
+.sidetoggle {
+	position: absolute;
+	bottom: 0;
+	left: -46px;
+	color: @white;
+	padding: @halfgutter;
+	opacity: .4;
+	&:hover {
+		color: @white;
+		opacity: 1;
+	}
+}
+
 /* Slideup Panel */
 .slidepanel {
 	position: absolute;
 	bottom: -420px;
 	right: 0;
-	padding: @gutter 0 @halfgutter;
+	padding: @gutter @gutter @halfgutter;
 	width: 100%;
 	height: 420px;
 	background: @gray10;
@@ -167,9 +200,6 @@ slider {
 
 /* Statsboard */
 /* ------------------------------------------------- */
-a.dashboard.show:before {
-	color: @white !important;
-}
 .statsboard {
 	height: 0;
 	overflow: hidden;
@@ -212,81 +242,91 @@ a.dashboard.show:before {
 
 /* Donation Panel */
 /* ------------------------------------------------- */
-.donations-list {
-
-	span {
-		display: block;
-	}
-
-	a.toggleview {
-		color: @gray40;
-		font-size: .8em;
-		margin-left: .2em;
-		&:hover {
-			color: @white;
-		}
-	}
-	a.markread {
-		display: block;
-		color: @gray40;
-		font-size: 13px;
-		text-align: center;
-		padding: 4px 16px;
-		margin: 12px auto 0;
-		max-width: 140px;
-		background: @gray10;
-		.round-radius;
-		&:hover {
-			color: @white;
-		}
-
-		i {
-			margin-right: 4px;
-		}
-	}
-}
-.donation {
-	position: relative;
-	display: block;
-	width: 100%;
-	border-bottom: solid 1px @base;
-	padding: 20px 30px;
-
-	h3.donation-name {
-		margin: 0px;
-		padding: 0px 0px 2px 0px;
-		font-size: 18px;
-		font-weight: 400;
-		color: @white;
-	}
-	h4.donation-amount {
-		color: @accent !important;
-		margin-bottom: 0px;
-	}
-	.donation-comments {
-		font-size: 14px;
-		color: @gray70;
-		padding: 6px 0;
-		margin-bottom: 6px;
-	}
-	.donation-date {
-		font-style: italic;
-	}
-}
-.donation.wasRead {
-	opacity: .2;
-	background-color: @dkgray;
-
-	.markread {
-		background: transparent !important;
-	}
-}
 #donations {
 	position: relative;
-}
-#donations-header {
-	padding: 10px 0px;
-	border-bottom: 1px solid @base;
+
+	.donations-list {
+
+		span {
+			display: block;
+		}
+		.donation {
+			position: relative;
+			display: block;
+			width: 100%;
+			border-bottom: solid 1px @base;
+			padding: @gutter @gutter @gutter+10px;
+			&.wasRead {
+				opacity: .2;
+				background-color: @dkgray;
+
+				.markread {
+					background: transparent !important;
+
+					i {
+						&:before {
+							content: '\e694';
+						}
+					}
+				}
+			}
+
+			h3.donation-name {
+				margin: 0px;
+				padding: 0px 0px 2px 0px;
+				font-size: 18px;
+				font-weight: 400;
+				color: @white;
+			}
+			h4.donation-amount {
+				color: @accent !important;
+				margin-bottom: 0px;
+			}
+			.donation-comments {
+				font-size: 14px;
+				color: @gray70;
+				padding: 6px 0;
+				margin-bottom: 6px;
+			}
+			.donation-date {
+				font-size: @fineprint;
+				text-transform: lowercase;
+			}
+			a.toggleview {
+				position: relative;
+				top: 3px;
+				color: @gray20;
+				font-size: 1em;
+				margin-left: .2em;
+				&:hover {
+					color: @white;
+				}
+			}
+			a.markread {
+				position: absolute;
+				bottom: @halfgutter;
+				right: @halfgutter;
+				display: block;
+				color: @gray40;
+				text-align: center;
+				line-height: 30px;
+				height: 30px;
+				width: 30px;
+				background: @gray10;
+				.round-radius;
+				&:hover {
+					color: @white;
+					background: @gray15;
+
+					i {
+						&:before {
+							content: '\e694';
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 
@@ -323,6 +363,7 @@ a.dashboard.show:before {
 	bottom: 0px;
 	width: 100%;
 	height: @sidenavheight;
+	border-top: solid 1px @maingray;
 
 	ul.panel-nav {
 		position: relative;
@@ -357,6 +398,9 @@ a.dashboard.show:before {
 				-webkit-box-shadow: inset 0 4px 0 0 @accent;
 				-moz-box-shadow: inset 0 4px 0 0 @accent;
 				box-shadow: inset 0 4px 0 0 @accent;
+			}
+			a {
+				font-size: 15px;
 			}
 		}
 	}
