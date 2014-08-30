@@ -1,5 +1,6 @@
 <div id="campaign-edit-team">
-    <h4>Invite members</h4>
+    <h3>Team Fundraising</h3>
+
      <? if ($campaign->isNewRecord): ?>
             <div class="label label-danger">Save campaign before adding emails</div>
             <br>

@@ -3,9 +3,11 @@
     use dosamigos\ckeditor\CKEditor;
 ?>
 <div id="campaign-edit-form">
+    <h3>Donation Form Settings</h3>
+    
     <!-- Form Visibility -->
     <div class="form-group field-campaign-formvisibility">
-            <label>Form Visibility</label><i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Select form visibility."></i>
+            <label>Form Visibility</label><i class="icon-help" data-toggle="tooltip" data-placement="bottom" title="Select form visibility."></i>
             
             <? $keyValues = [ true => 'Visible', false => 'Hidden']; ?>
             <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
