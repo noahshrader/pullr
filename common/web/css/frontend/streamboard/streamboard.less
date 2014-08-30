@@ -257,7 +257,7 @@ slider {
 			border-bottom: solid 1px @base;
 			padding: @gutter @gutter @gutter+10px;
 			&.wasRead {
-				opacity: .2;
+				opacity: .15;
 				background-color: @dkgray;
 
 				.markread {
@@ -265,7 +265,7 @@ slider {
 
 					i {
 						&:before {
-							content: '\e694';
+							content: '\e632';
 						}
 					}
 				}
@@ -304,23 +304,21 @@ slider {
 			}
 			a.markread {
 				position: absolute;
-				bottom: @halfgutter;
-				right: @halfgutter;
+				bottom: 0;
+				right: 0;
 				display: block;
-				color: @gray40;
+				color: @white;
+				font-size: 20px;
 				text-align: center;
-				line-height: 30px;
-				height: 30px;
-				width: 30px;
-				background: @gray10;
-				.round-radius;
+				line-height: @gutter + 20px;
+				height: @gutter + 20px;
+				width: @gutter + @gutter;
 				&:hover {
-					color: @white;
-					background: @gray15;
+					color: @gray50;
 
 					i {
 						&:before {
-							content: '\e694';
+							content: '\e632';
 						}
 					}
 				}
