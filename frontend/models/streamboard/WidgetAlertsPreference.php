@@ -17,6 +17,7 @@ use common\models\User;
  * @property string $animationDuration
  * @property string $sound - filename of predefined sound
  * @property string $soundType - FILE_TYPE_LIBRARY | FILE_TYPE_CUSTOM
+ * @property float $volume from 0 to 1
  * @property string $image - filename of predefined image
  * @property string $imageType - FILE_TYPE_LIBRARY | FILE_TYPE_CUSTOM
  */

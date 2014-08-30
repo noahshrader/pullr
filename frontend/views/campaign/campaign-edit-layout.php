@@ -7,10 +7,11 @@ $user = \Yii::$app->user->identity;
 
 ?>
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
+    <h3>Campaign Page Settings</h3>
     <!-- Campaign Page Layout -->
     <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
         <label class="control-label">Layout Type</label>
-        <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Some tooltip here."></i>
+        <i class="icon-help" data-toggle="tooltip" data-placement="bottom" title="Some tooltip here."></i>
         <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
         <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block']) ?>
     </div>
@@ -45,7 +46,7 @@ $user = \Yii::$app->user->identity;
         <span><?= $campaign->theme?$campaign->theme->name:''?></span>
     </div>
     <button type="button" class="btn btn-primary" onclick="layoutChooseTheme()">Choose a theme</button>
-    <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Choose how you want to style your layout page. Options based on the Type of Layout you selected and which plan you're on."></i>
+    <i class="icon-help" data-toggle="tooltip" data-placement="top" title="Choose how you want to style your layout page. Options based on the Type of Layout you selected and which plan you're on."></i>
     <!-- Background Image Upload (if Pro) -->
     <? if ($user->plan == Plan::PLAN_PRO): ?>
     <div id="logo-container">

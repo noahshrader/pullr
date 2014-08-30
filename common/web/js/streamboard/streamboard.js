@@ -1,12 +1,12 @@
 $(function () {
-    $(".resizable").resizable({
+    $(".resizable-h").resizable({
         maxWidth: (screen.width/2),
         minWidth: 250,
         handles: "w",
         animate: false,
         delay: 0,
         resize: function( event, ui ) {
-            $(".resizable").css('left', 'auto');
+            $(".resizable-h").css('left', 'auto');
         }
     });
     
@@ -21,20 +21,29 @@ $(function () {
         $('iframe').iFrameResize({
             heightCalculationMethod: 'documentElementScroll'
         });
+        // Make items movable
+        $(".movable").draggable({
+            containment: "parent"
+        });
     });
 
     // panel toggles
     $(document).on('click', '.paneltoggle li a', function() {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
    		$('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
-        if($('').hasClass('')) {
-            $('.donations-list, .form-group').toggleClass('mute');
-    }
    	});
+    $('.regionsContainer').click(function(){ 
+        $('.paneltoggle li').removeClass('active');
+        $('.slidepanel').removeClass('selected');
+    });
 
-    $('a.close').click(function() {
-   		$(this).closest('div').toggleClass('selected');
-   	});
+    // toggle close right sidebar
+    $("a.sidetoggle").click(function(){
+        var l = $(this).data('l');
+        var width = $('#sidepanel').width();
+        $("#sidepanel").animate({right: (l ?  0 : -width)}, 200);
+        $(this).data('l', !l);
+    });
 
     $(window).resize(function() {
         var width = $(window).width();
@@ -69,3 +78,14 @@ $(function () {
         }
     }, 1000)
 });
+
+function requireGoogleFont(fontFamily){
+   if (!fontFamily){
+       return;
+   }
+   WebFont.load({
+       google: {
+           families: [fontFamily]
+        }
+   });
+}

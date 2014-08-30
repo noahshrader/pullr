@@ -53,7 +53,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'fontSize' => Schema::TYPE_INTEGER.' NOT NULL',
             'fontColor' => Schema::TYPE_STRING.' NOT NULL',
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
-            'volume' => Schema::TYPE_FLOAT.' NOT NULL',
+            'volume' => Schema::TYPE_FLOAT.' NOT NULL DEFAULT 100',
             'sound' => Schema::TYPE_STRING.' NOT NULL',
             'soundType' => $fileTypes,
             'image' => Schema::TYPE_STRING.' NOT NULL',

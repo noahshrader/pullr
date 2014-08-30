@@ -50,7 +50,7 @@ class StreamboardController extends FrontendController
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
         $sinceTime = $streamboardConfig->streamRequestLastDate - 3*60*60;
 
-        $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC')->all();
+        $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC, id ASC')->all();
 
         /*created date at Twitch is less for 1 hour then $sinceTime, as it possible we will have enough rare request to Twitch API,
         but notifications still should be shown, even if they are delayed*/
@@ -148,6 +148,8 @@ class StreamboardController extends FrontendController
 
     public function actionGet_donations_ajax($since_id = null)
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $user = Application::getCurrentUser();
         $user = Application::getCurrentUser();
         $sinceDate = $user->streamboardConfig->clearedDate;
         /*we are limiting by 100 here, but on html after applying campaign's filter we will limit to just 20*/
@@ -188,8 +190,7 @@ class StreamboardController extends FrontendController
         $data['donations'] = $donationsArray;
         $data['stats'] = $stats;
 
-        echo json_encode($data);
-        die;
+        return $data;
     }
 
     public function actionSet_campaign_selection()
