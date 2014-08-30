@@ -28,7 +28,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
             </div>
         </div>
         <div>
-            <i class="glyphicon glyphicon-volume-up"></i>
+            <i class="icon-volume-level"></i>
             <slider ng-model="preference.volume" floor="0" ceiling="100" step="1"
                     ng-change="regionChanged(region)"></slider>
         </div>
