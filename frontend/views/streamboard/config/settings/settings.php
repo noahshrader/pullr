@@ -17,12 +17,13 @@ $sourceHref = Url::to('', true) . '/source';
     </div>
     <!-- Downloads -->
     <div id="settings-downloads" class="tab-pane">
-        <a class="btn btn-default">Streamboard for Windows</a>
-        <a class="btn">Streamboard for Mac</a>
-        <a class="btn">Streamboard for Linux</a>
+        <div class="settings-wrap">
+            <a class="btn btn-default">Streamboard for Windows</a>
+            <a class="btn">Streamboard for Mac</a>
+            <a class="btn">Streamboard for Linux</a>
+        </div>
     </div>
 </div>
-
 <div class="right-side-footer">
     <ul class="panel-nav">
         <li class="active">

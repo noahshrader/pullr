@@ -1,18 +1,14 @@
 <?php
-
 namespace common\assets;
-
 use yii\web\AssetBundle;
 
 class CommonAsset extends AssetBundle {
-
     public $sourcePath = '@common/web';
     public $baseUrl = '@web';
     public $css = [
         'css/common.less'
     ];
     public $js = [
-        'plugins/pace/pace.min.js',
         'plugins/jquery.mousewheel/jquery.mousewheel.min.js',
         'plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.js',
         'js/common.js',
@@ -20,7 +16,7 @@ class CommonAsset extends AssetBundle {
         '//ttv-api.s3.amazonaws.com/twitch.min.js'
     ];
     public $depends = [
-        'common\assets\BaseCommonAsset',
+        'common\assets\BaseCommonAsset'
     ];
     public $publishOptions = [
         'forceCopy' => true

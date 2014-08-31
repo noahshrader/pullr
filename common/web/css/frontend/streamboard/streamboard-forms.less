@@ -1,0 +1,43 @@
+.form-group {
+	.slowtrans;
+}
+.panel-group {
+	margin-bottom: @gutter;
+}
+
+/* Selects */
+.btn-group.bootstrap-select:not(.ng-pristine){
+	display: none;
+}
+.bootstrap-select {
+	color: @gray50;
+	font-family: @mainfont;
+	box-shadow: none !important;
+	line-height: 45px;
+	background: none repeat scroll 0 0 @white;
+	padding: 0px;
+	display: block;
+	position: relative;
+	height: 45px;
+	width: 100%;
+	white-space: nowrap;
+	text-decoration: none;
+	.border-radius;
+	background: @gray15;
+	overflow: visible;
+	outline: 0;
+	&:not([class*=span]):not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+		width: 100%;
+	}
+	.btn:focus {
+		outline: 0 !important;
+	}
+	.btn:not(.btn-xs):not(.btn-sm):not(.bnt-lg) {
+		font-weight: normal;
+		line-height: 45px;
+		height: 45px;
+		background: transparent;
+		border: none;
+		color: #85888e;
+	}
+}

@@ -1,6 +1,5 @@
-@import "../../variables";
-@import "../../scrollbars";
-
+@import "../../variables.less";
+@import "../../scrollbars.less";
 
 /* Base */
 /* ------------------------------------------------- */
@@ -17,48 +16,11 @@ label {
 
 /* Forms */
 /* ------------------------------------------------- */
-
-/* Selects */
-.bootstrap-select {
-	color: @gray50;
-	font-family: @mainfont;
-	box-shadow: none !important;
-	line-height: 45px;
-	background: none repeat scroll 0 0 @white;
-	padding: 0px;
-	display: block;
-	position: relative;
-	height: 45px;
-	white-space: nowrap;
-	text-decoration: none;
-	.border-radius;
-	background: @gray20;
-	overflow: visible;
-	outline: 0;
-
-	.btn:focus {
-		outline: 0 !important;
-	}
-
-	.btn:not(.btn-xs):not(.btn-sm):not(.bnt-lg) {
-		font-weight: normal;
-		line-height: 34px;
-		padding: 6px 12px;
-		height: 34px;
-		background: transparent;
-		border: none;
-		color: #85888e;
-	}
-}
+@import "streamboard-forms.less";
 
 
 /* Components & Elements */
 /* ------------------------------------------------- */
-#region_1,
-#region_2,
-#settingsTab #settings-downloads {
-	padding: 30px;
-}
 
 /* Moveable Elements (jQuery UI) */
 .movable {
@@ -71,14 +33,21 @@ slider {
 	cursor: pointer;
 	
 	span.bar {
+		top: 50%;
 		height: 1px;
 		background: @base;
 	}
 	span.pointer {
+		top: 8px;
 		height: 15px;
 		.round-radius;
 		background: @gray20;
 	}
+}
+
+/* Miscellaneous Classes */
+.dim {
+	opacity: .15;
 }
 
 
@@ -96,8 +65,11 @@ slider {
 	z-index: 900;
 
 	.sidepanel-head {
+		position: relative;
 		height: @sidenavheight;
 		width: 100%;
+		.slowtrans;
+		z-index: 9999;
 
 		/* Sidepanel Tab Menu */
 		ul.panel-nav {
@@ -136,13 +108,15 @@ slider {
 				top: @sidenavheight;
 			}
 		}
+		.settings-wrap {
+			padding: @gutter;
+			min-height: 400px;
+		}
 	}
-
 	h3,
 	h4 {
 		color: @white;
 	}
-
 	h4.section-header {
 		color: @white;
 		font-size: 1em;
@@ -153,7 +127,6 @@ slider {
 		margin-bottom: 0;
 		background: #1dbc9c;
 	}
-
 	.region {
 		&.pane {
 			position: absolute;
@@ -177,15 +150,14 @@ slider {
 /* Slideup Panel */
 .slidepanel {
 	position: absolute;
-	bottom: -420px;
+	bottom: -460px;
 	right: 0;
 	padding: @gutter @gutter @halfgutter;
 	width: 100%;
-	height: 420px;
+	height: 460px;
 	background: @gray10;
 	z-index: 1000;
-	-webkit-transition: all ease-in-out 0.2s;
-	transition: all ease-in-out 0.2s;
+	.slowtrans;
 	&.selected {
 		bottom: @sidenavheight;
 	}
@@ -203,54 +175,13 @@ slider {
 }
 
 
-/* Statsboard */
-/* ------------------------------------------------- */
-.statsboard {
-	height: 0;
-	overflow: hidden;
-	.trans;
-	&.show {
-		background: #1d1e20;
-		height: 400px;
-		width: 100%;
-	}
-
-	.container {
-		padding: 100px 2em 30px;
-	}
-
-	.widget {
-		text-align: center;
-		float: left;
-		padding: 0 2em;
-		width: 33.33%;
-		width: -webkit-calc(33.33333333%);
-		width: calc(33.33333333%);
-
-		span.icon {
-			display: inline-block;
-			color: #2e3032;
-			font-size: 1.4em;
-			padding: 0 5%;
-			background: @gray10;
-		}
-
-		hr {
-			margin: -0.6em 0 1.6em;
-			height: 1px;
-			background: @base;
-			border: 0;
-		}
-	}
-}
-
-
 /* Donation Panel */
 /* ------------------------------------------------- */
 #donations {
 	position: relative;
 
 	.donations-list {
+		.slowtrans;
 
 		span {
 			display: block;
@@ -313,7 +244,6 @@ slider {
 				right: 0;
 				display: block;
 				color: @white;
-				font-size: 20px;
 				text-align: center;
 				line-height: @gutter + 20px;
 				height: @gutter + 20px;
@@ -358,15 +288,23 @@ slider {
 }
 
 
+/* Media */
+/* ------------------------------------------------- */
+@import "streamboard-media.less";
+
+
 /* Panel Footer Navigation */
 /* ------------------------------------------------- */
 .right-side-footer{
-	position: absolute;
+	position: fixed;
 	right: 0px;
 	bottom: 0px;
-	width: 100%;
+	width: @sidepanelwidth;
 	height: @sidenavheight;
+	max-width: 50%;
+	min-width: 250px;
 	border-top: solid 1px @maingray;
+	z-index: 1000;
 
 	ul.panel-nav {
 		position: relative;
@@ -374,6 +312,10 @@ slider {
 		border-bottom: 0;
 
 		li {
+			border-right: solid 1px @maingray;
+			&:last-child {
+				border: 0;
+			}
 	        	&.stats {
 	        		width: 100%;
 	        		i {
@@ -401,9 +343,6 @@ slider {
 				-webkit-box-shadow: inset 0 4px 0 0 @accent;
 				-moz-box-shadow: inset 0 4px 0 0 @accent;
 				box-shadow: inset 0 4px 0 0 @accent;
-			}
-			a {
-				font-size: 15px;
 			}
 		}
 	}
@@ -451,55 +390,12 @@ slider {
 	animation-delay: -0.9s;
 }
 
-/*that is css fix for duplication of angular-bootstrap-select
-can be removed in future, after plugin update*/
-.btn-group.bootstrap-select:not(.ng-pristine){
-  display: none;
-}
-/*that is for alerts editing*/
-.sound-container, .images-container{
-  overflow-y: scroll;
-  max-height: 400px;
-  padding-right: 5px;
-  .media-item{
-    min-height: 25px;
-    overflow: hidden;
-    .mediaActions{
-      float:right;
-      i{
-        cursor: pointer;
-        &:hover{
-          color: @accenthover;
-        }
-      }
-    }
-  }
-  .media-item.selected{
-    background-color: @accent;
-  }
-}
-/*for drag&drop uploading*/
-.sounds-graphics-content{
-  .media-item.selected{
-    background-color: @accent;
-  }
-  .uploader{
-    min-height: 90px;
-    background-color: @bgwhitefade;
-  }
-  .uploader.uploader-drag-over{
-    background-color: @bglightwhitefade;
-  }
-  .error{
-    color: red;
-  }
-}
+
 
 .alert-image-preview{
   max-width: 100px;
   max-height: 50px;
 }
-
 .regionsContainer{
   height: 100%;
   .region{

@@ -9,13 +9,8 @@ use common\assets\BigVideoAsset;
  * @var Exception $exception
  */
 
-$this->title = $name;
+$this->title = "Dang. We Can't Find That!";
 BigVideoAsset::register($this);
 $this->registerJsFile('@web/js/site/error.js', BigVideoAsset::className());
 ?>
-<div id="content" class="error">
-	<div class="site-error"></div>
-	<div class="site-error-msg">
-		<h3>Oops! We were unable to locate that :(</h3>
-	</div>
-</div>
+<div id="content"></div>

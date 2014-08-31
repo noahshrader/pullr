@@ -1,10 +1,10 @@
 $(function () {
     $(".resizable-h").resizable({
-        maxWidth: (screen.width/2),
         minWidth: 250,
         handles: "w",
         animate: false,
         delay: 0,
+        alsoResize: ".right-side-footer",
         resize: function( event, ui ) {
             $(".resizable-h").css('left', 'auto');
         }
@@ -14,9 +14,6 @@ $(function () {
     $(window).load(function() {
         // streamboard loader
         $(".spinner-wrap").fadeOut();
-        // bottom menu appends
-        $('#region_1 .right-side-footer').appendTo('#region_1');
-        $('#region_2 .right-side-footer').appendTo('#region_2');
         // make source iframe adjust to height of inner content
         $('iframe').iFrameResize({
             heightCalculationMethod: 'documentElementScroll'
@@ -32,16 +29,26 @@ $(function () {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
    		$('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
    	});
-    $('.regionsContainer').click(function(){ 
+    $('.regionsContainer, .sidepanel-head').click(function(){ 
         $('.paneltoggle li').removeClass('active');
         $('.slidepanel').removeClass('selected');
+    });
+    
+    // If panel is exposed, blur items in back
+    $(document).on('click', function() {
+        var dimmed = $('.settings-wrap .form-group, .donations-list');
+        if ($(".slidepanel").hasClass("selected")) {
+            $(dimmed).addClass('dim');
+        } else {
+            $(dimmed).removeClass('dim');
+        }
     });
 
     // toggle close right sidebar
     $("a.sidetoggle").click(function(){
         var l = $(this).data('l');
         var width = $('#sidepanel').width();
-        $("#sidepanel").animate({right: (l ?  0 : -width)}, 200);
+        $("#sidepanel, .right-side-footer").animate({right: (l ?  0 : -width)}, 200);
         $(this).data('l', !l);
     });
 

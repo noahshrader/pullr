@@ -1,0 +1,40 @@
+.sound-container, .images-container{
+	overflow-y: scroll;
+	max-height: 400px;
+	padding-right: 5px;
+
+	.media-item {
+		min-height: 25px;
+		overflow: hidden;
+
+		.mediaActions {
+			float:right;
+
+			i {
+				cursor: pointer;
+				&:hover {
+					color: @accenthover;
+				}
+			}
+		}
+	}
+	.media-item.selected {
+		background-color: @accent;
+	}
+}
+.sounds-graphics-content {
+	
+	.media-item.selected {
+		background-color: @accent;
+	}
+	.uploader {
+		min-height: 90px;
+		background-color: @bgwhitefade;
+	}
+	.uploader.uploader-drag-over {
+		background-color: @bglightwhitefade;
+	}
+	.error {
+		color: red;
+	}
+}
