@@ -60,6 +60,7 @@ $firstGiving = $campaign->getFirstGiving();
                     ],
                     'clientOptions' => [
                         'value' => $campaign->goalAmount,
+                        'prefix' => '$',
                         'alias' =>  'decimal',
                         'groupSeparator' => ',',
                         'autoGroup' => true,
