@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use common\models\Donation;
 use common\models\User;
 use common\models\Plan;
 use common\models\PlanHistory;
@@ -89,6 +90,10 @@ class ReportController extends BackendController
             
             $params['totalAmountRaised'] = Campaign::find()->sum('amountRaised');
             $params['amountCurrentlyBeingRaised'] = Campaign::find()->active()->sum('amountRaised');
+                $params['amountRaisedThisMonth'] = Donation::find()->where('MONTH(DATE(FROM_UNIXTIME(paymentDate))) = MONTH(CURDATE())')
+                                                               ->andWhere('YEAR(DATE(FROM_UNIXTIME(paymentDate))) = YEAR(CURDATE())')
+                                                               ->andWhere('paymentDate > 0')
+                                                               ->sum('amount');
             $params['totalCampaigns'] = Campaign::find()->count();
             $params['currentCampaigns'] = Campaign::find()->active()->count();
             $params['campaignsThisMonth'] = Campaign::find()->where(['status' => Campaign::STATUS_ACTIVE])->andWhere('startDate >= '.strtotime(date('01-m-Y')))->count();

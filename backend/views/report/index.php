@@ -86,7 +86,7 @@ $this->title = 'Reports';
                             <div class='report-label'>Amount Currently Being Raised </div>
                         </div>
                         <div class="col-sm-6 stats-box">
-                            <span class='report-value'>none</span>
+                            <span class='report-value'><?= number_format($amountRaisedThisMonth) ?></span>
                             <div class='report-label'>Amount Raised This Month</div>
                         </div>
                     </div>
