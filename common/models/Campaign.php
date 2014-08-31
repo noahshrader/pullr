@@ -98,14 +98,6 @@ class Campaign extends ActiveRecord {
                 //$this->key can be set only for test events
                 $this->key = md5(rand());
             }
-
-            if(($this->type == Campaign::TYPE_CHARITY_FUNDRAISER) && ($this->tiedToParent) && !empty($this->parentCampaignId)){
-                $parentCampaign = Campaign::findOne($this->parentCampaignId);
-                $this->charityId = $parentCampaign->charityId;
-                $this->donationDestination = $parentCampaign->donationDestination;
-                $this->customCharity = $parentCampaign->customCharity;
-                $this->customCharityPaypal = $parentCampaign->customCharityPaypal;
-            }
         }
         return parent::beforeSave($insert);
     }
@@ -216,7 +208,7 @@ class Campaign extends ActiveRecord {
     
     public function thankYouPagePurifier(){
         if ($this->thankYouPageText){
-            $this->thankYouPageText = HtmlPurifier::process($this->thankYouPageText); 
+            $this->thankYouPageText = HtmlPurifier::process($this->thankYouPageText);
         }
     }
     public function twitterFilter() {
@@ -233,6 +225,15 @@ class Campaign extends ActiveRecord {
 
     public function afterFind() {
         parent::afterFind();
+
+        if(($this->type == Campaign::TYPE_CHARITY_FUNDRAISER) && ($this->tiedToParent) && !empty($this->parentCampaignId)){
+            $parentCampaign = Campaign::findOne($this->parentCampaignId);
+            $this->charityId = $parentCampaign->charityId;
+            $this->donationDestination = $parentCampaign->donationDestination;
+            $this->customCharity = $parentCampaign->customCharity;
+            $this->customCharityPaypal = $parentCampaign->customCharityPaypal;
+        }
+
         $this->refreshBackgroundImageFields();
     }
     
