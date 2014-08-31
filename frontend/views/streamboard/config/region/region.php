@@ -12,11 +12,7 @@ $typesList = [
 <div class="main-panel pane">
     <div class="settings-wrap">
         <div class="form-group">
-            <h3>Region {{ region.regionNumber}}</h3>
-        </div>
-        <div class="form-group">
-            <label>Background</label>
-            <input type="color" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice">
+            <h3>Region {{ region.regionNumber}} <input type="color" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice"></h3>
         </div>
         <div class="form-group" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">
             <select selectpicker ng-model="region.widgetType" ng-change="regionChanged(region)"

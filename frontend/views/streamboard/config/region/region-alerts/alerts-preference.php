@@ -4,7 +4,6 @@ use yii\web\View;
 
 /**@var $this View */
 ?>
-<h4>Preferences</h4>
 <div>
     <div>
         <label>Font style</label>
@@ -15,7 +14,7 @@ use yii\web\View;
         <label>Font size</label>
         <slider ng-model="preference.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
                 ng-change="regionChanged(region)"></slider>
-        <span>{{preference.fontSize}} px</span>
+        <span class="slider-value">{{preference.fontSize}} px</span>
     </div>
     <div class="panel-group">
         <label>Font Color</label>
@@ -25,15 +24,14 @@ use yii\web\View;
         <label>Animation duration</label>
         <slider ng-model="preference.animationDuration" floor="1" ceiling="10" step="1"
                 ng-change="regionChanged(region)"></slider>
-        <span>{{preference.animationDuration}} sec</span>
+        <span class="slider-value">{{preference.animationDuration}} sec</span>
     </div>
 </div>
 <h5 ng-init="baseLink='region-'+region.regionNumber+'-preference-'+preference.preferenceType">Media</h5>
-
 <div>
-    <ul class="nav nav-tabs sounds-graphics-tabs">
-        <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">Sounds</a></li>
-        <li><a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab">Graphics</a></li>
+    <ul class="sounds-graphics-tabs">
+        <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab" class="icon-volume-more"></a></li>
+        <li><a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab" class="icon-picture"></a></li>
     </ul>
 </div>
 <div class="tab-content sounds-graphics-content">
@@ -48,4 +46,3 @@ use yii\web\View;
         ]) ?>
     </div>
 </div>
-

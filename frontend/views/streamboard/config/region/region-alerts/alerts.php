@@ -4,7 +4,7 @@ use yii\web\View;
 /**@var $this View */
 ?>
 <div class="form-group">
-    <label>Which type of alerts do you want to include?</label>
+    <h5>Select your alerts:</h5>
     <div>
         <input type="checkbox" ng-model="widget.includeDonations" ng-change="regionChanged(region)">
         <label>Donations</label>
@@ -20,10 +20,10 @@ use yii\web\View;
 </div>
 
 <div class="form-group">
-    <label>Delay</label>
+    <h5>Delay</h5>
     <slider ng-model="widget.animationDelaySeconds" floor="0" ceiling="30" step="1"
             ng-change="regionChanged(region)"></slider>
-    <span>{{widget.animationDelaySeconds}} sec</span>
+    <span class="slider-value">{{widget.animationDelaySeconds}} sec</span>
 </div>
 <div class="right-side-footer">
     <ul class="panel-nav paneltoggle">
@@ -33,16 +33,19 @@ use yii\web\View;
     </ul>
     <div class="donations_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.donationsPreference">
+            <h4>Donation Alerts</h4>
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
     <div class="followers_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.followersPreference">
+            <h4>Follower Alerts</h4>
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
     <div class="subscribers_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.subscribersPreference">
+            <h4>Subscriber Alerts</h4>
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
