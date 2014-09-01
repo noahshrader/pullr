@@ -34,26 +34,32 @@ h5 {
 
 /* Sliders */
 slider {
+	top: 0;
 	left: 0;
 	width: 100%;
 	height: 20px;
-	cursor: pointer;
 	
 	span.bar {
-		top: 0;
+		top: 50%;
 		height: 1px;
+		margin: 0;
 		background: @base;
 	}
 	span.pointer {
-		top: 8px;
+		top: 3px;
 		height: 15px;
 		.round-radius;
 		background: @gray20;
+		cursor: pointer;
+		.box-shadow;
 	}
 }
 span.slider-value {
-	display: block;
-	text-align: center;
+	float: right;
+}
+
+.value {
+	color: @white;
 }
 
 /* Miscellaneous Classes */
@@ -151,7 +157,7 @@ span.slider-value {
 	left: -46px;
 	color: @white;
 	padding: @halfgutter;
-	opacity: .4;
+	opacity: .5;
 	&:hover {
 		color: @white;
 		opacity: 1;
@@ -163,7 +169,7 @@ span.slider-value {
 	position: absolute;
 	bottom: -460px;
 	right: 0;
-	padding: @gutter @gutter @halfgutter;
+	padding: @gutter 0 @halfgutter @gutter;
 	width: 100%;
 	height: 460px;
 	background: @gray10;
@@ -172,16 +178,18 @@ span.slider-value {
 	&.selected {
 		bottom: @sidenavheight;
 	}
-
-	a.close {
-		display: block;
-		float: right;
-		text-align: center;
-		padding: 1em;
-		margin-bottom: 2em;
-		&:before {
-			color: @white;
-		}
+	&.stats_panel {
+		padding-right: @gutter;
+	}
+	h4 {
+		color: @base;
+		margin-bottom: @halfgutter;
+	}
+	h5 {
+		margin-bottom: 4px;
+	}
+	slider span.bar {
+		background: @maingray;
 	}
 }
 
@@ -200,12 +208,13 @@ span.slider-value {
 		.donation {
 			position: relative;
 			display: block;
+			color: @gray30;
 			width: 100%;
-			border-bottom: solid 1px @base;
+			border-bottom: solid 1px @maingray;
 			padding: @gutter @gutter @gutter+10px;
+			background: @gray10;
 			&.wasRead {
 				opacity: .15;
-				background-color: @dkgray;
 
 				.markread {
 					background: transparent !important;
@@ -242,7 +251,7 @@ span.slider-value {
 			a.toggleview {
 				position: relative;
 				top: 3px;
-				color: @gray20;
+				color: @gray30;
 				font-size: 1em;
 				margin-left: .2em;
 				&:hover {
@@ -351,9 +360,7 @@ span.slider-value {
 			&.active a {
 				color: @white;
 				background: @gray10;
-				-webkit-box-shadow: inset 0 4px 0 0 @accent;
-				-moz-box-shadow: inset 0 4px 0 0 @accent;
-				box-shadow: inset 0 4px 0 0 @accent;
+				box-shadow: none;
 			}
 		}
 	}

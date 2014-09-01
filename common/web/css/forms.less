@@ -63,60 +63,6 @@ input[type='color'] {
 .checkbox {
 	padding: 0;
 }
-.checkbox {
-	margin: 0;
-
-	label {
-		float: left;
-		position: relative;
-		display: block;
-		color: @gray50;
-		font-weight: 400;
-		text-align: left;
-		margin: 0;
-		width: auto;
-		white-space: normal;
-		cursor: pointer;
-		&:before {
-			content:"\e013";
-			position: relative;
-			top: 2px;
-			left: 0;
-			float: left;
-			color: @white;
-			font-family: 'Glyphicons Halflings';
-			font-size: 10px;
-			font-style: normal;
-			font-weight: normal;
-			font-variant: normal;
-			text-transform: none;
-			line-height: 14px;
-			text-align: center;
-			width: 18px;
-			height: 18px;
-			.border-radius;
-			display: inline-block;
-			margin-right: 10px;
-			speak: none;
-			-webkit-font-smoothing: antialiased;
-			border: 2px solid @gray75;
-		}
-		&:hover:before {
-			color: @gray75;
-		}
-		&.focused:before {
-			border: 2px solid @gray30;
-		}
-		&.on:before {
-			color: @gray60;
-			border: 2px solid @gray60;
-		}
-	}
-	input {
-		position: absolute;
-		left: -9999px;
-	}
-}
 
 /* Switch Buttons */
 .bootstrap-switch {

@@ -23,8 +23,8 @@ $this->title = 'Settings';
 			<?= $form->field($user, 'name') ?>
 			<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
 			<?
-					$timezones = timezone_identifiers_list();
-					$keyValues = array_combine($timezones, $timezones);
+				$timezones = timezone_identifiers_list();
+				$keyValues = array_combine($timezones, $timezones);
 			?>
 			<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 		</section>

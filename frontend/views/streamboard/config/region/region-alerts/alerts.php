@@ -20,10 +20,9 @@ use yii\web\View;
 </div>
 
 <div class="form-group">
-    <h5>Delay</h5>
+    <h5>Delay <span class="slider-value">{{widget.animationDelaySeconds}} sec</span></h5>
     <slider ng-model="widget.animationDelaySeconds" floor="0" ceiling="30" step="1"
             ng-change="regionChanged(region)"></slider>
-    <span class="slider-value">{{widget.animationDelaySeconds}} sec</span>
 </div>
 <div class="right-side-footer">
     <ul class="panel-nav paneltoggle">

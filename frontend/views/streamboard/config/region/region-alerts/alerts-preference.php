@@ -5,29 +5,25 @@ use yii\web\View;
 /**@var $this View */
 ?>
 <div>
-    <div>
-        <label>Font style</label>
-
+    <div class="panel-group">
+        <h5>Font Style</h5>
         <div font-style ng-model="preference.fontStyle"></div>
     </div>
     <div class="panel-group">
-        <label>Font size</label>
+        <h5>Font Size <span class="slider-value">{{preference.fontSize}} px</span></h5>
         <slider ng-model="preference.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
                 ng-change="regionChanged(region)"></slider>
-        <span class="slider-value">{{preference.fontSize}} px</span>
     </div>
     <div class="panel-group">
-        <label>Font Color</label>
-        <input type="color" ng-model="preference.fontColor" ng-change="regionChanged(region)">
+        <h5>Font Color <input type="color" ng-model="preference.fontColor" ng-change="regionChanged(region)"></h5>
     </div>
     <div class="panel-group">
-        <label>Animation duration</label>
+        <h5>Duration <span class="slider-value">{{preference.animationDuration}} sec</span></h5>
         <slider ng-model="preference.animationDuration" floor="1" ceiling="10" step="1"
                 ng-change="regionChanged(region)"></slider>
-        <span class="slider-value">{{preference.animationDuration}} sec</span>
     </div>
 </div>
-<h5 ng-init="baseLink='region-'+region.regionNumber+'-preference-'+preference.preferenceType">Media</h5>
+<span ng-init="baseLink='region-'+region.regionNumber+'-preference-'+preference.preferenceType"></span>
 <div>
     <ul class="sounds-graphics-tabs">
         <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab" class="icon-volume-more"></a></li>
