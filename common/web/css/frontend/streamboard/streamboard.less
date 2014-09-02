@@ -211,7 +211,7 @@ span.slider-value {
 			color: @gray30;
 			width: 100%;
 			border-bottom: solid 1px @maingray;
-			padding: @gutter @gutter @gutter+10px;
+			padding: @gutter @gutter @gutter;
 			background: @gray10;
 			&.wasRead {
 				opacity: .15;
@@ -226,7 +226,9 @@ span.slider-value {
 					}
 				}
 			}
-
+			&:last-child {
+				border: 0;
+			}
 			h3.donation-name {
 				margin: 0px;
 				padding: 0px 0px 2px 0px;

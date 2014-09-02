@@ -6,16 +6,22 @@ use yii\web\View;
 <div class="form-group">
     <h5>Select your alerts:</h5>
     <div class="checkbox">
-        <input type="checkbox" ng-model="widget.includeDonations" ng-change="regionChanged(region)">
-        <label>Donations</label>
+        <label>
+            <input type="checkbox" ng-model="widget.includeDonations" ng-change="regionChanged(region)">
+            Donations
+        </label>
     </div>
     <div class="checkbox">
-        <input type="checkbox" ng-model="widget.includeFollowers" ng-change="regionChanged(region)">
-        <label>Followers</label>
+        <label>
+            <input type="checkbox" ng-model="widget.includeFollowers" ng-change="regionChanged(region)">
+            Followers
+        </label>
     </div>
     <div class="checkbox">
-        <input type="checkbox" ng-model="widget.includeSubscribers" ng-change="regionChanged(region)">
-        <label>Subscribers</label>
+        <label>
+            <input type="checkbox" ng-model="widget.includeSubscribers" ng-change="regionChanged(region)">
+            Subscribers
+        </label>
     </div>
 </div>
 

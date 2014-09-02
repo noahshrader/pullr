@@ -8,10 +8,10 @@ select.form-control {
 	outline: 0;
 	padding: 0 @halfgutter;
 	min-height: 45px;
-	border: 2px solid @gray75;
+	border: 2px solid @gray70;
 	box-shadow: none;
 	&:focus {
-		border: 2px solid @gray50;
+		border: 2px solid @gray40;
 	}
 }
 select.form-control {
@@ -168,9 +168,59 @@ input[type='color'] {
 }
 
 /* Checkboxes */
-.radio,
 .checkbox {
 	padding: 0;
+	label {
+	    font-size: 1em;
+	    font-weight: 400;
+	    line-height: 1.4em;
+	    text-align: left;
+	    float: left;
+	    cursor: pointer;
+	    width: auto;
+	    display: block;
+	    padding-top: 2px;
+	    text-indent: -36px;
+	    padding-left: 2.3em;
+	    white-space: normal;
+	    &:before {
+	        content: '\e6ac';
+	        position: relative;
+	        top: 0;
+	        display: inline-block;
+	        color: @white;
+	        font-family: 'icomoon';
+			font-size: 14px;
+	        line-height: 14px;
+	        border: 2px solid @gray70;
+	        width: 18px;
+	        height: 18px;
+	        margin-right: 10px;
+	        text-align: center;
+	        speak: none;
+	        font-style: normal;
+	        font-weight: normal;
+	        font-variant: normal;
+	        text-transform: none;
+	        -webkit-font-smoothing: antialiased;
+	        text-indent: 0;
+	        .border-radius;
+	    }
+    	&:hover:before {
+    		color: @gray75;
+    	}
+    	&.focused:before {
+    		border: 2px solid @gray40;
+    	}
+    	&.on:before {
+	        color: @gray40;
+	        border: 2px solid @gray40;
+    	}
+    }
+    input {
+        position: absolute;
+        left: -9999px;
+	}
 }
 
 /* Switch Buttons */
@@ -182,7 +232,7 @@ input[type='color'] {
 
 /* Bootstrap Overrides */
 .form-group {
-	margin-bottom: @gutter;
+	margin-bottom: @gutter - 10px;
 }
 .form-group .form-group,
 .help-block {
