@@ -1,4 +1,4 @@
-<select ui-select2="{minimumResultsForSearch: -1}" ng-model="model" ng-change="regionChanged()"
-        ng-options="font.family as font.family for font in $root.GOOGLE_FONTS" data-placeholder="Select one...">
+<select ui-select2="{minimumResultsForSearch: -1}" ng-model="model" ng-change="regionChanged()" data-placeholder="Select one...">
     <option value=""></option>
+    <option ng-repeat="font in $root.GOOGLE_FONTS" value="{{font.family}}">{{font.family}}</option>
 </select>
