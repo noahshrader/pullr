@@ -332,14 +332,20 @@ span.slider-value {
 		border-bottom: 0;
 
 		li {
-			border-right: solid 1px @maingray;
 			&:last-child {
 				border: 0;
 			}
 	        	&.stats {
 	        		width: 100%;
+	        		a {
+	        			font-size: 16px;
+	        		}
 	        		i {
+	        			font-size: 18px;
 	        			margin-right: @iconspace;
+	        		}
+	        		span {
+	        			font-size: @smalltext;
 	        		}
 	        	}
 			&:first-child:nth-last-child(1) {

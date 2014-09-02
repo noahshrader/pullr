@@ -25,12 +25,12 @@ h5 input[type="color"] {
 	color: @gray50;
 	font-family: @mainfont;
 	box-shadow: none !important;
-	line-height: 35px;
+	line-height: 40px;
 	background: none repeat scroll 0 0 @white;
 	padding: 0px;
 	display: block;
 	position: relative;
-	height: 35px;
+	height: 40px;
 	width: 100%;
 	white-space: nowrap;
 	text-decoration: none;
@@ -46,10 +46,29 @@ h5 input[type="color"] {
 	}
 	.btn:not(.btn-xs):not(.btn-sm):not(.bnt-lg) {
 		font-weight: normal;
-		line-height: 35px;
-		height: 35px;
+		line-height: 40px;
+		height: 40px;
 		background: transparent;
 		border: none;
 		color: #85888e;
+	}
+
+	/* Dropdown Menu */
+	.dropdown-menu {
+		top: 30px;
+		background: @gray15;
+		border: 0;
+		box-shadow: none;
+
+		li {
+			a {
+				color: @white;
+				line-height: 30px;
+				&:hover,
+				&:focus {
+					background: @gray20;
+				}
+			}
+		}
 	}
 }

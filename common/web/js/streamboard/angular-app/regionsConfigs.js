@@ -1,6 +1,5 @@
 (function () {
-    var app = angular.module('pullr.streamboard.regionsConfigs', ['pullr.common', 'pullr.streamboard.alertMediaManager',
-        'angular-bootstrap-select', 'angular-bootstrap-select.extra', 'pullr.streamboard.campaigns',
+    var app = angular.module('pullr.streamboard.regionsConfigs', ['pullr.common', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.campaigns',
         'pullr.streamboard.regions', 'angularFileUpload']);
     app.run(function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];

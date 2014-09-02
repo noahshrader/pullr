@@ -12,7 +12,7 @@ class StreamboardAsset extends AssetBundle
         '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js',
         'bower_components/venturocket-angular-slider/build/angular-slider.min.js',
         'bower_components/bootstrap-select/dist/js/bootstrap-select.min.js',
-        'bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js',
+        //'bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js',
         'bower_components/ng-file-upload/angular-file-upload.min.js',
         'plugins/iframeResizer/iframeResizer.js',
 		'js/streamboard/streamboard.js',
@@ -26,6 +26,7 @@ class StreamboardAsset extends AssetBundle
         'js/streamboard/angular-app/campaigns.js',
         'js/streamboard/angular-app/settings.js',
         'js/streamboard/angular-app/alertMediaManager.js',
+        'bower_components/ui-select2/select2.js',
         'js/streamboard/angular-app/app.js',
         /*angular-app end*/
 	];
