@@ -40,25 +40,6 @@ function number_format(number) {
     return str;
 }
 
-// checkboxes
-$('.checkbox label').click(function(event){
-    event.preventDefault();
-    $cbox = $(this).children('input:checkbox');
-    if($cbox.attr('checked')) {
-        $(this).removeClass('on');
-        $cbox.removeAttr('checked');
-    } else {
-        $(this).addClass('on');
-        $cbox.attr('checked', true);
-    }
-    $cbox.trigger('change');
-});
-$('.checkbox label input:checkbox').each(function(){
-    if($(this).attr('checked')) {
-        $(this).parent('label').addClass('on');
-    }
-});
-
 function twitchEventsMonitor() {
     if (window.Twitch) {
         var channelName = Pullr.user.userFields.twitchChannel;

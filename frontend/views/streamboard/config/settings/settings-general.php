@@ -12,7 +12,7 @@ use yii\helpers\Url;
             <h3>Campaigns</h3>
 
             <div class="checkbox" ng-repeat="campaign in campaignsService.campaigns">
-                <label>
+                <label ng-class="{on:campaign.streamboardSelected}">
                     <input type="checkbox" ng-model="campaign.streamboardSelected" ng-change="campaignsService.campaignChanged(campaign)">
                     {{campaign.name}}
                 </label>
