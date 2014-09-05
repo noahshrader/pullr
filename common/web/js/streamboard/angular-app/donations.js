@@ -51,6 +51,11 @@
                     var donation = data.donations[key];
                     donationsService.unorderedDonations[donation.id] = donation;
                 }
+                if (!data.donations){
+                    console.log('[ERROR]');
+                    console.log('[donations.js -> updateDonations] No donations array in response');
+                    console.log('[RESPONSE]', new Date().getTime() / 1000);
+                }
                 if (data.donations.length > 0){
                     $scope.lastDonationId = data.donations[0].id;
                     sortDonations();

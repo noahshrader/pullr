@@ -48,7 +48,7 @@ class StreamboardController extends FrontendController
         $streamboardConfig = $user->streamboardConfig;
         $time = time();
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
-        $sinceTime = $streamboardConfig->streamRequestLastDate - 3*60*60;
+        $sinceTime = $streamboardConfig->streamRequestLastDate - 8*60*60;
 
         $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC, id ASC')->all();
 
@@ -81,7 +81,7 @@ class StreamboardController extends FrontendController
                 'type' => 'followers',
                 'message' => ActivityMessage::messageNewTwitchFollower($follow),
                 'follow' => $follow,
-                'date' => $follow->createdAtPullr
+                'date' => $follow->createdAt
             ];
         }
 
@@ -324,12 +324,6 @@ class StreamboardController extends FrontendController
         }
     }
 
-    /**
-     * @param string $type Can be either "sound" or "image"
-     * @throws \yii\web\ForbiddenHttpException
-     * @throws ErrorException
-     * @return array
-     */
     public function actionUpload_alert_file_ajax()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;

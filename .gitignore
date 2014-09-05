@@ -5,6 +5,5 @@
 composer.lock
 /.idea
 *.codekit
-frontend/web/userimages/0/1_original.jpg
-
-frontend/web/userimages/0/1_middle.jpg
+node_modules
+bower_components
