@@ -15,5 +15,8 @@
     "angular-bootstrap-select": "~0.0.3",
     "ng-file-upload": "~1.6.5",
     "jquery": "~2.1.1"
+  },
+  "resolutions": {
+      "jquery": "~2"
   }
 }
