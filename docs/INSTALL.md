@@ -25,7 +25,7 @@ Next step you should change you db connection settings in file
 Next step let's load tables and sampe db data, run from pullr project folder  
 `./makesample.sh`
 
-Next we will load js libraries and npm packages we need.  
+Next we will load js libraries and npm packages we need  
 `npm install`
 
 ####Update your local repository with new changes
