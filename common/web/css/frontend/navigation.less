@@ -8,7 +8,12 @@
 	height: @top-menu-height;
 	background: @gray75;
 	z-index: 9999;
+	box-shadow: none;
 	.slowtrans;
+	&.shadow {
+		box-shadow: 0 0 4px rgba(0,0,0,.2);
+	}
+	
 	ul {
 		list-style: none;
 		margin: 0px;
@@ -34,9 +39,9 @@
 				float: left;
 				display: inline-block;
 				color: @gray60;
-				font-size: 20px;
+				font-size: 18px;
 				line-height: @top-menu-height;
-				padding: 0 .6em;
+				padding: 0 .8em;
 
 				&:hover {
 					color: @accenthover;
@@ -58,17 +63,19 @@
 		cursor: pointer;
 		&.open ul.avatar-submenu.right {
 			right: 0;
+			top: 75px;
 		}
 		ul.avatar-submenu {
 			&.right {
+				top: 65px;
 				right: -5000px;
 				&:before {
-					right: 24px;
+					right: @gutter;
 				}
 			}
 		}
 		&.open .user-photo-menu:after {
-			border-color: transparent transparent transparent @gray30;
+			border-color: @gray60 transparent transparent transparent !important;
 		}
 
 		.avatar {
@@ -80,16 +87,16 @@
 				color: @gray30;
 				line-height: @top-menu-height;
 				height: @top-menu-height;
-				padding-right: 1em;
+				padding-right: 1.4em;
 				&:after {
 					.arrow-down;
 					top: 50%;
 					right: 0;
-					border-width: 5px 5px 0 5px;
-					border-color: @gray60 transparent transparent transparent;
+					border-width: 6px 6px 0 6px;
+					border-color: @gray70 transparent transparent transparent;
 				}
 				&:hover:after {
-					border-color: @gray50 transparent transparent transparent;
+					border-color: @gray60 transparent transparent transparent;
 				}
 				span {
 					color: @white;
@@ -113,7 +120,7 @@
 	position: fixed;
 	height: 100%;
 	top: 0;
-	padding-top: @gutter;
+	padding-top: @gutter+@halfgutter;
 	background: @maingray;
 	z-index: 999;
 	overflow: hidden;

@@ -91,14 +91,17 @@ body.trash .campaigns-list {
 
 /* Campaign View Navigation */
 .campaign-actions {
-	position: fixed;
+	position: absolute;
 	top: @top-menu-height;
+	left: @gutter;
+	right: @gutter;
 	display: block;
 	margin: 0px;
 	padding: 0px;
-	width: 100%;
 	height: @sidenavheight;
-	background: @gray75;
+	background: @gray72;
+	.element-radius;
+	.box-shadow;
 	z-index: 1000;
 
 	.campaign-nav {
@@ -108,16 +111,18 @@ body.trash .campaigns-list {
 		.dropdown {
 			&.drop {
 				ul {
+					top: 55px;
 					left: @halfgutter;
 				}
 				a.action-toggle {
-					color: @maingray;
+					color: @gray20;
 					&:after {
-						border-color: @maingray transparent transparent transparent;
+						border-color: @gray20 transparent transparent transparent;
 					}
 				}
 			}
 			ul {
+				top: 45px;
 				left: -5000px;
 				&:before {
 					left: @halfgutter;
@@ -129,7 +134,7 @@ body.trash .campaigns-list {
 		a.actions-toggle {
 			display: inline-block;
 			position: relative;
-			color: @gray40;
+			color: @gray60;
 			font-size: 18px;
 			line-height: @sidenavheight;
 			padding: 0 @gutter;
@@ -141,12 +146,12 @@ body.trash .campaigns-list {
 				right: 18px;
 				margin-top: -1px;
 				border-width: 4px 4px 0 4px;
-				border-color: @gray50 transparent transparent transparent;
+				border-color: @gray60 transparent transparent transparent;
 			}
 			&:hover {
 				color: @maingray;
 				&:after {
-					border-color: @maingray transparent transparent transparent;
+					border-color: @gray20 transparent transparent transparent;
 				}
 			}
 		}

@@ -70,7 +70,7 @@ $this->registerJs($js);
                         </li>
                         <li>
                             <a class="donor-link" title="Donors" href="app/donor">
-                                <i class="icon icon-users"></i>
+                                <i class="icon icon-user"></i>
                                 <span class="nav-label">Donors</span>
                             </a>
                         </li>

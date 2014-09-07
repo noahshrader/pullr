@@ -103,7 +103,6 @@
 /* Dashboard Stats */
 .content-wrap {
 	ul.content-nav {
-		margin-top: @gutter;
 
 		li {
 			&.active a {
@@ -208,6 +207,7 @@
 	color: @gray50;
 	font-weight: 400;
 	padding: @halfgutter 45px @halfgutter 80px;
+	margin-bottom: @gutter;
 	background: @modulegray;
 	border: 0;
 	box-shadow: none;
@@ -229,9 +229,12 @@
 		bottom: 0;
 		right: 0;
 		width: 45px;
-		color: @white !important;
+		color: @gray50 !important;
 		font-weight: 600;
 		text-shadow: none;
 		opacity: 1;
+		&:hover {
+			color: @gray30 !important;
+		}
 	}
 }

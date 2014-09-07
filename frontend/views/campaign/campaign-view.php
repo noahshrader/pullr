@@ -31,72 +31,72 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
 </script>
 
 <section class="campaigns-view-wrap">
-    <div class="campaign-actions">
-        <div class="col-md-6 campaign-nav">
-            <? if (!$campaign->isParentForCurrentUser()): ?>
-            <ul class="campaign-quick-links dropdown">
-                <li>
-                    <a class="actions-toggle icon-menu"></a>
-                    <ul>
-                        <li class="active cf">
-                            <a href="app/campaign/view?id=<?= $campaign->id ?>">
-                                <i class="icon icon-piechart2"></i>
-                                <!-- Overview -->
-                                Overview
-                            </a>
-                        </li>
-                        <li class="cf">
-                            <a href="app/campaign/edit?id=<?= $campaign->id ?>">
-                                <i class="icon icon-pencil"></i>
-                                <!-- Edit -->
-                                Edit
-                            </a>
-                        </li>
-                        <li class="cf">
-                            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                            <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                                <i class="icon icon-code2"></i>
-                                JSON
-                            </a>
-                        </li>
-                        <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
-                        <li class="cf">
-                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                                <i class="icon icon-archiveit"></i>
-                                <!-- Archive -->
-                                Archive
-                            </a>
-                        </li>
-                        <? endif ?>
-                        <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
-                        <li class="cf">
-                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                                <i class="icon icon-recover"></i>
-                                <!-- Restore -->
-                                Restore
-                            </a>
-                        </li>
-                        <? endif ?>
-                        <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
-                        <li class="cf">
-                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                                <i class="icon icon-trash"></i>
-                                <!-- Remove -->
-                                Delete
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <? endif ?>
-            </ul>
-            <? endif ?>
-        </div>
-        <div class="col-md-6 campaign-nav">
-            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-            <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">View Campaign</a>
-        </div>
-    </div>
     <div id="content" class="adv pane" data-id="<?= $campaign->id ?>">
+        <div class="campaign-actions">
+            <div class="col-md-6 campaign-nav">
+                <? if (!$campaign->isParentForCurrentUser()): ?>
+                <ul class="campaign-quick-links dropdown">
+                    <li>
+                        <a class="actions-toggle icon-menu"></a>
+                        <ul>
+                            <li class="active cf">
+                                <a href="app/campaign/view?id=<?= $campaign->id ?>">
+                                    <i class="icon icon-piechart2"></i>
+                                    <!-- Overview -->
+                                    Overview
+                                </a>
+                            </li>
+                            <li class="cf">
+                                <a href="app/campaign/edit?id=<?= $campaign->id ?>">
+                                    <i class="icon icon-pencil"></i>
+                                    <!-- Edit -->
+                                    Edit
+                                </a>
+                            </li>
+                            <li class="cf">
+                                <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                                <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
+                                    <i class="icon icon-code2"></i>
+                                    JSON
+                                </a>
+                            </li>
+                            <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
+                            <li class="cf">
+                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
+                                    <i class="icon icon-archiveit"></i>
+                                    <!-- Archive -->
+                                    Archive
+                                </a>
+                            </li>
+                            <? endif ?>
+                            <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                            <li class="cf">
+                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                                    <i class="icon icon-recover"></i>
+                                    <!-- Restore -->
+                                    Restore
+                                </a>
+                            </li>
+                            <? endif ?>
+                            <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
+                            <li class="cf">
+                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
+                                    <i class="icon icon-trash"></i>
+                                    <!-- Remove -->
+                                    Delete
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <? endif ?>
+                </ul>
+                <? endif ?>
+            </div>
+            <div class="col-md-6 campaign-nav">
+                <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank"><i class="icon-eye"></i>View</a>
+            </div>
+        </div>
         <div class="content-wrap">
             <h1 class="campaign-title">
                 <?= ($campaign->name)?$campaign->name:'New Campaign' ?>
