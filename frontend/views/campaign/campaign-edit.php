@@ -78,10 +78,9 @@ $user = \Yii::$app->user->identity;
                 </ul>
                 <? endif ?>
             </div>
-            <div class="col-md-6 campaign-nav">
-                <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank"><i class="icon-eye"></i>View</a>
-            </div>
+            <h4><span><?= ($campaign->name)?$campaign->name:'New Campaign' ?></span></h4>
+            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+            <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank"><i class="icon icon-eye"></i></a>
         </div>
         <? endif ?>
         <div class="module">

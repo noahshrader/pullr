@@ -91,20 +91,20 @@ body.trash .campaigns-list {
 
 /* Campaign View Navigation */
 .campaign-actions {
-	position: absolute;
-	top: @top-menu-height;
-	left: @gutter;
-	right: @gutter;
+	position: relative;
 	display: block;
-	margin: 0px;
+	margin-bottom: @gutter;
 	padding: 0px;
 	height: @sidenavheight;
+	width: 100%;
 	background: @gray72;
 	.element-radius;
 	.box-shadow;
 	z-index: 1000;
 
 	.campaign-nav {
+		position: absolute;
+		left: 0;
 		padding: 0;
 		.slowtrans;
 
@@ -114,7 +114,7 @@ body.trash .campaigns-list {
 					top: 55px;
 					left: @halfgutter;
 				}
-				a.action-toggle {
+				a.actions-toggle {
 					color: @gray20;
 					&:after {
 						border-color: @gray20 transparent transparent transparent;
@@ -154,23 +154,58 @@ body.trash .campaigns-list {
 					border-color: @gray20 transparent transparent transparent;
 				}
 			}
+
+		}
+	}
+	h4 {
+		color: @gray20;
+		font-weight: 600;
+		line-height: @sidenavheight;
+		text-align: center;
+		text-transform: uppercase;
+
+		span {
+			display: inline-block;
+			width: 60%;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 	}
 
 	/* View Campaign */
 	a.view-campaign {
-		position: fixed;
+		position: absolute;
+		top: 0;
 		right: 0;
 		display: block;
 		color: @white;
+		font-size: 22px;
 		font-weight: 400;
-		padding-right: 24px;
-		padding-left: 16px;
+		padding-right: 20px;
+		padding-left: 6px;
 		text-align: center;
 		line-height: @sidenavheight;
 		width: auto;
+		background: @gray60;
+		.element-radius;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
 		&:hover {
 			color: @white;
+			background: @accent;
+			&:before {
+				border-bottom: @sidenavheight solid @accent;
+			}
+		}
+		&:before {
+			height: 0px;
+			width: 0px;
+			content: "";
+			position: absolute;
+			border-bottom: @sidenavheight solid @gray60;
+			border-left: 30px solid transparent;
+			left: -30px;
 		}
 	}
 }
