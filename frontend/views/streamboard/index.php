@@ -4,8 +4,27 @@ use yii\web\View;
 /**@var $this View */
 /**@var $regionsNumber integer */
 ?>
-<div ng-app="streamboardApp" class="streamboardContainer">
+
+		<div id="ip-container" class="ip-container">
+			<!-- initial header -->
+			<header class="ip-header">
+				<h1 class="ip-logo">
+					<svg class="ip-inner" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245.812 130.288" preserveAspectRatio="xMidYMin meet" aria-labelledby="logo_title"><path d="M53.86 99.989c-3.817 2.165-7.626 3.246-11.423 3.246h-13.25l-3.215 11.506-25.972 15.547 28.647-101.582h33.231c8.172 0 13.208 3.834 15.112 11.498 1.625 6.313 1.14 14.203-1.456 23.671l-.816 2.976c-.817 2.976-1.643 5.682-2.475 8.116-.833 2.435-1.688 4.646-2.56 6.627-3.598 8.297-8.871 14.427-15.823 18.395zm-2.555-52.211h-6.639l-9.624 34.492h7.04c1.73 0 3.56-.812 5.493-2.435l.644-.541c.856-.721 1.962-3.065 3.309-7.034.255-.629.41-1.035.46-1.216l.076-.271 3.412-12.309c.35-1.262.652-2.794.906-4.599.384-4.058-1.309-6.087-5.077-6.087zM74.35 83.487c.164-.899.46-2.208.89-3.922.427-1.712 1.002-3.876 1.717-6.493l12.144-44.366h21.458l-12.089 44.636c-1.614 5.952-.32 8.928 3.879 8.928h6.298l14.42-53.564h21.335l-19.858 74.53h-34.675c-3.798 0-7.012-1.082-9.641-3.246-5.198-4.239-7.155-9.739-5.878-16.503zM152.409 103.235h-21.55l20.236-76.189 24.433-11.812-23.119 88.001zM180.893 103.235h-21.548l22.339-90.726 25.543-12.509-26.334 103.235zM242.378 28.706h3.434l-5.877 23.266-3.057.405c-.821 0-1.645.182-2.473.542-2.145.361-4.93 1.805-8.36 4.328-3.354 2.526-5.458 4.826-6.315 6.898l-.591 1.353c-.131.182-.285.632-.47 1.353l-9.291 36.386h-21.55l19.233-74.53h19.745l-2.211 8.657c6.135-5.771 12.061-8.658 17.783-8.658z"/></svg>
+				</h1>
+				<div class="ip-loader">
+					<svg class="ip-inner" width="60px" height="60px" viewBox="0 0 80 80">
+						<path class="ip-loader-circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"/>
+						<path id="ip-loader-circle" class="ip-loader-circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"/>
+					</svg>
+				</div>
+			</header>
+
+			<!-- main content -->
+			<div class="ip-main">
+				<div ng-app="streamboardApp" class="streamboardContainer">
     <?= $this->render('streamboard-js-variables') ?>
     <?= $this->render('regions', ['regionsNumber' => $regionsNumber]) ?>
     <?= $this->render('sidepanel', ['regionsNumber' => $regionsNumber]) ?>
 </div>
+			</div>
+		</div><!-- /container -->
