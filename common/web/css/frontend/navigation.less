@@ -31,7 +31,7 @@
 
 			span {
 				float: left;
-				font-size: 20px;
+				font-size: 1.3em;
 				font-weight: 600;
 				line-height: @top-menu-height;
 			}
@@ -183,16 +183,21 @@
 					}
 
 					.icon {
+						float: left;
 						display: inline-block;
 						font-size: 26px;
+						line-height: 60px;
 						vertical-align: middle;
 					}
 
 					.nav-label {
 						display: inline-block;
+						position: absolute;
+						left: 62px;
 						vertical-align: middle;
 						height: 60px;
-						padding-left: 8px;
+						opacity: 1;
+						.trans-opacity;
 					}
 				}
 				a.dashboard.active:after {
@@ -236,7 +241,7 @@
 		text-align: center; 
 
 		.nav-label {
-			display: none;
+			opacity: 0;
 		}
 	}
 

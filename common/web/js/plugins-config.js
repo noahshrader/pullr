@@ -9,7 +9,7 @@ $(function () {
 		scrollInertia: 80,
 		callbacks:{
 			alwaysTriggerOffsets: true,
-			onTotalScrollBackOffset: 1,
+			onTotalScrollBackOffset: 10,
 			onScrollStart: function(){
 				$('.top-menu').addClass('shadow');
 			},
