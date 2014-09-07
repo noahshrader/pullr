@@ -61,6 +61,7 @@ $(document).ready(function() {
         formatResult: formatResultCharity,
         formatSelection: formatSelectionCharity,
         containerCssClass: 'form-control',
+        dropdownCssClass: "charitydrop",
         escapeMarkup: function (m) { return m; } // we do not want to escape markup since we are displaying html in results
     });
 });
