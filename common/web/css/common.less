@@ -23,6 +23,7 @@ body {
 /* ------------------------------------------------- */
 .pane {
 	bottom: 0;
+	.slowtrans;
 }
 .hide {
 	display: none;
@@ -205,15 +206,15 @@ ul.content-nav {
 /* Sidebar Navigation */
 /* ------------------------------------------------- */
 ul.panel-nav {
-	line-height: @sidenavheight;
-	height: @sidenavheight;
+	line-height: @top-menu-height;
+	height: @top-menu-height;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	text-align: center;
 	background: @maingray;
-	border-bottom: solid 1px @gray10;
+	border-bottom: solid 1px @gray12;
 	z-index: 9999;
 	overflow: hidden;
 
@@ -233,7 +234,7 @@ ul.panel-nav {
 			color: @gray40;
 			font-size: 18px;
 			font-weight: 400;
-			line-height: @sidenavheight;
+			line-height: @top-menu-height;
 			width: 100%;
 			&:hover {
 				color: @white;

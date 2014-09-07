@@ -2,13 +2,12 @@
 /* ------------------------------------------------- */
 ul.campaign-quicknav {
 	position: fixed;
-	top: @top-menu-height;
+	top: 0;
 	width: @sidepanelwidth;
 
 	li {
 		width: 33.33%;
 		&:first-child {
-			.topcut-radius;
 			border: 0;
 		}
 		a {
@@ -24,24 +23,36 @@ ul.campaign-quicknav {
 /* Campaign Listings */
 .campaigns-list {
 	&.addpad {
-		padding-top: @listsearch;
+		padding-top: @top-menu-height;
 	}
 }
 .campaign-item {
-	padding: 24px 0;
+	padding: 26px 0;
 	margin: 0px;
 	position: relative;
 	display: block;
 	width: 100%;
-	border-bottom: solid 1px @gray10;
-	&.active h3 {
+	border-bottom: solid 1px @gray12;
+	.trans;
+	&.active h3,
+	&.active p {
 		color: @white;
 	}
 	&.active {
-		background: @gray10 !important;
+		background: @gray12;
+		&:after {
+			.arrow-left;
+			top: 50%;
+			right: 0;
+			margin-top: -10px;
+			border-color: transparent @gray75 transparent transparent;
+		}
 	}
 	&:hover {
-		background: @gray13;
+		h3,
+		p {
+			color: @white;
+		}
 	}
 	&:last-child {
 		border: 0;
@@ -59,8 +70,8 @@ ul.campaign-quicknav {
 		margin-top: 2px;
 	}
 	p {
-		color: @accent;
-		font-weight: 400;
+		color: @gray40;
+		font-weight: 300;
 		margin-top: 2px;
 		margin-bottom: 0px;
 	}
@@ -87,11 +98,32 @@ body.trash .campaigns-list {
 	padding: 0px;
 	width: 100%;
 	height: @sidenavheight;
-	background: @gray72;
+	background: @gray75;
 	z-index: 1000;
 
 	.campaign-nav {
 		padding: 0;
+		.slowtrans;
+
+		.dropdown {
+			&.drop {
+				ul {
+					left: @halfgutter;
+				}
+				a.action-toggle {
+					color: @maingray;
+					&:after {
+						border-color: @maingray transparent transparent transparent;
+					}
+				}
+			}
+			ul {
+				left: -5000px;
+				&:before {
+					left: @halfgutter;
+				}
+			}
+		}
 
 		/* Toggle Button */
 		a.actions-toggle {
@@ -118,107 +150,24 @@ body.trash .campaigns-list {
 				}
 			}
 		}
-		ul {
-			padding: 0;
+	}
 
-			&.campaign-quick-links {
-
-				/* when dropped */
-				&.drop {
-					a.actions-toggle {
-						color: @maingray;
-						&:after {
-							border-color: @maingray transparent transparent transparent;
-						}
-					}
-					ul {
-						opacity: 1;
-						top: 65px;
-						left: 15px;
-						webkit-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s ease-in-out;
-						-moz-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s ease-in-out;
-						-o-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s ease-in-out;
-						transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s ease-in-out;
-					}
-				}
-				ul {
-					position: absolute;
-					top: 80px;
-					left: -5000px;
-					padding: @halfgutter 0;
-					min-width: 160px;
-					background: @white;
-					.box-shadow;
-					.border-radius;
-					opacity: 0;
-					-webkit-transition-delay: 0s,0s,.1s;
-					-webkit-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s linear;
-					-moz-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s linear .1s;
-					-o-transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s linear .1s;
-					transition: opacity .1s ease-in-out,top .1s ease-in-out,left 0s linear .1s;
-					&:before {
-						.arrow-up;
-						top: -8px;
-						left: 14px;
-					}
-
-					li {
-						a {
-							display: block;
-							color: @gray40;
-							line-height: 45px;
-							padding: 0 @gutter;
-							width: 100%;
-
-							&:hover {
-								color: @base;
-								background: @gray80;
-							}
-							i.icon {
-								float: left;
-								color: @gray40;
-								font-size: 18px;
-								line-height: 45px;
-								margin-right: 8px;
-							}
-					}
-				}
-			}
+	/* View Campaign */
+	a.view-campaign {
+		position: fixed;
+		right: 0;
+		display: block;
+		color: @white;
+		font-weight: 400;
+		padding-right: 24px;
+		padding-left: 16px;
+		text-align: center;
+		line-height: @sidenavheight;
+		width: auto;
+		&:hover {
+			color: @white;
 		}
 	}
-}
-
-/* View Campaign */
-a.view-campaign {
-	position: fixed;
-	right: 0;
-	display: block;
-	color: @white;
-	font-weight: 400;
-	padding-right: 24px;
-	padding-left: 16px;
-	text-align: center;
-	line-height: @sidenavheight;
-	width: auto;
-	background: @accent;
-	&:hover {
-		color: @white;
-		background: @accenthover;
-	}
-	&:before {
-		height: 0px;
-		width: 0px;
-		content: "";
-		display: block;
-		position: absolute;
-		border-bottom: @sidenavheight solid @accent;
-		border-left: 30px solid transparent;
-		left: -30px;	
-	}
-	&:hover:before {
-		border-bottom: @sidenavheight solid @accenthover;
-	}
-}
 }
 
 /* Child Campaigns */

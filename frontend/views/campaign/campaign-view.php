@@ -34,7 +34,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
     <div class="campaign-actions">
         <div class="col-md-6 campaign-nav">
             <? if (!$campaign->isParentForCurrentUser()): ?>
-            <ul class="campaign-quick-links">
+            <ul class="campaign-quick-links dropdown">
                 <li>
                     <a class="actions-toggle icon-menu"></a>
                     <ul>

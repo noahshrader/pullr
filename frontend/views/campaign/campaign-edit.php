@@ -85,6 +85,7 @@ $user = \Yii::$app->user->identity;
     <? $form = ActiveForm::begin(['options' => [
         'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
     <section id="content" class="campaign-edit-wrap pane adv">
+        <div class="module">
         <ul class="content-nav cf">
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab">General</a>
@@ -104,7 +105,6 @@ $user = \Yii::$app->user->identity;
                 <a href="<?= Url::to()?>#social" data-toggle="tab">Social</a>
             </li>
         </ul>
-        <div class="module">
             <div class="spinner-wrap">
                 <div class="spinner">
                     <div class="cube1"></div>

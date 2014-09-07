@@ -1,71 +1,40 @@
 /* Top Menu */
 /* ------------------------------------------------- */
-
-.large-menu-toggled li.branding {
-	width: @primary-nav-lg-width;
-}
-
-.small-menu-toggled li.branding {
-	width: @primary-nav-width;
-}
-
 .top-menu {
-	background-color: @maingray;
-	width: 100%;
 	position: fixed;
 	top: 0;
+	right: 0;
+	padding: 0 @gutter;
 	height: @top-menu-height;
-	z-index: 1000;
-	overflow: hidden;
-
+	background: @gray75;
+	z-index: 9999;
+	.slowtrans;
 	ul {
 		list-style: none;
 		margin: 0px;
 		padding: 0px;
 		float: left;
 
-		li.branding {
-			text-align: center;
-			display: block;
-			float: left;
-
-			a {
-				display: inline-block;
-				width: 100%;
-				cursor: pointer;
-				font-size: 34px;
-				vertical-align: middle;
-				line-height: @top-menu-height;
-				padding: 0px;
-				&:before {
-					color: @white;
-				}
-				&.icon-pullr {
-					font-size: 34px;
-				}
-			}
-		}
-
 		/* Add Campaign Button */
 		li.add-campaign {
 			display: block;
 			float: left;
 			width: @sidepanelwidth;
-			color: @white;
+			color: @gray20;
 			font-weight: 700;
-			text-transform: uppercase;
-			letter-spacing: 2px;
 			line-height: @top-menu-height;
 
 			span {
 				float: left;
+				font-size: 20px;
+				font-weight: 600;
 				line-height: @top-menu-height;
 			}
 			a {
 				float: left;
 				display: inline-block;
-				color: @accent;
-				font-size: 22px;
+				color: @gray60;
+				font-size: 20px;
 				line-height: @top-menu-height;
 				padding: 0 .6em;
 
@@ -87,8 +56,23 @@
 		display: block;
 		position: relative;
 		cursor: pointer;
+		&.open ul.avatar-submenu.right {
+			right: 0;
+		}
+		ul.avatar-submenu {
+			&.right {
+				right: -5000px;
+				&:before {
+					right: 24px;
+				}
+			}
+		}
+		&.open .user-photo-menu:after {
+			border-color: transparent transparent transparent @gray30;
+		}
 
 		.avatar {
+			float: right;
 
 			.user-photo-menu {
 				position: relative;
@@ -96,17 +80,16 @@
 				color: @gray30;
 				line-height: @top-menu-height;
 				height: @top-menu-height;
-				padding: 0 1.6em;
+				padding-right: 1em;
 				&:after {
-					.arrow-right;
+					.arrow-down;
 					top: 50%;
-					right: 14px;
-					margin-top: -2px;
-					border-width: 4px 0 4px 4px;
-					border-color: transparent transparent transparent @gray20;
+					right: 0;
+					border-width: 5px 5px 0 5px;
+					border-color: @gray60 transparent transparent transparent;
 				}
 				&:hover:after {
-					border-color: transparent transparent transparent @gray30;
+					border-color: @gray50 transparent transparent transparent;
 				}
 				span {
 					color: @white;
@@ -115,48 +98,11 @@
 				}
 				
 				img {
-					height: 40px;
-					width: 40px;
-					border: solid 2px @gray10;
+					height: 36px;
+					width: 36px;
 					border-radius: 50%;
 				}
 			}
-		}
-		.avatar,
-		ul.avatar-submenu {
-			float: right;
-		}
-		ul.avatar-submenu {
-			margin-right: -215px;
-			background: @base;
-			.trans;
-
-			li {
-				float: left;
-				line-height: @top-menu-height;
-				padding: 0 @halfgutter;
-				height: @top-menu-height;
-
-				a {
-					display: inline-block;
-					color: @gray30;
-					font-size: 14px;
-					text-align: center;
-					&:hover {
-						color: @white;
-					}
-					i {
-						margin-right: 4px;
-					}
-				}
-			}
-		}
-		&.open .user-photo-menu:after {
-			border-color: transparent transparent transparent @gray30;
-		}
-		&.open ul.avatar-submenu {
-			padding: 0 @halfgutter;
-			margin-right: 0;
 		}
 	}
 }
@@ -167,19 +113,36 @@
 	position: fixed;
 	height: 100%;
 	top: 0;
-	padding-top: @top-menu-height;
+	padding-top: @gutter;
 	background: @maingray;
 	z-index: 999;
 	overflow: hidden;
-	&:after {
-		content: '';
+	.slowtrans;
+
+	.branding {
 		position: absolute;
-		right: -26px;
-		top: @top-menu-height + 20px;
-		bottom: 0;
-		width: 24px;
-		.element-radius;
-		box-shadow: 0 1px 12px 0 rgba(32,32,34,0.7);
+		top: 0;
+		display: block;
+		float: left;
+		text-align: center;
+		.slowtrans;
+
+		a {
+			display: inline-block;
+			width: 100%;
+			cursor: pointer;
+			font-size: 34px;
+			vertical-align: middle;
+			line-height: @top-menu-height;
+			padding: 0px;
+			background: @maingray;
+			&:before {
+				color: @white;
+			}
+			&.icon-pullr {
+				font-size: 34px;
+			}
+		}
 	}
 
 	nav.nav-top {

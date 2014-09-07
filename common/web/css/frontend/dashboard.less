@@ -118,8 +118,8 @@
 /* Activity Sidebar */
 /* ------------------------------------------------- */
 #sidebar.dashboard {
-	position: absolute;
-	top: 0;
+	position: fixed;
+	top: @top-menu-height;
 	right: 0;
 	padding: @gutter @gutter 0 0;
 	z-index: 1000;
@@ -205,10 +205,10 @@
 /* Alerts */
 /* ------------------------------------------------- */
 .alert-info {
-	color: @white;
+	color: @gray50;
 	font-weight: 400;
 	padding: @halfgutter 45px @halfgutter 80px;
-	background: @gray60;
+	background: @modulegray;
 	border: 0;
 	box-shadow: none;
 
@@ -216,7 +216,7 @@
 		position: absolute;
 		top: 50%;
 		left: 0;
-		color: @gray72;
+		color: @gray50;
 		font-size: 34px;
 		text-align: center;
 		margin-top: -18px;
