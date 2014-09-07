@@ -14,77 +14,76 @@ $user = \Yii::$app->user->identity;
 
     <? if ($campaign): ?>
     <div id="campaignEdit" class="layout-edit <? if($campaign->teamEnable):?>team-enabled<? endif ?>" data-campaignType="<?= htmlspecialchars($campaign->type) ?>" data-id="<?= $campaign->id ?>">
-    <? if (!$campaign->isNewRecord): ?>
-
-    <div class="campaign-actions">
-        <div class="col-md-6 campaign-nav">
-            <? if (!$campaign->isParentForCurrentUser()): ?>
-            <ul class="campaign-quick-links">
-                <li>
-                    <a class="actions-toggle icon-menu"></a>
-                    <ul>
-                        <li class="cf">
-                            <a href="app/campaign/view?id=<?= $campaign->id ?>">
-                                <i class="icon icon-piechart2"></i>
-                                <!-- Overview -->
-                                Overview
-                            </a>
-                        </li>
-                        <li class="active cf">
-                            <a href="app/campaign/edit?id=<?= $campaign->id ?>">
-                                <i class="icon icon-pencil"></i>
-                                <!-- Edit -->
-                                Edit
-                            </a>
-                        </li>
-                        <li class="cf">
-                            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                            <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                                <i class="icon icon-code2"></i>
-                                JSON
-                            </a>
-                        </li>
-                        <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
-                        <li class="cf">
-                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                                <i class="icon icon-archiveit"></i>
-                                <!-- Archive -->
-                                Archive
-                            </a>
-                        </li>
-                        <? endif ?>
-                        <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
-                        <li class="cf">
-                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                                <i class="icon icon-trash"></i>
-                                <!-- Remove -->
-                                Delete
-                            </a>
-                        </li>
-                        <? endif ?>
-                        <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
-                        <li class="cf">
-                            <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                                <i class="icon icon-recover"></i>
-                                <!-- Restore -->
-                                Restore
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <? endif ?>
-            </ul>
-            <? endif ?>
-        </div>
-        <div class="col-md-6 campaign-nav">
-            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-            <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank">View Campaign</a>
-        </div>
-    </div>
-    <? endif ?>
     <? $form = ActiveForm::begin(['options' => [
         'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
     <section id="content" class="campaign-edit-wrap pane adv">
+        <? if (!$campaign->isNewRecord): ?>
+        <div class="campaign-actions">
+            <div class="col-md-6 campaign-nav">
+                <? if (!$campaign->isParentForCurrentUser()): ?>
+                <ul class="campaign-quick-links dropdown">
+                    <li>
+                        <a class="actions-toggle icon-menu"></a>
+                        <ul>
+                            <li class="cf">
+                                <a href="app/campaign/view?id=<?= $campaign->id ?>">
+                                    <i class="icon icon-piechart2"></i>
+                                    <!-- Overview -->
+                                    Overview
+                                </a>
+                            </li>
+                            <li class="active cf">
+                                <a href="app/campaign/edit?id=<?= $campaign->id ?>">
+                                    <i class="icon icon-pencil"></i>
+                                    <!-- Edit -->
+                                    Edit
+                                </a>
+                            </li>
+                            <li class="cf">
+                                <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                                <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
+                                    <i class="icon icon-code2"></i>
+                                    JSON
+                                </a>
+                            </li>
+                            <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
+                            <li class="cf">
+                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
+                                    <i class="icon icon-archiveit"></i>
+                                    <!-- Archive -->
+                                    Archive
+                                </a>
+                            </li>
+                            <? endif ?>
+                            <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
+                            <li class="cf">
+                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
+                                    <i class="icon icon-trash"></i>
+                                    <!-- Remove -->
+                                    Delete
+                                </a>
+                            </li>
+                            <? endif ?>
+                            <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
+                            <li class="cf">
+                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                                    <i class="icon icon-recover"></i>
+                                    <!-- Restore -->
+                                    Restore
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <? endif ?>
+                </ul>
+                <? endif ?>
+            </div>
+            <h4><span><?= ($campaign->name)?$campaign->name:'New Campaign' ?></span></h4>
+            <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+            <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank"><i class="icon icon-eye"></i></a>
+        </div>
+        <? endif ?>
+        <div class="module">
         <ul class="content-nav cf">
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab">General</a>
@@ -104,7 +103,6 @@ $user = \Yii::$app->user->identity;
                 <a href="<?= Url::to()?>#social" data-toggle="tab">Social</a>
             </li>
         </ul>
-        <div class="module">
             <div class="spinner-wrap">
                 <div class="spinner">
                     <div class="cube1"></div>

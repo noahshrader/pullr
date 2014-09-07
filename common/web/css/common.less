@@ -23,6 +23,7 @@ body {
 /* ------------------------------------------------- */
 .pane {
 	bottom: 0;
+	.slowtrans;
 }
 .hide {
 	display: none;
@@ -173,14 +174,14 @@ body {
 /* Content Navigation */
 /* ------------------------------------------------- */
 ul.content-nav {
-	text-align: center;
-	margin: @gutter+@gutter 0 0;
+	height: @sidenavheight;
 
 	li {
 		position: relative;
+		float: left;
 		display: inline-block;
-		margin-right: 3px;
 		border: 0;
+		border-right: solid 1px @gray75;
 		&.active a,
 		&.active a:hover {
 			color: @gray10;
@@ -188,15 +189,11 @@ ul.content-nav {
 		}
 		a {
 			display: block;
-			color: @gray50;
+			color: @gray60;
 			font-weight: 600;
-			line-height: 45px;
-			padding: 0 24px;
+			line-height: @sidenavheight;
+			padding: 0 @gutter;
 			width: 100%;
-			.tab-radius;
-			&:hover {
-				background: @gray72;
-			}
 		}
 	}
 }
@@ -205,15 +202,15 @@ ul.content-nav {
 /* Sidebar Navigation */
 /* ------------------------------------------------- */
 ul.panel-nav {
-	line-height: @sidenavheight;
-	height: @sidenavheight;
+	line-height: @top-menu-height;
+	height: @top-menu-height;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	text-align: center;
 	background: @maingray;
-	border-bottom: solid 1px @gray10;
+	border-bottom: solid 1px @gray12;
 	z-index: 9999;
 	overflow: hidden;
 
@@ -224,16 +221,16 @@ ul.panel-nav {
 
 		&.active a {
 			color: @white;
-			-webkit-box-shadow: inset 0 -4px 0 0 @accent;
-			-moz-box-shadow: inset 0 -4px 0 0 @accent;
-			box-shadow: inset 0 -4px 0 0 @accent;
+			-webkit-box-shadow: inset 0 -5px 0 0 @accent;
+			-moz-box-shadow: inset 0 -5px 0 0 @accent;
+			box-shadow: inset 0 -5px 0 0 @accent;
 		}
 		a {
 			display: block;
 			color: @gray40;
 			font-size: 18px;
 			font-weight: 400;
-			line-height: @sidenavheight;
+			line-height: @top-menu-height;
 			width: 100%;
 			&:hover {
 				color: @white;

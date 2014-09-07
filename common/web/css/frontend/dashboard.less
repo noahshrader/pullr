@@ -103,7 +103,6 @@
 /* Dashboard Stats */
 .content-wrap {
 	ul.content-nav {
-		margin-top: @gutter;
 
 		li {
 			&.active a {
@@ -118,8 +117,8 @@
 /* Activity Sidebar */
 /* ------------------------------------------------- */
 #sidebar.dashboard {
-	position: absolute;
-	top: 0;
+	position: fixed;
+	top: @top-menu-height;
 	right: 0;
 	padding: @gutter @gutter 0 0;
 	z-index: 1000;
@@ -205,10 +204,11 @@
 /* Alerts */
 /* ------------------------------------------------- */
 .alert-info {
-	color: @white;
+	color: @gray50;
 	font-weight: 400;
 	padding: @halfgutter 45px @halfgutter 80px;
-	background: @gray60;
+	margin-bottom: @gutter;
+	background: @modulegray;
 	border: 0;
 	box-shadow: none;
 
@@ -216,7 +216,7 @@
 		position: absolute;
 		top: 50%;
 		left: 0;
-		color: @gray72;
+		color: @gray50;
 		font-size: 34px;
 		text-align: center;
 		margin-top: -18px;
@@ -229,9 +229,12 @@
 		bottom: 0;
 		right: 0;
 		width: 45px;
-		color: @white !important;
+		color: @gray50 !important;
 		font-weight: 600;
 		text-shadow: none;
 		opacity: 1;
+		&:hover {
+			color: @gray30 !important;
+		}
 	}
 }

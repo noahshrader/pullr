@@ -202,27 +202,27 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
             </div>
         </div>
-        <div id="sidebar" class="dashboard pane">
-            <div class="invites-wrap"> <!-- BEGIN campaign invites -->
-                <? if (sizeof($campaignInvites) > 0): ?>
-                     <?=
-                    $this->render('campaignInvites', [
-                        'campaignInvites' => $campaignInvites
-                    ]) ?>
-                <? endif ?>
-            </div> <!-- END campaign invites -->
-            <div class="activity-wrap"> <!-- BEGIN activity -->
-                <ul class="activity-feed module">
-                    <h5 class="module-title">Activity</h5>
-                    <? if (sizeof($recentActivity) > 0): ?>
-                        <? foreach ($recentActivity as $notification): ?>
-                            <li><span><?= $notification->message ?></span></li>
-                        <? endforeach; ?>
-                    <? else: ?>
-                        <div class="no-recent-activity">No recent activity</div>
-                    <? endif ?>
-                </ul>
-            </div> <!-- END activity -->
-        </div>
     </section>
+    <div id="sidebar" class="dashboard pane">
+        <div class="invites-wrap"> <!-- BEGIN campaign invites -->
+            <? if (sizeof($campaignInvites) > 0): ?>
+                 <?=
+                $this->render('campaignInvites', [
+                    'campaignInvites' => $campaignInvites
+                ]) ?>
+            <? endif ?>
+        </div> <!-- END campaign invites -->
+        <div class="activity-wrap"> <!-- BEGIN activity -->
+            <ul class="activity-feed module">
+                <h5 class="module-title">Activity</h5>
+                <? if (sizeof($recentActivity) > 0): ?>
+                    <? foreach ($recentActivity as $notification): ?>
+                        <li><span><?= $notification->message ?></span></li>
+                    <? endforeach; ?>
+                <? else: ?>
+                    <div class="no-recent-activity">No recent activity</div>
+                <? endif ?>
+            </ul>
+        </div> <!-- END activity -->
+    </div>
 </div>

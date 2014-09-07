@@ -1,6 +1,6 @@
 <div class="campaign-invites module"> <!-- BEGIN campaign invites -->
-    <h5 class="module-title">Invites</h5>
     <ul>
+        <h5 class="module-title">Invites</h5>
         <? foreach ($campaignInvites as $invite): ?>
         <li>
             <p><?= $invite->campaign->name ?></p>
