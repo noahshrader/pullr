@@ -110,14 +110,14 @@
 	overflow: auto;
 
 	.main-info {
-		padding: 0 30px;
+		padding: 0 @gutter+@gutter 0 @gutter;
 	}
 	h2 {
 		font-size: 24px;
 		color: @accent;
 		line-height: @top-menu-height;
-		padding-left: 15px;
-		padding-right: 15px;
+		padding-left: @halfgutter;
+		padding-right: @halfgutter;
 		font-weight: normal;       
 	}
 	.campaigns-list {
@@ -138,7 +138,7 @@
 /* List Search */
 .list-search {
 	position: fixed;
-	top: @top-menu-height + @sidenavheight;
+	top: @top-menu-height;
 	height: @top-menu-height;
 	width: @sidepanelwidth;
 	z-index: 1000;
@@ -165,7 +165,7 @@
 
 	input[type='search'] {
 		color: @white;
-		background: @gray10;
+		background: @gray12;
 		border-color: transparent;
 	}
 }

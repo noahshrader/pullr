@@ -174,13 +174,14 @@ body {
 /* Content Navigation */
 /* ------------------------------------------------- */
 ul.content-nav {
-	text-align: center;
+	height: @sidenavheight;
 
 	li {
 		position: relative;
+		float: left;
 		display: inline-block;
-		margin-right: 3px;
 		border: 0;
+		border-right: solid 1px @gray75;
 		&.active a,
 		&.active a:hover {
 			color: @gray10;
@@ -188,15 +189,11 @@ ul.content-nav {
 		}
 		a {
 			display: block;
-			color: @gray50;
+			color: @gray60;
 			font-weight: 600;
-			line-height: 45px;
-			padding: 0 24px;
+			line-height: @sidenavheight;
+			padding: 0 @gutter;
 			width: 100%;
-			.tab-radius;
-			&:hover {
-				background: @gray72;
-			}
 		}
 	}
 }
