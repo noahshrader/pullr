@@ -9,10 +9,7 @@
 /* ------------------------------------------------- */
 body {
 	background: @white;
-	&.campaignflow {
-		.element-radius;
-		overflow: hidden;
-	}
+	height: auto;
 }
 
 
@@ -180,18 +177,23 @@ h3.charity-name {
 /* ------------------------------------------------- */
 footer {
 	text-align: center;
-	padding-bottom: 2em;
+	padding-bottom: 3em;
 
 	h5 {
-		color: #d4d5d8;
+		color: @gray70;
 		font-size: .6em;
-		margin-bottom: .1em;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		margin-bottom: .2em;
 	}
-	a.logo:before {
-		color: #d4d5d8;
-		font-size: 2.4em;
+	a.logo {
+		&:before {
+			color: @gray70;
+			font-size: 2.4em;
+		}
 		&:hover:before {
-			color: #53555a;
+			color: @gray20;
 		}
 	}
 }
