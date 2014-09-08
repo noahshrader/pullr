@@ -15,7 +15,7 @@ function campaignsWithFilter(campaigns){
 
 // Rotate table details area on click
 $('tr.donation-entry').click(function() {
-    $(this).children('td.details-control').toggleClass('drop');
+    $(this).toggleClass('drop');
 });
 
 // Show/hide campaign actions menu

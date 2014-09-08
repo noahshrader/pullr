@@ -132,11 +132,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <h5>Donors</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donor'>
-                    <h3><?= $topDonorText ?></h3>
+                    <h4><?= $topDonorText ?></h4>
                     <h5>Top Donor</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donation'>
-                    <h3><?= $topDonationText ?></h3>
+                    <h4><?= $topDonationText ?></h4>
                     <h5>Top Donation</h5>
                 </div>
                 <div class="clearfix"></div>

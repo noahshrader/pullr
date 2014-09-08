@@ -19,7 +19,7 @@ $this->title = 'Settings';
 	<div class="content-wrap">
 		<span class="corner"></span>
 		<section class="module">
-			<h3>General</h3>
+			<h4>General</h4>
 			<?= $form->field($user, 'name') ?>
 			<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
 			<?
@@ -30,7 +30,7 @@ $this->title = 'Settings';
 		</section>
 		<section class="module email-notifications">
 			<fieldset>
-				<h3>Email Notifications</h3>
+				<h4>Email Notifications</h4>
 				<div>
 					<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
 					<? $attributes = $notification->getNotificationsAttributes(); ?>

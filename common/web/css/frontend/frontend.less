@@ -33,6 +33,7 @@
 }
 .content-wrap {
 	padding: @gutter;
+	overflow: hidden;
 }
 
 /* Modules */
@@ -47,12 +48,13 @@
 		margin: 0;
 	}
 
-	h3 {
+	h4 {
+		font-weight: 600;
 		margin-bottom: 1em;
 	}
 
 	h5.module-title {
-		color: @gray20;
+		color: @gray60;
 		font-weight: 600;
 		line-height: 45px;
 		padding: 0 @gutter;
@@ -100,6 +102,9 @@
 	line-height: 1.6em;
 	letter-spacing: 0;
 }
+.campaign-date {
+	display: none;
+}
 
 /*  Side Listings */
 .list-wrap {
@@ -122,7 +127,8 @@
 	}
 	.campaigns-list {
 		div {
-			color: @gray50;
+			color: @gray40;
+			font-size: @smalltext;
 		}
 	}
 
@@ -142,7 +148,6 @@
 	height: @top-menu-height;
 	width: @sidepanelwidth;
 	z-index: 1000;
-	background: @maingray;
 	border-bottom: solid 1px @gray12;
 	&:before {
 		position: absolute;
@@ -160,12 +165,12 @@
 		padding: @halfgutter;
 		width: 100%;
 		height: 100%;
-		background: @gray15;
+		background: @gray10;
 	}
 
 	input[type='search'] {
 		color: @white;
-		background: @gray12;
+		background: @gray15;
 		border-color: transparent;
 	}
 }
@@ -353,22 +358,34 @@ table {
 	&.dataTable tbody td {
 		padding: .9em 4% !important;
 	}
-	&.dataTable.display tbody td[colspan~="4"] {
-		padding-top: 0 !important;
-		border: 0;
-		&.dataTables_empty {
-			padding: .9em 4% !important;
+	th,
+	&.dataTable thead th {
+		color: @gray50;
+		font-weight: 600;
+		border-bottom: solid 1px @modulegray;
+	}
+	&.dataTable tbody tr {
+		background-color: transparent !important;
+		border-color: transparent !important;
+		.trans;
+		&:hover {
+			background: @white !important;
+		}
+		&.donation-entry {
+			&.drop,
+			+ tr td[colspan~="4"] {
+				background: @white !important;
+			}
+			&.drop td.details-control i {
+				transform:rotate(180deg);
+				-ms-transform:rotate(180deg);
+				-webkit-transform:rotate(180deg);
+			}
 		}
 	}
 	&.dataTable td.details-control {
 		padding: 0 !important;
 		cursor: pointer;
-
-		&.drop i {
-			transform:rotate(180deg);
-			-ms-transform:rotate(180deg);
-			-webkit-transform:rotate(180deg);
-		}
 
 		i {
 			display: block;
@@ -382,18 +399,10 @@ table {
 			}
 		}
 	}
-	th,
-	&.dataTable thead th {
-		color: @gray50;
-		font-weight: 600;
-		border-bottom: solid 1px @modulegray;
-	}
-	&.dataTable tbody tr {
-		background-color: transparent !important;
-		border-color: transparent !important;
-		.trans;
-		&:hover {
-			background: @white !important;
+	&.dataTable.display tbody td[colspan~="4"] {
+		border: 0;
+		&.dataTables_empty {
+			padding: .9em 4% !important;
 		}
 	}
 
@@ -457,7 +466,6 @@ table.dataTable thead td {
 }
 .table-header,
 .table-footer {
-
 	.select2-container {
 		margin-right: 6px;
 

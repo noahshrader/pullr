@@ -31,7 +31,7 @@
 
 			span {
 				float: left;
-				font-size: 20px;
+				font-size: 1.3em;
 				font-weight: 600;
 				line-height: @top-menu-height;
 			}
@@ -120,26 +120,25 @@
 	position: fixed;
 	height: 100%;
 	top: 0;
-	padding-top: @gutter+@halfgutter;
 	background: @maingray;
 	z-index: 999;
 	overflow: hidden;
 	.slowtrans;
 
 	.branding {
-		position: absolute;
-		top: 0;
 		display: block;
-		float: left;
 		text-align: center;
+		height: @top-menu-height;
 		.slowtrans;
 
 		a {
+			position: absolute;
+			top: 0;
+			left: 0;
 			display: inline-block;
 			width: 100%;
 			cursor: pointer;
 			font-size: 34px;
-			vertical-align: middle;
 			line-height: @top-menu-height;
 			padding: 0px;
 			background: @maingray;
@@ -159,7 +158,7 @@
 
 		ul {
 			margin: 0;
-			padding: @sidenavheight+5px 0 0;
+			padding: @gutter 0 0;
 			list-style: none;
 			width: 100%;
 			display: block;
@@ -183,16 +182,21 @@
 					}
 
 					.icon {
+						float: left;
 						display: inline-block;
 						font-size: 26px;
+						line-height: 60px;
 						vertical-align: middle;
 					}
 
 					.nav-label {
 						display: inline-block;
+						position: absolute;
+						left: 62px;
 						vertical-align: middle;
 						height: 60px;
-						padding-left: 8px;
+						opacity: 1;
+						.trans-opacity;
 					}
 				}
 				a.dashboard.active:after {
@@ -236,7 +240,7 @@
 		text-align: center; 
 
 		.nav-label {
-			display: none;
+			opacity: 0;
 		}
 	}
 

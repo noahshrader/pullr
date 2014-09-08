@@ -116,14 +116,16 @@ body {
 
 	.stats-box {
 		padding: 1.4em 0;
+		min-height: 110px;
 		border-left: solid 1px @gray75;
 		&:first-child {
 			border-left: 0px;
 		}
 
 		h2,
-		h3 {
+		h4 {
 			display: block;
+			color: @gray20;
 			font-weight: 300;
 			margin: 0;
 		}
@@ -175,6 +177,7 @@ body {
 /* ------------------------------------------------- */
 ul.content-nav {
 	height: @sidenavheight;
+	background: @offwhite;
 
 	li {
 		position: relative;
@@ -210,7 +213,6 @@ ul.panel-nav {
 	width: 100%;
 	text-align: center;
 	background: @maingray;
-	border-bottom: solid 1px @gray12;
 	z-index: 9999;
 	overflow: hidden;
 

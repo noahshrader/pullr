@@ -22,7 +22,6 @@
 	}
 	ul.content-nav {
 		border-bottom: solid 1px @gray75;
-		background: @offwhite;
 	}
 }
 
@@ -146,6 +145,41 @@
 
 		i {
 			font-size: 48px;
+		}
+	}
+}
+
+
+/* Charity Search */
+/* ------------------------------------------------- */
+.select2-drop.charitydrop {
+	&.select2-drop-active {
+		margin-top: 20px;
+
+		&:before {
+			.arrow-up;
+			left: 50%;
+			top: -10px;
+			margin-left: -10px;
+			border-color: transparent transparent @gray72 transparent;
+		}
+	}
+	&.select2-drop-active,
+	&.select2-drop-above.select2-drop-active {
+		padding-bottom: 6px;
+		.border-radius;
+	}
+	&.select2-drop-above.select2-drop-active {
+		margin-top: -@gutter;
+		&:before {
+			display: none;
+		}
+		&:after {
+			.arrow-down;
+			left: 50%;
+			bottom: -10px;
+			margin-left: -10px;
+			border-color: @gray72 transparent transparent transparent;
 		}
 	}
 }

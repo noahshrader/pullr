@@ -1,14 +1,12 @@
-@import "base.less";
 @import "variables.less";
 
 /* Main Elements */
 /* ------------------------------------------------- */
 
-
 /* Modals */
 /* ------------------------------------------------- */
 .mfp-fade.mfp-bg {
-	background: @base;
+	background: @maingray;
 	opacity: 0;
 	-webkit-transition: all 0.15s ease-out;
 	-moz-transition: all 0.15s ease-out;
@@ -16,7 +14,7 @@
 }
 /* overlay animate in */
 .mfp-fade.mfp-bg.mfp-ready {
-	opacity: 0.6;
+	opacity: 0.8;
 }
 /* overlay animate out */
 .mfp-fade.mfp-bg.mfp-removing {
@@ -32,6 +30,7 @@
 }
 /* content animate it */
 .mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+	margin-bottom: 100px;
 	opacity: 1;
 }
 /* content animate out */
@@ -39,10 +38,9 @@
 	opacity: 0;
 }
 .mfp-iframe-holder .mfp-content {
-	max-width: 700px;
+	max-width: 680px !important;
 }
 .mfp-iframe-scaler iframe {
 	margin-bottom: 100px;
 	.element-radius;
-	overflow: hidden;
 }

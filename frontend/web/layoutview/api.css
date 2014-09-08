@@ -1,0 +1,249 @@
+/* Colors */
+/* ------------------------------------------------- */
+/*
+/* Pullr Color Pallette
+/* -------------------------------------------------------- */
+/* -- Dark Grays -- */
+/* Charcoal gray */
+/* Dark gray */
+/* Accents */
+/* */
+/* Base */
+/* Main Accent */
+/* Primary accent */
+/* Primary accent hover state */
+/* Other Colors */
+/* Twitch purple */
+/* Twitch hover state */
+/* Gray Sets */
+/* 2% darker than background */
+/* 10% gray background */
+/* 12% gray background */
+/* 15% gray background */
+/* 20% gray background */
+/* 25% gray background */
+/* 30% gray background */
+/* 40% gray background */
+/* 50% gray background */
+/* 60% gray background */
+/* 70% gray background */
+/* 72% gray background */
+/* 78% gray background */
+/* Faded light background */
+/* Faded light background */
+/* Faded dark background */
+/* Faded dark background */
+/* Element Colors */
+/* Background for inputs */
+/* Background for module headers */
+/* Backgrounds */
+/* ------------------------------------------------- */
+.background {
+  /* Default background set */
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover cover;
+          background-size: cover;
+}
+/* Typography */
+/* ------------------------------------------------- */
+.smallcaps {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* Icons */
+/* Right margin for icons on buttons */
+/* Links */
+/* ------------------------------------------------- */
+/* Link color for white on dark */
+/* Hover state for white on dark */
+/* General */
+/* ------------------------------------------------- */
+/* Default width */
+/* Default width */
+/* Sidebar width */
+/* Sidebar width */
+/* Top bar height */
+/* Navigation width */
+/* Large Primary Navigation Width */
+/* Padding */
+/* Default spacing between main elements */
+/* Half the gutter spacing */
+.nowrap {
+  white-space: nowrap;
+}
+/* Lists */
+/* ------------------------------------------------- */
+.ulist {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+/* Borders & Box shadows */
+/* ------------------------------------------------- */
+/* Arrows */
+/* ------------------------------------------------- */
+.arrow-up,
+.arrow-down,
+.arrow-left,
+.arrow-right {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+.arrow-up {
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #ffffff transparent;
+}
+.arrow-down {
+  border-width: 10px 10px 0 10px;
+  border-color: #ffffff transparent transparent transparent;
+}
+.arrow-left {
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #ffffff transparent transparent;
+}
+.arrow-right {
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #ffffff;
+}
+/* Transitions/Animations */
+/* ------------------------------------------------- */
+/* Progress Bar Animations */
+/* ------------------------------------------------- */
+/* Animate Bar */
+@keyframes animate-bar {
+  0% {
+    width: 0%;
+  }
+}
+@-webkit-keyframes animate-bar {
+  0% {
+    width: 0%;
+  }
+}
+@-ms-keyframes animate-bar {
+  0% {
+    width: 0%;
+  }
+}
+/* Fade In */
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Adjust Hue */
+@-webkit-keyframes adjustHue {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    -webkit-filter: hue-rotate(30deg);
+    filter: hue-rotate(30deg);
+  }
+  50% {
+    -webkit-filter: hue-rotate(60deg);
+    filter: hue-rotate(60deg);
+  }
+  75% {
+    -webkit-filter: hue-rotate(90deg);
+    filter: hue-rotate(90deg);
+  }
+  100% {
+    -webkit-filter: hue-rotate(120deg);
+    filter: hue-rotate(120deg);
+  }
+}
+/* Content Loader */
+@-webkit-keyframes cubemove {
+  25% {
+    -webkit-transform: translateX(22px) rotate(-90deg) scale(0.5);
+  }
+  50% {
+    -webkit-transform: translateX(22px) translateY(22px) rotate(-180deg);
+  }
+  75% {
+    -webkit-transform: translateX(0px) translateY(22px) rotate(-270deg) scale(0.5);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+@keyframes cubemove {
+  25% {
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+  }
+  50% {
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+  }
+  50.1% {
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+  }
+  75% {
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  }
+  100% {
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+  }
+}
+/* Main Elements */
+/* ------------------------------------------------- */
+/* Modals */
+/* ------------------------------------------------- */
+.mfp-fade.mfp-bg {
+  background: #2e2e32;
+  opacity: 0;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+/* overlay animate in */
+.mfp-fade.mfp-bg.mfp-ready {
+  opacity: 0.8;
+}
+/* overlay animate out */
+.mfp-fade.mfp-bg.mfp-removing {
+  opacity: 0;
+}
+/* content at start */
+.mfp-fade.mfp-wrap .mfp-content {
+  opacity: 0;
+  -webkit-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+}
+/* content animate it */
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+  margin-bottom: 100px;
+  opacity: 1;
+}
+/* content animate out */
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+  opacity: 0;
+}
+.mfp-iframe-holder .mfp-content {
+  max-width: 680px !important;
+}
+.mfp-iframe-scaler iframe {
+  margin-bottom: 100px;
+  border-radius: 10px;
+}

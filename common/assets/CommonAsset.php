@@ -6,6 +6,7 @@ class CommonAsset extends AssetBundle {
     public $sourcePath = '@common/web';
     public $baseUrl = '@web';
     public $css = [
+        'css/animate.css',
         'css/common.less'
     ];
     public $js = [

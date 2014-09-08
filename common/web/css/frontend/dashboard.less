@@ -125,7 +125,6 @@
 	background: @gray75;
 
 	.invites-wrap {
-		margin-bottom: 0px;
 		padding-bottom: 0px;
 
 		ul {
@@ -184,19 +183,25 @@
 	/* Activity Feed */
 	ul.activity-feed {
 		li {
-			color: @gray30;
+			color: @gray60;
 			font-size: @smalltext;
 			padding: @halfgutter @gutter;
 			margin: 0;
 			border-bottom: solid 1px @gray75;
 			&:first-child {
-				color: @maingray;
+				color: @gray20;
 			}
 			&:last-child {
-				padding-bottom: @gutter;
 				border: 0;
 			}
 		}
+	}
+	span.empty {
+		display: block;
+		color: @gray60;
+		font-size: @smalltext;
+		text-align: center;
+		padding: @halfgutter;
 	}
 }
 
@@ -206,17 +211,16 @@
 .alert-info {
 	color: @gray50;
 	font-weight: 400;
-	padding: @halfgutter 45px @halfgutter 80px;
+	padding: @gutter 50px @gutter 80px;
 	margin-bottom: @gutter;
-	background: @modulegray;
+	background: @offwhite;
 	border: 0;
-	box-shadow: none;
 
 	i {
 		position: absolute;
 		top: 50%;
 		left: 0;
-		color: @gray50;
+		color: @gray60;
 		font-size: 34px;
 		text-align: center;
 		margin-top: -18px;
@@ -228,8 +232,8 @@
 		top: 0;
 		bottom: 0;
 		right: 0;
-		width: 45px;
-		color: @gray50 !important;
+		width: 50px;
+		color: @gray60 !important;
 		font-weight: 600;
 		text-shadow: none;
 		opacity: 1;
