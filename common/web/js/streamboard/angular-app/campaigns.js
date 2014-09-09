@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.campaigns', []).
-        service('campaigns', function ($http) {
+        service('campaigns', function ($http, $interval) {
             var Service = this;
             this.selectedCampaignsNumber = 0;
             this.campaigns = {};
@@ -28,7 +28,7 @@
             };
             requestCampaigns();
 
-            setInterval(function() {
+            $interval(function() {
                 requestCampaigns();
             }, 1000);
 

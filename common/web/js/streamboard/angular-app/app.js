@@ -1,4 +1,6 @@
 (function () {
-    var app = angular.module('streamboardApp', ['vr.directives.slider', 'pullr.streamboard.donations', 'pullr.streamboard.regionsPanels','pullr.streamboard.regionsConfigs', 'pullr.streamboard.settings', 'pullr.streamboard.stream', 'ui.select2']);
+    var app = angular.module('streamboardApp', ['vr.directives.slider', 'ui.select2',
+        'pullr.streamboard.donationsCtrl', 'pullr.streamboard.regionsPanels','pullr.streamboard.regionsConfigs',
+        'pullr.streamboard.settings', 'pullr.streamboard.stream']);
 
 })();

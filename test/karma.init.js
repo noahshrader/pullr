@@ -1,0 +1,1 @@
+jasmine.getJSONFixtures().fixturesPath='base/test/fixtures';

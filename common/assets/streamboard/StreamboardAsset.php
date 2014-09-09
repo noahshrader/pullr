@@ -17,7 +17,8 @@ class StreamboardAsset extends AssetBundle
         'plugins/iframeResizer/iframeResizer.js',
 		'js/streamboard/streamboard.js',
         /**angular-app begin*/
-        'js/streamboard/angular-app/donations.js',
+        'js/streamboard/angular-app/donationsService.js',
+        'js/streamboard/angular-app/donationsCtrl.js',
         'js/streamboard/angular-app/stream.js',
         'js/streamboard/angular-app/regionsService.js',
         'js/streamboard/angular-app/regionsPanels.js',

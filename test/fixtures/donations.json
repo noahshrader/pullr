@@ -1,0 +1,33 @@
+{
+    "donations":
+        [{"id":18,"campaignId":9,"amount":263,"nameFromForm":"Sergey4","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom Child 2","streamboard":{"nameHidden":0,"wasRead":1},"displayName":"Sergey4"},
+        {"id":17,"campaignId":9,"amount":616,"nameFromForm":"Sergey3","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom Child 2","streamboard":{"nameHidden":0,"wasRead":1},"displayName":"Sergey3"},
+        {"id":16,"campaignId":8,"amount":109,"nameFromForm":"Sergey2","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom Child","streamboard":{"nameHidden":0,"wasRead":1},"displayName":"Sergey2"},
+        {"id":15,"campaignId":8,"amount":686,"nameFromForm":"Sergey","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom Child","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Sergey"},
+        {"id":14,"campaignId":1,"amount":809,"nameFromForm":"Sofia","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Sofia"},
+        {"id":13,"campaignId":1,"amount":504,"nameFromForm":"George","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"George"},
+        {"id":12,"campaignId":1,"amount":447,"nameFromForm":"Maria","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Maria"},
+        {"id":11,"campaignId":1,"amount":288,"nameFromForm":"Sofia2","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Sofia2"},
+        {"id":10,"campaignId":1,"amount":474,"nameFromForm":"Sofia","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Sofia"},
+        {"id":9,"campaignId":1,"amount":641,"nameFromForm":"Hedgehog","comments":"","paymentDate":1409343115,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Hedgehog"},
+        {"id":8,"campaignId":1,"amount":604,"nameFromForm":"Yura","comments":"","paymentDate":1409343113,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Yura"},
+        {"id":7,"campaignId":1,"amount":270,"nameFromForm":"Nikki","comments":"just some comments to test donations","paymentDate":1409343113,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Nikki"},
+        {"id":6,"campaignId":1,"amount":219,"nameFromForm":"Noah","comments":"just some comments to test donations","paymentDate":1409343112,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Noah"},
+        {"id":5,"campaignId":1,"amount":784,"nameFromForm":"Crash","comments":"just some comments to test donations","paymentDate":1409343112,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Crash"},
+        {"id":4,"campaignId":1,"amount":990,"nameFromForm":"Dave","comments":"","paymentDate":1409343112,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Dave"},
+        {"id":3,"campaignId":1,"amount":302,"nameFromForm":"Alex","comments":"just some comments to test donations","paymentDate":1409343112,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Alex"},
+        {"id":2,"campaignId":1,"amount":529,"nameFromForm":"Stanislav","comments":"just some comments to test donations","paymentDate":1409343112,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Stanislav"},
+        {"id":1,"campaignId":1,"amount":173,"nameFromForm":"Someone","comments":"just some comments to test donations","paymentDate":1409343112,"campaignName":"Fun For Freedom","streamboard":{"nameHidden":false,"wasRead":false},"displayName":"Someone"}],
+    "stats":{
+        "total_amountRaised":8708,
+        "total_goalAmount":92000,
+        "top_donors":[
+            {"name":"Sofia","amount":"1571","email":"sofia@gmail.com"},
+            {"name":"Crash","amount":"784","email":"someone@gmail.com"},
+            {"name":"Sergey","amount":"686","email":"sergey@gmail.com"}],
+        "top_donation":
+            {"id":4,"amount":990,"nameFromForm":"Dave","displayName":"Dave"},
+        "number_of_donations":"18",
+        "number_of_donors":"16"
+    }
+}

@@ -15,7 +15,6 @@ class StreamboardCommonAsset extends AssetBundle
         '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css',
         /*style for venturocket-angular-slider*/
         'css/angular-slider/slider.less',
-        'bower_components/bootstrap-select/dist/css/bootstrap-select.min.css',
         'css/frontend/streamboard/streamboard.less',
     ];
 

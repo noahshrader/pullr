@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.stream', ['pullr.streamboard.regions']).
-        service('stream', function ($http,regions) {
+        service('stream', function ($http,regions, $interval) {
             var Service = this;
             /*for each of regions we have separate stream*/
             this.streams = [];
@@ -29,7 +29,7 @@
                 });
             }
             requestStreamData();
-            setInterval(function () {
+            $interval(function () {
                 requestStreamData();
             }, 1000);
         });

@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
         'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager']);
-    app.controller('RegionsCtrl', function ($scope, stream, regions, $timeout, alertMediaManager) {
+    app.controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager) {
         $scope.streamService = stream;
         $scope.regionsService = regions;
 
@@ -38,36 +38,36 @@
 
                 alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
 
-                $timeout(function () {
+                $interval(function () {
                     /**@todo check animationDuration*/
                     hideAlert(region);
-                }, preference.animationDuration * 1000);
+                }, preference.animationDuration * 1000, 1);
             } else {
-                $timeout(function () {
+                $interval(function () {
                     showAlert(region);
-                }, 100);
+                }, 100, 1);
             }
         }
 
         function hideAlert(region) {
             region.toShow.alert = {};
-            $timeout(function () {
+            $interval(function () {
                 showAlert(region);
-            }, 1000)
+            }, 1000, 1)
         }
 
         $scope.regionsService.ready(function () {
             /*we make a delay as streamboard may still be loading, even if regions are ready*/
-            $timeout(function () {
+            $interval(function () {
                 $.each($scope.regionsService.regions, function (index, region) {
                     /*creating namespace for showing data*/
                     region.toShow = {alert: {
                     }};
-                    $timeout(function () {
+                    $interval(function () {
                         showAlert(region)
-                    });
+                    }, 1, 1);
                 });
-            }, 4000);
+            }, 4000, 1);
         })
     });
 })()
