@@ -29,7 +29,8 @@
         "yurkinx/yii2-image": "dev-master",
         "paypal/rest-api-sdk-php": "*",
         "ritero/twitch-sdk": "dev-master",
-        "2amigos/yii2-ckeditor-widget": "*"
+        "2amigos/yii2-ckeditor-widget": "*",
+        "netresearch/jsonmapper": "0.*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

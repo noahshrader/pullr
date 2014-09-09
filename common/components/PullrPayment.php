@@ -18,6 +18,12 @@ use common\models\Donation;
 use common\models\Campaign;
 use PayPal\Api\Payee;
 use common\models\notifications\RecentActivityNotification;
+use common\components\paypal\Agreement;
+use common\components\paypal\RecurringPayment;
+use common\components\paypal\ChargeModel;
+use common\components\paypal\MerchantPreferences;
+use common\components\paypal\PaymentDefinition;
+use PayPal\Api\Currency;
 
 define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
 
@@ -154,26 +160,59 @@ class PullrPayment extends \yii\base\Component {
         self::makePayment($amount, $itemList, \common\models\Payment::TYPE_DONATION, $donation->id, $payee);
     }
 
-    public function proPayment($moneyAmount) {
-        $params = self::getPaymentParamsForMoney($moneyAmount);
+    public function subscribeToPlan($moneyAmount) {
+        $subscriptionType = "YEAR";
 
-        // ### Itemized information
-        // (Optional) Lets you specify item wise
-        // information
-        $item = new Item();
-        $item->setName('Pro account for ' . $params['subscription'])
-                ->setCurrency('USD')
-                ->setQuantity(1)
-                ->setPrice($moneyAmount);
-        $itemList = new ItemList();
-        $itemList->setItems([$item]);
+        switch ($subscriptionType) {
+            case "YEAR":
+                $agreement = (new Agreement())
+                    ->setName("Pullr recurring month subscription")
+                    ->setDescription("Desc")
+                    ->setStart_date("2015-02-19T00:37:04Z")
+                    ->setPlan((new \common\components\paypal\Plan())->setId("P-38F28151F75163633KVMZZCA"))
+                    ->setPayer((new Payer())->setPaymentMethod("paypal"));
 
+                $links = RecurringPayment::createBillingAgreement($agreement)->getLinks();
 
-        $amount = new Amount();
-        $amount->setCurrency("USD")
-                ->setTotal($moneyAmount);
+                if(!is_null($links)){
+                    foreach($links as $link){
+                        if($link->getRel() === "approval_url"){
+                            $redirectUrl = $link->getHref();
+                        }
+                    }
+                }
+                break;
 
-        self::makePayment($amount, $itemList, $params['paymentType']);
+            case "MONTH":
+                break;
+        }
+
+        header("Location: $redirectUrl");
+        exit;
+
+//        $params = self::getPaymentParamsForMoney($moneyAmount);
+//
+//        // ### Itemized information
+//        // (Optional) Lets you specify item wise
+//        // information
+//        $item = new Item();
+//        $item->setName('Pro account for ' . $params['subscription'])
+//                ->setCurrency('USD')
+//                ->setQuantity(1)
+//                ->setPrice($moneyAmount);
+//        $itemList = new ItemList();
+//        $itemList->setItems([$item]);
+//
+//
+//        $amount = new Amount();
+//        $amount->setCurrency("USD")
+//                ->setTotal($moneyAmount);
+//
+//        self::makePayment($amount, $itemList, $params['paymentType']);
+    }
+
+    public function executeAgreement($token){
+        return RecurringPayment::executeBillingAgreement($token);
     }
 
     public static function makePayment($amount, $itemList, $paymentType, $relatedId = null, $payee = null) {
@@ -231,6 +270,7 @@ class PullrPayment extends \yii\base\Component {
             // once the buyer approves the payment and is redirected
             // back to your website.
             //
+
             $session->set('paymentId', $payment->getId());
             $pay = new \common\models\Payment();
             $pay->paypalId = $payment->getId();

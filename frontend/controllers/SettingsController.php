@@ -10,6 +10,7 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\models\mail\Mail;
 use common\components\PullrPayment;
+use common\components\paypal\RecurringPayment;
 
 class SettingsController extends FrontendController {
 
@@ -44,7 +45,7 @@ class SettingsController extends FrontendController {
         /* account subscriptions */
         if (isset($_POST['subscription'])) {
             $payment = new PullrPayment();
-            $payment->proPayment($_POST['subscription']);
+            $payment->subscribeToPlan($_POST['subscription']);
         }
         if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
             $payment = new PullrPayment();
@@ -96,6 +97,37 @@ class SettingsController extends FrontendController {
                 $this->redirect('/');
             }
         }
+    }
+
+    public function actionGopro(){
+        $this->layout = "tmpLayout";
+        return $this->render("gopro");
+    }
+
+    public function actionProstepone(){
+        if (isset($_POST['subscription'])) {
+            $payment = new PullrPayment();
+            $payment->subscribeToPlan($_POST['subscription']);
+        }
+    }
+
+    public function actionProsteptwo($token){
+        $agreement = (new PullrPayment())->executeAgreement($token);
+        if (!is_null($agreement)){
+
+            $user = \Yii::$app->user->identity;
+            $plan = Plan::findOne($user->id);
+            $plan->plan = Plan::PLAN_PRO;
+            $plan->expire = time();
+            $plan->save();
+
+            $this->redirect("index");
+        }
+    }
+
+    public function actionTest()
+    {
+        var_dump(RecurringPayment::createRecurringPlan());
     }
 
 }

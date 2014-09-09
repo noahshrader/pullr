@@ -85,5 +85,17 @@ $this->registerJs($js);
 </div>
         </div> <!-- /main-wrapper -->
     </body>
+    <link href="/js/lib/magnificpopup.css" rel="stylesheet">
+    <script src="/js/lib/magnificpopup.js"></script>
+    <script>
+        $('.plan-show-Basic').magnificPopup({
+            items:{
+                src: '/app/settings/gopro'
+            },
+            type: 'iframe',
+            removalDelay: 300,
+            mainClass: 'mfp-fade'
+        });
+    </script>
 </html>
 <?php $this->endPage() ?>

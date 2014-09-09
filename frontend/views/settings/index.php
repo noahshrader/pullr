@@ -12,6 +12,9 @@ use common\models\Notification;
 $this->title = 'Settings';
 ?>
 
+<link href="/js/lib/magnificpopup.css" rel="stylesheet">
+<script src="/js/lib/magnificpopup.js"></script>
+
 <?php $form = ActiveForm::begin(['options' => [
     'enctype' => 'multipart/form-data', 'method' => 'POST']])
 ?>
