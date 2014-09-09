@@ -267,36 +267,38 @@ ul.panel-nav {
 
 /* Content Loader */
 /* ------------------------------------------------- */
-.spinner-wrap {
-	background: @white;
-}
-.spinner-wrap,
-.spinner {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	z-index: 9999;	
-}
-.spinner {
-	width: 32px;
-	height: 32px;
-	margin: 40% auto;
-}
-.cube1,
-.cube2 {
-	background-color: @gray70;
-	width: 10px;
-	height: 10px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	.cubemove;
-}
-.cube2 {
-	-webkit-animation-delay: -0.9s;
-	animation-delay: -0.9s;
+.content-wrap {
+	.spinner-wrap {
+		background: @white;
+	}
+	.spinner-wrap,
+	.spinner {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		z-index: 9999;	
+	}
+	.spinner {
+		width: 32px;
+		height: 32px;
+		margin: 40% auto;
+	}
+	.cube1,
+	.cube2 {
+		background-color: @gray70;
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		.cubemove;
+	}
+	.cube2 {
+		-webkit-animation-delay: -0.9s;
+		animation-delay: -0.9s;
+	}
 }
 
 @import "responsive.less";
