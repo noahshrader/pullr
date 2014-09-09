@@ -6,7 +6,17 @@ $(function () {
 			preventDefault: true,
 			scrollAmount: 10
 		},
-		scrollInertia: 40
+		scrollInertia: 80,
+		callbacks:{
+			alwaysTriggerOffsets: true,
+			onTotalScrollBackOffset: 10,
+			onScrollStart: function(){
+				$('.top-menu').addClass('shadow');
+			},
+			onTotalScrollBack: function(){
+				$('.top-menu').removeClass('shadow');
+			}
+		}
 	});
 
 	// enable tooltips

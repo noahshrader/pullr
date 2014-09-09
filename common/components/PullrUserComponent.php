@@ -41,11 +41,11 @@ class PullrUserComponent extends \yii\web\User{
          return Yii::$app->getSession()->get($this->returnUrlParam);
     }
     
-    public function loginRequired() {
+    public function loginRequired($checkAjax = true) {
         if (\Yii::getAlias($this->loginUrl) == ''){
             /**that is workaround for bug fix (seems at yii) when website main page looks like http://pullr.io (haven't subdirectories)*/
             $this->loginUrl = '/';
         }
-        parent::loginRequired();
+        parent::loginRequired($checkAjax);
     }
 }

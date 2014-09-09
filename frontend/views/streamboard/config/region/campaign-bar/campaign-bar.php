@@ -1,6 +1,6 @@
-<select selectpicker ng-model="widget.campaignId" ng-change="regionChanged(region)"
-        ng-options="campaign.id as campaign.name for (key, campaign) in campaignsService.campaigns">
-    <option value="">Select a campaign</option>
+<select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.campaignId" ng-change="regionChanged(region)"
+        ng-options="campaign.id as campaign.name for (key, campaign) in campaignsService.campaigns" data-placeholder="Select a campaign...">
+    <option value=""></option>
 </select>
 <h4>Preferences</h4>
 <div>

@@ -1,7 +1,10 @@
 /* Forms */
 /* ------------------------------------------------- */
+input[type="text"],
 input.form-control,
+textarea,
 textarea.form-control,
+select,
 select.form-control {
 	color: @gray10;
 	font-size: @basefontsize;
@@ -9,17 +12,19 @@ select.form-control {
 	padding: 0 @halfgutter;
 	min-height: 45px;
 	border: 2px solid @gray75;
+	background: @gray75;
+	.border-radius;
 	box-shadow: none;
 	&:focus {
-		border: 2px solid @gray50;
+		border: 2px solid @gray60;
 	}
 }
-select.form-control {
+select {
 	height: 42px;
 	line-height: 42px;
 	background: @gray72;
 }
-textarea.form-control {
+textarea {
 	padding: @halfgutter;
 }
 legend,
@@ -36,6 +41,7 @@ label {
 /* Search Field Styling */
 input[type='search'],
 .select2-search input {
+	font-family: @mainfont;
 	font-weight: 400;
 	min-height: 36px;
 	padding: 0 @halfgutter 0 40px;
@@ -58,22 +64,204 @@ input[type='color'] {
 	cursor: pointer;
 }
 
+
+/* Selects (Select2) */
+/* ------------------------------------------------- */
+.select2-container {
+	position: relative;
+	display: block;
+	&:after {
+		position: absolute;
+		.arrow-down;
+		top: 50%;
+		right: @halfgutter;
+		margin-top: -4px;
+		border-width: 6px 4px 0 4px;
+		border-color: @gray60 transparent transparent transparent;
+	}
+	&.select2-dropdown-open a.select2-choice {
+		background: @gray72;
+	}
+
+	.select2-choices .select2-search-field input,
+	.select2-choice,
+	.select2-choices {
+		color: @gray20;
+		font-family: @mainfont;
+		font-size: @basefontsize;
+		background: @gray75;
+		border: 0;
+		box-shadow: none !important;
+		&:focus {
+			outline: 0 !important;
+		}
+		&:hover {
+			background: @gray72;
+		}
+	}
+	.select2-choice {
+		height: 45px;
+
+		> span:first-child,
+		.select2-search-field input {
+			padding: 11px @halfgutter;
+		}
+		.select2-arrow, .select2-choice div {
+			border: 0;
+			width: 20px;
+		}
+		.select2-arrow b,
+		div b {
+			background: none !important;
+		}
+	}
+}
+
+/* Dropdown */
+.select2-dropdown-open.select2-drop-above {
+	.select2-choice,
+	.select2-choices {
+		border: 0;
+		background: @gray75;	
+	}
+}
+.select2-drop {
+	box-shadow: none;
+
+	&.select2-drop-active,
+	&.select2-drop-above.select2-drop-active {
+		position: relative;
+		background: @gray72;
+		border: 0;
+		box-shadow: none;
+	}
+}
+
+/* Search */
+.select2-search {
+	position: relative;
+	margin: 0;
+	padding: @halfgutter;
+	.box-shadow;
+
+	&:before {
+		position: absolute;
+		top: 50%;
+		content: '\e68e';
+		color: @gray70;
+		font-family: 'icomoon';
+		font-size: 14px;
+		font-weight: 600;
+		text-align: center;
+		margin-top: -7px;
+		width: 40px;
+	}
+	input {
+		margin-top: 4px;
+		background-image: none !important;
+		&.select2-active {
+			background: @white;
+		}
+	}
+}
+
+/* Search Results */
+.select2-results {
+	position: relative;
+	padding: 0;
+	margin: 0;
+	
+	.select2-highlighted {
+		background: @gray70;
+	}
+	.select2-result-label {
+		padding: 10px @halfgutter;
+		&:hover {
+			background: @gray70;
+		}
+
+		span {
+			color: @gray20 !important;
+		}
+	}
+	.select2-no-results,
+	.select2-searching,
+	.select2-selection-limit {
+		color: @gray40;
+		font-size: @smalltext;
+		text-align: center;
+		padding: 6px 0;
+		background: transparent;
+	}
+}
+
 /* Checkboxes */
-.radio,
 .checkbox {
 	padding: 0;
+	label {
+		font-size: 1em;
+		font-weight: 400;
+		line-height: 1.4em;
+		text-align: left;
+		float: left;
+		cursor: pointer;
+		width: auto;
+		display: block;
+		padding-top: 2px;
+		text-indent: -36px;
+		padding-left: 2.3em;
+		white-space: normal;
+		&:before {
+			content: '\e6ac';
+			position: relative;
+			top: 1px;
+			display: inline-block;
+			color: @gray75;
+			font-family: 'icomoon';
+			font-size: 16px;
+			line-height: 18px;
+			width: 18px;
+			height: 18px;
+			margin-right: 10px;
+			text-align: center;
+			speak: none;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			-webkit-font-smoothing: antialiased;
+			text-indent: 0;
+			.border-radius;
+			background: @gray75;
+	    }
+    	&:hover:before {
+    		color: @gray70;
+    	}
+    	&.on:before {
+	        color: @gray40;
+    	}
+    }
+    input {
+        position: absolute;
+        left: -9999px;
+	}
 }
 
 /* Switch Buttons */
 .bootstrap-switch {
-	display: block;
+	display: block !important;
 	max-width: 120px;
 	border: solid 2px @gray75 !important;
 }
 
+/* Misc */
+.help-block {
+	position: absolute;
+}
+
 /* Bootstrap Overrides */
 .form-group {
-	margin-bottom: @gutter;
+	margin-bottom: @gutter - 10px;
 }
 .form-group .form-group,
 .help-block {

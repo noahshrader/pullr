@@ -40,6 +40,25 @@ $(function(){
     });
 });
 
+// checkboxes
+$('.checkbox label').click(function(event){
+    event.preventDefault();
+    $cbox = $(this).children('input:checkbox');
+    if($cbox.attr('checked')) {
+        $(this).removeClass('on');
+        $cbox.removeAttr('checked');
+    } else {
+        $(this).addClass('on');
+        $cbox.attr('checked', true);
+    }
+    $cbox.trigger('change');
+});
+$('.checkbox label input:checkbox').each(function(){
+    if($(this).attr('checked')) {
+        $(this).parent('label').addClass('on');
+    }
+});
+
 // toggle sidebar
 $(".primary-nav-toggle").click(function(){
     $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");

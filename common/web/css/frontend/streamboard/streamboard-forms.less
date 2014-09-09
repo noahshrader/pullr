@@ -11,42 +11,77 @@ input[type="color"] {
 	float: right;
 }
 h3 input[type="color"] {
-	top: 8px;
+	top: 9px;
+}
+h5 input[type="color"] {
+	top: 0;
 }
 
-/* Selects */
-.btn-group.bootstrap-select:not(.ng-pristine){
-	display: none;
+/* Select Boxes */
+.select2-container {
+	&:after {
+		border-color: @white transparent transparent transparent;
+	}
+	&.select2-dropdown-open a.select2-choice {
+		background: @gray10;
+	}
+
+	.select2-choices .select2-search-field input,
+	.select2-choice,
+	.select2-choices {
+		color: @white;
+		background: @gray10;
+
+		&:focus {
+			outline: 0 !important;
+		}
+		&:hover {
+			background: @gray20;
+		}
+	}
 }
-.bootstrap-select {
-	color: @gray50;
-	font-family: @mainfont;
-	box-shadow: none !important;
-	line-height: 35px;
-	background: none repeat scroll 0 0 @white;
-	padding: 0px;
-	display: block;
-	position: relative;
-	height: 35px;
-	width: 100%;
-	white-space: nowrap;
-	text-decoration: none;
-	.border-radius;
-	background: @gray15;
-	overflow: visible;
-	outline: 0;
-	&:not([class*=span]):not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
-		width: 100%;
+.select2-dropdown-open.select2-drop-above .select2-choice,
+.select2-dropdown-open.select2-drop-above .select2-choices {
+	background: @dkgray;
+}
+.select2-drop {
+
+	&.select2-drop-active,
+	&.select2-drop-above.select2-drop-active {
+		background: @gray10;
 	}
-	.btn:focus {
-		outline: 0 !important;
+}
+
+.select2-results {
+	
+	.select2-highlighted {
+		background: @gray20;
 	}
-	.btn:not(.btn-xs):not(.btn-sm):not(.bnt-lg) {
-		font-weight: normal;
-		line-height: 35px;
-		height: 35px;
-		background: transparent;
-		border: none;
-		color: #85888e;
+	.select2-result-label {
+		color: @white;
+		
+		&:hover {
+			background: @gray20;
+		}
+		span {
+			color: @white !important;
+		}
+	}
+}
+
+/* Checkboxes */
+.checkbox {
+	label {
+		&:before {
+			color: @gray10 !important;
+			background: @gray10;
+		}
+	    	&.on:before {
+			color: @gray40 !important;
+	    	}
+    	}
+	input {
+		position: absolute;
+		left: -9999px;
 	}
 }

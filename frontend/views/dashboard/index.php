@@ -29,22 +29,22 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <?= $systemNotification->message ?>
                 </div>
             <? endif; ?> <!-- END notification -->
-            
-            <ul class="content-nav cf">
-                <li class="active">
-                    <a href="#overall" data-toggle="tab">Overall</a>
-                </li>
-                <li>
-                    <a href="#today" data-toggle="tab">Today</a>
-                </li>
-                <li>
-                    <a href="#month" data-toggle="tab">This Month</a>
-                </li>
-            </ul>
-            <div class="tab-content">
+
+            <div class="tab-content module">
+                <ul class="content-nav cf">
+                    <li class="active">
+                        <a href="#overall" data-toggle="tab">Overall</a>
+                    </li>
+                    <li>
+                        <a href="#today" data-toggle="tab">Today</a>
+                    </li>
+                    <li>
+                        <a href="#month" data-toggle="tab">This Month</a>
+                    </li>
+                </ul>
                 <!-- Overall -->
                 <div class="tab-pane in active" id="overall">
-                    <section class="stats-overview main-totals module cf">
+                    <section class="stats-overview main-totals cf">
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['overall']['totalRaised']) ?></h1>
@@ -62,7 +62,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                             </div>
                         </div>
                     </section>
-                    <section class="stats-overview other-raised-totals module cf">
+                    <section class="stats-overview other-raised-totals cf">
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
                             <h5>Campaigns</h5>
@@ -78,7 +78,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     </section>
                     <!-- Twitch Stats -->
                     <? if ($twitchUser): ?>
-                    <section class="row stats-overview twitch-stats module">
+                    <section class="row stats-overview twitch-stats">
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
@@ -97,7 +97,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
                 <!-- Today -->
                 <div class="tab-pane in" id="today">
-                    <section class="stats-overview main-totals module cf">
+                    <section class="stats-overview main-totals cf">
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['today']['totalRaised']) ?></h1>
@@ -115,7 +115,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                             </div>
                         </div>
                     </section>
-                    <section class="stats-overview other-raised-totals module cf">
+                    <section class="stats-overview other-raised-totals cf">
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['today']['totalCampaigns'] ?></h2>
                             <h5>Campaigns</h5>
@@ -131,7 +131,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     </section>
                     <!-- Twitch Stats -->
                     <? if ($twitchUser): ?>
-                    <section class="row stats-overview twitch-stats module">
+                    <section class="row stats-overview twitch-stats">
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
@@ -149,7 +149,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <? endif ?>
                 </div>
                 <div class="tab-pane in" id="month">
-                    <section class="stats-overview main-totals module cf">
+                    <section class="stats-overview main-totals cf">
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= number_format($dashboard['month']['totalRaised']) ?></h1>
@@ -167,7 +167,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                             </div>
                         </div>
                     </section>
-                    <section class="stats-overview other-raised-totals module cf">
+                    <section class="stats-overview other-raised-totals cf">
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['month']['totalCampaigns'] ?></h2>
                             <h5>Campaigns</h5>
@@ -183,7 +183,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     </section>
                     <!-- Twitch Stats -->
                     <? if ($twitchUser): ?>
-                    <section class="row stats-overview twitch-stats module">
+                    <section class="row stats-overview twitch-stats">
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
@@ -202,27 +202,30 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
             </div>
         </div>
-        <div id="sidebar" class="dashboard pane">
-            <div class="invites-wrap"> <!-- BEGIN campaign invites -->
-                <? if (sizeof($campaignInvites) > 0): ?>
-                     <?=
-                    $this->render('campaignInvites', [
-                        'campaignInvites' => $campaignInvites
-                    ]) ?>
-                <? endif ?>
-            </div> <!-- END campaign invites -->
-            <div class="activity-wrap"> <!-- BEGIN activity -->
-                <ul class="activity-feed module">
-                    <h5 class="module-title">Activity</h5>
-                    <? if (sizeof($recentActivity) > 0): ?>
-                        <? foreach ($recentActivity as $notification): ?>
-                            <li><span><?= $notification->message ?></span></li>
-                        <? endforeach; ?>
-                    <? else: ?>
-                        <div class="no-recent-activity">No recent activity</div>
-                    <? endif ?>
-                </ul>
-            </div> <!-- END activity -->
-        </div>
     </section>
+    <div id="sidebar" class="dashboard pane">
+        <div class="invites-wrap module"> <!-- BEGIN campaign invites -->
+            <h5 class="module-title">Invites</h5>
+            <? if (sizeof($campaignInvites) > 0): ?>
+                 <?=
+                $this->render('campaignInvites', [
+                    'campaignInvites' => $campaignInvites
+                ]) ?>
+            <? else: ?>
+                <span class="empty">No new invites</span>
+            <? endif ?>
+        </div> <!-- END campaign invites -->
+        <div class="activity-wrap module"> <!-- BEGIN activity -->
+            <h5 class="module-title">Activity</h5>
+            <ul class="activity-feed">
+                <? if (sizeof($recentActivity) > 0): ?>
+                    <? foreach ($recentActivity as $notification): ?>
+                        <li><span><?= $notification->message ?></span></li>
+                    <? endforeach; ?>
+                <? else: ?>
+                    <span class="empty">No new activity</span>
+                <? endif ?>
+            </ul>
+        </div> <!-- END activity -->
+    </div>
 </div>

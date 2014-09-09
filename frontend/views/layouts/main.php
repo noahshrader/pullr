@@ -26,13 +26,18 @@ $this->registerJs($js);
         <?php $this->beginBody() ?>
         
         <div class="main-wrapper large-menu-toggled">
+            <? if ($this->context->id == 'campaign') { ?>
+            <div class="top-menu indent">
+            <? } elseif ($this->context->id == 'donor') { ?>
+            <div class="top-menu indent">
+            <? } else { ?>
             <div class="top-menu"> <!-- BEGIN top bar -->
+            <? } ?>
                 <ul class="quick-nav">
-                    <li class="branding"><a class="logo icon-pullr-logo"></a></li>
                     <li class="add-campaign">
                         <span><?= Html::encode($this->title) ?></span>
                         <? if ($this->context->id == 'campaign'): ?>
-                            <a href="app/campaign/add" class="icon icon-plus-round"></a>
+                            <a href="app/campaign/add" class="icon icon-plus"></a>
                         <? endif ?>
                     </li>
                 </ul>
@@ -42,6 +47,7 @@ $this->registerJs($js);
 
             <div class="site-content">
             <div class="primary-navigation"> <!-- BEGIN main navigation -->
+                <div class="branding"><a class="logo icon-pullr-logo"></a></div>
                 <nav class="sidebar-nav nav-top">
                     <ul> 
                         <li>
@@ -64,7 +70,7 @@ $this->registerJs($js);
                         </li>
                         <li>
                             <a class="donor-link" title="Donors" href="app/donor">
-                                <i class="icon icon-users"></i>
+                                <i class="icon icon-user"></i>
                                 <span class="nav-label">Donors</span>
                             </a>
                         </li>

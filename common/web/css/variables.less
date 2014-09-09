@@ -17,6 +17,7 @@
 /* Base */
 @base: #222225;
 @white: #FFF;
+@offwhite: darken(@white, 3%);
 
 /* Main Accent */
 @accent: #1dbc9c;	/* Primary accent */
@@ -32,7 +33,7 @@
 @maingray: lighten(@base, 5%);
 @dkgray: darken(@base, 1%); /* 2% darker than background */
 @gray10: lighten(@base, 10%); /* 10% gray background */
-@gray13: lighten(@base, 13%); /* 13% gray background */
+@gray12: lighten(@base, 12%); /* 12% gray background */
 @gray15: lighten(@base, 15%); /* 15% gray background */
 @gray20: lighten(@base, 20%); /* 20% gray background */
 @gray25: lighten(@base, 25%); /* 25% gray background */
@@ -43,7 +44,6 @@
 @gray70: lighten(@base, 70%); /* 70% gray background */
 @gray72: lighten(@base, 74%); /* 72% gray background */
 @gray75: lighten(@base, 78%); /* 78% gray background */
-@gray80: lighten(@base, 80%); /* 80% gray background */
 
 @bgwhitefade: rgba(255,255,255,.7); /* Faded light background */
 @bglightwhitefade: rgba(255,255,255,.2); /* Faded light background */
@@ -52,7 +52,7 @@
 
 /* Element Colors */
 @inputbg: @gray10; /* Background for inputs */
-@modulehead: @gray72; /* Background for module headers */
+@modulegray: @gray72; /* Background for module headers */
 
 @errorred: #e74c3c;
 
@@ -104,9 +104,6 @@
 @gutter: 30px; /* Default spacing between main elements */
 @halfgutter: 15px; /* Half the gutter spacing */
 
-/* List Search */
-@listsearch: 65px;
-
 .nowrap{
   white-space: nowrap;
 }
@@ -145,9 +142,9 @@
 	-moz-border-radius-topright: @radius;
 }
 .box-shadow (@shadow: 0 0 2px rgba(0,0,0,.1)) {
-	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
-	-moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
-	box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.2);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+	box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
 }
 
 

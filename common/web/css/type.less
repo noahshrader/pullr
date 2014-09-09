@@ -29,6 +29,9 @@
 .icon-adduser:before {
 	content: "\e609";
 }
+.icon-approved:before {
+	content: "\e6ab";
+}
 .icon-archive:before {
 	content: "\e60a";
 }
@@ -139,6 +142,9 @@
 }
 .icon-cart:before {
 	content: "\e62e";
+}
+.icon-check:before {
+	content: "\e6ac";
 }
 .icon-check-empty:before {
 	content: "\e62f";
@@ -544,14 +550,14 @@
 /* Primary Typography */
 /* ------------------------------------------------- */
 h1, h2, h3, h4, h5 {
-	color: @gray10;
+	color: @gray20;
 	font-family: @mainfont;
 	font-weight: 400;
 	padding: 0;
 	margin: 0;
 }
 h1 {
-	font-size: 3em;
+	font-size: 2.8em;
 	font-weight: 300;
 	letter-spacing: -2px;
 	line-height: 1.4em;
@@ -568,8 +574,9 @@ h3 {
 	line-height: 1.6em;
 }
 h4 {
-	color: @gray40;
+	color: @gray50;
 	font-size: 1.2em;
+	line-height: 1.6em;
 }
 h5 {
 	color: @gray60;
@@ -584,3 +591,7 @@ p {
 	p.info {
 		font-size: @fineprint;
 	}
+i.icon {
+	position: relative;
+	top: 2px;
+}

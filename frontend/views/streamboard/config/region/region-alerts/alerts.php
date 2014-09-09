@@ -5,22 +5,28 @@ use yii\web\View;
 ?>
 <div class="form-group">
     <h5>Select your alerts:</h5>
-    <div>
-        <input type="checkbox" ng-model="widget.includeDonations" ng-change="regionChanged(region)">
-        <label>Donations</label>
+    <div class="checkbox">
+        <label ng-class="{on:widget.includeDonations}">
+            <input type="checkbox" ng-model="widget.includeDonations" ng-change="regionChanged(region)">
+            Donations
+        </label>
     </div>
-    <div>
-        <input type="checkbox" ng-model="widget.includeFollowers" ng-change="regionChanged(region)">
-        <label>Followers</label>
+    <div class="checkbox">
+        <label ng-class="{on:widget.includeFollowers}">
+            <input type="checkbox" ng-model="widget.includeFollowers" ng-change="regionChanged(region)">
+            Followers
+        </label>
     </div>
-    <div>
-        <input type="checkbox" ng-model="widget.includeSubscribers" ng-change="regionChanged(region)">
-        <label>Subscribers</label>
+    <div class="checkbox">
+        <label ng-class="{on:widget.includeSubscribers}">
+            <input type="checkbox" ng-model="widget.includeSubscribers" ng-change="regionChanged(region)">
+            Subscribers
+        </label>
     </div>
 </div>
 
 <div class="form-group">
-    <h5>Delay <span class="slider-value">{{widget.animationDelaySeconds}} sec</span></h5>
+    <h5>Delay <span class="slider-value value">{{widget.animationDelaySeconds}} sec</span></h5>
     <slider ng-model="widget.animationDelaySeconds" floor="0" ceiling="30" step="1"
             ng-change="regionChanged(region)"></slider>
 </div>

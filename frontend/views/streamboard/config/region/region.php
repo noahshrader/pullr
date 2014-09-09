@@ -15,9 +15,9 @@ $typesList = [
             <h3>Region {{ region.regionNumber}} <input type="color" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice"></h3>
         </div>
         <div class="form-group" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">
-            <select selectpicker ng-model="region.widgetType" ng-change="regionChanged(region)"
-                    ng-options="type.value as type.name for type in WIDGET_TYPES">
-                <option value="">Choose a widget...</option>
+            <select ui-select2="{minimumResultsForSearch: -1}" ng-model="region.widgetType" ng-change="regionChanged(region)" data-placeholder="Select one...">
+                <option value=""></option>
+                <option ng-repeat="type in WIDGET_TYPES" value="{{type.value}}">{{type.name}}</option>
             </select>
         </div>
         <div class="widgetContainer">

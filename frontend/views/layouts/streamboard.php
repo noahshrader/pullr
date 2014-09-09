@@ -16,15 +16,19 @@ $this->title = 'Streamboard';
 <html lang="<?= Yii::$app->language ?>">
     <?= $this->render('baseHead') ?>
     <body>
-		<div class="spinner-wrap">
-			<div class="spinner">
-				<div class="cube1"></div>
-				<div class="cube2"></div>
-			</div>
+	<div class="spinner-wrap">
+		<div class="sb-logo">
+			<h4>Streamboard</h4>
+			<i class="icon-pullr-logo"></i>
 		</div>
-		<?php $this->beginBody() ?>
-		<?= $content ?>
-		<?php $this->endBody() ?>
+		<div class="spinner">
+			<div class="cube1"></div>
+			<div class="cube2"></div>
+		</div>
+	</div>
+	<?php $this->beginBody() ?>
+	<?= $content ?>
+	<?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

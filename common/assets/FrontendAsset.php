@@ -20,7 +20,6 @@ class FrontendAsset extends AssetBundle {
 	];
 	public $depends = [
 		'yii\web\YiiAsset',
-		'kartik\widgets\Select2Asset',
 		'common\assets\CommonAsset'
 	];
 }

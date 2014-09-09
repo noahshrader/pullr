@@ -74,7 +74,7 @@ use yii\widgets\ActiveForm;
                 </div>
                 <? endif ?>
                 <? if ($campaign->enableDonorComments): ?>
-                <div class="field comments cf">
+                <div class="field comments">
                     <textarea type="text" id='donation-comments' name="Donation[comments]" placeholder="Comments"><?=htmlspecialchars($donation->comments) ?></textarea>
                     <span class="counter"></span>
                 </div>

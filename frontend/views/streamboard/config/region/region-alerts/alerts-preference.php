@@ -10,7 +10,7 @@ use yii\web\View;
         <div font-style ng-model="preference.fontStyle"></div>
     </div>
     <div class="panel-group">
-        <h5>Font Size <span class="slider-value">{{preference.fontSize}} px</span></h5>
+        <h5>Font Size <span class="slider-value value">{{preference.fontSize}} px</span></h5>
         <slider ng-model="preference.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>
@@ -18,7 +18,7 @@ use yii\web\View;
         <h5>Font Color <input type="color" ng-model="preference.fontColor" ng-change="regionChanged(region)"></h5>
     </div>
     <div class="panel-group">
-        <h5>Duration <span class="slider-value">{{preference.animationDuration}} sec</span></h5>
+        <h5>Duration <span class="slider-value value">{{preference.animationDuration}} sec</span></h5>
         <slider ng-model="preference.animationDuration" floor="1" ceiling="10" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>
