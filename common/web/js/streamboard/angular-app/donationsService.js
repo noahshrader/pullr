@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.donations', []).
-        service('donations', function ($http, $interval) {
+        service('donations',function ($http, $interval) {
             var Service = this;
             this.donations = [];
             this.unorderedDonations = {};
@@ -12,46 +12,57 @@
 
             this.updateDonations();
 
-            $interval(function() {
+            $interval(function () {
                 Service.updateDonations();
             }, 1000);
 
 
-            function updateDonations(forceAll)  {
+            function updateDonations(forceAll) {
                 var params = {since_id: forceAll ? 0 : Service.lastDonationId };
-                $http.get('app/streamboard/get_donations_ajax', {params: params }).success(function(data){
+                $http.get('app/streamboard/get_donations_ajax', {params: params }).success(function (data) {
                     Service.stats = data.stats;
-                    for (var key in data.donations){
+                    for (var key in data.donations) {
                         var donation = data.donations[key];
                         Service.unorderedDonations[donation.id] = donation;
                     }
-                    if (!data.donations){
+                    if (!data.donations) {
                         console.log('[ERROR]');
                         console.log('[donationsService.js -> updateDonations] No donations array in response');
                         console.log('[RESPONSE]', new Date().getTime() / 1000);
-                    } else
-                    if (data.donations.length > 0){
+                    } else if (data.donations.length > 0) {
                         Service.lastDonationId = data.donations[0].id;
                         sortDonations();
                     }
                 });
             };
 
-            function sortDonations(){
+            function sortDonations() {
                 var newDonations = [];
-                for (var key in Service.unorderedDonations){
+                for (var key in Service.unorderedDonations) {
                     var donation = Service.unorderedDonations[key];
                     newDonations.push(donation);
                 }
-                newDonations.sort(function(a,b){
+                newDonations.sort(function (a, b) {
                     return b.paymentDate - a.paymentDate;
                 });
                 Service.donations = newDonations;
             };
 
-            function clear(){
+            function clear() {
                 Service.unorderedDonations = {};
                 Service.donations = [];
+            }
+        }).filter('donationsFilterToSelectedCampaigns', function (campaigns) {
+            return function (donations) {
+                var filteredDonations = [];
+                for (var key in donations) {
+                    var donation = donations[key];
+                    var campaign = campaigns.campaigns[donation.campaignId];
+                    if (campaign && campaign.streamboardSelected) {
+                        filteredDonations.push(donation);
+                    }
+                }
+                return filteredDonations;
             }
         });
 })();

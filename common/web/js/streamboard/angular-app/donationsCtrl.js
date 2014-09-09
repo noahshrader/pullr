@@ -1,18 +1,5 @@
 (function () {
     var app = angular.module('pullr.streamboard.donationsCtrl', ['pullr.common', 'pullr.streamboard.campaigns', 'pullr.streamboard.donations']);
-    app.filter('selectedCampaigns', function(campaigns){
-        return function(donations){
-            var filteredDonations = [];
-            for (var key in donations){
-                var donation = donations[key];
-                var campaign = campaigns.campaigns[donation.campaignId];
-                if (campaign && campaign.streamboardSelected){
-                    filteredDonations.push(donation);
-                }
-            }
-            return filteredDonations;
-        }
-    });
     app.controller('DonationsCtrl', function($scope, $http, campaigns, donations) {
         $scope.campaignsService = campaigns;
         $scope.donationsService = donations;

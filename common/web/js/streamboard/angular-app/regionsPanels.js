@@ -1,9 +1,10 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
-        'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager']);
-    app.controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager) {
+        'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations']);
+    app.controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations) {
         $scope.streamService = stream;
         $scope.regionsService = regions;
+        $scope.donationsService = donations;
 
         function capitaliseFirstLetter(string)
         {
