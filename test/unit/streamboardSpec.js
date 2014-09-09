@@ -17,11 +17,15 @@ describe('Streamboard', function () {
     });
 
     describe('donationsService', function () {
-        it('Should request donations every 1 second', inject(function (donations) {
+        function loadSampleDonations(){
             var fixtures = loadJSONFixtures('donations.json');
             var data = fixtures['donations.json'];
             $httpBackend.expectGET('app/streamboard/get_donations_ajax?since_id=0').respond(data);
             $httpBackend.flush();
+            return data;
+        }
+        it('Should request donations every 1 second', inject(function (donations) {
+            var data = loadSampleDonations();
 
             expect(donations.stats).toBeDefined();
             expect(donations.donations).toBeDefined();
@@ -38,6 +42,11 @@ describe('Streamboard', function () {
             expect(donations.donations.length).toBe(length);
             expect(donations.lastDonationId).toBe(lastDonationId);
         }))
+        it('Should clear donations', inject(function(donations){
+            loadSampleDonations();
+            donations.clear();
+            expect(donations.donations.length).toBe(0);
+        }));
     });
 
     describe("regionsService", function () {

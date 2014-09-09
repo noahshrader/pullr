@@ -22,10 +22,6 @@ class StreamboardCommonAsset extends AssetBundle
         '//code.jquery.com/ui/1.10.4/jquery-ui.js',
         'bower_components/angular/angular.min.js',
         'bower_components/angular-touch/angular-touch.min.js',
-        'js/streamboard/streamboard-preload/modernizr.custom.js',
-        'js/streamboard/streamboard-preload/classie.js',
-        'js/streamboard/streamboard-preload/pathLoader.js',
-        'js/streamboard/streamboard-preload/main.js',
     ];
     public $depends = [
     ];

@@ -7,19 +7,17 @@
             this.lastDonationId = 0;
             this.stats = [];
 
-            function sortDonations(){
-                var newDonations = [];
-                for (var key in Service.unorderedDonations){
-                    var donation = Service.unorderedDonations[key];
-                    newDonations.push(donation);
-                }
-                newDonations.sort(function(a,b){
-                    return b.paymentDate - a.paymentDate;
-                });
-                Service.donations = newDonations;
-            };
+            this.updateDonations = updateDonations;
+            this.clear = clear;
 
-            this.updateDonations = function(forceAll)  {
+            this.updateDonations();
+
+            $interval(function() {
+                Service.updateDonations();
+            }, 1000);
+
+
+            function updateDonations(forceAll)  {
                 var params = {since_id: forceAll ? 0 : Service.lastDonationId };
                 $http.get('app/streamboard/get_donations_ajax', {params: params }).success(function(data){
                     Service.stats = data.stats;
@@ -39,10 +37,21 @@
                 });
             };
 
-            this.updateDonations();
+            function sortDonations(){
+                var newDonations = [];
+                for (var key in Service.unorderedDonations){
+                    var donation = Service.unorderedDonations[key];
+                    newDonations.push(donation);
+                }
+                newDonations.sort(function(a,b){
+                    return b.paymentDate - a.paymentDate;
+                });
+                Service.donations = newDonations;
+            };
 
-            $interval(function() {
-                Service.updateDonations();
-            }, 1000);
+            function clear(){
+                Service.unorderedDonations = {};
+                Service.donations = [];
+            }
         });
 })();

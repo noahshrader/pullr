@@ -12,7 +12,8 @@ $(function () {
     
     // onload functions
     $(window).load(function() {
-
+        // streamboard loader
+        $(".spinner-wrap").addClass('powered').fadeOut();
         // make source iframe adjust to height of inner content
         $('iframe').iFrameResize({
             heightCalculationMethod: 'documentElementScroll'

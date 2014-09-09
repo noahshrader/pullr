@@ -17,12 +17,12 @@ $class = 'regionsNumber' . $regionsNumber;
                {{region.toShow.alert.message}}
            </div>
        </div>
-        <div ng-show="region.widgetType == <?= json_encode(StreamboardRegion::WIDGET_DONATION_FEED) ?>" class="movable">
-            <!-- if alert message is showed-->
-            <img ng-src="{{region.toShow.alert.image}}">
-            <div ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle}">
-                {{region.toShow.alert.message}}
-            </div>
-        </div>
+<!--        <div ng-show="region.widgetType == --><?//= json_encode(StreamboardRegion::WIDGET_DONATION_FEED) ?><!--" class="movable">-->
+<!--            <!-- if alert message is showed-->-->
+<!--            <img ng-src="{{region.toShow.alert.image}}">-->
+<!--            <div ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle}">-->
+<!--                {{region.toShow.alert.message}}-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
