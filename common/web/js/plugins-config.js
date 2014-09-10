@@ -1,22 +1,24 @@
 $(function () {
-	// Custom scrollbars
-	$(".pane").mCustomScrollbar({
-		theme:"minimal",
-		mouseWheel:{
-			preventDefault: true,
-			scrollAmount: 10
-		},
-		scrollInertia: 80,
-		callbacks:{
-			alwaysTriggerOffsets: true,
-			onTotalScrollBackOffset: 10,
-			onScrollStart: function(){
-				$('.top-menu').addClass('shadow');
+	$(window).load(function(){
+		// Custom scrollbars
+		$(".pane").mCustomScrollbar({
+			theme:"minimal",
+			mouseWheel:{
+				preventDefault: true,
+				scrollAmount: 10
 			},
-			onTotalScrollBack: function(){
-				$('.top-menu').removeClass('shadow');
+			scrollInertia: 80,
+			callbacks:{
+				alwaysTriggerOffsets: true,
+				onTotalScrollBackOffset: 10,
+				onScrollStart: function(){
+					$('.top-menu').addClass('shadow');
+				},
+				onTotalScrollBack: function(){
+					$('.top-menu').removeClass('shadow');
+				}
 			}
-		}
+		});
 	});
 
 	// enable tooltips

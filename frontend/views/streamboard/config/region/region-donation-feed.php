@@ -22,13 +22,15 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 </div>
 <div class="form-group">
     <label>Font color</label>
-    <input type="color" ng-model="widget.fontColor" ng-change="regionChanged(region)">
+    <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}">
 </div>
 <br>
 <br>
-<div>
-    <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
-    <label>Scrolling</label>
+<div class="checkbox">
+    <label ng-class="{on:widget.scrolling}">
+        <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
+        Scrolling
+    </label>
 </div>
 
 <div ng-show="widget.scrolling">

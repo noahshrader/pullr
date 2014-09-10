@@ -15,29 +15,37 @@
 </div>
 <div class="form-group">
     <label>Font Color</label>
-    <input type="color" ng-model="widget.fontColor" ng-change="regionChanged(region)">
+    <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}">
 </div>
 <div class="form-group">
-    <label>Font Color</label>
-    <input type="color" ng-model="widget.backgroundColor" ng-change="regionChanged(region)">
+    <label>Background Color</label>
+    <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}">
 </div>
 <h4>Available modules</h4>
 <div class="form-group">
-    <div>
-        <input type="checkbox" ng-model="widget.alertsEnable" ng-change="regionChanged(region)">
-        <label>Alerts</label>
+    <div class="checkbox">
+        <label ng-class="{on:widget.alertsEnable}">
+            <input type="checkbox" ng-model="widget.alertsEnable" ng-change="regionChanged(region)">
+            Alerts
+        </label>
     </div>
-    <div>
-        <input type="checkbox" ng-model="widget.messagesEnable" ng-change="regionChanged(region)">
-        <label>Rotating Messages</label>
+    <div class="checkbox">
+        <label ng-class="{on:widget.messagesEnable}">
+            <input type="checkbox" ng-model="widget.messagesEnable" ng-change="regionChanged(region)">
+            Rotating Messages
+        </label>
     </div>
-    <div>
-        <input type="checkbox" ng-model="widget.timerEnable" ng-change="regionChanged(region)">
-        <label>Timer</label>
+    <div class="checkbox">
+        <label ng-class="{on:widget.timerEnable}">
+            <input type="checkbox" ng-model="widget.timerEnable" ng-change="regionChanged(region)">
+            Timer
+        </label>
     </div>
-    <div>
-        <input type="checkbox" ng-model="widget.progressBarEnable" ng-change="regionChanged(region)">
-        <label>Progress Bar</label>
+    <div class="checkbox">
+        <label ng-class="{on:widget.progressBarEnable}">
+            <input type="checkbox" ng-model="widget.progressBarEnable" ng-change="regionChanged(region)">
+            Progress Bar
+        </label>
     </div>
 </div>
 <div class="right-side-footer">
