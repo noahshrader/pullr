@@ -22,6 +22,15 @@ $(function () {
         $(".movable").draggable({
             containment: "parent"
         });
+        // custom scrollbars
+        $(".pane").mCustomScrollbar({
+            theme:"minimal",
+            mouseWheel:{
+                preventDefault: true,
+                scrollAmount: 10
+            },
+            scrollInertia: 80,
+        });
     });
 
     // panel toggles
