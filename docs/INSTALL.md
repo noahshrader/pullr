@@ -16,7 +16,7 @@ Next step from "pullr" directory.
 Select "yes" for install under Development Environment  
 `./init `
 
-Next step you should change you db connection settings in file  
+Next step you should change your db connection settings in file  
 `common/config/main-local.php`
 
 Next step let's load tables and sampe db data, run from pullr project folder  
@@ -40,6 +40,9 @@ Sometimes you need to update db, so run that (that will remove all tables and lo
 * `./yii pullr/purge` - will remove all tables from db
 * `./yii migrate` - will load table's sheme at db
 * `./yii theme/rescan` - will update themes
+* `npm install` - that will update npm & js dependencies
+* `npm test` - unit tests for streamboard
+* `npm run-script protractor` e2e tests for streamboard
 
 ####Mac
 If you use MAMP please enable "Allow Network access to MYSQL" 
