@@ -1,14 +1,4 @@
 $(function () {
-    $(".resizable-h").resizable({
-        minWidth: 250,
-        handles: "w",
-        animate: false,
-        delay: 0,
-        alsoResize: ".right-side-footer",
-        resize: function( event, ui ) {
-            $(".resizable-h").css('left', 'auto');
-        }
-    });
     
     // onload functions
     $(window).load(function() {
@@ -18,9 +8,34 @@ $(function () {
         $('iframe').iFrameResize({
             heightCalculationMethod: 'documentElementScroll'
         });
+        $("#sidepanel").resizable({
+            minWidth: 250,
+            handles: "w",
+            animate: false,
+            delay: 0,
+            resize: function( event, ui ) {
+                $("#sidepanel").css('left', 'auto');
+            }
+        });
+        $(".regionsContainer .region:first-child").resizable({
+            handles: "s",
+            animate: false,
+            delay: 0,
+            resize: function( event, ui ) {
+                $(".regionsContainer .region:last-child").height($(this).parent().height() - $(this).height());  
+            }
+        });
+        // resize fixed elements based on size of sidepanel
+        $('#sidepanel').resize(function() {
+            var panelhead = $('#sidepanel').width() - 60;
+            var sidefooter = $('#sidepanel').width();
+            $('.panel-head').width(panelhead);
+            $('.right-side-footer').width(sidefooter);
+        });
         // Make items movable
         $(".movable").draggable({
-            containment: "parent"
+            containment: "parent",
+            scroll: false
         });
         // custom scrollbars
         $(".pane").mCustomScrollbar({
@@ -57,7 +72,7 @@ $(function () {
     $("a.sidetoggle").click(function(){
         var l = $(this).data('l');
         var width = $('#sidepanel').width();
-        $("#sidepanel, .right-side-footer").animate({right: (l ?  0 : -width)}, 200);
+        $("#sidepanel, .right-side-footer, .panel-head").animate({right: (l ?  0 : -width)}, 200);
         $(this).data('l', !l);
     });
 

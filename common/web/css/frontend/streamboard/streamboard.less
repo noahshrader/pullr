@@ -81,6 +81,12 @@ span.slider-value {
 	background: @maingray;
 	z-index: 900;
 
+	/* General Module Styles */
+	.module {
+		padding: @halfgutter;
+		background: @gray10;
+	}
+
 	.sidepanel-head {
 		position: relative;
 		height: @sidenavheight;
@@ -114,6 +120,12 @@ span.slider-value {
 		height: 100%;
 		overflow: hidden;
 	}
+	.tab-content {
+
+		.region {
+			top: @sidenavheight;
+		}
+	}
 	.tab-pane {
 		
 		.main-panel.pane {
@@ -126,13 +138,9 @@ span.slider-value {
 			}
 		}
 		.settings-wrap {
-			padding: @gutter;
+			padding: @streamboardgutter;
 			min-height: 400px;
 		}
-	}
-	h3,
-	h4 {
-		color: @white;
 	}
 	h4.section-header {
 		color: @white;
@@ -148,6 +156,19 @@ span.slider-value {
 		&.pane {
 			position: absolute;
 		}
+	}
+	.panel-head {
+		position: fixed;
+		top: @sidenavheight;
+		right: 0;
+		height: @sidenavheight;
+		width: @sidepanelwidth;
+		max-width: 50%;
+		min-width: @sidepanelwidth;
+		color: @white;
+		padding: @streamboardgutter @gutter;
+		background: @gray10;
+		.box-shadow;
 	}
 }
 
@@ -265,9 +286,8 @@ ul.panel-nav {
 			position: relative;
 			display: block;
 			color: @gray30;
-			width: 100%;
-			border-bottom: solid 1px @maingray;
 			padding: @gutter @gutter @gutter;
+			margin: @streamboardgutter;
 			background: @gray10;
 			&.wasRead {
 				opacity: .15;
@@ -399,6 +419,7 @@ ul.panel-nav {
 .regionsContainer{
 	height: 100%;
 	.region {
+		position: relative;
 		height: 100%;
 		background-color: green;
   	}

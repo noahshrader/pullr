@@ -6,7 +6,7 @@ use yii\web\View;
 $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
 ?>
 <!-- // Layout Options Side Panel // -->
-<section id="sidepanel" class="sidepanel open resizable-h">
+<section id="sidepanel" class="sidepanel open">
     <div class="sidepanel-head">
         <ul class="<?= $tabsClass ?> panel-nav cf">
             <li class="active">
