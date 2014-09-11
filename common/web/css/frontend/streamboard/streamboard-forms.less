@@ -6,18 +6,26 @@
 	margin-bottom: @halfgutter;
 }
 
+textarea {
+	color: @white;
+	background: @gray10;
+	border: @gray10 !important;
+}
+
+
 /* Color Picker */
-input[type="color"] {
+input.color-choice {
 	float: right;
 }
-h3 input[type="color"] {
-	top: 9px;
+h4 input.color-choice {
+	top: 6px;
 }
-h5 input[type="color"] {
+h5 input.color-choice {
 	top: 0;
 }
 
-/* Select Boxes */
+
+/* Main Region Select Boxes */
 .select2-container {
 	&:after {
 		border-color: @white transparent transparent transparent;
@@ -68,6 +76,61 @@ h5 input[type="color"] {
 		}
 	}
 }
+
+/* Slidepanel Checkboxes */
+.slidepanel {
+	.select2-container {
+		&:after {
+			border-color: @white transparent transparent transparent;
+		}
+		&.select2-dropdown-open a.select2-choice {
+			background: @gray10;
+		}
+
+		.select2-choices .select2-search-field input,
+		.select2-choice,
+		.select2-choices {
+			color: @white;
+			background: @gray20;
+
+			&:focus {
+				outline: 0 !important;
+			}
+			&:hover {
+				background: @gray20;
+			}
+		}
+	}
+	.select2-dropdown-open.select2-drop-above .select2-choice,
+	.select2-dropdown-open.select2-drop-above .select2-choices {
+		background: @dkgray;
+	}
+	.select2-drop {
+
+		&.select2-drop-active,
+		&.select2-drop-above.select2-drop-active {
+			background: @gray10;
+		}
+	}
+
+	.select2-results {
+		
+		.select2-highlighted {
+			background: @gray20;
+		}
+		.select2-result-label {
+			color: @white;
+			
+			&:hover {
+				background: @gray20;
+			}
+			span {
+				color: @white !important;
+			}
+		}
+	}
+}
+
 
 /* Checkboxes */
 .checkbox {

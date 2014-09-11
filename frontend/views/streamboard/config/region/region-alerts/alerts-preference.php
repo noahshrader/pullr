@@ -15,7 +15,7 @@ use yii\web\View;
                 ng-change="regionChanged(region)"></slider>
     </div>
     <div class="panel-group">
-        <h5>Font Color <input type="color" ng-model="preference.fontColor" ng-change="regionChanged(region)"></h5>
+        <h5>Font Color <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="preference.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':preference.fontColor}"></h5>
     </div>
     <div class="panel-group">
         <h5>Duration <span class="slider-value value">{{preference.animationDuration}} sec</span></h5>

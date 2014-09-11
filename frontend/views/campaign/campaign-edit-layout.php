@@ -61,11 +61,13 @@ $user = \Yii::$app->user->identity;
     </div>
     <? endif ?>
     <!-- Primary Color -->
-    <div class="form-group">
-        <?= $form->field($campaign, 'primaryColor')->label('Choose a primary color:')->input('color'); ?>
+    <div class="form-group colorpicker">
+        <?= $form->field($campaign, 'primaryColor')->label('Choose a primary color:')->input('hidden'); ?>
+        <span class="color-choice"></span>
     </div>
     <!-- Secondary Color -->
-    <div class="form-group">
-        <?= $form->field($campaign, 'secondaryColor')->label('Choose a secondary color:')->input('color'); ?>
+    <div class="form-group colorpicker">
+        <?= $form->field($campaign, 'secondaryColor')->label('Choose a secondary color:')->input('hidden'); ?>
+        <span class="color-choice"></span>
     </div>
 </div>

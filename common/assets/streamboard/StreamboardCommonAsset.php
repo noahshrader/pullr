@@ -13,7 +13,7 @@ class StreamboardCommonAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         '//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css',
-        /*style for venturocket-angular-slider*/
+        /* style for venturocket-angular-slider */
         'css/angular-slider/slider.less',
         'css/frontend/streamboard/streamboard.less',
     ];
