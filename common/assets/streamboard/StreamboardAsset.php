@@ -16,6 +16,7 @@ class StreamboardAsset extends AssetBundle
         'bower_components/angular-ui-select2/src/select2.js',
         'bower_components/ng-file-upload/angular-file-upload.min.js',
         'bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
+        'bower_components/jQuery.Marquee/jquery.marquee.min.js',
         'plugins/iframeResizer/iframeResizer.js',
 		'js/streamboard/streamboard.js',
         /* angular-app begin */

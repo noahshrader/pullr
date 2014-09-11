@@ -67,6 +67,9 @@ span.slider-value {
 	opacity: .1;
 }
 
+.commaAfter:not(:last-child):after {
+  content: ',';
+}
 
 /* Sidepanel (Sidebar) */
 /* ------------------------------------------------- */
@@ -540,4 +543,10 @@ ul.panel-nav {
 			to { -webkit-transform: translate3d(0,-100%,0) scale3d(0.3,0.3,1); transform: translate3d(0,-100%,0) scale3d(0.3,0.3,1); }
 		}
 	}
+}
+.donation-stream-scroll{
+  float: left;
+  position: relative;
+  width: 40%;
+  height: 30px;
 }

@@ -6,6 +6,34 @@
         $scope.regionsService = regions;
         $scope.donationsService = donations;
 
+        $scope.regionsService.ready(function () {
+            requireAllFonts();
+            /*whenever regions are changes we are checking that we have right fonts*/
+            $scope.$watch('regionsService.regions', requireAllFonts, true);
+
+            setInterval(window.startMarquee, 5000);
+
+            /*we make a delay as streamboard may still be loading, even if regions are ready*/
+            $interval(function () {
+                $.each($scope.regionsService.regions, function (index, region) {
+                    /*creating namespace for showing data*/
+                    region.toShow = {alert: {
+                    }};
+                    $interval(function () {
+                        showAlert(region)
+                    }, 1, 1);
+                });
+            }, 4000, 1);
+        })
+        function requireAllFonts(){
+            for (var key in regions.regions){
+                var region = regions.regions[key];
+                window.requireGoogleFont(region.widgetAlerts.followersPreference.fontStyle);
+                window.requireGoogleFont(region.widgetAlerts.donationsPreference.fontStyle);
+                window.requireGoogleFont(region.widgetAlerts.subscribersPreference.fontStyle);
+                window.requireGoogleFont(region.widgetDonationFeed.fontStyle);
+            }
+        }
         function capitaliseFirstLetter(string)
         {
             return string.charAt(0).toUpperCase() + string.slice(1);
@@ -56,19 +84,5 @@
                 showAlert(region);
             }, 1000, 1)
         }
-
-        $scope.regionsService.ready(function () {
-            /*we make a delay as streamboard may still be loading, even if regions are ready*/
-            $interval(function () {
-                $.each($scope.regionsService.regions, function (index, region) {
-                    /*creating namespace for showing data*/
-                    region.toShow = {alert: {
-                    }};
-                    $interval(function () {
-                        showAlert(region)
-                    }, 1, 1);
-                });
-            }, 4000, 1);
-        })
     });
 })()

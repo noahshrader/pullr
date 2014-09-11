@@ -44,7 +44,7 @@ $(function () {
                 preventDefault: true,
                 scrollAmount: 10
             },
-            scrollInertia: 80,
+            scrollInertia: 80
         });
     });
 
@@ -96,6 +96,8 @@ $(function () {
     });
     var currentStreamboardLeft = window.screenX;
     var currentStreamboardTop = window.screenY;
+
+
     setInterval(function(){
         if ( (window.screenX != currentStreamboardLeft ) || (window.screenY != currentStreamboardTop)){
             currentStreamboardLeft = window.screenX;
@@ -109,7 +111,15 @@ $(function () {
         }
     }, 1000)
 });
-
+function startMarquee(){
+    $('.donation-stream-scroll').marquee({
+        duration: 16000, // Slow = 28000; Normal = 16000; Fast = 8000;
+        gap: 50,
+        delayBeforeStart: 0,
+        direction: 'left',
+        duplicated: true
+    });
+}
 function requireGoogleFont(fontFamily){
    if (!fontFamily){
        return;

@@ -15,12 +15,12 @@ use yii\web\View;
         </div>
         <div class="activityFeed">
             <h4>Activity Feed</h4>
-            <span ng-repeat="donor in donors" class="activityFeedElement">
+            <span ng-repeat="donor in donors" class="commaAfter">
                 <span class="nowrap">
                 <span>{{donor.name}}</span>
                (<span class="amount accent">${{number_format(donor.amount)}}</span>)<!-- removing space before :after{content:} rule
             --></span></span>
-            <span ng-repeat="subscriber in subscribers" class="activityFeedElement">
+            <span ng-repeat="subscriber in subscribers" class="commaAfter">
                 <span class="nowrap">
                 <span>{{subscriber.display_name}}</span>
                 <span>(Subscribed)</span><!-- removing space before :after(content:} rule
