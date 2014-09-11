@@ -48,30 +48,6 @@ And you should use "127.0.0.1" instead of localhost  in `common/config/main-loca
 
 (For some reason connection to localhost via file is not working by default for pullr in MAC). 
 
-
-####Mac issues with lessc 
-Some pathes issues exist when using lessc in Mac. Here we have a workaround. 
-
-in common/config/main.php change from first line to second 
-
-* `'less' => ['css', 'lessc {from} {to} --source-map --compress'],`
-* `'less' => ['css', '/usr/local/bin/lessc {from} {to} --source-map --compress'],`
-
-
-Next change first line of /usr/local/bin/lessc from first line to second 
-* `#!/usr/bin/env node`
-* `#!/usr/bin/env /usr/local/bin/node`
-
-And last thing to check is **/Applications/MAMP/Library/bin/envars**. To prevent $DYLD_LIBRARY_PATH variables being changed by MAMP comment out two lines. So the file should looks like:
-
-```
-if test "x$DYLD_LIBRARY_PATH" != "x" ; then
-#DYLD_LIBRARY_PATH="/Applications/MAMP/Library/lib:$DYLD_LIBRARY_PATH"
-else
-#DYLD_LIBRARY_PATH="/Applications/MAMP/Library/lib"
-fi
-export DYLD_LIBRARY_PATH
-```
 ####Mac issue with mcrypt 
 To install mcrypt extension php in case you have not it these link can be helpful: 
 
