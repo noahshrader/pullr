@@ -9,7 +9,7 @@ use common\models\Donation;
     <button data-ng-click="addDonation()">Test donation</button>
 </div>-->
 <div class="donations-list main-panel pane">
-    <div ng-repeat="donation in donationsService.donations | donationsFilterToSelectedCampaigns | limitTo: 20" class="donation"
+    <div ng-repeat="donation in donationsService.donations | donationsFilterToSelectedCampaigns | limitTo: 20" class="donation module"
          ng-class="{wasRead: donation.streamboard.wasRead}">
         <h3 class="donation-name">
             {{donation.displayName}}

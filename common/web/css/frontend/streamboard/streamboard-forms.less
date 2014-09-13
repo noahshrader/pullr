@@ -1,14 +1,19 @@
 /* Miscellaneous */
 .form-group {
-	.slowtrans;
+	padding: @halfgutter;
+	margin-bottom: 0;
+	border-bottom: solid 1px @maingray;
 }
 .panel-group {
-	margin-bottom: @halfgutter;
+	margin-bottom: @streamboardgutter;
+	.slowtrans;
 }
 
 textarea {
 	color: @white;
-	background: @gray10;
+	width: 100%;
+	max-width: 100%;
+	background: @gray15;
 	border: @gray10 !important;
 }
 
@@ -18,7 +23,7 @@ input.color-choice {
 	float: right;
 }
 h4 input.color-choice {
-	top: 6px;
+	top: 16px;
 }
 h5 input.color-choice {
 	top: 0;
@@ -31,14 +36,14 @@ h5 input.color-choice {
 		border-color: @white transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
-		background: @gray10;
+		background: @gray20;
 	}
 
 	.select2-choices .select2-search-field input,
 	.select2-choice,
 	.select2-choices {
 		color: @white;
-		background: @gray10;
+		background: @gray15;
 
 		&:focus {
 			outline: 0 !important;
@@ -56,7 +61,7 @@ h5 input.color-choice {
 
 	&.select2-drop-active,
 	&.select2-drop-above.select2-drop-active {
-		background: @gray10;
+		background: @gray20;
 	}
 }
 
@@ -69,7 +74,7 @@ h5 input.color-choice {
 		color: @white;
 		
 		&:hover {
-			background: @gray20;
+			background: @gray15;
 		}
 		span {
 			color: @white !important;
@@ -84,7 +89,7 @@ h5 input.color-choice {
 			border-color: @white transparent transparent transparent;
 		}
 		&.select2-dropdown-open a.select2-choice {
-			background: @gray10;
+			background: @gray20;
 		}
 
 		.select2-choices .select2-search-field input,
@@ -109,7 +114,7 @@ h5 input.color-choice {
 
 		&.select2-drop-active,
 		&.select2-drop-above.select2-drop-active {
-			background: @gray10;
+			background: @gray20;
 		}
 	}
 
@@ -134,10 +139,13 @@ h5 input.color-choice {
 
 /* Checkboxes */
 .checkbox {
+	margin-top: 0;
+	margin-bottom: @streamboardgutter;
+
 	label {
 		&:before {
-			color: @gray10 !important;
-			background: @gray10;
+			color: @gray20 !important;
+			background: @gray20;
 		}
 	    	&.on:before {
 			color: @gray40 !important;

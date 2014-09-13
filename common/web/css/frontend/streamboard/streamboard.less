@@ -15,6 +15,7 @@ label {
 /* ------------------------------------------------- */
 h5 {
 	color: @gray40;
+	.smallcaps;
 }
 
 
@@ -86,9 +87,10 @@ span.slider-value {
 
 	/* General Module Styles */
 	.module {
-		padding: @gutter;
+		margin-bottom: @streamboardgutter;
 		background: @gray10;
 		.border-radius;
+		.slowtrans;
 	}
 
 	.sidepanel-head {
@@ -101,7 +103,7 @@ span.slider-value {
 		/* Sidepanel Tab Menu */
 		ul.panel-nav {
 			top: 0;
-			border: 0;
+			border-bottom: solid 1px @maingray;
 
 			li {
 				width: 25%;
@@ -128,7 +130,7 @@ span.slider-value {
 	}
 	.tab-content {
 
-		.region {
+		.addpadd {
 			top: @sidenavheight;
 		}
 	}
@@ -167,14 +169,13 @@ span.slider-value {
 		position: fixed;
 		top: @sidenavheight;
 		right: 0;
-		height: @sidenavheight;
+		line-height: @sidenavheight;
 		width: @sidepanelwidth;
 		max-width: 50%;
 		min-width: @sidepanelwidth;
 		color: @white;
-		padding: @streamboardgutter @gutter;
+		padding: 0 @halfgutter;
 		background: @gray10;
-		border-top: solid 1px @maingray;
 	}
 }
 
@@ -231,7 +232,6 @@ ul.panel-nav {
 	line-height: @sidenavheight;
 	height: @sidenavheight;
 	background: @gray10;
-	border-bottom: 0;
 
 	li {
 		&:last-child {
@@ -294,8 +294,8 @@ ul.panel-nav {
 			color: @gray30;
 			padding: @gutter @gutter @gutter;
 			margin: 0;
-			background: @maingray;
-			border-bottom: solid 1px @base;
+			background: @gray10;
+			border-bottom: solid 1px @maingray;
 			&.wasRead {
 				opacity: .1;
 
@@ -408,6 +408,7 @@ ul.panel-nav {
 	height: @sidenavheight;
 	max-width: 50%;
 	min-width: 250px;
+	background: @gray10;
 	border-top: solid 1px @maingray;
 	z-index: 1000;
 

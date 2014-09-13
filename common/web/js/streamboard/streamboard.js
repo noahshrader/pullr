@@ -60,7 +60,7 @@ $(function () {
     
     // If panel is exposed, blur items in back
     $(document).on('click', function() {
-        var dimmed = $('.settings-wrap .form-group, .donations-list');
+        var dimmed = $('.settings-wrap .module, .settings-wrap .panel-group, .donations-list');
         if ($(".slidepanel").hasClass("selected")) {
             $(dimmed).addClass('dim');
         } else {

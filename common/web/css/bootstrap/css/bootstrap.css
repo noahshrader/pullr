@@ -47,7 +47,8 @@
 /* Typography */
 /* ------------------------------------------------- */
 .smallcaps {
-  font-size: 0.9em;
+  font-size: 0.8em;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -184,20 +185,6 @@
   }
 }
 /* Content Loader */
-@-webkit-keyframes cubemove {
-  25% {
-    -webkit-transform: translateX(22px) rotate(-90deg) scale(0.5);
-  }
-  50% {
-    -webkit-transform: translateX(22px) translateY(22px) rotate(-180deg);
-  }
-  75% {
-    -webkit-transform: translateX(0px) translateY(22px) rotate(-270deg) scale(0.5);
-  }
-  100% {
-    -webkit-transform: rotate(-360deg);
-  }
-}
 @keyframes cubemove {
   25% {
     transform: translateX(42px) rotate(-90deg) scale(0.5);
@@ -220,16 +207,35 @@
     -webkit-transform: rotate(-360deg);
   }
 }
-/* Marquee (Streamboard) */
-@-webkit-keyframes marquee {
-  
-}
-@keyframes marquee {
-  0% {
-    text-indent: 27.5em;
+@-webkit-keyframes cubemove {
+  25% {
+    -webkit-transform: translateX(22px) rotate(-90deg) scale(0.5);
+  }
+  50% {
+    -webkit-transform: translateX(22px) translateY(22px) rotate(-180deg);
+  }
+  75% {
+    -webkit-transform: translateX(0px) translateY(22px) rotate(-270deg) scale(0.5);
   }
   100% {
-    text-indent: -105em;
+    -webkit-transform: rotate(-360deg);
+  }
+}
+/* Marquee (Streamboard) */
+@keyframes marquee {
+  0% {
+    text-indent: 100%;
+  }
+  100% {
+    text-indent: 0;
+  }
+}
+@-webkit-keyframes marquee {
+  0% {
+    text-indent: 100%;
+  }
+  100% {
+    text-indent: 0;
   }
 }
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */

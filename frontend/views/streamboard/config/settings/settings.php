@@ -7,6 +7,7 @@ $sourceHref = Url::to('', true) . '/source';
 ?>
 <!-- Accordion slide four (Settings) -->
 <div class="tab-content">
+    <h4 class="panel-head">Settings</h4>
     <!-- General Settings (Campaigns) -->
     <div id="settings-general" class="tab-pane active">
         <?= $this->render('settings-general') ?>

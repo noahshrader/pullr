@@ -25,10 +25,10 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
             <?= $this->render('donations/donations') ?>
         </div>
         <!-- Accordion slide (Region 1) or (Region 2) -->
-        <div class="tab-pane region" id="region_{{region.regionNumber}}" ng-repeat="region in regionsService.regions">
+        <div class="tab-pane addpadd" id="region_{{region.regionNumber}}" ng-repeat="region in regionsService.regions">
             <?= $this->render('config/region/region') ?>
         </div>
-        <div class="tab-pane" id="settingsTab" ng-controller="SettingsCtrl">
+        <div class="tab-pane addpadd" id="settingsTab" ng-controller="SettingsCtrl">
             <?= $this->render('config/settings/settings') ?>
         </div>
     </div>
