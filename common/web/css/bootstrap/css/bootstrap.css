@@ -220,6 +220,18 @@
     -webkit-transform: rotate(-360deg);
   }
 }
+/* Marquee (Streamboard) */
+@-webkit-keyframes marquee {
+  
+}
+@keyframes marquee {
+  0% {
+    text-indent: 27.5em;
+  }
+  100% {
+    text-indent: -105em;
+  }
+}
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
