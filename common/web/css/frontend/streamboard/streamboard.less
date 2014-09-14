@@ -14,8 +14,10 @@ label {
 /* Typography */
 /* ------------------------------------------------- */
 h5 {
-	color: @gray40;
+	color: @gray30;
 	.smallcaps;
+	line-height: 1.4em;
+	margin: .2em 0;
 }
 
 
@@ -42,9 +44,9 @@ slider {
 	
 	span.bar {
 		top: 50%;
-		height: 1px;
+		height: 2px;
 		margin: 0;
-		background: @base;
+		background: @maingray;
 	}
 	span.pointer {
 		top: 3px;
@@ -91,6 +93,9 @@ span.slider-value {
 		background: @gray10;
 		.border-radius;
 		.slowtrans;
+		&:last-child {
+			margin: 0;
+		}
 	}
 
 	.sidepanel-head {
@@ -136,14 +141,19 @@ span.slider-value {
 	}
 	.tab-pane {
 		
-		.main-panel.pane {
+		.pane {
 			position: absolute;
-			top: 0;
-			bottom: @sidenavheight;
 			width: 100%;
 			&.adv {
 				top: @sidenavheight;
 			}
+		}
+		> .pane {
+			top: 0;
+			bottom: @sidenavheight;
+		}
+		.regions-panel.pane {
+			bottom: @sidenavheight + @sidenavheight;
 		}
 		.settings-wrap {
 			padding: @streamboardgutter;
@@ -176,6 +186,8 @@ span.slider-value {
 		color: @white;
 		padding: 0 @halfgutter;
 		background: @gray10;
+		border-bottom: solid 1px @maingray;
+		z-index: 1001;
 	}
 }
 
@@ -313,8 +325,8 @@ ul.panel-nav {
 				border: 0;
 			}
 			h3.donation-name {
-				margin: 0px;
-				padding: 0px 0px 2px 0px;
+				margin: 0;
+				padding: 0;
 				font-size: 18px;
 				font-weight: 400;
 				color: @white;

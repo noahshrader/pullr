@@ -3,10 +3,14 @@
 	padding: @halfgutter;
 	margin-bottom: 0;
 	border-bottom: solid 1px @maingray;
+
+	&.module {
+		padding: 0;
+		margin-bottom: @streamboardgutter;
+	}
 }
 .panel-group {
 	margin-bottom: @streamboardgutter;
-	.slowtrans;
 }
 
 textarea {
@@ -15,6 +19,20 @@ textarea {
 	max-width: 100%;
 	background: @gray15;
 	border: @gray10 !important;
+}
+
+/* Placeholder styling */
+::-webkit-input-placeholder {
+   color: @gray40 !important;
+}
+:-moz-placeholder {
+   color: @gray40 !important; 
+}
+::-moz-placeholder {
+   color: @gray40 !important;  
+}
+:-ms-input-placeholder {  
+   color: @gray40 !important;  
 }
 
 
@@ -26,7 +44,7 @@ h4 input.color-choice {
 	top: 16px;
 }
 h5 input.color-choice {
-	top: 0;
+	top: -2px;
 }
 
 

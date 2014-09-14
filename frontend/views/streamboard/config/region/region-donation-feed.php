@@ -8,7 +8,8 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 ?>
 <div class="module">
     <div class="form-group">
-        <textarea ng-model="widget.noDonationMessage" ng-change="regionChanged(region)" placeholder="No donations message"></textarea>
+        <h5>Default Message</h5>
+        <textarea ng-model="widget.noDonationMessage" ng-change="regionChanged(region)"></textarea>
     </div>
 </div>
 <div class="module">

@@ -13,10 +13,9 @@
         <div font-style ng-model="widget.fontStyle"></div>
     </div>
     <div class="form-group">
-        <h5>Font size</h5>
+        <h5>Font size <span class="slider-value value">{{widget.fontSize}} px</span></h5>
         <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
                 ng-change="regionChanged(region)"></slider>
-        <span>{{widget.fontSize}} px</span>
     </div>
     <div class="form-group">
         <h5>Font Color <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
@@ -27,7 +26,7 @@
 </div>
 <div class="module">
     <div class="form-group">
-        <h5>Available Modules</h5>
+        <h5>Modules</h5>
         <div class="checkbox">
             <label ng-class="{on:widget.alertsEnable}">
                 <input type="checkbox" ng-model="widget.alertsEnable" ng-change="regionChanged(region)">
@@ -55,10 +54,10 @@
     </div>
 </div>
 <div class="right-side-footer">
-    <ul class="bottom-panel-nav paneltoggle">
-        <li ng-if="widget.alertsEnable"><a data-panel="alertsModule">Alerts</a></li>
-        <li ng-if="widget.messagesEnable"><a data-panel="messagesModule">Messages</a></li>
-        <li ng-if="widget.timerEnable"><a data-panel="timerModule">Timer</a></li>
+    <ul class="panel-nav paneltoggle">
+        <li ng-if="widget.alertsEnable"><a data-panel="alertsModule" class="icon-notify"></a></li>
+        <li ng-if="widget.messagesEnable"><a data-panel="messagesModule" class="icon-bubble4"></a></li>
+        <li ng-if="widget.timerEnable"><a data-panel="timerModule" class="icon-timer"></a></li>
     </ul>
 
     <div class="alertsModule_panel slidepanel" child-scope>
