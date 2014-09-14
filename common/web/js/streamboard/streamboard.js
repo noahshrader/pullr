@@ -27,7 +27,7 @@ $(function () {
         });
         // resize fixed elements based on size of sidepanel
         $('#sidepanel').resize(function() {
-            var panelhead = $('#sidepanel').width() - 60;
+            var panelhead = $('#sidepanel').width() - 30;
             var sidefooter = $('#sidepanel').width();
             $('.panel-head').width(panelhead);
             $('.right-side-footer').width(sidefooter);
