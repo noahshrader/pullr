@@ -5,10 +5,12 @@ use yii\web\View;
 /**@var $this View */
 ?>
 <div>
+    <div class="module">
     <div class="panel-group">
         <h5>Font Style</h5>
         <div font-style ng-model="preference.fontStyle"></div>
     </div>
+</div>
     <div class="panel-group">
         <h5>Font Size <span class="slider-value value">{{preference.fontSize}} px</span></h5>
         <slider ng-model="preference.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
