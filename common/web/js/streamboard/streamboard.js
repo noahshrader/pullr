@@ -49,7 +49,6 @@ $(function () {
             },
             scrollInertia: 80,
             callbacks:{
-                alwaysTriggerOffsets: true,
                 onTotalScrollBackOffset: 10,
                 onScrollStart: function(){
                     $('.panel-head, .panel-title').addClass('border');
@@ -57,7 +56,11 @@ $(function () {
                 onTotalScrollBack: function(){
                     $('.panel-head, .panel-title').removeClass('border');
                 }
-            }
+            },
+            live: true
+        });
+        $('.widget-select').click(function() {
+            $('.pane').mCustomScrollbar("update");
         });
     });
 

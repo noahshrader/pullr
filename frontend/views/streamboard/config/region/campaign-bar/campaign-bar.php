@@ -18,10 +18,10 @@
                 ng-change="regionChanged(region)"></slider>
     </div>
     <div class="form-group">
-        <h5>Font Color <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
+        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
     </div>
     <div class="form-group">
-        <h5>Background Color <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
+        <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
     </div>
 </div>
 <div class="module">

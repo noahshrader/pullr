@@ -23,10 +23,10 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
                 ng-change="regionChanged(region)"></slider>
     </div>
     <div class="form-group">
-        <h5>Font color <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
+        <h5>Font color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
     </div>
 </div>
-<div class="module">
+<div class="module last">
     <div class="form-group checkbox cf">
         <label ng-class="{on:widget.scrolling}">
             <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
