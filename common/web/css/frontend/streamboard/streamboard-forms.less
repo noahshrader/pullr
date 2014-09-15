@@ -1,5 +1,6 @@
 /* Miscellaneous */
-.form-group {
+.form-group,
+.panel-group {
 	padding: @halfgutter;
 	margin-bottom: 0;
 	border-bottom: solid 1px @maingray;
@@ -10,8 +11,7 @@
 	}
 }
 .panel-group {
-	padding: @halfgutter;
-	margin-bottom: @streamboardgutter;
+	border-bottom: solid 1px @gray10;
 }
 
 textarea {
@@ -101,60 +101,6 @@ h5 input.color-choice {
 	}
 }
 
-/* Slidepanel Checkboxes */
-.slidepanel {
-	.select2-container {
-		&:after {
-			border-color: @white transparent transparent transparent;
-		}
-		&.select2-dropdown-open a.select2-choice {
-			background: @gray20;
-		}
-
-		.select2-choices .select2-search-field input,
-		.select2-choice,
-		.select2-choices {
-			color: @white;
-			background: @gray20;
-
-			&:focus {
-				outline: 0 !important;
-			}
-			&:hover {
-				background: @gray20;
-			}
-		}
-	}
-	.select2-dropdown-open.select2-drop-above .select2-choice,
-	.select2-dropdown-open.select2-drop-above .select2-choices {
-		background: @dkgray;
-	}
-	.select2-drop {
-
-		&.select2-drop-active,
-		&.select2-drop-above.select2-drop-active {
-			background: @gray20;
-		}
-	}
-
-	.select2-results {
-		
-		.select2-highlighted {
-			background: @gray20;
-		}
-		.select2-result-label {
-			color: @white;
-			
-			&:hover {
-				background: @gray20;
-			}
-			span {
-				color: @white !important;
-			}
-		}
-	}
-}
-
 
 /* Checkboxes */
 .checkbox {
@@ -162,7 +108,10 @@ h5 input.color-choice {
 	margin-bottom: @streamboardgutter;
 
 	label {
+		font-size: .95em;
+
 		&:before {
+			top: 2px;
 			color: @gray20 !important;
 			background: @gray20;
 		}
@@ -172,7 +121,7 @@ h5 input.color-choice {
     	span {
     		display: inline-block;
     		float: left;
-    		width: 70%;
+    		width: 80%;
     	}
     }
 	input {

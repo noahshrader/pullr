@@ -5,8 +5,8 @@ use frontend\models\streamboard\WidgetAlertsPreference;
 ?>
 <div child-scope ng-init="fileType = '<?= $fileType ?>';uploadError = null;">
     <!--main variable - preference -->
-    <ul class="nav nav-tabs custrom-or-library-tabs">
-        <li><a href="<?= Url::to() ?>#{{baseLink}}-{{fileType}}s-custom" data-toggle="tab">Yours</a></li>
+    <ul class="library-tabs library cf">
+        <li><a href="<?= Url::to() ?>#{{baseLink}}-{{fileType}}s-custom" data-toggle="tab">Uploads</a></li>
         <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-{{fileType}}s-library" data-toggle="tab">Library</a>
         </li>
     </ul>
@@ -15,10 +15,10 @@ use frontend\models\streamboard\WidgetAlertsPreference;
             <div class="error">
                 {{error}}
             </div>
-            <input type="file" ng-file-select="onFileUpload($files, fileType, this)">
-
-            <div class="uploader" ng-file-drop="onFileUpload($files, fileType, this)" ng-file-drag-over-class="uploader-drag-over">
-                Drops Files Here
+            <div class="panel-group">
+                <div class="uploader" ng-file-drop="onFileUpload($files, fileType, this)" ng-file-drag-over-class="uploader-drag-over">
+                    <span>Drops Files Here</span>
+                </div>
             </div>
             <div class="files-container">
                 <div ng-repeat="file in (fileType=='sound' ? alertMediaManagerService.customSounds : alertMediaManagerService.customImages)"
@@ -26,11 +26,6 @@ use frontend\models\streamboard\WidgetAlertsPreference;
                     <?= $this->render('alerts-'.$fileType) ?>
                 </div>
             </div>
-        </div>
-        <div>
-            <i class="icon-volume-level"></i>
-            <slider ng-model="preference.volume" floor="0" ceiling="100" step="1"
-                    ng-change="regionChanged(region)"></slider>
         </div>
         <div id="{{baseLink}}-{{fileType}}s-library" class="tab-pane active">
             <div class="files-container">

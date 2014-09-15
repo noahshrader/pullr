@@ -32,7 +32,7 @@ $(function () {
         $('#sidepanel').resize(function() {
             var panelhead = $('#sidepanel').width() - 30;
             var sidefooter = $('#sidepanel').width();
-            $('.panel-head').width(panelhead);
+            $('.panel-head, .panel-title').width(panelhead);
             $('.right-side-footer').width(sidefooter);
         });
         // make items movable
@@ -47,7 +47,17 @@ $(function () {
                 preventDefault: true,
                 scrollAmount: 10
             },
-            scrollInertia: 80
+            scrollInertia: 80,
+            callbacks:{
+                alwaysTriggerOffsets: true,
+                onTotalScrollBackOffset: 10,
+                onScrollStart: function(){
+                    $('.panel-head, .panel-title').addClass('border');
+                },
+                onTotalScrollBack: function(){
+                    $('.panel-head, .panel-title').removeClass('border');
+                }
+            }
         });
     });
 
@@ -75,7 +85,7 @@ $(function () {
     $("a.sidetoggle").click(function(){
         var l = $(this).data('l');
         var width = $('#sidepanel').width();
-        $("#sidepanel, .right-side-footer, .panel-head").animate({right: (l ?  0 : -width)}, 200);
+        $("#sidepanel, .right-side-footer, .panel-head, .panel-title").animate({right: (l ?  0 : -width)}, 200);
         $(this).data('l', !l);
     });
 

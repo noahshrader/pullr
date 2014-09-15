@@ -69,6 +69,9 @@ span.slider-value {
 .dim {
 	opacity: .1;
 }
+.border {
+	border-bottom: solid 1px @maingray;
+}
 
 .commaAfter:not(:last-child):after {
   content: ',';
@@ -91,11 +94,9 @@ span.slider-value {
 	.module {
 		margin-bottom: @streamboardgutter;
 		background: @gray10;
+		overflow: hidden;
 		.border-radius;
 		.slowtrans;
-		&:last-child {
-			margin: 0;
-		}
 	}
 
 	.sidepanel-head {
@@ -131,7 +132,6 @@ span.slider-value {
 		top: 0;
 		bottom: 50px;
 		height: 100%;
-		overflow: hidden;
 	}
 	.tab-content {
 
@@ -186,8 +186,49 @@ span.slider-value {
 		color: @white;
 		padding: 0 @halfgutter;
 		background: @gray10;
-		border-bottom: solid 1px @maingray;
 		z-index: 1001;
+	}
+
+	/* Slideup Panel */
+	.slidepanel {
+		position: absolute;
+		bottom: -400px;
+		right: 0;
+		width: 100%;
+		height: 400px;
+		background: @gray10;
+		z-index: 1000;
+		.slowtrans;
+		&.selected {
+			bottom: @sidenavheight;
+		}
+		&.stats_panel {
+			padding: @gutter;
+		}
+		.mCustomScrollBox {
+			padding: 0 @halfgutter;
+		}
+		.module {
+			background: @gray12;
+			opacity: 1 !important;
+		}
+		h4.panel-title {
+			position: fixed;
+			right: 0;
+			color: @white;
+			font-size: 1em;
+			line-height: @sidenavheight;
+			padding: 0 @halfgutter;
+			margin-top: -@sidenavheight;
+			width: @sidepanelwidth;
+			background: @gray10;
+		}
+		h5 {
+			margin-bottom: 4px;
+		}
+		slider span.bar {
+			background: @maingray;
+		}
 	}
 }
 
@@ -201,41 +242,6 @@ span.slider-value {
 	&:hover {
 		color: @white;
 		opacity: 1;
-	}
-}
-
-/* Slideup Panel */
-.slidepanel {
-	position: absolute;
-	bottom: -460px;
-	right: 0;
-	padding: @gutter 0;
-	width: 100%;
-	height: 460px;
-	background: @gray10;
-	z-index: 1000;
-	.slowtrans;
-	&.selected {
-		bottom: @sidenavheight;
-	}
-	&.stats_panel {
-		padding: @gutter;
-	}
-	.mCustomScrollBox {
-		padding: 0 @halfgutter;
-	}
-	.module {
-		opacity: 1 !important;
-	}
-	h4 {
-		color: @base;
-		margin-bottom: @halfgutter;
-	}
-	h5 {
-		margin-bottom: 4px;
-	}
-	slider span.bar {
-		background: @maingray;
 	}
 }
 
