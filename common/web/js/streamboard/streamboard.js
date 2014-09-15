@@ -21,11 +21,13 @@ $(function () {
             handles: "s",
             animate: false,
             delay: 0,
-            resize: function( event, ui ) {
-                var remainingSpace = $(this).parent().height() - $(this).outerHeight(true);
+            resize: function() {
+                var remainingSpace = (100 * parseFloat($(this).css('height')) / parseFloat($(this).parent().css('height')));
                 var divTwo = $(this).next();
-                var divTwoHeight = remainingSpace - (divTwo.outerHeight(true) - divTwo.height());
-                divTwo.css('height', divTwoHeight + 'px');
+                var divOneHeight = (remainingSpace) + '%';
+                var divTwoHeight = (100 - remainingSpace) + '%';
+                $(this).height(divOneHeight);
+                $(divTwo).height(divTwoHeight);
             }
         });
         // resize fixed elements based on size of sidepanel
