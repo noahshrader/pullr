@@ -27,10 +27,11 @@
         "nodge/yii2-eauth": "*",
         "kartik-v/yii2-widgets": "dev-master",
         "yurkinx/yii2-image": "dev-master",
+        "paypal/sdk-core-php": "v1.4.2",
         "paypal/rest-api-sdk-php": "*",
+        "paypal/merchant-sdk-php":"2.*",
         "ritero/twitch-sdk": "dev-master",
         "2amigos/yii2-ckeditor-widget": "*",
-        "netresearch/jsonmapper": "0.*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

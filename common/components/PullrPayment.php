@@ -3,6 +3,7 @@
 namespace common\components;
 
 use common\components\message\ActivityMessage;
+use OAuth\Common\Exception\Exception;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\Payment;
 use PayPal\Auth\OAuthTokenCredential;
@@ -24,8 +25,6 @@ use common\components\paypal\ChargeModel;
 use common\components\paypal\MerchantPreferences;
 use common\components\paypal\PaymentDefinition;
 use PayPal\Api\Currency;
-
-define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
 
 class PullrPayment extends \yii\base\Component {
 
@@ -161,58 +160,26 @@ class PullrPayment extends \yii\base\Component {
     }
 
     public function subscribeToPlan($moneyAmount) {
-        $subscriptionType = "YEAR";
+        return;
+        $params = self::getPaymentParamsForMoney($moneyAmount);
 
-        switch ($subscriptionType) {
-            case "YEAR":
-                $agreement = (new Agreement())
-                    ->setName("Pullr recurring month subscription")
-                    ->setDescription("Desc")
-                    ->setStart_date("2015-02-19T00:37:04Z")
-                    ->setPlan((new \common\components\paypal\Plan())->setId("P-38F28151F75163633KVMZZCA"))
-                    ->setPayer((new Payer())->setPaymentMethod("paypal"));
+        // ### Itemized information
+        // (Optional) Lets you specify item wise
+        // information
+        $item = new Item();
+        $item->setName('Pro account for ' . $params['subscription'])
+                ->setCurrency('USD')
+                ->setQuantity(1)
+                ->setPrice($moneyAmount);
+        $itemList = new ItemList();
+        $itemList->setItems([$item]);
 
-                $links = RecurringPayment::createBillingAgreement($agreement)->getLinks();
 
-                if(!is_null($links)){
-                    foreach($links as $link){
-                        if($link->getRel() === "approval_url"){
-                            $redirectUrl = $link->getHref();
-                        }
-                    }
-                }
-                break;
+        $amount = new Amount();
+        $amount->setCurrency("USD")
+                ->setTotal($moneyAmount);
 
-            case "MONTH":
-                break;
-        }
-
-        header("Location: $redirectUrl");
-        exit;
-
-//        $params = self::getPaymentParamsForMoney($moneyAmount);
-//
-//        // ### Itemized information
-//        // (Optional) Lets you specify item wise
-//        // information
-//        $item = new Item();
-//        $item->setName('Pro account for ' . $params['subscription'])
-//                ->setCurrency('USD')
-//                ->setQuantity(1)
-//                ->setPrice($moneyAmount);
-//        $itemList = new ItemList();
-//        $itemList->setItems([$item]);
-//
-//
-//        $amount = new Amount();
-//        $amount->setCurrency("USD")
-//                ->setTotal($moneyAmount);
-//
-//        self::makePayment($amount, $itemList, $params['paymentType']);
-    }
-
-    public function executeAgreement($token){
-        return RecurringPayment::executeBillingAgreement($token);
+        self::makePayment($amount, $itemList, $params['paymentType']);
     }
 
     public static function makePayment($amount, $itemList, $paymentType, $relatedId = null, $payee = null) {
