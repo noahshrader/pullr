@@ -8,12 +8,6 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 ?>
 <div class="module">
     <div class="form-group">
-        <h5>Default Message</h5>
-        <textarea ng-model="widget.noDonationMessage" ng-change="regionChanged(region)"></textarea>
-    </div>
-</div>
-<div class="module">
-    <div class="form-group">
         <h5>Font style</h5>
         <div font-style ng-model="widget.fontStyle"></div>
     </div>
@@ -26,7 +20,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
         <h5>Font color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
     </div>
 </div>
-<div class="module last">
+<div class="module scrolling">
     <div class="form-group checkbox cf">
         <label ng-class="{on:widget.scrolling}">
             <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
@@ -41,3 +35,10 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
         </div>
     </div>
 </div>
+<div class="module last">
+    <div class="form-group">
+        <h5>Default Message</h5>
+        <textarea ng-model="widget.noDonationMessage" ng-change="regionChanged(region)"></textarea>
+    </div>
+</div>
+<div class="right-side-footer"></div>

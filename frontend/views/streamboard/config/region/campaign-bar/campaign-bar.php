@@ -24,7 +24,7 @@
         <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
     </div>
 </div>
-<div class="module">
+<div class="module last">
     <div class="form-group">
         <h5>Modules</h5>
         <div class="checkbox">

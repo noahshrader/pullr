@@ -6,25 +6,29 @@ use yii\web\View;
 ?>
 <div ng-app="pullr.streamboard.sourceApp" class="view-source">
     <div ng-controller="SourceCtrl">
-        <div class="twitchStats" ng-show="twitchUser">
-            <div>Followers: <span id="followers_number" class="amount accent">{{twitchUser.followersNumber}}</span>
-            </div>
-            <div ng-show="Pullr.user.userFields.twitchPartner">Subscribers:
-                <span id="subscriber_number" class="amount accent">{{twitchUser.subscribersNumber}}</span>
+        <div class="twitchStats module" ng-show="twitchUser">
+            <div class="form-group">
+                <div>Followers: <span id="followers_number" class="amount accent">{{twitchUser.followersNumber}}</span>
+                </div>
+                <div ng-show="Pullr.user.userFields.twitchPartner">Subscribers:
+                    <span id="subscriber_number" class="amount accent">{{twitchUser.subscribersNumber}}</span>
+                </div>
             </div>
         </div>
-        <div class="activityFeed">
-            <h4>Activity Feed</h4>
-            <span ng-repeat="donor in donors" class="commaAfter">
-                <span class="nowrap">
-                <span>{{donor.name}}</span>
-               (<span class="amount accent">${{number_format(donor.amount)}}</span>)<!-- removing space before :after{content:} rule
-            --></span></span>
-            <span ng-repeat="subscriber in subscribers" class="commaAfter">
-                <span class="nowrap">
-                <span>{{subscriber.display_name}}</span>
-                <span>(Subscribed)</span><!-- removing space before :after(content:} rule
-            --></span></span>
+        <div class="activityFeed module">
+            <div class="form-group">
+                <h5>Activity Feed</h5>
+                <span ng-repeat="donor in donors" class="commaAfter">
+                    <span class="nowrap">
+                    <span>{{donor.name}}</span>
+                   (<span class="amount accent">${{number_format(donor.amount)}}</span>)<!-- removing space before :after{content:} rule
+                --></span></span>
+                <span ng-repeat="subscriber in subscribers" class="commaAfter">
+                    <span class="nowrap">
+                    <span>{{subscriber.display_name}}</span>
+                    <span>(Subscribed)</span><!-- removing space before :after(content:} rule
+                --></span></span>
+            </div>
         </div>
         <div class="overall" ng-show="length(campaignsService.campaigns) > 1">
             <h4>Overall</h4>
