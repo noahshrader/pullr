@@ -8,6 +8,16 @@ $sourceHref = Url::to('', true) . '/source';
         Copy Link
     </button>
 </div>
-<div>
-	<iframe id="frame" src="<?= $sourceHref ?>"></iframe>
+<script type="text/javascript">
+	function iframeLoaded() {
+	  var iFrameID = document.getElementById('idIframe');
+	  if(iFrameID) {
+	        // here you can make the height, I delete it first, then I make it again
+	        iFrameID.height = "";
+	        iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+	  }   
+	}
+</script>
+<div class="view-source pane">
+	<iframe id="frame" src="<?= $sourceHref ?>" onload="iframeLoaded()" scrolling="no"></iframe>
 </div>

@@ -100,6 +100,7 @@ span.slider-value {
 		/* Sidepanel Tab Menu */
 		ul.panel-nav {
 			top: 0;
+			border-top: 0;
 			border-bottom: solid 1px @maingray;
 
 			li {
@@ -142,13 +143,14 @@ span.slider-value {
 		> .pane {
 			top: 0;
 			bottom: @sidenavheight;
+
+			&.view-source {
+				top: @sidenavheight;
+				bottom: @sidenavheight + @sidenavheight;
+			}
 		}
 		.regions-panel.pane {
 			bottom: @sidenavheight + @sidenavheight;
-
-			&.redpad {
-				bottom: @sidenavheight;
-			}
 		}
 		.settings-wrap {
 			padding: @streamboardgutter;
@@ -186,14 +188,20 @@ span.slider-value {
 		z-index: 1000;
 		.slowtrans;
 		&.selected {
-			bottom: @sidenavheight + 1px;
+			bottom: @sidenavheight;
 		}
 		.mCustomScrollBox {
 			padding: 0 @halfgutter;
 		}
 		.module {
+			display: inline-block;
+			width: 100%;
 			background: @gray12;
 			opacity: 1 !important;
+
+			&.first {
+				margin-top: @halfgutter;
+			}
 		}
 		h4.panel-title {
 			position: fixed;
@@ -219,16 +227,12 @@ span.slider-value {
 
 /* General Module Styles */
 .module {
-	position: relative;
 	margin-bottom: @streamboardgutter;
 	background: @gray10;
 	overflow: hidden;
 	.border-radius;
 	.slowtrans;
-	
-	&.first {
-		top: @halfgutter;
-	}
+
 	&.last {
 		margin: 0;
 
@@ -260,6 +264,7 @@ ul.panel-nav {
 	line-height: @sidenavheight;
 	height: @sidenavheight;
 	background: @gray10;
+	border-top: solid 1px #2e2e32;
 
 	li {
 		&:last-child {
@@ -433,7 +438,6 @@ ul.panel-nav {
 	max-width: 50%;
 	min-width: 250px;
 	background: @gray10;
-	border-top: solid 1px @maingray;
 	z-index: 1000;
 
 	ul.panel-nav {

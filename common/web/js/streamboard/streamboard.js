@@ -129,6 +129,7 @@ $(function () {
 //        duplicated: true
 //    });
 //}
+// google fonts
 function requireGoogleFont(fontFamily){
    if (!fontFamily){
        return;
