@@ -31,7 +31,7 @@
         "paypal/rest-api-sdk-php": "*",
         "paypal/merchant-sdk-php":"2.*",
         "ritero/twitch-sdk": "dev-master",
-        "2amigos/yii2-ckeditor-widget": "*",
+        "2amigos/yii2-ckeditor-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
