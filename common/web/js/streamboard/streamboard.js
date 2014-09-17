@@ -1,65 +1,72 @@
-$(function () {
-    
-    // onload functions
-    $(window).load(function() {
-        // streamboard loader
-        $(".spinner-wrap").addClass('powered').fadeOut();
-        // make source iframe adjust to height of inner content
-        $('iframe').iFrameResize({
-            heightCalculationMethod: 'documentElementScroll'
-        });
-        $("#sidepanel").resizable({
-            minWidth: 250,
-            handles: "w",
-            animate: false,
-            delay: 0,
-            resize: function( event, ui ) {
-                $("#sidepanel").css('left', 'auto');
-            }
-        });
-        $(".regionsContainer .region:first-child").resizable({
-            handles: "s",
-            animate: false,
-            delay: 0,
-            resize: function( event, ui ) {
-                var remainingSpace = $(this).parent().height() - $(this).outerHeight(true);
-                var divTwo = $(this).next();
-                var divTwoHeight = remainingSpace - (divTwo.outerHeight(true) - divTwo.height());
-                divTwo.css('height', divTwoHeight + 'px');
-            }
-        });
-        // resize fixed elements based on size of sidepanel
-        $('#sidepanel').resize(function() {
-            var panelhead = $('#sidepanel').width() - 30;
-            var sidefooter = $('#sidepanel').width();
-            $('.panel-head, .panel-title').width(panelhead);
-            $('.right-side-footer').width(sidefooter);
-        });
-        // make items movable
-        $(".movable").draggable({
-            containment: "parent",
-            scroll: false
-        });
-        // custom scrollbars
-        $(".pane").mCustomScrollbar({
-            theme:"minimal",
-            mouseWheel:{
-                preventDefault: true,
-                scrollAmount: 10
-            },
-            scrollInertia: 80,
-            callbacks:{
-                alwaysTriggerOffsets: true,
-                onTotalScrollBackOffset: 10,
-                onScrollStart: function(){
-                    $('.panel-head, .panel-title').addClass('border');
-                },
-                onTotalScrollBack: function(){
-                    $('.panel-head, .panel-title').removeClass('border');
-                }
-            }
-        });
+$(window).load(function() {
+
+    // streamboard loader
+    $(".spinner-wrap").addClass('powered').fadeOut();
+
+    // resizing magic
+    $("#sidepanel").resizable({
+        handles: "w",
+        minWidth: 250,
+        animate: false,
+        delay: 0,
+        resize: function( event, ui ) {
+            $("#sidepanel").css('left', 'auto');
+        }
     });
+    $(".regionsContainer .region:first-child").resizable({
+        handles: "s",
+        animate: false,
+        delay: 0,
+        resize: function() {
+            var remainingSpace = (100 * parseFloat($(this).css('height')) / parseFloat($(this).parent().css('height')));
+            var divTwo = $(this).next();
+            var divOneHeight = (remainingSpace) + '%';
+            var divTwoHeight = (100 - remainingSpace) + '%';
+            $(this).height(divOneHeight);
+            $(divTwo).height(divTwoHeight);
+        }
+    });
+    $(".donation-stream-scroll").resizable({
+        handles: "w",
+        minWidth: 100,
+        animate: false,
+        delay: 0,
+    });
+    // resize fixed elements based on size of sidepanel
+    $('#sidepanel').resize(function() {
+        var panelhead = $('#sidepanel').width() - 30;
+        var sidefooter = $('#sidepanel').width();
+        $('.panel-head, .panel-title').width(panelhead);
+        $('.right-side-footer').width(sidefooter);
+    });
+    // make items movable
+    $(".movable").draggable({
+        containment: "parent",
+        scroll: false
+    });
+
+    // custom scrollbars
+    $(".pane").mCustomScrollbar({
+        theme:"minimal",
+        mouseWheel:{
+            preventDefault: true,
+            scrollAmount: 10
+        },
+        scrollInertia: 80,
+        live: true
+    });
+    // resize iframe based on inner content
+    $('iframe').iFrameResize({
+        heightCalculationMethod: 'documentElementScroll'
+    });
+    // donation marquee scroll
+    $('.donation-stream-scroll').marquee({
+        pauseOnHover: true,
+        duplicated: true
+    });
+});
+
+$(function () {
 
     // panel toggles
     $(document).on('click', '.paneltoggle li a', function() {
@@ -71,7 +78,7 @@ $(function () {
         $('.slidepanel').removeClass('selected');
     });
     
-    // If panel is exposed, blur items in back
+    // if panel is exposed, blur items in back
     $(document).on('click', function() {
         var dimmed = $('.settings-wrap .module, .donations-list');
         if ($(".slidepanel").hasClass("selected")) {
@@ -124,15 +131,7 @@ $(function () {
         }
     }, 1000)
 });
-//function startMarquee(){
-//    $('.donation-stream-scroll').marquee({
-//        duration: 16000, // Slow = 28000; Normal = 16000; Fast = 8000;
-//        gap: 50,
-//        delayBeforeStart: 0,
-//        direction: 'left',
-//        duplicated: true
-//    });
-//}
+// google fonts
 function requireGoogleFont(fontFamily){
    if (!fontFamily){
        return;

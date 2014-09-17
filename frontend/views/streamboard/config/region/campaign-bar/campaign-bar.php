@@ -18,13 +18,13 @@
                 ng-change="regionChanged(region)"></slider>
     </div>
     <div class="form-group">
-        <h5>Font Color <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
+        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
     </div>
     <div class="form-group">
-        <h5>Background Color <input colorpicker="rgba" colorpicker-position="left" type="text" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
+        <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
     </div>
 </div>
-<div class="module">
+<div class="module last">
     <div class="form-group">
         <h5>Modules</h5>
         <div class="checkbox">
@@ -60,18 +60,21 @@
         <li ng-if="widget.timerEnable"><a data-panel="timerModule" class="icon-timer"></a></li>
     </ul>
 
-    <div class="alertsModule_panel slidepanel" child-scope>
+    <div class="alertsModule_panel slidepanel pane" child-scope>
         <div ng-init="module = widget.alertsModule">
+            <h4 class="panel-title">Alerts Settings</h4>
             <?= $this->render('module-alerts') ?>
         </div>
     </div>
-    <div class="messagesModule_panel slidepanel" child-scope>
+    <div class="messagesModule_panel slidepanel pane" child-scope>
         <div ng-init="module = widget.messagesModule">
+            <h4 class="panel-title">Message Settings</h4>
             <?= $this->render('module-messages') ?>
         </div>
     </div>
-    <div class="timerModule_panel slidepanel" child-scope>
+    <div class="timerModule_panel slidepanel pane" child-scope>
         <div ng-init="module = widget.timerModule">
+            <h4 class="panel-title">Timer Settings</h4>
             <?= $this->render('module-timer') ?>
         </div>
     </div>

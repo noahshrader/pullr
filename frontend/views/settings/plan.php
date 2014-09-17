@@ -3,29 +3,23 @@ use yii\widgets\ActiveForm;
 use common\models\Plan;
 
 ?>
+
+
 <div class="plan-show-<?= $user->plan ?> plan">
+
+    <?php if($user->plan === Plan::PLAN_BASE):?>
+
+    <!-- Pullr Basic -->
     <div class="plan-pro-advertisement">
         <div>
-            <p>ome advertising text here - you can use pro-plan with more features</p>
+            <p>Some advertising text here - you can use pro-plan with more features</p>
         </div>
         <div class="account-action">
-            <button class="btn btn-primary" onclick="$('.plan-show-Basic').toggleClass('plan-show-Basic plan-show-payment')">Go Pro</button>
+            <button class="btn btn-primary" id="go-pro-btn" onclick="//$('.plan-show-Basic').toggleClass('plan-show-Basic plan-show-payment')">Go Pro</button>
         </div>
     </div>
 
-    <!-- Pullr Basic -->
-    <div class="payment">
-        <? $form = ActiveForm::begin(['options' => ['method' => 'POST']]) ?>
-        <h2>Go Pro</h2>
-        <div>
-            <select name="subscription" class="form-control select-block">
-                <option label="Yearly recurring $(<?= \Yii::$app->params['yearSubscription'] ?>/yr)"><?= \Yii::$app->params['yearSubscription'] ?></option>
-                <option label="Monthly recurring $(<?= \Yii::$app->params['monthSubscription']?>/mo)"><?= \Yii::$app->params['monthSubscription'] ?></option>
-            </select>
-        </div>
-        <button class="btn btn-primary">Complete purchase</button>
-        <? ActiveForm::end() ?>
-    </div>
+    <?php else:?>
 
     <!-- Pullr Pro -->
     <div class="account-confirmation">
@@ -42,8 +36,8 @@ use common\models\Plan;
             ->setTimestamp($plan->expire)
             ->format('M j Y');
         ?>
-        <? if ($user->id < 10): ?>
-            <a class="deactivate" href="app/settings/deactivatepro">Downgrade my plan</a>
-        <? endif;?>
+        <a class="deactivate" href="app/settings/deactivatepro">Downgrade my plan</a>
     </div>
+
+    <?php endif;?>
 </div>

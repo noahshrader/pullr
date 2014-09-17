@@ -11,8 +11,6 @@
             /*whenever regions are changes we are checking that we have right fonts*/
             $scope.$watch('regionsService.regions', requireAllFonts, true);
 
-            setInterval(window.startMarquee, 5000);
-
             /*we make a delay as streamboard may still be loading, even if regions are ready*/
             $interval(function () {
                 $.each($scope.regionsService.regions, function (index, region) {

@@ -40,4 +40,9 @@ class Payment extends ActiveRecord {
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'userId']);
     }
+
+    public static function txnAlreadyProcessed($txn){
+        $payment = Payment::findOne(['paypalId' => $txn, 'status' => Payment::STATUS_APPROVED]);
+        return isset($payment);
+    }
 }

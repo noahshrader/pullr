@@ -3,6 +3,7 @@
 namespace common\components;
 
 use common\components\message\ActivityMessage;
+use OAuth\Common\Exception\Exception;
 use PayPal\Rest\ApiContext;
 use PayPal\Api\Payment;
 use PayPal\Auth\OAuthTokenCredential;
@@ -18,8 +19,12 @@ use common\models\Donation;
 use common\models\Campaign;
 use PayPal\Api\Payee;
 use common\models\notifications\RecentActivityNotification;
-
-define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
+use common\components\paypal\Agreement;
+use common\components\paypal\RecurringPayment;
+use common\components\paypal\ChargeModel;
+use common\components\paypal\MerchantPreferences;
+use common\components\paypal\PaymentDefinition;
+use PayPal\Api\Currency;
 
 class PullrPayment extends \yii\base\Component {
 
@@ -154,7 +159,8 @@ class PullrPayment extends \yii\base\Component {
         self::makePayment($amount, $itemList, \common\models\Payment::TYPE_DONATION, $donation->id, $payee);
     }
 
-    public function proPayment($moneyAmount) {
+    public function subscribeToPlan($moneyAmount) {
+        return;
         $params = self::getPaymentParamsForMoney($moneyAmount);
 
         // ### Itemized information
@@ -231,6 +237,7 @@ class PullrPayment extends \yii\base\Component {
             // once the buyer approves the payment and is redirected
             // back to your website.
             //
+
             $session->set('paymentId', $payment->getId());
             $pay = new \common\models\Payment();
             $pay->paypalId = $payment->getId();
