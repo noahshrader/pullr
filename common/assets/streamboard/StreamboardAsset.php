@@ -17,7 +17,7 @@ class StreamboardAsset extends AssetBundle
         'bower_components/ng-file-upload/angular-file-upload.min.js',
         'bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
         'bower_components/iframe-resizer/js/iframeResizer.min.js',
-        /*'bower_components/jQuery.Marquee/jquery.marquee.min.js',*/
+        'bower_components/jQuery.Marquee/jquery.marquee.min.js',
 		'js/streamboard/streamboard.js',
         /* angular-app begin */
         'js/streamboard/angular-app/donationsService.js',

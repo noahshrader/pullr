@@ -2,6 +2,7 @@ $(window).load(function() {
 
     // streamboard loader
     $(".spinner-wrap").addClass('powered').fadeOut();
+
     // resizing magic
     $("#sidepanel").resizable({
         handles: "w",
@@ -26,7 +27,7 @@ $(window).load(function() {
         }
     });
     $(".donation-stream-scroll").resizable({
-        handles: "e",
+        handles: "w",
         minWidth: 100,
         animate: false,
         delay: 0,
@@ -43,6 +44,7 @@ $(window).load(function() {
         containment: "parent",
         scroll: false
     });
+
     // custom scrollbars
     $(".pane").mCustomScrollbar({
         theme:"minimal",
@@ -56,6 +58,11 @@ $(window).load(function() {
     // resize iframe based on inner content
     $('iframe').iFrameResize({
         heightCalculationMethod: 'documentElementScroll'
+    });
+    // donation marquee scroll
+    $('.donation-stream-scroll').marquee({
+        pauseOnHover: true,
+        duplicated: true
     });
 });
 
@@ -124,15 +131,6 @@ $(function () {
         }
     }, 1000)
 });
-//function startMarquee(){
-//    $('.donation-stream-scroll').marquee({
-//        duration: 16000, // Slow = 28000; Normal = 16000; Fast = 8000;
-//        gap: 50,
-//        delayBeforeStart: 0,
-//        direction: 'left',
-//        duplicated: true
-//    });
-//}
 // google fonts
 function requireGoogleFont(fontFamily){
    if (!fontFamily){

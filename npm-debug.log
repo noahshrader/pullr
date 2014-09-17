@@ -1,0 +1,63 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/0.10.26/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose readDependencies using package.json deps
+5 verbose install where, deps [ '/Applications/MAMP/htdocs/pullr',
+5 verbose install   [ 'bower',
+5 verbose install     'less',
+5 verbose install     'karma',
+5 verbose install     'karma-chrome-launcher',
+5 verbose install     'karma-jasmine',
+5 verbose install     'karma-jasmine-jquery',
+5 verbose install     'protractor',
+5 verbose install     'karma-jquery' ] ]
+6 info preinstall pullr@0.1.0
+7 verbose readDependencies using package.json deps
+8 verbose already installed skipping karma@~0.12.23 /Applications/MAMP/htdocs/pullr
+9 verbose already installed skipping bower@~1.3.9 /Applications/MAMP/htdocs/pullr
+10 verbose already installed skipping less@~1.7.5 /Applications/MAMP/htdocs/pullr
+11 verbose already installed skipping karma-chrome-launcher@~0.1.4 /Applications/MAMP/htdocs/pullr
+12 verbose already installed skipping karma-jasmine@~0.2.0 /Applications/MAMP/htdocs/pullr
+13 verbose already installed skipping karma-jasmine-jquery@~0.1.0 /Applications/MAMP/htdocs/pullr
+14 verbose already installed skipping protractor@~1.2.0 /Applications/MAMP/htdocs/pullr
+15 verbose already installed skipping karma-jquery@~0.1.0 /Applications/MAMP/htdocs/pullr
+16 silly resolved []
+17 info build /Applications/MAMP/htdocs/pullr
+18 verbose linkStuff [ false, false, false, '/Applications/MAMP/htdocs' ]
+19 info linkStuff pullr@0.1.0
+20 verbose linkBins pullr@0.1.0
+21 verbose linkMans pullr@0.1.0
+22 verbose rebuildBundles pullr@0.1.0
+23 verbose rebuildBundles [ '.bin',
+23 verbose rebuildBundles   'bower',
+23 verbose rebuildBundles   'karma',
+23 verbose rebuildBundles   'karma-chrome-launcher',
+23 verbose rebuildBundles   'karma-jasmine',
+23 verbose rebuildBundles   'karma-jasmine-jquery',
+23 verbose rebuildBundles   'karma-jquery',
+23 verbose rebuildBundles   'less',
+23 verbose rebuildBundles   'protractor' ]
+24 info install pullr@0.1.0
+25 info postinstall pullr@0.1.0
+26 verbose unsafe-perm in lifecycle true
+27 info pullr@0.1.0 Failed to exec postinstall script
+28 error pullr@0.1.0 postinstall: `bower install`
+28 error Exit status 1
+29 error Failed at the pullr@0.1.0 postinstall script.
+29 error This is most likely a problem with the pullr package,
+29 error not with npm itself.
+29 error Tell the author that this fails on your system:
+29 error     bower install
+29 error You can get their info via:
+29 error     npm owner ls pullr
+29 error There is likely additional logging output above.
+30 error System Darwin 13.3.0
+31 error command "/usr/local/Cellar/node/0.10.26/bin/node" "/usr/local/bin/npm" "install"
+32 error cwd /Applications/MAMP/htdocs/pullr
+33 error node -v v0.10.26
+34 error npm -v 1.4.3
+35 error code ELIFECYCLE
+36 verbose exit [ 1, true ]
