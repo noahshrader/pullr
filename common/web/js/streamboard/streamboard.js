@@ -53,6 +53,10 @@ $(window).load(function() {
         scrollInertia: 80,
         live: true
     });
+    // resize iframe based on inner content
+    $('iframe').iFrameResize({
+        heightCalculationMethod: 'documentElementScroll'
+    });
 });
 
 $(function () {

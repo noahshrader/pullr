@@ -2,7 +2,20 @@
 
 body {
   background: @maingray;
-  padding: @halfgutter;
   height: auto;
   overflow: visible;
+}
+
+.source-wrap {
+	padding: @streamboardgutter;
+
+	.module {
+		span {
+color: @white !important;
+		}
+
+		&:last-child {
+			margin: 0;
+		}
+	}
 }

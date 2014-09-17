@@ -19,5 +19,5 @@ $sourceHref = Url::to('', true) . '/source';
 	}
 </script>
 <div class="view-source pane">
-	<iframe id="frame" src="<?= $sourceHref ?>" onload="iframeLoaded()" scrolling="no"></iframe>
+	<iframe id="frame" height="100%" src="<?= $sourceHref ?>" onload="iframeLoaded()" scrolling="no"></iframe>
 </div>
