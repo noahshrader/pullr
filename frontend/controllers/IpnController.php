@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 
 use common\components\PullrPayment;
+use common\models\Ipn;
 use common\models\Payment;
 use common\models\RecurringProfile;
 use common\models\User;
@@ -87,9 +88,17 @@ class IpnController extends FrontendController{
         if ($this->isRequestGenuine($requestData)){
             $data = $this->requestDataAsArray($requestData);
 
+            //log all incoming genuine IPN requests
+            $ipnRequest = new Ipn();
+            $ipnRequest->createdDate = time();
+            $ipnRequest->txnType = $data['txn_type'];
+            $ipnRequest->rawData = $requestData;
+            $ipnRequest->save();
+
             switch($data['txn_type']){
                 case 'recurring_payment':
                     if (($data['payment_status'] === 'Completed') && (!Payment::txnAlreadyProcessed($data['txn_id']))){
+
                         $recurringProfile = RecurringProfile::findOne(['profileId' => $data['recurring_payment_id']]);
 
                         if (isset($recurringProfile)){

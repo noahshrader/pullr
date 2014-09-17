@@ -7,10 +7,12 @@ class m140915_074910_ipn_table extends Migration
 {
     public function up()
     {
-        //$this->createTable(\common\models\Ipn::tableName(), [
-       //     'profileId' => Schema::TYPE_PK,
-       //     'rawData' => Schema::TYPE_TEXT
-       // ]);
+        $this->createTable(\common\models\Ipn::tableName(), [
+            'id' => Schema::TYPE_PK,
+            'txnType' => Schema::TYPE_STRING . ' NOT NULL',
+            'createdDate' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'rawData' => Schema::TYPE_TEXT . ' NOT NULL'
+        ]);
     }
 
     public function down()

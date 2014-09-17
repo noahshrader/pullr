@@ -15,7 +15,6 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\models\mail\Mail;
 use common\components\PullrPayment;
-use common\components\paypal\RecurringPayment;
 
 class SettingsController extends FrontendController {
 
@@ -69,14 +68,21 @@ class SettingsController extends FrontendController {
      * that is for debug purposes and only availabe for user's id<10
      */
     public function actionDeactivatepro(){
-        $user = \Yii::$app->user->identity;
-        if ($user->id < 10){
-            $plan = Plan::findOne($user->id);
-            $plan->plan = Plan::PLAN_BASE;
-            $plan->expire = time();
-            $plan->save();
-        }
-        $this->redirect('settings');
+        $recurringProfile = RecurringProfile::findOne(['userId' => Yii::$app->user->identity->id]);
+
+        $paypalService = new \PayPalAPIInterfaceServiceService();
+        $requestDetails = new \ManageRecurringPaymentsProfileStatusRequestDetailsType();
+        $requestDetails->Action =  'Cancel';
+        $requestDetails->ProfileID =  $recurringProfile->profileId;
+        $profileStatusRequest = new \ManageRecurringPaymentsProfileStatusRequestType();
+        $profileStatusRequest->ManageRecurringPaymentsProfileStatusRequestDetails = $requestDetails;
+
+        $manageRPPStatusReq = new \ManageRecurringPaymentsProfileStatusReq();
+        $manageRPPStatusReq->ManageRecurringPaymentsProfileStatusRequest = $profileStatusRequest;
+
+        $paypalService->ManageRecurringPaymentsProfileStatus($manageRPPStatusReq);
+
+        $this->redirect('index');
     }
     
     /**
