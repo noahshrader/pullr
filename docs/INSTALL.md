@@ -7,7 +7,10 @@ Select folder to locate pullr
 `git clone https://github.com/noahshrader/pullr`
 
 Download composer (e.g. to you home folder, next home folder will be supposed)  
-https://getcomposer.org/download/
+`https://getcomposer.org/download/`
+
+Plugin for composer
+`php composer.phar global require "fxp/composer-asset-plugin:1.0.*@dev"`
 
 Next from pullr folder run  
 `~/composer.phar update`
@@ -27,14 +30,10 @@ Next we will load js libraries and npm packages we need
 
 ####Update your local repository with new changes
 To update files use your GUI App to sync or use that to run via terminal:   
-```
-git pull
-```
+`git pull`
 
 Sometimes you need to update db, so run that (that will remove all tables and load data sample data again): 
-```
-./makesample.sh
-```
+`./makesample.sh`
 
 ####Useful commands
 * `./yii pullr/purge` - will remove all tables from db
