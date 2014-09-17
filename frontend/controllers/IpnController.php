@@ -34,11 +34,8 @@ class IpnController extends FrontendController{
         // read the post from PayPal system and add 'cmd'
         $validateCmd = "{$requestData}&cmd=_notify-validate";
 
-        //if(USE_SANDBOX == true) {
-        $paypalUrl = "https://www.sandbox.paypal.com/cgi-bin/webscr";
-        // } else {
-        //     $paypal_url = "https://www.paypal.com/cgi-bin/webscr";
-        // }
+        $payPalHost = \Yii::$app->params['payPalHost'];
+        $paypalUrl = "$payPalHost/cgi-bin/webscr";
 
         $ch = curl_init($paypalUrl);
         if ($ch == FALSE) {

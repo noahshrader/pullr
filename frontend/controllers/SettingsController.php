@@ -68,6 +68,7 @@ class SettingsController extends FrontendController {
      * that is for debug purposes and only availabe for user's id<10
      */
     public function actionDeactivatepro(){
+
         $recurringProfile = RecurringProfile::findOne(['userId' => Yii::$app->user->identity->id]);
 
         $paypalService = new \PayPalAPIInterfaceServiceService();
@@ -115,6 +116,11 @@ class SettingsController extends FrontendController {
         return $this->render("gopro");
     }
 
+    public function actionCancelpro(){
+        $this->layout = "tmpLayout";
+        return $this->render("cancelpro");
+    }
+
     public function actionProstepone(){
         if (isset($_POST['subscription'])) {
             $payAmount = $_POST['subscription'];
@@ -159,7 +165,8 @@ class SettingsController extends FrontendController {
 
             $setECResponse = $paypalService->SetExpressCheckout($setECReq);
 
-            $this->redirect("https://www.sandbox.paypal.com/incontext?token={$setECResponse->Token}");
+            $payPalHost = \Yii::$app->params['payPalHost'];
+            $this->redirect("$payPalHost/incontext?token={$setECResponse->Token}");
         }
     }
 
@@ -206,20 +213,36 @@ class SettingsController extends FrontendController {
         //subscribe user to recurring payment if successfully billed for the first month\year
         if(($DoECResponse->Ack === 'Success') && ($initPaymentInfo->PaymentStatus === 'Completed'))
         {
+            //create a transaction record in payments table
+            $payment = new Payment();
+            $payment->status = Payment::STATUS_APPROVED;
+            $payment->userId = \Yii::$app->user->identity->id;
+            $payment->amount = intval($payAmount);
+            $payment->paypalId = $initPaymentInfo->TransactionID;
+            $payment->createdDate = time();
+            $payment->type = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? Payment::TYPE_PRO_YEAR : Payment::TYPE_PRO_MONTH;
+            $payment->save();
+
+            //prolong user Pro account
+            Plan::findOne(\Yii::$app->user->identity->id)->prolong((new Session())->get("money_amount"));
+
+            //preparations to create recurring subscription
             $profileDetails = new \RecurringPaymentsProfileDetailsType();
-            $profileDetails->BillingStartDate = "2014-09-16T00:00:00:000Z";
+            $dateInterval = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? (new \DateInterval('P1Y')) : (new \DateInterval('P1M'));
+            $profileDetails->BillingStartDate = (new \DateTime())
+                ->setTimezone(new \DateTimeZone(Yii::$app->user->identity->getTimezone()))
+                ->setTimestamp(time())
+                ->add($dateInterval)
+                ->format('c');
 
             $paymentBillingPeriod = new \BillingPeriodDetailsType();
             $paymentBillingPeriod->BillingFrequency = 1;
-            $paymentBillingPeriod->BillingPeriod = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "Year" : "Month";;
+            $paymentBillingPeriod->BillingPeriod = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "Year" : "Month";
             $paymentBillingPeriod->Amount = new \BasicAmountType("USD", $payAmount);
 
             $scheduleDetails = new \ScheduleDetailsType();
             $scheduleDetails->Description = "Recurring payment";
             $scheduleDetails->PaymentPeriod = $paymentBillingPeriod;
-//            $initialPayment = new \ActivationDetailsType();
-//            $initialPayment->InitialAmount = new \BasicAmountType("USD", "8.0");
-//            $scheduleDetails->ActivationDetails = $initialPayment;
 
             $createRPProfileRequestDetails = new \CreateRecurringPaymentsProfileRequestDetailsType();
             $createRPProfileRequestDetails->Token = $token;
@@ -236,16 +259,6 @@ class SettingsController extends FrontendController {
             $paypalService = new \PayPalAPIInterfaceServiceService();
             $response = $paypalService->CreateRecurringPaymentsProfile($createRPProfileReq);
 
-            //create a transaction record in payments table
-            $payment = new Payment();
-            $payment->status = Payment::STATUS_APPROVED;
-            $payment->userId = \Yii::$app->user->identity->id;
-            $payment->amount = intval($payAmount);
-            $payment->paypalId = $initPaymentInfo->TransactionID;
-            $payment->createdDate = time();
-            $payment->type = Payment::TYPE_PRO_YEAR;
-            $payment->save();
-
             if ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile'){
                 $recurringProfile = RecurringProfile::findOne(['userId' => \Yii::$app->user->identity->id]);
 
@@ -259,8 +272,6 @@ class SettingsController extends FrontendController {
                     $recurringProfile->userId = \Yii::$app->user->identity->id;
                     $recurringProfile->save();
                 }
-
-                Plan::findOne(\Yii::$app->user->identity->id)->prolong((new Session())->get("money_amount"));
 
                 $this->redirect("index");
             }

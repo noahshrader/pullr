@@ -94,9 +94,18 @@ $this->registerJs($js);
     <link href="/js/lib/magnificpopup.css" rel="stylesheet">
     <script src="/js/lib/magnificpopup.js"></script>
     <script>
-        $('.plan-show-Basic').magnificPopup({
+        $('#go-pro-btn').magnificPopup({
             items:{
                 src: '/app/settings/gopro'
+            },
+            type: 'iframe',
+            removalDelay: 300,
+            mainClass: 'mfp-fade'
+        });
+
+        $('a.deactivate').magnificPopup({
+            items:{
+                src: '/app/settings/cancelpro'
             },
             type: 'iframe',
             removalDelay: 300,

@@ -18,11 +18,9 @@ DonationAsset::register($this);
        <?php $this->beginBody() ?>
             <?= $content ?>
        <?php $this->endBody() ?>
-       
+
        <!-- Footer -->
         <footer id="footer">
-            <h5>Powered by</h5>
-            <a class="logo icon-pullr" href="http://www.pullr.io" target="_blank"></a>
         </footer>
     </body>
 </html>

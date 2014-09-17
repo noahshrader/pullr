@@ -12,6 +12,7 @@ return [
     /*overright it in params-local.php as params-local is not included in git repository*/
     'paypalClientId' => 'AdhS6hAM2klW0zvrByqMTUAwosKCt8kMrhUPN6-HHzoCaJscFJHsGfGUvLzP',
     'paypalClientSecret' => 'EHYMZhAE29WHfY8T37s-j-2wMOL8SMjjB3uX-9h9uz2snme0pL_tKYLg3YK4',
+    'payPalHost' => 'https://www.sandbox.paypal.com',
     /*use that link to add/change your application
     * "http://www.twitch.tv/settings/connections"
      */
