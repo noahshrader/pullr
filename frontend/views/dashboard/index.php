@@ -11,7 +11,9 @@ use common\components\Application;
  */
 $this->title = 'Dashboard';
 
-$this->registerJsFile('@web/js/dashboard/index.js', common\assets\CommonAsset::className());
+$this->registerJsFile('@web/js/dashboard/index.js', [
+    'depends' => common\assets\CommonAsset::className(),
+]);
 $user = Application::getCurrentUser();
 $twitchPartner = $user->userFields->twitchPartner;
 ?>

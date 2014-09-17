@@ -11,6 +11,8 @@ use common\assets\BigVideoAsset;
 
 $this->title = "Dang. We Can't Find That!";
 BigVideoAsset::register($this);
-$this->registerJsFile('@web/js/site/error.js', BigVideoAsset::className());
+$this->registerJsFile('@web/js/site/error.js', [
+    'depends' => BigVideoAsset::className()
+]);
 ?>
 <div id="content"></div>

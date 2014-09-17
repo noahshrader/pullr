@@ -1,9 +1,9 @@
 <?
 
-use common\assets\CommonAsset;
-
 $this->registerJsFile('@web/js/lib/knockout-3.1.js');
-$this->registerJsFile('@web/js/campaign/campaigns-filter.js',  CommonAsset::className() );
+$this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
+    'depends' => common\assets\CommonAsset::className(),
+] );
 ?>
 
 <div class="campaigns-list" >

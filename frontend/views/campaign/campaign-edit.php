@@ -5,7 +5,9 @@ use kartik\widgets\ActiveForm;
 use yii\helpers\Url;
 use common\models\Plan;
 
-$this->registerJsFile('@web/js/campaign/edit.js', common\assets\CommonAsset::className());
+$this->registerJsFile('@web/js/campaign/edit.js', [
+    'depends' => common\assets\CommonAsset::className(),
+]);
 /**
  * @var User;
  */

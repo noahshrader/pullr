@@ -1,5 +1,7 @@
 <?
-$this->registerJSFile('@web/js/campaign/donation-table.js', \common\assets\CommonAsset::className());
+$this->registerJSFile('@web/js/campaign/donation-table.js', [
+    'depends' => common\assets\CommonAsset::className(),
+]);
 
 $user = \Yii::$app->user->identity;
 

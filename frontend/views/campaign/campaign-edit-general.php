@@ -16,7 +16,9 @@ $parentCampaigns = \Yii::$app->user->identity
 
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 
-$this->registerJsFile('@web/js/campaign/firstgiving.js', common\assets\CommonAsset::className());
+$this->registerJsFile('@web/js/campaign/firstgiving.js', [
+    'depends' => common\assets\CommonAsset::className(),
+]);
 
 $firstGiving = $campaign->getFirstGiving();
 ?>

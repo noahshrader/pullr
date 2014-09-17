@@ -1,5 +1,5 @@
 <?php
-$lesscPath =  __DIR__.'/../../node_modules/less/bin/lessc';
+$lesscPath =  dirname(dirname(__DIR__)).'/node_modules/less/bin/lessc';
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),

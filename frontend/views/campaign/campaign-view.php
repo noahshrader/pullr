@@ -7,7 +7,9 @@ use common\models\Donation;
  * @var $this View
  * @var $campaign Campaign
  */
-$this->registerJSFile('@web/js/campaign/donation-table.js',  \common\assets\CommonAsset::className());
+$this->registerJSFile('@web/js/campaign/donation-table.js',  [
+    'depends' => common\assets\CommonAsset::className(),
+]);
 
 $user = \Yii::$app->user->identity;
 $donations = $campaign->getDonations()->all();
