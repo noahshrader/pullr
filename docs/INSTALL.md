@@ -9,7 +9,7 @@ Select folder to locate pullr
 Download composer (e.g. to you home folder, next home folder will be supposed)  
 `https://getcomposer.org/download/`
 
-Plugin for composer
+Plugin for composer  
 `php composer.phar global require "fxp/composer-asset-plugin:1.0.*@dev"`
 
 Next from pullr folder run  
