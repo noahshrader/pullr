@@ -6,37 +6,39 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
    $speeds[] = ['name' => $speed, 'value' => $speed];
 }
 ?>
-<div class="form-group">
-    <label>No donations message</label>
-    <textarea ng-model="widget.noDonationMessage" ng-change="regionChanged(region)"></textarea>
+<div class="module">
+    <div class="form-group">
+        <h5>Font style</h5>
+        <div font-style ng-model="widget.fontStyle"></div>
+    </div>
+    <div class="form-group">
+        <h5>Font size <span class="slider-value value">{{widget.fontSize}} px</span></h5>
+        <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
+                ng-change="regionChanged(region)"></slider>
+    </div>
+    <div class="form-group">
+        <h5>Font color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
+    </div>
 </div>
-<div>
-    <label>Font style</label>
-    <div font-style ng-model="widget.fontStyle"></div>
+<div class="module scrolling">
+    <div class="form-group checkbox cf">
+        <label ng-class="{on:widget.scrolling}">
+            <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
+            Scrolling
+        </label>
+        <div ng-show="widget.scrolling" class="scroll-options">
+            <h5>Speed</h5>
+            <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.scrollSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"
+                    ng-options="speed.value as speed.name for speed in WIDGET_SPEEDS" data-placeholder="Select one...">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
 </div>
-<div class="form-group">
-    <label>Font size</label>
-    <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
-            ng-change="regionChanged(region)"></slider>
-    <span>{{widget.fontSize}} px</span>
+<div class="module last">
+    <div class="form-group">
+        <h5>Default Message</h5>
+        <textarea ng-model="widget.noDonationMessage" ng-change="regionChanged(region)"></textarea>
+    </div>
 </div>
-<div class="form-group">
-    <label>Font color</label>
-    <input type="color" ng-model="widget.fontColor" ng-change="regionChanged(region)">
-</div>
-<br>
-<br>
-<div>
-    <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
-    <label>Scrolling</label>
-</div>
-
-<div ng-show="widget.scrolling">
-    <label>
-        Scroll Speed
-    </label>
-    <select selectpicker ng-model="widget.scrollSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"
-            ng-options="speed.value as speed.name for speed in WIDGET_SPEEDS">
-        <option value="">Select one...</option>
-    </select>
-</div>
+<div class="right-side-footer"></div>

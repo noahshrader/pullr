@@ -37,10 +37,6 @@
                     this.audio.pause();
                 }
 
-//                console.log('[VOLUME]');
-//                console.log(volume/100)
-//                console.log('[PATH]');
-//                console.log(path);
                 this.audio = new Audio(path);
                 this.audio.volume = volume / 100;
                 this.audio.play();

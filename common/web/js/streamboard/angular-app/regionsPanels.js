@@ -1,10 +1,37 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
-        'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager']);
-    app.controller('RegionsCtrl', function ($scope, stream, regions, $timeout, alertMediaManager) {
+        'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations']);
+    app.controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations) {
         $scope.streamService = stream;
         $scope.regionsService = regions;
+        $scope.donationsService = donations;
 
+        $scope.regionsService.ready(function () {
+            requireAllFonts();
+            /*whenever regions are changes we are checking that we have right fonts*/
+            $scope.$watch('regionsService.regions', requireAllFonts, true);
+
+            /*we make a delay as streamboard may still be loading, even if regions are ready*/
+            $interval(function () {
+                $.each($scope.regionsService.regions, function (index, region) {
+                    /*creating namespace for showing data*/
+                    region.toShow = {alert: {
+                    }};
+                    $interval(function () {
+                        showAlert(region)
+                    }, 1, 1);
+                });
+            }, 4000, 1);
+        })
+        function requireAllFonts(){
+            for (var key in regions.regions){
+                var region = regions.regions[key];
+                window.requireGoogleFont(region.widgetAlerts.followersPreference.fontStyle);
+                window.requireGoogleFont(region.widgetAlerts.donationsPreference.fontStyle);
+                window.requireGoogleFont(region.widgetAlerts.subscribersPreference.fontStyle);
+                window.requireGoogleFont(region.widgetDonationFeed.fontStyle);
+            }
+        }
         function capitaliseFirstLetter(string)
         {
             return string.charAt(0).toUpperCase() + string.slice(1);
@@ -38,36 +65,22 @@
 
                 alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
 
-                $timeout(function () {
+                $interval(function () {
                     /**@todo check animationDuration*/
                     hideAlert(region);
-                }, preference.animationDuration * 1000);
+                }, preference.animationDuration * 1000, 1);
             } else {
-                $timeout(function () {
+                $interval(function () {
                     showAlert(region);
-                }, 100);
+                }, 100, 1);
             }
         }
 
         function hideAlert(region) {
             region.toShow.alert = {};
-            $timeout(function () {
+            $interval(function () {
                 showAlert(region);
-            }, 1000)
+            }, 1000, 1)
         }
-
-        $scope.regionsService.ready(function () {
-            /*we make a delay as streamboard may still be loading, even if regions are ready*/
-            $timeout(function () {
-                $.each($scope.regionsService.regions, function (index, region) {
-                    /*creating namespace for showing data*/
-                    region.toShow = {alert: {
-                    }};
-                    $timeout(function () {
-                        showAlert(region)
-                    });
-                });
-            }, 4000);
-        })
     });
 })()

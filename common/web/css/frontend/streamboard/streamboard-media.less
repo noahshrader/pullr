@@ -1,40 +1,76 @@
-.sound-container, .images-container{
-	overflow-y: scroll;
-	max-height: 400px;
-	padding-right: 5px;
+/* Sounds/Graphics Tabs */
+ul.library-tabs {
+	padding: @halfgutter;
+	background: @gray15;
+	border-bottom: solid 1px @gray10;
 
-	.media-item {
-		min-height: 25px;
-		overflow: hidden;
+	li {
+		text-align: center;
+		&.active a {
+			color: @white;
+		}
 
-		.mediaActions {
-			float:right;
+		a {
+			display: block;
+			float: left;
+			color: @gray30;
+			font-size: @smalltext;
+			width: 50%;
 
 			i {
-				cursor: pointer;
-				&:hover {
-					color: @accenthover;
-				}
+				display: block;
+				font-size: 1.6em;
 			}
 		}
 	}
-	.media-item.selected {
-		background-color: @accent;
+	&.library {
+		padding: @streamboardgutter 0;
 	}
 }
-.sounds-graphics-content {
-	
-	.media-item.selected {
-		background-color: @accent;
+
+/* Media List */
+.media-item {
+	color: @gray30;
+	font-size: @smalltext;
+	padding: @streamboardgutter @halfgutter;
+	cursor: pointer;
+
+	&.selected {
+		color: @white;
+		background: @gray20;
+
+		i {
+			color: @white;
+			cursor: pointer;
+		}
 	}
-	.uploader {
-		min-height: 90px;
-		background-color: @bgwhitefade;
+	&.images {
+		text-align: center;
 	}
-	.uploader.uploader-drag-over {
-		background-color: @bglightwhitefade;
+	.mediaActions {
+		float: right;
+
+		i {
+			font-size: 1.2em;
+
+			&:hover {
+				color: @white;
+			}
+		}
 	}
-	.error {
-		color: red;
+}
+
+/* File Upload */
+.uploader {
+	text-align: center;
+	padding: @gutter @halfgutter;
+	border: dashed 1px @gray20;
+
+	&.uploader-drag-over {
+		background: @gray15;
+	}
+	span {
+		color: @gray30;
+		font-size: @smalltext;
 	}
 }

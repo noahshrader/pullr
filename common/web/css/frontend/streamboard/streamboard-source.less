@@ -2,35 +2,20 @@
 
 body {
   background: @maingray;
-  height: 100%;
+  height: auto;
+  overflow: visible;
 }
 
-.source-row,
-.overall,
-.twitchStats,
-.activityFeed {
-  display: block;
-  width: 100%;
-  border-bottom: solid 1px @base;
-  padding: 20px 30px;
+.source-wrap {
+	padding: @streamboardgutter;
 
-  .name {
-    margin: 0px;
-    padding: 0px 0px 2px 0px;
-    font-size: 18px;
-    font-weight: 400;
-    color: @white;
-  }
-  .amount {
-    margin-top: 4px;
-    margin-bottom: 0px;
-  }
-}
+	.module {
+		span {
+color: @white !important;
+		}
 
-.view-source {
-  padding-bottom: 100px;
-}
-
-.activityFeedElement:not(:last-child):after {
-  content: ',';
+		&:last-child {
+			margin: 0;
+		}
+	}
 }

@@ -75,9 +75,9 @@
 @fineprint: .8em;
 
 .smallcaps {
-	font-size: @smalltext;
+	font-size: @fineprint;
+	font-weight: 600;
 	text-transform: uppercase;
-	letter-spacing: 1px;
 }
 
 /* Icons */
@@ -103,6 +103,9 @@
 /* Padding */
 @gutter: 30px; /* Default spacing between main elements */
 @halfgutter: 15px; /* Half the gutter spacing */
+
+/* Streamboard */
+@streamboardgutter: 10px;
 
 .nowrap{
   white-space: nowrap;
@@ -230,7 +233,15 @@
 }
 .cubemove (@cubemove: cubemove 1.8s infinite ease-in-out) {
 	-webkit-animation: @cubemove;
+	-moz-animation: @cubemove;
+	-ms-animation: @cubemove;
 	animation: @cubemove;
+}
+.marquee (@marquee: marquee infinite linear) {
+	-webkit-animation: @marquee;
+	-moz-animation: @marquee;
+	-ms-animation: @marquee;
+	animation: @marquee;
 }
 
 
@@ -290,12 +301,6 @@
 }
 
 /* Content Loader */
-@-webkit-keyframes cubemove {
-	25% { -webkit-transform: translateX(22px) rotate(-90deg) scale(0.5) }
-	50% { -webkit-transform: translateX(22px) translateY(22px) rotate(-180deg) }
-	75% { -webkit-transform: translateX(0px) translateY(22px) rotate(-270deg) scale(0.5) }
-	100% { -webkit-transform: rotate(-360deg) }
-}
 @keyframes cubemove {
 	25% { 
 		transform: translateX(42px) rotate(-90deg) scale(0.5);
@@ -313,4 +318,20 @@
 		transform: rotate(-360deg);
 		-webkit-transform: rotate(-360deg);
 	}
+}
+@-webkit-keyframes cubemove {
+	25% { -webkit-transform: translateX(22px) rotate(-90deg) scale(0.5) }
+	50% { -webkit-transform: translateX(22px) translateY(22px) rotate(-180deg) }
+	75% { -webkit-transform: translateX(0px) translateY(22px) rotate(-270deg) scale(0.5) }
+	100% { -webkit-transform: rotate(-360deg) }
+}
+
+/* Marquee (Streamboard) */
+@keyframes marquee {
+    0% { text-indent: 100% }
+    100% { text-indent: 0}
+}
+@-webkit-keyframes marquee {
+    0% { text-indent: 100% }
+    100% { text-indent: 0 }
 }

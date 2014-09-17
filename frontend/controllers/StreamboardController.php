@@ -48,7 +48,7 @@ class StreamboardController extends FrontendController
         $streamboardConfig = $user->streamboardConfig;
         $time = time();
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
-        $sinceTime = $streamboardConfig->streamRequestLastDate - 8*60*60;
+        $sinceTime = $streamboardConfig->streamRequestLastDate - 4*60*60;
 
         $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC, id ASC')->all();
 
@@ -108,25 +108,6 @@ class StreamboardController extends FrontendController
     {
         $this->layout = 'streamboard/source';
         return $this->render('config/settings/source', []);
-    }
-
-    /**
-     * That is just development function to test new donations flow.
-     * @todo Should be removed at future.
-     */
-    public function actionAdd_donation_ajax()
-    {
-        $campaignId = 1;
-        $donation = new Donation();
-        $donation->userId = \Yii::$app->user->id;;
-        $donation->campaignId = $campaignId;
-        $donation->amount = rand(100, 10000);
-        $donation->comments = 'test comments here' . rand(1, 50);
-        $donation->email = 'email' . rand(1, 100) . '@gmail.com';
-        $donation->paymentDate = time();
-        $donation->save();
-
-        Campaign::updateDonationStatistics($campaignId);
     }
 
     public function actionGet_campaigns_ajax()

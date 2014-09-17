@@ -1,28 +1,72 @@
-$(function () {
-    $(".resizable-h").resizable({
-        minWidth: 250,
+$(window).load(function() {
+
+    // streamboard loader
+    $(".spinner-wrap").addClass('powered').fadeOut();
+
+    // resizing magic
+    $("#sidepanel").resizable({
         handles: "w",
+        minWidth: 250,
         animate: false,
         delay: 0,
-        alsoResize: ".right-side-footer",
         resize: function( event, ui ) {
-            $(".resizable-h").css('left', 'auto');
+            $("#sidepanel").css('left', 'auto');
         }
     });
-    
-    // onload functions
-    $(window).load(function() {
-        // streamboard loader
-        $(".spinner-wrap").addClass('powered').fadeOut();
-        // make source iframe adjust to height of inner content
-        $('iframe').iFrameResize({
-            heightCalculationMethod: 'documentElementScroll'
-        });
-        // Make items movable
-        $(".movable").draggable({
-            containment: "parent"
-        });
+    $(".regionsContainer .region:first-child").resizable({
+        handles: "s",
+        animate: false,
+        delay: 0,
+        resize: function() {
+            var remainingSpace = (100 * parseFloat($(this).css('height')) / parseFloat($(this).parent().css('height')));
+            var divTwo = $(this).next();
+            var divOneHeight = (remainingSpace) + '%';
+            var divTwoHeight = (100 - remainingSpace) + '%';
+            $(this).height(divOneHeight);
+            $(divTwo).height(divTwoHeight);
+        }
     });
+    $(".donation-stream-scroll").resizable({
+        handles: "w",
+        minWidth: 100,
+        animate: false,
+        delay: 0,
+    });
+    // resize fixed elements based on size of sidepanel
+    $('#sidepanel').resize(function() {
+        var panelhead = $('#sidepanel').width() - 30;
+        var sidefooter = $('#sidepanel').width();
+        $('.panel-head, .panel-title').width(panelhead);
+        $('.right-side-footer').width(sidefooter);
+    });
+    // make items movable
+    $(".movable").draggable({
+        containment: "parent",
+        scroll: false
+    });
+
+    // custom scrollbars
+    $(".pane").mCustomScrollbar({
+        theme:"minimal",
+        mouseWheel:{
+            preventDefault: true,
+            scrollAmount: 10
+        },
+        scrollInertia: 80,
+        live: true
+    });
+    // resize iframe based on inner content
+    $('iframe').iFrameResize({
+        heightCalculationMethod: 'documentElementScroll'
+    });
+    // donation marquee scroll
+    $('.donation-stream-scroll').marquee({
+        pauseOnHover: true,
+        duplicated: true
+    });
+});
+
+$(function () {
 
     // panel toggles
     $(document).on('click', '.paneltoggle li a', function() {
@@ -34,9 +78,9 @@ $(function () {
         $('.slidepanel').removeClass('selected');
     });
     
-    // If panel is exposed, blur items in back
+    // if panel is exposed, blur items in back
     $(document).on('click', function() {
-        var dimmed = $('.settings-wrap .form-group, .donations-list');
+        var dimmed = $('.settings-wrap .module, .donations-list');
         if ($(".slidepanel").hasClass("selected")) {
             $(dimmed).addClass('dim');
         } else {
@@ -48,7 +92,7 @@ $(function () {
     $("a.sidetoggle").click(function(){
         var l = $(this).data('l');
         var width = $('#sidepanel').width();
-        $("#sidepanel, .right-side-footer").animate({right: (l ?  0 : -width)}, 200);
+        $("#sidepanel, .right-side-footer, .panel-head, .panel-title").animate({right: (l ?  0 : -width)}, 200);
         $(this).data('l', !l);
     });
 
@@ -72,6 +116,8 @@ $(function () {
     });
     var currentStreamboardLeft = window.screenX;
     var currentStreamboardTop = window.screenY;
+
+
     setInterval(function(){
         if ( (window.screenX != currentStreamboardLeft ) || (window.screenY != currentStreamboardTop)){
             currentStreamboardLeft = window.screenX;
@@ -85,7 +131,7 @@ $(function () {
         }
     }, 1000)
 });
-
+// google fonts
 function requireGoogleFont(fontFamily){
    if (!fontFamily){
        return;
