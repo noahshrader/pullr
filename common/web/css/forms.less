@@ -5,14 +5,16 @@ input.form-control,
 textarea,
 textarea.form-control,
 select,
-select.form-control {
+select.form-control,
+.form-group.has-success input.form-control,
+.form-group.has-success textarea.form-control {
 	color: @gray10;
 	font-size: @basefontsize;
 	outline: 0;
 	padding: 0 @halfgutter;
 	min-height: 45px;
 	border: 2px solid @gray75;
-	background: @gray75;
+	background: @white;
 	.border-radius;
 	box-shadow: none;
 	&:focus {
@@ -24,11 +26,13 @@ select {
 	line-height: 42px;
 	background: @gray72;
 }
-textarea {
+textarea,
+textarea.form-control {
 	padding: @halfgutter;
 }
 legend,
-label {
+label,
+.form-group.has-success label {
 	color: @gray60;
 	font-weight: 400;
 }
@@ -67,10 +71,24 @@ input.color-choice {
 	overflow: hidden;
 	cursor: pointer;
 }
-.colorpicker .dropdown-menu {
-	padding: 6px !important;
-	border: 0;
-	box-shadow: none;
+.colorpicker {
+
+	.colorpickerwrap {
+		position: relative;
+
+		span.color-choice {
+			position: absolute;
+			right: @halfgutter;
+			top: 40px;
+			z-index: 900;
+		}
+	}
+
+	.dropdown-menu {
+		padding: 6px !important;
+		border: 0;
+		box-shadow: none;
+	}
 }
 
 
@@ -86,7 +104,7 @@ input.color-choice {
 		right: @halfgutter;
 		margin-top: -4px;
 		border-width: 6px 4px 0 4px;
-		border-color: @gray60 transparent transparent transparent;
+		border-color: @gray40 transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
 		background: @gray72;
@@ -225,7 +243,7 @@ input.color-choice {
 			position: relative;
 			top: 3px;
 			display: inline-block;
-			color: @gray75;
+			color: @gray70;
 			font-family: 'icomoon';
 			font-size: 14px;
 			line-height: 16px;
@@ -270,7 +288,25 @@ input.color-choice {
 
 /* Bootstrap Overrides */
 .form-group {
-	margin-bottom: @halfgutter;
+	margin-bottom: @halfgutter + 10px;
+
+	/* Colorpicker */
+	&.colorpicker {
+		margin: 0;
+	}
+
+	/* Errors */
+	&.has-error {
+		label {
+			color: @errorred;
+		}
+		input {
+			&.form-control {
+				color: @errorred;
+				border-color: @errorred;
+			}
+		}
+	}
 }
 .form-group .form-group,
 .help-block {

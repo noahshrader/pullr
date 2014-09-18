@@ -3,7 +3,7 @@
     use dosamigos\ckeditor\CKEditor;
 ?>
 <div id="campaign-edit-form">
-    <h3>Donation Form Settings</h3>
+    <h4>Donation Form Settings</h4>
     
     <!-- Form Visibility -->
     <div class="form-group field-campaign-formvisibility">

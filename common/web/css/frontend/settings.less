@@ -5,8 +5,14 @@
 	.module {
 		padding: @gutter @gutter+@gutter;
 
-		&.email-notifications div:first-child {
-			margin-bottom: 2em;
+		&.email-notifications {
+
+			.form-group {
+				margin-bottom: 0;
+			}
+			div:first-child {
+				margin-bottom: 2em;
+			}
 		}
 	}
 	a.account-deactivate {

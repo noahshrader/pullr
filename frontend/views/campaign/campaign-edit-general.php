@@ -24,7 +24,7 @@ $firstGiving = $campaign->getFirstGiving();
 ?>
 
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
-        <h3>General Settings</h3>
+        <h4>General Settings</h4>
         
         <!-- Campaign Name -->
         <div class="form-group">
@@ -52,7 +52,8 @@ $firstGiving = $campaign->getFirstGiving();
         <!-- Campaign Goal Amount -->
         <div class="form-group">
             <div class="field-campaign-goalamount required">
-                <?= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => false])->label("Goal Amount")->hiddenInput(); ?>
+                <label>Goal Amount</label>
+                <?= $form->field($campaign, 'goalAmount', ['autoPlaceholder' => false])->label(false)->hiddenInput(); ?>
                 <?= MaskedInput::widget([
                     'name' => 'goal',
                     'value' => $campaign->goalAmount ?: 0,

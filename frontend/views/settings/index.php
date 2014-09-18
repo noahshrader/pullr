@@ -43,20 +43,6 @@ $this->title = 'Settings';
 				<?= $form->field($notification, $attribute)->checkbox(); ?>
 				<? endforeach; ?>
 			</fieldset>
-			<? if (!$user->openIDToUser): ?>
-			<fieldset>
-					<legend>Change Password (Only for sample accounts)</legend>
-					<? if ($changePasswordForm->success): ?>
-					<div class="alert alert-success alert-dismissable">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-							Password successfully changed
-					</div>
-					<? endif; ?>
-					<?= $form->field($changePasswordForm, 'oldPassword') ?>
-					<?= $form->field($changePasswordForm, 'newPassword')->passwordInput(['autocomplete' => 'off']) ?>
-					<?= $form->field($changePasswordForm, 'confirmPassword')->passwordInput() ?>
-			</fieldset>
-			<? endif ?>
 		</section>
 		<section class="module">
 			<?=

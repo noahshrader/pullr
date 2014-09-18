@@ -40,7 +40,7 @@ $(function(){
     });
     // color picker
     $('.colorpicker').colorpicker({
-        format: 'rgba',
+        format: 'hex',
         component: '.color-choice'
     });
     // custom scrollbars
@@ -52,8 +52,10 @@ $(function(){
         },
         scrollInertia: 80,
         callbacks:{
-            alwaysTriggerOffsets: true,
             onTotalScrollBackOffset: 10,
+            whileScrolling: function(){
+                $('.colorpicker').removeClass('colorpicker-visible');
+            },
             onScrollStart: function(){
                 $('.top-menu').addClass('shadow');
             },

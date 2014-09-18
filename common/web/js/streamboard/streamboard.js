@@ -53,6 +53,11 @@ $(window).load(function() {
             scrollAmount: 10
         },
         scrollInertia: 80,
+        callbacks:{
+            whileScrolling: function(){
+                $('.colorpicker').removeClass('colorpicker-visible');
+            }
+        },
         live: true
     });
     // resize iframe based on inner content
