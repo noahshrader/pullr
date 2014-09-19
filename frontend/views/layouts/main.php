@@ -85,7 +85,7 @@ $this->registerJs($js);
                      </ul>
                 </nav>
 
-                <a class="primary-nav-toggle"><i class="icon icon-arrow-left2"></i></a>
+                <a class="primary-nav-toggle icon icon-arrow-left2"></a>
             </div> <!-- END main navigation -->
             <?= $content ?>
 

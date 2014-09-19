@@ -1,11 +1,10 @@
 <?
-$title = $type ? $type : 'Choose a theme';
+$title = $type ? $type : 'Choose a Theme';
 /*that file is loaded into*/
 ?>
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h5 class="modal-title" id="myModalLabel"><?= $title ?></h5>
 </div>
 <div class="modal-body">
 
@@ -23,7 +22,7 @@ $title = $type ? $type : 'Choose a theme';
         </div>
     <? else: ?>
         <div class="noThemes">
-            No themes are available for this type of layout - <b><?= $type ?></b>.
+            No themes are available for this type of layout.
         </div>
     <? endif ?>
 </div>

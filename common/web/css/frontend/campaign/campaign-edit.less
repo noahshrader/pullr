@@ -5,12 +5,13 @@
 	padding: 0 @gutter;
 
 	.module {
-		margin: @gutter auto;
-		max-width: 800px;
+		margin: @gutter 0;
 		background: @white;
 	}
 	.tab-content {
 		padding: @halfgutter+@gutter @gutter+@gutter;
+		margin: 0 auto;
+		max-width: 700px;
 
 		h4 {
 			text-align: center;
@@ -131,14 +132,13 @@
 					display: inline-block;
 					float: right;
 					color: @gray60;
-					font-size: @smalltext;
 					line-height: 40px;
 					margin-left: .3em;
 					&:hover {
 						color: @gray20;
 					}
 					&.active {
-						color: @gray20;
+						color: @accent;
 					}
 				}
 			}

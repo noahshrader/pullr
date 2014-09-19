@@ -34,7 +34,6 @@ ul.campaign-quicknav {
 	display: block;
 	width: 100%;
 	border-bottom: solid 1px @gray12;
-	.trans;
 	&.active h3,
 	&.active p {
 		color: @white;
@@ -58,12 +57,17 @@ ul.campaign-quicknav {
 	&:last-child {
 		border: 0;
 	}
+	h3,
+	p {
+		.trans;
+	}
 	h3 {
 		color: @gray40;
 		margin-bottom: 2px;
 		font-size: 16px;
 		font-weight: 600;
 		line-height: 1.2em;
+		.trans;
 	}
 	h4 {
 		display: none;
