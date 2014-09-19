@@ -47,7 +47,9 @@ $this->registerJs($js);
 
             <div class="site-content">
             <div class="primary-navigation"> <!-- BEGIN main navigation -->
-                <div class="branding"><a class="logo icon-pullr-logo"></a></div>
+                <div class="branding">
+                    <a class="logo icon-pullr-logo"></a>
+                </div>
                 <nav class="sidebar-nav nav-top">
                     <ul> 
                         <li>
@@ -88,7 +90,7 @@ $this->registerJs($js);
             <?= $content ?>
 
             <?php $this->endBody() ?>
-</div>
+            </div>
         </div> <!-- /main-wrapper -->
     </body>
 </html>
