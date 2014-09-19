@@ -243,7 +243,7 @@ input.color-choice {
 			position: relative;
 			top: 3px;
 			display: inline-block;
-			color: @gray70;
+			color: @gray75;
 			font-family: 'icomoon';
 			font-size: 14px;
 			line-height: 16px;
@@ -261,9 +261,6 @@ input.color-choice {
 			.border-radius;
 			background: @gray75;
 	    }
-    	&:hover:before {
-    		color: @gray70;
-    	}
     	&.on:before {
 	        color: @gray40;
     	}
@@ -279,6 +276,25 @@ input.color-choice {
 	display: block !important;
 	max-width: 120px;
 	border: solid 2px @gray75 !important;
+}
+
+/* Combined Forms */
+.combined-form-wrap {
+	position: relative;
+	.border-radius;
+	overflow: hidden;
+
+	.icon {
+		position: absolute;
+		top: 0;
+		right: 0;
+		color: @white;
+		font-size: @fineprint;
+		text-align: center;
+		line-height: 45px;
+		width: 40px;
+		background: @gray60;
+	}
 }
 
 /* Misc */

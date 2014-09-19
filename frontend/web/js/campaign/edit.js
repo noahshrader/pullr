@@ -14,14 +14,12 @@ function donationDestinationChanged(){
 function updateLayoutTeams() {
     var id = $('#campaignEdit').data('id');
     $.getJSON('app/campaign/layoutteams', {id: id}, function(teams) {
-        var $list = $('<ol>');
+        var $list = $('<ul>');
         for (var key in teams) {
             var team = teams[key];
             var $item = $('<li>').append($('<span>').text(team.name));
-            $item.append($('<a href="javascript:void(0)" onclick="layoutTeamRemove(this)"><i class="icon icon-minus2"></i></a>'))
-            $item.append($('<a href="javascript:void(0)" class="'+(team.facebook?'active':'')+'" onclick="layoutTeamLink(this,'+team.id+')"><i class="facebook">f</i></a> '))
-            $item.append($('<a href="javascript:void(0)" class="'+(team.twitter?'active':'')+'" onclick="layoutTeamLink(this,'+team.id+')"><i class="twitter">t</i></a> '))
-            $item.append($('<a href="javascript:void(0)" class="'+(team.youtube?'active':'')+'" onclick="layoutTeamLink(this,'+team.id+')"><i class="youtube">y</i></a> '))
+            $item.append($('<a href="javascript:void(0)" onclick="layoutTeamRemove(this)" class="icon icon-close"></a>'))
+            $item.append($('<a href="javascript:void(0)" class="'+(team.facebook?'active':'')+''+(team.twitter?'active':'')+''+(team.youtube?'active':'')+' icon-bubble" onclick="layoutTeamLink(this,'+team.id+')"></a> '))
             $list.append($item);
         }
         var $list = $('<div>').append($list);
@@ -57,12 +55,12 @@ function addNewLayoutTeam() {
 function updateCampaignInvites(){
     var id = $('#campaignEdit').data('id');
     $.getJSON('app/campaign/getcampaigninvites', {id: id}, function(invites) {
-        var $list = $('<ol>');
+        var $list = $('<ul>');
         for (var key in invites) {
             var invite = invites[key];
-            var $item = $('<li>').append($('<span>').text(invite.user.name+' ['+invite.user.email+']'));
+            var $item = $('<li>').append($('<span>').text(invite.user.name+' ('+invite.user.email+')'));
             $item.attr('data-userid', invite.user.id);
-            $item.append($('<a href="javascript:void(0)" onclick="campaignInviteRemove(this)"><i class="icon icon-minus2"></i></a>'))
+            $item.append($('<a href="javascript:void(0)" onclick="campaignInviteRemove(this)" class="icon icon-close"></a>'))
             $list.append($item);
         }
         var $list = $('<div>').append($list);

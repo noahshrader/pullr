@@ -32,8 +32,11 @@ $user = \Yii::$app->user->identity;
         <? if ($campaign->isNewRecord): ?>
             <div class="label label-danger">Save campaign before adding channels</div>
         <? endif ?>
-        <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add channel(s)"> <a class="btn btn-default btn-xs" onclick="addNewLayoutTeam()"> <i class="icon icon-add2"></i></a>
-        <div id="layoutTeams"></div>
+        <div class="combined-form-wrap">
+            <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add channel(s)">
+            <a onclick="addNewLayoutTeam()" class="icon icon-plus"></a>
+        </div>
+        <div id="layoutTeams" class="team-list"></div>
     </div>
 
     <!-- Choose a Theme -->

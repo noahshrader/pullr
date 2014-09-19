@@ -14,7 +14,7 @@
 
 		h4 {
 			text-align: center;
-			padding: @halfgutter 0;
+			padding: 0;
 		}
 	}
 	.campaign-actions {
@@ -57,25 +57,13 @@
 /* General Campaign Edit */
 /* ------------------------------------------------- */
 #campaignEdit {
-	#collapseTwo {
-		#layoutTeams {
-			ol {
-				padding: 0px;
-				li {
-					border-bottom: 1px solid #000;
-				}
-				li:first-child {
-					margin-top: 10px;
-				}
-			}
-		}
-	}
+
 	.highlight-wrap,
 	.field-campaign-twittername,
 	.field-campaign-youtubeurl,
 	.field-campaign-facebookurl {
 		position: relative;
-		margin: @gutter 0;
+		margin: @halfgutter 0 @gutter;
 		padding: @gutter;
 		background: @offwhite;
 		.element-radius;
@@ -129,6 +117,38 @@
 			display: block;
 		}
 	}
+
+	/* Team List (for team fundraising and multichannel teams) */
+	.team-list {
+		margin-top: @halfgutter;
+
+		ul {
+			li {
+				line-height: 40px;
+				border-bottom: 1px solid @gray75;
+
+				a {
+					display: inline-block;
+					float: right;
+					color: @gray60;
+					font-size: @smalltext;
+					line-height: 40px;
+					margin-left: .3em;
+					&:hover {
+						color: @gray20;
+					}
+					&.active {
+						color: @gray20;
+					}
+				}
+			}
+		}
+	}
+	&.team-enabled {
+		.team-list {
+			padding-bottom: @gutter;
+		}
+	}
 }
 
 /* Social Enable */
@@ -175,20 +195,5 @@
 			margin-left: -10px;
 			border-color: @gray72 transparent transparent transparent;
 		}
-	}
-}
-
-
-/* Modals */
-/* ------------------------------------------------- */
-
-/* Themes */
-#modalThemes {
-
-	.modal-dialog {
-		top: 16%;
-		bottom: 16%;
-		left: 16%;
-		right: 16%;
 	}
 }
