@@ -23,7 +23,7 @@
 	<div class="module">
 		<div class="panel-group">
 			<h5>Total Donation Amount</h5>
-			<span class="total_amountRaised value">
+			<span class="total_amountRaised value highlight large">
 				${{number_format(donationsService.stats.total_amountRaised)}}
 			</span>
 		</div>
@@ -33,7 +33,7 @@
 		<div class="module">
 			<div class="panel-group">
 				<h5>Top Donation Amount</h5>
-				<span class="top_donation value">
+				<span class="top_donation value highlight large">
 					${{number_format(donationsService.stats.top_donation.amount)}} ({{donationsService.stats.top_donation.displayName}})
 				</span>
 			</div>
@@ -43,7 +43,7 @@
 	<div class="module">
 		<div class="panel-group">
 			<h5>Number Of Donations</h5>
-			<span class="number_of_donations value">
+			<span class="number_of_donations value large">
 				{{donationsService.stats.number_of_donations}}
 			</span>
 		</div>
@@ -52,7 +52,7 @@
 	<div class="module">
 		<div class="panel-group">
 			<h5>Number Of Donors</h5>
-			<span class="number_of_donors value">
+			<span class="number_of_donors value large">
 				{{donationsService.stats.number_of_donors}}
 			</span>
 		</div>
