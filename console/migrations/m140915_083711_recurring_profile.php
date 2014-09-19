@@ -10,7 +10,6 @@ class m140915_083711_recurring_profile extends Migration
         $this->createTable(\common\models\RecurringProfile::tableName(), [
              'profileId' => Schema::TYPE_STRING,
              'userId' => Schema::TYPE_INTEGER . ' NOT NULL',
-             'profileStatus' => Schema::TYPE_STRING . ' NOT NULL',
          ]);
         $this->addPrimaryKey('PRIMARY_KEY', \common\models\RecurringProfile::tableName(), 'profileId');
     }

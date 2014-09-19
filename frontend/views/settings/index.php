@@ -12,8 +12,6 @@ use common\models\Notification;
 $this->title = 'Settings';
 ?>
 
-<link href="/js/lib/magnificpopup.css" rel="stylesheet">
-<script src="/js/lib/magnificpopup.js"></script>
 
 <?php $form = ActiveForm::begin(['options' => [
     'enctype' => 'multipart/form-data', 'method' => 'POST']])
@@ -21,6 +19,19 @@ $this->title = 'Settings';
 <section id="content" class="settings pane"> <!-- BEGIN main settings -->
 	<div class="content-wrap">
 		<span class="corner"></span>
+
+        <?php if (Yii::$app->session->hasFlash('pro_success')):?>
+        <div class="alert alert-info alert-dismissible systemNotification module">
+            You have successfully purchased Pro account!
+        </div>
+        <?endif;?>
+
+        <?php if (Yii::$app->session->hasFlash('pro_deactivate')):?>
+            <div class="alert alert-info alert-dismissible systemNotification module">
+                You still have Pro account by the end of prepaid period.
+            </div>
+        <?endif;?>
+
 		<section class="module">
 			<h4>General</h4>
 			<?= $form->field($user, 'name') ?>
@@ -45,17 +56,18 @@ $this->title = 'Settings';
 			</fieldset>
 		</section>
 		<section class="module">
-			<?=
-			$this->render('deactivate', [
-			'user' => $user
-			]);
-			?>
+            <a class="account-deactivate" data-toggle="modal" data-target="#deactivateModal">Deactivate my account</a>
 		</section>
 		<div class="form-group text-center">
 			<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
 		</div>
 	</div>
 </section> <!-- END main settings -->
+
+<?= $this->render('deactivate', ['user' => $user]); ?>
+<?= $this->render('deactivatepro'); ?>
+<?= $this->render('gopro'); ?>
+
 <?php ActiveForm::end(); ?>
 
 <div id="sidebar" class="plans pane"> <!-- BEGIN plans sidebar -->

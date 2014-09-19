@@ -15,7 +15,7 @@ use common\models\Plan;
             <p>Some advertising text here - you can use pro-plan with more features</p>
         </div>
         <div class="account-action">
-            <button class="btn btn-primary" id="go-pro-btn" onclick="//$('.plan-show-Basic').toggleClass('plan-show-Basic plan-show-payment')">Go Pro</button>
+            <button class="btn btn-primary" data-target="#goproModal" data-toggle="modal">Go Pro</button>
         </div>
     </div>
 
@@ -36,8 +36,7 @@ use common\models\Plan;
             ->setTimestamp($plan->expire)
             ->format('M j Y');
         ?>
-        <a class="deactivate" href="app/settings/deactivatepro">Downgrade my plan</a>
+        <a data-toggle="modal" data-target="#deactivateproModal">Downgrade my plan</a>
     </div>
-
     <?php endif;?>
 </div>

@@ -5,6 +5,7 @@ namespace frontend\controllers;
 define('PP_CONFIG_PATH', '/var/www/pullr/common/config/paypal');
 
 use common\models\RecurringProfile;
+use frontend\models\site\DeactivatePro;
 use Yii;
 use \yii\web\Session;
 use \common\models\Payment;
@@ -71,17 +72,32 @@ class SettingsController extends FrontendController {
 
         $recurringProfile = RecurringProfile::findOne(['userId' => Yii::$app->user->identity->id]);
 
-        $paypalService = new \PayPalAPIInterfaceServiceService();
-        $requestDetails = new \ManageRecurringPaymentsProfileStatusRequestDetailsType();
-        $requestDetails->Action =  'Cancel';
-        $requestDetails->ProfileID =  $recurringProfile->profileId;
-        $profileStatusRequest = new \ManageRecurringPaymentsProfileStatusRequestType();
-        $profileStatusRequest->ManageRecurringPaymentsProfileStatusRequestDetails = $requestDetails;
+        if(isset($recurringProfile)){
+            $paypalService = new \PayPalAPIInterfaceServiceService();
+            $requestDetails = new \ManageRecurringPaymentsProfileStatusRequestDetailsType();
+            $requestDetails->Action =  'Cancel';
+            $requestDetails->ProfileID =  $recurringProfile->profileId;
+            $profileStatusRequest = new \ManageRecurringPaymentsProfileStatusRequestType();
+            $profileStatusRequest->ManageRecurringPaymentsProfileStatusRequestDetails = $requestDetails;
 
-        $manageRPPStatusReq = new \ManageRecurringPaymentsProfileStatusReq();
-        $manageRPPStatusReq->ManageRecurringPaymentsProfileStatusRequest = $profileStatusRequest;
+            $manageRPPStatusReq = new \ManageRecurringPaymentsProfileStatusReq();
+            $manageRPPStatusReq->ManageRecurringPaymentsProfileStatusRequest = $profileStatusRequest;
 
-        $paypalService->ManageRecurringPaymentsProfileStatus($manageRPPStatusReq);
+            $paypalService->ManageRecurringPaymentsProfileStatus($manageRPPStatusReq);
+
+            $deactivate = new DeactivatePro();
+            if ($deactivate->load($_POST) && $deactivate->save()) {
+
+                $content = $this->renderPartial('@console/views/mail/deactivationEmail', [
+                    'reason' => $deactivate->getReason(),
+                    'user' => $deactivate->user
+                ]);
+
+                Mail::sendMail(\Yii::$app->params['adminEmails'], 'User deactivated pro-account', $content, 'proAccountDeactivation');
+            }
+
+            (new Session())->setFlash("pro_deactivate", "");
+        }
 
         $this->redirect('index');
     }
@@ -109,16 +125,6 @@ class SettingsController extends FrontendController {
                 $this->redirect('/');
             }
         }
-    }
-
-    public function actionGopro(){
-        $this->layout = "tmpLayout";
-        return $this->render("gopro");
-    }
-
-    public function actionCancelpro(){
-        $this->layout = "tmpLayout";
-        return $this->render("cancelpro");
     }
 
     public function actionProstepone(){
@@ -171,7 +177,8 @@ class SettingsController extends FrontendController {
     }
 
     public function actionProsteptwo($token, $PayerID){
-        $payAmount = (new Session())->get("money_amount");
+        $session = new Session();
+        $payAmount = $session->get("money_amount");
         $payParams = PullrPayment::getPaymentParamsForMoney($payAmount);
 
         $paypalService = new \PayPalAPIInterfaceServiceService();
@@ -273,6 +280,7 @@ class SettingsController extends FrontendController {
                     $recurringProfile->save();
                 }
 
+                $session->setFlash("pro_success", "");
                 $this->redirect("index");
             }
         }
