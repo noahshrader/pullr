@@ -27,7 +27,6 @@ function updateLayoutTeams() {
     });
 }
 
-
 function layoutTeamLink(el, id){
     $('#modal-social-link .modal-content').load('app/campaign/layoutteamedit', {id: id, get: true}, function(){
         $('#modal-social-link').modal('show');
@@ -215,7 +214,6 @@ $(function() {
     $('[name="Campaign[donationDestination]"').change(donationDestinationChanged);
     updateLayoutTeams();
     updateCampaignInvites();
-    // rememberAccordionState();
     initBootstrapSwitch();
 });
 /*We use js as Yii Js add text-aling right on load event*/

@@ -76,9 +76,12 @@ $(function () {
     // panel toggles
     $(document).on('click', '.paneltoggle li a', function() {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
-   		$('.'+$(this).data('panel')+'_panel').toggleClass('selected');
-        $(".overlay").show();
+        $('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
    	});
+    $('.regionsContainer, .sidepanel-head').click(function(){ 
+        $('.paneltoggle li').removeClass('active');
+        $('.slidepanel').removeClass('selected');
+    });
     
     // if panel is exposed, blur items in back
     $(document).on('click', function() {
@@ -90,22 +93,11 @@ $(function () {
         }
     });
 
-    // hide panels if clicked outside
-    $(document).mouseup(function (e) {
-        var container = $(".slidepanel");
-        if (!container.is(e.target)
-        && container.has(e.target).length === 0) {
-            $(".paneltoggle li").removeClass("active");
-            $(".slidepanel").removeClass("selected poop");
-            $(".overlay").hide();
-        }
-    });
-
     // toggle close right sidebar
     $("a.sidetoggle").click(function(){
         var l = $(this).data('l');
         var width = $('#sidepanel').width();
-        $("#sidepanel, .right-side-footer, .panel-head, .panel-title, .overlay").animate({right: (l ?  0 : -width)}, 200);
+        $("#sidepanel, .right-side-footer, .panel-head, .panel-title").animate({right: (l ?  0 : -width)}, 200);
         $(this).data('l', !l);
     });
 

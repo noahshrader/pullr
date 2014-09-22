@@ -16,7 +16,6 @@ $deactivateAccount = new DeactivateAccount();
       ]) ?>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h5 class="modal-title" id="myModalLabel">Deactivate account</h5>
       </div>
       <div class="modal-body">
           <?= $form->field($deactivateAccount, 'reason')->textarea();?>
@@ -24,8 +23,8 @@ $deactivateAccount = new DeactivateAccount();
           Keep in mind that you have 30 days before the account is completely removed. Contact us if there's anything we can do to change your mind.
       </div>
       <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Deactivate my account</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Keep my account</button>
+          <button type="submit" class="btn btn-primary">Deactivate</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
       </div>
       <? ActiveForm::end() ?>
     </div>

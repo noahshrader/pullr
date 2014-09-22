@@ -12,14 +12,13 @@
             ]) ?>
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h5 class="modal-title" id="myModalLabel">Cancel Pro</h5>
             </div>
             <div class="modal-body">
                 <?= $form->field($deactPro, 'reasonId')->dropDownList($deactPro->getReasons());?>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Don't renew</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Stay subcribed</button>
+                <button type="submit" class="btn btn-primary">Don't Renew</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
             </div>
             <? ActiveForm::end() ?>
         </div>

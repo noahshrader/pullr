@@ -90,7 +90,7 @@ $(".primary-nav-toggle").click(function(){
     $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");
     localStorage.setItem('menu-collapse', $(".main-wrapper").hasClass("small-menu-toggled"))
     $(".logo").toggleClass("icon-pullr-logo icon-pullr-logo2");
-    $(".primary-nav-toggle .icon").toggleClass("icon-arrow-left2 icon-arrow-right2");
+    $(this).toggleClass("icon-arrow-left2 icon-arrow-right2");
 });
 
 // reduce sidebar if the window shrinks too much

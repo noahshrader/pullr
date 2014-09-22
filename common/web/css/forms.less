@@ -28,7 +28,8 @@ select {
 }
 textarea,
 textarea.form-control {
-	padding: @halfgutter;
+	padding: @halfgutter !important;
+	max-width: 100%;
 }
 legend,
 label,
@@ -38,7 +39,6 @@ label,
 }
 .icon-help {
 	color: @gray60;
-	font-size: 14px;
 	margin-left: @iconspace;
 }
 
@@ -72,6 +72,7 @@ input.color-choice {
 	cursor: pointer;
 }
 .colorpicker {
+	padding: 0 !important;
 
 	.colorpickerwrap {
 		position: relative;
@@ -83,7 +84,9 @@ input.color-choice {
 			z-index: 900;
 		}
 	}
-
+	.form-group {
+		margin-bottom: 0;
+	}
 	.dropdown-menu {
 		padding: 6px !important;
 		border: 0;
@@ -299,11 +302,20 @@ input.color-choice {
 
 /* Misc */
 .help-block {
+	display: block;
 	position: absolute;
+	bottom: -55px;
+	left: 0;
+	font-size: @smalltext;
+	font-weight: 600;
+	padding: .6em 1.2em;
+	z-index: 1000;
+	.border-radius;
 }
 
 /* Bootstrap Overrides */
 .form-group {
+	position: relative;
 	margin-bottom: @halfgutter + 10px;
 
 	/* Colorpicker */
@@ -322,10 +334,20 @@ input.color-choice {
 				border-color: @errorred;
 			}
 		}
+		.help-block {
+			color: @white;
+			background: @errorred;
+			&:before {
+				.arrow-up;
+				top: -5px;
+				left: 30px;
+				border-width: 0 5px 5px 5px;
+				border-color: transparent transparent @errorred transparent;
+			}
+		}
 	}
 }
-.form-group .form-group,
-.help-block {
+.form-group .form-group {
 	padding: 0;
 	margin-bottom: @halfgutter;
 }

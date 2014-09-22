@@ -5,7 +5,6 @@ use kartik\widgets\ActiveForm;
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">Social Networks</h4>
 </div>
 <?
 $form = ActiveForm::begin(['id' => 'ajaxLayoutTeamEdit',

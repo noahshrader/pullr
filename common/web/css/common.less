@@ -2,7 +2,6 @@
 @import "variables.less";
 @import "type.less";
 @import "forms.less";
-@import "app-styles/modals.less";
 
 
 /* Global Styles */
@@ -41,6 +40,7 @@ body {
 	font-family: @mainfont;
 	font-size: 1em;
 	outline: 0;
+	margin: 0 .1em;
 	border: 0;
 	.border-radius();
 	.slowtrans();
@@ -49,8 +49,14 @@ body {
 		outline: 0;
 		border: 0;
 	}
+	&:focus,
+	&:active,
+	&:active:focus {
+		outline: 0;
+		box-shadow: none;
+	}
 	&:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
-	  font-weight: 700;
+	  font-weight: 600;
 	  line-height: 46px;
 	  padding: 0 1.4em;
 	  height: 46px;
@@ -310,4 +316,5 @@ ul.panel-nav {
 	}
 }
 
+@import "app-styles/modals.less";
 @import "responsive.less";

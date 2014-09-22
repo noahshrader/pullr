@@ -12,7 +12,7 @@ $user = \Yii::$app->user->identity;
     <!-- Campaign Page Layout -->
     <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
         <label class="control-label">Layout Type</label>
-        <i class="icon-help" data-toggle="tooltip" data-placement="bottom" title="Some tooltip here."></i>
+        <i class="icon icon-help" data-toggle="tooltip" data-placement="bottom" title="Some tooltip here."></i>
         <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
         <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block']) ?>
     </div>
@@ -49,7 +49,7 @@ $user = \Yii::$app->user->identity;
             <span><?= $campaign->theme?$campaign->theme->name:''?></span>
         </div>
         <button type="button" class="btn btn-primary" onclick="layoutChooseTheme()">Choose a theme</button>
-        <i class="icon-help" data-toggle="tooltip" data-placement="top" title="Choose how you want to style your layout page. Options based on the Type of Layout you selected and which plan you're on."></i>
+        <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Choose how you want to style your layout page. Options based on the Type of Layout you selected and which plan you're on."></i>
         <!-- Background Image Upload (if Pro) -->
         <? if ($user->plan == Plan::PLAN_PRO): ?>
         <div id="logo-container" style="display:none;">
@@ -65,14 +65,14 @@ $user = \Yii::$app->user->identity;
         <? endif ?>
     </div>
     <!-- Primary Color -->
-    <div class="form-group colorpicker">
+    <div class="colorpicker">
         <div class="colorpickerwrap">
             <span class="color-choice"></span>
             <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
         </div>
     </div>
     <!-- Secondary Color -->
-    <div class="form-group colorpicker">
+    <div class="colorpicker">
         <div class="colorpickerwrap">
             <span class="color-choice"></span>
             <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
