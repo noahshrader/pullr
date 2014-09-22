@@ -8,9 +8,7 @@ use common\models\RecurringProfile;
 use frontend\models\site\DeactivatePro;
 use Yii;
 use \yii\web\Session;
-use \common\models\Payment;
 use frontend\models\site\ChangePasswordForm;
-use common\models\Plan;
 use frontend\models\site\DeactivateAccount;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -130,148 +128,37 @@ class SettingsController extends FrontendController {
     public function actionProstepone(){
         if (isset($_POST['subscription'])) {
             $payAmount = $_POST['subscription'];
-            $payParams = PullrPayment::getPaymentParamsForMoney($payAmount);
-
             (new Session())->set('money_amount', $payAmount);
 
-            $paypalService = new \PayPalAPIInterfaceServiceService();
-
-            $paymentDetails = new \PaymentDetailsType();
-            $itemDetails = new \PaymentDetailsItemType();
-            $itemDetails->Name = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "\${$payAmount} for the year" : "\${$payAmount} for the month";
-            $itemAmount = $payAmount;
-            $itemDetails->Amount = $itemAmount;
-            $itemQuantity = '1';
-            $itemDetails->Quantity = $itemQuantity;
-            $itemDetails->ItemCategory =  'Digital';
-            $paymentDetails->PaymentDetailsItem[0] = $itemDetails;
-
-            $orderTotal = new \BasicAmountType('USD', $itemAmount * $itemQuantity);
-            $paymentDetails->OrderTotal = $orderTotal;
-            $paymentDetails->PaymentAction = 'Sale';
-
-            $setECReqDetails = new \SetExpressCheckoutRequestDetailsType();
-            $setECReqDetails->PaymentDetails[0] = $paymentDetails;
-            $setECReqDetails->CancelURL = Yii::$app->urlManager->createAbsoluteUrl('settings/index');
-            $setECReqDetails->ReturnURL = Yii::$app->urlManager->createAbsoluteUrl('settings/prosteptwo');
-
-            $billingAgreementDetails = new \BillingAgreementDetailsType('RecurringPayments');
-            $billingAgreementDetails->BillingAgreementDescription = 'Recurring payment';
-            $setECReqDetails->BillingAgreementDetails = array($billingAgreementDetails);
-
-            $setECReqType = new \SetExpressCheckoutRequestType($setECReqDetails);
-            $setECReqType->Version = '104.0';
-
-            $setECReq = new \SetExpressCheckoutReq();
-            $setECReq->SetExpressCheckoutRequest = $setECReqType;
-
-            $setECResponse = $paypalService->SetExpressCheckout($setECReq);
+            $setECResponse = PullrPayment::initProSubscription($payAmount);
 
             $payPalHost = \Yii::$app->params['payPalHost'];
             $this->redirect("$payPalHost/incontext?token={$setECResponse->Token}");
         }
     }
 
-    public function actionProsteptwo($token, $PayerID){
+    public function actionProsteptwo($token, $PayerID)
+    {
         $session = new Session();
         $payAmount = $session->get("money_amount");
-        $payParams = PullrPayment::getPaymentParamsForMoney($payAmount);
 
-        $paypalService = new \PayPalAPIInterfaceServiceService();
+        $response = PullrPayment::finishProSubscription($payAmount, $token, $PayerID);
 
-        $paymentDetails= new \PaymentDetailsType();
-        $itemDetails = new \PaymentDetailsItemType();
-        $itemDetails->Name = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "\${$payAmount} for the year" : "\${$payAmount} for the month";
-        $itemAmount = $payAmount;
-        $itemDetails->Amount = $itemAmount;
-        $itemQuantity = '1';
-        $itemDetails->Quantity = $itemQuantity;
-        $itemDetails->ItemCategory =  'Digital';
-        $paymentDetails->PaymentDetailsItem[0] = $itemDetails;
+        if ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile') {
+            $recurringProfile = RecurringProfile::findOne(['userId' => \Yii::$app->user->identity->id]);
 
-        $orderTotal = new \BasicAmountType('USD', $itemAmount * $itemQuantity);
-        $paymentDetails->OrderTotal = $orderTotal;
-        $paymentDetails->PaymentAction = 'Sale';
-        $paymentDetails->NotifyURL = Yii::$app->urlManager->createAbsoluteUrl('ipn/notify');
-
-        $DoECRequestDetails = new \DoExpressCheckoutPaymentRequestDetailsType();
-        $DoECRequestDetails->PayerID = $PayerID;
-        $DoECRequestDetails->Token = $token;
-        $DoECRequestDetails->PaymentDetails[0] = $paymentDetails;
-
-        $DoECRequest = new \DoExpressCheckoutPaymentRequestType($DoECRequestDetails);
-        $DoECRequest->Version = '104.0';
-
-        $DoECReq = new \DoExpressCheckoutPaymentReq();
-        $DoECReq->DoExpressCheckoutPaymentRequest = $DoECRequest;
-
-        $DoECResponse = $paypalService->DoExpressCheckoutPayment($DoECReq);
-
-        $initPaymentInfo = $DoECResponse->DoExpressCheckoutPaymentResponseDetails->PaymentInfo[0];
-
-        //subscribe user to recurring payment if successfully billed for the first month\year
-        if(($DoECResponse->Ack === 'Success') && ($initPaymentInfo->PaymentStatus === 'Completed'))
-        {
-            //create a transaction record in payments table
-            $payment = new Payment();
-            $payment->status = Payment::STATUS_APPROVED;
-            $payment->userId = \Yii::$app->user->identity->id;
-            $payment->amount = intval($payAmount);
-            $payment->paypalId = $initPaymentInfo->TransactionID;
-            $payment->createdDate = time();
-            $payment->type = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? Payment::TYPE_PRO_YEAR : Payment::TYPE_PRO_MONTH;
-            $payment->save();
-
-            //prolong user Pro account
-            Plan::findOne(\Yii::$app->user->identity->id)->prolong((new Session())->get("money_amount"));
-
-            //preparations to create recurring subscription
-            $dateInterval = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? (new \DateInterval('P1Y')) : (new \DateInterval('P1M'));
-            $profileDetails = new \RecurringPaymentsProfileDetailsType(
-                (new \DateTime())
-                ->setTimezone(new \DateTimeZone(Yii::$app->user->identity->getTimezone()))
-                ->setTimestamp(time())
-                ->add($dateInterval)
-                ->format('c')
-            );
-
-            $paymentBillingPeriod = new \BillingPeriodDetailsType(
-                $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "Year" : "Month",
-                1,
-                new \BasicAmountType("USD", $payAmount)
-            );
-
-            $scheduleDetails = new \ScheduleDetailsType("Recurring payment", $paymentBillingPeriod);
-
-            $createRPProfileRequestDetails = new \CreateRecurringPaymentsProfileRequestDetailsType($profileDetails, $scheduleDetails);
-            $createRPProfileRequestDetails->Token = $token;
-
-            $createRPProfileRequest = new \CreateRecurringPaymentsProfileRequestType();
-            $createRPProfileRequest->CreateRecurringPaymentsProfileRequestDetails = $createRPProfileRequestDetails;
-
-            $createRPProfileReq = new \CreateRecurringPaymentsProfileReq();
-            $createRPProfileReq->CreateRecurringPaymentsProfileRequest = $createRPProfileRequest;
-
-            $paypalService = new \PayPalAPIInterfaceServiceService();
-            $response = $paypalService->CreateRecurringPaymentsProfile($createRPProfileReq);
-
-            if ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile'){
-                $recurringProfile = RecurringProfile::findOne(['userId' => \Yii::$app->user->identity->id]);
-
-                if (isset($recurringProfile)){
-                    $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
-                    $recurringProfile->save();
-                }
-                else{
-                    $recurringProfile = new RecurringProfile();
-                    $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
-                    $recurringProfile->userId = \Yii::$app->user->identity->id;
-                    $recurringProfile->save();
-                }
-
-                $session->setFlash("pro_success", "");
-                $this->redirect("index");
+            if (isset($recurringProfile)) {
+                $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
+                $recurringProfile->save();
+            } else {
+                $recurringProfile = new RecurringProfile();
+                $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
+                $recurringProfile->userId = \Yii::$app->user->identity->id;
+                $recurringProfile->save();
             }
+
+            $session->setFlash("pro_success", "");
+            $this->redirect("index");
         }
     }
 }
