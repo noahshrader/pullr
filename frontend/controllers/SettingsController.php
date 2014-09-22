@@ -146,10 +146,7 @@ class SettingsController extends FrontendController {
             $itemDetails->ItemCategory =  'Digital';
             $paymentDetails->PaymentDetailsItem[0] = $itemDetails;
 
-            $orderTotal = new \BasicAmountType();
-            $orderTotal->currencyID = 'USD';
-            $orderTotal->value = $itemAmount * $itemQuantity;
-
+            $orderTotal = new \BasicAmountType('USD', $itemAmount * $itemQuantity);
             $paymentDetails->OrderTotal = $orderTotal;
             $paymentDetails->PaymentAction = 'Sale';
 
@@ -162,9 +159,8 @@ class SettingsController extends FrontendController {
             $billingAgreementDetails->BillingAgreementDescription = 'Recurring payment';
             $setECReqDetails->BillingAgreementDetails = array($billingAgreementDetails);
 
-            $setECReqType = new \SetExpressCheckoutRequestType();
+            $setECReqType = new \SetExpressCheckoutRequestType($setECReqDetails);
             $setECReqType->Version = '104.0';
-            $setECReqType->SetExpressCheckoutRequestDetails = $setECReqDetails;
 
             $setECReq = new \SetExpressCheckoutReq();
             $setECReq->SetExpressCheckoutRequest = $setECReqType;
@@ -193,10 +189,7 @@ class SettingsController extends FrontendController {
         $itemDetails->ItemCategory =  'Digital';
         $paymentDetails->PaymentDetailsItem[0] = $itemDetails;
 
-        $orderTotal = new \BasicAmountType();
-        $orderTotal->currencyID = 'USD';
-        $orderTotal->value = $itemAmount * $itemQuantity;
-
+        $orderTotal = new \BasicAmountType('USD', $itemAmount * $itemQuantity);
         $paymentDetails->OrderTotal = $orderTotal;
         $paymentDetails->PaymentAction = 'Sale';
         $paymentDetails->NotifyURL = Yii::$app->urlManager->createAbsoluteUrl('ipn/notify');
@@ -206,8 +199,7 @@ class SettingsController extends FrontendController {
         $DoECRequestDetails->Token = $token;
         $DoECRequestDetails->PaymentDetails[0] = $paymentDetails;
 
-        $DoECRequest = new \DoExpressCheckoutPaymentRequestType();
-        $DoECRequest->DoExpressCheckoutPaymentRequestDetails = $DoECRequestDetails;
+        $DoECRequest = new \DoExpressCheckoutPaymentRequestType($DoECRequestDetails);
         $DoECRequest->Version = '104.0';
 
         $DoECReq = new \DoExpressCheckoutPaymentReq();
@@ -234,28 +226,25 @@ class SettingsController extends FrontendController {
             Plan::findOne(\Yii::$app->user->identity->id)->prolong((new Session())->get("money_amount"));
 
             //preparations to create recurring subscription
-            $profileDetails = new \RecurringPaymentsProfileDetailsType();
             $dateInterval = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? (new \DateInterval('P1Y')) : (new \DateInterval('P1M'));
-            $profileDetails->BillingStartDate = (new \DateTime())
+            $profileDetails = new \RecurringPaymentsProfileDetailsType(
+                (new \DateTime())
                 ->setTimezone(new \DateTimeZone(Yii::$app->user->identity->getTimezone()))
                 ->setTimestamp(time())
                 ->add($dateInterval)
-                ->format('c');
+                ->format('c')
+            );
 
-            $paymentBillingPeriod = new \BillingPeriodDetailsType();
-            $paymentBillingPeriod->BillingFrequency = 1;
-            $paymentBillingPeriod->BillingPeriod = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "Year" : "Month";
-            $paymentBillingPeriod->Amount = new \BasicAmountType("USD", $payAmount);
+            $paymentBillingPeriod = new \BillingPeriodDetailsType(
+                $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "Year" : "Month",
+                1,
+                new \BasicAmountType("USD", $payAmount)
+            );
 
-            $scheduleDetails = new \ScheduleDetailsType();
-            $scheduleDetails->Description = "Recurring payment";
-            $scheduleDetails->PaymentPeriod = $paymentBillingPeriod;
+            $scheduleDetails = new \ScheduleDetailsType("Recurring payment", $paymentBillingPeriod);
 
-            $createRPProfileRequestDetails = new \CreateRecurringPaymentsProfileRequestDetailsType();
+            $createRPProfileRequestDetails = new \CreateRecurringPaymentsProfileRequestDetailsType($profileDetails, $scheduleDetails);
             $createRPProfileRequestDetails->Token = $token;
-
-            $createRPProfileRequestDetails->ScheduleDetails = $scheduleDetails;
-            $createRPProfileRequestDetails->RecurringPaymentsProfileDetails = $profileDetails;
 
             $createRPProfileRequest = new \CreateRecurringPaymentsProfileRequestType();
             $createRPProfileRequest->CreateRecurringPaymentsProfileRequestDetails = $createRPProfileRequestDetails;
