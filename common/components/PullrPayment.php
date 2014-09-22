@@ -1,7 +1,7 @@
 <?php
 
 namespace common\components;
-
+define('PP_CONFIG_PATH', '/var/www/pullr/common/config/paypal');
 use common\components\message\ActivityMessage;
 use OAuth\Common\Exception\Exception;
 use PayPal\Rest\ApiContext;
@@ -65,7 +65,7 @@ class PullrPayment extends \yii\base\Component {
         // The payer_id is added to the request query parameters
         // when the user is redirected from paypal back to your site
         $execution = new PaymentExecution();
-        $execution->setPayerId($_GET['PayerID']);
+        $execution->setPayer_id($_GET['PayerID']);
 
         //Execute the payment
         // (See bootstrap.php for more on `ApiContext`)
@@ -89,14 +89,14 @@ class PullrPayment extends \yii\base\Component {
                         break;
                     case \common\models\Payment::TYPE_DONATION:
                         $payer = $result->getPayer();
-                        $payerInfo = $payer->getPayerInfo();
+                        $payerInfo = $payer->getPayer_info();
                         $donation = Donation::findOne($pay->relatedId);
                         $donation->paymentDate = $pay->paymentDate;
                         if (!$donation->email){
                             $donation->email = strip_tags($payerInfo->getEmail());
                         }
-                        $donation->firstName = strip_tags($payerInfo->getFirstName());
-                        $donation->lastName = strip_tags($payerInfo->getLastName());
+                        $donation->firstName = strip_tags($payerInfo->getFirst_name());
+                        $donation->lastName = strip_tags($payerInfo->getLast_name());
                         $donation->save();
                         Campaign::updateDonationStatistics($donation->campaignId);
 
@@ -130,17 +130,17 @@ class PullrPayment extends \yii\base\Component {
         // (Optional) Lets you specify item wise
         // information
         $item = new Item();
-        $item->setName('Donation for ' . $donation->campaign->name)
-                ->setCurrency('USD')
-                ->setQuantity(1)
-                ->setPrice($donation->amount);
+        $item->setName('Donation for ' . $donation->campaign->name);
+        $item->setCurrency('USD');
+        $item->setQuantity(1);
+        $item->setPrice($donation->amount);
         $itemList = new ItemList();
         $itemList->setItems([$item]);
 
         
         $amount = new Amount();
-        $amount->setCurrency("USD")
-                ->setTotal($donation->amount);
+        $amount->setCurrency("USD");
+        $amount->setTotal($donation->amount);
 
         $campaign = $donation->campaign;
         $email = $campaign->donationEmail;
@@ -181,15 +181,15 @@ class PullrPayment extends \yii\base\Component {
         // For paypal account payments, set payment method
         // to 'paypal'.
         $payer = new Payer();
-        $payer->setPaymentMethod("paypal");
+        $payer->setPayment_method("paypal");
 
         // ### Transaction
         // A transaction defines the contract of a
         // payment - what is the payment for and who
         // is fulfilling it. 
         $transaction = new Transaction();
-        $transaction->setAmount($amount)
-                ->setItemList($itemList);
+        $transaction->setAmount($amount);
+        $transaction->setItem_list($itemList);
 
         if ($payee){
             $transaction->setPayee($payee);
@@ -198,17 +198,17 @@ class PullrPayment extends \yii\base\Component {
         $baseUrl = preg_replace('/\?.*/', '', $baseUrl);
 
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl($baseUrl . '?paymentSuccess=true')
-                ->setCancelUrl($baseUrl . '?paymentSuccess=false');
+        $redirectUrls->setReturn_url($baseUrl . '?paymentSuccess=true');
+        $redirectUrls->setCancel_url($baseUrl . '?paymentSuccess=false');
 
         // ### Payment
         // A Payment Resource; create one using
         // the above types and intent set to 'sale'
         $payment = new Payment();
-        $payment->setIntent("sale")
-                ->setPayer($payer)
-                ->setRedirectUrls($redirectUrls)
-                ->setTransactions([$transaction]);
+        $payment->setIntent("sale");
+        $payment->setPayer($payer);
+        $payment->setRedirect_urls($redirectUrls);
+        $payment->setTransactions([$transaction]);
 
         $pullrPayment = new PullrPayment;
         try {

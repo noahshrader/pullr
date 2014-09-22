@@ -99,7 +99,7 @@ class LayoutviewController extends \yii\web\Controller {
         if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
             $payment = new PullrPayment();
             $payment->completePayment();
-            $this->redirect($userAlias.'/'.$campaignAlias.'/thankyou');
+            $this->redirect('/'.$userAlias.'/'.$campaignAlias.'/thankyou');
         }
 
         if ($campaign->firstGiving) {
