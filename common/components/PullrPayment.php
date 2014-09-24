@@ -1,7 +1,7 @@
 <?php
 
 namespace common\components;
-define('PP_CONFIG_PATH', '/var/www/pullr/common/config/paypal');
+
 use common\components\message\ActivityMessage;
 use OAuth\Common\Exception\Exception;
 use PayPal\Rest\ApiContext;
@@ -19,6 +19,10 @@ use common\models\Donation;
 use common\models\Campaign;
 use PayPal\Api\Payee;
 use common\models\notifications\RecentActivityNotification;
+
+if (!defined('PP_CONFIG_PATH')){
+    define ('PP_CONFIG_PATH', \Yii::getAlias('@app').'/../common/config/paypal');
+}
 
 class PullrPayment extends \yii\base\Component {
 

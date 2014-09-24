@@ -2,11 +2,8 @@
 
 namespace frontend\controllers;
 
-
-
 use common\models\RecurringProfile;
 use frontend\models\site\DeactivatePro;
-use PayPal\Service\PayPalAPIInterfaceServiceService;
 use Yii;
 use \yii\web\Session;
 use frontend\models\site\ChangePasswordForm;
@@ -15,6 +12,10 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\models\mail\Mail;
 use common\components\PullrPayment;
+
+if (!defined('PP_CONFIG_PATH')){
+    define ('PP_CONFIG_PATH', \Yii::getAlias('@app').'/../common/config/paypal');
+}
 
 class SettingsController extends FrontendController {
 
@@ -71,7 +72,6 @@ class SettingsController extends FrontendController {
 
         $recurringProfile = RecurringProfile::findOne(['userId' => Yii::$app->user->identity->id]);
 
-        new PayPalAPIInterfaceServiceService();
         if(isset($recurringProfile)){
             $paypalService = new \PayPalAPIInterfaceServiceService();
             $requestDetails = new \ManageRecurringPaymentsProfileStatusRequestDetailsType();
