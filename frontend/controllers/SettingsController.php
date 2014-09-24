@@ -13,9 +13,7 @@ use yii\widgets\ActiveForm;
 use common\models\mail\Mail;
 use common\components\PullrPayment;
 
-if (!defined('PP_CONFIG_PATH')){
-    define ('PP_CONFIG_PATH', \Yii::getAlias('@app').'/../common/config/paypal');
-}
+defined('PP_CONFIG_PATH') or define ('PP_CONFIG_PATH', \Yii::getAlias('@app').'/../common/config/paypal');
 
 class SettingsController extends FrontendController {
 

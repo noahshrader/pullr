@@ -20,9 +20,7 @@ use common\models\Campaign;
 use PayPal\Api\Payee;
 use common\models\notifications\RecentActivityNotification;
 
-if (!defined('PP_CONFIG_PATH')){
-    define ('PP_CONFIG_PATH', \Yii::getAlias('@app').'/../common/config/paypal');
-}
+defined('PP_CONFIG_PATH') or define ('PP_CONFIG_PATH', \Yii::getAlias('@app').'/../common/config/paypal');
 
 class PullrPayment extends \yii\base\Component {
 
@@ -254,9 +252,9 @@ class PullrPayment extends \yii\base\Component {
             }
         } catch (\Exception $ex) {
             echo "Exception: " . $ex->getMessage() . PHP_EOL;
-            if ($ex instanceof \PayPal\Exception) {
+            //if ($ex instanceof \PayPal\Exception) {
                 var_dump($ex->getData());
-            }
+           // }
             echo
             exit(1);
         }
