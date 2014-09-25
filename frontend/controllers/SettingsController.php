@@ -62,27 +62,106 @@ class SettingsController extends FrontendController {
                     'changePasswordForm' => $changePasswordForm
         ]);
     }
+    
+    /**
+     * That method sets request for account deactivation and logout user
+     * If user will not login in 30 days his account will be deactivated
+     */
+    public function actionDeactivate()
+    {
+        $deactivate = new DeactivateAccount();
 
-    public function actionDeactivatepro(){
+        if (Yii::$app->request->isAjax)
+        {
+            $deactivate->load($_POST);
+            Yii::$app->response->format = Response::FORMAT_JSON;
 
+            return ActiveForm::validate($deactivate);
+        }
+        else
+        {
+            /* In fact it should be true, as it was verified by ajax before sending */
+            if ($deactivate->load($_POST) && $deactivate->save())
+            {
+                $content = $this->renderPartial('@console/views/mail/deactivationEmail', [
+                    'reason' => $deactivate->reason,
+                    'user' => $deactivate->user
+                ]);
+
+                Mail::sendMail(\Yii::$app->params['adminEmails'], 'User deactivated account', $content, 'deactivatedAccount');
+                Yii::$app->getUser()->logout(true);
+
+                $this->redirect('/');
+            }
+        }
+    }
+
+    /**
+     * Gather user input and redirect to PayPal gateway to review PRO-subscription payment details
+     */
+    public function actionProstepone()
+    {
+        if (isset($_POST['subscription']))
+        {
+            $payAmount = $_POST['subscription'];
+            (new Session())->set('money_amount', $payAmount);
+
+            $setECResponse = PullrPayment::initProSubscription($payAmount);
+
+            $payPalHost = \Yii::$app->params['payPalHost'];
+            $this->redirect("$payPalHost/incontext?token={$setECResponse->Token}");
+        }
+    }
+
+    /**
+     * Bill user initial amount(for the 1st month\year) and subscribe to PRO recurring payment
+     * Fires when user accepted payment details and ready to pay
+     * @param string $token
+     * @param string $PayerID
+     */
+    public function actionProsteptwo($token, $PayerID)
+    {
+        $session = new Session();
+        $payAmount = $session->get("money_amount");
+
+        $response = PullrPayment::finishProSubscription($payAmount, $token, $PayerID);
+
+        if ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile')
+        {
+            $recurringProfile = RecurringProfile::findOne(['userId' => \Yii::$app->user->identity->id]);
+
+            if (isset($recurringProfile))
+            {
+                $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
+                $recurringProfile->save();
+            }
+            else
+            {
+                $recurringProfile = new RecurringProfile();
+                $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
+                $recurringProfile->userId = \Yii::$app->user->identity->id;
+                $recurringProfile->save();
+            }
+
+            $session->setFlash("pro_success", "");
+            $this->redirect("index");
+        }
+    }
+
+    /**
+     * Deactivates PayPal recurring PRO-subscription
+     */
+    public function actionDeactivatepro()
+    {
         $recurringProfile = RecurringProfile::findOne(['userId' => Yii::$app->user->identity->id]);
 
-        if(isset($recurringProfile)){
-            $paypalService = new \PayPalAPIInterfaceServiceService();
-            $requestDetails = new \ManageRecurringPaymentsProfileStatusRequestDetailsType();
-            $requestDetails->Action =  'Cancel';
-            $requestDetails->ProfileID =  $recurringProfile->profileId;
-            $profileStatusRequest = new \ManageRecurringPaymentsProfileStatusRequestType();
-            $profileStatusRequest->ManageRecurringPaymentsProfileStatusRequestDetails = $requestDetails;
-
-            $manageRPPStatusReq = new \ManageRecurringPaymentsProfileStatusReq();
-            $manageRPPStatusReq->ManageRecurringPaymentsProfileStatusRequest = $profileStatusRequest;
-
-            $paypalService->ManageRecurringPaymentsProfileStatus($manageRPPStatusReq);
+        if (isset($recurringProfile))
+        {
+            PullrPayment::deactivateProSubscription($recurringProfile->profileId);
 
             $deactivate = new DeactivatePro();
-            if ($deactivate->load($_POST) && $deactivate->save()) {
-
+            if ($deactivate->load($_POST) && $deactivate->save())
+            {
                 $content = $this->renderPartial('@console/views/mail/deactivationEmail', [
                     'reason' => $deactivate->getReason(),
                     'user' => $deactivate->user
@@ -95,67 +174,5 @@ class SettingsController extends FrontendController {
         }
 
         $this->redirect('index');
-    }
-    
-    /**
-     * that method set request for account deactivation, and logout user
-     * then if user will not login in 30 days his account will deactivated
-     */
-    public function actionDeactivate() {
-        $deactivate = new DeactivateAccount();
-        if (Yii::$app->request->isAjax) {
-            $deactivate->load($_POST);
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($deactivate);
-        } else {
-            /* in fact it should be true, as it was verified by ajax before sending */
-            if ($deactivate->load($_POST) && $deactivate->save()) {
-                $content = $this->renderPartial('@console/views/mail/deactivationEmail', [
-                    'reason' => $deactivate->reason,
-                    'user' => $deactivate->user
-                ]);
-
-                Mail::sendMail(\Yii::$app->params['adminEmails'], 'User deactivated account', $content, 'deactivatedAccount');
-                Yii::$app->getUser()->logout(true);
-                $this->redirect('/');
-            }
-        }
-    }
-
-    public function actionProstepone(){
-        if (isset($_POST['subscription'])) {
-            $payAmount = $_POST['subscription'];
-            (new Session())->set('money_amount', $payAmount);
-
-            $setECResponse = PullrPayment::initProSubscription($payAmount);
-
-            $payPalHost = \Yii::$app->params['payPalHost'];
-            $this->redirect("$payPalHost/incontext?token={$setECResponse->Token}");
-        }
-    }
-
-    public function actionProsteptwo($token, $PayerID)
-    {
-        $session = new Session();
-        $payAmount = $session->get("money_amount");
-
-        $response = PullrPayment::finishProSubscription($payAmount, $token, $PayerID);
-
-        if ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile') {
-            $recurringProfile = RecurringProfile::findOne(['userId' => \Yii::$app->user->identity->id]);
-
-            if (isset($recurringProfile)) {
-                $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
-                $recurringProfile->save();
-            } else {
-                $recurringProfile = new RecurringProfile();
-                $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
-                $recurringProfile->userId = \Yii::$app->user->identity->id;
-                $recurringProfile->save();
-            }
-
-            $session->setFlash("pro_success", "");
-            $this->redirect("index");
-        }
     }
 }

@@ -382,4 +382,19 @@ class PullrPayment extends \yii\base\Component {
         }
     }
 
+    public static function deactivateProSubscription($profileId)
+    {
+        $details = new \ManageRecurringPaymentsProfileStatusRequestDetailsType();
+        $details->Action = 'Cancel';
+        $details->ProfileID = $profileId;
+
+        $statusRequest = new \ManageRecurringPaymentsProfileStatusRequestType();
+        $statusRequest->ManageRecurringPaymentsProfileStatusRequestDetails = $details;
+
+        $profileStatus = new \ManageRecurringPaymentsProfileStatusReq();
+        $profileStatus->ManageRecurringPaymentsProfileStatusRequest = $statusRequest;
+
+        return (new \PayPalAPIInterfaceServiceService())->ManageRecurringPaymentsProfileStatus($profileStatus);
+    }
+
 }
