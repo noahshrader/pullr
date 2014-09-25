@@ -63,12 +63,11 @@ $this->title = 'Settings';
 		</div>
 	</div>
 </section> <!-- END main settings -->
+<?php ActiveForm::end(); ?>
 
 <?= $this->render('deactivate', ['user' => $user]); ?>
 <?= $this->render('deactivatepro'); ?>
 <?= $this->render('gopro'); ?>
-
-<?php ActiveForm::end(); ?>
 
 <div id="sidebar" class="plans pane"> <!-- BEGIN plans sidebar -->
 	<?=

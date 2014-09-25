@@ -63,9 +63,6 @@ class SettingsController extends FrontendController {
         ]);
     }
 
-    /**
-     * that is for debug purposes and only availabe for user's id<10
-     */
     public function actionDeactivatepro(){
 
         $recurringProfile = RecurringProfile::findOne(['userId' => Yii::$app->user->identity->id]);
