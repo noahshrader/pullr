@@ -342,6 +342,7 @@ class PullrPayment extends \yii\base\Component {
             $payment->amount = intval($payAmount);
             $payment->paypalId = $initPaymentInfo->TransactionID;
             $payment->createdDate = time();
+            $payment->paymentDate = time();
             $payment->type = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? \common\models\Payment::TYPE_PRO_YEAR : \common\models\Payment::TYPE_PRO_MONTH;
             $payment->save();
 
