@@ -62,14 +62,9 @@ $(window).load(function() {
         live: true
     });
     // resize iframe based on inner content
-    $('iframe').iFrameResize({
-        heightCalculationMethod: 'documentElementScroll'
-    });
-    // donation marquee scroll
-    $('.donation-stream-scroll').marquee({
-        pauseOnHover: true,
-        duplicated: true
-    });
+//    $('iframe').iFrameResize({
+//        heightCalculationMethod: 'documentElementScroll'
+//    });
 });
 
 $(function () {
@@ -147,4 +142,3 @@ function requireGoogleFont(fontFamily){
         }
    });
 }
-//
