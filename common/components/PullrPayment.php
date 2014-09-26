@@ -2,26 +2,30 @@
 
 namespace common\components;
 
+use common\models\notifications\RecentActivityNotification;
 use common\components\message\ActivityMessage;
 use OAuth\Common\Exception\Exception;
-use PayPal\Rest\ApiContext;
-use PayPal\Api\Payment;
-use PayPal\Auth\OAuthTokenCredential;
-use PayPal\Api\Amount;
-use PayPal\Api\Transaction;
-use PayPal\Api\Payer;
-use PayPal\Api\Item;
-use PayPal\Api\ItemList;
-use PayPal\Api\RedirectUrls;
-use common\models\Plan;
-use PayPal\Api\PaymentExecution;
 use common\models\Donation;
 use common\models\Campaign;
+use common\models\Plan;
+
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\RedirectUrls;
+use PayPal\Rest\ApiContext;
+use PayPal\Api\Transaction;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payment;
+use PayPal\Api\Amount;
+use PayPal\Api\Payer;
 use PayPal\Api\Payee;
-use common\models\notifications\RecentActivityNotification;
+use PayPal\Api\Item;
 
-defined('PP_CONFIG_PATH') or define ('PP_CONFIG_PATH', \Yii::getAlias('@app').'/../common/config/paypal');
+defined('PP_CONFIG_PATH') or define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
 
+/*
+ * Class for handling PayPal donation and recurring payments
+ */
 class PullrPayment extends \yii\base\Component {
 
     public $clientId;
@@ -35,19 +39,23 @@ class PullrPayment extends \yii\base\Component {
         $this->apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret));
     }
 
-    public static function getPaymentParamsForMoney($amount) {
+    public static function getPaymentParamsForMoney($amount)
+    {
         $params = [];
-        switch ($amount) {
+        switch ($amount)
+        {
             case \Yii::$app->params['yearSubscription']:
                 $params['days'] = 365.25;
                 $params['subscription'] = Plan::SUBSCRIPTION_YEAR;
                 $params['paymentType'] = \common\models\Payment::TYPE_PRO_YEAR;
                 break;
+
             case \Yii::$app->params['monthSubscription']:
                 $params['days'] = (365.25) / 12;
                 $params['subscription'] = Plan::SUBSCRIPTION_MONTH;
                 $params['paymentType'] = \common\models\Payment::TYPE_PRO_MONTH;
                 break;
+
             default:
                 throw new Exception("Wrong money amount");
         }
