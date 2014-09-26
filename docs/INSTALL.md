@@ -28,15 +28,17 @@ Next step let's load tables and sampe db data, run from pullr project folder
 Next we will load js libraries and npm packages we need  
 `npm install`
 
-If you encounter errors(e.g when using Vagrant) while installing packages try:
-`npm install --no-bin-links`
-
 ####Update your local repository with new changes
 To update files use your GUI App to sync or use that to run via terminal:   
 `git pull`
 
 Sometimes you need to update db, so run that (that will remove all tables and load data sample data again): 
 `./makesample.sh`
+
+####Notes
+* In you php.ini `short_open_tag` should be set to `On`
+* If you encounter errors(e.g when using Vagrant) while installing npm packages try: `npm install --no-bin-links`
+* If you get an error '/usr/bin/env: node: No such file or directory' run this: `ln -s /usr/bin/nodejs /usr/bin/node`
 
 ####Useful commands
 * `./yii pullr/purge` - will remove all tables from db
