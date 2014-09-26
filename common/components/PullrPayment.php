@@ -263,8 +263,6 @@ class PullrPayment extends \yii\base\Component {
     public static function initProSubscription($payAmount){
         $payParams = PullrPayment::getPaymentParamsForMoney($payAmount);
 
-        $paypalService = new \PayPalAPIInterfaceServiceService();
-
         $paymentDetails = new \PaymentDetailsType();
         $itemDetails = new \PaymentDetailsItemType();
         $itemDetails->Name = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "\${$payAmount} for the year" : "\${$payAmount} for the month";
@@ -294,7 +292,7 @@ class PullrPayment extends \yii\base\Component {
         $setECReq = new \SetExpressCheckoutReq();
         $setECReq->SetExpressCheckoutRequest = $setECReqType;
 
-        return $paypalService->SetExpressCheckout($setECReq);
+        return (new \PayPalAPIInterfaceServiceService())->SetExpressCheckout($setECReq);
     }
 
     public static function finishProSubscription($payAmount, $token, $PayerID)
@@ -376,9 +374,7 @@ class PullrPayment extends \yii\base\Component {
             $createRPProfileReq = new \CreateRecurringPaymentsProfileReq();
             $createRPProfileReq->CreateRecurringPaymentsProfileRequest = $createRPProfileRequest;
 
-            $paypalService = new \PayPalAPIInterfaceServiceService();
-
-            return $paypalService->CreateRecurringPaymentsProfile($createRPProfileReq);
+            return (new \PayPalAPIInterfaceServiceService())->CreateRecurringPaymentsProfile($createRPProfileReq);
         }
     }
 
