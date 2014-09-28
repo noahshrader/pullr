@@ -24,7 +24,7 @@ use PayPal\Api\Item;
 defined('PP_CONFIG_PATH') or define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
 
 /*
- * Class for handling PayPal donation and recurring payments
+ * Class for handling donation and recurring payments via PayPal
  */
 class PullrPayment extends \yii\base\Component {
 
@@ -258,13 +258,16 @@ class PullrPayment extends \yii\base\Component {
                 header("Location: $redirectUrl");
                 exit;
             }
-        } catch (\Exception $ex) {
-            echo "Exception: " . $ex->getMessage() . PHP_EOL;
-            //if ($ex instanceof \PayPal\Exception) {
-                var_dump($ex->getData());
-           // }
-            echo
-            exit(1);
+        }
+        catch (\PPConnectionException $ex)
+        {
+            \Yii::error($ex->getData());
+            throw $ex;
+        }
+        catch (\Exception $ex)
+        {
+            \Yii::error($ex->getMessage());
+            throw $ex;
         }
     }
 
