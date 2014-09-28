@@ -7,35 +7,37 @@ namespace common\components\theme;
  * Class DefaultManifestSource
  * @package common\components\theme
  */
-class DefaultManifestSource implements IManifestSource {
-
+class DefaultManifestSource implements IManifestSource
+{
     protected $data = NULL;
 
-    public function setup($themeDirectory){
-        if (file_exists($themeDirectory.'/manifest.php')){
-            $this->data = include $themeDirectory.'/manifest.php';
-            return TRUE;
+    public function setup($themeDirectory)
+    {
+        if (file_exists($themeDirectory . '/manifest.php'))
+        {
+            $this->data = include $themeDirectory . '/manifest.php';
+            return is_array($this->data);
         }
         return FALSE;
     }
 
     public function getName()
     {
-        return $this->data['name'] ?: null;
+        return isset($this->data['name']) ? $this->data['name'] : null;
     }
 
     public function getDescription()
     {
-        return $this->data['description'] ?: null;
+        return isset($this->data['description']) ? $this->data['description'] : null;
     }
 
     public function getLayoutType()
     {
-        return $this->data['layoutType'] ?: null;
+        return isset($this->data['layoutType']) ? $this->data['layoutType'] : null;
     }
 
     public function getPlan()
     {
-        return $this->data['plan'] ?: null;
+        return isset($this->data['plan']) ? $this->data['plan'] : null;
     }
 }

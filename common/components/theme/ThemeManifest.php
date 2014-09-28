@@ -11,20 +11,34 @@ class ThemeManifest
 {
     protected $source = NULL;
 
-    public function __construct(IManifestSource $source){
+    public function __construct(IManifestSource $source)
+    {
         $this->setSource($source);
     }
 
-    public function setSource(IManifestSource $source){
+    public function setSource(IManifestSource $source)
+    {
         $this->source = $source;
     }
 
-    public function read($themeDir){
-        if (in_array(basename($themeDir), ['.','..'])){
+    private function hasAllRequiredInfo()
+    {
+        return (
+            !is_null($this->source->getName()) &&
+            !is_null($this->source->getLayoutType()) &&
+            !is_null($this->source->getPlan())
+        );
+    }
+
+    public function read($themeDir)
+    {
+        if (in_array(basename($themeDir), ['.', '..']))
+        {
             throw new \InvalidArgumentException('themeDir cannot be . or ..');
         }
 
-        if ($this->source->setup($themeDir)){
+        if ($this->source->setup($themeDir) && $this->hasAllRequiredInfo())
+        {
             return [
                 'Filename' => basename($themeDir),
                 'Name' => $this->source->getName(),
@@ -34,10 +48,7 @@ class ThemeManifest
                 'Status' => ''
             ];
         }
-        else{
-            return NULL;
-        }
 
+        return NULL;
     }
-
 } 
