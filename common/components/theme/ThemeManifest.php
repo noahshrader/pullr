@@ -17,6 +17,13 @@ class ThemeManifest
     }
 
     /**
+     * @return IManifestSource
+     */
+    public function getSource(){
+        return $this->source;
+    }
+
+    /**
      * Sets object which will handle loading manifest info
      * @param IManifestSource $source
      */
@@ -28,9 +35,9 @@ class ThemeManifest
     private function hasAllRequiredInfo()
     {
         return (
-            !is_null($this->source->getName()) &&
-            !is_null($this->source->getLayoutType()) &&
-            !is_null($this->source->getPlan())
+            !is_null($this->getSource()->getName()) &&
+            !is_null($this->getSource()->getLayoutType()) &&
+            !is_null($this->getSource()->getPlan())
         );
     }
 
@@ -47,14 +54,14 @@ class ThemeManifest
             throw new \InvalidArgumentException('themeDir cannot be . or ..');
         }
 
-        if ($this->source->setup($themeDir) && $this->hasAllRequiredInfo())
+        if ($this->getSource()->setup($themeDir) && $this->hasAllRequiredInfo())
         {
             return [
                 'Filename' => basename($themeDir),
-                'Name' => $this->source->getName(),
-                'Description' => $this->source->getDescription(),
-                'LayoutType' => $this->source->getLayoutType(),
-                'Plan' => $this->source->getPlan(),
+                'Name' => $this->getSource()->getName(),
+                'Description' => $this->getSource()->getDescription(),
+                'LayoutType' => $this->getSource()->getLayoutType(),
+                'Plan' => $this->getSource()->getPlan(),
                 'Status' => ''
             ];
         }

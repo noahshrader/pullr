@@ -23,21 +23,21 @@ class DefaultManifestSource implements IManifestSource
 
     public function getName()
     {
-        return isset($this->data['name']) ? $this->data['name'] : null;
+        return !empty($this->data['name']) ? trim($this->data['name']) : null;
     }
 
     public function getDescription()
     {
-        return isset($this->data['description']) ? $this->data['description'] : null;
+        return !empty($this->data['description']) ? trim($this->data['description']) : null;
     }
 
     public function getLayoutType()
     {
-        return isset($this->data['layoutType']) ? $this->data['layoutType'] : null;
+        return !empty($this->data['layoutType']) ? trim($this->data['layoutType']) : null;
     }
 
     public function getPlan()
     {
-        return isset($this->data['plan']) ? $this->data['plan'] : null;
+        return !empty($this->data['plan']) ? trim($this->data['plan']) : null;
     }
 }
