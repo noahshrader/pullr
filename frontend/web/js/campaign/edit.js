@@ -222,6 +222,7 @@ $( window ).load(function() {
     $('#masked-input').on('change', function(){
        $('#campaign-goalamount').val($(this).val());
     });
+    $('.field-campaign-goalamount .help-block').insertAfter('.field-campaign-goalamount #masked-input');
     $.extend($.inputmask.defaults, {
         'autoUnmask': true
     });
