@@ -34,7 +34,7 @@ use yii\web\View;
     <ul class="panel-nav paneltoggle">
         <li ng-if="widget.includeDonations" class="panel-link"><a data-panel="donations" class="icon-coin"></a></li>
         <li ng-if="widget.includeFollowers" class="panel-link"><a data-panel="followers" class="icon-heart"></a></li>
-        <li ng-if="widget.includeSubscribers" class="panel-link"><a data-panel="subscribers" class="icon-user"></a></li>
+        <li ng-if="widget.includeSubscribers" class="panel-link"><a data-panel="subscribers" class="icon-star"></a></li>
     </ul>
     <div class="donations_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.donationsPreference">
