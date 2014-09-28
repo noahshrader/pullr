@@ -16,6 +16,10 @@ class ThemeManifest
         $this->setSource($source);
     }
 
+    /**
+     * Sets object which will handle loading manifest info
+     * @param IManifestSource $source
+     */
     public function setSource(IManifestSource $source)
     {
         $this->source = $source;
@@ -30,6 +34,12 @@ class ThemeManifest
         );
     }
 
+    /**
+     * Loads object with theme manifest data
+     * @param $themeDir
+     * @return array
+     * @throws \InvalidArgumentException
+     */
     public function read($themeDir)
     {
         if (in_array(basename($themeDir), ['.', '..']))
@@ -49,6 +59,6 @@ class ThemeManifest
             ];
         }
 
-        return NULL;
+        return [];
     }
 } 

@@ -46,7 +46,7 @@ class ThemeScanner extends \yii\base\Component
         //update newly created themes in db
         foreach ($themesParams as $themeParams)
         {
-            if (!is_null($themeParams))
+            if (sizeof($themeParams))
             {
                 $themeFilenames[] = $themeParams['Filename'];
                 $theme = Theme::find()->where(['filename' => $themeParams['Filename']])->one();
