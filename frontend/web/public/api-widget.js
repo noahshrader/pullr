@@ -109,8 +109,10 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 				if (typeof(scope.campaign) != 'undefined') {
 					if (scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
 						return Pullr.API_URL + 'campaignsinglestreamlayout';
-					} else {
+					} else if(scope.campaign.layoutType == Pullr.LAYOUT_TYPE_MULTI) {
 						return Pullr.API_URL + 'campaignmultistreamlayout';
+					} else {
+						return Pullr.API_URL + 'campaignteamstreamlayout'; 
 					}	
 				}
 				

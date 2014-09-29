@@ -96,20 +96,13 @@ class ApiController extends \yii\web\Controller {
             echo json_encode([]);
             return;
         }
-        $channels = $campaign->getTeams();
+        $channels = $campaign->getTeams()->all();
         $members = [];
-        $offlines = [];
-        $onlines = [];
-        foreach ($channels as $channelName) {
-            $channel = $this->twitch->channelGet($channelName);
-            if ($channel->status == 'live') {
-                $onlines[] = $channel;
-            } else {
-                $offlines = $channel;
-            }
+        
+        foreach ($channels as $channelModel) {
+            $channel = $this->twitch->channelGet($channelModel->name);
+            $members[] = $channel;
         }
-        shuffle($onlines);
-        $members = array_merge($onlines, $offlines);
         echo json_encode($members);
     }
 
@@ -162,6 +155,11 @@ class ApiController extends \yii\web\Controller {
 
     public function actionCampaignsinglestreamlayout(){
         echo $this->renderFile('@frontend/views/api/templates/campaign/campaignSingleStreamLayout.html');
+        \common\components\Application::frontendUrl('/');   
+    }
+
+    public function actionCampaignteamstreamlayout(){
+        echo $this->renderFile('@frontend/views/api/templates/campaign/campaignTeamStreamLayout.html');
         \common\components\Application::frontendUrl('/');   
     }
 

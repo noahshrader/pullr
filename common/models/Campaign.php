@@ -255,7 +255,7 @@ class Campaign extends ActiveRecord {
     }
 
     public function getTeams() {
-        return $this->hasMany(LayoutTeam::className(), ['id' => 'layoutId']);
+        return $this->hasMany(LayoutTeam::className(), ['campaignId' => 'id']);
     }
 
     public function getTheme() {
