@@ -27,6 +27,7 @@
                         }
                     })
                 }
+
                 function startMarquee() {
                     $(element).marquee({
 //                        duration: 8000, // Slow = 28000; Normal = 16000; Fast = 8000;

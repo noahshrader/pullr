@@ -48,7 +48,7 @@ class StreamboardController extends FrontendController
         $streamboardConfig = $user->streamboardConfig;
         $time = time();
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
-        $sinceTime = $streamboardConfig->streamRequestLastDate - 4*60*60;
+        $sinceTime = $streamboardConfig->streamRequestLastDate - 5;
 
         $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC, id ASC')->all();
 
