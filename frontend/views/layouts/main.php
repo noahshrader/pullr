@@ -25,7 +25,7 @@ $this->registerJs($js);
     <body>
         <?php $this->beginBody() ?>
         
-        <div class="main-wrapper large-menu-toggled">
+        <div class="main-wrapper">
             <? if ($this->context->id == 'campaign') { ?>
             <div class="top-menu indent">
             <? } elseif ($this->context->id == 'donor') { ?>
@@ -84,8 +84,6 @@ $this->registerJs($js);
                         </li>
                      </ul>
                 </nav>
-
-                <a class="primary-nav-toggle icon icon-arrow-left2"></a>
             </div> <!-- END main navigation -->
             <?= $content ?>
 
