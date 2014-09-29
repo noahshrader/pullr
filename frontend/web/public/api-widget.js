@@ -138,5 +138,9 @@ app.filter('trusted', ['$sce', function ($sce) {
     };
 }]);
 
+angular.element(document).ready(function() {
+  	angular.bootstrap(document, ['PullrApp']);
+});
+
 
 

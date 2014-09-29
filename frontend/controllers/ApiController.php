@@ -50,13 +50,14 @@ class ApiController extends \yii\web\Controller {
 
     public function actionCampaign() {
         $campaign = $this->validateRequest();
-        //$date = (new \DateTime())->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()));
+        
         $campaignArray = $campaign->toArray();
         $campaignArray['donationUrl'] = $campaign->user->getUrl() . $campaign->alias;
         $campaignArray['startDateFormatted'] = $campaignArray['startDate'];
         $campaignArray['endDateFormatted'] = $campaignArray['endDate'];
-        $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
-        $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
+        //$date = (new \DateTime())->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()));
+        // $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
+        // $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
         $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
         $campaignArray['amountRaisedFormatted'] = '$'.number_format($campaign['amountRaised']);
         $campaignArray['percentageOfGoal'] = round($this->campaign['amountRaised'] / $campaign['goalAmount'] * 100);

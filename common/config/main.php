@@ -16,7 +16,7 @@ return [
             'converter' => [
                 'class' => 'yii\web\AssetConverter',
                 'commands' => [
-                    'less' => ['css', "$lesscPath {from} {to} --compress"],
+                    'less' => ['css', "$lesscPath {from} {to} --source-map --compress"],
                 ],
             ],
         ],
