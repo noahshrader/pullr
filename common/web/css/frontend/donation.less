@@ -17,16 +17,13 @@ body {
 /* ------------------------------------------------- */
 label {
 	display: inline-block;
-	color: #53555a;
+	color: @gray70;
 	font-size: 0.9em;
 	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 1px;
 	margin-bottom: .4em;
 }
+
 .form-wrapper {
-	margin: 0 auto;
-	max-width: 460px;
 
 	.form-group {
 		margin: 0;
@@ -35,6 +32,7 @@ label {
 		position: relative;
 		margin-bottom: .6em;
 		width: 100%;
+
 		input[type="text"],
 		textarea,
 		select {
@@ -42,6 +40,9 @@ label {
 			padding: @halfgutter;
 			width: 100%;
 			max-width: 100%;
+		}
+		textarea {
+			min-height: 160px;
 		}
 		&.comments {
 			margin-bottom: 2em;
@@ -56,10 +57,9 @@ label {
 }
 .btn:not(.btn-xs):not(.btn-sm):not(.bnt-lg) {
 	font-size: 1.4em;
-	margin: .3em 0;
-	padding: .4em 0;
+	margin: .3em auto .6em;
+	padding: .4em 2em;
 	height: auto;
-	width: 100%;
 }
 
 
@@ -76,33 +76,45 @@ label {
 	font-style: normal;
 }
 
-/* Name */
+
+/* Donation Form Header */
 /* ------------------------------------------------- */
-h1.campaign-name {
-	font-family: @mainfont;
-	line-height: 1;
-	padding: 0 5%;
-	margin: 0;
-}
-h3.charity-name {
-	color: @gray60;
-	font-size: 1.2em;
-	padding: 0 5%;
-	margin: .2em 0;
+.donation-form-header {
+	margin: 0 auto;
+	padding: 6em 5% 0;
+	max-width: 800px;
 
-	span {
-		color: @accent;
+	h1.campaign-name {
+		color: @gray20;
+		font-family: @secfont;
+		font-weight: 400;
+		line-height: 1;
+		letter-spacing: -1px;
+		padding: 0 5%;
+		margin: 0;
+	}
+	h3.charity-name {
+		color: @gray60;
+		font-size: 1.15em;
+		line-height: 1.2em;
+		padding: 0 5%;
+		margin-top: .8em;
 
-		&.approved {
-			position: relative;
-			top: 2px;
-			display: inline-block;
-			font-size: 1em;
-			font-weight: 600;
-			margin-left: @iconspace;
+		span {
+			color: @accent;
+
+			&.approved {
+				position: relative;
+				top: 2px;
+				display: inline-block;
+				font-size: 1em;
+				font-weight: 600;
+				margin-left: @iconspace;
+			}
 		}
 	}
 }
+
 
 /* Progress Bar */
 /* ------------------------------------------------- */
@@ -190,7 +202,7 @@ footer {
 	a.logo {
 		&:before {
 			color: @gray70;
-			font-size: 2.4em;
+			font-size: 2em;
 		}
 		&:hover:before {
 			color: @gray20;
@@ -213,33 +225,41 @@ footer {
 	}
 }
 
-/* Tip Jar Donation Form */
+
+/* Shared Styles */
+/* ------------------------------------------------- */
+.tip-jar,
+.events-form {
+
+	 form {
+		margin: 0 auto;
+		padding: 3em 5%;
+		width: 100%;
+		max-width: 650px;
+	 }
+}
+
+
+/* Personal Donation Form */
 /* ------------------------------------------------- */
 .tip-jar {
 	text-align: center;
-	padding: 6em 5% 2em;
-
-	form {
-		margin: 0 auto;
-		width: 100%;
-		max-width: 420px;
-	}
 
 	/* Donation Input */
 	.donation-amount {
 		input {
 			padding: 1em 3.2em 1em 2em;
+			text-indent: 25px;
 		}
 		span {
 			position: absolute;
-			top: 1.25em;
-			color: #53555a;
+			top: 0;
+			line-height: 57px;
+			color: @gray40;
 			&.preamt {
-				position: absolute;
 				left: 1.2em;
 			}
 			&.currency {
-				position: absolute;
 				right: 1.2em;
 			}
 		}
@@ -250,18 +270,11 @@ footer {
 /* ------------------------------------------------- */
 .events-form {
 	text-align: center;
-	padding: 6em 5% 2em;
-
-	form {
-		margin: 0 auto;
-		width: 100%;
-		max-width: 680px;
-	}
 
 	/* Amount Selections */
 	#donation-amount {
 		position: relative;
-		margin: 3em auto;
+		margin-bottom: 2em;
 
 		.fieldamount {
 			position: relative;
@@ -277,10 +290,11 @@ footer {
 			transition: linear .1s;
 
 			label {
-				color: #6b6e75;
-				font-size: 1.8em;
+				color: @gray20;
+				font-family: @secfont;
+				font-size: 1.4em;
 				font-weight: 400;
-				line-height: 100px;
+				line-height: 90px;
 				letter-spacing: -1px;
 				margin: 0;
 				width: 100%;
@@ -299,7 +313,7 @@ footer {
 					background: @accent !important;
 				}
 				&.other {
-					font-size: 1.1em;
+					font-size: 1em;
 					text-transform: uppercase;
 					letter-spacing: 0;
 				}
@@ -320,7 +334,7 @@ footer {
 			.border-radius;
 			-webkit-background-clip: padding-box;
 			background-clip: padding-box;
-			border: solid 1px #d4d5d8;
+			border: solid 2px @gray75;
 			overflow: hidden;
 
 			a.closethis {
@@ -328,8 +342,8 @@ footer {
 				top: 0;
 				right: 32px;
 				color: #d4d5d8;
-				font-size: 1.4em;
-				line-height: 100px;
+				font-size: 1.8em;
+				line-height: 90px;
 				z-index: 100;
 				&:hover {
 					color: #53555a;
@@ -342,20 +356,20 @@ footer {
 				color: #53555a;
 				z-index: 900;
 				font-size: 2em;
-				line-height: 100px;
+				line-height: 90px;
 			}
 
 			.field {
 				position: relative;
 				margin: 0;
+				padding: .4em 10%;
 
 				input {
 					font-size: 2em;
 					line-height: 44px;
 					width: 100%;
-					padding: .85em 10% !important;
 					border: 0;
-					text-indent: 6%;
+					text-indent: 5px;
 					background: @white;
 				}
 			}

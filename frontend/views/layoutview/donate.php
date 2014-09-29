@@ -6,25 +6,28 @@ use yii\widgets\ActiveForm;
 <!-- BEGIN Donation Form -->
 
 <section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 'tip-jar' :'events-form' ?>">
-    <h1 class="campaign-name"><?= $campaign->name ?></h1>
-    <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
-        <? 
-           $charityName = '';
-           if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
-               $charityName = $campaign->customCharity;
-           } 
-           if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES && $campaign->charityId){
-               $charityName = $campaign->charity->name;
-           } 
-        ?>
-        <? if ($charityName):?>
-            <h3 class="charity-name">for <span><?= $charityName ?></span>
-            <? if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES): ?>
-                <span class="approved icon-check-round-fill"></span></h3>
+    <div class="donation-form-header">
+        <h1 class="campaign-name"><?= $campaign->name ?></h1>
+        <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
+            <? 
+               $charityName = '';
+               if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
+                   $charityName = $campaign->customCharity;
+               } 
+               if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES && $campaign->charityId){
+                   $charityName = $campaign->charity->name;
+               } 
+            ?>
+            <? if ($charityName):?>
+                <h3 class="charity-name">for <span><?= $charityName ?></span>
+                <? if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES): ?>
+                    <span class="approved icon-check-round-fill"></span></h3>
+                <? endif ?>
             <? endif ?>
-        <? endif ?>
-    <? endif; ?>
+        <? endif; ?>
+    </div>
     <?php $form = ActiveForm::begin($campaign->firstGiving ? [] : ['options' => ['target' => '_blank']]) ?>
+        <div class="form-wrapper">
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
                 <!-- Amount Selections -->
                 <div id="donation-amount" class="cf">
@@ -54,34 +57,31 @@ use yii\widgets\ActiveForm;
                                 </div>
                         </div>
                 </div>
-            <? else: ?>
-               <div class="field donation-amount">
-				<input type="text" id="other-amount" value='1'>
-				<span class="preamt">$</span>
-				<span class="currency">USD</span>
-                </div>
-             </div>
-            <? endif;?>
-            <span class="hide"><?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?></span>
-            <!-- Other Fields -->
-            <div class="form-wrapper">
-                <div class="field">
-                    <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
-                </div>
-                <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
-                <div class="field">
-                    <?= $form->field($donation, 'email', ['inputOptions' => ['placeholder' => 'Email']])->label(false); ?>
-                </div>
-                <? endif ?>
-                <? if ($campaign->enableDonorComments): ?>
-                <div class="field comments">
-                    <textarea type="text" id='donation-comments' name="Donation[comments]" placeholder="Comments"><?=htmlspecialchars($donation->comments) ?></textarea>
-                    <span class="counter"></span>
+                <? else: ?>
+                <div class="field donation-amount">
+                    <input type="text" id="other-amount" value='1'>
+                    <span class="preamt">$</span>
+                    <span class="currency">USD</span>
                 </div>
                 <? endif;?>
-                <button type="submit" class="btn-primary btn donate">Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 1 : 5 ?></button>
-                <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">privacy policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">terms of service</a>.</p>
+            <span class="hide"><?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?></span>
+            <div class="field">
+                <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
             </div>
+            <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
+            <div class="field">
+                <?= $form->field($donation, 'email', ['inputOptions' => ['placeholder' => 'Email']])->label(false); ?>
+            </div>
+            <? endif ?>
+            <? if ($campaign->enableDonorComments): ?>
+            <div class="field comments">
+                <textarea type="text" id='donation-comments' name="Donation[comments]" placeholder="Comments"><?=htmlspecialchars($donation->comments) ?></textarea>
+                <span class="counter"></span>
+            </div>
+            <? endif;?>
+            <button type="submit" class="btn-primary btn donate">Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 1 : 5 ?></button>
+            <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">privacy policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">terms of service</a>.</p>
+        </div>
     <?php ActiveForm::end(); ?>
 </section>
 <!-- END Donation Form -->

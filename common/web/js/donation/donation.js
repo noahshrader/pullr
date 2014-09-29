@@ -97,4 +97,3 @@ function amountChangedEvent() {
 }
 
 $(document).ready(donatePageInit);
-
