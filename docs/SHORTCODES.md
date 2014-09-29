@@ -56,8 +56,7 @@ YouTube URL: "{{campaign.youtubeUrl}}"
 
 ###Layout
 
-```
-Layout:
+To add your layout to any page, add the following:
 ```
 <div pullr-campaign-layout></div>
 ```
