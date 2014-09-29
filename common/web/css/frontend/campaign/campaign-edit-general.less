@@ -2,64 +2,69 @@
 	.pf-paypal {
 		display: none;
 	}
-	#tieCampaignContainer{
+	#tieCampaignContainer {
+		display: none;
+	}
+	.module.team {
 		display: none;
 	}
 }
 
-#campaignEdit[data-campaignType="Personal Fundraiser"]{
+#campaignEdit[data-campaignType="Personal Fundraiser"] {
 	.pf-paypal {
 		display: block;
 	}
-	#startEndContainer{
+	#startEndContainer {
 		display: none;
 	}
 
-	#donationDestination{
+	#donationDestination {
 		display: none;
 	}
 }
 
-#campaignEdit[data-campaigntype="Charity Fundraiser"]{
-	.field-campaign-parentcampaignid{
+#campaignEdit[data-campaigntype="Charity Fundraiser"] {
+	.field-campaign-parentcampaignid {
 		display: none;
 	}
-
-	#tieCampaignContainer{
+	.module.team {
+		display: block;
+	}
+	#tieCampaignContainer {
 		display: block;
 	}
 
 	.isTied{
-		.field-campaign-parentcampaignid{
+		.field-campaign-parentcampaignid {
 			display: block;
 		}
 
-		#notTiedCampaignContainer{
+		#notTiedCampaignContainer {
 			display: none;
 		}
 	}
 }
-[data-donationDestination='Pre-approved Charities']{
+[data-donationDestination='Pre-approved Charities'] {
 	.customCharity{
 		display: none;
 	}
 }
 
-[data-donationDestination='Custom Fundraiser']{
+[data-donationDestination='Custom Fundraiser'] {
 	.preapprovedCharity{
 		display: none;
 	}
 }
 
-#modalCharity .microPhoto{
+#modalCharity .microPhoto {
 	max-width: 150px;
 	max-height: 150px;
 }
-#modalCharity .select-charity-container{
+#modalCharity .select-charity-container {
 	cursor: pointer;
 	padding: 10px 0px 10px 0px;
 }
-#modalCharity .select-charity-container:hover{
+#modalCharity .select-charity-container:hover {
 	background-color: #ccc;
 }
 #campaign-edit-team, #campaign-edit-team-li, #teamQuestion {

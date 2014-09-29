@@ -39,7 +39,7 @@ class Campaign extends ActiveRecord {
     public static $TYPES = [self::TYPE_PERSONAL_FUNDRAISER, self::TYPE_CHARITY_FUNDRAISER];
     
     const LAYOUT_TYPE_SINGLE = 'Single Stream';
-    const LAYOUT_TYPE_TEAM = 'Team Stream';
+    const LAYOUT_TYPE_TEAM = 'Twitch Team';
     const LAYOUT_TYPE_MULTI = 'Multi Stream';
 
     public static $LAYOUT_TYPES = [self::LAYOUT_TYPE_SINGLE, self::LAYOUT_TYPE_TEAM, self::LAYOUT_TYPE_MULTI];
@@ -255,7 +255,7 @@ class Campaign extends ActiveRecord {
     }
 
     public function getTeams() {
-        return $this->hasMany(LayoutTeam::className(), ['id' => 'layoutId']);
+        return $this->hasMany(LayoutTeam::className(), ['campaignId' => 'id']);
     }
 
     public function getTheme() {

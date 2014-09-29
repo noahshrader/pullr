@@ -1,26 +1,32 @@
 window.Pullr = window.Pullr || {};
 
-Pullr.MAIN_URL = "//<?=$_SERVER['HTTP_HOST']?><?= \Yii::$app->urlManager->baseUrl?>/";
+Pullr.MAIN_URL = "http://<?=$_SERVER['HTTP_HOST']?><?= \Yii::$app->urlManager->baseUrl?>/";
 Pullr.API_URL = Pullr.MAIN_URL + "api/";
 Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
 Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.min.js";
 Pullr.MAGNIFIC_POPUP_JS_URL = Pullr.MAIN_URL + "js/lib/magnificpopup.js";
 Pullr.MAGNIFIC_POPUP_CSS_URL = Pullr.MAIN_URL + "js/lib/magnificpopup.css";
+Pullr.ANGULAR_LIB_URL = 'http://code.angularjs.org/snapshot/angular.js';
+Pullr.ANGULAR_APP_URL = Pullr.MAIN_URL + "public/api-widget.js";
+
+function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+}
 /**
  * example: 
  * Pullr.Init({id:1, key: "test_key"}); 
  */
+
+Pullr.isInitted = false;
 Pullr.Init = function (requestParams){
-    Pullr.__ready = [];
-    Pullr.requestParams = requestParams;
-    Pullr.LoadTemplates();
-    Pullr.LoadCampaign();
-    Pullr.LoadChannels();
-    Pullr.loadMagnificPopup();
-    Pullr.Ready(Pullr.Show);
-    Pullr.Ready(Pullr.ShortCodes);
-    Pullr.Ready(Pullr.Preformat);
-    Pullr.Run();
+    if( false == Pullr.isInitted){
+        Pullr.__ready = [];
+        Pullr.requestParams = requestParams;
+        Pullr.LoadAngularLib();
+        Pullr.Run();    
+        Pullr.isInitted = true;
+    }
+    
 };
 
 Pullr.Ready = function(func){
@@ -31,20 +37,10 @@ Pullr.Ready = function(func){
  * wait for all data being loaded and then execute __ready functions  
  */
 Pullr.Run = function(){
-    if (jQuery().loadTemplate && ($('#templateTeamMember').length>0) && Pullr.campaign && Pullr.channels ){
-        console.log('loaded');
-        while (Pullr.__ready.length > 0) 
-        {
-            var func = Pullr.__ready.shift();
-            func();
-        }
-    } else {
-        console.log('waiting response');
-        setTimeout(function(){
-            Pullr.Run();
-        }, 20)
-    }
+
 }
+
+
 
 Pullr.Show = function(){
     for (var key in Pullr.channels){
@@ -73,6 +69,23 @@ Pullr.Preformat = function(){
     });
 }
 
+Pullr.LoadAngularLib = function(){
+    var script = document.createElement("script");
+    script.type = 'text/javascript';
+    script.src = Pullr.ANGULAR_LIB_URL;
+    script.async = true;
+    script.onload = function(){
+        Pullr.LoadAngularApp();
+    }
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+Pullr.LoadAngularApp = function(){
+    var script = document.createElement("script");
+    script.type = 'text/javascript';
+    script.src = Pullr.ANGULAR_APP_URL;
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
 /**
  * You can view available codes by typing Pullr.campaign
  */
@@ -129,9 +142,7 @@ Pullr.loadMagnificPopup = function(){
     });
 }
 
-function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-}
+
   
 Pullr.LoadCampaign = function(){
     Pullr.Call('campaign', {}, function (data) {

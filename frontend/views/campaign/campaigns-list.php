@@ -19,8 +19,8 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
             <?/*real attributes set in php code just few lines below, that is just mapping*/ ?>
             <a data-bind="attr: { href: href}, css: { active: isActive == true }" class='row campaign-item' >
                 <div class="main-info">
+                    <h4 data-bind="text: type" class="layout-type"></h4>
                     <h3 data-bind="text: name"></h3>
-                    <!--<h4 data-bind="text: type" class="layout-type"></h4>-->
                     <p data-bind="text: amountRaised"></p>
                 </div>
             </a>

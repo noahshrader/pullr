@@ -1,8 +1,7 @@
 <div id="collapseFour" class="<?= ($campaign->twitterEnable? 'twitterEnable ': '').($campaign->youtubeEnable? 'youtubeEnable ': '').($campaign->facebookEnable? 'facebookEnable ': '') ?> socialenable">
-    <h4>Social Settings</h4>
 
 	<!-- Twitter -->
-	<div class="form-group">
+	<div class="module">
     	<?= $form->field($campaign, 'twitterEnable')->label('<i class="icon-twitter"></i>')->checkbox([], false); ?>
     	<?= $form->field($campaign, 'twitterName', ['autoPlaceholder' => false])->label("Twitter Username"); ?>
     </div>

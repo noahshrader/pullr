@@ -171,7 +171,6 @@ input.color-choice {
 	position: relative;
 	margin: 0;
 	padding: @halfgutter;
-	.box-shadow;
 
 	&:before {
 		position: absolute;
@@ -304,7 +303,7 @@ input.color-choice {
 .help-block {
 	display: block;
 	position: absolute;
-	bottom: -55px;
+	bottom: -50px;
 	left: 0;
 	font-size: @smalltext;
 	font-weight: 600;
@@ -332,11 +331,9 @@ input.color-choice {
 		label {
 			color: @errorred;
 		}
-		input {
-			&.form-control {
-				color: @errorred;
-				border-color: @errorred;
-			}
+		input[type="text"] {
+			color: @errorred;
+			border-color: @errorred;
 		}
 		.help-block {
 			color: @white;
@@ -353,7 +350,7 @@ input.color-choice {
 }
 .form-group .form-group {
 	padding: 0;
-	margin-bottom: @halfgutter;
+	margin: 0;
 }
 .form-control {
 	height: auto;

@@ -44,9 +44,6 @@
 	.element-radius;
 	.box-shadow;
 	overflow: hidden;
-	&:last-child {
-		margin: 0;
-	}
 
 	h4 {
 		font-weight: 600;
@@ -61,6 +58,28 @@
 		margin: 0;
 		height: 45px;
 		border-bottom: solid 1px @gray75;
+	}
+	.module {
+		position: static;
+		margin: @halfgutter 0 @gutter+@halfgutter;
+		padding: 0 @gutter @halfgutter;
+		border: solid 1px @gray75;
+		box-shadow: none;
+		overflow: visible;
+
+		h4 {
+			text-align: center;
+			position: relative;
+			top: -@halfgutter;
+			left: -1em;
+			display: inline-block;
+			color: @gray70;
+			font-size: 1.1em;
+			font-weight: 600;
+			padding: 0 1em;
+			margin: 0 0 @halfgutter;
+			background: #FFF;
+		}
 	}
 }
 
