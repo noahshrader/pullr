@@ -10,14 +10,24 @@ use \ritero\SDK\TwitchTV\TwitchSDK;
 
 class ApiController extends \yii\web\Controller {
 
+    protected $twitch;
+
+    protected $campaign;
+
+    public function init(){
+        $this->twitch = new TwitchSDK();
+        return parent::init();
+    }
+
     public function validateRequest() {
         \Yii::$app->response->format = Response::FORMAT_JSON;
-
-        if (!isset($_REQUEST['id']) || (!isset($_REQUEST['key']))) {
+        $payload = file_get_contents('php://input');
+        $payload = json_decode($payload,true);
+        if (!isset($payload['id']) || (!isset($payload['key']))) {
             throw new Exception('"id" and "key" should be set');
         }
-        $id = $_REQUEST['id'];
-        $key = $_REQUEST['key'];
+        $id = $payload['id'];
+        $key = $payload['key'];
         $campaign = Campaign::findOne($id);
         if (!$campaign) {
             throw new Exception("Invalid event id");
@@ -38,7 +48,7 @@ class ApiController extends \yii\web\Controller {
         $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
         $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
         $campaignArray['amountRaisedFormatted'] = '$'.number_format($campaign['amountRaised']);
-        $campaignArray['percentageOfGoal'] = round($campaign['amountRaised'] / $campaign['goalAmount'] * 100);
+        $campaignArray['percentageOfGoal'] = round($this->campaign['amountRaised'] / $campaign['goalAmount'] * 100);
         if (($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES) && ($campaign->type === Campaign::TYPE_CHARITY_FUNDRAISER) && $campaign->charity) {
             $campaignArray['charity'] = $campaign->charity->toArray();
         } else {
@@ -53,13 +63,51 @@ class ApiController extends \yii\web\Controller {
 
     public function actionChannels() {
         $campaign = $this->validateRequest();
+        switch ($campaign->layoutType) {
+            case Campaign::LAYOUT_TYPE_SINGLE:
+                $this->actionSingleChannel();
+            break;    
+            case Campaign::LAYOUT_TYPE_TEAM:
+                $this->actionTeamChannel();
+            break;
+            case Campaign::LAYOUT_TYPE_MULTI:
+                $this->actionMultiChannels();
+            break;
+        }
+        
+    }
+
+    public function actionMultiChannels() {
+        $campaign = $this->validateRequest();
+        if ($campaign->layoutType != Campaign::LAYOUT_TYPE_MULTI || !$campaign->channelTeam) {
+            echo json_encode([]);
+            return;
+        }
+        $channels = $campaign->getTeams();
+        $members = [];
+        $offlines = [];
+        $onlines = [];
+        foreach ($channels as $channelName) {
+            $channel = $this->twitch->channelGet($channelName);
+            if ($channel->status == 'live') {
+                $onlines[] = $channel;
+            } else {
+                $offlines = $channel;
+            }
+        }
+        shuffle($onlines);
+        $members = array_merge($onlines, $offlines);
+        echo json_encode($members);
+    }
+
+    public function actionTeamChannel() {
+        $campaign = $this->validateRequest();
         if ($campaign->layoutType != Campaign::LAYOUT_TYPE_TEAM || !$campaign->channelTeam) {
             echo json_encode([]);
             return;
         }
 
-        $twitch = new TwitchSDK();
-        $membersList = $twitch->teamMembersAll($campaign->channelTeam);
+        $membersList = $this->twitch->teamMembersAll($campaign->channelTeam);
 
         $offlines = [];
         $onlines = [];
@@ -78,11 +126,19 @@ class ApiController extends \yii\web\Controller {
         echo json_encode($members);
     }
 
+    public function actionSingleChannel() {
+        $campaign = $this->validateRequest();
+        if ($campaign->layoutType != Campaign::LAYOUT_TYPE_SINGLE || !$campaign->channelName) {
+            echo json_encode([]);
+            return;
+        }
+        $channel = $this->twitch->channelGet($campaign->channelName);
+        echo json_encode($channel);
+    }
+
     public function actionJs() {
         echo $this->renderFile('@frontend/views/api/api.js');
         \common\components\Application::frontendUrl('/');
-
-//        echo $this->renderPartial('api.js')
     }
 
 }

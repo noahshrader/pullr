@@ -1,0 +1,34 @@
+<div class="stream-wrap" ng-show='isDataReady'>
+	<div id="stream">
+		<div id="featured">
+			<div class="featuredstreamcontainer">
+				<div class="featuredstream">
+					<object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="{{embedPlayerUrl}}" bgcolor="#000000"><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="{{hostname}}" /></object>
+				</div>
+			</div>
+			<div class="featuredchat">
+				<iframe frameborder="0" scrolling="no" src="{{chatUrl | trusted }}" height="500" width="350"></iframe>
+			</div>
+		</div>
+		<div class="stream-controls">
+			<a class="togglechat" href="javascript:void(0);">Chat</a>
+		</div>
+	</div>
+</div>
+<div class="user-details">
+	<div class="username">
+		<img src="{{channel.logo}}"/>
+		
+		<a href="{{channel._links.self}}">{{channel.display_name}}</a>
+
+		<div class="user-details-social">
+			<a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" ng-show="{{campaign.twitterEnable == 1}}">{{campaign.twitterName}}</a>
+			<a href="{{campaign.facebookUrl}}" class="icon-facebook" ng-show="{{campaign.facebookUrl == 1}}">{{campaign.name}}</a>
+			<a href="{{campaign.youtubeUrl}}" class="icon-youtube" ng-show="{{campaign.youtubeEnable == 1}}">{{campaign.name}}</a>
+			<a href="{{channel._links.self}}" class="icon-twitch2">{{channel.display_name}}</a>
+		</div>
+	</div>
+	<div class="user-viewers">
+		{{channel.views}}
+	</div>
+</div>
