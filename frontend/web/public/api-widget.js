@@ -108,9 +108,9 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 			scope.getLayoutUrl = function() {
 				if (typeof(scope.campaign) != 'undefined') {
 					if (scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
-						return Pullr.MAIN_URL + 'public/campaignSingleStreamLayout.html';
+						return Pullr.API_URL + 'campaignsinglestreamlayout';
 					} else {
-						return Pullr.MAIN_URL + 'public/campaignMultiStreamLayout.html';
+						return Pullr.API_URL + 'campaignmultistreamlayout';
 					}	
 				}
 				
@@ -127,7 +127,7 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 				});
 			}, 30000);
 		},
-		template:'<div ng-include="getLayoutUrl()"></div>' 
+		template:'<div ng-include="getLayoutUrl() | trusted"></div>' 
 
 	}
 });

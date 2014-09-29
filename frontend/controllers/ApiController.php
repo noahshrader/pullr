@@ -14,12 +14,21 @@ class ApiController extends \yii\web\Controller {
 
     protected $campaign;
 
-    public function init(){
+    public function init() {
+        header("Access-Control-Allow-Origin: *");
+        header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
         $this->twitch = new TwitchSDK();
         return parent::init();
     }
 
     public function validateRequest() {
+
+        if( ! \Yii::$app->request->isPost){
+            echo 'invalid post';
+            exit;
+        }
+
         \Yii::$app->response->format = Response::FORMAT_JSON;
         $payload = file_get_contents('php://input');
         $payload = json_decode($payload,true);
@@ -41,9 +50,11 @@ class ApiController extends \yii\web\Controller {
 
     public function actionCampaign() {
         $campaign = $this->validateRequest();
-        $date = (new \DateTime())->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()));
+        //$date = (new \DateTime())->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()));
         $campaignArray = $campaign->toArray();
         $campaignArray['donationUrl'] = $campaign->user->getUrl() . $campaign->alias;
+        $campaignArray['startDateFormatted'] = $campaignArray['startDate'];
+        $campaignArray['endDateFormatted'] = $campaignArray['endDate'];
         $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
         $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
         $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
@@ -54,6 +65,7 @@ class ApiController extends \yii\web\Controller {
         } else {
             $campaignArray['charity'] = null;
         }
+
         echo json_encode($campaignArray);
     }
 
@@ -63,6 +75,7 @@ class ApiController extends \yii\web\Controller {
 
     public function actionChannels() {
         $campaign = $this->validateRequest();
+
         switch ($campaign->layoutType) {
             case Campaign::LAYOUT_TYPE_SINGLE:
                 $this->actionSingleChannel();
@@ -74,12 +87,11 @@ class ApiController extends \yii\web\Controller {
                 $this->actionMultiChannels();
             break;
         }
-        
     }
 
     public function actionMultiChannels() {
         $campaign = $this->validateRequest();
-        if ($campaign->layoutType != Campaign::LAYOUT_TYPE_MULTI || !$campaign->channelTeam) {
+        if ($campaign->layoutType != Campaign::LAYOUT_TYPE_MULTI) {
             echo json_encode([]);
             return;
         }
@@ -102,6 +114,7 @@ class ApiController extends \yii\web\Controller {
 
     public function actionTeamChannel() {
         $campaign = $this->validateRequest();
+
         if ($campaign->layoutType != Campaign::LAYOUT_TYPE_TEAM || !$campaign->channelTeam) {
             echo json_encode([]);
             return;
@@ -139,6 +152,16 @@ class ApiController extends \yii\web\Controller {
     public function actionJs() {
         echo $this->renderFile('@frontend/views/api/api.js');
         \common\components\Application::frontendUrl('/');
+    }
+
+    public function actionCampaignmultistreamlayout() {
+        echo $this->renderFile('@frontend/views/api/templates/campaign/campaignMultiStreamLayout.html');
+        \common\components\Application::frontendUrl('/');
+    }
+
+    public function actionCampaignsinglestreamlayout(){
+        echo $this->renderFile('@frontend/views/api/templates/campaign/campaignSingleStreamLayout.html');
+        \common\components\Application::frontendUrl('/');   
     }
 
 }
