@@ -7,7 +7,7 @@ use yii\web\View;
 <div>
     <div class="module first">
         <div class="panel-group text-center">
-           <button class="btn btn-primary btn-sm" ng-click="streamService.testData(preference.preferenceType, 3)">Test {{preference.preferenceType}}</button>
+           <button class="btn btn-primary btn-sm" ng-click="streamService.testData(preference.preferenceType, 1)">Test {{preference.preferenceType}}</button>
         </div>
         <div class="panel-group">
             <h5>Font Style</h5>
