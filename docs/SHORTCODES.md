@@ -1,4 +1,4 @@
-+6Shortcodes
+Shortcodes
 =========
 
 You can use any available attribute within the API to display values. If data exists, its value will be inserted directly in that tag. If it doesn't exist nothing will happen.
@@ -70,7 +70,7 @@ YouTube URL: "{{campaign.youtubeUrl}}"
 ```
 
 ###Layout
-Layout: "<div pullr-campaign-layout></div>"
+Layout: `<div pullr-campaign-layout></div>`
 
 ```
 
