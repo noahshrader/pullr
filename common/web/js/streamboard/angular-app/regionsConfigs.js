@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsConfigs', ['pullr.common', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.campaigns',
-        'pullr.streamboard.regions', 'angularFileUpload']);
+        'pullr.streamboard.regions', 'angularFileUpload', 'pullr.streamboard.stream']);
     app.run(function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];
 
@@ -69,10 +69,10 @@
             templateUrl: 'angular/views/streamboard/region/fontStyle.html'
         }
     });
-    app.controller('RegionConfigCtrl', function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager, regions) {
+    app.controller('RegionConfigCtrl', function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager, regions, stream) {
         $scope.alertMediaManagerService = alertMediaManager;
         $scope.campaignsService = campaigns;
-
+        $scope.streamService = stream;
         $scope.regionsService = regions;
         $scope.MAX_FONT_SIZE = 72;
         $scope.MIN_FONT_SIZE = 10;
