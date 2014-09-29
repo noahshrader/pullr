@@ -1,21 +1,17 @@
-Short codes
++6Shortcodes
 =========
 
-You can use any tag with **data-pullr** attribute set to some value. If that model/attribute exists its value will be inserted directly in that tag. If it doesn't exist nothing will happen.
+You can use any available attribute within the API to display values. If data exists, its value will be inserted directly in that tag. If it doesn't exist nothing will happen.
 
 Code example:
 ```
-<h1 data-pullr='campaign-name'></h1>
-<span data-pullr='campaign-startDateFormatted'></span> -
-<span data-pullr='campaign-endDateFormatted'></span>
+<h1>{{campaign.name}}</h1>
 ```
 
-As result we can recieve something like:
+As result, we can recieve something like:
 
 ```
-<h1 data-pullr='campaign-name'>Fun For Freedom</h1>
-<span data-pullr='campaign-startDateFormatted'>June 12, 2014</span> -
-<span data-pullr='campaign-endDateFormatted'>June 16, 2014</span>
+<h1>Fun For Freedom</h1>
 
 ```
 
@@ -32,59 +28,53 @@ will generate something like:
 `<span data-pullr="campaign-charity-name">PETA</span>`
 
 ###Campaign attributes
-As for June 2014 list of available fields looks like:
 
 ```
-alias: "Fun_For_Freedom"
-amountRaised: "0"
-amountRaisedFormatted: "$6,757"
-appearance: ""
-backgroundImageId: null
-channelName: ""
-channelTeam: "funforfreedom"
-charity: null
-charityId: 2
-customCharity: ""
-customCharityPaypal: ""
-date: "2014-06-12 01:35:37"
-description: ""
-donationDestination: "Pre-approved Charities"
-enableDonorComments: 1
-enableThankYouPage: 0
-endDate: 1402861740
-endDateFormatted: "June 16, 2014"
-eventId: 1
-facebookEnable: 0
-facebookUrl: ""
-formVisibility: 1
-goalAmount: "17000"
-id: 1
-key: "test_key"
-layoutType: "Team Stream"
-name: "Fun For Freedom"
-numberOfDonations: 0
-numberOfUniqueDonors: 0
-parentCampaignId: 1
-paypalAddress: ""
-percentageOfGoal: 35
-primaryColor: "#000000"
-secondaryColor: "#000000"
-startDate: 1402516140
-startDateFormatted: "June 12, 2014"
-status: "active"
-streamService: "Twitch"
-thankYouPageText: ""
-themeId: null
-tiedToParent: 0
-twitterEnable: 0
-twitterName: ""
-type: "Personal Tip Jar"
-userId: 1
-youtubeEnable: 0
-youtubeUrl: ""
+Amount Raised: "{{campaign.amountRaised}}"
+Amount Raised (Formatted): "{{campaign.amountRaisedFormatted}}"
+Campaign Alias: "{{campaign.alias}}"
+Campaign Name: "{{campaign.name}}"
+Campaign Description: "{{campaign.description}}"
+Campaign Start Date: "{{campaign.startDate}}"
+Campaign Start Date (Formatted): "{{campaign.startDateFormatted}}"
+Campaign End Date: "{{campaign.endDate}}"
+Campaign End Date (Formatted): "{{campaign.endDateFormatted}}"
+Campaign Goal Amount: "{{campaign.goalAmount}}"
+Campaign Goal Amount (Formatted): "{{campaign.goalAmountFormatted}}"
+Campaign Type: "{{campaign.type}}"
+Campaign ID: "{{campaign.id}}"
+Channel Name: "{{campaign.channelName}}"
+Channel Team: "{{campaign.channelTeam}}"
+Charity Name: "{{campaign.charity.name}}"
+Charity ID: "{{campaign.charity.id}}"
+Custom Charity Name: "{{campaign.customCharity}}"
+Custom Charity PayPal: "{{campaign.customCharityPaypal}}"
+Date Created: "{{campaign.date}}"
+Facebook URL: "{{campaign.facebookUrl}}"
+Fundraiser Type: "{{campaign.donationDestination}}"
+Key: "{{campaign.key}}"
+Layout Type: "{{campaign.layoutType}}"
+Number of Donations: "{{campaign.numberOfDonations}}"
+Number of Donors: "{{campaign.numberOfUniqueDonors}}"
+Parent Campaign ID: "{{campaign.parentCampaignId}}"
+PayPal Address (Personal Fundraiser): "{{campaign.paypalAddress}}"
+Percent to Goal: "{{campaign.percentageOfGoal}}"
+Primary Color: "{{campaign.primaryColor}}"
+Secondary Color: "{{campaign.secondaryColor}}"
+Status: "{{campaign.status}}"
+Streaming Service: "{{campaign.streamService}}"
+Thank You Page Text: "{{campaign.thankYouPageText}}"
+Twitter Profile: "{{campaign.twitterName}}"
+YouTube URL: "{{campaign.youtubeUrl}}"
+
 ```
 
-###Charity's attributes
+###Layout
+Layout: "<div pullr-campaign-layout></div>"
+
+```
+
+###Charity Attributes (Backend)
 If charity avaliable list of available attributes for **campaign-charity**  as for June 2014 looks like:
 
 ```
@@ -99,4 +89,5 @@ photoId: null
 status: "active"
 type: "Animals"
 url: ""
+
 ```
