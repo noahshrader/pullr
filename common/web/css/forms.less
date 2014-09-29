@@ -303,7 +303,7 @@ input.color-choice {
 .help-block {
 	display: block;
 	position: absolute;
-	bottom: -55px;
+	bottom: -50px;
 	left: 0;
 	font-size: @smalltext;
 	font-weight: 600;
@@ -331,11 +331,9 @@ input.color-choice {
 		label {
 			color: @errorred;
 		}
-		input {
-			&.form-control {
-				color: @errorred;
-				border-color: @errorred;
-			}
+		input[type="text"] {
+			color: @errorred;
+			border-color: @errorred;
 		}
 		.help-block {
 			color: @white;
