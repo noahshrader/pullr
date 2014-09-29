@@ -55,12 +55,14 @@ YouTube URL: "{{campaign.youtubeUrl}}"
 ```
 
 ###Layout
-Layout: <div pullr-campaign-layout></div>
 
+```
+Layout:
+```
+<div pullr-campaign-layout></div>
 ```
 
 ###Charity Attributes (Backend)
-If charity avaliable list of available attributes for **campaign-charity**  as for June 2014 looks like:
 
 ```
 contactEmail: "support@peta.org"
@@ -74,5 +76,4 @@ photoId: null
 status: "active"
 type: "Animals"
 url: ""
-
 ```
