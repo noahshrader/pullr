@@ -9,23 +9,9 @@ Code example:
 ```
 
 As result, we can recieve something like:
-
 ```
 <h1>Fun For Freedom</h1>
-
 ```
-
-To view list of available fields you can type *Pullr.campaign* in javascript console on layout page. 
-
-###Predefined charity
-If all required condition met (donationDestination is *pre-approved charites* and campaign's type is *charity event* or *charity fundraiser* and predefined charity is selected) **campaign-charity** model is avaiable. 
-Code example: 
-
-`<span data-pullr="campaign-charity-name"></span>`
-
-will generate something like:
-
-`<span data-pullr="campaign-charity-name">PETA</span>`
 
 ###Campaign attributes
 
@@ -66,11 +52,10 @@ Streaming Service: "{{campaign.streamService}}"
 Thank You Page Text: "{{campaign.thankYouPageText}}"
 Twitter Profile: "{{campaign.twitterName}}"
 YouTube URL: "{{campaign.youtubeUrl}}"
-
 ```
 
 ###Layout
-Layout: `<div pullr-campaign-layout></div>`
+Layout: <div pullr-campaign-layout></div>
 
 ```
 
