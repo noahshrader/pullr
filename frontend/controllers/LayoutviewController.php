@@ -36,6 +36,7 @@ class LayoutviewController extends \yii\web\Controller {
         
         return $campaign;
     }
+
     public function actionView($userAlias, $campaignAlias) {
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
         $campaignTheme = $campaign->getTheme()->one();
@@ -50,12 +51,22 @@ class LayoutviewController extends \yii\web\Controller {
         echo $this->renderPartial("@app/web/themes/{$theme}/index", ['campaign' => $campaign]);
         die;
     }
-    
-    public function actionThankyou($userAlias, $campaignAlias){
-        $campaign = $this->getCampaign($userAlias, $campaignAlias);
-        echo $this->renderPartial('thankyou',['campaign' => $campaign]);
-        die;
+
+    /**
+     * Campaign thank you page
+     * @param $userAlias
+     * @param $campaignAlias
+     * @return string
+     */
+    public function actionThankyou($userAlias, $campaignAlias)
+    {
+        return $this->renderPartial('thankyou',
+            [
+                'campaign' => $this->getCampaign($userAlias, $campaignAlias)
+            ]
+        );
     }
+
     public function actionDonate($userAlias, $campaignAlias){
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
         

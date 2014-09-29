@@ -5,18 +5,12 @@
 	padding: 0 @gutter;
 
 	.module {
-		margin: @gutter 0;
 		background: @white;
 	}
 	.tab-content {
-		padding: @halfgutter+@gutter @gutter+@gutter;
+		padding: @halfgutter+@gutter @gutter;
 		margin: 0 auto;
 		max-width: 700px;
-
-		h4 {
-			text-align: center;
-			padding: 0;
-		}
 	}
 	.campaign-actions {
 		margin-top: @gutter;
@@ -71,14 +65,16 @@
 		&:before {
 			.arrow-up;
 			top: -9px;
-			left: 50%;
-			margin-left: -10px;
+			left: 50px;
 			border-color: transparent transparent @offwhite transparent;
 		}
 
 		h4 {
+			display: block;
+			color: @gray60;
 			text-align: center;
-			margin-bottom: @halfgutter;
+			margin: @halfgutter 0;
+			background: transparent;
 		}
 	}
 	.logo {
@@ -169,13 +165,14 @@
 .select2-drop.charitydrop {
 	&.select2-drop-active {
 		margin-top: 20px;
+		background: @gray10;
 
 		&:before {
 			.arrow-up;
 			left: 50%;
 			top: -10px;
 			margin-left: -10px;
-			border-color: transparent transparent @gray72 transparent;
+			border-color: transparent transparent @gray10 transparent;
 		}
 	}
 	&.select2-drop-active,
@@ -193,7 +190,35 @@
 			left: 50%;
 			bottom: -10px;
 			margin-left: -10px;
-			border-color: @gray72 transparent transparent transparent;
+			border-color: @gray10 transparent transparent transparent;
+		}
+	}
+	.select2-search {
+		input {
+			color: #FFF;
+			background: @gray15;
+		}
+	}
+	.select2-results {
+		.select2-no-results,
+		.select2-searching,
+		.select2-selection-limit {
+			color: @gray60;
+		}
+		.select2-highlighted {
+			background: @gray15;
+		}
+		.select2-result-label {
+			&:hover {
+				background: @gray15;
+			}
+			span {
+				display: block;
+				color: #FFF !important;
+			}
+			br {
+				display: none;
+			}
 		}
 	}
 }

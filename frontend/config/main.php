@@ -5,6 +5,7 @@ $params = array_merge(
 );
 
 return [
+    'bootstrap' => ['log'],
     'id' => Application::ID_FRONTEND,
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\controllers',

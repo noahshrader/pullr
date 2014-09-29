@@ -10,7 +10,7 @@ Download composer (e.g. to you home folder, next home folder will be supposed)
 `https://getcomposer.org/download/`
 
 Plugin for composer  
-`~composer.phar global require "fxp/composer-asset-plugin:1.0.*@dev"`
+`~/composer.phar global require "fxp/composer-asset-plugin:1.0.*@dev"`
 
 Next from pullr folder run  
 `~/composer.phar update`
@@ -34,6 +34,11 @@ To update files use your GUI App to sync or use that to run via terminal:
 
 Sometimes you need to update db, so run that (that will remove all tables and load data sample data again): 
 `./makesample.sh`
+
+####Notes
+* In you php.ini `short_open_tag` should be set to `On`
+* If you encounter errors(e.g when using Vagrant) while installing npm packages try: `npm install --no-bin-links`
+* If you get an error '/usr/bin/env: node: No such file or directory' run this: `ln -s /usr/bin/nodejs /usr/bin/node`
 
 ####Useful commands
 * `./yii pullr/purge` - will remove all tables from db
