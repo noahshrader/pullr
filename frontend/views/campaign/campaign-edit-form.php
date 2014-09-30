@@ -5,7 +5,7 @@
 <div id="campaign-edit-form">
     <div class="module">
 
-        <h4>General</h4>
+        <h5>General</h5>
         
         <!-- Form Visibility -->
         <div class="form-group field-campaign-formvisibility">

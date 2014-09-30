@@ -13,6 +13,9 @@
 	&.shadow {
 		box-shadow: 0 0 4px rgba(0,0,0,.2);
 	}
+	&.indent {
+		left: @primary-nav-width + @sidepanelwidth;
+	}
 	
 	ul {
 		list-style: none;
@@ -31,6 +34,7 @@
 
 			span {
 				float: left;
+				color: @gray50;
 				font-size: 1.3em;
 				font-weight: 600;
 				line-height: @top-menu-height;
@@ -118,8 +122,8 @@
 /* ------------------------------------------------- */
 .primary-navigation {
 	position: fixed;
-	height: 100%;
 	top: 0;
+	height: 100%;
 	background: @maingray;
 	z-index: 999;
 	overflow: hidden;
@@ -138,7 +142,7 @@
 			display: inline-block;
 			width: 100%;
 			cursor: pointer;
-			font-size: 34px;
+			font-size: 32px;
 			line-height: @top-menu-height;
 			padding: 0px;
 			background: @maingray;
@@ -171,9 +175,9 @@
 				line-height: 60px;
 
 				a {
-					display: block;
-					color: @gray30;
 					position: relative;
+					display: block;
+					color: @gray20;
 					padding: 0 26px;
 					height: 60px;
 					&:before {
@@ -190,9 +194,9 @@
 					}
 
 					.nav-label {
-						display: inline-block;
 						position: absolute;
 						left: 62px;
+						display: inline-block;
 						vertical-align: middle;
 						height: 60px;
 						opacity: 1;
@@ -212,7 +216,6 @@
 				}
 			}
 		}
-
 	}
 	.primary-nav-toggle {
 		display: block;

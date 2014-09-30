@@ -95,17 +95,19 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     </ul>
                     <? endif ?>
                 </div>
-                <h4><span><?= ($campaign->name)?$campaign->name:'New Campaign' ?></span></h4>
+                <h4>
+                    <a href="app/campaign/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
+                    <span class="campaign-date">
+                        <? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
+                        <?= $date->setTimestamp($campaign->startDate)->format('M j, Y'); ?>
+                        -
+                        <?= $date->setTimestamp($campaign->endDate)->format('M j, Y'); ?>
+                    </span>
+                </h4>
                 <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
                 <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank"><i class="icon icon-eye"></i></a>
             </div>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER && $campaign->startDate && $campaign->endDate): ?>
-            <span class="campaign-date">
-                <? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
-                <?= $date->setTimestamp($campaign->startDate)->format('M j, Y'); ?>
-                -
-                <?= $date->setTimestamp($campaign->endDate)->format('M j, Y'); ?>
-            </span>
             <? endif ?>
             <section class="stats-overview main-values module">
                 <div class='stats-box col-xs-3 raised-total'>
@@ -146,7 +148,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <?= $this->render('campaign-view-childs', [
                 'campaign' => $campaign
             ]);?>
-            <section class="module">
+            <section class="module table">
                 <?= $this->render('donations-table', [
                     'donations' => $donations
                 ]); ?>

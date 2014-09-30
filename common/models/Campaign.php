@@ -99,6 +99,7 @@ class Campaign extends ActiveRecord {
                 $this->key = md5(rand());
             }
         }
+
         return parent::beforeSave($insert);
     }
     

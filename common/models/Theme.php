@@ -9,6 +9,8 @@ use yii\db\ActiveRecord;
 class Theme extends ActiveRecord {
     const STATUS_ACTIVE = 'active';
     const STATUS_REMOVED = 'removed';
+    const PLAN_PRO = 'Pro';
+    const PLAN_BASIC = 'Basic';
     
     public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_REMOVED];
     /**

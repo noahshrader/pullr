@@ -13,6 +13,8 @@ return [
     'paypalClientId' => 'AdhS6hAM2klW0zvrByqMTUAwosKCt8kMrhUPN6-HHzoCaJscFJHsGfGUvLzP',
     'paypalClientSecret' => 'EHYMZhAE29WHfY8T37s-j-2wMOL8SMjjB3uX-9h9uz2snme0pL_tKYLg3YK4',
     'payPalHost' => 'https://www.sandbox.paypal.com',
+    'maxCampaignsBasic' => 2,
+    'maxCampaignsPro' => 6,
     /*use that link to add/change your application
     * "http://www.twitch.tv/settings/connections"
      */

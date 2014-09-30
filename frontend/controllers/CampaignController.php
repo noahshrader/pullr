@@ -4,8 +4,8 @@ namespace frontend\controllers;
 
 use common\components\message\ActivityMessage;
 use common\models\FirstGiving;
-use frontend\controllers\FrontendController;
 use common\models\Campaign;
+use yii\base\Exception;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
 use common\models\LayoutTeam;
@@ -20,7 +20,6 @@ use common\models\User;
 use common\models\CampaignInvite;
 use common\models\mail\Mail;
 use common\models\Donation;
-use HttpRequest;
 use common\models\notifications\RecentActivityNotification;
 
 class CampaignController extends FrontendController {
@@ -67,8 +66,11 @@ class CampaignController extends FrontendController {
      */
     public function actionIndex(Campaign $editCampaign = null, Campaign $selectedCampaign = null, $status = Campaign::STATUS_ACTIVE) {
         $isNewRecord = $editCampaign && $editCampaign->isNewRecord;
-        if ($editCampaign && $editCampaign->load($_POST)){ 
-            /*             * from html5 datetime-local tag to timestamp */
+
+        //campaign save request
+        if ($editCampaign && $editCampaign->load($_POST))
+        {
+            //from html5 datetime-local tag to timestamp
             if ($editCampaign->startDate && !is_numeric($editCampaign->startDate)) {
                 $editCampaign->startDate = (new \DateTime($editCampaign->startDate))->getTimestamp();
             }
@@ -85,6 +87,16 @@ class CampaignController extends FrontendController {
                 $editCampaign->charityId = $firstGivingCharity->charity->id;
             }
 
+            if (!empty($editCampaign->themeId) && !\Yii::$app->user->identity->hasAccessToTheme($editCampaign->themeId))
+            {
+                throw new Exception('You have no access to this theme');
+            }
+
+            if ($isNewRecord && !\Yii::$app->user->identity->canCreateMoreCampaigns())
+            {
+                throw new Exception('You have reached active campaigns limit and cannot create new');
+            }
+
             if ($editCampaign->save()){
                 UploadImage::UploadCampaignBackground($editCampaign);
 
@@ -95,7 +107,7 @@ class CampaignController extends FrontendController {
                         ActivityMessage::messageNewCampaign($editCampaign)
                     );
 
-                    $this->redirect('app/campaign/edit?id=' . $editCampaign->id);
+                    $this->redirect(['campaign/edit', 'id' => $editCampaign->id]);
                 }
             }
         }

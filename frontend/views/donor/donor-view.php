@@ -28,7 +28,7 @@ $user = \Yii::$app->user->identity;
                 </div>
                 <div class="clearfix"></div>
             </section>
-            <section class="module">
+            <section class="module table">
                 <?= $this->render('donations-table-for-donor', [
                     'donations' => $donations
                 ]); ?>

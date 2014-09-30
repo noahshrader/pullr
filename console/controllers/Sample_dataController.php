@@ -159,7 +159,7 @@ class Sample_dataController extends Controller
         $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
         $campaign->channelTeam = "funforfreedom";
         $campaign->userId = $this->user1->id;
-        $campaign->key = 'test_key';
+        $campaign->key = 'boss_key';
         $campaign->goalAmount = 17000;
         $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
         $campaign->customCharityPaypal = 'donation.klyukin@gmail.com';
@@ -176,7 +176,7 @@ class Sample_dataController extends Controller
         $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
         $campaign->channelTeam = "funforfreedom";
         $campaign->userId = $this->user2->id;
-        $campaign->key = 'test_key';
+        $campaign->key = 'boss_key';
         $campaign->goalAmount = 17000;
         $campaign->donationDestination = Campaign::DONATION_CUSTOM_FUNDRAISER;
         $campaign->customCharityPaypal = 'donation.klyukin@gmail.com';
