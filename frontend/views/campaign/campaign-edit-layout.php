@@ -9,7 +9,7 @@ $user = \Yii::$app->user->identity;
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
     <div class="module">
 
-        <h4>Layout</h4>
+        <h5>Layout</h5>
         
         <!-- Campaign Page Layout -->
         <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
@@ -43,7 +43,7 @@ $user = \Yii::$app->user->identity;
     </div>
     <div class="module">
 
-        <h4>Theme</h4>
+        <h5>Theme</h5>
 
         <!-- Choose a Theme -->
         <div class="hide">

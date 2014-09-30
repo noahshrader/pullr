@@ -96,7 +96,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <? endif ?>
                 </div>
                 <h4>
-                    <span><?= ($campaign->name)?$campaign->name:'New Campaign' ?></span>
+                    <a href="app/campaign/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
                     <span class="campaign-date">
                         <? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
                         <?= $date->setTimestamp($campaign->startDate)->format('M j, Y'); ?>
@@ -148,7 +148,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
             <?= $this->render('campaign-view-childs', [
                 'campaign' => $campaign
             ]);?>
-            <section class="module">
+            <section class="module table">
                 <?= $this->render('donations-table', [
                     'donations' => $donations
                 ]); ?>

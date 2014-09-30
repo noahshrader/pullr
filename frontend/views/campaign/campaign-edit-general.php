@@ -22,7 +22,7 @@ $firstGiving = $campaign->getFirstGiving();
 
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
     <div class="module">
-        <h4>Campaign Details</h4>
+        <h5>Campaign Details</h5>
         
         <!-- Campaign Name -->
         <div class="form-group">
@@ -116,7 +116,7 @@ $firstGiving = $campaign->getFirstGiving();
     </div>
     <div class="module team">
 
-        <h4>Team Fundraising</h4>
+        <h5>Team Fundraising</h5>
 
         <div class="form-group" id="teamQuestion">
             <label>Enable team fundraising <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i></label>

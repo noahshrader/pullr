@@ -543,7 +543,7 @@
       offColor: "default",
       onText: "ON",
       offText: "OFF",
-      labelText: "&nbsp;",
+      labelText: "<span>&nbsp;</span>",
       baseClass: "bootstrap-switch",
       wrapperClass: "wrapper",
 
