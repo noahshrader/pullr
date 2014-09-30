@@ -65,7 +65,7 @@ app.directive('pullrCampaignName', function(CampaignDataService) {
 	return {
 		restrict: 'A',
 		scope: '@',
-		template: '{{campaign.name}}',
+		template: '<span ng-cloak>{{campaign.name}}</span>',
 		link: function(scope,element, attr) {
 			CampaignDataService.loadCampaign(function(data) {
 				scope.campaign = data;
@@ -129,7 +129,7 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 				});
 			}, 30000);
 		},
-		template:'<div ng-include="getLayoutUrl() | trusted"></div>' 
+		template:'<div ng-include="getLayoutUrl() | trusted" ng-cloak></div>' 
 
 	}
 });

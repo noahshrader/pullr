@@ -24,19 +24,25 @@ class ApiController extends \yii\web\Controller {
 
     public function validateRequest() {
 
-        if( ! \Yii::$app->request->isPost){
-            echo 'invalid post';
+        if( ! ( \Yii::$app->request->isGet || \Yii::$app->request->isPost)) {
+            echo 'Invalid request';
             exit;
         }
 
         \Yii::$app->response->format = Response::FORMAT_JSON;
         $payload = file_get_contents('php://input');
         $payload = json_decode($payload,true);
-        if (!isset($payload['id']) || (!isset($payload['key']))) {
+
+        if (isset($payload['id']) && isset($payload['key'])) {
+            $id = $payload['id'];
+            $key = $payload['key'];
+        } else if (isset($_REQUEST['id']) && isset($_REQUEST['key'])) {
+            $id = $_REQUEST['id'];
+            $key = $_REQUEST['key'];
+        } else {
             throw new Exception('"id" and "key" should be set');
         }
-        $id = $payload['id'];
-        $key = $payload['key'];
+    
         $campaign = Campaign::findOne($id);
         if (!$campaign) {
             throw new Exception("Invalid event id");
@@ -60,7 +66,7 @@ class ApiController extends \yii\web\Controller {
         // $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
         $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
         $campaignArray['amountRaisedFormatted'] = '$'.number_format($campaign['amountRaised']);
-        $campaignArray['percentageOfGoal'] = round($this->campaign['amountRaised'] / $campaign['goalAmount'] * 100);
+        $campaignArray['percentageOfGoal'] = round($campaign['amountRaised'] / $campaign['goalAmount'] * 100);
         if (($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES) && ($campaign->type === Campaign::TYPE_CHARITY_FUNDRAISER) && $campaign->charity) {
             $campaignArray['charity'] = $campaign->charity->toArray();
         } else {

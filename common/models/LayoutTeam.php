@@ -31,6 +31,6 @@ class LayoutTeam extends ActiveRecord {
      * @return Campaign
      */
     public function getLayout() {
-        return $this->hasOne(Campaign::className(), ['id' => 'layoutId']);
+        return $this->hasOne(Campaign::className(), ['id' => 'campaignId']);
     }
 }
