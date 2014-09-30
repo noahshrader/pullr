@@ -488,6 +488,22 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Checks if user allowed to create more campaigns based on his plan
+     * @return bool
+     */
+    public function canCreateMoreCampaigns()
+    {
+        $maxCampaigns = \Yii::$app->params['maxCampaignsBasic'];
+
+        if ($this->getPlan() == Plan::PLAN_PRO)
+        {
+            $maxCampaigns = \Yii::$app->params['maxCampaignsPro'];
+        }
+
+        return $this->getCampaigns(Campaign::STATUS_ACTIVE, false)->count() < $maxCampaigns;
+    }
+
+    /**
      * @description prolong User plan
      * @param float $amount - money amount
      */

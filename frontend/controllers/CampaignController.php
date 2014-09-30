@@ -87,9 +87,14 @@ class CampaignController extends FrontendController {
                 $editCampaign->charityId = $firstGivingCharity->charity->id;
             }
 
-            if (! \Yii::$app->user->identity->hasAccessToTheme($editCampaign->themeId))
+            if (!empty($editCampaign->themeId) && !\Yii::$app->user->identity->hasAccessToTheme($editCampaign->themeId))
             {
                 throw new Exception('You have no access to this theme');
+            }
+
+            if ($isNewRecord && !\Yii::$app->user->identity->canCreateMoreCampaigns())
+            {
+                throw new Exception('You have reached active campaigns limit and cannot create new');
             }
 
             if ($editCampaign->save()){
@@ -102,7 +107,7 @@ class CampaignController extends FrontendController {
                         ActivityMessage::messageNewCampaign($editCampaign)
                     );
 
-                    $this->redirect('app/campaign/edit?id=' . $editCampaign->id);
+                    $this->redirect(['campaign/edit', 'id' => $editCampaign->id]);
                 }
             }
         }
