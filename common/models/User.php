@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use yii\base\Theme;
 use yii\db\ActiveRecord;
 use yii\base\Security;
 use yii\web\IdentityInterface;
@@ -465,6 +466,26 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
         return $this->_plan;
+    }
+
+    /**
+     * Checks if user has permission to set specific theme
+     * @param int $id Theme id
+     */
+    public function hasAccessToTheme($id)
+    {
+        if ($this->getPlan() == Plan::PLAN_PRO)
+        {
+            return true;
+        }
+
+        $theme = \common\models\Theme::findOne(intval($id));
+        if($theme)
+        {
+            return $theme->plan == \common\models\Theme::PLAN_BASIC;
+        }
+
+        return false;
     }
 
     /**
