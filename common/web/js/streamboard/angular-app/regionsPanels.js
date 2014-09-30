@@ -1,10 +1,11 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
-        'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations']);
-    app.controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations) {
+        'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations', 'pullr.streamboard.campaigns']);
+    app.controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns) {
         $scope.streamService = stream;
         $scope.regionsService = regions;
         $scope.donationsService = donations;
+        $scope.campaignsService = campaigns;
 
         $scope.regionsService.ready(function () {
             requireAllFonts();
@@ -30,6 +31,7 @@
                 window.requireGoogleFont(region.widgetAlerts.donationsPreference.fontStyle);
                 window.requireGoogleFont(region.widgetAlerts.subscribersPreference.fontStyle);
                 window.requireGoogleFont(region.widgetDonationFeed.fontStyle);
+                window.requireGoogleFont(region.widgetCampaignBar.fontStyle);
             }
         }
         function capitaliseFirstLetter(string)
