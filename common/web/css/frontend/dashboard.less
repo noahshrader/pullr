@@ -3,7 +3,6 @@
 .dashboard-wrap {
 	position: fixed;
 	top: @top-menu-height;
-	left: @primary-nav-width;
 	right: 0;
 }
 
@@ -16,7 +15,7 @@
 
 		h1,
 		h2 {
-			color: @white;
+			color: @accent;
 		}
 		h1 {
 			font-size: 5.2em;
@@ -25,7 +24,7 @@
 
 		&.main-totals {
 			h5 {
-				color: @dkraccent;
+				color: @gray60;
 			}
 		}
 
@@ -34,10 +33,10 @@
 			position: relative;
 			float: left;
 			padding: @gutter+@halfgutter 0;
-			background: @accent;
+			background: @white;
 
 			h1 {
-				color: @white;
+				color: @accent;
 				margin: 0;
 			}
 		}
@@ -48,13 +47,13 @@
 			float: left;
 			padding: 0 15%;
 			width: 100%;
-			background: @dkaccent;
+			background: @offwhite;
 			&:before {
 				.arrow-up;
 				left: 50%;
 				top: -10px;
 				margin-left: -10px;
-				border-color: transparent transparent @dkaccent transparent;
+				border-color: transparent transparent @offwhite transparent;
 			}
 
 			.stats-box {
@@ -96,19 +95,6 @@
 			}
 			h2 {
 				color: @twitchpurple;
-			}
-		}
-	}
-}
-
-/* Dashboard Stats */
-.content-wrap {
-	ul.content-nav {
-
-		li {
-			&.active a {
-				color: @white;
-				background: @accent;
 			}
 		}
 	}
@@ -184,13 +170,15 @@
 	/* Activity Feed */
 	ul.activity-feed {
 		li {
-			color: @gray60;
+			color: @gray50;
 			font-size: @smalltext;
 			padding: @halfgutter @gutter;
 			margin: 0;
+			background: @offwhite;
 			border-bottom: solid 1px @gray75;
 			&:first-child {
 				color: @gray20;
+				background: @white;
 			}
 			&:last-child {
 				border: 0;

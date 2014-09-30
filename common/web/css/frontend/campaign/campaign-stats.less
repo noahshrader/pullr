@@ -28,7 +28,7 @@ ul.campaign-quicknav {
 	}
 }
 .campaign-item {
-	padding: 22px 0;
+	padding: 24px 0;
 	margin: 0px;
 	position: relative;
 	display: block;
@@ -39,6 +39,7 @@ ul.campaign-quicknav {
 		color: @white;
 	}
 	&.active p {
+		color: @accent;
 		background: @gray10;
 	}
 	&.active {
@@ -72,18 +73,19 @@ ul.campaign-quicknav {
 		line-height: 1.2em;
 		.trans;
 	}
-	h4 {
+	h5 {
 		color: @gray30;
 		font-size: 14px;
-		margin-top: 2px;
+		margin: 2px 0 4px;
 	}
 	p {
 		display: inline-block;
-		color: @gray40;
+		color: @gray30;
 		font-size: 14px;
 		font-weight: 600;
+		line-height: 1.4em;
 		margin-top: 6px;
-		margin-bottom: 0px;
+		margin-bottom: 0;
 		padding: 0 .8em;
 		background: @gray12;
 		.round-radius;
@@ -171,14 +173,14 @@ body.trash .campaigns-list {
 		}
 	}
 	h4 {
-		color: @gray20;
 		font-size: 1.4em;
 		font-weight: 600;
 		line-height: @campain-name-height;
 		text-align: center;
 
-		span {
+		a {
 			display: inline-block;
+			color: @gray20;
 			width: 60%;
 			text-overflow: ellipsis;
 			white-space: nowrap;

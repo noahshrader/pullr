@@ -21,7 +21,7 @@ $user = \Yii::$app->user->identity;
     <section id="content" class="campaign-edit-wrap pane adv">
         <? if (!$campaign->isNewRecord): ?>
         <div class="campaign-actions">
-            <div class="col-md-6 campaign-nav">
+            <div class="campaign-nav">
                 <? if (!$campaign->isParentForCurrentUser()): ?>
                 <ul class="campaign-quick-links dropdown">
                     <li>
@@ -80,7 +80,9 @@ $user = \Yii::$app->user->identity;
                 </ul>
                 <? endif ?>
             </div>
-            <h4><span><?= ($campaign->name)?$campaign->name:'New Campaign' ?></span></h4>
+            <h4>
+                <a href="app/campaign/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
+            </h4>
             <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
             <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank"><i class="icon icon-eye"></i></a>
         </div>
