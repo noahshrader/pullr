@@ -1,8 +1,10 @@
 <?
 use common\models\Campaign;
+use common\models\Plan;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
+
 /* @var $form ActiveForm */
 
 $parentCampaigns = \Yii::$app->user->identity
@@ -118,10 +120,12 @@ $firstGiving = $campaign->getFirstGiving();
 
         <h5>Team Fundraising</h5>
 
+        <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
         <div class="form-group" id="teamQuestion">
             <label>Enable team fundraising <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i></label>
             <?= $form->field($campaign, 'teamEnable')->label(false)->checkbox([], false); ?>
         </div>
+        <? endif; ?>
 
         <!-- Parent Campaigns -->
         <? if (sizeof($parentCampaigns) > 0): ?>

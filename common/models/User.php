@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use yii\base\Theme;
 use yii\db\ActiveRecord;
 use yii\base\Security;
 use yii\web\IdentityInterface;
@@ -469,7 +468,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Checks if user has permission to set specific theme
+     * Checks if user has permission to use specific theme
      * @param int $id Theme id
      */
     public function hasAccessToTheme($id)
