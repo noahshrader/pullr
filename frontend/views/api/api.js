@@ -24,7 +24,6 @@ Pullr.Init = function (requestParams){
     Pullr.Ready(Pullr.Show);
     Pullr.Ready(Pullr.ShortCodes);
     Pullr.Ready(Pullr.Preformat);
-    Pullr.Ready(Pullr.LoadAngularLib);
     Pullr.Run();
 };
 
@@ -165,23 +164,4 @@ Pullr.Call = function (method, params, callback){
 
 function resizeIframe(obj) {
     obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-}
-
-
-Pullr.LoadAngularLib = function(){
-    var script = document.createElement("script");
-    script.type = 'text/javascript';
-    script.src = Pullr.ANGULAR_LIB_URL;
-    script.async = true;
-    script.onload = function(){
-        Pullr.LoadAngularDirective();
-    }
-    document.getElementsByTagName('head')[0].appendChild(script);
-}
-
-Pullr.LoadAngularDirective = function(){
-    var script = document.createElement("script");
-    script.type = 'text/javascript';
-    script.src = Pullr.ANGULAR_APP_URL;
-    document.getElementsByTagName('head')[0].appendChild(script);
 }

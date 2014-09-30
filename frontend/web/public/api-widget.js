@@ -1,9 +1,3 @@
-Pullr.LAYOUT_TYPE_SINGLE = 'Single Stream';
-Pullr.LAYOUT_TYPE_TEAM = 'Team Stream';
-Pullr.LAYOUT_TYPE_MULTI = 'Multi Stream';
-
-
-
 var html = document.getElementsByTagName('html')[0];
 html.dataset.ngApp = 'PullrApp';
 
@@ -12,8 +6,33 @@ body.dataset.ngController = 'PullrCtrl';
 
 var app = angular.module('PullrApp', []);
 
-app.controller('PullrCtrl', function ($scope) {
+app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
+	$scope.isDataReady = false;
+	CampaignDataService.loadCampaign(function(data) {
+		$scope.campaign = data;	
+		CampaignDataService.loadChannels(function(data) {
+			if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
+				$scope.channel = data;
+				$scope.selectedChannel = $scope.campaign.channelName;
+			} else {
+				$scope.channels = data;
+				$scope.selectedChannel = data[0].name;
+			}
+			$scope.isDataReady = true;
+		});
+		
+	});
 
+	$interval(function(){
+		CampaignDataService.loadChannels(function(data) {
+			if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
+				$scope.channel = data;
+			} else {
+				$scope.channels = data;
+			}
+			$scope.isDataReady = true;
+		});
+	}, 30000);
 });
 
 app.factory('CampaignDataService', function($http) {
@@ -38,16 +57,11 @@ app.factory('CampaignDataService', function($http) {
 	    });
 	}
 
-	service.loadCampaign = function(callback) {
-		if (service.campaign != null) {
-			callback(service.campaign);
-		} else {
-			service.call('campaign', {}, function(data) {
-				service.campaign = data;
-				callback(data);
-			});
-		}
-		
+	service.loadCampaign = function(callback) {		
+		service.call('campaign', {}, function(data) {
+			service.campaign = data;
+			callback(data);
+		});
 	}
 
 	service.loadChannels = function(callback) {
@@ -65,12 +79,9 @@ app.directive('pullrCampaignName', function(CampaignDataService) {
 	return {
 		restrict: 'A',
 		scope: '@',
-		template: '<span ng-cloak>{{campaign.name}}</span>',
+		template: '<span>{{campaign.name}}</span>',
 		link: function(scope,element, attr) {
-			CampaignDataService.loadCampaign(function(data) {
-				scope.campaign = data;
-			});
-	
+		
 		}
 	}
 });
@@ -80,27 +91,13 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 		restrict: 'A',
 		scope: '@',
 		link: function(scope, element, attr) {
-			scope.isDataReady = false;
-			CampaignDataService.loadCampaign(function(data) {
-				scope.campaign = data;	
-				CampaignDataService.loadChannels(function(data) {
-					if (scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
-						scope.channel = data;
-						scope.selectedChannel = scope.campaign.channelName;
-					} else {
-						scope.channels = data;
-						scope.selectedChannel = data[0].name;
-					}
-					scope.isDataReady = true;
-				});
-				
-				scope.$watch('selectedChannel', function() {
+			scope.$watch('selectedChannel', function(selectedChannel) {
+				if (selectedChannel != null) {
 					scope.embedPlayerUrl = 'http://www.twitch.tv/widgets/live_embed_player.swf?channel=' + scope.selectedChannel;
 					scope.hostname = 'hostname=www.twitch.tv&channel=' + scope.selectedChannel + '&auto_play=true&start_volume=25';
 					scope.chatUrl = 'http://twitch.tv/' + scope.selectedChannel + '/chat?popout=';
-				});
+				}
 			});
-
 			scope.setChannel = function(channelName) {
 				scope.selectedChannel = channelName;
 			}
@@ -114,20 +111,9 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 					} else {
 						return Pullr.API_URL + 'campaignteamstreamlayout'; 
 					}	
-				}
-				
+				}				
 			}
-
-			$interval(function(){
-				CampaignDataService.loadChannels(function(data) {
-					if (scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
-						scope.channel = data;
-					} else {
-						scope.channels = data;
-					}
-					scope.isDataReady = true;
-				});
-			}, 30000);
+			
 		},
 		template:'<div ng-include="getLayoutUrl() | trusted" ng-cloak></div>' 
 

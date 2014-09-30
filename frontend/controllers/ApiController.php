@@ -59,11 +59,16 @@ class ApiController extends \yii\web\Controller {
         
         $campaignArray = $campaign->toArray();
         $campaignArray['donationUrl'] = $campaign->user->getUrl() . $campaign->alias;
-        $campaignArray['startDateFormatted'] = $campaignArray['startDate'];
-        $campaignArray['endDateFormatted'] = $campaignArray['endDate'];
-        //$date = (new \DateTime())->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()));
-        // $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
-        // $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
+        
+        if ( false == \Yii::$app->user->isGuest ){
+            $date = (new \DateTime())->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()));
+            $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
+            $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
+        } else {
+            $campaignArray['startDateFormatted'] = $campaignArray['startDate'];
+            $campaignArray['endDateFormatted'] = $campaignArray['endDate'];    
+        }
+        
         $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
         $campaignArray['amountRaisedFormatted'] = '$'.number_format($campaign['amountRaised']);
         $campaignArray['percentageOfGoal'] = round($campaign['amountRaised'] / $campaign['goalAmount'] * 100);
@@ -154,19 +159,20 @@ class ApiController extends \yii\web\Controller {
         \common\components\Application::frontendUrl('/');
     }
 
+    public function actionScript() {
+        echo $this->renderFile('@frontend/views/api/script.js');
+    }
+
     public function actionCampaignmultistreamlayout() {
         echo $this->renderFile('@frontend/views/api/templates/campaign/campaignMultiStreamLayout.html');
-        \common\components\Application::frontendUrl('/');
     }
 
-    public function actionCampaignsinglestreamlayout(){
+    public function actionCampaignsinglestreamlayout() {
         echo $this->renderFile('@frontend/views/api/templates/campaign/campaignSingleStreamLayout.html');
-        \common\components\Application::frontendUrl('/');   
     }
 
-    public function actionCampaignteamstreamlayout(){
+    public function actionCampaignteamstreamlayout() {
         echo $this->renderFile('@frontend/views/api/templates/campaign/campaignTeamStreamLayout.html');
-        \common\components\Application::frontendUrl('/');   
     }
 
 }
