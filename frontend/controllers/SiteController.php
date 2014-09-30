@@ -69,7 +69,7 @@ class SiteController extends FrontendController
 
     public function actionLogin()
     {
-//        /*         * let's save user for 30 days */
+        //let's save user for 30 days
         $duration = 3600 * 24 * 30;
         $model = new LoginForm();
         if (Yii::$app->request->isAjax) {
@@ -88,8 +88,9 @@ class SiteController extends FrontendController
         ]);
     }
 
-    /* login via twitch */
-
+    /**
+     * Login via twitch
+     */
     public function actionTwitch()
     {
         if (isset($_REQUEST['error'])) {

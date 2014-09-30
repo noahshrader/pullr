@@ -28,7 +28,7 @@ ul.campaign-quicknav {
 	}
 }
 .campaign-item {
-	padding: 20px 0;
+	padding: 22px 0;
 	margin: 0px;
 	position: relative;
 	display: block;
@@ -81,7 +81,7 @@ ul.campaign-quicknav {
 		display: inline-block;
 		color: @gray40;
 		font-size: 14px;
-		font-weight: 400;
+		font-weight: 600;
 		margin-top: 6px;
 		margin-bottom: 0px;
 		padding: 0 .8em;
@@ -108,7 +108,7 @@ body.trash .campaigns-list {
 	display: block;
 	margin-bottom: @gutter;
 	padding: 0px;
-	height: 55px;
+	height: @campain-name-height;
 	width: 100%;
 	background: @gray72;
 	.element-radius;
@@ -149,7 +149,7 @@ body.trash .campaigns-list {
 			position: relative;
 			color: @gray60;
 			font-size: 18px;
-			line-height: 55px;
+			line-height: @campain-name-height;
 			padding: 0 @gutter;
 			width: auto;
 			transition: none;
@@ -172,8 +172,9 @@ body.trash .campaigns-list {
 	}
 	h4 {
 		color: @gray20;
+		font-size: 1.4em;
 		font-weight: 600;
-		line-height: 55px;
+		line-height: @campain-name-height;
 		text-align: center;
 
 		span {
@@ -197,7 +198,7 @@ body.trash .campaigns-list {
 		padding-right: 20px;
 		padding-left: 6px;
 		text-align: center;
-		line-height: 55px;
+		line-height: @campain-name-height;
 		width: auto;
 		background: @gray60;
 		.element-radius;
@@ -207,7 +208,7 @@ body.trash .campaigns-list {
 			color: @white;
 			background: @accent;
 			&:before {
-				border-bottom: 55px solid @accent;
+				border-bottom: @campain-name-height solid @accent;
 			}
 		}
 		&:before {
@@ -215,7 +216,7 @@ body.trash .campaigns-list {
 			width: 0px;
 			content: "";
 			position: absolute;
-			border-bottom: 55px solid @gray60;
+			border-bottom: @campain-name-height solid @gray60;
 			border-left: 30px solid transparent;
 			left: -30px;
 		}

@@ -3,15 +3,18 @@
 .top-menu {
 	position: fixed;
 	top: 0;
+	left: @primary-nav-width;
 	right: 0;
 	padding: 0 @gutter;
 	height: @top-menu-height;
 	background: @gray75;
 	z-index: 1000;
 	box-shadow: none;
-	.slowtrans;
 	&.shadow {
 		box-shadow: 0 0 4px rgba(0,0,0,.2);
+	}
+	&.indent {
+		left: @primary-nav-width + @sidepanelwidth;
 	}
 	
 	ul {
@@ -118,12 +121,13 @@
 /* ------------------------------------------------- */
 .primary-navigation {
 	position: fixed;
-	height: 100%;
 	top: 0;
+	left: 0;
+	height: 100%;
+	width: @primary-nav-width;
 	background: @maingray;
 	z-index: 999;
 	overflow: hidden;
-	.slowtrans;
 
 	.branding {
 		display: block;
@@ -146,7 +150,7 @@
 				color: @white;
 			}
 			&.icon-pullr {
-				font-size: 34px;
+				font-size: 32px;
 			}
 		}
 	}
@@ -171,32 +175,24 @@
 				line-height: 60px;
 
 				a {
+					position: relative;
 					display: block;
 					color: @gray30;
-					position: relative;
-					padding: 0 26px;
-					height: 60px;
-					&:before {
-						display: block;
-						padding-bottom: 10px;
-					}
+					text-align: center;
+					padding: 0;
+					margin-bottom: 2.2em;
 
 					.icon {
-						float: left;
-						display: inline-block;
-						font-size: 26px;
-						line-height: 60px;
-						vertical-align: middle;
+						display: block;
+						font-size: 30px;
+						line-height: 40px;
+						margin-bottom: .2em;
 					}
 
 					.nav-label {
-						display: inline-block;
-						position: absolute;
-						left: 62px;
-						vertical-align: middle;
-						height: 60px;
-						opacity: 1;
-						.trans-opacity;
+						display: block;
+						font-size: 14px;
+						line-height: 1;
 					}
 				}
 				a.dashboard.active:after {
@@ -212,44 +208,5 @@
 				}
 			}
 		}
-
 	}
-	.primary-nav-toggle {
-		display: block;
-		padding: 16px 0px;
-		text-align: center;
-		font-size: 22px;
-		line-height: 20px;
-		color: @gray20;
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-		text-align: center;
-		cursor: pointer;
-		&:hover {
-			color: @white;
-		}
-	}
-}
-
-.small-menu-toggled .primary-navigation {
-	width: @primary-nav-width;
-
-	nav.nav-top ul li a  { 
-		text-align: center; 
-
-		.nav-label {
-			opacity: 0;
-		}
-	}
-
-}
-.small-menu-toggled .primary-nav-toggle {
-	width: @primary-nav-width;
-}
-.large-menu-toggled .primary-navigation {
-	width: @primary-nav-lg-width;
-}
-.large-menu-toggled .primary-nav-toggle {
-	width: @primary-nav-lg-width;
 }

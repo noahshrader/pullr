@@ -3,6 +3,6 @@
 return [
     'name' => 'MyTheme',
     'description' => 'Descr here',
-    'layoutType' => 'Team Stream',
+    'layoutType' => 'Twitch Team',
     'plan' => 'Basic'
 ];
