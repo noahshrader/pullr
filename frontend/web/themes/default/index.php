@@ -90,24 +90,7 @@
                 </div>
                 
             </div>
-            <div class="row stream">
-                    <div id="stream" class="clear">
-                    <div id="featured">
-                        <div class="featuredstreamcontainer">
-                            <div class="featuredstream">
-                                <object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=funforfreedom" bgcolor="#000000"><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&amp;channel=funforfreedom&amp;auto_play=true&amp;start_volume=25" /></object>
-                            </div>
-                        </div>
-                        <div class="featuredchat">
-                            <iframe frameborder="0" scrolling="no" id="twitchChat" src="http://twitch.tv/chat/embed?channel=funforfreedom&amp;popout_chat=true"></iframe>
-                        </div>
-                    </div>
-                    <div class="stream-controls">
-                        <a class="togglechat icon-chat" href="javascript:void(0);"></a>
-                    </div>
-                </div>
-
-            </div>  
+            <div pullr-campaign-layout></div> 
 
                 <div class="row">
                     <div class="col-md-12">
@@ -292,10 +275,6 @@
         <div class='row'>
             <span data-pullr="campaign-charity-name"></span>
         </div>
-        
-        <div id='pullr-player'>
-        </div>
-        <div id='pullr-channels'></div>
         <footer>
             <p class="powered">powered by <a href="#" class="icon-pullr"></a></p>
             <p>&copy; 2014 pullr LLC</p>
