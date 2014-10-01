@@ -20,7 +20,7 @@
         <!-- Scripts -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
-        <script src="api/js"></script>
+        <script src="api/script"></script>
         <script src="/global/themes/global.js"></script>
         <!-- Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700,500' rel='stylesheet' type='text/css'>
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-8 feed-details">
                     <div class="feed-details-title">
-                        <h3 data-pullr='campaign-name'></h3> <!-- CAMPAIGN NAME -->
+                        <h3>{{campaign.name}}</h3> <!-- CAMPAIGN NAME -->
                         <p><span data-pullr='campaign-startDateFormatted'></span> - <span data-pullr='campaign-endDateFormatted'></span></p> <!-- CAMPAIGN DATES -->
                     </div>
                 </div>
