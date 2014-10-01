@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Plan;
 use yii\web\Response;
 use yii\base\Exception;
 use yii\web\ForbiddenHttpException;
@@ -22,32 +23,49 @@ class ApiController extends \yii\web\Controller {
         return parent::init();
     }
 
-    public function validateRequest() {
-
-        if( ! ( \Yii::$app->request->isGet || \Yii::$app->request->isPost)) {
+    public function validateRequest()
+    {
+        if (!(\Yii::$app->request->isGet || \Yii::$app->request->isPost))
+        {
             echo 'Invalid request';
             exit;
         }
 
         \Yii::$app->response->format = Response::FORMAT_JSON;
-        $payload = file_get_contents('php://input');
-        $payload = json_decode($payload,true);
+        $payload = json_decode(file_get_contents('php://input'), true);
 
-        if (isset($payload['id']) && isset($payload['key'])) {
+        if (isset($payload['id']) && isset($payload['key']))
+        {
             $id = $payload['id'];
             $key = $payload['key'];
-        } else if (isset($_REQUEST['id']) && isset($_REQUEST['key'])) {
-            $id = $_REQUEST['id'];
-            $key = $_REQUEST['key'];
-        } else {
-            throw new Exception('"id" and "key" should be set');
         }
-    
+        else
+        {
+            if (isset($_REQUEST['id']) && isset($_REQUEST['key']))
+            {
+                $id = $_REQUEST['id'];
+                $key = $_REQUEST['key'];
+            }
+            else
+            {
+                throw new Exception('"id" and "key" should be set');
+            }
+        }
+
         $campaign = Campaign::findOne($id);
-        if (!$campaign) {
+
+        if ($campaign->user->getPlan() == Plan::PLAN_BASE)
+        {
+            throw new ForbiddenHttpException('Basic users are not allowed to use API');
+        }
+
+        if (!$campaign)
+        {
             throw new Exception("Invalid event id");
         }
-        if ($campaign->key != $key) {
+
+        if ($campaign->key != $key)
+        {
             throw new ForbiddenHttpException('Invalid event key');
         }
 
@@ -156,7 +174,6 @@ class ApiController extends \yii\web\Controller {
 
     public function actionJs() {
         echo $this->renderFile('@frontend/views/api/api.js');
-        \common\components\Application::frontendUrl('/');
     }
 
     public function actionScript() {
