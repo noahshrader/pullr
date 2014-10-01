@@ -15,9 +15,6 @@
 	.campaign-actions {
 		margin-top: @gutter;
 	}
-	ul.content-nav {
-		border-bottom: solid 1px @gray75;
-	}
 }
 
 
@@ -145,16 +142,17 @@
 			padding-bottom: @gutter;
 		}
 	}
-}
 
-/* Social Enable */
-.socialenable {
+	/* Social Links */
+	.socialenable {
+		.module {
 
-	div.form-group {
-		display: block;
-
-		i {
-			font-size: 48px;
+			.form-group {
+				margin-bottom: @halfgutter;
+			}
+			h5 {
+				margin: 0;
+			}
 		}
 	}
 }
@@ -226,4 +224,4 @@
 
 /* CKE Editor */
 /* ------------------------------------------------- */
-@import "../../app-styles/editor.less";
+@import "../../app-styles/dialog.less";

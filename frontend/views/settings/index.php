@@ -33,30 +33,32 @@ $this->title = 'Settings';
         <?endif;?>
 
 		<section class="module">
-			<h4>General</h4>
-			<?= $form->field($user, 'name') ?>
-			<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
-			<?
-				$timezones = timezone_identifiers_list();
-				$keyValues = array_combine($timezones, $timezones);
-			?>
-			<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
-		</section>
-		<section class="module email-notifications">
-			<fieldset>
-				<h4>Email Notifications</h4>
-				<div>
-					<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
-					<? $attributes = $notification->getNotificationsAttributes(); ?>
-				</div>
-				<h5>Email me when:</h5>
-				<? foreach ($attributes as $attribute): ?>
-				<?= $form->field($notification, $attribute)->checkbox(); ?>
-				<? endforeach; ?>
-			</fieldset>
+			<div class="module">
+				<h5>General</h5>
+				<?= $form->field($user, 'name') ?>
+				<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
+				<?
+					$timezones = timezone_identifiers_list();
+					$keyValues = array_combine($timezones, $timezones);
+				?>
+				<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
+			</div>
+			<div class="email-notifications module">
+				<fieldset>
+					<h5>Email Notifications</h5>
+					<div>
+						<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
+						<? $attributes = $notification->getNotificationsAttributes(); ?>
+					</div>
+					<label>Email me when:</label>
+					<? foreach ($attributes as $attribute): ?>
+					<?= $form->field($notification, $attribute)->checkbox(); ?>
+					<? endforeach; ?>
+				</fieldset>
+			</div>
 		</section>
 		<section class="module">
-            <a class="account-deactivate" data-toggle="modal" data-target="#deactivateModal">Deactivate my account</a>
+            	<a class="account-deactivate" data-toggle="modal" data-target="#deactivateModal">Deactivate my account</a>
 		</section>
 		<div class="form-group text-center">
 			<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>

@@ -10,12 +10,34 @@
 	position: static;
 	padding-right: @sidepanelwidth;
 
+	.tab-content {
+		padding-bottom: @gutter;
+		.element-radius;
+		overflow: hidden;
+	}
+
+	ul.content-nav {
+		li {
+			&.active {
+				border-right: solid 1px @accent;
+
+				a {
+					color: @white;
+					background: @accent;
+				}
+			}
+		}
+	}
+
 	.stats-overview {
+		position: relative;
 		padding: 0;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
 
 		h1,
 		h2 {
-			color: @accent;
+			color: @white;
 		}
 		h1 {
 			font-size: 5.2em;
@@ -23,20 +45,26 @@
 		}
 
 		&.main-totals {
+			overflow: hidden;
+
 			h5 {
-				color: @gray60;
+				color: @dkraccent;
 			}
+		}
+		.stats-box {
+			border: 0;
 		}
 
 		/* Main Total Section */
 		.raised-total.stats-box {
 			position: relative;
 			float: left;
-			padding: @gutter+@halfgutter 0;
-			background: @white;
+			width: 100%;
+			padding: @gutter 0;
+			background: @accent;
 
 			h1 {
-				color: @accent;
+				color: @white;
 				margin: 0;
 			}
 		}
@@ -47,13 +75,13 @@
 			float: left;
 			padding: 0 15%;
 			width: 100%;
-			background: @offwhite;
+			background: @dkaccent;
 			&:before {
 				.arrow-up;
 				left: 50%;
 				top: -10px;
 				margin-left: -10px;
-				border-color: transparent transparent @offwhite transparent;
+				border-color: transparent transparent @dkaccent transparent;
 			}
 
 			.stats-box {
@@ -64,6 +92,10 @@
 
 		/* Other Totals Section */
 		&.other-raised-totals {
+			margin: @gutter 0 @gutter+@gutter;
+			background: @white;
+			.box-shadow;
+			.element-radius;
 
 			.stats-box {
 				width: 33.33%;
@@ -75,28 +107,45 @@
 
 		/* Twitch Bar */
 		&.twitch-stats {
-			padding-left: 80px;
+			background: @twitchpurple;
+			.box-shadow;
+			.element-radius;
 
-			.group-header {
-				position: absolute;
-				left: 0;
-				font-size: 24px;
-				height: 100%;
-				width: 80px;
-				color: @white;
-				background: @twitchpurple;
-				&:before {
-					position: absolute;
-					top: 50%;
-					left: 0;
-					margin-top: -12px;
-					width: 80px;
-				}
-			}
 			h2 {
-				color: @twitchpurple;
+				color: @white;
+			}
+			h5 {
+				color: @twitchdark;
+			}
+			i.group-header {
+				position: absolute;
+				top: -47px;
+				left: 50%;
+				color: @gray70;
+				font-size: 1.2em;
+				line-height: 36px;
+				text-align: center;
+				margin-left: -17px;
+				height: 36px;
+				width: 36px;
+				.round-radius;
+				background: @gray75;
+				border: solid 2px @gray70;
+			}
+			span.stick {
+				top: -@gutter + -@gutter;
+				height: @gutter+@gutter;
 			}
 		}
+	}
+	span.stick {
+		position: absolute;
+		left: 50%;
+		top: -@gutter;
+		display: block;
+		height: @gutter;
+		width: 2px;
+		background: @gray72;
 	}
 }
 

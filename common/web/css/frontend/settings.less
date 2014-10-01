@@ -3,8 +3,11 @@
 .settings {
 
 	.module {
-		padding: @gutter @gutter+@gutter;
+		padding: @gutter;
 
+		.module {
+			padding: 0 @gutter @halfgutter;
+		}
 		&.email-notifications {
 
 			.form-group {
