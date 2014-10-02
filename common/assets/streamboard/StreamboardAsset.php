@@ -8,6 +8,7 @@ class StreamboardAsset extends AssetBundle
 	public $baseUrl = '@web';
 	public $css = [
         'bower_components/angular-bootstrap-colorpicker/css/colorpicker.css',
+        'bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
 	];
 	public $js = [
         '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js',
@@ -18,13 +19,16 @@ class StreamboardAsset extends AssetBundle
         'bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
         'bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+        'bower_components/angular-timer/app/js/timer.js',
         'bower_components/iframe-resizer/js/iframeResizer.min.js',
         'bower_components/jQuery.Marquee/jquery.marquee.min.js',
         'bower_components/moment/moment.js',
         'bower_components/angular-moment/angular-moment.min.js',
+        'bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
         'js/streamboard/angular-app/angular-marquee.js',
 		'js/streamboard/streamboard.js',
         /* angular-app begin */
+        'js/streamboard/angular-app/current-time.js',
         'js/streamboard/angular-app/donationsService.js',
         'js/streamboard/angular-app/rotatingMessages.js',
         'js/streamboard/angular-app/donationsCtrl.js',
