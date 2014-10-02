@@ -1,18 +1,48 @@
 #modalThemes {
 
-/* Basic */
-/* ------------------------------------------------- */
+	.select-theme-container {
+		position: relative;
+		margin-bottom: @halfgutter;
+		width: 100%;
+		height: 120px;
+		background-repeat: no-repeat;
+		background-size: cover;
+		overflow: hidden;
+		&:hover {
+			a {
+				opacity: 1;
+			}
+		}
 
-	/* Default Theme */
-	[data-name=MyTheme] {
-		background: @gray10;
+		a {
+			position: absolute;
+			left: 0;
+			opacity: 0;
+			line-height: 120px;
+			width: 100%;
+			background: @bgblackfade;
+			.trans;
+		}
+		h4 {
+			color: @white;
+			line-height: 120px;
+		}
 	}
-	[data-name=Default] {
-		background: @gray60;
-	}
 
-/* Pro */
-/* ------------------------------------------------- */
+	/* Basic */
+	/* ------------------------------------------------- */
 
+		/* Default Theme */
+		[data-name=MyTheme] {
+			background-color: @gray10;
+			background-image: url(/images/themes/test.jpg);
+		}
+		[data-name=Default] {
+			background-color: @gray60;
+			background-image: url(/images/themes/test.jpg);
+		}
+
+	/* Pro */
+	/* ------------------------------------------------- */
 
 }

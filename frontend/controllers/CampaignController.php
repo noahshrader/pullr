@@ -70,6 +70,16 @@ class CampaignController extends FrontendController {
         //campaign save request
         if ($editCampaign && $editCampaign->load($_POST))
         {
+            if (!empty($editCampaign->themeId) && !\Yii::$app->user->identity->hasAccessToTheme($editCampaign->themeId))
+            {
+                throw new Exception('You have no access to this theme');
+            }
+
+            if ($isNewRecord && !\Yii::$app->user->identity->canCreateMoreCampaigns())
+            {
+                throw new Exception('You have reached active campaigns limit and cannot create new');
+            }
+
             //from html5 datetime-local tag to timestamp
             if ($editCampaign->startDate && !is_numeric($editCampaign->startDate)) {
                 $editCampaign->startDate = (new \DateTime($editCampaign->startDate))->getTimestamp();
@@ -85,16 +95,6 @@ class CampaignController extends FrontendController {
                 $firstGivingCharity = FirstGiving::getFromAPI($orgUuid);
 
                 $editCampaign->charityId = $firstGivingCharity->charity->id;
-            }
-
-            if (!empty($editCampaign->themeId) && !\Yii::$app->user->identity->hasAccessToTheme($editCampaign->themeId))
-            {
-                throw new Exception('You have no access to this theme');
-            }
-
-            if ($isNewRecord && !\Yii::$app->user->identity->canCreateMoreCampaigns())
-            {
-                throw new Exception('You have reached active campaigns limit and cannot create new');
             }
 
             if ($editCampaign->save()){

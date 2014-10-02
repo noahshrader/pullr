@@ -161,7 +161,3 @@ Pullr.Call = function (method, params, callback){
     var url = Pullr.API_URL + method;
     $.getJSON(url, params, callback);
 }
-
-function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-}
