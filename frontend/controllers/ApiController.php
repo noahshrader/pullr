@@ -15,11 +15,16 @@ class ApiController extends \yii\web\Controller {
 
     protected $campaign;
 
-    public function init() {
-        header("Access-Control-Allow-Origin: *");
-        header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    public function init()
+    {
+        $this->enableCORS();
+        if (\Yii::$app->request->isOptions)
+        {
+            \Yii::$app->end();
+        }
+
         $this->twitch = new TwitchSDK();
+
         return parent::init();
     }
 
@@ -52,12 +57,13 @@ class ApiController extends \yii\web\Controller {
             }
         }
 
+
         $campaign = Campaign::findOne($id);
 
-        if ($campaign->user->getPlan() == Plan::PLAN_BASE)
-        {
-            throw new ForbiddenHttpException('Basic users are not allowed to use API');
-        }
+//        if($campaign->user->getPlan() == Plan::PLAN_PRO)
+//        {
+//            $this->enableCORS();
+//        }
 
         if (!$campaign)
         {
@@ -192,4 +198,10 @@ class ApiController extends \yii\web\Controller {
         echo $this->renderFile('@frontend/views/api/templates/campaign/campaignTeamStreamLayout.html');
     }
 
+    protected function enableCORS(){
+        \Yii::$app->response->headers->set('Access-Control-Allow-Origin', '*');
+        \Yii::$app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+        \Yii::$app->response->headers->set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        \Yii::$app->response->send();
+    }
 }
