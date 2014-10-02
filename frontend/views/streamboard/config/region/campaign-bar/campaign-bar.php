@@ -2,8 +2,11 @@
     <div class="form-group">
         <h5>Campaign</h5>
         <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.campaignId" ng-change="regionChanged(region)"
-                ng-options="campaign.id as campaign.name for (key, campaign) in campaignsService.campaigns" data-placeholder="Select a campaign...">
+                data-placeholder="Select a campaign...">
             <option value=""></option>
+            <option ng-repeat='campaign in campaignsService.campaigns' value="{{campaign.id}}">
+                {{campaign.name}}
+            </option>
         </select>
     </div>
 </div>
@@ -18,10 +21,10 @@
                 ng-change="regionChanged(region)"></slider>
     </div>
     <div class="form-group">
-        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
+        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
     </div>
     <div class="form-group">
-        <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" type="text" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
+        <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
     </div>
 </div>
 <div class="module last">

@@ -1,6 +1,7 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
-        'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations', 'pullr.streamboard.campaigns']);
+        'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
+        'pullr.streamboard.campaigns', 'pullr.currentTime', 'timer']);
     app.controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns) {
         $scope.streamService = stream;
         $scope.regionsService = regions;
@@ -24,6 +25,7 @@
                 });
             }, 4000, 1);
         })
+
         function requireAllFonts(){
             for (var key in regions.regions){
                 var region = regions.regions[key];
