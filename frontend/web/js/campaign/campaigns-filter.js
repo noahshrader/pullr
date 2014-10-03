@@ -28,10 +28,6 @@ $('body').click(function(){
 });
 
 $(window).load(function() {
-    // Add top padding to campaigns view?
-    if ($('section.campaign-status-pending').find('.campaign-item').length > 0) {
-        $('section.campaign-status-pending .campaigns-list').addClass('addpad');
-    }
     // streamboard loader
     $(".spinner-wrap").fadeOut();
 });

@@ -147,10 +147,14 @@
 		padding-right: @halfgutter;
 		font-weight: normal;       
 	}
-	.campaigns-list {
-		div {
+	.inner-list-wrap {
+		&.pad {
+			padding-top: @top-menu-height;
+		}
+		.none {
 			color: @gray40;
 			font-size: @smalltext;
+			padding: @halfgutter 0;
 		}
 	}
 
@@ -170,7 +174,7 @@
 	height: @top-menu-height;
 	width: @sidepanelwidth;
 	z-index: 1000;
-	border-bottom: solid 1px @gray12;
+	border-top: solid 1px @maingray;
 	&:before {
 		position: absolute;
 		top: 50%;
@@ -179,12 +183,12 @@
 		color: @gray30;
 		font-family: 'icomoon';
 		font-size: 14px;
-		margin-top: -8px;
+		margin-top: -10px;
 	}
 
 	span {
 		display: block;
-		padding: @halfgutter;
+		padding: 12px @halfgutter;
 		width: 100%;
 		height: 100%;
 		background: @gray10;

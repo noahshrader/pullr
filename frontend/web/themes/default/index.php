@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
 <html>
     <head>
-        <title>Pullr Api Test</title>
+        <title></title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">

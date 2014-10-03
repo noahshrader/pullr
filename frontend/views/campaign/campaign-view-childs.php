@@ -10,7 +10,7 @@
     }
 ?>
 <div class="module">
-    <table class="campaign-view-childs">
+    <table class="campaign-view-childs dataTable">
         <thead>
         <tr>
             <th><?= sizeof($childCampaigns) ?> Connected Campaigns</th>
