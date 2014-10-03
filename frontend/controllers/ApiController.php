@@ -7,7 +7,7 @@ use yii\base\Exception;
 use yii\web\ForbiddenHttpException;
 use common\models\Campaign;
 use \ritero\SDK\TwitchTV\TwitchSDK;
-
+use Yii;
 class ApiController extends \yii\web\Controller {
 
     protected $twitch;
@@ -55,6 +55,7 @@ class ApiController extends \yii\web\Controller {
     }
 
     public function actionCampaign() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $campaign = $this->validateRequest();
         
         $campaignArray = $campaign->toArray();
@@ -78,7 +79,7 @@ class ApiController extends \yii\web\Controller {
             $campaignArray['charity'] = null;
         }
 
-        echo json_encode($campaignArray);
+        return $campaignArray;
     }
 
     public function actionIndex() {
@@ -86,26 +87,28 @@ class ApiController extends \yii\web\Controller {
     }
 
     public function actionChannels() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $campaign = $this->validateRequest();
-
+        $result = [];
         switch ($campaign->layoutType) {
             case Campaign::LAYOUT_TYPE_SINGLE:
-                $this->actionSingleChannel();
+                $result = $this->actionSingleChannel();
             break;    
             case Campaign::LAYOUT_TYPE_TEAM:
-                $this->actionTeamChannel();
+                $result = $this->actionTeamChannel();
             break;
             case Campaign::LAYOUT_TYPE_MULTI:
-                $this->actionMultiChannels();
+                $result = $this->actionMultiChannels();
             break;
         }
+        return $result;
     }
 
     public function actionMultiChannels() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $campaign = $this->validateRequest();
         if ($campaign->layoutType != Campaign::LAYOUT_TYPE_MULTI) {
-            echo json_encode([]);
-            return;
+            return [];
         }
         $channels = $campaign->getTeams()->all();
         $members = [];
@@ -114,15 +117,15 @@ class ApiController extends \yii\web\Controller {
             $channel = $this->twitch->channelGet($channelModel->name);
             $members[] = $channel;
         }
-        echo json_encode($members);
+        return $members;
     }
 
     public function actionTeamChannel() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $campaign = $this->validateRequest();
 
         if ($campaign->layoutType != Campaign::LAYOUT_TYPE_TEAM || !$campaign->channelTeam) {
-            echo json_encode([]);
-            return;
+            return [];
         }
 
         $membersList = $this->twitch->teamMembersAll($campaign->channelTeam);
@@ -141,17 +144,17 @@ class ApiController extends \yii\web\Controller {
          */
         shuffle($onlines);
         $members = array_merge($onlines, $offlines);
-        echo json_encode($members);
+        return $members;
     }
 
     public function actionSingleChannel() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $campaign = $this->validateRequest();
         if ($campaign->layoutType != Campaign::LAYOUT_TYPE_SINGLE || !$campaign->channelName) {
-            echo json_encode([]);
-            return;
+            return [];
         }
         $channel = $this->twitch->channelGet($campaign->channelName);
-        echo json_encode($channel);
+        return $channel;
     }
 
     public function actionJs() {
