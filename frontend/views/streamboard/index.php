@@ -6,6 +6,6 @@ use yii\web\View;
 ?>
 <div ng-app="streamboardApp" class="streamboardContainer">
 	<?= $this->render('streamboard-js-variables') ?>
-	<?= $this->render('regions', ['regionsNumber' => $regionsNumber]) ?>
+	<?= $this->render('region/regions', ['regionsNumber' => $regionsNumber]) ?>
 	<?= $this->render('sidepanel', ['regionsNumber' => $regionsNumber]) ?>
 </div>

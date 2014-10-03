@@ -87,24 +87,30 @@ class LayoutviewController extends \yii\web\Controller {
             $donation->userId = \Yii::$app->user->id; 
         }
 
-        if ($donation->load($_REQUEST) && $donation->save()){
-            if ($firstGiving = $campaign->firstGiving) {
+        if ($donation->load($_REQUEST))
+        {
+            $donation->nameFromForm = empty($donation->nameFromForm) ? Donation::ANONYMOUS_NAME : $donation->nameFromForm;
 
-                $firstGivingPayment = new FirstGivingPayment();
+            if ($donation->save()){
+                if ($firstGiving = $campaign->firstGiving) {
 
-                $thankYouPage = \Yii::$app->request->hostInfo . '/' .  $userAlias.'/'.$campaignAlias.'/thankyou';
-                $firstGivingPayment->setConfig(array_merge(\Yii::$app->params['firstGiving'], ['pb_success' => $thankYouPage, 'buttonText' => 'Donate']));
-                $firstGivingPayment->setDonation($donation);
-                $firstGivingPayment->setFirstGiving($firstGiving);
+                    $firstGivingPayment = new FirstGivingPayment();
 
-                $formUrl = $firstGivingPayment->donationPayment();
+                    $thankYouPage = \Yii::$app->request->hostInfo . '/' .  $userAlias.'/'.$campaignAlias.'/thankyou';
+                    $firstGivingPayment->setConfig(array_merge(\Yii::$app->params['firstGiving'], ['pb_success' => $thankYouPage, 'buttonText' => 'Donate']));
+                    $firstGivingPayment->setDonation($donation);
+                    $firstGivingPayment->setFirstGiving($firstGiving);
 
-                return $this->render('firstgiving', ['url' => $formUrl, 'campaign' => $campaign, 'back_url' => "/{$userAlias}/{$campaignAlias}/donate"]);
+                    $formUrl = $firstGivingPayment->donationPayment();
 
-            } else {
-                PullrPayment::donationPayment($donation);
+                    return $this->render('firstgiving', ['url' => $formUrl, 'campaign' => $campaign, 'back_url' => "/{$userAlias}/{$campaignAlias}/donate"]);
+
+                } else {
+                    PullrPayment::donationPayment($donation);
+                }
             }
         }
+
 
         //paypal success donate
         if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){

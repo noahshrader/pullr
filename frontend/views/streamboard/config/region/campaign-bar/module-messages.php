@@ -3,11 +3,11 @@ $MAX_LENGTH = 100;
 ?>
 <div class="module first">
 	<div class="panel-group">
-		<textarea ng-model="model.message1" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
-		<textarea ng-model="model.message2" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
-		<textarea ng-model="model.message3" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
-		<textarea ng-model="model.message4" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
-		<textarea ng-model="model.message5" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
+		<textarea ng-model="module.message1" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
+		<textarea ng-model="module.message2" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
+		<textarea ng-model="module.message3" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
+		<textarea ng-model="module.message4" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
+		<textarea ng-model="module.message5" maxlength="<?=$MAX_LENGTH?>" placeholder="Custom Message" ng-change="regionChanged(region)"></textarea>
 	</div>
 </div>
 <div class="module">

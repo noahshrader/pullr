@@ -468,6 +468,42 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Checks if user has permission to use specific theme
+     * @param int $id Theme id
+     */
+    public function hasAccessToTheme($id)
+    {
+        if ($this->getPlan() == Plan::PLAN_PRO)
+        {
+            return true;
+        }
+
+        $theme = \common\models\Theme::findOne(intval($id));
+        if($theme)
+        {
+            return $theme->plan == \common\models\Theme::PLAN_BASIC;
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks if user allowed to create more campaigns based on his plan
+     * @return bool
+     */
+    public function canCreateMoreCampaigns()
+    {
+        $maxCampaigns = \Yii::$app->params['maxCampaignsBasic'];
+
+        if ($this->getPlan() == Plan::PLAN_PRO)
+        {
+            $maxCampaigns = \Yii::$app->params['maxCampaignsPro'];
+        }
+
+        return $this->getCampaigns(Campaign::STATUS_ACTIVE, false)->count() < $maxCampaigns;
+    }
+
+    /**
      * @description prolong User plan
      * @param float $amount - money amount
      */

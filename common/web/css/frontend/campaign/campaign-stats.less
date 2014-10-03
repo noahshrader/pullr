@@ -39,7 +39,7 @@ ul.campaign-quicknav {
 		color: @white;
 	}
 	&.active p {
-		color: @accent;
+		color: @accent !important;
 		background: @gray10;
 	}
 	&.active {
@@ -57,9 +57,6 @@ ul.campaign-quicknav {
 		p {
 			color: @white;
 		}
-	}
-	&:last-child {
-		border: 0;
 	}
 	h3,
 	p {
@@ -97,6 +94,15 @@ body.trash .campaigns-list {
 
 	.list-search {
 		top: @top-menu-height + @sidenavheight;
+	}
+}
+
+/* Donor specific */
+.donors-list {
+	.campaign-item {
+		&.active p {
+			color: @white;
+		}
 	}
 }
 

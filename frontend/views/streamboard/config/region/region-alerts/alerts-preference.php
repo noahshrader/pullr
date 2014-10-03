@@ -21,7 +21,7 @@ use yii\web\View;
         </div>
         <div class="panel-group">
             <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true"
-                                  type="text" ng-model="preference.fontColor" ng-change="regionChanged(region)"
+                                  ng-model="preference.fontColor" ng-change="regionChanged(region)"
                                   class="color-choice" ng-style="{'background-color':preference.fontColor}"></h5>
         </div>
     </div>

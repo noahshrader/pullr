@@ -32,7 +32,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                 </div>
             <? endif; ?> <!-- END notification -->
 
-            <div class="tab-content module">
+            <div class="tab-content">
                 <ul class="content-nav cf">
                     <li class="active">
                         <a href="#overall" data-toggle="tab">Overall</a>
@@ -48,7 +48,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <div class="tab-pane in active" id="overall">
                     <section class="stats-overview main-totals cf">
                         <!-- main total -->
-                        <div class="col-xs-12 raised-total stats-box">
+                        <div class="raised-total stats-box">
                             <h1>$<?= number_format($dashboard['overall']['totalRaised']) ?></h1>
                             <h5>Raised Overall</h5>
                         </div>
@@ -65,6 +65,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                         </div>
                     </section>
                     <section class="stats-overview other-raised-totals cf">
+                        <span class="stick"></span>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
                             <h5>Campaigns</h5>
@@ -81,6 +82,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <!-- Twitch Stats -->
                     <? if ($twitchUser): ?>
                     <section class="row stats-overview twitch-stats">
+                        <span class="stick"></span>
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
@@ -118,6 +120,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                         </div>
                     </section>
                     <section class="stats-overview other-raised-totals cf">
+                        <span class="stick"></span>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['today']['totalCampaigns'] ?></h2>
                             <h5>Campaigns</h5>
@@ -134,6 +137,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <!-- Twitch Stats -->
                     <? if ($twitchUser): ?>
                     <section class="row stats-overview twitch-stats">
+                        <span class="stick"></span>
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
@@ -170,6 +174,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                         </div>
                     </section>
                     <section class="stats-overview other-raised-totals cf">
+                        <span class="stick"></span>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['month']['totalCampaigns'] ?></h2>
                             <h5>Campaigns</h5>
@@ -186,6 +191,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <!-- Twitch Stats -->
                     <? if ($twitchUser): ?>
                     <section class="row stats-overview twitch-stats">
+                        <span class="stick"></span>
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">

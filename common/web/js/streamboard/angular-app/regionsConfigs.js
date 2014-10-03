@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsConfigs', ['pullr.common', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.campaigns',
-        'pullr.streamboard.regions', 'angularFileUpload', 'pullr.streamboard.stream']);
+        'pullr.streamboard.regions', 'angularFileUpload', 'pullr.streamboard.stream', 'ui.bootstrap.datetimepicker']);
     app.run(function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];
 
@@ -89,6 +89,18 @@
             preference.imageType = imageType;
             $scope.regionChanged(region);
         };
+        $scope.onSetTimeCountDownFrom = function(newDate, oldDate){
+            var scope = this.$parent;
+            /*we need to update value first to sending to server*/
+            scope.module.countDownFrom = newDate;
+            $scope.regionChanged(scope.region);
+        }
+        $scope.onSetTimeCountDownTo = function(newDate, oldDate){
+            var scope = this.$parent;
+            /*we need to update value first to sending to server*/
+            scope.module.countDownTo = newDate;
+            $scope.regionChanged(scope.region);
+        }
         $scope.onFileUpload = function ($files, $fileType, scope) {
             var file = $files[0];
             $scope.upload = $upload.upload({

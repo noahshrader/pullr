@@ -9,17 +9,13 @@ $title = $type ? $type : 'Choose a Theme';
 <div class="modal-body">
 
     <? if (sizeof($themes) > 0): ?>
-        <div class="row">
         <? foreach ($themes as $theme): ?>
-            <div class='col-xs-3 text-center select-theme-container' data-name='<?= $theme->name ?>'
-                 data-id='<?= $theme->id ?>'>
-                <div class='select-theme text-center'>
-                    <a href='javascript:void(0)' onclick="selectTheme(this)">Select Theme</a>
-                </div>
-                <div><?= $theme->name ?></div>
-            </div>
-        <? endforeach; ?>
+        <div class='select-theme-container' data-name='<?= $theme->name ?>'
+             data-id='<?= $theme->id ?>'>
+            <a href='javascript:void(0)' onclick="selectTheme(this)">Select Theme</a>
+            <h4><?= $theme->name ?></h4>
         </div>
+        <? endforeach; ?>
     <? else: ?>
         <div class="noThemes">
             No themes are available for this type of layout.
