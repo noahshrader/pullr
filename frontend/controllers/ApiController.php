@@ -18,6 +18,7 @@ class ApiController extends \yii\web\Controller {
     public function init()
     {
         $this->enableCORS();
+        
         if (\Yii::$app->request->isOptions)
         {
             \Yii::$app->end();
@@ -90,8 +91,9 @@ class ApiController extends \yii\web\Controller {
             $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
             $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
         } else {
-            $campaignArray['startDateFormatted'] = $campaignArray['startDate'];
-            $campaignArray['endDateFormatted'] = $campaignArray['endDate'];    
+            $date = new \DateTime();
+            $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
+            $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
         }
         
         $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
@@ -205,6 +207,5 @@ class ApiController extends \yii\web\Controller {
         \Yii::$app->response->headers->set('Access-Control-Allow-Origin', '*');
         \Yii::$app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
         \Yii::$app->response->headers->set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-        \Yii::$app->response->send();
     }
 }

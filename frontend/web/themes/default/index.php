@@ -40,36 +40,42 @@
             </div>  
         </header>
         <section class="stats"> <!-- main stats -->
-            <div class="container">
+            <div class="container" ng-cloak>
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-4 raised">
                         <span>Amount raised</span>
-                        <h1 data-pullr='campaign-amountRaisedFormatted'></h1>
+                        <h1 data-pullr='campaign-amountRaisedFormatted'>
+                            {{campaign.amountRaisedFormatted}}
+                        </h1>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 center">
                         <span>Target Amount</span>
-                        <h1 data-pullr='campaign-goalAmountFormatted'></h1>
+                        <h1 data-pullr='campaign-goalAmountFormatted'>
+                            {{campaign.goalAmountFormatted}}
+                        </h1>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4 right">
                         <span>No. of Donors</span>
-                        <h1 data-pullr='campaign-numberOfUniqueDonors'></h1>
+                        <h1 data-pullr='campaign-numberOfUniqueDonors'>
+                            {{campaign.numberOfUniqueDonors}}
+                        </h1>
                     </div>
                 </div>
                 <div class="amount-progress">
                 <div class="row">
                     <div class="project-progress status">
-                            <div class="project-progressbar"></div>
+                            <div class="project-progressbar" style="width:{{campaign.percentageOfGoal}}%"></div>
                     </div>
                 </div>
             </div>
         </section>
         <section class="feed"> <!-- main content -->
-        <div class="container">
+        <div class="container" ng-cloak>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-8 feed-details">
                     <div class="feed-details-title">
                         <h3>{{campaign.name}}</h3> <!-- CAMPAIGN NAME -->
-                        <p><span data-pullr='campaign-startDateFormatted'></span> - <span data-pullr='campaign-endDateFormatted'></span></p> <!-- CAMPAIGN DATES -->
+                        <p><span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span></p> <!-- CAMPAIGN DATES -->
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-4 feed-details">
@@ -273,7 +279,7 @@
         </div>
         </section>
         <div class='row'>
-            <span data-pullr="campaign-charity-name"></span>
+            <span data-pullr="campaign-charity-name" ng-cloak>{{campaign.charity}}</span>
         </div>
         <footer>
             <p class="powered">powered by <a href="#" class="icon-pullr"></a></p>

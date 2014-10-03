@@ -16,7 +16,10 @@ app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
 				$scope.selectedChannel = $scope.campaign.channelName;
 			} else {
 				$scope.channels = data;
-				$scope.selectedChannel = data[0].name;
+				if (data.length > 0) {
+					$scope.selectedChannel = data[0].name;
+				}
+				
 			}
 			$scope.isDataReady = true;
 		});
