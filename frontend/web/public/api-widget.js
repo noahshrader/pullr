@@ -79,9 +79,8 @@ app.directive('pullrCampaignName', function(CampaignDataService) {
 	return {
 		restrict: 'A',
 		scope: '@',
-		template: '<span>{{campaign.name}}</span>',
+		template: '<span ng-cloak>{{campaign.name}}</span>',
 		link: function(scope,element, attr) {
-		
 		}
 	}
 });
@@ -101,7 +100,6 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 			scope.setChannel = function(channelName) {
 				scope.selectedChannel = channelName;
 			}
-
 			scope.getLayoutUrl = function() {
 				if (typeof(scope.campaign) != 'undefined') {
 					if (scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
@@ -113,7 +111,6 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 					}	
 				}				
 			}
-			
 		},
 		template:'<div ng-include="getLayoutUrl() | trusted" ng-cloak></div>' 
 
@@ -129,6 +126,3 @@ app.filter('trusted', ['$sce', function ($sce) {
 angular.element(document).ready(function() {
   	angular.bootstrap(document, ['PullrApp']);
 });
-
-
-

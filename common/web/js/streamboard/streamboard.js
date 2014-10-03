@@ -73,7 +73,7 @@ $(function () {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
         $('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
    	});
-    $('.regionsContainer, .sidepanel-head').click(function(){ 
+    $('.sidepanel-head').click(function(){ 
         $('.paneltoggle li').removeClass('active');
         $('.slidepanel').removeClass('selected');
     });

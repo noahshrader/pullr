@@ -4,7 +4,6 @@ ul.campaign-quicknav {
 	position: fixed;
 	top: 0;
 	width: @sidepanelwidth;
-	border-bottom: solid 1px @gray10;
 
 	li {
 		width: 33.33%;
@@ -22,11 +21,6 @@ ul.campaign-quicknav {
 /* ------------------------------------------------- */
 
 /* Campaign Listings */
-.campaigns-list {
-	&.addpad {
-		padding-top: @top-menu-height;
-	}
-}
 .campaign-item {
 	padding: 24px 0;
 	margin: 0px;
@@ -101,7 +95,7 @@ body.trash .campaigns-list {
 .donors-list {
 	.campaign-item {
 		&.active p {
-			color: @white;
+			color: @white !important;
 		}
 	}
 }
