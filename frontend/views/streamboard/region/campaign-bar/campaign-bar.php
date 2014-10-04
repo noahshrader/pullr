@@ -7,7 +7,7 @@ use frontend\models\streamboard\StreamboardRegion;
     <div ng-if="region.widgetCampaignBar.messagesEnable">
         <div rotating-messages messages-module="region.widgetCampaignBar.messagesModule" rotation-speed="region.widgetCampaignBar.messagesModule.rotationSpeed"></div>
     </div>
-    <?= $this->render('timer') ?>
+    <?= $this->render('timers') ?>
     <div ng-if="region.widgetCampaignBar.progressBarEnable && region.widgetCampaignBar.campaignId">
         <progressbar max="campaignsService.campaigns[region.widgetCampaignBar.campaignId].goalAmount" value="campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised" type="success"></progressbar>
     </div>

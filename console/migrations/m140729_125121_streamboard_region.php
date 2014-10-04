@@ -130,8 +130,8 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'timerType' => $timerTypes,
             'countDownFrom' => Schema::TYPE_STRING. ' NOT NULL',
             'countDownTo' => Schema::TYPE_STRING. ' NOT NULL',
-            'countUpStartTime' => Schema::TYPE_INTEGER. ' NOT NULL',
-            'countUpPauseTime' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'countUpStartTime' => Schema::TYPE_STRING. ' NOT NULL',
+            'countUpPauseTime' => Schema::TYPE_STRING. ' NOT NULL',
             'countUpStatus' => Schema::TYPE_BOOLEAN. ' NOT NULL',
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar_timer', WidgetCampaignBarTimer::tableName(), ['userId', 'regionNumber']);
