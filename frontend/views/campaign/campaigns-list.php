@@ -12,10 +12,8 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
             <input placeholder="Search…" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off" class="form-control">
         </span>
     </div>
-    <? if ($this->context->id == 'campaign/archive') { ?>
-    <div class="inner-list-wrap pad">
-    <? } elseif (sizeof($campaigns) > 0) { ?>
     <div class="inner-list-wrap">
+    <? if (sizeof($campaigns) > 0) { ?>
     <div data-bind="template: {name:'campaign', foreach:campaigns}"></div>
     <script type="text/html" id="campaign">
         <?/*real attributes set in php code just few lines below, that is just mapping*/ ?>

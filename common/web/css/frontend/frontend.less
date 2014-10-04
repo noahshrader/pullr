@@ -147,10 +147,13 @@
 		padding-right: @halfgutter;
 		font-weight: normal;       
 	}
-	.inner-list-wrap {
-		&.pad {
+	&.campaign-status-pending,
+	&.campaign-status-deleted {
+		.inner-list-wrap {
 			padding-top: @top-menu-height;
 		}
+	}
+	.inner-list-wrap {
 		.none {
 			color: @gray40;
 			font-size: @smalltext;
