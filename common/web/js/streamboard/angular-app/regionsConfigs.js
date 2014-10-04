@@ -143,7 +143,7 @@
             var startDate = new Date(module.countUpStartTime);
             if (!startDate) {
                 module.countUpStartTime = new Date();
-            } else if (pauseDate > startDate) {
+            } else if (pauseDate >= startDate) {
                 module.countUpStartTime = new Date(startDate.getTime() + (new Date() - pauseDate));
             }
             module.countUpStatus = true;

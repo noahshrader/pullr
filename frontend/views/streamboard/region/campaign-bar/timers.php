@@ -21,10 +21,10 @@ use frontend\models\streamboard\WidgetCampaignBarTimer;
                 </timer>
             </div>
             <div ng-if="!module.countUpStatus">
-                <div ng-init="time = getPausedTimestamp(module)">
-                    <timer autostart="false" countdown="time">
-                        <?= $this->render('timer') ?>
-                    </timer>
+                <div count-up-timer>
+                    <!--really that html generated inside of 'count-up-timer'. So code below is unused.-->
+<!--                    <timer autostart="false" countdown="time">-->
+<!--                    </timer>-->
                 </div>
             </div>
         </div>

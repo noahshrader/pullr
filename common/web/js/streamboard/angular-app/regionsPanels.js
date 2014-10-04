@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
-            'pullr.streamboard.campaigns', 'pullr.currentTime', 'timer']).
+            'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer']).
         controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
@@ -39,18 +39,6 @@
                 }
             }
 
-            $scope.getPausedTimestamp = function(module){
-                console.log('get paused called');
-                var time;
-                if (!module.countUpPauseTime){
-                    //e.g. first open of streamboard
-                    time = 0;
-                } else {
-                    time = new Date(module.countUpPauseTime) - new Date(module.countUpStartTime);
-                }
-                time = Math.floor(time / 1000);
-                return time;
-            }
 
             function requireAllFonts() {
                 for (var key in regions.regions) {

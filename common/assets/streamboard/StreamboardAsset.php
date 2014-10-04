@@ -28,7 +28,8 @@ class StreamboardAsset extends AssetBundle
         'js/streamboard/angular-app/angular-marquee.js',
 		'js/streamboard/streamboard.js',
         /* angular-app begin */
-        'js/streamboard/angular-app/current-time.js',
+        'js/streamboard/angular-app/timers/current-time.js',
+        'js/streamboard/angular-app/timers/count-up-timer.js',
         'js/streamboard/angular-app/donationsService.js',
         'js/streamboard/angular-app/rotatingMessages.js',
         'js/streamboard/angular-app/donationsCtrl.js',
