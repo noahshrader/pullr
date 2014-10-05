@@ -48,6 +48,7 @@
                     window.requireGoogleFont(region.widgetAlerts.subscribersPreference.fontStyle);
                     window.requireGoogleFont(region.widgetDonationFeed.fontStyle);
                     window.requireGoogleFont(region.widgetCampaignBar.fontStyle);
+                    window.requireGoogleFont(region.widgetCampaignBar.alertsModule.fontStyle);
                 }
             }
 
@@ -58,12 +59,19 @@
             function showAlert(region) {
                 var stream = $scope.streamService.streams[region.regionNumber];
                 var notification = false;
-                if (region.widgetType == 'widget_alerts') {
+                if (region.widgetType == 'widget_alerts' || (region.widgetType == 'widget_campaign_bar' && region.widgetCampaignBar.alertsEnable)) {
                     while (stream.length > 0 && notification == false) {
                         notification = stream.shift();
-                        /**checking includeDonations, includeFollowers, includeSubscribers*/
-                        if (!region.widgetAlerts['include' + capitaliseFirstLetter(notification.type)]) {
-                            notification = false;
+                        if (region.widgetType == 'widget_alerts') {
+                            /**checking includeDonations, includeFollowers, includeSubscribers*/
+                            if (!region.widgetAlerts['include' + capitaliseFirstLetter(notification.type)]) {
+                                notification = false;
+                            }
+                        } else {
+                            /**so we have widget_campaign_bar*/
+                            if (!region.widgetCampaignBar.alertsModule['include' + capitaliseFirstLetter(notification.type)]) {
+                                notification = false;
+                            }
                         }
                     }
                 } else {
@@ -75,18 +83,25 @@
                     console.log(notification);
                     var toShow = region.toShow.alert;
                     toShow.message = notification.message;
-                    toShow.preference = region.widgetAlerts[notification.type + 'Preference'];
-                    window.requireGoogleFont(toShow.preference.fontStyle);
 
-                    var preference = toShow.preference;
-                    toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);
-
-                    alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
-
-                    $interval(function () {
-                        /**@todo check animationDuration*/
-                        hideAlert(region);
-                    }, preference.animationDuration * 1000, 1);
+                    if (region.widgetType == 'widget_alerts') {
+                        toShow.preference = region.widgetAlerts[notification.type + 'Preference'];
+                        var preference = toShow.preference;
+                        toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);
+                        alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
+                        $interval(function () {
+                            hideAlert(region);
+                        }, preference.animationDuration * 1000, 1);
+                        return;
+                    } else {
+                        /**so we have campaign bar*/
+                        var alertsModule = region.widgetCampaignBar.alertsModule;
+                        console.log(alertsModule);
+                        $interval(function () {
+                            hideAlert(region);
+                        }, alertsModule.animationDuration * 1000, 1);
+                        return;
+                    }
                 } else {
                     $interval(function () {
                         showAlert(region);
@@ -96,9 +111,16 @@
 
             function hideAlert(region) {
                 region.toShow.alert = {};
+                var delay = 0;
+                if (region.widgetType == 'widget_alerts') {
+                    delay = region.widgetAlerts.animationDelaySeconds;
+                } else if (region.widgetType =='widget_campaign_bar' && region.widgetCampaignBar.alertsEnable){
+                    delay = region.widgetCampaignBar.alertsModule.animationDelay;
+                }
+
                 $interval(function () {
                     showAlert(region);
-                }, 1000, 1)
+                }, delay * 1000, 1)
             }
         });
 })()

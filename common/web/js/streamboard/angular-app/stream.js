@@ -8,7 +8,12 @@
             this.streams[2] = [];
             /*list of events we already have viewed*/
             this.alreadyViewed = [];
-            var requestStreamData = function () {
+            requestStreamData();
+            $interval(function () {
+                requestStreamData();
+            }, 1000);
+
+            function requestStreamData(){
                 $http.get('app/streamboard/get_stream_data').success(function (data) {
                     /*we should get data in "date ASC" order because we first should notifications which occur early*/
                     for (var key in data) {
@@ -28,6 +33,7 @@
                     }
                 });
             }
+
             this.testData = function (type, number) {
                 if (!number) {
                     number = 1;
@@ -44,6 +50,11 @@
                     case 'subscribers':
                         message = 'just subscribed to your channel';
                         break;
+                    case 'all':
+                        this.testData('donations',number);
+                        this.testData('followers',number);
+                        this.testData('subscribers',number);
+                        return;
                     default:
                         throw new Exception('testData wrong type');
                 }
@@ -58,9 +69,6 @@
                     }
                 }
             }
-            requestStreamData();
-            $interval(function () {
-                requestStreamData();
-            }, 1000);
+
         });
 })();
