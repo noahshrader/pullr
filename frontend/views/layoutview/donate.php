@@ -1,7 +1,7 @@
 <?
 use common\models\Campaign;
 use yii\widgets\ActiveForm;
-
+use yii\widgets\MaskedInput;
 ?>
 <!-- BEGIN Donation Form -->
 
@@ -53,13 +53,43 @@ use yii\widgets\ActiveForm;
                                 <a class="closethis">&times;</a>
                                 <span class="dollar-sign">$</span>
                                 <div class="field">
-                                        <input type="text" name="other-amount" id="other-amount">
+                                    <?= MaskedInput::widget([
+                                        'name' => 'other-amount',
+                                        'value' => 1,
+                                        'options' => [
+                                            'id' => 'other-amount'
+                                        ],
+                                        'clientOptions' => [
+                                            'alias' =>  'decimal',
+                                            'groupSeparator' => ',',
+                                            'autoGroup' => true,
+                                            'autoUnmask' => true,
+                                            'rightAlign' => false,
+                                            'allowMinus' => false,
+                                            'allowPlus' => false
+                                        ],
+                                    ]) ?>
                                 </div>
                         </div>
                 </div>
                 <? else: ?>
                 <div class="field donation-amount">
-                    <input type="text" id="other-amount" value='1'>
+                    <?= MaskedInput::widget([
+                        'name' => 'other-amount',
+                        'value' => 1,
+                        'options' => [
+                            'id' => 'other-amount'
+                        ],
+                        'clientOptions' => [
+                            'alias' =>  'decimal',
+                            'groupSeparator' => ',',
+                            'autoGroup' => true,
+                            'autoUnmask' => true,
+                            'rightAlign' => false,
+                            'allowMinus' => false,
+                            'allowPlus' => false
+                        ],
+                    ]) ?>
                     <span class="preamt">$</span>
                     <span class="currency">USD</span>
                 </div>

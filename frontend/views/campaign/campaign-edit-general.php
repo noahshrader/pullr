@@ -105,7 +105,10 @@ $firstGiving = $campaign->getFirstGiving();
                     'alias' =>  'decimal',
                     'groupSeparator' => ',',
                     'autoGroup' => true,
-                    'autoUnmask' => true
+                    'autoUnmask' => true,
+                    'rightAlign' => false,
+                    'allowMinus' => false,
+                    'allowPlus' => false
                 ],
             ]) ?>
         </div>

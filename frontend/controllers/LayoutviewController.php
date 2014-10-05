@@ -89,8 +89,6 @@ class LayoutviewController extends \yii\web\Controller {
 
         if ($donation->load($_REQUEST))
         {
-            $donation->nameFromForm = empty($donation->nameFromForm) ? Donation::ANONYMOUS_NAME : $donation->nameFromForm;
-
             if ($donation->save()){
                 if ($firstGiving = $campaign->firstGiving) {
 
