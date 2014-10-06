@@ -11,7 +11,6 @@ use common\models\User;
 
 class IpnController extends FrontendController
 {
-
     /**
      * @inheritdoc
      */
@@ -104,7 +103,7 @@ class IpnController extends FrontendController
     {
         $requestData = file_get_contents('php://input');
 
-        if (1==1 || $this->isRequestGenuine($requestData))
+        if ($this->isRequestGenuine($requestData))
         {
             $data = $this->requestDataAsArray($requestData);
 
