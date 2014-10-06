@@ -8,6 +8,30 @@
             this.streams[2] = [];
             /*list of events we already have viewed*/
             this.alreadyViewed = [];
+
+            this.showSubscriber = true;
+            this.showFollower = true;
+            this.getActivityFeedSetting = function() {
+                $http.get('app/streamboard/get_activity_feed_setting').success(function (data) {                    
+                    Service.showSubscriber = data.showSubscriber;
+                    Service.showFollower = data.showFollower;
+                });
+            }
+
+            this.toggleSubscriber = function() {
+                $http.post('app/streamboard/set_activity_feed_setting',{
+                    showSubscriber: Service.showSubscriber
+                });                
+            }
+
+            this.toggleFollower = function() {
+                $http.post('app/streamboard/set_activity_feed_setting',{
+                    showFollower: Service.showFollower
+                });
+            }
+
+            this.getActivityFeedSetting();
+
             var requestStreamData = function () {
                 $http.get('app/streamboard/get_stream_data').success(function (data) {
                     /*we should get data in "date ASC" order because we first should notifications which occur early*/

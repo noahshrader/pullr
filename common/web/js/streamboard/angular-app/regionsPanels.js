@@ -7,7 +7,8 @@
             $scope.regionsService = regions;
             $scope.donationsService = donations;
             $scope.campaignsService = campaigns;
-
+            $scope.scroll = true;
+            $scope.duration = 1500;
             $scope.regionsService.ready(function () {
                 requireAllFonts();
                 /*whenever regions are changes we are checking that we have right fonts*/

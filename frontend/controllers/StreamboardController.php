@@ -20,6 +20,7 @@ use common\components\Application;
 use yii\web\Response;
 use common\components\streamboard\alert\AlertMediaManager;
 use common\components\message\ActivityMessage;
+use frontend\models\streamboard\WidgetDonationFeed;
 
 class StreamboardController extends FrontendController
 {
@@ -207,6 +208,41 @@ class StreamboardController extends FrontendController
         StreamboardDonation::setForDonation($donation->id, $userId, $data['property'], $data['value']);
     }
 
+    public function actionSet_activity_feed_setting()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if( ! (isset($data['showSubscriber']) || isset($data['showFollower']))) {
+            throw new ForbiddenHttpException();
+        }
+        $userId = \Yii::$app->user->id;
+        $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$userId])->one();
+        if ( ! $donationFeed ) {
+            throw new ForbiddenHttpException();
+        }
+
+        if (isset($data['showSubscriber'])) {
+            $donationFeed->showSubscriber = $data['showSubscriber'];            
+        }
+
+        if (isset($data['showFollower'])) {
+            $donationFeed->showFollower = $data['showFollower'];
+        }
+
+        $donationFeed->save();
+    }
+
+    public function actionGet_activity_feed_setting() 
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $userId = \Yii::$app->user->id;
+        $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$userId])->one();
+        if ( ! $donationFeed ) {
+            throw new ForbiddenHttpException();
+        }
+        return $donationFeed->toArray(['showSubscriber', 'showFollower']);
+    }
+
     public function actionSet_streamboard_window()
     {
         $width = max(intval($_POST['width']), 100);
@@ -252,11 +288,23 @@ class StreamboardController extends FrontendController
                 $subscribers[] = $subscription->toArray(['twitchUserId', 'display_name', 'createdAt']);
             }
         }
+
+        $followers = [];
+
+        if ($user->userFields->twitchPartner) {
+            $twitchFollowers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
+            foreach ($twitchFollowers as $twitchFollower) {
+                /** @var TwitchSubscription $subscription */
+                $followers[] = $twitchFollower->toArray(['twitchUserId', 'display_name', 'createdAt']);
+            }
+        }
+
         $data = [
             'stats' => $stats,
             'twitchUser' => $twitchUserArray,
             'donors' => $donors,
-            'subscribers' => $subscribers
+            'subscribers' => $subscribers,
+            'followers' => $followers
         ];
         echo json_encode($data);
     }

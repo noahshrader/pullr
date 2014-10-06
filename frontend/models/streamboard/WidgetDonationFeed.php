@@ -33,6 +33,8 @@ class WidgetDonationFeed extends ActiveRecord {
         $data = parent::toArray($fields, $expand, $recursive);
         /*as 1 and true in angular are not equal for checkbox, so let's pass true/false values*/
         $data['scrolling'] = $this->scrolling == 1;
+        $data['showSubscriber'] = $this->showSubscriber == 1;
+        $data['showFollower'] = $this->showFollower == 1;
         return $data;
     }
 }

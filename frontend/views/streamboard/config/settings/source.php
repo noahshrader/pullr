@@ -23,10 +23,15 @@ use yii\web\View;
                     <span>{{donor.name}}</span>
                    (<span class="amount accent">${{number_format(donor.amount)}}</span>)<!-- removing space before :after{content:} rule
                 --></span></span>
-                <span ng-repeat="subscriber in subscribers" class="commaAfter">
+                <span ng-repeat="subscriber in subscribers" class="commaAfter" ng-show='streamService.showSubscriber'>
                     <span class="nowrap">
                     <span>{{subscriber.display_name}}</span>
                     <span>(Subscribed)</span><!-- removing space before :after(content:} rule
+                --></span></span>
+                <span ng-repeat="follower in followers" class="commaAfter" ng-show='streamService.showFollower'>
+                    <span class="nowrap">
+                    <span>{{follower.display_name}}</span>
+                    <span>(Followed)</span><!-- removing space before :after(content:} rule
                 --></span></span>
             </div>
         </div>

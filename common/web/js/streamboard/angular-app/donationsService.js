@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.donations', []).
-        service('donations',function ($http, $interval) {
+        service('donations',function ($http, $interval, $compile) {
             var Service = this;
             this.donations = [];
             this.unorderedDonations = {};
@@ -14,7 +14,7 @@
 
             $interval(function () {
                 Service.updateDonations();
-            }, 1000);
+            }, 3000);
 
 
             function updateDonations(forceAll) {
@@ -32,8 +32,9 @@
                     } else if (data.donations.length > 0) {
                         Service.lastDonationId = data.donations[0].id;
                         sortDonations();
+
                     }
-                });
+                });                
             };
 
             function sortDonations() {
@@ -46,6 +47,7 @@
                     return b.paymentDate - a.paymentDate;
                 });
                 Service.donations = newDonations;
+                console.log(Service.donations);
             };
 
             function clear() {

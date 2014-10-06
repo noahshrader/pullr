@@ -13,7 +13,9 @@ class StreamboardSourceAsset extends AssetBundle
 		'bower_components/iframe-resizer/js/iframeResizer.contentWindow.min.js',
         'js/streamboard/angular-app/pullr-common.js',
         'js/streamboard/angular-app/campaigns.js',
-        'js/streamboard/angular-app/app-source.js'
+        'js/streamboard/angular-app/app-source.js',
+        'js/streamboard/angular-app/stream.js',
+        'js/streamboard/angular-app/regionsService.js'
 	];
 	public $depends = [
 		'common\assets\streamboard\StreamboardCommonAsset',

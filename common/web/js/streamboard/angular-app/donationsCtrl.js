@@ -3,7 +3,7 @@
     app.controller('DonationsCtrl', function($scope, $http, campaigns, donations) {
         $scope.campaignsService = campaigns;
         $scope.donationsService = donations;
-
+        
         $scope.nameHiddenToggle = function(donation){
             donation.streamboard.nameHidden = !donation.streamboard.nameHidden;
             donation.displayName = donation.streamboard.nameHidden || !donation.nameFromForm ? Pullr.ANONYMOUS_NAME : donation.nameFromForm;

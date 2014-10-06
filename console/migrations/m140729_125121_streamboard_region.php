@@ -72,7 +72,9 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'fontSize' => Schema::TYPE_STRING. ' NOT NULL',
             'fontColor' => Schema::TYPE_STRING. ' NOT NULL',
             'scrolling' => Schema::TYPE_BOOLEAN. ' NOT NULL',
-            'scrollSpeed' => $scrollSpeeds
+            'scrollSpeed' => $scrollSpeeds,
+            'showSubscriber' => Schema::TYPE_BOOLEAN. 'DEFAULT 1',
+            'showFollower' => Schema::TYPE_BOOLEAN. 'DEFAULT 1'
         ]);
         $this->addPrimaryKey('streamboard_widget_donation_feed', WidgetDonationFeed::tableName(), ['userId', 'regionNumber']);
 

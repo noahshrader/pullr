@@ -15,6 +15,25 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
+
+        <div class="campaigns_list module">
+            <div class="form-group">
+                <h5>Activity feed</h5>
+                <div class="checkbox cf">
+                    <label ng-class="{on:streamService.showSubscriber}">
+                        <input type="checkbox" ng-model="streamService.showSubscriber" ng-change="streamService.toggleSubscriber()">
+                        <span>Show subscribers</span>
+                    </label>
+                </div>
+                <div class="checkbox cf">
+                    <label ng-class="{on:streamService.showFollower}">
+                        <input type="checkbox" ng-model="streamService.showFollower" ng-change="streamService.toggleFollower()">
+                        <span>Show followers</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <div class="module">
             <div class="text-center form-group">
                 <button class="btn btn-secondary btn-sm" ng-click="clearButton()">Clear donations list</button>
