@@ -20,14 +20,14 @@ class StreamboardAsset extends AssetBundle
         'bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'bower_components/angular-timer/app/js/timer.js',
-        'bower_components/iframe-resizer/js/iframeResizer.min.js',
-        'bower_components/jQuery.Marquee/jquery.marquee.min.js',
+        'bower_components/iframe-resizer/js/iframeResizer.min.js',        
         'bower_components/moment/moment.js',
         'bower_components/angular-moment/angular-moment.min.js',
         'bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
+        'js/jquery.marquee.js',
         'js/streamboard/angular-app/angular-marquee.js',
 		'js/streamboard/streamboard.js',
-        /* angular-app begin */
+        /* angular-app begin */        
         'js/streamboard/angular-app/timers/current-time.js',
         'js/streamboard/angular-app/timers/count-up-timer.js',
         'js/streamboard/angular-app/donationsService.js',
