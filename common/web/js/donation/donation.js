@@ -58,7 +58,10 @@ function donatePageInit() {
 
 function amountChangedEvent() {
     if ($('.tip-jar').length > 0) {
-        var value = parseInt($('#other-amount').val());
+        var value = parseFloat($('#other-amount').val());
+        if (value < 1){
+            $('#other-amount').val(1);
+        }
         if (!$.isNumeric(value) || value == 0) {
             return;
         }
@@ -71,7 +74,10 @@ function amountChangedEvent() {
         }
 
         if (value == 'other') {
-            var value = parseInt($('#other-amount').val());
+            var value = parseFloat($('#other-amount').val());
+            if (value < 1){
+                $('#other-amount').val(1);
+            }
             if (!$.isNumeric(value) || value == 0) {
                 return;
             }

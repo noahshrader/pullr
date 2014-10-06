@@ -16,6 +16,17 @@ $user = \Yii::$app->user->identity;
         'donors' => $donors,
     ]); ?>    
 </section>
+
+<? if (!sizeof($donors)):?>
+    <section class="donor-view-wrap">
+        <div id="content" class="adv red pane">
+            <div class="content-wrap text-center">
+                No donors here yet
+            </div>
+        </div>
+    </section>
+<? endif;?>
+
 <? if ($viewDonorParams): ?>
     <?= $this->render('donor-view', $viewDonorParams
     ); ?>   

@@ -76,6 +76,7 @@
         $scope.regionsService = regions;
         $scope.MAX_FONT_SIZE = 72;
         $scope.MIN_FONT_SIZE = 10;
+
         $scope.regionChanged = function (region) {
             $http.post('app/streamboard/update_region_ajax', region);
         };
@@ -89,13 +90,13 @@
             preference.imageType = imageType;
             $scope.regionChanged(region);
         };
-        $scope.onSetTimeCountDownFrom = function(newDate, oldDate){
+        $scope.onSetTimeCountDownFrom = function (newDate, oldDate) {
             var scope = this.$parent;
             /*we need to update value first to sending to server*/
             scope.module.countDownFrom = newDate;
             $scope.regionChanged(scope.region);
         }
-        $scope.onSetTimeCountDownTo = function(newDate, oldDate){
+        $scope.onSetTimeCountDownTo = function (newDate, oldDate) {
             var scope = this.$parent;
             /*we need to update value first to sending to server*/
             scope.module.countDownTo = newDate;
@@ -119,7 +120,7 @@
                 console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
             }).success(function (data, status, headers, config) {
                 // file is uploaded successfully
-                switch ($fileType){
+                switch ($fileType) {
                     case 'sound':
                         alertMediaManager.customSounds = data;
                         break;
@@ -135,6 +136,29 @@
             //.then(success, error, progress);
             // access or attach event listeners to the underlying XMLHttpRequest.
             //.xhr(function(xhr){xhr.upload.addEventListener(...)})
+        }
+
+        $scope.timerCountUpStart = function (module, region) {
+            var pauseDate = new Date(module.countUpPauseTime);
+            var startDate = new Date(module.countUpStartTime);
+            if (!startDate) {
+                module.countUpStartTime = new Date();
+            } else if (pauseDate >= startDate) {
+                module.countUpStartTime = new Date(startDate.getTime() + (new Date() - pauseDate));
+            }
+            module.countUpStatus = true;
+            $scope.regionChanged(region);
+        }
+
+        $scope.timerCountUpPause = function (module, region) {
+            module.countUpPauseTime = new Date();
+            module.countUpStatus = false;
+            $scope.regionChanged(region);
+        }
+        $scope.timerCountUpReset = function (module, region) {
+            module.countUpStartTime = new Date();
+            module.countUpPauseTime = new Date();
+            $scope.regionChanged(region);
         }
     });
 })()

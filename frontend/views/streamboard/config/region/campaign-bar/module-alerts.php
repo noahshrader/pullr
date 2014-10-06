@@ -1,6 +1,9 @@
 <div class="module first">
     <div class="panel-group">
         <h5>Alerts</h5>
+        <div class="panel-group text-center">
+            <button class="btn btn-primary btn-sm" ng-click="streamService.testData('all', 1)">Test alerts</button>
+        </div>
         <div class="checkbox">
             <label ng-class="{on:module.includeFollowers}">
                 <input type="checkbox" ng-model="module.includeFollowers" ng-change="regionChanged(region)">
@@ -49,12 +52,12 @@
         </select>
     </div>
     <div class="panel-group">
-        <h5>Delay <span class="slider-value value">{{module.animationDuration}} sec</span></h5>
+        <h5>Duration <span class="slider-value value">{{module.animationDuration}} sec</span></h5>
         <slider ng-model="module.animationDuration" floor="1" ceiling="10" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>
     <div class="panel-group">
-        <h5>Duration <span class="slider-value value">{{module.animationDuration}} sec</span></h5>
+        <h5>Delay <span class="slider-value value">{{module.animationDelay}} sec</span></h5>
         <slider ng-model="module.animationDelay" floor="0" ceiling="30" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>

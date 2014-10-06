@@ -51,8 +51,9 @@ class Donation extends ActiveRecord
             ['email', 'email', 'message' => 'Invalid Email address'],
             ['email', 'required', 'message' => 'Email is required', 'on' => 'firstGiving'],
             ['nameFromForm', 'filter', 'filter' => 'strip_tags'],
+            ['nameFromForm', 'default', 'value' => self::ANONYMOUS_NAME],
             ['email', 'filter', 'filter' => 'strip_tags'],
-            ['comments', 'filter', 'filter' => 'strip_tags'],
+            ['comments', 'filter', 'filter' => 'strip_tags']
         ];
     }
     

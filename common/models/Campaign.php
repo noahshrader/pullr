@@ -139,7 +139,7 @@ class Campaign extends ActiveRecord {
             ['description', 'filter', 'filter' => 'strip_tags'],
             ['description', 'string', 'length' => [0,self::DESCRIPTION_MAX_LENGTH]],
             ['goalAmount', 'required'],
-            ['goalAmount', 'double'],
+            ['goalAmount', 'double', 'min' => 1],
             ['paypalAddress', 'email'],
             ['googleAnalytics', 'filter', 'filter' => 'strip_tags'],
             ['channelName', 'filter', 'filter' => 'strip_tags'],

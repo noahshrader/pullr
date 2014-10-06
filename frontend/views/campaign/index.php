@@ -16,13 +16,23 @@ $user = \Yii::$app->user->identity;
                 ]); ?>    
     </section>
 
+<? if (!sizeof($campaigns)): ?>
+    <section class="campaigns-view-wrap">
+        <div id="content" class="adv pane">
+            <div class="content-wrap text-center">
+                Click the "+" to add campaign
+            </div>
+        </div>
+    </section>
+<? endif; ?>
+
     <? if ($selectedCampaign): ?>
          <?= $this->render('campaign-view', [
                     'campaign' => $selectedCampaign
                 ]); ?>   
-    <? endif ?> 
+    <? endif ?>
     <? if ($editCampaign):?>
-    
+
 
     <!-- sidebar -->
     <section id="sidepanel" class='sidepanel open'>
