@@ -116,7 +116,7 @@ function initBootstrapSwitch() {
         }
     });
     
-    $("#campaign-twitterenable").on('click', function() {
+    $(".field-campaign-twitterenable").on('click', function() {
         var value = $('#campaign-twitterenable').bootstrapSwitch('state');
         if (value){
             $('.field-campaign-twittername').addClass('show');
@@ -125,7 +125,7 @@ function initBootstrapSwitch() {
         }
     });
     
-    $("#campaign-youtubeenable").on('click', function() {
+    $(".field-campaign-youtubeenable").on('click', function() {
         var value = $('#campaign-youtubeenable').bootstrapSwitch('state');
         if (value){
             $('.field-campaign-youtubeurl').addClass('show');
@@ -134,7 +134,7 @@ function initBootstrapSwitch() {
         }
     });
     
-    $("#campaign-facebookenable").on('click', function() {
+    $(".field-campaign-facebookenable").on('click', function() {
         var value = $('#campaign-facebookenable').bootstrapSwitch('state');
         if (value){
             $('.field-campaign-facebookurl').addClass('show');
@@ -143,8 +143,8 @@ function initBootstrapSwitch() {
         }
     });
 
-    $("#campaign-teamenable").on('click', function() {
-        var value = $(this).bootstrapSwitch('state');
+    $(".field-campaign-teamenable").on('click', function() {
+        var value = $("#campaign-teamenable").bootstrapSwitch('state');
         if (value){
             $('#campaignEdit').addClass('team-enabled');
         } else {
@@ -152,16 +152,7 @@ function initBootstrapSwitch() {
         }
     });
     
-    //$("#campaign-enablecustomlogo").on('click', function() {
-    //    var value = $('#campaign-enablecustomlogo').bootstrapSwitch('state');
-    //    if (value){
-    //        $('#logo-container').show('slow');
-    //    } else {
-    //        $('#logo-container').hide('slow');
-    //    }
-    //});
-    
-    $("#campaign-tiedtoparent").on('click', function() {
+    $(".field-campaign-tiedtoparent").on('click', function() {
         var value = $('#campaign-tiedtoparent').bootstrapSwitch('state');
         if (value){
             $('#collapseOne').addClass('isTied');
