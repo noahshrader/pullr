@@ -16,7 +16,7 @@
                 if (attrs.scroll === undefined) {
                     timer = $interval(function () {
                         startMarquee()
-                    }, 5000, 1);
+                    }, 3000, 1);
                 }
                 
                 if (attrs.scroll !== undefined) {
@@ -61,7 +61,7 @@
 
                         timer = $interval(function () {
                             startMarquee()
-                        }, 5000, 1);
+                        }, 3000, 1);
                     }
                 })
 

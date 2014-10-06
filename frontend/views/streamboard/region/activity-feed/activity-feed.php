@@ -20,6 +20,7 @@ use frontend\models\streamboard\StreamboardRegion;
                     &nbsp;{{donation.displayName}} (${{number_format(donation.amount)}})<!--removing space for .commaAfter
                 --></span>
                 </span>
+                
                 <span ng-if="(donationsService.donations | donationsFilterToSelectedCampaigns).length == 0">
                     <span ng-if="region.widgetDonationFeed.noDonationMessage">{{region.widgetDonationFeed.noDonationMessage}}</span>
                     <span ng-if="!region.widgetDonationFeed.noDonationMessage">Empty activity feed</span>
