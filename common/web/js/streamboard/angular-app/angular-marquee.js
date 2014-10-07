@@ -13,7 +13,7 @@
                 var duration = 8000;
                 var scroll = true;
                 var timer = null;
-                
+
 
                 function clearTimer() {
                     $element.show();

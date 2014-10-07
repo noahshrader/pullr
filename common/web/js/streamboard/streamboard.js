@@ -24,26 +24,31 @@ $(window).load(function() {
     
 
     function initMarqueeContainer(){
-        $marqueeContainer = $(".marquee-container");
-        $marqueeContainer.resizable({
-            handles: "all",
-            minWidth: 350,
-            minHeight: 100,
-            animate: false,
-            delay: 0          
-        });
+        var $marqueeContainerList = $(".marquee-container");
+        $marqueeContainerList.each(function(){
+            var $marqueeContainer = $(this);
+            $marqueeContainer.resizable({
+                handles: "all",
+                minWidth: 350,
+                minHeight: 100,
+                animate: false,
+                delay: 0          
+            });
 
-        $marqueeContainer.draggable();
+            $marqueeContainer.draggable();
 
-        var $parent = $marqueeContainer.parents('.regionsContainer');
-        var parentWidth = $parent.width();
-        var sideWidth = $('#sidepanel').width();
-        var marqueeWidth = parentWidth - sideWidth;
+            var $parent = $marqueeContainer.parents('.regionsContainer');
+            var parentWidth = $parent.width();
+            var sideWidth = $('#sidepanel').width();
+            var marqueeWidth = parentWidth - sideWidth;
 
-        $marqueeContainer.width(marqueeWidth);
+            $marqueeContainer.width(marqueeWidth);    
+        })
+        
     }
 
     initMarqueeContainer();
+    
     $(".regionsContainer .region:first-child").resizable({
         handles: "s",
         animate: false,
