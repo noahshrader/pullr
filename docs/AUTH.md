@@ -11,14 +11,21 @@ Admin user (for backend/admin part of pullr app) - *Admin@gmail.com* / *Admin*
 
 Development server
 ------------------
-For password ask [@SKlyukin](http://github.com/sklyukin)
+For password ask [@trerums](http://github.com/trerums)
 
-    ssh stanislav@flaper.info -p 777  
-    cd /www/pullr
+    ssh root@188.226.219.80
+    cd /var/www/pullr
 
 To synchronize project with github repository type at project directory
     
     git pull
 
-Frontend link - http://95.78.252.18  
-Backend link  - http://flaper.info
+To make dev frontend and backend server work add this lines to your `hosts` file:
+
+`188.226.219.80 dev.app.pullr.io`
+
+`188.226.219.80 dev.admin.pullr.io`
+
+**Frontend link** - http://dev.app.pullr.io
+
+**Backend link**  - http://dev.admin.pullr.io
