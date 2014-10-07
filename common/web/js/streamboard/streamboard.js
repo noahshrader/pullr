@@ -7,7 +7,7 @@ $(window).load(function() {
         handles: "w",
         minWidth: 100,
         animate: false,
-        delay: 0,
+        delay: 0
     });
     
     // resizing magic
@@ -20,6 +20,30 @@ $(window).load(function() {
             $("#sidepanel").css('left', 'auto');
         }
     });
+
+    
+
+    function initMarqueeContainer(){
+        $marqueeContainer = $(".marquee-container");
+        $marqueeContainer.resizable({
+            handles: "all",
+            minWidth: 350,
+            minHeight: 100,
+            animate: false,
+            delay: 0          
+        });
+
+        $marqueeContainer.draggable();
+
+        var $parent = $marqueeContainer.parents('.regionsContainer');
+        var parentWidth = $parent.width();
+        var sideWidth = $('#sidepanel').width();
+        var marqueeWidth = parentWidth - sideWidth;
+
+        $marqueeContainer.width(marqueeWidth);
+    }
+
+    initMarqueeContainer();
     $(".regionsContainer .region:first-child").resizable({
         handles: "s",
         animate: false,
