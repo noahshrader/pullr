@@ -11,7 +11,6 @@ use common\models\User;
 
 class IpnController extends FrontendController
 {
-
     /**
      * @inheritdoc
      */
@@ -140,7 +139,15 @@ class IpnController extends FrontendController
                     }
                     break;
 
+                case 'recurring_payment_profile_cancel':
                 case 'recurring_payment_profile_created':
+                    $recurringProfile = RecurringProfile::findOne(['profileId' => $data['recurring_payment_id']]);
+
+                    if(isset($recurringProfile))
+                    {
+                        $recurringProfile->status = $data['profile_status'];
+                        $recurringProfile->save();
+                    }
                     break;
             }
         }

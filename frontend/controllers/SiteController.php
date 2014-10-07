@@ -108,6 +108,15 @@ class SiteController extends FrontendController
         $token = $twitchSDK->authAccessTokenGet($code);
         $userInfo = $twitchSDK->authUserGet($token->access_token);
 
+        // <Temp solution for beta test>
+        $whitelist = file('../../whitelist', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if (isset($userInfo) && !in_array($userInfo->name, array_values($whitelist)))
+        {
+            $this->redirect('site/index');
+            \Yii::$app->end();
+        }
+        // </Temp solution for beta test>
+
         if ($userInfo) {
 
             $openId = OpenIDToUser::findOne(['serviceName' => 'twitch', 'serviceId' => $userInfo->_id]);
