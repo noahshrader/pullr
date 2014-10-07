@@ -4,7 +4,7 @@ use common\models\Campaign;
 
 $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
 $totalAmountRaised = $user->getCampaigns()->sum('amountRaised');
-$this->registerJSFile('@web/js/user/info.js', CommonAsset::className());
+//$this->registerJSFile('@web/js/user/info.js', CommonAsset::className());
 
 ?>
 <fieldset>

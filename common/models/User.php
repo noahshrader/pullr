@@ -175,7 +175,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password_reset_token' => ['password_reset_token'],
             'last_login' => ['last_login'],
             'status' => ['status'],
-            'adminEdit' => ['login', 'name', 'email', 'role', 'status'],
+            'adminEdit' => ['name', 'email', 'role', 'status'],
             'changePassword' => ['password', 'confirmPassword']
         ];
     }
