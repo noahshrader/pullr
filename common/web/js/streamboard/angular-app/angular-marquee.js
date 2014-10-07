@@ -13,7 +13,16 @@
                 var duration = 8000;
                 var scroll = true;
                 var timer = null;
-                if (attrs.scroll === undefined) {
+                
+
+                function clearTimer() {
+                    $element.show();
+                    if(timer){
+                        $interval.cancel(timer);
+                    }
+                }
+
+                if (attrs.scroll === undefined) {                                        
                     timer = $interval(function () {
                         startMarquee()
                     }, 3000, 1);
@@ -24,27 +33,24 @@
 
                         console.log('scroll has been changed', value);                        
                         scroll = value;
-                        if (value) {
-                            if(timer){
-                                $interval.cancel(timer);
-                            }
+                        clearTimer();
+                        if (value) {     
+                            $element.hide();                     
                             timer = $interval(function () {
                                 startMarquee()
                             }, 3000, 1);
                         } else {
                             $element.marquee('destroy');
+                            $element.show();
                         }
                     })
                 }
 
                 
                 scope.$watch(attrs.duration, function(value){   
-                    if(timer){
-                        $interval.cancel(timer);
-                    }
-                    console.log(value);                 
-                    
-                    switch(value){
+                    clearTimer();
+                                       
+                    switch (value) {
                         case 'Slow':
                             duration = 8000;
                             break;
@@ -58,7 +64,7 @@
 
                     if (scroll) {
                         $element.marquee('destroy');
-
+                        $element.hide();
                         timer = $interval(function () {
                             startMarquee()
                         }, 3000, 1);
@@ -66,6 +72,7 @@
                 })
 
                 function startMarquee() {
+                    $element.show();
                     $element.marquee({
                         gap: 0,
                         delayBeforeStart: 0,

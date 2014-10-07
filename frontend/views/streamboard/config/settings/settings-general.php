@@ -22,13 +22,13 @@ use yii\helpers\Url;
                 <div class="checkbox cf">
                     <label ng-class="{on:streamService.showSubscriber}">
                         <input type="checkbox" ng-model="streamService.showSubscriber" ng-change="streamService.toggleSubscriber()">
-                        <span>Show subscribers</span>
+                        <span>Show my subscribers</span>
                     </label>
                 </div>
                 <div class="checkbox cf">
                     <label ng-class="{on:streamService.showFollower}">
                         <input type="checkbox" ng-model="streamService.showFollower" ng-change="streamService.toggleFollower()">
-                        <span>Show followers</span>
+                        <span>Show my followers</span>
                     </label>
                 </div>
             </div>

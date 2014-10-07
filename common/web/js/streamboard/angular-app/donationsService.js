@@ -3,6 +3,8 @@
         service('donations',function ($http, $interval, $compile) {
             var Service = this;
             this.donations = [];
+            this.followers = [];
+            this.subscribers = [];
             this.unorderedDonations = {};
             this.lastDonationId = 0;
             this.stats = [];
@@ -25,6 +27,9 @@
                         var donation = data.donations[key];
                         Service.unorderedDonations[donation.id] = donation;
                     }
+
+                    Service.followers = data.followers;
+                    Service.subscribers = data.subscribers;
                     if (!data.donations) {
                         console.log('[ERROR]');
                         console.log('[donationsService.js -> updateDonations] No donations array in response');
