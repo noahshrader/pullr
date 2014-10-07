@@ -13,5 +13,6 @@ return [
             'common' => 'Pullr',
             'pro' => 'Pull-pro'
         ]
-    ]
+    ],
+    'payPalHost' => 'https://www.paypal.com',
 ];

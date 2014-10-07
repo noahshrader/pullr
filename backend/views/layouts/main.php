@@ -28,80 +28,84 @@ $this->registerJs($js);
         <?php $this->head() ?>
     </head>
     <body>
+
+    <div class="container">
         <?php $this->beginBody() ?>
-        <div class="main-wrapper">
-
-            <div class="top-menu"> <!-- BEGIN top bar -->
-                <ul class="quick-nav">
-                    <li class="branding"><a class="logo icon-pullr"></a></li>
-                    <li class="add-campaign"><?= Html::encode($this->title) ?>
-                        <? if ($this->context->id == 'charity'): ?>
-                            <a href="charity/add" class="icon icon-add2"></a>
-                        <? endif ?>
-                    </li>
-                </ul>
-                <? if (Application::IsAdmin()): ?>
-                    <? if (!Yii::$app->user->isGuest): ?>
-                        <?= $this->render('@common/views/leftmenu/avatar'); ?>
+        <div class="row">
+            <div class="span12">
+                <div class="top-menu"> <!-- BEGIN top bar -->
+                    <ul class="quick-nav">
+                        <li class="branding"><a class="logo icon-pullr"></a></li>
+                        <li class="add-campaign"><?= Html::encode($this->title) ?>
+                            <? if ($this->context->id == 'charity'): ?>
+                                <a href="charity/add" class="icon icon-add2"></a>
+                            <? endif ?>
+                        </li>
+                    </ul>
+                    <? if (Application::IsAdmin()): ?>
+                        <? if (!Yii::$app->user->isGuest): ?>
+                            <?= $this->render('@common/views/leftmenu/avatar'); ?>
+                        <? endif; ?>
                     <? endif; ?>
-                <? endif; ?>
-                <div class="clearfix"></div>
-            </div> <!-- END top bar -->
-
-
-            <div class="site-content">
+                    <div class="clearfix"></div>
+                </div> <!-- END top bar -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
                 <div class="primary-navigation"> <!-- BEGIN main navigation -->
-                    <nav class="sidebar-nav nav-top">       
+                    <nav class="nav nav-sidebar">
                         <? if (Application::IsAdmin()): ?>
-                            <ul> 
+                            <ul>
 
-                                    <li>
-                                        <a class="reports" href="">
+                                <li>
+                                    <a class="reports" href="">
                                         <i class="icon-bargraph"></i>
                                         <span class="nav-label">Reports</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="users" href="user">
-                                            <i class="icon-usergroup"></i>
-                                            <span class="nav-label">Users</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="campaigns" href="campaign">
-                                            <i class="icon-campaigns"></i>
-                                            <span class="nav-label">Campaigns</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="charities" href="charity">
-                                            <i class="icon-heart"></i>
-                                            <span class="nav-label">Charities</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="themes" href="theme">
-                                            <i class="icon-template"></i>
-                                            <span class="nav-label">Themes</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="notifications" href="charity">
-                                            <i class="icon-notifcation"></i>
-                                            <span class="nav-label">Notifications</span>
-                                        </a>
-                                    </li>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="users" href="user">
+                                        <i class="icon-usergroup"></i>
+                                        <span class="nav-label">Users</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="campaigns" href="campaign">
+                                        <i class="icon-campaigns"></i>
+                                        <span class="nav-label">Campaigns</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="charities" href="charity">
+                                        <i class="icon-heart"></i>
+                                        <span class="nav-label">Charities</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="themes" href="theme">
+                                        <i class="icon-template"></i>
+                                        <span class="nav-label">Themes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="notifications" href="charity">
+                                        <i class="icon-notifcation"></i>
+                                        <span class="nav-label">Notifications</span>
+                                    </a>
+                                </li>
                             </ul>
                         <? endif; ?>
                     </nav>
                 </div><!-- END of main navigation -->
+            </div>
 
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <?= $content ?>
-
-                <?php $this->endBody() ?>
-
-            </div><!-- END of site-content -->
-        </div><!-- END of main-wrapper -->
+            </div>
+        </div>
+        <?php $this->endBody() ?>
+    </div>
     </body>
 </html>
 <?php $this->endPage() ?>

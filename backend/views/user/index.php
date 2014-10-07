@@ -2,7 +2,7 @@
 use yii\helpers\Html; 
 use common\models\User;
 
-$this->registerJSFile('@web/js/user/index.js',  \common\assets\CommonAsset::className());
+//$this->registerJSFile('@web/js/user/index.js',  \common\assets\CommonAsset::className());
 
 $this->title = 'Users';
 ?>
