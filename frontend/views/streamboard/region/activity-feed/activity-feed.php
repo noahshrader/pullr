@@ -7,7 +7,7 @@ use frontend\models\streamboard\StreamboardRegion;
     class="">
     <!--angular-marquee container-->
     <div>
-        <div>
+        <div ng-class='{marqueeStop: ! region.widgetDonationFeed.scrolling}' class='marquee-container'>
             <div angular-marquee 
             duration="region.widgetDonationFeed.scrollSpeed"
             scroll="region.widgetDonationFeed.scrolling"
@@ -21,6 +21,22 @@ use frontend\models\streamboard\StreamboardRegion;
                 --></span>
                 </span>
                 
+                <span
+                    ng-repeat="follower in donationsService.followers | limitTo: 20"
+                    class="commaAfter" ng-show='streamService.showFollower'>
+                <span>
+                    &nbsp;{{follower.display_name}} (followed)<!--removing space for .commaAfter
+                --></span>
+                </span>
+
+                <span
+                    ng-repeat="subscriber in donationsService.subscribers | limitTo: 20"
+                    class="commaAfter" ng-show='streamService.showSubscriber'>
+                <span>
+                    &nbsp;{{subscriber.display_name}} (subscribed)<!--removing space for .commaAfter
+                --></span>
+                </span>
+
                 <span ng-if="(donationsService.donations | donationsFilterToSelectedCampaigns).length == 0">
                     <span ng-if="region.widgetDonationFeed.noDonationMessage">{{region.widgetDonationFeed.noDonationMessage}}</span>
                     <span ng-if="!region.widgetDonationFeed.noDonationMessage">Empty activity feed</span>

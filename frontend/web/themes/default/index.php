@@ -5,7 +5,8 @@
 <!--[if gt IE 8]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
 <html>
     <head>
-        <title>{{campaign.name}} - Pullr</title>
+        <title ng-if='! campaign'>Pullr</title>
+        <title ng-if='campaign' ng-cloak>{{campaign.name}} - Pullr</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <base href="<?= \Yii::$app->urlManager->createUrl('/'); ?>">

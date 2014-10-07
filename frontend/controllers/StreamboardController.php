@@ -154,6 +154,25 @@ class StreamboardController extends FrontendController
             $donationsArray[] = $array;
         }
 
+        $subscribers = [];
+        if ($user->userFields->twitchPartner) {
+            $subscriptions = TwitchSubscription::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
+            foreach ($subscriptions as $subscription) {
+                /** @var TwitchSubscription $subscription */
+                $subscribers[] = $subscription->toArray(['twitchUserId', 'display_name', 'createdAt']);
+            }
+        }
+
+        $followers = [];
+
+        if ($user->userFields->twitchPartner) {
+            $twitchFollowers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
+            foreach ($twitchFollowers as $twitchFollower) {
+                /** @var TwitchSubscription $subscription */
+                $followers[] = $twitchFollower->toArray(['twitchUserId', 'display_name', 'createdAt']);
+            }
+        }
+
         /*We do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.*/
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->all();
         $selectedCampaigns = [];
@@ -171,7 +190,8 @@ class StreamboardController extends FrontendController
         $data = [];
         $data['donations'] = $donationsArray;
         $data['stats'] = $stats;
-
+        $data['followers'] = $followers;
+        $data['subscribers'] = $subscribers;
         return $data;
     }
 

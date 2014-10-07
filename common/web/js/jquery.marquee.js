@@ -80,7 +80,7 @@
                         //Unbind all events
                         $this.find("*").andSelf().unbind();
                         //Just unwrap the elements that has been added using this plugin
-                        $this.html($this.find('.js-marquee:first').html());
+                        $this.html($this.data['originalHtml']);
                     }
                 };
 
@@ -139,8 +139,12 @@
                 'float': 'left'
             });
 
+            var originalHtml = $el.html();
+            $this.data['originalHtml'] = originalHtml;
+
             if (o.duplicated) {
-                $el.clone(true).appendTo($this);
+                $el.append('<span style="width:' + o.gap + 'px">&nbsp;</span>');
+                $el.append(originalHtml);
             }
 
             //wrap both inner elements into one div
@@ -364,7 +368,8 @@
             $this.bind('resume', methods.resume);
 
             if (o.pauseOnHover) {
-                $this.bind('mouseenter mouseleave', methods.toggle);
+                $this.bind('mouseenter', methods.pause);
+                $this.bind('mouseleave', methods.resume);
             }
 
             //If css3 animation is supported than call animate method at once
