@@ -4,12 +4,15 @@ html.dataset.ngApp = 'PullrApp';
 var body = document.getElementsByTagName('body')[0];
 body.dataset.ngController = 'PullrCtrl';
 
+var head = document.getElementsByTagName('head')[0];
+head.dataset.ngController = 'PullrCtrl';
 var app = angular.module('PullrApp', []);
 
 app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
 	$scope.isDataReady = false;
 	CampaignDataService.loadCampaign(function(data) {
 		$scope.campaign = data;	
+		
 		CampaignDataService.loadChannels(function(data) {
 			if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
 				$scope.channel = data;
