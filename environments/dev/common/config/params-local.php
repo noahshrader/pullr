@@ -5,4 +5,5 @@ return [
      */
     'twitchClientId' => 'l7mj3pfjvxpk2zv6ivr9jpisodqd5h0',
     'twitchClientSecret' => 'borb565z4l7kzhawe3sb4wufrjfgw4b',
+    'payPalHost' => 'https://www.sandbox.paypal.com',
 ];
