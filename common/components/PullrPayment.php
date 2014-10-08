@@ -74,8 +74,7 @@ class PullrPayment extends \yii\base\Component {
         // to execute a PayPal account payment. 
         // The payer_id is added to the request query parameters
         // when the user is redirected from paypal back to your site
-        $execution = new PaymentExecution();
-        $execution->setPayer_id($_GET['PayerID']);
+        $execution = (new PaymentExecution())->setPayerId($_GET['PayerID']);
 
         //Execute the payment
         // (See bootstrap.php for more on `ApiContext`)
@@ -99,14 +98,14 @@ class PullrPayment extends \yii\base\Component {
                         break;
                     case \common\models\Payment::TYPE_DONATION:
                         $payer = $result->getPayer();
-                        $payerInfo = $payer->getPayer_info();
+                        $payerInfo = $payer->getPayerInfo();
                         $donation = Donation::findOne($pay->relatedId);
                         $donation->paymentDate = $pay->paymentDate;
                         if (!$donation->email){
                             $donation->email = strip_tags($payerInfo->getEmail());
                         }
-                        $donation->firstName = strip_tags($payerInfo->getFirst_name());
-                        $donation->lastName = strip_tags($payerInfo->getLast_name());
+                        $donation->firstName = strip_tags($payerInfo->getFirstName());
+                        $donation->lastName = strip_tags($payerInfo->getLastName());
                         $donation->save();
                         Campaign::updateDonationStatistics($donation->campaignId);
 
@@ -170,8 +169,8 @@ class PullrPayment extends \yii\base\Component {
         // ### Itemized information
         // (Optional) Lets you specify item wise
         // information
-        $item = new Item();
-        $item->setName('Pro account for ' . $params['subscription'])
+        $item = (new Item())
+                ->setName('Pro account for ' . $params['subscription'])
                 ->setCurrency('USD')
                 ->setQuantity(1)
                 ->setPrice($moneyAmount);
@@ -190,16 +189,13 @@ class PullrPayment extends \yii\base\Component {
         // A resource representing a Payer that funds a payment
         // For paypal account payments, set payment method
         // to 'paypal'.
-        $payer = new Payer();
-        $payer->setPayment_method("paypal");
+        $payer = (new Payer())->setPaymentMethod("paypal");
 
         // ### Transaction
         // A transaction defines the contract of a
         // payment - what is the payment for and who
         // is fulfilling it. 
-        $transaction = new Transaction();
-        $transaction->setAmount($amount);
-        $transaction->setItem_list($itemList);
+        $transaction = (new Transaction())->setAmount($amount)->setItemList($itemList);
 
         if ($payee){
             $transaction->setPayee($payee);
@@ -207,18 +203,18 @@ class PullrPayment extends \yii\base\Component {
         $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $baseUrl = preg_replace('/\?.*/', '', $baseUrl);
 
-        $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturn_url($baseUrl . '?paymentSuccess=true');
-        $redirectUrls->setCancel_url($baseUrl . '?paymentSuccess=false');
+        $redirectUrls = (new RedirectUrls())
+            ->setReturnUrl($baseUrl . '?paymentSuccess=true')
+            ->setCancelUrl($baseUrl . '?paymentSuccess=false');
 
         // ### Payment
         // A Payment Resource; create one using
         // the above types and intent set to 'sale'
-        $payment = new Payment();
-        $payment->setIntent("sale");
-        $payment->setPayer($payer);
-        $payment->setRedirect_urls($redirectUrls);
-        $payment->setTransactions([$transaction]);
+        $payment = (new Payment())
+            ->setIntent("sale")
+            ->setPayer($payer)
+            ->setRedirectUrls($redirectUrls)
+            ->setTransactions([$transaction]);
 
         $pullrPayment = new PullrPayment;
         try {
