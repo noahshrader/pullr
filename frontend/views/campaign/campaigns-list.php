@@ -32,6 +32,7 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
       $array['amountRaised'] = '$'.number_format($campaign->amountRaised);
       $array['href'] = ($campaign->isNewRecord) ? 'app/campaign/add' : "app/campaign/view?id=".$campaign->id;
       $array['isActive'] = $currentCampaign && $campaign->id == $currentCampaign->id;
+      $array['type'] = $campaign->type == 'Charity Fundraiser' ? 'Charity' : 'Personal';
       $campaignsArray[] = $array;
 
     }
