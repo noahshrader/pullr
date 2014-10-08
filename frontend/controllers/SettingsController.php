@@ -127,7 +127,7 @@ class SettingsController extends FrontendController {
 
         $response = PullrPayment::finishProSubscription($payAmount, $token, $PayerID);
 
-        if ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile')
+        if (isset($response) && ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile'))
         {
             $recurringProfile = RecurringProfile::findOne(['userId' => \Yii::$app->user->identity->id]);
 
