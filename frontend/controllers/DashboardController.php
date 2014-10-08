@@ -74,7 +74,7 @@ class DashboardController extends FrontendController {
             $userCampaigns->andWhere('MONTH(DATE(FROM_UNIXTIME(paymentDate))) = MONTH(CURDATE())')
                           ->andWhere('YEAR(DATE(FROM_UNIXTIME(paymentDate))) = YEAR(CURDATE())');
         }
-        $totalCampaigns = $userCampaigns->count('DISTINCT parentCampaignUserId');
+        $totalCampaigns = $userCampaigns->count('DISTINCT campaignId');
 
         // donations calculations
         $todayDonations = Donation::find()
