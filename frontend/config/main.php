@@ -41,8 +41,10 @@ return [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
+                    'levels' => ['error'],
+                    'categories' => ['PayPal'],
+                    'logFile' => '@runtime/logs/paypal.log'
+                ]
             ],
         ],
         'errorHandler' => [

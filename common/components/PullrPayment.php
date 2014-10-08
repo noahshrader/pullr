@@ -257,12 +257,12 @@ class PullrPayment extends \yii\base\Component {
         }
         catch (\PPConnectionException $ex)
         {
-            \Yii::error($ex->getData());
+            \Yii::error($ex->getData(), 'PayPal');
             throw $ex;
         }
         catch (\Exception $ex)
         {
-            \Yii::error($ex->getMessage());
+            \Yii::error($ex->getMessage(), 'PayPal');
             throw $ex;
         }
     }
@@ -299,7 +299,22 @@ class PullrPayment extends \yii\base\Component {
         $setECReq = new \SetExpressCheckoutReq();
         $setECReq->SetExpressCheckoutRequest = $setECReqType;
 
-        return (new \PayPalAPIInterfaceServiceService())->SetExpressCheckout($setECReq);
+        try
+        {
+            $response = (new \PayPalAPIInterfaceServiceService())->SetExpressCheckout($setECReq);
+        }
+        catch (\PPConnectionException $ex)
+        {
+            \Yii::error($ex->getData(), 'PayPal');
+            throw $ex;
+        }
+        catch (\Exception $ex)
+        {
+            \Yii::error($ex->getMessage(), 'PayPal');
+            throw $ex;
+        }
+
+        return $response;
     }
 
     public static function finishProSubscription($payAmount, $token, $PayerID)

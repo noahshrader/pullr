@@ -104,10 +104,13 @@ class SettingsController extends FrontendController {
             $payAmount = $_POST['subscription'];
             (new Session())->set('money_amount', $payAmount);
 
-            $setECResponse = PullrPayment::initProSubscription($payAmount);
+            $payPalResponse = PullrPayment::initProSubscription($payAmount);
 
-            $payPalHost = \Yii::$app->params['payPalHost'];
-            $this->redirect("$payPalHost/incontext?token={$setECResponse->Token}");
+            if($payPalResponse)
+            {
+                $payPalHost = \Yii::$app->params['payPalHost'];
+                $this->redirect("$payPalHost/incontext?token={$payPalResponse->Token}");
+            }
         }
     }
 
