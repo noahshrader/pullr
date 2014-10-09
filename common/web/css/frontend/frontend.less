@@ -364,11 +364,16 @@
 /* Tables */
 /* ------------------------------------------------- */
 table.dataTable {
+	padding: 0;
 	width: 100%;
 	text-align: left;
 	border-collapse: collapse;
 	border-spacing: 0;
 
+	table {
+		padding: 0;
+		width: 100%;
+	}
 	th {
 		background: @modulegray;
 	}
@@ -429,6 +434,7 @@ table.dataTable {
 		}
 	}
 	&.display tbody td[colspan~="4"] {
+		padding: 0 !important;
 		border: 0;
 		&.dataTables_empty {
 			padding: .9em 4% !important;

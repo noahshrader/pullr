@@ -135,13 +135,13 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <h2><?= $campaign->numberOfUniqueDonors ?></h2>
                     <h5>Donors</h5>
                 </div>
-                <div class='stats-box col-xs-6 top-donor'>
-                    <h4><?= $topDonorText ?></h4>
-                    <h5>Top Donor</h5>
-                </div>
                 <div class='stats-box col-xs-6 top-donation'>
                     <h4><?= $topDonationText ?></h4>
                     <h5>Top Donation</h5>
+                </div>
+                <div class='stats-box col-xs-6 top-donor'>
+                    <h4><?= $topDonorText ?></h4>
+                    <h5>Top Donor</h5>
                 </div>
                 <div class="clearfix"></div>
             </section>

@@ -144,7 +144,7 @@ body {
 			margin: 0;
 		}
 		&.raised-total,
-		&.top-donor {
+		&.top-donation {
 			border-left: 0;
 		}
 		&.top-donor,
@@ -282,39 +282,46 @@ ul.panel-nav {
 
 /* Content Loader */
 /* ------------------------------------------------- */
-#content {
-	
-	.spinner-wrap {
-		background: @white;
+.spinner-wrap {
+	background: @white;
+}
+.spinner-wrap,
+.spinner {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 9999;	
+}
+.spinner {
+	width: 60px;
+	height: 32px;
+	margin: 40% auto;
+
+	div {
+		display: inline-block;
+		height: 30px;
+		width: 6px;
+		background: @gray20;
+		.stretchdelay;
 	}
-	.spinner-wrap,
-	.spinner {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		left: 0;
-		z-index: 9999;	
+	.rect2 {
+		-webkit-animation-delay: -1.1s;
+		animation-delay: -1.1s;
 	}
-	.spinner {
-		width: 32px;
-		height: 32px;
-		margin: 40% auto;
-	}
-	.cube1,
-	.cube2 {
-		background-color: @gray70;
-		width: 10px;
-		height: 10px;
-		position: absolute;
-		top: 0;
-		left: 0;
-		.cubemove;
-	}
-	.cube2 {
-		-webkit-animation-delay: -0.9s;
-		animation-delay: -0.9s;
-	}
+	.rect3 {
+      -webkit-animation-delay: -1.0s;
+      animation-delay: -1.0s;
+    }
+    .rect4 {
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
+    .rect5 {
+      -webkit-animation-delay: -0.8s;
+      animation-delay: -0.8s;
+    }
 }
 
 @import "app-styles/modals.less";

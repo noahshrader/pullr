@@ -77,7 +77,7 @@ class CampaignController extends FrontendController {
 
             if ($isNewRecord && !\Yii::$app->user->identity->canCreateMoreCampaigns())
             {
-                throw new Exception('You have reached active campaigns limit and cannot create new');
+                throw new Exception('You have reached active campaigns limit');
             }
 
             //from html5 datetime-local tag to timestamp
