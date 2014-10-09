@@ -74,8 +74,7 @@ class PullrPayment extends \yii\base\Component {
         // to execute a PayPal account payment. 
         // The payer_id is added to the request query parameters
         // when the user is redirected from paypal back to your site
-        $execution = new PaymentExecution();
-        $execution->setPayer_id($_GET['PayerID']);
+        $execution = (new PaymentExecution())->setPayerId($_GET['PayerID']);
 
         //Execute the payment
         // (See bootstrap.php for more on `ApiContext`)
@@ -99,14 +98,14 @@ class PullrPayment extends \yii\base\Component {
                         break;
                     case \common\models\Payment::TYPE_DONATION:
                         $payer = $result->getPayer();
-                        $payerInfo = $payer->getPayer_info();
+                        $payerInfo = $payer->getPayerInfo();
                         $donation = Donation::findOne($pay->relatedId);
                         $donation->paymentDate = $pay->paymentDate;
                         if (!$donation->email){
                             $donation->email = strip_tags($payerInfo->getEmail());
                         }
-                        $donation->firstName = strip_tags($payerInfo->getFirst_name());
-                        $donation->lastName = strip_tags($payerInfo->getLast_name());
+                        $donation->firstName = strip_tags($payerInfo->getFirstName());
+                        $donation->lastName = strip_tags($payerInfo->getLastName());
                         $donation->save();
                         Campaign::updateDonationStatistics($donation->campaignId);
 
@@ -170,8 +169,8 @@ class PullrPayment extends \yii\base\Component {
         // ### Itemized information
         // (Optional) Lets you specify item wise
         // information
-        $item = new Item();
-        $item->setName('Pro account for ' . $params['subscription'])
+        $item = (new Item())
+                ->setName('Pro account for ' . $params['subscription'])
                 ->setCurrency('USD')
                 ->setQuantity(1)
                 ->setPrice($moneyAmount);
@@ -190,16 +189,13 @@ class PullrPayment extends \yii\base\Component {
         // A resource representing a Payer that funds a payment
         // For paypal account payments, set payment method
         // to 'paypal'.
-        $payer = new Payer();
-        $payer->setPayment_method("paypal");
+        $payer = (new Payer())->setPaymentMethod("paypal");
 
         // ### Transaction
         // A transaction defines the contract of a
         // payment - what is the payment for and who
         // is fulfilling it. 
-        $transaction = new Transaction();
-        $transaction->setAmount($amount);
-        $transaction->setItem_list($itemList);
+        $transaction = (new Transaction())->setAmount($amount)->setItemList($itemList);
 
         if ($payee){
             $transaction->setPayee($payee);
@@ -207,18 +203,18 @@ class PullrPayment extends \yii\base\Component {
         $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $baseUrl = preg_replace('/\?.*/', '', $baseUrl);
 
-        $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturn_url($baseUrl . '?paymentSuccess=true');
-        $redirectUrls->setCancel_url($baseUrl . '?paymentSuccess=false');
+        $redirectUrls = (new RedirectUrls())
+            ->setReturnUrl($baseUrl . '?paymentSuccess=true')
+            ->setCancelUrl($baseUrl . '?paymentSuccess=false');
 
         // ### Payment
         // A Payment Resource; create one using
         // the above types and intent set to 'sale'
-        $payment = new Payment();
-        $payment->setIntent("sale");
-        $payment->setPayer($payer);
-        $payment->setRedirect_urls($redirectUrls);
-        $payment->setTransactions([$transaction]);
+        $payment = (new Payment())
+            ->setIntent("sale")
+            ->setPayer($payer)
+            ->setRedirectUrls($redirectUrls)
+            ->setTransactions([$transaction]);
 
         $pullrPayment = new PullrPayment;
         try {
@@ -261,12 +257,12 @@ class PullrPayment extends \yii\base\Component {
         }
         catch (\PPConnectionException $ex)
         {
-            \Yii::error($ex->getData());
+            \Yii::error($ex->getData(), 'PayPal');
             throw $ex;
         }
         catch (\Exception $ex)
         {
-            \Yii::error($ex->getMessage());
+            \Yii::error($ex->getMessage(), 'PayPal');
             throw $ex;
         }
     }
@@ -303,90 +299,121 @@ class PullrPayment extends \yii\base\Component {
         $setECReq = new \SetExpressCheckoutReq();
         $setECReq->SetExpressCheckoutRequest = $setECReqType;
 
-        return (new \PayPalAPIInterfaceServiceService())->SetExpressCheckout($setECReq);
+        try
+        {
+            $response = (new \PayPalAPIInterfaceServiceService())->SetExpressCheckout($setECReq);
+        }
+        catch (\PPConnectionException $ex)
+        {
+            \Yii::error($ex->getData(), 'PayPal');
+            throw $ex;
+        }
+        catch (\Exception $ex)
+        {
+            \Yii::error($ex->getMessage(), 'PayPal');
+            throw $ex;
+        }
+
+        return $response;
     }
 
     public static function finishProSubscription($payAmount, $token, $PayerID)
     {
-        $payParams = self::getPaymentParamsForMoney($payAmount);
+        try
+        {
+            $payParams = self::getPaymentParamsForMoney($payAmount);
 
-        $paypalService = new \PayPalAPIInterfaceServiceService();
+            $paypalService = new \PayPalAPIInterfaceServiceService();
 
-        $paymentDetails = new \PaymentDetailsType();
-        $itemDetails = new \PaymentDetailsItemType();
-        $itemDetails->Name = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "\${$payAmount} for the year" : "\${$payAmount} for the month";
-        $itemAmount = $payAmount;
-        $itemDetails->Amount = $itemAmount;
-        $itemQuantity = '1';
-        $itemDetails->Quantity = $itemQuantity;
-        $itemDetails->ItemCategory = 'Digital';
-        $paymentDetails->PaymentDetailsItem[0] = $itemDetails;
+            $paymentDetails = new \PaymentDetailsType();
+            $itemDetails = new \PaymentDetailsItemType();
+            $itemDetails->Name = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "\${$payAmount} for the year" : "\${$payAmount} for the month";
+            $itemAmount = $payAmount;
+            $itemDetails->Amount = $itemAmount;
+            $itemQuantity = '1';
+            $itemDetails->Quantity = $itemQuantity;
+            $itemDetails->ItemCategory = 'Digital';
+            $paymentDetails->PaymentDetailsItem[0] = $itemDetails;
 
-        $orderTotal = new \BasicAmountType('USD', $itemAmount * $itemQuantity);
-        $paymentDetails->OrderTotal = $orderTotal;
-        $paymentDetails->PaymentAction = 'Sale';
-        $paymentDetails->NotifyURL = \Yii::$app->urlManager->createAbsoluteUrl('ipn/notify');
+            $orderTotal = new \BasicAmountType('USD', $itemAmount * $itemQuantity);
+            $paymentDetails->OrderTotal = $orderTotal;
+            $paymentDetails->PaymentAction = 'Sale';
+            $paymentDetails->NotifyURL = \Yii::$app->urlManager->createAbsoluteUrl('ipn/notify');
 
-        $DoECRequestDetails = new \DoExpressCheckoutPaymentRequestDetailsType();
-        $DoECRequestDetails->PayerID = $PayerID;
-        $DoECRequestDetails->Token = $token;
-        $DoECRequestDetails->PaymentDetails[0] = $paymentDetails;
+            $DoECRequestDetails = new \DoExpressCheckoutPaymentRequestDetailsType();
+            $DoECRequestDetails->PayerID = $PayerID;
+            $DoECRequestDetails->Token = $token;
+            $DoECRequestDetails->PaymentDetails[0] = $paymentDetails;
 
-        $DoECRequest = new \DoExpressCheckoutPaymentRequestType($DoECRequestDetails);
-        $DoECRequest->Version = '104.0';
+            $DoECRequest = new \DoExpressCheckoutPaymentRequestType($DoECRequestDetails);
+            $DoECRequest->Version = '104.0';
 
-        $DoECReq = new \DoExpressCheckoutPaymentReq();
-        $DoECReq->DoExpressCheckoutPaymentRequest = $DoECRequest;
+            $DoECReq = new \DoExpressCheckoutPaymentReq();
+            $DoECReq->DoExpressCheckoutPaymentRequest = $DoECRequest;
 
-        $DoECResponse = $paypalService->DoExpressCheckoutPayment($DoECReq);
+            $DoECResponse = $paypalService->DoExpressCheckoutPayment($DoECReq);
 
-        $initPaymentInfo = $DoECResponse->DoExpressCheckoutPaymentResponseDetails->PaymentInfo[0];
+            $initPaymentInfo = $DoECResponse->DoExpressCheckoutPaymentResponseDetails->PaymentInfo[0];
 
-        //subscribe user to recurring payment if successfully billed for the first month\year
-        if (($DoECResponse->Ack === 'Success') && ($initPaymentInfo->PaymentStatus === 'Completed')) {
-            //create a transaction record in payments table
-            $payment = new \common\models\Payment();
-            $payment->status = \common\models\Payment::STATUS_APPROVED;
-            $payment->userId = \Yii::$app->user->identity->id;
-            $payment->amount = intval($payAmount);
-            $payment->paypalId = $initPaymentInfo->TransactionID;
-            $payment->createdDate = time();
-            $payment->paymentDate = time();
-            $payment->type = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? \common\models\Payment::TYPE_PRO_YEAR : \common\models\Payment::TYPE_PRO_MONTH;
-            $payment->save();
+            //subscribe user to recurring payment if successfully billed for the first month\year
+            if (($DoECResponse->Ack === 'Success') && ($initPaymentInfo->PaymentStatus === 'Completed'))
+            {
+                //create a transaction record in payments table
+                $payment = new \common\models\Payment();
+                $payment->status = \common\models\Payment::STATUS_APPROVED;
+                $payment->userId = \Yii::$app->user->identity->id;
+                $payment->amount = intval($payAmount);
+                $payment->paypalId = $initPaymentInfo->TransactionID;
+                $payment->createdDate = time();
+                $payment->paymentDate = time();
+                $payment->type = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? \common\models\Payment::TYPE_PRO_YEAR : \common\models\Payment::TYPE_PRO_MONTH;
+                $payment->save();
 
-            //prolong user Pro account
-            Plan::findOne(\Yii::$app->user->identity->id)->prolong($payAmount);
+                //prolong user Pro account
+                Plan::findOne(\Yii::$app->user->identity->id)->prolong($payAmount);
 
-            //preparations to create recurring subscription
-            $dateInterval = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? (new \DateInterval('P1Y')) : (new \DateInterval('P1M'));
-            $profileDetails = new \RecurringPaymentsProfileDetailsType(
-                (new \DateTime())
-                    ->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()))
-                    ->setTimestamp(time())
-                    ->add($dateInterval)
-                    ->format('c')
-            );
+                //preparations to create recurring subscription
+                $dateInterval = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? (new \DateInterval('P1Y')) : (new \DateInterval('P1M'));
+                $profileDetails = new \RecurringPaymentsProfileDetailsType(
+                    (new \DateTime())
+                        ->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()))
+                        ->setTimestamp(time())
+                        ->add($dateInterval)
+                        ->format('c')
+                );
 
-            $paymentBillingPeriod = new \BillingPeriodDetailsType(
-                $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "Year" : "Month",
-                1,
-                new \BasicAmountType("USD", $payAmount)
-            );
+                $paymentBillingPeriod = new \BillingPeriodDetailsType(
+                    $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? "Year" : "Month",
+                    1,
+                    new \BasicAmountType("USD", $payAmount)
+                );
 
-            $scheduleDetails = new \ScheduleDetailsType("Recurring payment", $paymentBillingPeriod);
+                $scheduleDetails = new \ScheduleDetailsType("Recurring payment", $paymentBillingPeriod);
 
-            $createRPProfileRequestDetails = new \CreateRecurringPaymentsProfileRequestDetailsType($profileDetails, $scheduleDetails);
-            $createRPProfileRequestDetails->Token = $token;
+                $createRPProfileRequestDetails = new \CreateRecurringPaymentsProfileRequestDetailsType($profileDetails, $scheduleDetails);
+                $createRPProfileRequestDetails->Token = $token;
 
-            $createRPProfileRequest = new \CreateRecurringPaymentsProfileRequestType();
-            $createRPProfileRequest->CreateRecurringPaymentsProfileRequestDetails = $createRPProfileRequestDetails;
+                $createRPProfileRequest = new \CreateRecurringPaymentsProfileRequestType();
+                $createRPProfileRequest->CreateRecurringPaymentsProfileRequestDetails = $createRPProfileRequestDetails;
 
-            $createRPProfileReq = new \CreateRecurringPaymentsProfileReq();
-            $createRPProfileReq->CreateRecurringPaymentsProfileRequest = $createRPProfileRequest;
+                $createRPProfileReq = new \CreateRecurringPaymentsProfileReq();
+                $createRPProfileReq->CreateRecurringPaymentsProfileRequest = $createRPProfileRequest;
 
-            return (new \PayPalAPIInterfaceServiceService())->CreateRecurringPaymentsProfile($createRPProfileReq);
+                $result = (new \PayPalAPIInterfaceServiceService())->CreateRecurringPaymentsProfile($createRPProfileReq);
+            }
         }
+        catch (\PPConnectionException $ex)
+        {
+            \Yii::error($ex->getData(), 'PayPal');
+            throw $ex;
+        }
+        catch (\Exception $ex)
+        {
+            \Yii::error($ex->getMessage(), 'PayPal');
+            throw $ex;
+        }
+
+        return $result;
     }
 
     public static function deactivateProSubscription($profileId)

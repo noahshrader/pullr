@@ -40,7 +40,7 @@ $this->registerJs($js);
                             <? if(\Yii::$app->user->identity->canCreateMoreCampaigns()): ?>
                                 <a href="app/campaign/add" class="icon icon-plus"></a>
                             <? else:?>
-                                <a href="#" onclick="javascript:return false;" class="icon icon-plus" data-toggle="tooltip" data-placement="bottom" title="You have reached active campaigns limit"></a>
+                                <a href="#" onclick="javascript:return false;" class="icon icon-plus" data-toggle="tooltip" data-placement="bottom" title="You have reached your active campaigns limit"></a>
                             <? endif;?>
                         <? endif ?>
                     </li>

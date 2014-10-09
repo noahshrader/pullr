@@ -21,6 +21,7 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
             <div class="main-info">
                 <h5 data-bind="text: type" class="layout-type"></h5>
                 <h3 data-bind="text: name"></h3>
+                <span class="icon-users team-parent"></span>
                 <p data-bind="text: amountRaised"></p>
             </div>
         </a>
