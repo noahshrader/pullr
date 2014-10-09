@@ -14,7 +14,7 @@ class TwitchSubscription extends TwitchFollowBase {
     }
 
     public static function updateSubscriptions($userId, $subscriptions) {
-        self::createNotification($userId, $subscriptions)
+        self::createNotification($userId, $subscriptions);
         self::updateFollowsBase($userId, $subscriptions);        
     }
 
