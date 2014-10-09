@@ -30,13 +30,13 @@ class ActivityMessage
         return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, number_format($campaign->amountRaised), $campaign->name);
     }
 
-    public static function messageNewTwitchFollower(TwitchFollow $follow){
+    public static function messageNewTwitchFollower($displayName){
         $user = Application::getCurrentUser();
-        return sprintf(self::TEMPLATE_NEW_TWITCH_FOLLOWER, $follow->display_name,$user->userFields->twitchChannel);
+        return sprintf(self::TEMPLATE_NEW_TWITCH_FOLLOWER, $displayName,$user->userFields->twitchChannel);
     }
 
-    public static function messageNewTwitchSubscriber(TwitchSubscription $subscription){
+    public static function messageNewTwitchSubscriber($displayName){        
         $user = Application::getCurrentUser();
-        return sprintf(self::TEMPLATE_NEW_TWITCH_SUBSCRIBER, $subscription->display_name,$user->userFields->twitchChannel);
+        return sprintf(self::TEMPLATE_NEW_TWITCH_SUBSCRIBER, $displayName,$user->userFields->twitchChannel);
     }
 }

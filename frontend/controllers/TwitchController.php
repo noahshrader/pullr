@@ -13,8 +13,11 @@ use common\components\Application;
  * Class TwitchController - responsible for storing data from twitch
  * @package frontend\controllers
  */
-class TwitchController extends FrontendController {
-    public function actionUpdate_follows_ajax(){
+class TwitchController extends FrontendController 
+{
+
+    public function actionUpdate_follows_ajax()
+    {
         $userId = \Yii::$app->user->id;
 
         $data = json_decode($_POST['data'],true);
@@ -46,4 +49,5 @@ class TwitchController extends FrontendController {
         TwitchUser::updateSubscribersNumber($user->id, $data['_total']);
         TwitchSubscription::updateSubscriptions($user->id, $data['subscriptions']);
     }
+  
 }

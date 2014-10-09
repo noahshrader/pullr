@@ -38,7 +38,7 @@ abstract class TwitchFollowBase extends ActiveRecord {
                 if (in_array($id, $insertIds)){
                     $row = [$userId, $id, $follow['created_at'], $follow['user']['name'],$follow['user']['display_name'], json_encode($follow), $updateDate, time()];
                     $rows[] = $row;
-                }
+                }                
             }
             $connection->createCommand()->batchInsert(static::tableName(), $fields, $rows)->execute();
         }
@@ -49,5 +49,35 @@ abstract class TwitchFollowBase extends ActiveRecord {
         }
         /*clearing old rows*/
         static::deleteAll(['and',['userId' => $userId], 'updateDate < '.$updateDate]);
+    }
+
+    public static function getFollowCountByMonth($userId)
+    {        
+        $count = \Yii::$app->db->createCommand('select count(*) from ' . static::tableName() . ' where userId=:id and DATE_FORMAT(FROM_UNIXTIME(createdAt), "%m-%Y") = DATE_FORMAT(NOW(), "%m-%Y")')
+                        ->bindValues([
+                            'id'=>$userId
+                        ])
+                        ->queryScalar();
+        return $count;
+    }
+
+    public static function getFollowCountByToday($userId)
+    {
+        $count = \Yii::$app->db->createCommand('select count(*) from ' . static::tableName() . ' where userId=:id and DATE_FORMAT(FROM_UNIXTIME(createdAt), "%d-%m-%Y") = DATE_FORMAT(NOW(), "%d-%m-%Y")')
+                        ->bindValues([
+                            'id'=>$userId
+                        ])
+                        ->queryScalar();
+        return $count;
+    }
+
+    public static function getFollowCountByTotal($userId)
+    {
+        $count = \Yii::$app->db->createCommand('select count(*) from ' . static::tableName() . ' where userId=:id')
+                        ->bindValues([
+                            'id'=>$userId
+                        ])
+                        ->queryScalar();
+        return $count;       
     }
 }

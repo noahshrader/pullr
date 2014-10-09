@@ -8,10 +8,12 @@ use common\models\LoginForm;
 use Yii;
 use common\models\OpenIDToUser;
 use common\models\User;
+use common\models\twitch\TwitchUser;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use ritero\SDK\TwitchTV\TwitchSDK;
 use common\components\FirstGivingPayment;
+use frontend\models\TwitchHelper;
 
 /**
  * Site controller
@@ -116,11 +118,14 @@ class SiteController extends FrontendController
             \Yii::$app->end();
         }
         // </Temp solution for beta test>
+        $isNewUser = false;
 
         if ($userInfo) {
 
             $openId = OpenIDToUser::findOne(['serviceName' => 'twitch', 'serviceId' => $userInfo->_id]);
             if (!$openId) {
+                $isNewUser = true;
+
                 $user = new User();
                 $user->setScenario('openId');
                 $user->name = $userInfo->display_name;
@@ -139,14 +144,24 @@ class SiteController extends FrontendController
                 $openId->url = 'http://twitch.tv/' . $userInfo->name;
                 $openId->userId = $user->id;
                 $openId->save();
+
+                $twitchUser = new TwitchUser();
+                $twitchUser->userId = $user->id;
+                $twitchUser->save();
+
+                //update subscriber and follower                
             }
             $user = $openId->user;
             $user->userFields->twitchPartner = $userInfo->partnered;
             $user->userFields->twitchAccessToken = $token->access_token;
             $user->userFields->twitchAccessTokenDate = time();
             $user->userFields->save();
-            \Yii::$app->user->login($user);
 
+            \Yii::$app->user->login($user);
+            if ($isNewUser) {
+                TwitchHelper::updateFollows();
+                TwitchHelper::updateSubscriptions();
+            }
             $this->goHome();
         } else {
             $this->redirect('/');

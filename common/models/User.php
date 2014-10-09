@@ -10,7 +10,8 @@ use common\models\user\UserFields;
 use yii\db\ActiveQuery;
 use common\models\twitch\TwitchUser;
 use frontend\models\streamboard\StreamboardConfig;
-
+use common\models\twitch\TwitchSubscription;
+use common\models\twitch\TwitchFollow;
 /**
  * Class User
  * @package common\models
@@ -512,4 +513,5 @@ class User extends ActiveRecord implements IdentityInterface
         $plan = Plan::findOne($this->id);
         $plan->prolong($amount);
     }
+
 }

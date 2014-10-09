@@ -10,17 +10,20 @@ use common\models\query\CampaignQuery;
 use common\models\twitch\TwitchUser;
 use common\models\Campaign;
 use common\models\User;
+use common\models\OpenIDToUser;
+use frontend\models\TwitchHelper;
 
 class DashboardController extends FrontendController {
     public function actionIndex() {
         $user = \Yii::$app->user->identity;
+        
         /**@var User $user*/
         $userId = $user->getId();
         $systemNotification = SystemNotification::getNotificationForUser($userId);
         $campaignInvites = CampaignInvite::findAll(['userId' => $userId, 'status' => CampaignInvite::STATUS_PENDIND]);
         $recentActivity = RecentActivityNotification::find()->andWhere(['userId' => $userId])->orderBy('DATE DESC')->limit(10)->all();
-        $twitchUser = TwitchUser::findOne($userId);
-
+        $openIDToUser = OpenIDToUser::find($userId);        
+       
         // dashboard statistics calculations
         $dashboard['overall'] = $this->calculateDashboardStats('overall');
         $dashboard['today'] = $this->calculateDashboardStats('today');
@@ -30,7 +33,7 @@ class DashboardController extends FrontendController {
             'systemNotification' => $systemNotification, 
             'campaignInvites' => $campaignInvites,
             'recentActivity' => $recentActivity,
-            'twitchUser' => $twitchUser,
+            'openIDToUser' => $openIDToUser,
             'dashboard' => $dashboard,
         ]);
     }
