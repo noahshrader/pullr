@@ -13,7 +13,11 @@
     "karma-jasmine": "~0.2.0",
     "karma-jasmine-jquery": "~0.1.0",
     "protractor": "~1.2.0",
-    "karma-jquery": "~0.1.0"
+    "karma-jquery": "~0.1.0",
+    "request" : "2.45.0",
+    "config" : "1.2.3",
+    "mysql" : "2.5.1",
+    "q" : "1.0.1"
   },
   "scripts": {
     "postinstall": "bower install",

@@ -1,0 +1,12 @@
+{
+	"db": {
+		"host" : "localhost",
+		"user": "root",
+		"password" : "",
+		"database" :"pullr_dev"
+	},
+	"twitch" : {
+		"clientId" : "kyg7ej7lb3lnaw36fjgumiyz8z7tyyr",
+    	"secret" : "b1pkfhiu1q1ihxcu9y0l794ewyk8hjt"
+	}
+}
