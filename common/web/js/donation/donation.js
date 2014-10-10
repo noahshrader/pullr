@@ -85,7 +85,14 @@ function amountChangedEvent() {
     }
 
     $('input#donation-amount').val(value);
-    $('button.donate').text('Donate $' + number_format(value));
+    var btnDonate = $('button.donate');
+    if (btnDonate.hasClass('continue')){
+        btnDonate.text('Continue');
+    }
+    else{
+        btnDonate.text('Donate $' + number_format(value));
+    }
+
 
     /**casting to int*/
     value = parseInt(value);
@@ -103,3 +110,7 @@ function amountChangedEvent() {
 }
 
 $(document).ready(donatePageInit);
+
+$(window).load(function () {
+    $(".spinner-wrap").fadeOut();
+});
