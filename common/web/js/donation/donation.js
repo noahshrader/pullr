@@ -111,6 +111,7 @@ function amountChangedEvent() {
 
 $(document).ready(donatePageInit);
 
-$(window).load(function () {
+$(window).load(function ()
+{
     $(".spinner-wrap").fadeOut();
 });

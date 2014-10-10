@@ -23,18 +23,15 @@
         <? endif ?>
     <? endif; ?>
 
-    
-        
-                <div class="spinner-wrap">
-                    <div class="spinner">
-                        <div class="rect1"></div>
-                        <div class="rect2"></div>
-                        <div class="rect3"></div>
-                        <div class="rect4"></div>
-                        <div class="rect5"></div>
-                    </div>
-                </div>
-
+    <div class="spinner-wrap">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
 
     <iframe src="<?= $url; ?>" class="payment" style="height: 720px; min-height: 100px;"></iframe>
     <a href="<?= $back_url; ?>">back</a>
