@@ -21,7 +21,9 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
             <div class="main-info">
                 <h5 data-bind="text: type" class="layout-type"></h5>
                 <h3 data-bind="text: name"></h3>
+                <!-- ko if: tiedToParent -->
                 <span class="icon-users team-parent"></span>
+                <!-- /ko -->
                 <p data-bind="text: amountRaised"></p>
             </div>
         </a>
@@ -34,6 +36,7 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
       $array['href'] = ($campaign->isNewRecord) ? 'app/campaign/add' : "app/campaign/view?id=".$campaign->id;
       $array['isActive'] = $currentCampaign && $campaign->id == $currentCampaign->id;
       $array['type'] = $campaign->type == 'Charity Fundraiser' ? 'Charity' : 'Personal';
+      $array['tiedToParent'] = $campaign->tiedToParent;
       $campaignsArray[] = $array;
 
     }

@@ -10,10 +10,9 @@ use common\components\PullrPayment;
 use common\components\FirstGivingPayment;
 use yii\web\Request;
 
-/*
-controller to view exported layout
- * donations
- *  */
+/**
+ * Controller to view exported layout donations
+ */
 class LayoutviewController extends \yii\web\Controller {
 
     public $campaign = null;
@@ -37,7 +36,8 @@ class LayoutviewController extends \yii\web\Controller {
         return $campaign;
     }
 
-    public function actionView($userAlias, $campaignAlias) {
+    public function actionView($userAlias, $campaignAlias) 
+    {
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
         $campaignTheme = $campaign->getTheme()->one();
 
@@ -48,6 +48,7 @@ class LayoutviewController extends \yii\web\Controller {
         {
             $theme = 'default';
         }
+        
         echo $this->renderPartial("@app/web/themes/{$theme}/index", ['campaign' => $campaign]);
         die;
     }
