@@ -18,7 +18,7 @@ $title = $type ? $type : 'Choose a Theme';
         <? endforeach; ?>
     <? else: ?>
         <div class="noThemes">
-            No themes are available for this type of layout.
+            No themes are currently available for this layout type.
         </div>
     <? endif ?>
 </div>

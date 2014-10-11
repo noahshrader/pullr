@@ -1,9 +1,9 @@
 {
 	"db": {
-		"host" : "localhost",
+		"host" : "127.0.0.1",
 		"user": "root",
-		"password" : "",
-		"database" :"pullr_dev"
+		"password" : "root",
+		"database" :"pullr"
 	},
 	"twitch" : {
 		"clientId" : "kyg7ej7lb3lnaw36fjgumiyz8z7tyyr",

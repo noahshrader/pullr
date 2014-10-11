@@ -30,6 +30,9 @@
 			}
 		}
 	}
+	&.blank {
+		bottom: 0;
+	}
 }
 .content-wrap {
 	padding: @gutter @gutter 0;
@@ -70,8 +73,11 @@
 		border: solid 1px @gray75;
 		box-shadow: none;
 		overflow: visible;
+		&:last-child {
+			margin-bottom: @halfgutter;
+		}
 
-		h5 {
+		> h5 {
 			text-align: center;
 			position: relative;
 			top: -@halfgutter;
@@ -95,7 +101,7 @@
 	width: @sidepanelwidth;
 
 	.module {
-		margin-bottom: @gutter;
+		margin-top: @gutter;
 	}
 }
 
@@ -322,7 +328,6 @@
 				width: 100%;
 
 				&:hover {
-					color: @base;
 					background: @offwhite;
 				}
 				i.icon {
@@ -461,6 +466,7 @@ table.dataTable {
 .dataTables_info {
 	color: @gray60 !important;
 	font-size: .9em;
+	padding: .4em !important;
 }
 .dataTables_wrapper {
 
@@ -530,7 +536,7 @@ table.dataTable {
 	border-bottom: solid 1px @gray75;
 }
 .table-footer {
-	padding: @gutter;
+	padding: @halfgutter @gutter;
 	border-top: solid 1px @gray75;
 }
 

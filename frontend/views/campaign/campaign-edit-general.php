@@ -8,12 +8,12 @@ use yii\widgets\MaskedInput;
 /* @var $form ActiveForm */
 
 $parentCampaigns = \Yii::$app->user->identity
-                    ->getCampaigns()
-                    ->where('id <> :campaignId')
-                    ->addParams([':campaignId' => $campaign->id])
-                    ->andWhere(['type' => Campaign::TYPE_CHARITY_FUNDRAISER])
-                    ->andWhere(['tiedToParent' => 0])
-                    ->all();
+    ->getCampaigns()
+    ->where('id <> :campaignId')
+    ->addParams([':campaignId' => $campaign->id])
+    ->andWhere(['type' => Campaign::TYPE_CHARITY_FUNDRAISER])
+    ->andWhere(['tiedToParent' => 0])
+    ->all();
 
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
 $this->registerJsFile('@web/js/campaign/firstgiving.js', [
@@ -68,11 +68,10 @@ $firstGiving = $campaign->getFirstGiving();
                 </div>
                 */?>
                 <div class="preapprovedCharity highlight-wrap">
-                    <h4>Choose from one of our partnered organizations</h4>
+                    <h5>Choose from one of our partnered organizations:</h5>
                     <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving', 'class' => 'select-block']); ?>
                 </div>
                 <div class="customCharity highlight-wrap">
-                    <h4>Support your own charity</h4>
                     <div class="form-group">
                         <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name"); ?>
                     </div>

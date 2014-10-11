@@ -33,6 +33,7 @@ $(function(){
             row.child( formatChildRow($row) ).show();
         }
     } );
+
     /*add csv button*/
     if ($table.fnSettings().fnRecordsTotal()){
         if ($('.donor-view').length > 0){
@@ -47,6 +48,11 @@ $(function(){
             ('<i class="icon icon-download2"></i> Export All');
         csvButton.insertAfter($wrapper.find('.dataTables_paginate'));
     }
+
+    // Rotate table details area on click
+    $('tr.donation-entry').click(function() {
+        $(this).toggleClass('drop');
+    });
     
     $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
     $wrapper.find('.dataTables_length select').addClass("form-control"); // modify table per page dropdown

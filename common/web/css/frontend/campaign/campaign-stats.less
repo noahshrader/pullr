@@ -110,6 +110,23 @@ body.trash .campaigns-list {
 /* Main Campaigns View */
 /* ------------------------------------------------- */
 
+/* No Campaigns */
+.no-campaigns {
+	position: relative;
+	float: left;
+	height: 100%;
+	width: 100%;
+
+	span {
+		position: absolute;
+		top: 50%;
+		text-align: center;
+		margin-top: -20px;
+		width: 100%;
+		display: block;
+	}
+}
+
 /* Campaign View Navigation */
 .campaign-actions {
 	position: relative;
@@ -136,9 +153,9 @@ body.trash .campaigns-list {
 					left: @halfgutter;
 				}
 				a.actions-toggle {
-					color: @gray20;
+					color: @gray40;
 					&:after {
-						border-color: @gray20 transparent transparent transparent;
+						border-color: @gray40 transparent transparent transparent;
 					}
 				}
 			}
@@ -170,9 +187,9 @@ body.trash .campaigns-list {
 				border-color: @gray60 transparent transparent transparent;
 			}
 			&:hover {
-				color: @maingray;
+				color: @gray40;
 				&:after {
-					border-color: @gray20 transparent transparent transparent;
+					border-color: @gray40 transparent transparent transparent;
 				}
 			}
 
@@ -186,7 +203,7 @@ body.trash .campaigns-list {
 
 		a {
 			display: inline-block;
-			color: @gray20;
+			color: @gray40;
 			width: 60%;
 			text-overflow: ellipsis;
 			white-space: nowrap;
@@ -208,7 +225,7 @@ body.trash .campaigns-list {
 		text-align: center;
 		line-height: @campain-name-height;
 		width: auto;
-		background: @gray60;
+		background: @gray40;
 		.element-radius;
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
@@ -224,7 +241,7 @@ body.trash .campaigns-list {
 			width: 0px;
 			content: "";
 			position: absolute;
-			border-bottom: @campain-name-height solid @gray60;
+			border-bottom: @campain-name-height solid @gray40;
 			border-left: 30px solid transparent;
 			left: -30px;
 		}

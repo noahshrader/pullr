@@ -16,16 +16,18 @@ $user = \Yii::$app->user->identity;
                 ]); ?>    
     </section>
 
-<? if (!sizeof($campaigns)): ?>
-    <section class="campaigns-view-wrap">
-        <div id="content" class="adv pane">
-            <div class="content-wrap text-center">
-                Click the "+" to add campaign
+    <!-- no campaigns -->
+    <? if (!sizeof($campaigns)): ?>
+        <section class="campaigns-view-wrap">
+            <div id="content" class="blank adv">
+                <div class="no-campaigns">
+                    <span>Click the "+" to add a campaign.</span>
+                </div>
             </div>
-        </div>
-    </section>
-<? endif; ?>
+        </section>
+    <? endif; ?>
 
+    <!-- main campaign view -->
     <? if ($selectedCampaign): ?>
          <?= $this->render('campaign-view', [
                     'campaign' => $selectedCampaign
