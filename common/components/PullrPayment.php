@@ -284,7 +284,7 @@ class PullrPayment extends \yii\base\Component {
                 exit;
             }
         }
-        catch (\PPConnectionException $ex)
+        catch (\PayPal\Exception\PPConnectionException $ex)
         {
             \Yii::error($ex->getData(), 'PayPal');
             throw $ex;
@@ -337,11 +337,10 @@ class PullrPayment extends \yii\base\Component {
         try
         {
             $response = (new \PayPalAPIInterfaceServiceService())->SetExpressCheckout($setECReq);
-        }
-        catch (\PPConnectionException $ex)
-        {
-            \Yii::error($ex->getData(), 'PayPal');
-            throw $ex;
+            if($response->Ack == "Failure")
+            {
+                throw new \Exception($response->Errors[0]->LongMessage);
+            }
         }
         catch (\Exception $ex)
         {
@@ -443,11 +442,6 @@ class PullrPayment extends \yii\base\Component {
 
                 $result = (new \PayPalAPIInterfaceServiceService())->CreateRecurringPaymentsProfile($createRPProfileReq);
             }
-        }
-        catch (\PPConnectionException $ex)
-        {
-            \Yii::error($ex->getData(), 'PayPal');
-            throw $ex;
         }
         catch (\Exception $ex)
         {

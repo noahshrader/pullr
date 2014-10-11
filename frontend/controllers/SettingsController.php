@@ -114,11 +114,8 @@ class SettingsController extends FrontendController
 
             $payPalResponse = PullrPayment::initProSubscription($payAmount);
 
-            if($payPalResponse)
-            {
-                $payPalHost = \Yii::$app->params['payPalHost'];
-                $this->redirect("$payPalHost/incontext?token={$payPalResponse->Token}");
-            }
+            $payPalHost = \Yii::$app->params['payPalHost'];
+            $this->redirect("$payPalHost/incontext?token={$payPalResponse->Token}");
         }
     }
 
