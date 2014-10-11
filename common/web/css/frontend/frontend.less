@@ -412,7 +412,9 @@ table.dataTable {
 		}
 		&.donation-entry {
 			&.drop,
-			+ tr td[colspan~="4"] {
+			+ tr td[colspan~="4"],
+			+ tr td[colspan~="5"] {
+				padding: .3em 0 !important;
 				background: @white !important;
 			}
 			&.drop td.details-control i {
@@ -444,13 +446,6 @@ table.dataTable {
 		&.dataTables_empty {
 			padding: .9em 4% !important;
 		}
-	}
-
-	/* Expanding child table */
-	&.childTable tr.open-row td {
-		display: block;
-		color: @gray40;
-		padding: .3em 0 !important;
 	}
 	&.no-footer {
 		border: 0;
