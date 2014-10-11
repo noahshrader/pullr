@@ -65,11 +65,13 @@ SubscriberHelper.prototype.updateSubscriberByChannelName = function (user, chann
 	request(options, function(error, response, body) {
 		console.log(response);
 		if ( ! error && response.statusCode == 200) {					
-			body = JSON.parse(body);
-			console.log(body);
+			body = JSON.parse(body);			
 			total = body._total;
 			console.log('Total followers: ', total);
 			var count = body.subscriptions.length;
+			if (count == 0 ) {
+				_this.deleteUnfollowUser();
+			}
 			_this.pendingFollowerCountdown = total;
 			//save to database		
 			_this.createNotification(userId, channelName, body.subscriptions, savedFollowers);

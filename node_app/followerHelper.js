@@ -90,9 +90,10 @@ FollowerHelper.prototype.saveNewFollowers = function(userId, followers, savedFol
 
 			connection.query('INSERT INTO ' + _this.tableName + ' SET ?', row, function(err, result) {
 				if ( ! err ) {
-					console.log('Save 1 follower.');
-					
 					_this.pendingFollowerCountdown--;
+					console.log('Save 1 follower. Left: ', _this.pendingFollowerCountdown);
+					
+					
 					if (_this.pendingFollowerCountdown == 0) {
 						finalCallback();
 					}
@@ -159,6 +160,9 @@ FollowerHelper.prototype.updateFollowersByChannelName = function (user, channelN
 			total = body._total;
 			console.log('Total followers: ', total);
 			var count = body.follows.length;
+			if (count == 0 ) {
+				_this.deleteUnfollowUser();
+			}
 			_this.pendingFollowerCountdown = total;
 			//save to database		
 			_this.createNotification(userId, channelName, body.follows, savedFollowers);
@@ -204,8 +208,10 @@ FollowerHelper.prototype.updateCurrentFollower = function(ids, userId, time) {
 FollowerHelper.prototype.deleteUnfollowUser = function(userId, time) {
 	console.log('Delete unfollow user');
 
-	connection.query('delete from ' + this.tableName + ' where userId = ? and updateDate <  ?' ,[userId, time], function(){
-
+	connection.query('delete from ' + this.tableName + ' where userId = ? and updateDate <  ?' ,[userId, time], function(err){
+		if ( ! err) {
+			console.log('Done');
+		}
 	});
 };
 
@@ -216,10 +222,7 @@ function updateFollowers() {
 			var user = onlineUserIds[i];
 			console.log('---- Update for user ', user.name);
 			followerHelper.getFollowersFromDb(user).then(function(results) {		
-						
-				followerHelper.updateFollowersByChannelName(results.user, results.user.twitchChannel, results.savedFollowers);		
-								
-				
+				followerHelper.updateFollowersByChannelName(results.user, results.user.twitchChannel, results.savedFollowers);														
 			});
 		}
 	});	
