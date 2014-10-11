@@ -2,28 +2,31 @@
 
 namespace frontend\controllers;
 
-use common\models\RecurringProfile;
-use frontend\models\site\DeactivatePro;
-use Yii;
-use \yii\web\Session;
 use frontend\models\site\ChangePasswordForm;
 use frontend\models\site\DeactivateAccount;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
-use common\models\mail\Mail;
+use frontend\models\site\DeactivatePro;
+use common\models\RecurringProfile;
 use common\components\PullrPayment;
+use common\models\mail\Mail;
+use yii\widgets\ActiveForm;
+use \yii\web\Session;
+use yii\web\Response;
+use Yii;
 
-class SettingsController extends FrontendController {
-
-    public function actionIndex() {
-        if (Yii::$app->user->isGuest) {
+class SettingsController extends FrontendController 
+{
+    public function actionIndex() 
+    {
+        if (Yii::$app->user->isGuest) 
+        {
             return Yii::$app->user->loginRequired();
         }
 
         $user = Yii::$app->user->identity;
         $user->setScenario('settings');
 
-        if (isset($_POST['User'])){
+        if (isset($_POST['User']))
+        {
             $user->setAttributes($_POST['User']);
             $user->save();
         }
@@ -32,10 +35,12 @@ class SettingsController extends FrontendController {
         $notification->load($_POST) && $notification->save($_POST);
 
         $changePasswordForm = new ChangePasswordForm();
-        if ($changePasswordForm->load($_POST) && $changePasswordForm->oldPassword) {
+        if ($changePasswordForm->load($_POST) && $changePasswordForm->oldPassword) 
+        {
             $changePasswordForm->validatePassword();
             $changePasswordForm->validateNewPassword();
-            if (!$changePasswordForm->getErrors()) {
+            if (!$changePasswordForm->getErrors()) 
+            {
                 $user->setNewPassword($changePasswordForm->newPassword);
                 $user->save();
                 $changePasswordForm = new ChangePasswordForm();
@@ -44,11 +49,14 @@ class SettingsController extends FrontendController {
         }
 
         /* account subscriptions */
-        if (isset($_POST['subscription'])) {
+        if (isset($_POST['subscription'])) 
+        {
             $payment = new PullrPayment();
             $payment->subscribeToPlan($_POST['subscription']);
         }
-        if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
+        
+        if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true'))
+        {
             $payment = new PullrPayment();
             $payment->completePayment();
             $this->redirect('app/settings');
