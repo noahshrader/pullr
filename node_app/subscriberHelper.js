@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 	database: config.db.database
 });
 
-
+connection.connect();
 
 SubscriberHelper.prototype = new helper.FollowerHelper();
 SubscriberHelper.prototype.constructor = SubscriberHelper;
@@ -55,15 +55,10 @@ SubscriberHelper.prototype.updateSubscriberByChannelName = function (user, chann
 	}
 
 	var newUpdateTime = Math.round(new Date().getTime() / 1000);
-	var finalCallback = function() {		
-		_this.updateCurrentFollower(_this.updateIds, userId, newUpdateTime).then(function(){
-			_this.deleteUnfollowUser(userId, newUpdateTime);	
-		});
-		
-	}
+	
 	console.log(options);	
 	request(options, function(error, response, body) {
-		console.log(response);
+		
 		if ( ! error && response.statusCode == 200) {					
 			body = JSON.parse(body);			
 			total = body._total;
@@ -75,7 +70,7 @@ SubscriberHelper.prototype.updateSubscriberByChannelName = function (user, chann
 			_this.pendingFollowerCountdown = total;
 			//save to database		
 			_this.createNotification(userId, channelName, body.subscriptions, savedFollowers);
-			_this.saveNewFollowers(userId, body.subscriptions, savedFollowers, finalCallback);
+			_this.saveNewFollowers(userId, body.subscriptions, savedFollowers, _this.finalCallback);
 			
 			while (count < total) {				
 				var nextUrl = url + '&offset=' + count;
@@ -84,7 +79,7 @@ SubscriberHelper.prototype.updateSubscriberByChannelName = function (user, chann
 					if ( ! error && response.statusCode == 200) {
 						var body = JSON.parse(body);																		
 						_this.createNotification(userId, channelName, body.subscriptions, savedFollowers);
-						_this.saveNewFollowers(userId, body.subscriptions, savedFollowers, finalCallback)					
+						_this.saveNewFollowers(userId, body.subscriptions, savedFollowers, _this.finalCallback)					
 						
 					}
 				});

@@ -157,11 +157,7 @@ class SiteController extends FrontendController
             $user->userFields->twitchAccessTokenDate = time();
             $user->userFields->save();
 
-            \Yii::$app->user->login($user);
-            if ($isNewUser) {
-                TwitchHelper::updateFollows();
-                TwitchHelper::updateSubscriptions();
-            }
+            \Yii::$app->user->login($user);          
             $this->goHome();
         } else {
             $this->redirect('/');

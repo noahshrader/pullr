@@ -41,28 +41,28 @@ function number_format(number) {
 }
 
 function twitchEventsMonitor() {
-    if (window.Twitch) {
-        var channelName = Pullr.user.userFields.twitchChannel;
-        var clientId = Pullr.twitchClientId;
-        log(clientId);
-        log(channelName);
-        if (channelName) {
-            Twitch.init({clientId: clientId}, function (error, status) {
-                var method = 'channels/' + channelName + '/follows';
-                Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-                    $.post('app/twitch/update_follows_ajax', {data: JSON.stringify(list)});
-                });
+//     if (window.Twitch) {
+//         var channelName = Pullr.user.userFields.twitchChannel;
+//         var clientId = Pullr.twitchClientId;
+//         log(clientId);
+//         log(channelName);
+//         if (channelName) {
+//             Twitch.init({clientId: clientId}, function (error, status) {
+//                 var method = 'channels/' + channelName + '/follows';
+//                 Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
+//                     $.post('app/twitch/update_follows_ajax', {data: JSON.stringify(list)});
+//                 });
 
-                if (Pullr.user.userFields.twitchPartner){
-                    $.post('app/twitch/update_subscriptions_ajax', {});
-//                    method = 'channels/' + channelName + '/subscriptions'
-//                    Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-//                        $.post('app/twitch/update_subscriptions_ajax', {data: JSON.stringify(list)});
-//                    });
-                }
-            });
-        }
-    }
+//                 if (Pullr.user.userFields.twitchPartner){
+//                     $.post('app/twitch/update_subscriptions_ajax', {});
+// //                    method = 'channels/' + channelName + '/subscriptions'
+// //                    Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
+// //                        $.post('app/twitch/update_subscriptions_ajax', {data: JSON.stringify(list)});
+// //                    });
+//                 }
+//             });
+//         }
+//     }
 }
 
 (catchKeys());
