@@ -13,11 +13,6 @@ function campaignsWithFilter(campaigns){
     ko.applyBindings(viewModel);
 }
 
-// Rotate table details area on click
-$('tr.donation-entry').click(function() {
-    $(this).toggleClass('drop');
-});
-
 // Show/hide campaign actions menu
 $('ul.campaign-quick-links > li > a').click(function(e) {
     e.stopPropagation();

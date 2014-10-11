@@ -1,0 +1,246 @@
+var util = require('util');
+var mysql = require('mysql');
+var q = require('q');
+var config = require('./config.json');
+var connection = mysql.createConnection({
+	host : config.db.host,
+	user : config.db.user,
+	password : config.db.password,
+	database: config.db.database
+});
+connection.connect(function(err) {
+	if (err) {
+		console.log('error connect database');
+	}
+});
+var request = require('request');
+var TWITCH_API_URL = 'https://api.twitch.tv/kraken';
+
+
+function getOnlineUser() {		
+	var time = 10 * 60;
+	var deferred = q.defer();
+	//get online user in the last 5 minutes
+	connection.query('select u.*, uf.* from tbl_user u join tbl_user_fields uf on u.id = uf.userId where uf.twitchChannel != "" and uf.twitchChannel is not NULL and UNIX_TIMESTAMP() - last_login <= ?', [time], function(err, results){
+		if ( ! err) {			
+			deferred.resolve(results);
+		} else {
+			deferred.reject(new Error("Can't select online user"));
+		}
+	});
+	return deferred.promise;
+}
+
+var FollowerHelper = function(user){
+	this.user = user;
+}
+FollowerHelper.prototype.user = null;
+FollowerHelper.prototype.insertIds = [];
+FollowerHelper.prototype.pendingFollowerCountdown = 0;
+FollowerHelper.prototype.updateIds = [];
+FollowerHelper.prototype.tableName = 'tbl_twitch_follow';
+FollowerHelper.prototype.message = '%s just followed your channel %s !';
+FollowerHelper.prototype.savedFollowers = [];
+
+FollowerHelper.prototype.getApiLink = function(){	
+	return TWITCH_API_URL + '/channels/' + this.user.twitchChannel + '/follows?limit=100';	
+}
+
+FollowerHelper.prototype.getFollowersFromDb = function () {
+	var _this = this;
+	var deferred = q.defer();			
+	connection.query('select twitchUserId from ' + this.tableName + ' where userId = ? order by createdAt desc',[_this.user.id] , function(error, results){
+		if ( ! error ){			
+			var savedFollowers = [];
+			for (i=0;i<results.length;i++) {
+				savedFollowers.push(results[i].twitchUserId);
+			}
+			_this.savedFollowers = savedFollowers;
+			deferred.resolve(savedFollowers);
+		} else {
+			deferred.reject('error get followers from db')
+		}
+	});
+	return deferred.promise;
+};
+
+FollowerHelper.prototype.saveNewFollowers = function(followers) {
+	var _this = this;
+	var ids = [];
+	var batchs = [];
+
+	for (i=0 ; i<followers.length ; i++) {
+		var follower = followers[i];
+
+		if (_this.savedFollowers.indexOf(follower.user._id) < 0) {
+			
+			var updateDate = Math.round(new Date().getTime() / 1000);
+			
+			var createdAt = new Date(follower.created_at).getTime();
+			if ( ! isNaN(createdAt) && createdAt != null) {
+				createdAt = createdAt / 1000;
+			}
+			var fields = ['userId', 'twitchUserId', 'createdAt', 'name', 'display_name', 'jsonResponse', 'updateDate', 'createdAtPullr'];
+			var row = {
+				userId: _this.user.id, 
+				twitchUserId: follower.user._id, 
+				createdAt: createdAt,
+				name: follower.user.name, 
+				display_name: follower.user.display_name,			
+				jsonResponse: JSON.stringify(follower), 
+				updateDate: updateDate,
+				createdAtPullr: updateDate
+			};
+
+			connection.query('INSERT INTO ' + _this.tableName + ' SET ?', row, function(err, result) {
+				_this.insertIds.push(follower.user._id);
+				if ( ! err ) {
+					_this.pendingFollowerCountdown--;
+					console.log('Save 1 follower. Left: ', _this.pendingFollowerCountdown);
+					_this.createNotification(follower.user.display_name);
+					
+					if (_this.pendingFollowerCountdown == 0) {
+						_this.finalCallback();
+					}
+				}
+			});		
+		} else {
+			_this.insertIds.push(follower.user._id);			
+			
+			_this.pendingFollowerCountdown--;
+			if (_this.pendingFollowerCountdown == 0) {
+				_this.finalCallback();
+			}
+		}
+	}
+};
+
+FollowerHelper.prototype.createNotification = function (display_name) {
+
+	var _this = this;
+	
+	var message = util.format(_this.message, display_name,	_this.user.twitchChannel);				
+	var row = {
+		userId: _this.user.id,
+		message: message,
+		date: new Date().getTime()
+	}
+	connection.query('INSERT INTO tbl_notification_recent_activity SET ? ', row, function(err, result){
+		if ( ! err ) {
+			
+		}
+	});
+
+}
+
+FollowerHelper.prototype.requestFollowersAndUpdate = function () {	
+	var userId = this.user.id;
+	var _this = this;
+
+	var url = _this.getApiLink();
+	if (url == false) {
+		return false;
+	}
+	var total = 0;
+	var options = {
+		url: url,
+		headers: {
+			'Client-ID': config.twitch.clientId
+		}
+	}
+	console.log(options);
+	request(options, function(error, response, body) {
+		if ( ! error && response.statusCode == 200) {					
+			body = JSON.parse(body);
+			total = body._total;
+			console.log('API request return ', total, ' follower for user ', _this.user.name);
+			var count = body.follows.length;
+			_this.insertIds = [];
+			if (count == 0 ) {
+				_this.deleteUnfollowUser();
+			}
+			_this.pendingFollowerCountdown = total;
+						
+			//save to database					
+			_this.saveNewFollowers(body.follows);
+			
+			while (count < total) {				
+				var nextUrl = url + '&offset=' + count;
+				options.url = nextUrl;
+				request(options, function(error, response, body) {
+					if ( ! error && response.statusCode == 200) {
+						var body = JSON.parse(body);																				
+						_this.saveNewFollowers(body.follows)					
+						
+					} else {
+						console.log('[1] Error while get followers...')			
+					}
+				});
+				count += 100;
+			}
+			
+		} else {
+			console.log('[2] Error while get followers...')
+		}
+	});	
+};
+
+FollowerHelper.prototype.finalCallback = function(){
+	console.log('Final callback')
+		 
+	this.deleteUnfollowUser();	
+}
+
+FollowerHelper.prototype.arrayDiff = function(array1, array2) {
+	var result = [];
+	for (i=0; i<array1.length; i++) {
+		var value = array1[i];
+		if ( -1 == array2.indexOf(value)) {
+			result.push(value);
+		}
+	}
+	return result;
+}
+
+FollowerHelper.prototype.deleteUnfollowUser = function() {
+	console.log('Delete unfollow user');
+	var _this = this;
+	var ids = this.arrayDiff(_this.savedFollowers, _this.insertIds);
+	if(ids.length > 0){
+		var idString = '(' + ids.join(',') + ')';
+		connection.query('delete from ' + this.tableName + ' where userId = ? and twitchUserId in ' + idString ,[_this.user.id], function(err) {
+			if ( ! err) {
+				console.log('Done deleting unfollow for user ', _this.user.name);
+			} else {
+				console.log('Error while delete unfollow data for ', _this.user.name);
+			}
+		});
+	} else {
+		console.log('Done deleting unfollow for user ', _this.user.name);
+	}	
+};
+
+FollowerHelper.prototype.updateFollowersForUser = function() {
+	var _this = this;
+	this.getFollowersFromDb().then(function() {		
+		console.log('User: ', _this.user.name , ' has: ', _this.savedFollowers.length, ' followers');		
+		_this.requestFollowersAndUpdate();														
+	});
+}
+
+function updateFollowers() {		
+	getOnlineUser().then(function(onlineUserIds) {			
+		for (var i=0; i < onlineUserIds.length; i++) {
+			var user = onlineUserIds[i];			
+			console.log('Starting update follower for user: ', user.name);
+			var followerHelper = new FollowerHelper(user);		
+			followerHelper.updateFollowersForUser();			
+		}
+	});	
+}
+
+exports.updateFollowers = updateFollowers;
+exports.getOnlineUser = getOnlineUser();
+exports.FollowerHelper = FollowerHelper;
+
+

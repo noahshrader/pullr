@@ -149,7 +149,7 @@ $user = \Yii::$app->user->identity;
                                 'campaign' => $campaign, 
                             ]); ?>   
                 </div>
-                <div class="text-center">
+                <div class="btn-container">
                     <a href="app/campaign/view?id=<?= $campaign->id ?>" class="btn btn-secondary">Cancel</a>
                     <button class="btn btn-primary">Update</button>
                 </div>

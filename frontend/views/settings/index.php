@@ -44,17 +44,15 @@ $this->title = 'Settings';
 				<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 			</div>
 			<div class="email-notifications module">
-				<fieldset>
-					<h5>Email Notifications</h5>
-					<div>
-						<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
-						<? $attributes = $notification->getNotificationsAttributes(); ?>
-					</div>
-					<label>Email me when:</label>
-					<? foreach ($attributes as $attribute): ?>
-					<?= $form->field($notification, $attribute)->checkbox(); ?>
-					<? endforeach; ?>
-				</fieldset>
+				<h5>Email Notifications</h5>
+				<div>
+					<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
+					<? $attributes = $notification->getNotificationsAttributes(); ?>
+				</div>
+				<label>Email me when:</label>
+				<? foreach ($attributes as $attribute): ?>
+				<?= $form->field($notification, $attribute)->checkbox(); ?>
+				<? endforeach; ?>
 			</div>
 		</section>
 		<section class="module">
