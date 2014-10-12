@@ -43,6 +43,9 @@ $this->title = 'Settings';
 				?>
 				<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 			</div>
+			<div class="dashboard-notifications module">
+				<h5>Dashboard Notifications</h5>
+			</div>
 			<div class="email-notifications module">
 				<h5>Email Notifications</h5>
 				<div>
