@@ -368,7 +368,15 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getNotification()
     {
-        return $this->hasOne(Notification::className(), ['userId' => 'id']);
+
+        $notification = $this->hasOne(Notification::className(), ['userId' => 'id'])->one();
+        
+        if ( ! $notification ) {
+            $notification = new Notification();
+            $notification->userId = $this->id;
+            $notification->save();
+        }
+        return $notification;
     }
 
     /**

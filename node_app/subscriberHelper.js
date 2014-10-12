@@ -39,6 +39,24 @@ function getOnlineUser() {
 SubscriberHelper.prototype = new helper.FollowerHelper();
 //SubscriberHelper.prototype.constructor = SubscriberHelper;
 
+SubscriberHelper.prototype.checkCanPostNotification = function() {
+	var deferred = q.defer();
+	var _this = this;
+	connection.query('select newSubscriber from tbl_notification where userId = ?', [this.user.id], function(err, result){
+		if ( !err  && result.length > 0) {
+			
+			if (result[0].newSubscriber == 1) {
+
+				_this.canPostNotification = true;				
+			} else {
+				_this.canPostNotification = false;
+			}
+			deferred.resolve(true);
+		}
+	});
+	return deferred.promise;
+}
+
 SubscriberHelper.prototype.tableName = 'tbl_twitch_subscriptions';
 SubscriberHelper.prototype.message = '%s just subscribed to your channel %s!';
 SubscriberHelper.prototype.command = 'subscriptions';
@@ -114,10 +132,12 @@ SubscriberHelper.prototype.requestSubscribersAndUpdate = function () {
 SubscriberHelper.prototype.updateSubscribers = function(){
 	var _this = this;
 
-	this.getFollowersFromDb().then(function() {		
-		console.log('User: ', _this.user.name , ' has: ', _this.savedFollowers.length, ' subscribers');		
-		_this.requestSubscribersAndUpdate();														
-	});
+	_this.checkCanPostNotification().then(function(){
+		_this.getFollowersFromDb().then(function() {		
+			console.log('User: ', _this.user.name , ' has: ', _this.savedFollowers.length, ' subscribers');		
+			_this.requestSubscribersAndUpdate();														
+		});
+	})
 }
 function updateSubscribers() {		
 	getOnlineUser().then(function(onlineUserIds) {			

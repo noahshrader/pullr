@@ -42,10 +42,29 @@ FollowerHelper.prototype.tableName = 'tbl_twitch_follow';
 FollowerHelper.prototype.message = '%s just followed your channel %s !';
 FollowerHelper.prototype.savedFollowers = [];
 
-FollowerHelper.prototype.getApiLink = function(){	
+FollowerHelper.prototype.getApiLink = function() {	
 	return TWITCH_API_URL + '/channels/' + this.user.twitchChannel + '/follows?limit=100';	
 }
 
+FollowerHelper.prototype.canPostNotification = false;
+
+FollowerHelper.prototype.checkCanPostNotification = function() {
+	var deferred = q.defer();
+	var _this = this;
+	connection.query('select newFollower from tbl_notification where userId = ?', [this.user.id], function(err, result){
+		if ( !err  && result.length > 0) {
+			
+			if (result[0].newFollower == 1) {
+
+				_this.canPostNotification = true;				
+			} else {
+				_this.canPostNotification = false;
+			}
+			deferred.resolve(true);
+		}
+	});
+	return deferred.promise;
+}
 FollowerHelper.prototype.getFollowersFromDb = function () {
 	var _this = this;
 	var deferred = q.defer();			
@@ -91,7 +110,10 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 				updateDate: updateDate,
 				createdAtPullr: updateDate
 			};
-			_this.createNotification(row.display_name);
+			if ( _this.canPostNotification ) {
+				_this.createNotification(row.display_name);	
+			}
+			
 			connection.query('INSERT INTO ' + _this.tableName + ' SET ?', row, function(err, result) {
 				_this.insertIds.push(follower.user._id);
 				if ( ! err ) {
@@ -221,10 +243,12 @@ FollowerHelper.prototype.deleteUnfollowUser = function() {
 
 FollowerHelper.prototype.updateFollowersForUser = function() {
 	var _this = this;
-	this.getFollowersFromDb().then(function() {		
-		console.log('User: ', _this.user.name , ' has: ', _this.savedFollowers.length, ' followers');		
-		_this.requestFollowersAndUpdate();														
-	});
+	this.checkCanPostNotification().then(function(){
+		_this.getFollowersFromDb().then(function() {		
+			console.log('User: ', _this.user.name , ' has: ', _this.savedFollowers.length, ' followers');		
+			_this.requestFollowersAndUpdate();														
+		});
+	})
 }
 
 function updateFollowers() {		

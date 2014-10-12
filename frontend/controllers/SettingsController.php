@@ -32,6 +32,7 @@ class SettingsController extends FrontendController
         }
 
         $notification = $user->notification;
+        
         $notification->load($_POST) && $notification->save($_POST);
 
         $changePasswordForm = new ChangePasswordForm();

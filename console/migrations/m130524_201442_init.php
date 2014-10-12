@@ -59,6 +59,8 @@ class m130524_201442_init extends \console\models\ExtendedMigration
             Notification::$NOTIFY_NEW_FEATURE_ADDED => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
             Notification::$NOTIFY_NEW_THEME_AVAILABLE => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
             Notification::$NOTIFY_SYSTEM_UPDATE => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
+            Notification::$NOTIFY_NEW_FOLLOWER => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE',
+            Notification::$NOTIFY_NEW_SUBSCRIBER => Schema::TYPE_BOOLEAN . ' NOT NULL DEFAULT TRUE'
         ]);
 
         $plans = implode('","', Plan::$PLANS);

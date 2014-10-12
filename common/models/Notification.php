@@ -11,7 +11,8 @@ class Notification extends ActiveRecord {
     public static $NOTIFY_NEW_FEATURE_ADDED = 'newFeatureAdded';
     public static $NOTIFY_NEW_THEME_AVAILABLE= 'newThemeAvailable';
     public static $NOTIFY_SYSTEM_UPDATE = 'systemUpdate';
-    
+    public static $NOTIFY_NEW_FOLLOWER = 'newFollower';
+    public static $NOTIFY_NEW_SUBSCRIBER = 'newSubscriber';
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -20,7 +21,15 @@ class Notification extends ActiveRecord {
     }
     public function scenarios() {
         return [
-            'default' => [self::$NOTIFY_NEVER, self::$NOTIFY_DONATION_RECEIVED, self::$NOTIFY_NEW_FEATURE_ADDED, self::$NOTIFY_NEW_THEME_AVAILABLE, self::$NOTIFY_SYSTEM_UPDATE]
+            'default' => [
+                self::$NOTIFY_NEVER, 
+                self::$NOTIFY_DONATION_RECEIVED, 
+                self::$NOTIFY_NEW_FEATURE_ADDED, 
+                self::$NOTIFY_NEW_THEME_AVAILABLE, 
+                self::$NOTIFY_SYSTEM_UPDATE,
+                self::$NOTIFY_NEW_SUBSCRIBER,
+                self::$NOTIFY_NEW_FOLLOWER
+            ]
         ];
     }
     public function attributeLabels() {
@@ -29,7 +38,9 @@ class Notification extends ActiveRecord {
             self::$NOTIFY_DONATION_RECEIVED => 'When I receive a donation',
             self::$NOTIFY_NEW_FEATURE_ADDED => 'When new features are added',
             self::$NOTIFY_NEW_THEME_AVAILABLE => 'When new themes are available',
-            self::$NOTIFY_SYSTEM_UPDATE => 'System updates'
+            self::$NOTIFY_SYSTEM_UPDATE => 'System updates',
+            self::$NOTIFY_NEW_SUBSCRIBER => 'New subscriber',
+            self::$NOTIFY_NEW_FOLLOWER => 'New follower'
         ];
     }
 
