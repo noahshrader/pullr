@@ -106,7 +106,7 @@ SubscriberHelper.prototype.requestSubscribersAndUpdate = function () {
 			}
 			
 		} else {
-			console.log('Error while get followers...')
+			console.log('Error while get subscribers from API...')
 		}
 	});	
 };

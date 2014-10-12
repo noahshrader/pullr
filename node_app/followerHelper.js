@@ -58,7 +58,7 @@ FollowerHelper.prototype.getFollowersFromDb = function () {
 			_this.savedFollowers = savedFollowers;
 			deferred.resolve(savedFollowers);
 		} else {
-			deferred.reject('error get followers from db')
+			deferred.reject('error get data from db')
 		}
 	});
 	return deferred.promise;
@@ -96,7 +96,7 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 				_this.insertIds.push(follower.user._id);
 				if ( ! err ) {
 					_this.pendingFollowerCountdown--;
-					console.log('Save 1 follower. Left: ', _this.pendingFollowerCountdown);
+					//console.log('Save 1 follower. Left: ', _this.pendingFollowerCountdown);
 										
 					if (_this.pendingFollowerCountdown == 0) {
 						_this.finalCallback();
@@ -202,20 +202,20 @@ FollowerHelper.prototype.arrayDiff = function(array1, array2) {
 }
 
 FollowerHelper.prototype.deleteUnfollowUser = function() {
-	console.log('Delete unfollow user');
+	console.log('Delete unfollow/unsubscribe user');
 	var _this = this;
 	var ids = this.arrayDiff(_this.savedFollowers, _this.insertIds);
 	if(ids.length > 0){
 		var idString = '(' + ids.join(',') + ')';
 		connection.query('delete from ' + this.tableName + ' where userId = ? and twitchUserId in ' + idString ,[_this.user.id], function(err) {
 			if ( ! err) {
-				console.log('Done deleting unfollow for user ', _this.user.name);
+				console.log('Done deleting for user ', _this.user.name);
 			} else {
-				console.log('Error while delete unfollow data for ', _this.user.name);
+				console.log('Error while delete data for ', _this.user.name);
 			}
 		});
 	} else {
-		console.log('Done deleting unfollow for user ', _this.user.name);
+		console.log('Done deleting for user ', _this.user.name);
 	}	
 };
 
