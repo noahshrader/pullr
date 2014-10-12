@@ -9,9 +9,10 @@ node_modules
 bower_components
 Vagrantfile
 .vagrant
-/PullrVs.phpproj
-/PullrVs.phpproj.user
-/PullrVs.sln
-/PullrVs.v12.suo
 /.gitattributes
 node_app/config.json
+/Pullr.v12.suo
+/Pullr.phpproj
+/Pullr.phpproj.user
+/Pullr.sln
+

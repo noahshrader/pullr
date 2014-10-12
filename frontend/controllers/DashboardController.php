@@ -13,8 +13,10 @@ use common\models\User;
 use common\models\OpenIDToUser;
 use frontend\models\TwitchHelper;
 
-class DashboardController extends FrontendController {
-    public function actionIndex() {
+class DashboardController extends FrontendController 
+{
+    public function actionIndex() 
+    {
         $user = \Yii::$app->user->identity;
         
         /**@var User $user*/
@@ -38,12 +40,14 @@ class DashboardController extends FrontendController {
         ]);
     }
 
-    public function actionClosesystemmessage($id){
+    public function actionClosesystemmessage($id)
+    {
         $userId = \Yii::$app->user->id;
         SystemNotification::readNotificationForUser($userId, $id);
     }
     
-    public function actionInvitedelete($id){
+    public function actionInvitedelete($id)
+    {
         $userId = \Yii::$app->user->id;
         $invite = CampaignInvite::findOne(['id' => $id, 'status' => CampaignInvite::STATUS_PENDIND, 
             'userId' => $userId]);
@@ -54,7 +58,8 @@ class DashboardController extends FrontendController {
         $this->redirect('app');
     }
     
-    public function actionInviteapprove($id){
+    public function actionInviteapprove($id)
+    {
         $userId = \Yii::$app->user->id;
         $invite = CampaignInvite::findOne(['id' => $id, 'status' => CampaignInvite::STATUS_PENDIND, 
             'userId' => $userId]);
@@ -64,7 +69,8 @@ class DashboardController extends FrontendController {
         $this->redirect('app');
     }
 
-    private function calculateDashboardStats($period = 'overall'){
+    private function calculateDashboardStats($period = 'overall')
+    {
         // total campaigns count
         $userCampaigns = Donation::find()
                             ->where(['campaignUserId' => \Yii::$app->user->id])

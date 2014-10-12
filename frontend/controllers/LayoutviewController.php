@@ -10,10 +10,9 @@ use common\components\PullrPayment;
 use common\components\FirstGivingPayment;
 use yii\web\Request;
 
-/*
-controller to view exported layout
- * donations
- *  */
+/**
+ * Controller to view exported layout donations
+ */
 class LayoutviewController extends \yii\web\Controller {
 
     public $campaign = null;
@@ -37,7 +36,8 @@ class LayoutviewController extends \yii\web\Controller {
         return $campaign;
     }
 
-    public function actionView($userAlias, $campaignAlias) {
+    public function actionView($userAlias, $campaignAlias) 
+    {
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
         $campaignTheme = $campaign->getTheme()->one();
 
@@ -48,6 +48,7 @@ class LayoutviewController extends \yii\web\Controller {
         {
             $theme = 'default';
         }
+        
         echo $this->renderPartial("@app/web/themes/{$theme}/index", ['campaign' => $campaign]);
         die;
     }
@@ -67,6 +68,13 @@ class LayoutviewController extends \yii\web\Controller {
         );
     }
 
+    /**
+     * Campaign donation page
+     * Handles both standart and Firstgiving campaign types
+     * @param mixed $userAlias 
+     * @param mixed $campaignAlias 
+     * @return mixed
+     */
     public function actionDonate($userAlias, $campaignAlias){
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
         
@@ -87,28 +95,31 @@ class LayoutviewController extends \yii\web\Controller {
             $donation->userId = \Yii::$app->user->id; 
         }
 
-        if ($donation->load($_REQUEST))
-        {
-            if ($donation->save()){
-                if ($firstGiving = $campaign->firstGiving) {
+        if ($donation->load($_REQUEST) && $donation->save()){
+            if ($firstGiving = $campaign->firstGiving) {
+                
+                $_SESSION['Donation'] = 
+                    [
+                        'nameFromForm' => $donation->nameFromForm == Donation::ANONYMOUS_NAME ? '' : $donation->nameFromForm,
+                        'email' => $donation->email,
+                        'comments' => $donation->comments
+                    ];
+                
+                $firstGivingPayment = new FirstGivingPayment();
 
-                    $firstGivingPayment = new FirstGivingPayment();
+                $thankYouPage = \Yii::$app->request->hostInfo . '/' .  $userAlias.'/'.$campaignAlias.'/thankyou';
+                $firstGivingPayment->setConfig(array_merge(\Yii::$app->params['firstGiving'], ['pb_success' => $thankYouPage, 'buttonText' => 'Donate']));
+                $firstGivingPayment->setDonation($donation);
+                $firstGivingPayment->setFirstGiving($firstGiving);
 
-                    $thankYouPage = \Yii::$app->request->hostInfo . '/' .  $userAlias.'/'.$campaignAlias.'/thankyou';
-                    $firstGivingPayment->setConfig(array_merge(\Yii::$app->params['firstGiving'], ['pb_success' => $thankYouPage, 'buttonText' => 'Donate']));
-                    $firstGivingPayment->setDonation($donation);
-                    $firstGivingPayment->setFirstGiving($firstGiving);
+                $formUrl = $firstGivingPayment->donationPayment();
 
-                    $formUrl = $firstGivingPayment->donationPayment();
+                return $this->render('firstgiving', ['url' => $formUrl, 'campaign' => $campaign, 'back_url' => "/{$userAlias}/{$campaignAlias}/donate"]);
 
-                    return $this->render('firstgiving', ['url' => $formUrl, 'campaign' => $campaign, 'back_url' => "/{$userAlias}/{$campaignAlias}/donate"]);
-
-                } else {
-                    PullrPayment::donationPayment($donation);
-                }
+            } else {
+                PullrPayment::donationPayment($donation);
             }
         }
-
 
         //paypal success donate
         if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
@@ -118,6 +129,11 @@ class LayoutviewController extends \yii\web\Controller {
         }
 
         if ($campaign->firstGiving) {
+            if (isset($_SESSION['Donation']))
+            {
+                $donation->load($_SESSION);
+            }
+            
             $donation->setScenario('firstGiving');
         }
 

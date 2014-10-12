@@ -62,7 +62,8 @@ class PullrPayment extends \yii\base\Component {
         return $params;
     }
 
-    public function completePayment() {
+    public function completePayment() 
+    {
         // Get the payment Object by passing paymentId
         // payment id was previously stored in session in
         // CreatePaymentUsingPayPal.php
@@ -78,35 +79,49 @@ class PullrPayment extends \yii\base\Component {
 
         //Execute the payment
         // (See bootstrap.php for more on `ApiContext`)
-        try {
+        try 
+        {
             $result = $payment->execute($execution, $this->apiContext);
-        } catch (\Exception $ex) {
+        } 
+        catch (\Exception $ex) 
+        {
             return;
         }
-        if ($result && $result->getState() == 'approved') {
+        
+        if ($result && $result->getState() == 'approved') 
+        {
             $pay = \common\models\Payment::findOne(['paypalId' => $result->getId()]);
-            if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING) {
+            
+            if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING) 
+            {
                 $pay->status = \common\models\Payment::STATUS_APPROVED;
                 $pay->paymentDate = time();
                 $pay->save();
-                switch ($pay->type) {
+                
+                switch ($pay->type) 
+                {
                     case \common\models\Payment::TYPE_PRO_MONTH:
                     case \common\models\Payment::TYPE_PRO_YEAR:
                         $id = $pay->user->id;
                         $plan = Plan::findOne($id);
                         $plan->prolong($pay->amount);
                         break;
+                        
                     case \common\models\Payment::TYPE_DONATION:
                         $payer = $result->getPayer();
                         $payerInfo = $payer->getPayerInfo();
                         $donation = Donation::findOne($pay->relatedId);
                         $donation->paymentDate = $pay->paymentDate;
-                        if (!$donation->email){
+                        
+                        if (!$donation->email)
+                        {
                             $donation->email = strip_tags($payerInfo->getEmail());
                         }
+                        
                         $donation->firstName = strip_tags($payerInfo->getFirstName());
                         $donation->lastName = strip_tags($payerInfo->getLastName());
                         $donation->save();
+                        
                         Campaign::updateDonationStatistics($donation->campaignId);
 
                         // dashboard "Donation received" notification
@@ -117,13 +132,13 @@ class PullrPayment extends \yii\base\Component {
 
                         // dashboard "Campaign goal reached" notification
                         $campaign = Campaign::findOne($donation->campaignId);
-                        if (intval($campaign->amountRaised) >= intval($campaign->goalAmount)){
+                        if (intval($campaign->amountRaised) >= intval($campaign->goalAmount))
+                        {
                             RecentActivityNotification::createNotification(
                                 \Yii::$app->user->id,
                                 ActivityMessage::messageGoalReached($campaign)
                             );
                         }
-
                         break;
                 }
             }
@@ -134,7 +149,8 @@ class PullrPayment extends \yii\base\Component {
      * fired when someone make donation for campaign
      * @param \common\models\Donation $donation
      */
-    public static function donationPayment(Donation $donation) {
+    public static function donationPayment(Donation $donation) 
+    {
         // ### Itemized information
         // (Optional) Lets you specify item wise
         // information
@@ -145,7 +161,6 @@ class PullrPayment extends \yii\base\Component {
         $item->setPrice($donation->amount);
         $itemList = new ItemList();
         $itemList->setItems([$item]);
-
         
         $amount = new Amount();
         $amount->setCurrency("USD");
@@ -153,16 +168,20 @@ class PullrPayment extends \yii\base\Component {
 
         $campaign = $donation->campaign;
         $email = $campaign->donationEmail;
-        if (!$email){
+        
+        if (!$email)
+        {
             throw new \Exception('Donation paypal account is not set');
         }
+        
         $payee = new Payee();
         $payee->setEmail($email);
         
         self::makePayment($amount, $itemList, \common\models\Payment::TYPE_DONATION, $donation->id, $payee);
     }
 
-    public function subscribeToPlan($moneyAmount) {
+    public function subscribeToPlan($moneyAmount) 
+    {
         return;
         $params = self::getPaymentParamsForMoney($moneyAmount);
 
@@ -185,7 +204,8 @@ class PullrPayment extends \yii\base\Component {
         self::makePayment($amount, $itemList, $params['paymentType']);
     }
 
-    public static function makePayment($amount, $itemList, $paymentType, $relatedId = null, $payee = null) {
+    public static function makePayment($amount, $itemList, $paymentType, $relatedId = null, $payee = null) 
+    {
         // A resource representing a Payer that funds a payment
         // For paypal account payments, set payment method
         // to 'paypal'.
@@ -197,9 +217,11 @@ class PullrPayment extends \yii\base\Component {
         // is fulfilling it. 
         $transaction = (new Transaction())->setAmount($amount)->setItemList($itemList);
 
-        if ($payee){
+        if ($payee)
+        {
             $transaction->setPayee($payee);
         }
+        
         $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $baseUrl = preg_replace('/\?.*/', '', $baseUrl);
 
@@ -217,15 +239,18 @@ class PullrPayment extends \yii\base\Component {
             ->setTransactions([$transaction]);
 
         $pullrPayment = new PullrPayment;
-        try {
+        try 
+        {
 
             $payment->create($pullrPayment->apiContext);
             // ### Get redirect url
             // The API response provides the url that you must redirect
             // the buyer to. Retrieve the url from the $payment->getLinks()
             // method
-            foreach ($payment->getLinks() as $link) {
-                if ($link->getRel() == 'approval_url') {
+            foreach ($payment->getLinks() as $link) 
+            {
+                if ($link->getRel() == 'approval_url') 
+                {
                     $redirectUrl = $link->getHref();
                     break;
                 }
@@ -241,21 +266,25 @@ class PullrPayment extends \yii\base\Component {
             $session->set('paymentId', $payment->getId());
             $pay = new \common\models\Payment();
             $pay->paypalId = $payment->getId();
-            if (!\Yii::$app->user->isGuest) {
+            
+            if (!\Yii::$app->user->isGuest) 
+            {
                 $pay->userId = \Yii::$app->user->id;
             }
+            
             $pay->amount = $amount->getTotal();
             $pay->type = $paymentType;
             $pay->relatedId = $relatedId;
             $pay->createdDate = time();
             $pay->save();
 
-            if (isset($redirectUrl)) {
+            if (isset($redirectUrl)) 
+            {
                 header("Location: $redirectUrl");
                 exit;
             }
         }
-        catch (\PPConnectionException $ex)
+        catch (\PayPal\Exception\PPConnectionException $ex)
         {
             \Yii::error($ex->getData(), 'PayPal');
             throw $ex;
@@ -267,7 +296,13 @@ class PullrPayment extends \yii\base\Component {
         }
     }
 
-    public static function initProSubscription($payAmount){
+    /**
+     * Sends init request to PayPal for recurring payment
+     * @param mixed $payAmount 
+     * @return mixed
+     */
+    public static function initProSubscription($payAmount)
+    {
         $payParams = PullrPayment::getPaymentParamsForMoney($payAmount);
 
         $paymentDetails = new \PaymentDetailsType();
@@ -302,11 +337,10 @@ class PullrPayment extends \yii\base\Component {
         try
         {
             $response = (new \PayPalAPIInterfaceServiceService())->SetExpressCheckout($setECReq);
-        }
-        catch (\PPConnectionException $ex)
-        {
-            \Yii::error($ex->getData(), 'PayPal');
-            throw $ex;
+            if($response->Ack == "Failure")
+            {
+                throw new \Exception($response->Errors[0]->LongMessage);
+            }
         }
         catch (\Exception $ex)
         {
@@ -317,6 +351,13 @@ class PullrPayment extends \yii\base\Component {
         return $response;
     }
 
+    /**
+     * Sends request to PayPal to finish subscription process
+     * @param mixed $payAmount 
+     * @param mixed $token 
+     * @param mixed $PayerID 
+     * @return mixed
+     */
     public static function finishProSubscription($payAmount, $token, $PayerID)
     {
         try
@@ -402,11 +443,6 @@ class PullrPayment extends \yii\base\Component {
                 $result = (new \PayPalAPIInterfaceServiceService())->CreateRecurringPaymentsProfile($createRPProfileReq);
             }
         }
-        catch (\PPConnectionException $ex)
-        {
-            \Yii::error($ex->getData(), 'PayPal');
-            throw $ex;
-        }
         catch (\Exception $ex)
         {
             \Yii::error($ex->getMessage(), 'PayPal');
@@ -416,6 +452,11 @@ class PullrPayment extends \yii\base\Component {
         return $result;
     }
 
+    /**
+     * Sends request to PayPal to cancel recurring payment profile
+     * @param mixed $profileId 
+     * @return mixed
+     */
     public static function deactivateProSubscription($profileId)
     {
         $details = new \ManageRecurringPaymentsProfileStatusRequestDetailsType();
@@ -430,5 +471,4 @@ class PullrPayment extends \yii\base\Component {
 
         return (new \PayPalAPIInterfaceServiceService())->ManageRecurringPaymentsProfileStatus($profileStatus);
     }
-
 }
