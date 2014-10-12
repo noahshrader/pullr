@@ -17,7 +17,7 @@ var request = require('request');
 var TWITCH_API_URL = 'https://api.twitch.tv/kraken';
 
 
-function getOnlineUser() {		
+function getOnlineUser() {
 	var time = 10 * 60;
 	var deferred = q.defer();
 	//get online user in the last 5 minutes
@@ -91,14 +91,13 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 				updateDate: updateDate,
 				createdAtPullr: updateDate
 			};
-
+			_this.createNotification(row.display_name);
 			connection.query('INSERT INTO ' + _this.tableName + ' SET ?', row, function(err, result) {
 				_this.insertIds.push(follower.user._id);
 				if ( ! err ) {
 					_this.pendingFollowerCountdown--;
 					console.log('Save 1 follower. Left: ', _this.pendingFollowerCountdown);
-					_this.createNotification(follower.user.display_name);
-					
+										
 					if (_this.pendingFollowerCountdown == 0) {
 						_this.finalCallback();
 					}

@@ -14,3 +14,4 @@ Vagrantfile
 /PullrVs.sln
 /PullrVs.v12.suo
 /.gitattributes
+node_app/config.json
