@@ -41,17 +41,19 @@ FollowerHelper.prototype.updateIds = [];
 FollowerHelper.prototype.tableName = 'tbl_twitch_follow';
 FollowerHelper.prototype.message = '%s just followed your channel %s !';
 FollowerHelper.prototype.savedFollowers = [];
+FollowerHelper.prototype.notificationTable = 'tbl_notification';
+FollowerHelper.prototype.canPostNotification = false;
 
 FollowerHelper.prototype.getApiLink = function() {	
 	return TWITCH_API_URL + '/channels/' + this.user.twitchChannel + '/follows?limit=100';	
 }
 
-FollowerHelper.prototype.canPostNotification = false;
+
 
 FollowerHelper.prototype.checkCanPostNotification = function() {
 	var deferred = q.defer();
 	var _this = this;
-	connection.query('select newFollower from tbl_notification where userId = ?', [this.user.id], function(err, result){
+	connection.query('select newFollower from ' + _this.notificationTable + ' where userId = ?', [this.user.id], function(err, result){
 		if ( !err  && result.length > 0) {
 			
 			if (result[0].newFollower == 1) {
@@ -65,6 +67,7 @@ FollowerHelper.prototype.checkCanPostNotification = function() {
 	});
 	return deferred.promise;
 }
+
 FollowerHelper.prototype.getFollowersFromDb = function () {
 	var _this = this;
 	var deferred = q.defer();			

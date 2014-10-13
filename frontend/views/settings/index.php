@@ -45,6 +45,8 @@ $this->title = 'Settings';
 			</div>
 			<div class="dashboard-notifications module">
 				<h5>Dashboard Notifications</h5>
+				<?= $form->field($notification, Notification::$NOTIFY_NEW_FOLLOWER)->checkbox(); ?>
+				<?= $form->field($notification, Notification::$NOTIFY_NEW_SUBSCRIBER)->checkbox(); ?>
 			</div>
 			<div class="email-notifications module">
 				<h5>Email Notifications</h5>
@@ -53,9 +55,10 @@ $this->title = 'Settings';
 					<? $attributes = $notification->getNotificationsAttributes(); ?>
 				</div>
 				<label>Email me when:</label>
-				<? foreach ($attributes as $attribute): ?>
-				<?= $form->field($notification, $attribute)->checkbox(); ?>
-				<? endforeach; ?>
+				<?= $form->field($notification, Notification::$NOTIFY_DONATION_RECEIVED)->checkbox(); ?>
+				<?= $form->field($notification, Notification::$NOTIFY_NEW_FEATURE_ADDED)->checkbox(); ?>
+				<?= $form->field($notification, Notification::$NOTIFY_NEW_THEME_AVAILABLE)->checkbox(); ?>
+				<?= $form->field($notification, Notification::$NOTIFY_SYSTEM_UPDATE)->checkbox(); ?>			
 			</div>
 		</section>
 		<section class="module">

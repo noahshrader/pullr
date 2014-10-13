@@ -42,7 +42,7 @@ SubscriberHelper.prototype = new helper.FollowerHelper();
 SubscriberHelper.prototype.checkCanPostNotification = function() {
 	var deferred = q.defer();
 	var _this = this;
-	connection.query('select newSubscriber from tbl_notification where userId = ?', [this.user.id], function(err, result){
+	connection.query('select newSubscriber from ' + _this.notificationTable + ' where userId = ?', [this.user.id], function(err, result){
 		if ( !err  && result.length > 0) {
 			
 			if (result[0].newSubscriber == 1) {
@@ -57,6 +57,7 @@ SubscriberHelper.prototype.checkCanPostNotification = function() {
 	return deferred.promise;
 }
 
+SubscriberHelper.prototype.notificationTable = 'tbl_notification';
 SubscriberHelper.prototype.tableName = 'tbl_twitch_subscriptions';
 SubscriberHelper.prototype.message = '%s just subscribed to your channel %s!';
 SubscriberHelper.prototype.command = 'subscriptions';
