@@ -36,6 +36,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'includeSubscribers' => Schema::TYPE_BOOLEAN.' NOT NULL',
             'includeDonations' => Schema::TYPE_BOOLEAN.' NOT NULL',
             'animationDelaySeconds' => Schema::TYPE_INTEGER.' NOT NULL',
+            'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0'
         ]);
 
         $this->addPrimaryKey('streamboard_widget_alerts', WidgetAlerts::tableName(), ['userId', 'regionNumber']);
@@ -108,7 +109,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'animationDirection' => Schema::TYPE_STRING.' NOT NULL',
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
             'animationDelay' => Schema::TYPE_INTEGER.' NOT NULL',
-            'volume' => Schema::TYPE_FLOAT.' NOT NULL',
+            'volume' => Schema::TYPE_FLOAT.' NOT NULL',            
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar_alerts', WidgetCampaignBarAlerts::tableName(), ['userId', 'regionNumber']);
 

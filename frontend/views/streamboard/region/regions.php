@@ -16,7 +16,8 @@ $class = 'regionsNumber' . $regionsNumber;
             <img ng-src="{{region.toShow.alert.image}}">
 
             <div
-                ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle}">
+                ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle}"
+                ng-hide="region.toShow.alert.preference.hideAlertText">
                 {{region.toShow.alert.message}}
             </div>
         </div>

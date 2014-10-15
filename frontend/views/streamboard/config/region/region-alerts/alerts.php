@@ -25,6 +25,15 @@ use yii\web\View;
         </div>
     </div>
     <div class="form-group">
+        <div class="checkbox">
+            <label ng-class="{on:widget.hideAlertText}">
+                <input type="checkbox" ng-model="widget.hideAlertText" ng-change="regionChanged(region)">
+                Hide alert text
+            </label>
+        </div>
+     
+    </div>
+    <div class="form-group">
         <h5>Delay <span class="slider-value value">{{widget.animationDelaySeconds}} sec</span></h5>
         <slider ng-model="widget.animationDelaySeconds" floor="0" ceiling="30" step="1"
                 ng-change="regionChanged(region)"></slider>

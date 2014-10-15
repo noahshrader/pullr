@@ -83,12 +83,14 @@
                     console.log(['WE HAVE NOTIFICATION FOR REGION ' + region.regionNumber]);
                     console.log(notification);
                     var toShow = region.toShow.alert;
+
                     toShow.message = notification.message;
 
-                    if (region.widgetType == 'widget_alerts') {
-                        toShow.preference = region.widgetAlerts[notification.type + 'Preference'];
+                    if (region.widgetType == 'widget_alerts') {                        
+                        toShow.preference = region.widgetAlerts[notification.type + 'Preference'];                        
                         var preference = toShow.preference;
                         toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);
+                        toShow.preference.hideAlertText = region.widgetAlerts.hideAlertText;
                         alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
                         $interval(function () {
                             hideAlert(region);

@@ -33,13 +33,14 @@ class WidgetAlerts extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'animationDelaySeconds']
+            'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'animationDelaySeconds', 'hideAlertText']
         ];
     }
 
     public function fields(){
         return ['userId', 'regionNumber', 'includeFollowers', 'includeSubscribers', 'includeDonations',
             'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference',
+            'hideAlertText'
         ];
     }
 
@@ -113,7 +114,7 @@ class WidgetAlerts extends ActiveRecord {
         $data['includeFollowers'] = $this->includeFollowers == 1;
         $data['includeSubscribers'] = $this->includeSubscribers == 1;
         $data['includeDonations'] = $this->includeDonations == 1;
-
+        $data['hideAlertText'] = $this->hideAlertText == 1;
         return $data;
     }
 }
