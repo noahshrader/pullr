@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="/layoutview/api.css" />
         <link rel="stylesheet" href="/layoutview/bootstrap.css" />
         <!-- Theme Specific -->
-        <link rel="stylesheet" href="/themes/bdteam-1/css/master.css" />
-        <link rel="stylesheet" href="/themes/bdteam-1/css/animate.css" />
-        <link rel="stylesheet" href="/themes/bdteam-1/css/owl.carousel.css" />
+        <link rel="stylesheet" href="/themes/bdsingle/css/master.css" />
+        <link rel="stylesheet" href="/themes/bdsingle/css/animate.css" />
+        <link rel="stylesheet" href="/themes/bdsingle/css/owl.carousel.css" />
         <!-- Scripts -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
