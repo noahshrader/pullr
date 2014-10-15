@@ -122,7 +122,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
                     ?>
                     <div class="progress">
-                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
+                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"><span><?= round($progress) ?>%</span></div>
                     </div>
                 </div>
             </section>
