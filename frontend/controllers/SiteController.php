@@ -145,10 +145,6 @@ class SiteController extends FrontendController
                 $openId->userId = $user->id;
                 $openId->save();
 
-                $twitchUser = new TwitchUser();
-                $twitchUser->userId = $user->id;
-                $twitchUser->save();
-
                 //update subscriber and follower                
             }
             $user = $openId->user;

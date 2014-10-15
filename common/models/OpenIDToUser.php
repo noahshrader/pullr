@@ -4,6 +4,7 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 use common\models\User;
+use common\models\twitch\TwitchUser;
 
 /**
  * class is responsible for associating OpenID accounts to User model
@@ -107,6 +108,15 @@ class OpenIDToUser extends ActiveRecord {
      */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'userId']);
+    }
+
+    public function afterSave($insert, $changedAttributes) {
+        if ($insert) {
+            $twitchUser = new TwitchUser();
+            $twitchUser->userId = $this->userId;
+            $twitchUser->save();
+        }
+        return parent::afterSave($insert, $changedAttributes);
     }
 
 }
