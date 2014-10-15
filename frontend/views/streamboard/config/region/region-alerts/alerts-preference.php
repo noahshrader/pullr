@@ -24,6 +24,15 @@ use yii\web\View;
                                   ng-model="preference.fontColor" ng-change="regionChanged(region)"
                                   class="color-choice" ng-style="{'background-color':preference.fontColor}"></h5>
         </div>
+        <div class="panel-group">
+            <div class='checkbox'>
+                <label ng-class="{on:preference.hideAlertText}">
+                    <input type="checkbox" ng-model="preference.hideAlertText" ng-change="regionChanged(region)">
+                    Hide alert text
+                </label>
+            </div>
+            
+        </div>
     </div>
     <div class="module">
         <div class="panel-group">

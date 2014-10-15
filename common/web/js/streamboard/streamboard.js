@@ -171,3 +171,4 @@ function requireGoogleFont(fontFamily){
         }
    });
 }
+

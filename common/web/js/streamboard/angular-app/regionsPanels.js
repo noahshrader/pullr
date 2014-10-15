@@ -89,8 +89,7 @@
                     if (region.widgetType == 'widget_alerts') {                        
                         toShow.preference = region.widgetAlerts[notification.type + 'Preference'];                        
                         var preference = toShow.preference;
-                        toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);
-                        toShow.preference.hideAlertText = region.widgetAlerts.hideAlertText;
+                        toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);                        
                         alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
                         $interval(function () {
                             hideAlert(region);

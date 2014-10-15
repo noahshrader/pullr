@@ -56,7 +56,7 @@
         </div>
     </div>
 </div>
-<div class="right-side-footer">
+<div class="right-side-footer" ng-show='widget.alertsEnable || widget.messagesEnable || widget.timerEnable'>
     <ul class="panel-nav paneltoggle">
         <li ng-if="widget.alertsEnable"><a data-panel="alertsModule" class="icon-notify"></a></li>
         <li ng-if="widget.messagesEnable"><a data-panel="messagesModule" class="icon-bubble4"></a></li>

@@ -35,8 +35,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'includeFollowers' => Schema::TYPE_BOOLEAN.' NOT NULL',
             'includeSubscribers' => Schema::TYPE_BOOLEAN.' NOT NULL',
             'includeDonations' => Schema::TYPE_BOOLEAN.' NOT NULL',
-            'animationDelaySeconds' => Schema::TYPE_INTEGER.' NOT NULL',
-            'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0'
+            'animationDelaySeconds' => Schema::TYPE_INTEGER.' NOT NULL',            
         ]);
 
         $this->addPrimaryKey('streamboard_widget_alerts', WidgetAlerts::tableName(), ['userId', 'regionNumber']);
@@ -59,6 +58,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'soundType' => $fileTypes,
             'image' => Schema::TYPE_STRING.' NOT NULL',
             'imageType' => $fileTypes,
+            'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0'
         ]);
 
         $this->addPrimaryKey('streamboard_widget_alerts_preference', WidgetAlertsPreference::tableName(), ['userId', 'regionNumber', 'preferenceType']);
@@ -75,7 +75,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'scrolling' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'scrollSpeed' => $scrollSpeeds,
             'showSubscriber' => Schema::TYPE_BOOLEAN. ' DEFAULT 1',
-            'showFollower' => Schema::TYPE_BOOLEAN. ' DEFAULT 1'
+            'showFollower' => Schema::TYPE_BOOLEAN. ' DEFAULT 1',            
         ]);
         $this->addPrimaryKey('streamboard_widget_donation_feed', WidgetDonationFeed::tableName(), ['userId', 'regionNumber']);
 
@@ -92,6 +92,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'messagesEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'timerEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'progressBarEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
+            'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0'
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar', WidgetCampaignBar::tableName(), ['userId', 'regionNumber']);
 
@@ -109,7 +110,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'animationDirection' => Schema::TYPE_STRING.' NOT NULL',
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
             'animationDelay' => Schema::TYPE_INTEGER.' NOT NULL',
-            'volume' => Schema::TYPE_FLOAT.' NOT NULL',            
+            'volume' => Schema::TYPE_FLOAT.' NOT NULL',                        
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar_alerts', WidgetCampaignBarAlerts::tableName(), ['userId', 'regionNumber']);
 

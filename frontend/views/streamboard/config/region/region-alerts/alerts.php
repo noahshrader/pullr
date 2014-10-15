@@ -24,22 +24,14 @@ use yii\web\View;
             </label>
         </div>
     </div>
-    <div class="form-group">
-        <div class="checkbox">
-            <label ng-class="{on:widget.hideAlertText}">
-                <input type="checkbox" ng-model="widget.hideAlertText" ng-change="regionChanged(region)">
-                Hide alert text
-            </label>
-        </div>
-     
-    </div>
+   
     <div class="form-group">
         <h5>Delay <span class="slider-value value">{{widget.animationDelaySeconds}} sec</span></h5>
         <slider ng-model="widget.animationDelaySeconds" floor="0" ceiling="30" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>
 </div>
-<div class="right-side-footer">
+<div class="right-side-footer" ng-show='widget.includeDonations || widget.includeFollowers || widget.includeSubscribers'>
     <ul class="panel-nav paneltoggle">
         <li ng-if="widget.includeDonations" class="panel-link"><a data-panel="donations" class="icon-coin"></a></li>
         <li ng-if="widget.includeFollowers" class="panel-link"><a data-panel="followers" class="icon-heart"></a></li>
