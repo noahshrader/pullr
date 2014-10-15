@@ -1,0 +1,10 @@
+/*
+ * jQuery pageSlide
+ * Version 2.0
+ * http://srobbin.com/jquery-pageslide/
+ *
+ * jQuery Javascript plugin which slides a webpage over to reveal an additional interaction pane.
+ *
+ * Copyright (c) 2011 Scott Robbin (srobbin.com)
+ * Dual licensed under the MIT and GPL licenses.
+*/(function(a){function b(b,c){if(0===b.indexOf("#"))a(b).clone(!0).appendTo(e.empty()).show();else{if(c){var d=a("<iframe />").attr({src:b,frameborder:0,hspace:0}).css({width:"100%",height:"100%"});e.html(d)}else e.load(b);e.data("localEl",!1)}}function c(a,b){var c=e.outerWidth(!0),g={},i={};if(!e.is(":visible")&&!f){f=!0;switch(a){case"left":e.css({left:"auto",right:"-"+c+"px"});g["margin-left"]="-="+c;i.right="+="+c;break;default:e.css({left:"-"+c+"px",right:"auto"}),g["margin-left"]="+="+c,i.left="+="+c}d.animate(g,b);e.show().animate(i,b,function(){f=!1})}}var d=a("body"),e=a("#pageslide"),f=!1,g;0==e.length&&(e=a("<div />").attr("id","pageslide").css("display","none").appendTo(a("body")));a.fn.pageslide=function(b){this.click(function(c){var d=a(this),f=a.extend({href:d.attr("href")},b);c.preventDefault();c.stopPropagation();e.is(":visible")&&d[0]==g?a.pageslide.close():(a.pageslide(f),g=d[0])})};a.fn.pageslide.defaults={speed:200,direction:"right",modal:!1,iframe:!0,href:null};a.pageslide=function(d){var f=a.extend({},a.fn.pageslide.defaults,d);e.is(":visible")&&e.data("direction")!=f.direction?a.pageslide.close(function(){b(f.href,f.iframe);c(f.direction,f.speed)}):(b(f.href,f.iframe),e.is(":hidden")&&c(f.direction,f.speed));e.data(f)};a.pageslide.close=function(b){var c=a("#pageslide"),e=c.outerWidth(!0),g=c.data("speed"),i={},j={};if(!c.is(":hidden")&&!f){f=!0;switch(c.data("direction")){case"left":i["margin-left"]="+="+e;j.right="-="+e;break;default:i["margin-left"]="-="+e,j.left="-="+e}c.animate(j,g);d.animate(i,g,function(){c.hide();f=!1;"undefined"!=typeof b&&b()})}};e.click(function(a){a.stopPropagation()});a(document).bind("click keyup",function(b){"keyup"==b.type&&27!=b.keyCode||e.is(":visible")&&!e.data("modal")&&a.pageslide.close()})})(jQuery);

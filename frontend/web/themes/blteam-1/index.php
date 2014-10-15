@@ -51,7 +51,7 @@
 
             <div class="col-md-4 col-sm-4 col-xs-4 raised">
                 <span>Amount raised</span>
-                <h1>$10,997</h1>
+                <h1>{{campaign.amountRaised}}</h1>
             </div>
 
             <div class="col-md-4 col-sm-4 col-xs-4 center">
