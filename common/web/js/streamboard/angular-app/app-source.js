@@ -11,6 +11,8 @@
                 $scope.twitchUser = data['twitchUser'];
                 $scope.subscribers = data['subscribers'];
                 $scope.followers = data['followers'];
+                $scope.followersNumber = data['followersNumber'];
+                $scope.subscribersNumber = data['subscribersNumber'];
             });
         }
         $scope.requestSourceStats();

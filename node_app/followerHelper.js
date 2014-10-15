@@ -8,12 +8,15 @@ var connection = mysql.createConnection({
 	password : config.db.password,
 	database: config.db.database
 });
+
 connection.connect(function(err) {
 	if (err) {
 		console.log('error connect database');
 	}
 });
+
 var request = require('request');
+
 var TWITCH_API_URL = 'https://api.twitch.tv/kraken';
 
 
@@ -31,9 +34,22 @@ function getOnlineUser() {
 	return deferred.promise;
 }
 
-var FollowerHelper = function(user){
+var FollowerHelper = function(user) {
 	this.user = user;
+	this.connection = mysql.createConnection({
+		host : config.db.host,
+		user : config.db.user,
+		password : config.db.password,
+		database: config.db.database
+	});
+	this.connection.connect(function(err) {
+		if (err) {
+			throw new Error("Can't connect to database");
+		}
+	});
 }
+
+FollowerHelper.prototype.connection = null;
 FollowerHelper.prototype.user = null;
 FollowerHelper.prototype.insertIds = [];
 FollowerHelper.prototype.pendingFollowerCountdown = 0;
@@ -211,7 +227,7 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 
 FollowerHelper.prototype.finalCallback = function(){
 	console.log('Final callback')
-		 
+	console.timeEnd('getFollower');
 	this.deleteUnfollowUser();	
 }
 
@@ -246,7 +262,7 @@ FollowerHelper.prototype.deleteUnfollowUser = function() {
 
 FollowerHelper.prototype.updateFollowersForUser = function() {
 	var _this = this;
-	this.checkCanPostNotification().then(function(){
+	this.checkCanPostNotification().then(function() {
 		_this.getFollowersFromDb().then(function() {		
 			console.log('User: ', _this.user.name , ' has: ', _this.savedFollowers.length, ' followers');		
 			_this.requestFollowersAndUpdate();														
@@ -254,8 +270,10 @@ FollowerHelper.prototype.updateFollowersForUser = function() {
 	})
 }
 
-function updateFollowers() {		
+function updateFollowers() {
+
 	getOnlineUser().then(function(onlineUserIds) {			
+		console.time('getFollower');
 		for (var i=0; i < onlineUserIds.length; i++) {
 			var user = onlineUserIds[i];			
 			console.log('Starting update follower for user: ', user.name);

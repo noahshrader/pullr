@@ -14,8 +14,14 @@
         }
 
         $scope.markAsRead = function(donation){
-            donation.streamboard.wasRead = true;
-            $http.post('app/streamboard/set_donation_streamboard', {id: donation.id, property: 'wasRead', value: true });
+            var wasRead = true;
+            if ( donation.streamboard.wasRead = true ) {
+                wasRead = false;
+            } else {
+                wasRead = true;
+            }
+            donation.streamboard.wasRead = wasRead;
+            $http.post('app/streamboard/set_donation_streamboard', {id: donation.id, property: 'wasRead', value: wasRead });
         }
 
     });

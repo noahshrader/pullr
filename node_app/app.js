@@ -12,7 +12,7 @@ var subscriberHelper = require('./subscriberHelper.js');
 
 var timeoutTime = 10 * 60 * 1000;
 function run() {
-	//followerHelper.updateFollowers();
+	followerHelper.updateFollowers();
 	subscriberHelper.updateSubscribers();
 	setTimeout(function(){
 		followerHelper.updateFollowers();

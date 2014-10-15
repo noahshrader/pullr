@@ -8,10 +8,10 @@ use yii\web\View;
     <div ng-controller="SourceCtrl">
         <div class="twitchStats module" ng-show="twitchUser">
             <div class="form-group">
-                <div>Followers: <span id="followers_number" class="amount accent">{{twitchUser.followersNumber}}</span>
+                <div>Followers: <span id="followers_number" class="amount accent">{{followersNumber}}</span>
                 </div>
                 <div ng-show="Pullr.user.userFields.twitchPartner">Subscribers:
-                    <span id="subscriber_number" class="amount accent">{{twitchUser.subscribersNumber}}</span>
+                    <span id="subscriber_number" class="amount accent">{{subscribersNumber}}</span>
                 </div>
             </div>
         </div>

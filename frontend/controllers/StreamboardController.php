@@ -324,7 +324,9 @@ class StreamboardController extends FrontendController
             'twitchUser' => $twitchUserArray,
             'donors' => $donors,
             'subscribers' => $subscribers,
-            'followers' => $followers
+            'followers' => $followers,
+            'followersNumber' => TwitchFollow::getFollowerCountByTotal($user->id),
+            'subscribersNumber' => TwitchSubscription::getSubscriberCountByTotal($user->id)
         ];
         echo json_encode($data);
     }
