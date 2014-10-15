@@ -21,8 +21,6 @@ $(window).load(function() {
         }
     });
 
-    
-
     function initMarqueeContainer(){
         var $marqueeContainerList = $(".marquee-container");
         $marqueeContainerList.each(function(){
@@ -91,9 +89,9 @@ $(window).load(function() {
         live: true
     });
     // resize iframe based on inner content
-//    $('iframe').iFrameResize({
-//        heightCalculationMethod: 'documentElementScroll'
-//    });
+    $('iframe').iFrameResize({
+        heightCalculationMethod: 'documentElementScroll'
+    });
 });
 
 $(function () {
