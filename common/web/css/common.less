@@ -146,6 +146,18 @@ body {
 			color: @gray20;
 			font-weight: 300;
 			margin: 0;
+
+			span {
+				display: inline-block;
+				color: @white;
+				font-size: .8em;
+				font-weight: 600;
+				line-height: 1.4em;
+				padding: 0 .6em;
+				margin-left: 3px;
+				background: @accent;
+				.round-radius;
+			}
 		}
 		&.raised-total,
 		&.top-donation {
@@ -277,6 +289,10 @@ ul.panel-nav {
 .tooltip.top .tooltip-arrow {
 	border-top-color: @gray20;
 	border-width: 5px 5px 0;
+}
+.tooltip.right .tooltip-arrow {
+	border-right-color: @gray20;
+	border-width: 5px 5px 5px 0;
 }
 .tooltip.bottom .tooltip-arrow {
 	border-bottom-color: @gray20;
