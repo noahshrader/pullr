@@ -105,7 +105,7 @@ class IpnController extends FrontendController
         {
             $data = $this->requestDataAsArray($requestData);
 
-            //log all incoming genuine IPN requests
+            // Log all incoming genuine IPN requests
             $ipnRequest = new Ipn();
             $ipnRequest->createdDate = time();
             $ipnRequest->txnType = $data['txn_type'];
@@ -129,7 +129,7 @@ class IpnController extends FrontendController
                             $payment->status = Payment::STATUS_APPROVED;
                             $payment->userId = $recurringProfile->userId;
                             $payment->amount = $data['mc_gross'];
-                            $payment->paypalId = $data['txn_id'];
+                            $payment->payPalTransactionId = $data['txn_id'];
                             $payment->createdDate = time();
                             $payment->type = $paymentParams['paymentType'];
                             $payment->save();

@@ -5,7 +5,14 @@ namespace common\models;
 use yii\db\ActiveRecord;
 use common\models\User;
 
-class Payment extends ActiveRecord {
+/**
+ * Class Payment
+ * @package common\models
+ * @property integer $relatedId
+ * @property string $status
+ */
+class Payment extends ActiveRecord 
+{
     const STATUS_PENDING = 'pending';
     const STATUS_APPROVED = 'approved';
     
@@ -47,7 +54,7 @@ class Payment extends ActiveRecord {
     }
 
     public static function txnAlreadyProcessed($txn){
-        $payment = Payment::findOne(['paypalId' => $txn, 'status' => Payment::STATUS_APPROVED]);
+        $payment = Payment::findOne(['payPalTransactionId' => $txn, 'status' => Payment::STATUS_APPROVED]);
         return isset($payment);
     }
 }

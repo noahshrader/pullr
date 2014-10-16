@@ -31,7 +31,7 @@ class m140208_175010_common_models extends \console\models\ExtendedMigration {
             'id' => Schema::TYPE_PK,
             'status' => $statuses, 
             'userId' => Schema::TYPE_INTEGER,
-            'amount' => Schema::TYPE_FLOAT . ' NOT NULL',
+            'amount' => Schema::TYPE_DECIMAL . '(10,2) NOT NULL',
             'paypalId' => Schema::TYPE_STRING,
             'createdDate' => Schema::TYPE_INTEGER. ' NOT NULL',
             'paymentDate' => Schema::TYPE_INTEGER. ' NOT NULL',

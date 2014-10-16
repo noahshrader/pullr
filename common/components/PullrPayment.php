@@ -95,7 +95,7 @@ class PullrPayment extends \yii\base\Component {
         
         if ($result && $result->getState() == 'approved') 
         {
-            $pay = \common\models\Payment::findOne(['paypalId' => $result->getId()]);
+            $pay = \common\models\Payment::findOne(['payPalTransactionId' => $result->getId()]);
             
             if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING) 
             {
@@ -189,8 +189,12 @@ class PullrPayment extends \yii\base\Component {
     /**
      * Sends init request to PayPal to obtain pay key
      * Fired when someone wants to make donation for campaign
-     * 
-     * @param common\models\Donation $donaton 
+     *
+     * @param Donation $donation
+     * @param $returnUrl
+     * @param $cancelUrl
+     * @return string
+     * @throws \Exception
      */
     public function initDonationPayment(Donation $donation, $returnUrl, $cancelUrl)
     {         
@@ -241,7 +245,7 @@ class PullrPayment extends \yii\base\Component {
             $payDonation = new \common\models\Payment();
             $payDonation->userId = \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
             $payDonation->type = \common\models\Payment::TYPE_DONATION;
-            $payDonation->paypalId = $response->payKey;
+            $payDonation->payKey = $response->payKey;
             $payDonation->amount = $payee->amount;
             $payDonation->relatedId = $donation->id;
             $payDonation->createdDate = time();
@@ -251,7 +255,7 @@ class PullrPayment extends \yii\base\Component {
             $payPercent = new \common\models\Payment();
             $payPercent->userId = \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
             $payPercent->type = \common\models\Payment::TYPE_DONATION_PERCENT;
-            $payPercent->paypalId = $response->payKey;
+            $payPercent->payKey = $response->payKey;
             $payPercent->amount = $pullr->amount;
             $payPercent->relatedId = $donation->id;
             $payPercent->createdDate = time();
@@ -283,56 +287,44 @@ class PullrPayment extends \yii\base\Component {
         $paymentDetailsRequest->payKey = $payKey;
         $adaptivePaymentsService = new \AdaptivePaymentsService();
         $paymentDetailsResponse = $adaptivePaymentsService->PaymentDetails($paymentDetailsRequest);
-                
+
+        $donationId = 0;
+        $paymentDate = time();
+
         foreach($paymentDetailsResponse->paymentInfoList->paymentInfo as $info)
         {
-            var_dump($info);
-            die();
-            if(strcasecmp($info->transactionStatus, "COMPLETED") !== 0) return false;
-        }
-        
-        $pay = \common\models\Payment::findOne(['paypalId' => $payKey]);
-        
-        if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING) 
-        {
-            $pay->status = \common\models\Payment::STATUS_APPROVED;
-            $pay->paymentDate = time();
-            $pay->save();
-            
-            //$payer = $result->getPayer();
-            //$payerInfo = $payer->getPayerInfo();
-            $donation = Donation::findOne($pay->relatedId);
-            $donation->paymentDate = $pay->paymentDate;
-            
-            //if (!$donation->email)
-            //{
-                //$donation->email = strip_tags($payerInfo->getEmail());
-            //}
-            
-            //$donation->firstName = strip_tags($payerInfo->getFirstName());
-            //$donation->lastName = strip_tags($payerInfo->getLastName());
-            $donation->save();
-            
-            Campaign::updateDonationStatistics($donation->campaignId);
-
-            // Dashboard "Donation received" notification
-            RecentActivityNotification::createNotification(
-                \Yii::$app->user->id,
-                ActivityMessage::messageDonationReceived($donation)
-            );
-
-            // Dashboard "Campaign goal reached" notification
-            $campaign = Campaign::findOne($donation->campaignId);
-            if (intval($campaign->amountRaised) >= intval($campaign->goalAmount))
+            if(strcasecmp($info->transactionStatus, "COMPLETED") === 0)
             {
-                RecentActivityNotification::createNotification(
-                    \Yii::$app->user->id,
-                    ActivityMessage::messageGoalReached($campaign)
-                );
+                $payment = \common\models\Payment::findOne(["payKey" => $payKey, "amount" => $info->receiver->amount]);
+                if(isset($payment) && ($payment->status === \common\models\Payment::STATUS_PENDING))
+                {
+                    $donationId = $payment->relatedId;
+
+                    $payment->status = \common\models\Payment::STATUS_APPROVED;
+                    $payment->paymentDate = $paymentDate;
+                    $payment->payPalTransactionId = $info->transactionId;
+                    $payment->save();
+                }
             }
         }
+
+        $donation = Donation::findOne($donationId);
+        $donation->paymentDate = $paymentDate;
+        $donation->save();
+
+        Campaign::updateDonationStatistics($donation->campaignId);
+
+        // Dashboard "Donation received" notification
+        RecentActivityNotification::createNotification(\Yii::$app->user->id, ActivityMessage::messageDonationReceived($donation));
+
+        // Dashboard "Campaign goal reached" notification
+        $campaign = Campaign::findOne($donation->campaignId);
+        if (intval($campaign->amountRaised) >= intval($campaign->goalAmount))
+        {
+            RecentActivityNotification::createNotification(\Yii::$app->user->id, ActivityMessage::messageGoalReached($campaign));
+        }
         
-        return true; 
+        return true;
     }
 
     /**
@@ -445,7 +437,7 @@ class PullrPayment extends \yii\base\Component {
                 $payment->status = \common\models\Payment::STATUS_APPROVED;
                 $payment->userId = \Yii::$app->user->identity->id;
                 $payment->amount = intval($payAmount);
-                $payment->paypalId = $initPaymentInfo->TransactionID;
+                $payment->payPalTransactionId = $initPaymentInfo->TransactionID;
                 $payment->createdDate = time();
                 $payment->paymentDate = time();
                 $payment->type = $payParams['subscription'] == Plan::SUBSCRIPTION_YEAR ? \common\models\Payment::TYPE_PRO_YEAR : \common\models\Payment::TYPE_PRO_MONTH;
