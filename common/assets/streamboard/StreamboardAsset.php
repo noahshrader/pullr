@@ -26,6 +26,8 @@ class StreamboardAsset extends AssetBundle
         'bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
         'js/jquery.marquee.js',
         'js/streamboard/angular-app/angular-marquee.js',
+        'js/streamboard/angular-app/simple-marquee.js',
+     //   'js/streamboard/angular-app/simple-marquee-helper.js',
 		'js/streamboard/streamboard.js',
         /* angular-app begin */
         'js/streamboard/angular-app/timers/current-time.js',

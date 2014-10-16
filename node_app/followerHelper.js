@@ -59,7 +59,7 @@ FollowerHelper.prototype.message = '%s just followed your channel %s !';
 FollowerHelper.prototype.savedFollowers = [];
 FollowerHelper.prototype.notificationTable = 'tbl_notification';
 FollowerHelper.prototype.canPostNotification = false;
-
+FollowerHelper.prototype.diffCount = 0;
 FollowerHelper.prototype.getApiLink = function() {	
 	return TWITCH_API_URL + '/channels/' + this.user.twitchChannel + '/follows?limit=100';	
 }
@@ -119,40 +119,45 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 				createdAt = createdAt / 1000;
 			}
 			var fields = ['userId', 'twitchUserId', 'createdAt', 'name', 'display_name', 'jsonResponse', 'updateDate', 'createdAtPullr'];
-			var row = {
-				userId: _this.user.id, 
-				twitchUserId: follower.user._id, 
-				createdAt: createdAt,
-				name: follower.user.name, 
-				display_name: follower.user.display_name,			
-				jsonResponse: JSON.stringify(follower), 
-				updateDate: updateDate,
-				createdAtPullr: updateDate
-			};
+			var row = [
+				_this.user.id, 
+				follower.user._id, 
+				createdAt,
+				follower.user.name, 
+				follower.user.display_name,			
+				JSON.stringify(follower), 
+				updateDate,
+				updateDate
+			];
+			batchs.push(row);
+	
 			if ( _this.canPostNotification ) {
-				_this.createNotification(row.display_name);	
+				//_this.createNotification(row.display_name);	
 			}
+			_this.savedFollowers.push(follower.user._id);
+			_this.insertIds.push(follower.user._id);
 			
-			connection.query('INSERT INTO ' + _this.tableName + ' SET ?', row, function(err, result) {
-				_this.insertIds.push(follower.user._id);
-				if ( ! err ) {
-					_this.pendingFollowerCountdown--;
-					//console.log('Save 1 follower. Left: ', _this.pendingFollowerCountdown);
-										
-					if (_this.pendingFollowerCountdown == 0) {
-						_this.finalCallback();
-					}
+			
+		} 
+	}	
+
+	if ( batchs.length ) {
+		connection.query('INSERT INTO ' + _this.tableName + ' (userId, twitchUserId, createdAt, `name`, display_name, jsonResponse, updateDate, createdAtPullr) VALUES ?', [batchs], function(err, result) {
+		
+			if ( ! err ) {
+				_this.pendingFollowerCountdown -= batchs.length;
+				//console.log('Save 1 follower. Left: ', _this.pendingFollowerCountdown);
+									
+				if (_this.pendingFollowerCountdown <= 0) {
+					_this.finalCallback();
 				}
-			});		
-		} else {
-			_this.insertIds.push(follower.user._id);			
-			
-			_this.pendingFollowerCountdown--;
-			if (_this.pendingFollowerCountdown == 0) {
-				_this.finalCallback();
+			} else {
+				console.log(err, result)
 			}
-		}
+		});			
 	}
+
+	
 };
 
 FollowerHelper.prototype.createNotification = function (display_name) {
@@ -199,8 +204,11 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 			if (count == 0 ) {
 				_this.deleteUnfollowUser();
 			}
-			_this.pendingFollowerCountdown = total;
-						
+			_this.pendingFollowerCountdown = total - _this.savedFollowers.length;
+			if ( _this.pendingFollowerCountdown == 0 ) {
+				console.log('No different between api and database, exit... ');
+				return false;
+			}				
 			//save to database					
 			_this.saveNewFollowers(body.follows);
 			
@@ -214,6 +222,7 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 						
 					} else {
 						console.log('[1] Error while get followers...')			
+						console.log(err, response);
 					}
 				});
 				count += 100;
@@ -221,6 +230,7 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 			
 		} else {
 			console.log('[2] Error while get followers...')
+			console.log(err, response);
 		}
 	});	
 };

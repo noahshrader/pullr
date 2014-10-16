@@ -105,10 +105,16 @@ SubscriberHelper.prototype.requestSubscribersAndUpdate = function () {
 			console.log('Total subscribers: ', total);
 			var count = body.subscriptions.length;
 			_this.insertIds = [];
+			
 			if (count == 0 ) {
 				_this.deleteUnfollowUser();
 			}
-			_this.pendingFollowerCountdown = total;
+
+			_this.pendingFollowerCountdown = total - _this.savedFollowers.length;
+			if ( _this.pendingFollowerCountdown == 0 ) {
+				console.log('No different between api and database, exit... ');
+				return false;
+			}				
 			
 			_this.saveNewFollowers(body.subscriptions);
 			

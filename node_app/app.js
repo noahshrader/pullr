@@ -7,14 +7,12 @@ if (false == fs.existsSync( __dirname + '/config.json')) {
 var followerHelper = require('./followerHelper.js');
 var subscriberHelper = require('./subscriberHelper.js');
 
-
-
-
 var timeoutTime = 10 * 60 * 1000;
+
 function run() {
 	followerHelper.updateFollowers();
 	subscriberHelper.updateSubscribers();
-	setTimeout(function(){
+	setTimeout(function() {
 		followerHelper.updateFollowers();
 		subscriberHelper.updateSubscribers();
 	}, timeoutTime);	

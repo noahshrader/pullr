@@ -33,7 +33,7 @@ ul.campaign-quicknav {
 		color: @white;
 	}
 	&.active p {
-		color: @accent !important;
+		color: @white;
 		background: @gray10;
 	}
 	&.active {
@@ -52,17 +52,8 @@ ul.campaign-quicknav {
 			color: @white;
 		}
 	}
-	h3,
-	p {
-		.trans;
-	}
 	h3 {
 		color: @gray30;
-		margin-bottom: 2px;
-		font-size: 17px;
-		font-weight: 600;
-		line-height: 1.2em;
-		.trans;
 	}
 	h5 {
 		color: @gray30;
@@ -70,22 +61,15 @@ ul.campaign-quicknav {
 		margin: 2px 0 4px;
 	}
 	p {
-		display: inline-block;
 		color: @gray30;
-		font-size: 14px;
-		font-weight: 600;
-		line-height: 1.4em;
-		margin-top: 6px;
-		margin-bottom: 0;
-		padding: 0 .8em;
-		background: @gray12;
-		.round-radius;
 	}
+	
 	/* Team campaign designation */
 	span.team-parent {
-		position: relative;
-		top: 2px;
 		display: inline-block;
+		float: left;
+		line-height: 30px;
+		margin-right: 4px;
 	}
 }
 body.archive .campaigns-list,
@@ -94,15 +78,6 @@ body.trash .campaigns-list {
 
 	.list-search {
 		top: @top-menu-height + @sidenavheight;
-	}
-}
-
-/* Donor specific */
-.donors-list {
-	.campaign-item {
-		&.active p {
-			color: @white !important;
-		}
 	}
 }
 
@@ -251,6 +226,9 @@ body.trash .campaigns-list {
 /* Child Campaigns */
 .campaign-view-childs {
 
+	&.dataTable th {
+		padding: .9em 4% !important;
+	}
 	td.raised {
 		text-align: right;
 	}

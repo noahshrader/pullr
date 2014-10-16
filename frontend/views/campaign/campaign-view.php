@@ -15,9 +15,9 @@ $user = \Yii::$app->user->identity;
 $donations = $campaign->getDonations()->all();
 
 $topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
-$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'].' ($'.number_format($topDonors[0]['amount']).')' : '';
+$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'] . '<span>' . '$' . number_format($topDonors[0]['amount']) . '' . '</span>': '';
 $topDonation = Donation::getTopDonation([$campaign]);
-$topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($topDonation->amount).')': '';
+$topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number_format($topDonation->amount) . '' . '</span>': '';
 ?>
 
 <script type="text/javascript">
@@ -122,7 +122,10 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
                     ?>
                     <div class="progress">
-                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"><span><?= round($progress) ?>%</span></div>
+                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
+                    </div>
+                    <div class="progress-count">
+                        <span><?= round($progress) ?>%</span>
                     </div>
                 </div>
             </section>
@@ -136,11 +139,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . ' ($'.number_format($to
                     <h5>Donors</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donation'>
-                    <h4><?= $topDonationText ?></h4>
+                    <h3><?= $topDonationText ?></h3>
                     <h5>Top Donation</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donor'>
-                    <h4><?= $topDonorText ?></h4>
+                    <h3><?= $topDonorText ?></h3>
                     <h5>Top Donor</h5>
                 </div>
                 <div class="clearfix"></div>

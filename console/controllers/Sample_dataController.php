@@ -114,10 +114,34 @@ class Sample_dataController extends Controller
 
         $user = new User();
         $user->setScenario('signup');
-        $user->login = 'admin@gmail.com';
-        $user->name = 'Admin';
+        $user->login = 'admin1@gmail.com';
+        $user->name = 'Admin1';
         $user->password = 'Admin';
-        $user->email = 'pullr@yandex.com';
+        $user->email = 'pullr1@yandex.com';
+        $user->save();
+
+        $user->setScenario('roles');
+        $user->role = User::ROLE_ADMIN;
+        $user->save();
+
+        $user = new User();
+        $user->setScenario('signup');
+        $user->login = 'admin2@gmail.com';
+        $user->name = 'Admin2';
+        $user->password = 'Admin';
+        $user->email = 'pullr2@yandex.com';
+        $user->save();
+
+        $user->setScenario('roles');
+        $user->role = User::ROLE_ADMIN;
+        $user->save();
+
+        $user = new User();
+        $user->setScenario('signup');
+        $user->login = 'admin3@gmail.com';
+        $user->name = 'Admin3';
+        $user->password = 'Admin';
+        $user->email = 'pullr3@yandex.com';
         $user->save();
 
         $user->setScenario('roles');
