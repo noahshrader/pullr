@@ -155,7 +155,7 @@ body {
 				line-height: 1.4em;
 				padding: 0 .6em;
 				margin-left: 3px;
-				background: @accent;
+				background: @gray60;
 				.round-radius;
 			}
 		}
@@ -175,8 +175,44 @@ body {
 		width: 100%;
 
 		.progress {
+			position: relative;
 			width: 100%;
 			height: 6px;
+			z-index: 1;
+		}
+		.progress-count {
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			height: 40px;
+			width: 60px;
+			color: @white;
+			font-size: .9em;
+			margin-left: -30px;
+			padding-top: .4em;
+			z-index: 0;
+
+			div {
+				position: relative;
+				padding-top: .4em;
+				z-index: 2;
+			}
+			span.arrow-count,
+			span.arrow-shadow-count {
+				.arrow-up;
+				margin-left: -50px;
+				border-width: 0 50px 40px 50px;
+			}
+			span.arrow-count {
+				bottom: 0;
+				border-color: transparent transparent @accent transparent;
+				z-index: 1;
+			}
+			span.arrow-shadow-count {
+				bottom: 1px;
+				border-color: transparent transparent @dkaccent transparent;
+				z-index: 0;
+			}
 		}
 	}
 }
@@ -188,18 +224,19 @@ body {
 	margin-bottom: 0px;
 	height: 20px;
 	background: @dkaccent;
-}
-.progress-line {
-	position: relative;
-	color: #FFF;
-	text-align: right;
-	padding-right: 5px;
-	line-height: 20px;
-	height: 20px;
-	max-width: 100%;
-	.smallcaps;
-	background: @dkraccent;
-	.animate-bar;
+
+	.progress-line {
+		position: relative;
+		color: #FFF;
+		text-align: right;
+		padding-right: 5px;
+		line-height: 20px;
+		height: 20px;
+		max-width: 100%;
+		.smallcaps;
+		background: @dkraccent;
+		.animate-bar;
+	}
 }
 
 
@@ -270,6 +307,33 @@ ul.panel-nav {
 			}
 		}
 	}
+}
+
+
+/* Sidebar Components */
+/* ------------------------------------------------- */
+h3.list-title {
+	color: @gray30;
+	margin-bottom: 2px;
+	font-size: 17px;
+	font-weight: 600;
+	line-height: 1.2em;
+	.trans;
+}
+p.list-total {
+	display: inline-block;
+	color: @gray30;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4em;
+	margin-top: 6px;
+	margin-bottom: 0;
+	padding: 0 .8em;
+	background: @gray12;
+	.round-radius;
+}
+span.list-info {
+	font-size: @fineprint;
 }
 
 

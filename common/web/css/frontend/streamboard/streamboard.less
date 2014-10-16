@@ -334,7 +334,7 @@ ul.panel-nav {
 			position: relative;
 			display: block;
 			color: @gray30;
-			padding: @gutter @gutter @gutter;
+			padding: @gutter;
 			margin: 0;
 			background: @gray10;
 			border-bottom: solid 1px @maingray;
@@ -354,26 +354,16 @@ ul.panel-nav {
 			&:last-child {
 				border: 0;
 			}
-			h3.donation-name {
-				margin: 0;
-				padding: 0;
-				font-size: 18px;
-				font-weight: 400;
+			h3.list-title,
+			p.list-total {
 				color: @white;
 			}
-			h4.donation-amount {
-				color: @accent !important;
-				margin-bottom: 0px;
-			}
+
 			.donation-comments {
-				font-size: 14px;
 				color: @gray70;
-				padding: 6px 0;
-				margin-bottom: 6px;
-			}
-			.donation-date {
-				font-size: @fineprint;
-				text-transform: lowercase;
+				font-size: 14px;
+				padding: 1em 0;
+				margin: 0;
 			}
 			a.toggleview {
 				position: relative;
