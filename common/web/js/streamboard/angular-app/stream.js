@@ -34,7 +34,7 @@
             this.getActivityFeedSetting();
 
 
-            function requestStreamData(){
+            function requestStreamData() {
 
                 $http.get('app/streamboard/get_stream_data').success(function (data) {
                     /*we should get data in "date ASC" order because we first should notifications which occur early*/

@@ -17,7 +17,7 @@
 
                 /*we make a delay as streamboard may still be loading, even if regions are ready*/
                 $interval(function () {
-                    $.each($scope.regionsService.regions, function (index, region) {
+                    $.each($scope.regionsService.regions, function (index, region) {                    
                         /*creating namespace for showing data*/
                         region.toShow = {alert: {
                         }};

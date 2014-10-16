@@ -8,10 +8,11 @@ use frontend\models\streamboard\StreamboardRegion;
     <!--angular-marquee container-->
     <div>
         <div ng-class='{marqueeStop: ! region.widgetDonationFeed.scrolling}' class='marquee-container'>
-            <div angular-marquee 
+            <div simple-marquee 
+            marquee-name='region.regionNumber'
             duration="region.widgetDonationFeed.scrollSpeed"
-            scroll="region.widgetDonationFeed.scrolling"
-                ng-style="{'color': region.widgetDonationFeed.fontColor, 'font-size': region.widgetDonationFeed.fontSize, 'font-family': region.widgetDonationFeed.fontStyle}"
+            scroll="region.widgetDonationFeed.scrolling"                        
+            ng-style="{'color': region.widgetDonationFeed.fontColor, 'font-size': region.widgetDonationFeed.fontSize, 'font-family': region.widgetDonationFeed.fontStyle}"
               >
                 <span
                     ng-repeat="donation in donationsService.donations | donationsFilterToSelectedCampaigns | limitTo: 20"
