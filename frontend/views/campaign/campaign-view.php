@@ -125,9 +125,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                         <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
                     </div>
                     <div class="progress-count">
-                        <span class="arrow-count"></span>
-                        <span class="arrow-shadow-count"></span>
-                        <div><?= round($progress) ?>%</div>
+                        <span><?= round($progress) ?>%</span>
                     </div>
                 </div>
             </section>
@@ -141,11 +139,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                     <h5>Donors</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donation'>
-                    <h4><?= $topDonationText ?></h4>
+                    <h3><?= $topDonationText ?></h3>
                     <h5>Top Donation</h5>
                 </div>
                 <div class='stats-box col-xs-6 top-donor'>
-                    <h4><?= $topDonorText ?></h4>
+                    <h3><?= $topDonorText ?></h3>
                     <h5>Top Donor</h5>
                 </div>
                 <div class="clearfix"></div>

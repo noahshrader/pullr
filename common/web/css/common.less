@@ -141,7 +141,7 @@ body {
 		}
 
 		h2,
-		h4 {
+		h3 {
 			display: block;
 			color: @gray20;
 			font-weight: 300;
@@ -150,7 +150,7 @@ body {
 			span {
 				display: inline-block;
 				color: @gray20;
-				font-size: .8em;
+				font-size: .7em;
 				font-weight: 400;
 				line-height: 1.4em;
 				padding: 0 .6em;
@@ -192,26 +192,9 @@ body {
 			padding-top: .4em;
 			z-index: 0;
 
-			div {
-				position: relative;
-				padding-top: .4em;
-				z-index: 2;
-			}
-			span.arrow-count,
-			span.arrow-shadow-count {
-				.arrow-up;
-				margin-left: -50px;
-				border-width: 0 50px 40px 50px;
-			}
-			span.arrow-count {
-				bottom: 0;
-				border-color: transparent transparent @accent transparent;
-				z-index: 1;
-			}
-			span.arrow-shadow-count {
-				bottom: 1px;
-				border-color: transparent transparent @dkaccent transparent;
-				z-index: 0;
+			span {
+				padding: .4em;
+				background: @accent;
 			}
 		}
 	}
