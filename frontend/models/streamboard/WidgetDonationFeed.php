@@ -10,6 +10,8 @@ use common\models\User;
  * @property integer $userId
  * @property integer $regionNumber - either 1 / 2
  * @property boolean $scrolling
+ * @property boolean $showFollower
+ * @property boolean $showSubscriber
  */
 class WidgetDonationFeed extends ActiveRecord {
     const SCROLL_SPEED_SLOW = 'Slow';
@@ -25,7 +27,7 @@ class WidgetDonationFeed extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'scrolling', 'scrollSpeed']
+            'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'scrolling', 'scrollSpeed', 'positionX', 'positionY']
         ];
     }
 

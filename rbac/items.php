@@ -2,7 +2,6 @@
 use yii\rbac\Item;
 
 return [
-    // HERE ARE YOUR MANAGEMENT TASKS manageThing0 & manageThing1 - examples
     'emailConfirmation' => ['type' => Item::TYPE_PERMISSION, 'description' => 'access to email confirmation page', 'ruleName' => NULL, 'data' => NULL],
     'frontend' => ['type' => Item::TYPE_PERMISSION, 'description' => 'access to frontend of application', 'ruleName' => NULL, 'data' => NULL],
     'backend' => ['type' => Item::TYPE_PERMISSION, 'description' => 'access to backend of application', 'ruleName' => NULL, 'data' => NULL],

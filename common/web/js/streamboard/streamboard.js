@@ -68,10 +68,10 @@ $(window).load(function() {
         $('.right-side-footer, .overlay').width(sidefooter);
     });
     // make items movable
-    $(".movable").draggable({
-        containment: "parent",
-        scroll: false
-    });
+//    $(".movable").draggable({
+//        containment: "parent",
+//        scroll: false
+//    });
 
     // custom scrollbars
     $(".pane").mCustomScrollbar({

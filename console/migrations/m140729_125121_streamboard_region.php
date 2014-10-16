@@ -35,7 +35,9 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'includeFollowers' => Schema::TYPE_BOOLEAN.' NOT NULL',
             'includeSubscribers' => Schema::TYPE_BOOLEAN.' NOT NULL',
             'includeDonations' => Schema::TYPE_BOOLEAN.' NOT NULL',
-            'animationDelaySeconds' => Schema::TYPE_INTEGER.' NOT NULL',            
+            'animationDelaySeconds' => Schema::TYPE_INTEGER.' NOT NULL',
+            'positionX' => Schema::TYPE_INTEGER.' NOT NULL',
+            'positionY' => Schema::TYPE_INTEGER.' NOT NULL'
         ]);
 
         $this->addPrimaryKey('streamboard_widget_alerts', WidgetAlerts::tableName(), ['userId', 'regionNumber']);
@@ -75,7 +77,9 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'scrolling' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'scrollSpeed' => $scrollSpeeds,
             'showSubscriber' => Schema::TYPE_BOOLEAN. ' DEFAULT 1',
-            'showFollower' => Schema::TYPE_BOOLEAN. ' DEFAULT 1',            
+            'showFollower' => Schema::TYPE_BOOLEAN. ' DEFAULT 1',
+            'positionX'=> Schema::TYPE_INTEGER.' NOT NULL',
+            'positionY' => Schema::TYPE_INTEGER.' NOT NULL'
         ]);
         $this->addPrimaryKey('streamboard_widget_donation_feed', WidgetDonationFeed::tableName(), ['userId', 'regionNumber']);
 
@@ -92,7 +96,9 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'messagesEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'timerEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'progressBarEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
-            'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0'
+            'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0',
+            'positionX'=> Schema::TYPE_INTEGER.' NOT NULL',
+            'positionY' => Schema::TYPE_INTEGER.' NOT NULL'
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar', WidgetCampaignBar::tableName(), ['userId', 'regionNumber']);
 

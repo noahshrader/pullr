@@ -98,7 +98,6 @@
                     } else {
                         /**so we have campaign bar*/
                         var alertsModule = region.widgetCampaignBar.alertsModule;
-                        console.log(alertsModule);
                         $interval(function () {
                             hideAlert(region);
                         }, alertsModule.animationDuration * 1000, 1);

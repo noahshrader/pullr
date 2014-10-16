@@ -27,7 +27,7 @@ class StreamboardAsset extends AssetBundle
         'js/jquery.marquee.js',
         'js/streamboard/angular-app/angular-marquee.js',
 		'js/streamboard/streamboard.js',
-        /* angular-app begin */        
+        /* angular-app begin */
         'js/streamboard/angular-app/timers/current-time.js',
         'js/streamboard/angular-app/timers/count-up-timer.js',
         'js/streamboard/angular-app/donationsService.js',
@@ -35,6 +35,7 @@ class StreamboardAsset extends AssetBundle
         'js/streamboard/angular-app/donationsCtrl.js',
         'js/streamboard/angular-app/stream.js',
         'js/streamboard/angular-app/regionsService.js',
+        'js/streamboard/angular-app/draggable.js',
         'js/streamboard/angular-app/regionsPanels.js',
         'js/streamboard/angular-app/regionsConfigs.js',
         'js/streamboard/angular-app/pullr-common.js',

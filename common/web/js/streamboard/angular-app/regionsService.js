@@ -20,5 +20,9 @@
                     this.__readyQueue.push(callback);
                 }
             }
+
+            this.regionChanged = function (region) {
+                $http.post('app/streamboard/update_region_ajax', region);
+            };
         });
 })();
