@@ -12,20 +12,25 @@ class Payment extends ActiveRecord {
     public static $_STATUSES = [self::STATUS_APPROVED, self::STATUS_PENDING];
     
     /**
-     * if payment was for pro account for month
+     * If payment was for pro account for month
      */
     const TYPE_PRO_MONTH = 'pro_month';
     
     /**
-     * if payment was for pro account for month
+     * If payment was for pro account for month
      */
     const TYPE_PRO_YEAR = 'pro_year';
     
-    
     /**
-     * when donation is done
+     * When donation is done
      */
     const TYPE_DONATION = 'donation';
+    
+    /**
+     * When donation percent taken
+     */
+    const TYPE_DONATION_PERCENT = 'donation_percent';    
+    
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */

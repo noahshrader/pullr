@@ -55,6 +55,7 @@ class LayoutviewController extends \yii\web\Controller {
 
     /**
      * Campaign thank you page
+     * 
      * @param $userAlias
      * @param $campaignAlias
      * @return string
@@ -67,18 +68,34 @@ class LayoutviewController extends \yii\web\Controller {
             ]
         );
     }
+    
 
     /**
      * Campaign donation page
      * Handles both standart and Firstgiving campaign types
+     * 
+     * @todo break method into smaller actions
      * @param mixed $userAlias 
      * @param mixed $campaignAlias 
      * @return mixed
      */
-    public function actionDonate($userAlias, $campaignAlias){
+    public function actionDonate($userAlias, $campaignAlias)
+    {
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
         
-        if ($campaign->formVisibility == false){
+        if(isset($_GET["success"]) && ($_GET["success"] == "true"))
+        {
+            $payKey = (new \yii\web\Session())->get("payKey");
+            if((new PullrPayment())->finishDonationPayment($payKey))
+            {
+                $this->redirect(sprintf("/%s/%s/thankyou", $userAlias, $campaignAlias));
+                
+                \Yii::$app->end();
+            }
+        }
+        
+        if ($campaign->formVisibility == false)
+        {
             $this->layout = 'donationWithoutBar';
             return $this->render('donationDisabled');
         }
@@ -91,15 +108,17 @@ class LayoutviewController extends \yii\web\Controller {
         $donation->createdDate = time();
         $donation->campaignId = $campaign->id;
 
-        if (!\Yii::$app->user->isGuest){
+        if (!\Yii::$app->user->isGuest)
+        {
             $donation->userId = \Yii::$app->user->id; 
         }
 
-        if ($donation->load($_REQUEST) && $donation->save()){
-            if ($firstGiving = $campaign->firstGiving) {
+        if ($donation->load($_REQUEST) && $donation->save())
+        {
+            if ($firstGiving = $campaign->firstGiving) 
+            {
                 
-                $_SESSION['Donation'] = 
-                    [
+                $_SESSION['Donation'] = [
                         'nameFromForm' => $donation->nameFromForm == Donation::ANONYMOUS_NAME ? '' : $donation->nameFromForm,
                         'email' => $donation->email,
                         'comments' => $donation->comments
@@ -115,17 +134,19 @@ class LayoutviewController extends \yii\web\Controller {
                 $formUrl = $firstGivingPayment->donationPayment();
 
                 return $this->render('firstgiving', ['url' => $formUrl, 'campaign' => $campaign, 'back_url' => "/{$userAlias}/{$campaignAlias}/donate"]);
+            } 
+            else 
+            {
+                $relativeUrl = sprintf("/%s/%s/donate", $userAlias, $campaignAlias);
+                $returnUrl = \Yii::$app->urlManager->createAbsoluteUrl([$relativeUrl, "success" => "true"]);
+                $cancelUrl = \Yii::$app->urlManager->createAbsoluteUrl([$relativeUrl, "success" => "false"]);
+                $payPalHost = \Yii::$app->params['payPalHost'];
+                $payKey =  (new PullrPayment())->initDonationPayment($donation, $returnUrl, $cancelUrl);
+                (new \yii\web\Session())->set("payKey", $payKey);
 
-            } else {
-                PullrPayment::donationPayment($donation);
+                $this->redirect(sprintf("%s/cgi-bin/webscr?cmd=_ap-payment&paykey=%s", $payPalHost, $payKey));
+                \Yii::$app->end();
             }
-        }
-
-        //paypal success donate
-        if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true')){
-            $payment = new PullrPayment();
-            $payment->completePayment();
-            $this->redirect('/'.$userAlias.'/'.$campaignAlias.'/thankyou');
         }
 
         if ($campaign->firstGiving) {
@@ -161,6 +182,5 @@ class LayoutviewController extends \yii\web\Controller {
         $response['donations'] = $donationsArray;
         echo json_encode($response);
         die;
-    }
-       
+    }    
 }

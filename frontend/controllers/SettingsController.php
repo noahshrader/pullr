@@ -48,13 +48,6 @@ class SettingsController extends FrontendController
                 $changePasswordForm->success = true;
             }
         }
-
-        /* account subscriptions */
-        if (isset($_POST['subscription'])) 
-        {
-            $payment = new PullrPayment();
-            $payment->subscribeToPlan($_POST['subscription']);
-        }
         
         if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true'))
         {

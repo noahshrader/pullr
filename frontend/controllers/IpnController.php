@@ -1,7 +1,5 @@
 <?php
-
 namespace frontend\controllers;
-
 
 use common\components\PullrPayment;
 use common\models\Ipn;
