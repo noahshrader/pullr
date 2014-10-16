@@ -141,11 +141,23 @@ body {
 		}
 
 		h2,
-		h4 {
+		h3 {
 			display: block;
 			color: @gray20;
 			font-weight: 300;
 			margin: 0;
+
+			span {
+				display: inline-block;
+				color: @gray20;
+				font-size: .7em;
+				font-weight: 400;
+				line-height: 1.4em;
+				padding: 0 .6em;
+				margin-left: 3px;
+				background: @gray75;
+				.round-radius;
+			}
 		}
 		&.raised-total,
 		&.top-donation {
@@ -163,8 +175,27 @@ body {
 		width: 100%;
 
 		.progress {
+			position: relative;
 			width: 100%;
 			height: 6px;
+			z-index: 1;
+		}
+		.progress-count {
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			height: 40px;
+			width: 60px;
+			color: @white;
+			font-size: .9em;
+			margin-left: -30px;
+			padding-top: .4em;
+			z-index: 0;
+
+			span {
+				padding: .4em;
+				background: @accent;
+			}
 		}
 	}
 }
@@ -176,18 +207,19 @@ body {
 	margin-bottom: 0px;
 	height: 20px;
 	background: @dkaccent;
-}
-.progress-line {
-	position: relative;
-	color: #FFF;
-	text-align: right;
-	padding-right: 5px;
-	line-height: 20px;
-	height: 20px;
-	max-width: 100%;
-	.smallcaps;
-	background: @dkraccent;
-	.animate-bar;
+
+	.progress-line {
+		position: relative;
+		color: #FFF;
+		text-align: right;
+		padding-right: 5px;
+		line-height: 20px;
+		height: 20px;
+		max-width: 100%;
+		.smallcaps;
+		background: @dkraccent;
+		.animate-bar;
+	}
 }
 
 
@@ -261,6 +293,34 @@ ul.panel-nav {
 }
 
 
+/* Sidebar Components */
+/* ------------------------------------------------- */
+h3.list-title {
+	color: @gray30;
+	margin-bottom: 2px;
+	font-size: 17px;
+	font-weight: 600;
+	line-height: 1.2em;
+	.trans;
+}
+p.list-total {
+	display: inline-block;
+	color: @gray30;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4em;
+	margin-top: 6px;
+	margin-bottom: 0;
+	padding: 0 .8em;
+	background: @gray12;
+	.round-radius;
+	.trans;
+}
+span.list-info {
+	font-size: @fineprint;
+}
+
+
 /* Tooltips */
 /* ------------------------------------------------- */
 .tooltip {
@@ -277,6 +337,10 @@ ul.panel-nav {
 .tooltip.top .tooltip-arrow {
 	border-top-color: @gray20;
 	border-width: 5px 5px 0;
+}
+.tooltip.right .tooltip-arrow {
+	border-right-color: @gray20;
+	border-width: 5px 5px 5px 0;
 }
 .tooltip.bottom .tooltip-arrow {
 	border-bottom-color: @gray20;

@@ -20,11 +20,11 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
         <a data-bind="attr: { href: href}, css: { active: isActive == true }" class='row campaign-item' >
             <div class="main-info">
                 <h5 data-bind="text: type" class="layout-type"></h5>
-                <h3 data-bind="text: name"></h3>
+                <h3 class="list-title" data-bind="text: name"></h3>
                 <!-- ko if: tiedToParent -->
-                <span class="icon-users team-parent"></span>
+                <span class="icon-users team-parent" data-toggle="tooltip" data-placement="right" title="Connected"></span>
                 <!-- /ko -->
-                <p data-bind="text: amountRaised"></p>
+                <p class="list-total" data-bind="text: amountRaised"></p>
             </div>
         </a>
     </script> 
