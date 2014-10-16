@@ -284,7 +284,7 @@
         </div>
         <footer>
             <p class="powered">powered by <a href="#" class="icon-pullr"></a></p>
-            <p>&copy; 2014 pullr LLC</p>
+            <p>&copy; <? print(Date("Y")); ?> pullr LLC</p>
             <p class="tandc"><a href="/terms">terms</a>|<a href="/privacy">privacy</a>|<a href="/flag" class="icon-flag2 flag"></a></p>
         </footer>
         <script type='text/javascript'>
