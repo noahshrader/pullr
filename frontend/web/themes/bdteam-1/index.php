@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="/layoutview/api.css" />
         <link rel="stylesheet" href="/layoutview/bootstrap.css" />
         <!-- Theme Specific -->
-        <link rel="stylesheet" href="/themes/blteam-1/css/master.css" />
-        <link rel="stylesheet" href="/themes/blteam-1/css/animate.css" />
-        <link rel="stylesheet" href="/themes/blteam-1/css/owl.carousel.css" />
+        <link rel="stylesheet" href="/themes/bdteam-1/css/master.css" />
+        <link rel="stylesheet" href="/themes/bdteam-1/css/animate.css" />
+        <link rel="stylesheet" href="/themes/bdteam-1/css/owl.carousel.css" />
         <!-- Scripts -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
         <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
@@ -314,7 +314,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-6">
                 <div class="charity-info">
-                    <img src="/themes/blteam-1/images/charity-logo.jpg" class="charity-logo"/>
+                    <img src="/themes/bdteam-1/images/charity-logo.jpg" class="charity-logo"/>
                     <h4 data-pullr="campaign-charity-name" ng-cloak>{{campaign.charity}}</h4>
 
                     <p>St. Jude Children's Research Hospital is internationally recognized for its pioneering work in
@@ -361,7 +361,7 @@
 </footer>
 
 
-<script src="/themes/blteam-1/js/owl.carousel.js"></script>
+<script src="/themes/bdteam-1/js/owl.carousel.js"></script>
 <script>
     $(document).ready(function () {
         jQuery("#stream").fitVids();
@@ -405,6 +405,6 @@
     Pullr.Ready(updatePage);
 </script>
 
-<script src="/themes/blteam-1/js/custom.js"></script>
+<script src="/themes/bdteam-1/js/custom.js"></script>
 </body>
 </html>
