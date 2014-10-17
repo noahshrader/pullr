@@ -8,8 +8,6 @@ use common\models\Donation;
 use common\models\Campaign;
 use common\models\Plan;
 
-defined('PP_CONFIG_PATH') or define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
- 
 /*
  * Class for handling donations and recurring payments via PayPal
  */
@@ -36,6 +34,7 @@ class PullrPayment extends \yii\base\Component
     {
         parent::init();
         \PPHttpConfig::$DEFAULT_CURL_OPTS[CURLOPT_SSLVERSION] = 'all';
+
     }
 
     /**
@@ -94,7 +93,7 @@ class PullrPayment extends \yii\base\Component
     private function prepareFeeReceiver(Donation $donation)
     {
         $feeReceiver = new \Receiver(round($donation->amount * $this->calculatePercent(), 2));
-        $feeReceiver->email = "pullforgood-facilitator@gmail.com";
+        $feeReceiver->email = \Yii::$app->params['payPalDonationFeeReceiver'];
 
         return $feeReceiver;
     }
@@ -305,7 +304,7 @@ class PullrPayment extends \yii\base\Component
      * @param $payAmount
      * @throws \Exception
      */
-    public static function initProSubscription($payAmount)
+    public function initProSubscription($payAmount)
     {
         try
         {
@@ -340,7 +339,7 @@ class PullrPayment extends \yii\base\Component
             $setECReq = new \SetExpressCheckoutReq();
             $setECReq->SetExpressCheckoutRequest = $setECReqType;
 
-            $response = (new \PayPalAPIInterfaceServiceService())->SetExpressCheckout($setECReq);
+            $response = (new \PayPalAPIInterfaceServiceService($this->payPalConfig))->SetExpressCheckout($setECReq);
             if($response->Ack == "Failure")
             {
                 throw new \Exception($response->Errors[0]->LongMessage);
@@ -363,13 +362,13 @@ class PullrPayment extends \yii\base\Component
      * @param $PayerID
      * @throws \Exception
      */
-    public static function finishProSubscription($payAmount, $token, $PayerID)
+    public function finishProSubscription($payAmount, $token, $PayerID)
     {
         try
         {
             $payParams = self::getPaymentParamsForMoney($payAmount);
 
-            $paypalService = new \PayPalAPIInterfaceServiceService();
+            $paypalService = new \PayPalAPIInterfaceServiceService($this->payPalConfig);
 
             $paymentDetails = new \PaymentDetailsType();
             $itemDetails = new \PaymentDetailsItemType();
@@ -445,7 +444,7 @@ class PullrPayment extends \yii\base\Component
                 $createRPProfileReq = new \CreateRecurringPaymentsProfileReq();
                 $createRPProfileReq->CreateRecurringPaymentsProfileRequest = $createRPProfileRequest;
 
-                return (new \PayPalAPIInterfaceServiceService())->CreateRecurringPaymentsProfile($createRPProfileReq);
+                return (new \PayPalAPIInterfaceServiceService($this->payPalConfig))->CreateRecurringPaymentsProfile($createRPProfileReq);
             }
         }
         catch (\Exception $ex)
@@ -461,7 +460,7 @@ class PullrPayment extends \yii\base\Component
      * @param int $profileId 
      * @return mixed
      */
-    public static function deactivateProSubscription($profileId)
+    public function deactivateProSubscription($profileId)
     {
         $details = new \ManageRecurringPaymentsProfileStatusRequestDetailsType();
         $details->Action = 'Cancel';

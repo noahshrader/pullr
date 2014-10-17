@@ -15,6 +15,7 @@ return [
         ]
     ],
     'payPalHost' => 'https://www.paypal.com',
+    'payPalDonationFeeReceiver' => 'pullforgood@gmail.com',
     'payPal' => [
         'log.LogEnabled' => false,
         'mode' => 'live',
