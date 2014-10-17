@@ -89,7 +89,10 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 
 					function stopAnimation() {
 						$marquee.css('margin-left',0);
-						$marquee.css(animationCssName, '');
+						if (animationCssName != null) {
+							$marquee.css(animationCssName, '');
+						}
+						
 					}
 
 
@@ -128,7 +131,7 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 					}
 					var $parent = $element.parent('.marquee-container');
 					$parent.resizable({
-		                handles: "all",
+		                handles: "w, e",
 		                minWidth: 350,
 		                minHeight: 100,
 		                animate: false,
@@ -136,10 +139,6 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 		                stop: function(){		             
 		            		recalculateMarquee();		
 		                }
-		            });
-
-		            $parent.on('resize', function(){
-		            	
 		            });
 
 					scope.$watch(attrs.marqueeName ,function(marqueeNameAttr){
@@ -153,7 +152,7 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 						}
 						timer = $timeout(function(){
 							recalculateMarquee();						
-						}, 1000);
+						}, 500);
 						
 					});
 

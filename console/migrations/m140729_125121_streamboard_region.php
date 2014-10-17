@@ -58,7 +58,8 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'soundType' => $fileTypes,
             'image' => Schema::TYPE_STRING.' NOT NULL',
             'imageType' => $fileTypes,
-            'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0'
+            'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0',
+            'hideAlertImage' => Schema::TYPE_BOOLEAN.' DEFAULT 0',
         ]);
 
         $this->addPrimaryKey('streamboard_widget_alerts_preference', WidgetAlertsPreference::tableName(), ['userId', 'regionNumber', 'preferenceType']);

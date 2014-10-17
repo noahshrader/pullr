@@ -37,6 +37,13 @@ class WidgetCampaignBar extends ActiveRecord {
             'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule'];
     }
 
+    public function beforeValidate() {
+        if ($this->isNewRecord) {
+            $this->fontColor = '#FFFFFF';
+        }
+        return parent::beforeValidate();
+    }
+
     public function afterSave($insert, $params = array())
     {
         parent::afterSave($insert, $params);

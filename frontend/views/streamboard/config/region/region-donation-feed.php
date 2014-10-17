@@ -41,4 +41,3 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
         <textarea ng-model="widget.noDonationMessage" ng-change="regionChanged(region)"></textarea>
     </div>
 </div>
-<div class="right-side-footer"></div>

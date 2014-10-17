@@ -29,6 +29,13 @@ class WidgetDonationFeed extends ActiveRecord {
         ];
     }
 
+    public function beforeValidate() {
+        if ($this->isNewRecord) {
+            $this->fontColor = '#FFFFFF';
+        }
+        return parent::beforeValidate();
+    }
+
     public function toArray(array $fields = [], array $expand = [], $recursive = true){
         $data = parent::toArray($fields, $expand, $recursive);
         /*as 1 and true in angular are not equal for checkbox, so let's pass true/false values*/

@@ -13,7 +13,7 @@ $class = 'regionsNumber' . $regionsNumber;
          ng-style="{'background-color': region.backgroundColor}">
         <div ng-show="region.toShow.alert.message" class="movable">
             <!-- if alert message is showed-->
-            <img ng-src="{{region.toShow.alert.image}}">
+            <img ng-src="{{region.toShow.alert.image}}" ng-hide='region.toShow.alert.preference.hideAlertImage'>
 
             <div
                 ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle}"
