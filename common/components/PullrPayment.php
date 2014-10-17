@@ -166,6 +166,56 @@ class PullrPayment extends \yii\base\Component
     }
 
     /**
+     * Sets payment to 'approved' state
+     *
+     * @param $payKey
+     * @param $payedItem
+     * @param $timestamp
+     * @return mixed
+     */
+    private function approvePayments($payKey, $payedItem, $timestamp)
+    {
+        $payment = \common\models\Payment::findOne(["payKey" => $payKey, "amount" => $payedItem->receiver->amount]);
+        if(isset($payment) && ($payment->status === \common\models\Payment::STATUS_PENDING))
+        {
+            $payment->status = \common\models\Payment::STATUS_APPROVED;
+            $payment->paymentDate = $timestamp;
+            $payment->payPalTransactionId = $payedItem->transactionId;
+            $payment->save();
+
+            return $payment->relatedId;
+        }
+    }
+
+    /**
+     * Sets donation's paymentDate to timestamp
+     *
+     * @param $donationId
+     * @param $paymentDate
+     */
+    private function makeDonationProcessed($donationId, $paymentDate)
+    {
+        $donation = Donation::findOne($donationId);
+        if (isset($donation) && !$donation->isPaid())
+        {
+            $donation->paymentDate = $paymentDate;
+            $donation->save();
+
+            Campaign::updateDonationStatistics($donation->campaignId);
+
+            // Dashboard "Donation received" notification
+            RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageDonationReceived($donation));
+
+            // Dashboard "Campaign goal reached" notification
+            $campaign = Campaign::findOne($donation->campaignId);
+            if (intval($campaign->amountRaised) >= intval($campaign->goalAmount))
+            {
+                RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageGoalReached($campaign));
+            }
+        }
+    }
+
+    /**
      * Sends init request to PayPal to obtain pay key
      * Fired when someone wants to make donation for campaign
      *
@@ -220,13 +270,12 @@ class PullrPayment extends \yii\base\Component
         {
             throw new \Exception("payKey cannot be null");
         }
-        
-        $paymentDetailsRequest = new \PaymentDetailsRequest(new \RequestEnvelope("en_US"));
-        $paymentDetailsRequest->payKey = $payKey;
-        $adaptivePaymentsService = new \AdaptivePaymentsService($this->payPalConfig);
 
         try
         {
+            $adaptivePaymentsService = new \AdaptivePaymentsService($this->payPalConfig);
+            $paymentDetailsRequest = new \PaymentDetailsRequest(new \RequestEnvelope("en_US"));
+            $paymentDetailsRequest->payKey = $payKey;
             $paymentDetailsResponse = $adaptivePaymentsService->PaymentDetails($paymentDetailsRequest);
         }
         catch(\Exception $ex)
@@ -242,37 +291,11 @@ class PullrPayment extends \yii\base\Component
         {
             if(strcasecmp($info->transactionStatus, "COMPLETED") === 0)
             {
-                $payment = \common\models\Payment::findOne(["payKey" => $payKey, "amount" => $info->receiver->amount]);
-                if(isset($payment) && ($payment->status === \common\models\Payment::STATUS_PENDING))
-                {
-                    $donationId = $payment->relatedId;
-
-                    $payment->status = \common\models\Payment::STATUS_APPROVED;
-                    $payment->paymentDate = $paymentDate;
-                    $payment->payPalTransactionId = $info->transactionId;
-                    $payment->save();
-                }
+                $donationId = $this->approvePayments($payKey, $info, $paymentDate);
             }
         }
 
-        $donation = Donation::findOne($donationId);
-        if (isset($donation) && !$donation->isPaid())
-        {
-            $donation->paymentDate = $paymentDate;
-            $donation->save();
-
-            Campaign::updateDonationStatistics($donation->campaignId);
-
-            // Dashboard "Donation received" notification
-            RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageDonationReceived($donation));
-
-            // Dashboard "Campaign goal reached" notification
-            $campaign = Campaign::findOne($donation->campaignId);
-            if (intval($campaign->amountRaised) >= intval($campaign->goalAmount))
-            {
-                RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageGoalReached($campaign));
-            }
-        }
+        $this->makeDonationProcessed($donationId, $paymentDate);
 
         return true;
     }
