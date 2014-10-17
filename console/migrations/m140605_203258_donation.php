@@ -14,7 +14,7 @@ class m140605_203258_donation extends \console\models\ExtendedMigration
             'campaignUserId' => Schema::TYPE_INTEGER. ' NOT NULL',
             'parentCampaignId' => Schema::TYPE_INTEGER. ' NOT NULL',
             'parentCampaignUserId' => Schema::TYPE_INTEGER. ' NOT NULL',
-            'amount' => Schema::TYPE_FLOAT. ' NOT NULL',
+            'amount' => Schema::TYPE_DECIMAL. '(10,2) NOT NULL',
             /*these is name type in the form*/
             'nameFromForm' => Schema::TYPE_STRING. ' NOT NULL',
             /*these is names generally pulled from the paypal*/

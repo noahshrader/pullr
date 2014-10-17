@@ -49,20 +49,6 @@ class SettingsController extends FrontendController
             }
         }
 
-        /* account subscriptions */
-        if (isset($_POST['subscription'])) 
-        {
-            $payment = new PullrPayment();
-            $payment->subscribeToPlan($_POST['subscription']);
-        }
-        
-        if (isset($_REQUEST['paymentSuccess']) && ($_REQUEST['paymentSuccess'] == 'true'))
-        {
-            $payment = new PullrPayment();
-            $payment->completePayment();
-            $this->redirect('app/settings');
-        }
-
         return $this->render('index', [
                     'user' => $user,
                     'notification' => $notification,
@@ -113,7 +99,8 @@ class SettingsController extends FrontendController
             $payAmount = $_POST['subscription'];
             (new Session())->set('money_amount', $payAmount);
 
-            $payPalResponse = PullrPayment::initProSubscription($payAmount);
+            $apiConfig = $apiConfig = \Yii::$app->params['payPal'];
+            $payPalResponse = (new PullrPayment($apiConfig))->initProSubscription($payAmount);
 
             $payPalHost = \Yii::$app->params['payPalHost'];
             $this->redirect("$payPalHost/incontext?token={$payPalResponse->Token}");
@@ -131,7 +118,8 @@ class SettingsController extends FrontendController
         $session = new Session();
         $payAmount = $session->get("money_amount");
 
-        $response = PullrPayment::finishProSubscription($payAmount, $token, $PayerID);
+        $apiConfig = $apiConfig = \Yii::$app->params['payPal'];
+        $response = (new PullrPayment($apiConfig))->finishProSubscription($payAmount, $token, $PayerID);
 
         if (isset($response) && ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile'))
         {
@@ -164,7 +152,8 @@ class SettingsController extends FrontendController
 
         if (isset($recurringProfile))
         {
-            PullrPayment::deactivateProSubscription($recurringProfile->profileId);
+            $apiConfig = $apiConfig = \Yii::$app->params['payPal'];
+            (new PullrPayment($apiConfig))->deactivateProSubscription($recurringProfile->profileId);
 
             $deactivate = new DeactivatePro();
             if ($deactivate->load($_POST) && $deactivate->save())

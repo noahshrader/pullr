@@ -200,5 +200,13 @@ class Donation extends ActiveRecord
         }
         return $nameHidden || !$this->nameFromForm  ? Donation::ANONYMOUS_NAME : $this->nameFromForm;
     }
+
+    /**
+     * @return bool
+     */
+    public function isPaid()
+    {
+        return $this->paymentDate > 0;
+    }
 }
  
