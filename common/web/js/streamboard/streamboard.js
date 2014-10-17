@@ -2,13 +2,6 @@ $(window).load(function() {
 
     // streamboard loader
     $(".spinner-wrap").addClass('powered').fadeOut();
-
-    $(".donation-stream-scroll").resizable({
-        handles: "w",
-        minWidth: 100,
-        animate: false,
-        delay: 0
-    });
     
     // resizing magic
     $("#sidepanel").resizable({
@@ -33,7 +26,6 @@ $(window).load(function() {
 
             $marqueeContainer.width(marqueeWidth);    
         })
-        
     }
 
     initMarqueeContainer();
@@ -160,4 +152,3 @@ function requireGoogleFont(fontFamily){
         }
    });
 }
-
