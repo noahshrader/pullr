@@ -24,6 +24,9 @@ class StreamboardRegion extends ActiveRecord {
     const WIDGET_CAMPAIGN_BAR = 'widget_campaign_bar';
     const WIDGET_DONATION_FEED = 'widget_donation_feed';
 
+    const REGION_NUMBER_1_DEFAULT_BACKGROUND_COLOR = '#00ff00';
+    const REGION_NUMBER_2_DEFAULT_BACKGROUND_COLOR = '#0000ff';
+
     public static $WIDGETS = [self::WIDGET_ALERTS, self::WIDGET_CAMPAIGN_BAR, self::WIDGET_DONATION_FEED];
     /**
      * @return string the name of the table associated with this ActiveRecord class.
@@ -41,12 +44,22 @@ class StreamboardRegion extends ActiveRecord {
     public function fields(){
         return ['userId', 'regionNumber', 'backgroundColor', 'widgetType', 'widgetAlerts', 'widgetCampaignBar', 'widgetDonationFeed'];
     }
+
+    public function beforeValidate() {
+        if ($this->isNewRecord) {
+            if ( $this->regionNumber == static::REGION_NUMBER_1 ) {
+                $this->backgroundColor = static::REGION_NUMBER_1_DEFAULT_BACKGROUND_COLOR;
+            } else {
+                $this->backgroundColor = static::REGION_NUMBER_2_DEFAULT_BACKGROUND_COLOR;
+            }
+        }
+        return parent::beforeValidate();
+    }
     public function afterSave($insert, $params = array())
     {
         parent::afterSave($insert, $params);
         if ($insert) {
-            /** so we have new record*/
-            $this->backgroundColor = '#000';
+            /** so we have new record*/            
             $widgetAlerts = new WidgetAlerts();
             $widgetAlerts->userId = $this->userId;
             $widgetAlerts->regionNumber = $this->regionNumber;

@@ -36,15 +36,22 @@ class WidgetAlertsPreference extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['fontStyle', 'fontSize', 'fontColor', 'animationDuration', 'volume',
-                'sound','soundType', 'image', 'imageType', 'hideAlertText']
+                'sound','soundType', 'image', 'imageType', 'hideAlertText', 'hideAlertImage']
         ];
+    }
+
+    public function beforeValidate() {
+        if ($this->isNewRecord) {
+            $this->fontColor = '#FFFFFF';
+        }
+        return parent::beforeValidate();
     }
 
     public function toArray(array $fields = [], array $expand = [], $recursive = true){
         $data = parent::toArray($fields, $expand, $recursive);
         /*as 1 and true in angular are not equal for checkbox, so let's pass true/false values*/
         $data['hideAlertText'] = $this->hideAlertText == 1;
-        
+        $data['hideAlertImage'] = $this->hideAlertImage == 1;
         return $data;
     }
 }

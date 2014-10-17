@@ -39,19 +39,28 @@ use yii\web\View;
     </ul>
     <div class="donations_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.donationsPreference">
-            <h4 class="panel-title">Donation Alerts</h4>
+            <h4 class="panel-title">
+                Donation Alerts 
+                <button class="btn btn-primary btn-sm" ng-click="streamService.testData(preference.preferenceType, 1)">Test</button>
+            </h4>            
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
     <div class="followers_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.followersPreference">
-            <h4 class="panel-title">Follower Alerts</h4>
+            <h4 class="panel-title">
+                Follower Alerts 
+                <button class="btn btn-primary btn-sm" ng-click="streamService.testData(preference.preferenceType, 1)">Test</button>
+            </h4>
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
     <div class="subscribers_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.subscribersPreference">
-            <h4 class="panel-title">Subscriber Alerts</h4>
+            <h4 class="panel-title">
+                Subscriber Alerts 
+                <button class="btn btn-primary btn-sm" ng-click="streamService.testData(preference.preferenceType, 1)">Test</button>
+            </h4>
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>

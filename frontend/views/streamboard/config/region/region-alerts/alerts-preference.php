@@ -6,9 +6,7 @@ use yii\web\View;
 ?>
 <div>
     <div class="module first">
-        <div class="panel-group text-center">
-           <button class="btn btn-primary btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region.regionNumber)">Test {{preference.preferenceType}}</button>
-        </div>
+
         <div class="panel-group">
             <h5>Font Style</h5>
 
@@ -30,8 +28,11 @@ use yii\web\View;
                     <input type="checkbox" ng-model="preference.hideAlertText" ng-change="regionChanged(region)">
                     Hide alert text
                 </label>
-            </div>
-            
+                <label ng-class="{on:preference.hideAlertImage}">
+                    <input type="checkbox" ng-model="preference.hideAlertImage" ng-change="regionChanged(region)">
+                    Hide alert image
+                </label>
+            </div>            
         </div>
     </div>
     <div class="module">

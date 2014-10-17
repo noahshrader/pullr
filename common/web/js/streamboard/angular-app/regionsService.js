@@ -24,5 +24,9 @@
             this.regionChanged = function (region) {
                 $http.post('app/streamboard/update_region_ajax', region);
             };
+
+            this.fontSizeChange = function(region){
+                console.log('hello');
+            }
         });
 })();

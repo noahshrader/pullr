@@ -2,13 +2,6 @@ $(window).load(function() {
 
     // streamboard loader
     $(".spinner-wrap").addClass('powered').fadeOut();
-
-    $(".donation-stream-scroll").resizable({
-        handles: "w",
-        minWidth: 100,
-        animate: false,
-        delay: 0
-    });
     
     // resizing magic
     $("#sidepanel").resizable({
@@ -21,23 +14,7 @@ $(window).load(function() {
         }
     });
 
-    function initMarqueeContainer(){
-        var $marqueeContainerList = $(".marquee-container");
-        $marqueeContainerList.each(function(){
-            var $marqueeContainer = $(this);          
-            $marqueeContainer.draggable();
-            var $parent = $marqueeContainer.parents('.regionsContainer');
-            var parentWidth = $parent.width();
-            var sideWidth = $('#sidepanel').width();
-            var marqueeWidth = parentWidth - sideWidth;
-
-            $marqueeContainer.width(marqueeWidth);    
-        })
-        
-    }
-
-    initMarqueeContainer();
-    
+   
     $(".regionsContainer .region:first-child").resizable({
         handles: "s",
         animate: false,
@@ -155,4 +132,3 @@ function requireGoogleFont(fontFamily){
         }
    });
 }
-
