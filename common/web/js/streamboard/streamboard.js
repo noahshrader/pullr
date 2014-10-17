@@ -58,11 +58,6 @@ $(window).load(function() {
         $('.panel-head, .panel-title').width(panelhead);
         $('.right-side-footer, .overlay').width(sidefooter);
     });
-    // make items movable
-//    $(".movable").draggable({
-//        containment: "parent",
-//        scroll: false
-//    });
 
     // custom scrollbars
     $(".pane").mCustomScrollbar({

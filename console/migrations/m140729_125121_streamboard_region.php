@@ -53,7 +53,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'preferenceType' => $preferencesTypes,
             'fontStyle' => Schema::TYPE_STRING.' NOT NULL',
             'fontSize' => Schema::TYPE_INTEGER.' NOT NULL',
-            'fontColor' => Schema::TYPE_STRING.' NOT NULL',
+            'fontColor' => Schema::TYPE_STRING.' DEFAULT "#fff" NOT NULL',
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
             'volume' => Schema::TYPE_FLOAT.' NOT NULL DEFAULT 100',
             'sound' => Schema::TYPE_STRING.' NOT NULL',
@@ -73,7 +73,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'noDonationMessage' => Schema::TYPE_TEXT.' NOT NULL',
             'fontStyle' => Schema::TYPE_STRING. ' NOT NULL',
             'fontSize' => Schema::TYPE_STRING. ' NOT NULL',
-            'fontColor' => Schema::TYPE_STRING. ' NOT NULL',
+            'fontColor' => Schema::TYPE_STRING. ' DEFAULT "#fff" NOT NULL',
             'scrolling' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'scrollSpeed' => $scrollSpeeds,
             'showSubscriber' => Schema::TYPE_BOOLEAN. ' DEFAULT 1',
@@ -90,15 +90,17 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'campaignId' => Schema::TYPE_INTEGER,
             'fontStyle' => Schema::TYPE_STRING. ' NOT NULL',
             'fontSize' => Schema::TYPE_STRING. ' NOT NULL',
-            'fontColor' => Schema::TYPE_STRING. ' NOT NULL',
-            'backgroundColor' => Schema::TYPE_STRING. ' NOT NULL',
+            'fontColor' => Schema::TYPE_STRING. ' DEFAULT "#fff" NOT NULL',
+            'backgroundColor' => Schema::TYPE_STRING. ' DEFAULT "#333" NOT NULL',
             'alertsEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'messagesEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'timerEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'progressBarEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'hideAlertText' => Schema::TYPE_BOOLEAN.' DEFAULT 0',
             'positionX'=> Schema::TYPE_INTEGER.' NOT NULL',
-            'positionY' => Schema::TYPE_INTEGER.' NOT NULL'
+            'positionY' => Schema::TYPE_INTEGER.' NOT NULL',
+            'width' => Schema::TYPE_INTEGER.' NOT NULL',
+            'height' => Schema::TYPE_INTEGER.' NOT NULL'
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar', WidgetCampaignBar::tableName(), ['userId', 'regionNumber']);
 
@@ -111,7 +113,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'includeDonations' => Schema::TYPE_BOOLEAN.' NOT NULL',
             'fontStyle' => Schema::TYPE_STRING.' NOT NULL',
             'fontSize' => Schema::TYPE_INTEGER.' NOT NULL',
-            'fontColor' => Schema::TYPE_STRING.' NOT NULL',
+            'fontColor' => Schema::TYPE_STRING.' DEFAULT "fff" NOT NULL',
             'backgroundColor' => Schema::TYPE_STRING.' NOT NULL',
             'animationDirection' => Schema::TYPE_STRING.' NOT NULL',
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
@@ -154,5 +156,8 @@ class m140729_125121_streamboard_region extends ExtendedMigration
         $this->dropTable(WidgetAlertsPreference::tableName());
         $this->dropTable(WidgetDonationFeed::tableName());
         $this->dropTable(WidgetCampaignBar::tableName());
+        $this->dropTable(WidgetCampaignBarAlerts::tableName());
+        $this->dropTable(WidgetCampaignBarMessages::tableName());
+        $this->dropTable(WidgetCampaignBarTimer::tableName());
     }
 }

@@ -18,6 +18,11 @@ use common\models\User;
  * @property WidgetCampaignBarTimer $timerModule
  */
 class WidgetCampaignBar extends ActiveRecord {
+    const DEFAULT_WIDTH = 900;
+    const DEFAULT_HEIGHT = 100;
+    const MIN_HEIGHT = 100;
+    const MIN_WIDTH = 200;
+
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -28,13 +33,13 @@ class WidgetCampaignBar extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
-                'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY']
+                'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY', 'height', 'width']
         ];
     }
 
     public function fields(){
         return ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
-            'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule', 'positionX', 'positionY'];
+            'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule', 'positionX', 'positionY', 'height', 'width'];
     }
 
     public function afterSave($insert, $params = array())
