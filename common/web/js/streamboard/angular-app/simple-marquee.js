@@ -170,6 +170,9 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 		                }
 		            });
 
+		            $parent.draggable();
+		         
+
 					scope.$watch(attrs.marqueeName ,function(marqueeNameAttr) {
 						marqueeName = marqueeNameAttr;
 					});

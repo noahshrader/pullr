@@ -17,8 +17,7 @@ $(window).load(function() {
     function initMarqueeContainer(){
         var $marqueeContainerList = $(".marquee-container");
         $marqueeContainerList.each(function(){
-            var $marqueeContainer = $(this);          
-            $marqueeContainer.draggable();
+            var $marqueeContainer = $(this);                      
             var $parent = $marqueeContainer.parents('.regionsContainer');
             var parentWidth = $parent.width();
             var sideWidth = $('#sidepanel').width();
