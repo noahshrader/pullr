@@ -85,8 +85,9 @@ class LayoutviewController extends \yii\web\Controller {
         
         if(isset($_GET["success"]) && ($_GET["success"] == "true"))
         {
+            $apiConfig = \Yii::$app->params['payPal'];
             $payKey = (new \yii\web\Session())->get("payKey");
-            if((new PullrPayment())->finishDonationPayment($payKey))
+            if((new PullrPayment($apiConfig))->finishDonationPayment($payKey))
             {
                 $this->redirect(sprintf("/%s/%s/thankyou", $userAlias, $campaignAlias));
                 
@@ -141,7 +142,8 @@ class LayoutviewController extends \yii\web\Controller {
                 $returnUrl = \Yii::$app->urlManager->createAbsoluteUrl([$relativeUrl, "success" => "true"]);
                 $cancelUrl = \Yii::$app->urlManager->createAbsoluteUrl([$relativeUrl, "success" => "false"]);
                 $payPalHost = \Yii::$app->params['payPalHost'];
-                $payKey =  (new PullrPayment())->initDonationPayment($donation, $returnUrl, $cancelUrl);
+                $apiConfig = $apiConfig = \Yii::$app->params['payPal'];
+                $payKey = (new PullrPayment($apiConfig))->initDonationPayment($donation, $returnUrl, $cancelUrl);
                 (new \yii\web\Session())->set("payKey", $payKey);
 
                 $this->redirect(sprintf("%s/cgi-bin/webscr?cmd=_ap-payment&paykey=%s", $payPalHost, $payKey));

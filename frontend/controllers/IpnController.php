@@ -114,6 +114,21 @@ class IpnController extends FrontendController
 
             switch ($data['txn_type'])
             {
+                // For donation payment percent received
+                case 'web_accept':
+                    if (($data['payment_status'] === 'Completed') && (!Payment::txnAlreadyProcessed($data['txn_id'])))
+                    {
+                        $payment = Payment::findOne(['payPalTransactionId' => $data['txn_id']]);
+                        if (isset($payment) && ($payment->status === Payment::STATUS_PENDING))
+                        {
+                            $payment->status = Payment::STATUS_APPROVED;
+                            $payment->paymentDate = time();
+                            $payment->save();
+                        }
+                    }
+                    break;
+
+                // For recurring payment received
                 case 'recurring_payment':
                     if (($data['payment_status'] === 'Completed') && (!Payment::txnAlreadyProcessed($data['txn_id'])))
                     {
@@ -137,10 +152,10 @@ class IpnController extends FrontendController
                     }
                     break;
 
+                // For recurring payment created / cancelled
                 case 'recurring_payment_profile_cancel':
                 case 'recurring_payment_profile_created':
                     $recurringProfile = RecurringProfile::findOne(['profileId' => $data['recurring_payment_id']]);
-
                     if(isset($recurringProfile))
                     {
                         $recurringProfile->status = $data['profile_status'];

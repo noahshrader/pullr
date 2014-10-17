@@ -4,46 +4,47 @@ namespace common\components;
 
 use common\models\notifications\RecentActivityNotification;
 use common\components\message\ActivityMessage;
-use OAuth\Common\Exception\Exception;
 use common\models\Donation;
 use common\models\Campaign;
 use common\models\Plan;
 
-use PayPal\Auth\OAuthTokenCredential;
-use PayPal\Api\PaymentExecution;
-use PayPal\Api\RedirectUrls;
-use PayPal\Rest\ApiContext;
-use PayPal\Api\Transaction;
-use PayPal\Api\ItemList;
-use PayPal\Api\Payment;
-use PayPal\Api\Amount;
-use PayPal\Api\Payer;
-use PayPal\Api\Payee;
-use PayPal\Api\Item;
-
 defined('PP_CONFIG_PATH') or define('PP_CONFIG_PATH', __DIR__ . '/../config/paypal');
  
 /*
- * Class for handling donation and recurring payments via PayPal
+ * Class for handling donations and recurring payments via PayPal
  */
-class PullrPayment extends \yii\base\Component {
+class PullrPayment extends \yii\base\Component
+{
+    private $payPalConfig;
 
-    public $apiContext;
-
-    public function __construct($config = array()) 
+    /**
+     * Creates class with PayPal config injected
+     *
+     * @param array $payPalConfig
+     * @param array $config
+     */
+    public function __construct(array $payPalConfig, $config = [])
     {
+        $this->payPalConfig = $payPalConfig;
         parent::__construct($config);
-
-        $this->apiContext = new ApiContext(new OAuthTokenCredential('', ''));
     }
-    
+
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
-        
         \PPHttpConfig::$DEFAULT_CURL_OPTS[CURLOPT_SSLVERSION] = 'all';
     }
 
+    /**
+     * Returns subscriptions params by pay amount
+     *
+     * @param $amount
+     * @return array
+     * @throws \Exception
+     */
     public static function getPaymentParamsForMoney($amount)
     {
         $params = [];
@@ -62,128 +63,106 @@ class PullrPayment extends \yii\base\Component {
                 break;
 
             default:
-                throw new Exception("Wrong money amount");
+                throw new \Exception("Wrong money amount");
         }
         return $params;
     }
 
-    public function completePayment() 
+    /**
+     * Returns donation percent depending on user plan
+     * The same percent used for guest and Basic plan users
+     *
+     * @return float
+     */
+    private function calculatePercent()
     {
-        // Get the payment Object by passing paymentId
-        // payment id was previously stored in session in
-        // CreatePaymentUsingPayPal.php
-        $session = new \yii\web\Session();
-        $paymentId =$session->get('paymentId');
-        $payment = Payment::get($paymentId, $this->apiContext);
-
-        // PaymentExecution object includes information necessary 
-        // to execute a PayPal account payment. 
-        // The payer_id is added to the request query parameters
-        // when the user is redirected from paypal back to your site
-        $execution = (new PaymentExecution())->setPayerId($_GET['PayerID']);
-
-        //Execute the payment
-        // (See bootstrap.php for more on `ApiContext`)
-        try 
+        $percent = 0.2;
+        if (!\Yii::$app->user->isGuest && (\Yii::$app->user->identity->getPlan() == Plan::PLAN_PRO))
         {
-            $result = $payment->execute($execution, $this->apiContext);
-        } 
-        catch (\Exception $ex) 
-        {
-            return;
+            $percent = 0.05;
         }
-        
-        if ($result && $result->getState() == 'approved') 
-        {
-            $pay = \common\models\Payment::findOne(['payPalTransactionId' => $result->getId()]);
-            
-            if ($pay && $pay->status == \common\models\Payment::STATUS_PENDING) 
-            {
-                $pay->status = \common\models\Payment::STATUS_APPROVED;
-                $pay->paymentDate = time();
-                $pay->save();
-                
-                switch ($pay->type) 
-                {
-                    case \common\models\Payment::TYPE_PRO_MONTH:
-                    case \common\models\Payment::TYPE_PRO_YEAR:
-                        $id = $pay->user->id;
-                        $plan = Plan::findOne($id);
-                        $plan->prolong($pay->amount);
-                        break;
-                        
-                    case \common\models\Payment::TYPE_DONATION:
-                        $payer = $result->getPayer();
-                        $payerInfo = $payer->getPayerInfo();
-                        $donation = Donation::findOne($pay->relatedId);
-                        $donation->paymentDate = $pay->paymentDate;
-                        
-                        if (!$donation->email)
-                        {
-                            $donation->email = strip_tags($payerInfo->getEmail());
-                        }
-                        
-                        $donation->firstName = strip_tags($payerInfo->getFirstName());
-                        $donation->lastName = strip_tags($payerInfo->getLastName());
-                        $donation->save();
-                        
-                        Campaign::updateDonationStatistics($donation->campaignId);
 
-                        // dashboard "Donation received" notification
-                        RecentActivityNotification::createNotification(
-                            \Yii::$app->user->id,
-                            ActivityMessage::messageDonationReceived($donation)
-                        );
-
-                        // dashboard "Campaign goal reached" notification
-                        $campaign = Campaign::findOne($donation->campaignId);
-                        if (intval($campaign->amountRaised) >= intval($campaign->goalAmount))
-                        {
-                            RecentActivityNotification::createNotification(
-                                \Yii::$app->user->id,
-                                ActivityMessage::messageGoalReached($campaign)
-                            );
-                        }
-                        break;
-                }
-            }
-        }
+        return $percent;
     }
 
     /**
-     * Fired when someone make donation for campaign
-     * 
-     * @param \common\models\Donation $donation
+     * Returns fee receiver object with amount and email set
+     *
+     * @param Donation $donation
+     * @return \Receiver
      */
-    public static function donationPayment(Donation $donation) 
+    private function prepareFeeReceiver(Donation $donation)
     {
-        // ### Itemized information
-        // (Optional) Lets you specify item wise
-        // information
-        $item = new Item();
-        $item->setName('Donation for ' . $donation->campaign->name);
-        $item->setCurrency('USD');
-        $item->setQuantity(1);
-        $item->setPrice($donation->amount);
-        $itemList = new ItemList();
-        $itemList->setItems([$item]);
-        
-        $amount = new Amount();
-        $amount->setCurrency("USD");
-        $amount->setTotal($donation->amount);
+        $feeReceiver = new \Receiver(round($donation->amount * $this->calculatePercent(), 2));
+        $feeReceiver->email = "pullforgood-facilitator@gmail.com";
 
-        $campaign = $donation->campaign;
-        $email = $campaign->donationEmail;
-        
-        if (!$email)
-        {
-            throw new \Exception('Donation paypal account is not set');
-        }
-        
-        $payee = new Payee();
-        $payee->setEmail($email);
-        
-        self::makePayment($amount, $itemList, \common\models\Payment::TYPE_DONATION, $donation->id, $payee);
+        return $feeReceiver;
+    }
+
+    /**
+     * Returns donation receiver object with amount and email set
+     *
+     * @param Donation $donation
+     * @return \Receiver
+     */
+    private function prepareDonationReceiver(Donation $donation)
+    {
+        $donationReceiver = new \Receiver($donation->amount);
+        $donationReceiver->email = $donation->campaign->donationEmail;
+
+        return $donationReceiver;
+    }
+
+    /**
+     * Returns object with payment params set
+     *
+     * @param array $receivers
+     * @param $returnUrl
+     * @param $cancelUrl
+     * @return \PayRequest
+     */
+    private function preparePayRequest(array $receivers, $returnUrl, $cancelUrl)
+    {
+        $payRequest = new \PayRequest();
+        $payRequest->actionType = "PAY";
+        $payRequest->currencyCode = "USD";
+        $payRequest->returnUrl = $returnUrl;
+        $payRequest->cancelUrl = $cancelUrl;
+        $payRequest->memo = "Donation + Pullr fee";
+        $payRequest->reverseAllParallelPaymentsOnError = true;
+        $payRequest->requestEnvelope = new \RequestEnvelope("en_US");
+        $payRequest->receiverList = new \ReceiverList($receivers);
+
+        return $payRequest;
+    }
+
+    /**
+     * Creates 'pending' db records for fee payment and donation payment
+     *
+     * @param Donation $donation
+     * @param \PayResponse $response
+     * @param \Receiver $feeReceiver
+     * @param \Receiver $donationReceiver
+     */
+    private function createPendingPayments(Donation $donation, \PayResponse $response, \Receiver $feeReceiver, \Receiver  $donationReceiver)
+    {
+        $donationPayment = new \common\models\Payment();
+        $donationPayment->userId = \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
+        $donationPayment->type = \common\models\Payment::TYPE_DONATION;
+        $donationPayment->payKey = $response->payKey;
+        $donationPayment->amount = $donationReceiver->amount;
+        $donationPayment->relatedId = $donation->id;
+        $donationPayment->createdDate = time();
+        $donationPayment->save();
+
+        $percentPayment = new \common\models\Payment();
+        $percentPayment->userId = \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
+        $percentPayment->type = \common\models\Payment::TYPE_DONATION_PERCENT;
+        $percentPayment->payKey = $response->payKey;
+        $percentPayment->amount = $feeReceiver->amount;
+        $percentPayment->relatedId = $donation->id;
+        $percentPayment->createdDate = time();
+        $percentPayment->save();
     }
 
     /**
@@ -200,66 +179,24 @@ class PullrPayment extends \yii\base\Component {
     {         
         if (!$donation->campaign->donationEmail)
         {
-            throw new \Exception('Donation paypal account is not set');
+            throw new \Exception('Donation PayPal email is not set');
         }
-        
-        // Default percent for guest user and user with Basic plan
-        $percent = 0.2;
-        if (!\Yii::$app->user->isGuest && (\Yii::$app->user->identity->getPlan() == Plan::PLAN_PRO)) 
-        {
-            $percent = 0.05;
-        }
-        
-        // Donation tax receiver
-        $pullr = new \Receiver();
-        $pullr->amount = round($donation->amount * $percent, 2);
-        $pullr->email = "pullforgood-facilitator@gmail.com";
 
-        // Donation payee receiver
-        $payee = new \Receiver();
-        $payee->amount = $donation->amount;
-        $payee->email = $donation->campaign->donationEmail;
-        
-        // Preparing request params to PayPal
-        $payRequest = new \PayRequest();
-        $payRequest->actionType = "PAY";
-        $payRequest->currencyCode = "USD";
-        $payRequest->returnUrl = $returnUrl;
-        $payRequest->cancelUrl = $cancelUrl;
-        $payRequest->memo = "Donation + Pullr fee";
-        $payRequest->reverseAllParallelPaymentsOnError = true;
-        $payRequest->requestEnvelope = new \RequestEnvelope("en_US");
-        $payRequest->receiverList = new \ReceiverList([$pullr, $payee]);
-        
-        $service = new \AdaptivePaymentsService();
-        
+        $feeReceiver = $this->prepareFeeReceiver($donation);
+        $donationReceiver = $this->prepareDonationReceiver($donation);
+        $payRequest = $this->preparePayRequest([$feeReceiver, $donationReceiver], $returnUrl, $cancelUrl);
+
         try 
         {
+            $service = new \AdaptivePaymentsService($this->payPalConfig);
             $response = $service->Pay($payRequest);
+
             if (strcasecmp($response->responseEnvelope->ack, "Failure") === 0)
             {
-                throw new \Exception($response->error[0]->message);
+                throw new \Exception(array_pop($response->error)->message);
             }
-            
-            // Create PayPal payment in Pullr database with 'pending' status
-            $payDonation = new \common\models\Payment();
-            $payDonation->userId = \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
-            $payDonation->type = \common\models\Payment::TYPE_DONATION;
-            $payDonation->payKey = $response->payKey;
-            $payDonation->amount = $payee->amount;
-            $payDonation->relatedId = $donation->id;
-            $payDonation->createdDate = time();
-            $payDonation->save();
-            
-            // Create PayPal ***percent*** payment in Pullr database with 'pending' status
-            $payPercent = new \common\models\Payment();
-            $payPercent->userId = \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
-            $payPercent->type = \common\models\Payment::TYPE_DONATION_PERCENT;
-            $payPercent->payKey = $response->payKey;
-            $payPercent->amount = $pullr->amount;
-            $payPercent->relatedId = $donation->id;
-            $payPercent->createdDate = time();
-            $payPercent->save();            
+
+            $this->createPendingPayments($donation, $response, $feeReceiver, $donationReceiver);
         }
         catch(\Exception $ex) 
         {
@@ -269,12 +206,13 @@ class PullrPayment extends \yii\base\Component {
         
         return $response->payKey;
     }
-    
+
     /**
-     * Summary of finishDonationPayment
-     * @param mixed $payKey 
-     * @throws Exception 
+     * Retrieves payment status by pay key and sets payments status to 'approved'
+     *
+     * @param $payKey
      * @return bool
+     * @throws \Exception
      */
     public function finishDonationPayment($payKey)
     {        
@@ -285,10 +223,19 @@ class PullrPayment extends \yii\base\Component {
         
         $paymentDetailsRequest = new \PaymentDetailsRequest(new \RequestEnvelope("en_US"));
         $paymentDetailsRequest->payKey = $payKey;
-        $adaptivePaymentsService = new \AdaptivePaymentsService();
-        $paymentDetailsResponse = $adaptivePaymentsService->PaymentDetails($paymentDetailsRequest);
+        $adaptivePaymentsService = new \AdaptivePaymentsService($this->payPalConfig);
 
-        $donationId = 0;
+        try
+        {
+            $paymentDetailsResponse = $adaptivePaymentsService->PaymentDetails($paymentDetailsRequest);
+        }
+        catch(\Exception $ex)
+        {
+            \Yii::error($ex->getMessage(), 'PayPal');
+            throw $ex;
+        }
+
+        $donationId = null;
         $paymentDate = time();
 
         foreach($paymentDetailsResponse->paymentInfoList->paymentInfo as $info)
@@ -309,29 +256,32 @@ class PullrPayment extends \yii\base\Component {
         }
 
         $donation = Donation::findOne($donationId);
-        $donation->paymentDate = $paymentDate;
-        $donation->save();
-
-        Campaign::updateDonationStatistics($donation->campaignId);
-
-        // Dashboard "Donation received" notification
-        RecentActivityNotification::createNotification(\Yii::$app->user->id, ActivityMessage::messageDonationReceived($donation));
-
-        // Dashboard "Campaign goal reached" notification
-        $campaign = Campaign::findOne($donation->campaignId);
-        if (intval($campaign->amountRaised) >= intval($campaign->goalAmount))
+        if (isset($donation) && !$donation->isPaid())
         {
-            RecentActivityNotification::createNotification(\Yii::$app->user->id, ActivityMessage::messageGoalReached($campaign));
+            $donation->paymentDate = $paymentDate;
+            $donation->save();
+
+            Campaign::updateDonationStatistics($donation->campaignId);
+
+            // Dashboard "Donation received" notification
+            RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageDonationReceived($donation));
+
+            // Dashboard "Campaign goal reached" notification
+            $campaign = Campaign::findOne($donation->campaignId);
+            if (intval($campaign->amountRaised) >= intval($campaign->goalAmount))
+            {
+                RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageGoalReached($campaign));
+            }
         }
-        
+
         return true;
     }
 
     /**
      * Sends init request to PayPal for recurring payment
-     * 
-     * @param mixed $payAmount 
-     * @return mixed
+     *
+     * @param $payAmount
+     * @throws \Exception
      */
     public static function initProSubscription($payAmount)
     {
@@ -385,11 +335,11 @@ class PullrPayment extends \yii\base\Component {
 
     /**
      * Sends request to PayPal to finish subscription process
-     * 
-     * @param double $payAmount 
-     * @param string $token 
-     * @param int $PayerID 
-     * @return mixed
+     *
+     * @param $payAmount
+     * @param $token
+     * @param $PayerID
+     * @throws \Exception
      */
     public static function finishProSubscription($payAmount, $token, $PayerID)
     {

@@ -10,6 +10,7 @@ use common\models\User;
  * @package common\models
  * @property integer $relatedId
  * @property string $status
+ * @property int $paymentDate
  */
 class Payment extends ActiveRecord 
 {
