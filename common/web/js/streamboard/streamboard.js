@@ -14,21 +14,7 @@ $(window).load(function() {
         }
     });
 
-    function initMarqueeContainer(){
-        var $marqueeContainerList = $(".marquee-container");
-        $marqueeContainerList.each(function(){
-            var $marqueeContainer = $(this);                      
-            var $parent = $marqueeContainer.parents('.regionsContainer');
-            var parentWidth = $parent.width();
-            var sideWidth = $('#sidepanel').width();
-            var marqueeWidth = parentWidth - sideWidth;
-
-            $marqueeContainer.width(marqueeWidth);    
-        })
-    }
-
-    initMarqueeContainer();
-    
+   
     $(".regionsContainer .region:first-child").resizable({
         handles: "s",
         animate: false,
