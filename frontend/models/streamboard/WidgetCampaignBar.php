@@ -28,13 +28,13 @@ class WidgetCampaignBar extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
-                'messagesEnable', 'timerEnable', 'progressBarEnable']
+                'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY']
         ];
     }
 
     public function fields(){
         return ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
-            'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule'];
+            'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule', 'positionX', 'positionY'];
     }
 
     public function beforeValidate() {

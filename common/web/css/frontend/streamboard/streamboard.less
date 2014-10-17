@@ -339,20 +339,31 @@ ul.panel-nav {
 			background: @gray10;
 			border-bottom: solid 1px @maingray;
 			&.wasRead {
-				opacity: .1;
-
-				.markread {
+				.donation-wrap {
+					opacity: .2;
+				}
+				a.markread {
 					background: transparent !important;
-
+					&:hover {
+						i {
+							&:before {
+								content: '\e687';
+							}
+						}
+					}
 					i {
 						&:before {
 							content: '\e632';
+							color: @gray30;
 						}
 					}
 				}
 			}
 			&:last-child {
 				border: 0;
+			}
+			.donation-wrap {
+				.slowtrans;
 			}
 			h3.list-title,
 			p.list-total {
@@ -361,7 +372,6 @@ ul.panel-nav {
 			p.list-total {
 				background: @gray15;
 			}
-
 			.donation-comments {
 				color: @gray70;
 				font-size: 14px;
@@ -389,8 +399,6 @@ ul.panel-nav {
 				height: @gutter + 20px;
 				width: @gutter + @gutter;
 				&:hover {
-					color: @gray50;
-
 					i {
 						&:before {
 							content: '\e632';
@@ -535,24 +543,3 @@ ul.panel-nav {
 		}
 	}
 }
-.timer-module{
-   min-height: 450px;
-}
-.timerType{
-  margin-bottom: 10px;
-}
-
-.marquee-container {
-	width: 500px;
-	height:100px;
-	overflow: hidden;
-}
-
-.marqueeStop {	
-	text-align: left;
-}
-
-.marqueeStop div[angular-marquee]{
-	width:1000000px;
-}
-

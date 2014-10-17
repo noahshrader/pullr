@@ -77,9 +77,8 @@
         $scope.MAX_FONT_SIZE = 72;
         $scope.MIN_FONT_SIZE = 10;
 
-        $scope.regionChanged = function (region) {
-            $http.post('app/streamboard/update_region_ajax', region);
-        };
+        $scope.regionChanged = regions.regionChanged;
+
         $scope.selectSound = function (preference, sound, soundType, region) {
             preference.sound = sound;
             preference.soundType = soundType;

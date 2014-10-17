@@ -2,7 +2,7 @@
     <div class="panel-group">
         <h5>Alerts</h5>
         <div class="panel-group text-center">
-            <button class="btn btn-primary btn-sm" ng-click="streamService.testData('all', 1)">Test alerts</button>
+            <button class="btn btn-primary btn-sm" ng-click="streamService.testData('all', 1, region.regionNumber)">Test alerts</button>
         </div>
         <div class="checkbox">
             <label ng-class="{on:module.includeFollowers}">

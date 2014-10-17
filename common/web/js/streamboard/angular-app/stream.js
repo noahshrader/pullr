@@ -12,21 +12,21 @@
 
             this.showSubscriber = true;
             this.showFollower = true;
-            this.getActivityFeedSetting = function() {
-                $http.get('app/streamboard/get_activity_feed_setting').success(function (data) {                    
+            this.getActivityFeedSetting = function () {
+                $http.get('app/streamboard/get_activity_feed_setting').success(function (data) {
                     Service.showSubscriber = data.showSubscriber;
                     Service.showFollower = data.showFollower;
                 });
             }
 
-            this.toggleSubscriber = function() {
-                $http.post('app/streamboard/set_activity_feed_setting',{
+            this.toggleSubscriber = function () {
+                $http.post('app/streamboard/set_activity_feed_setting', {
                     showSubscriber: Service.showSubscriber
-                });                
+                });
             }
 
-            this.toggleFollower = function() {
-                $http.post('app/streamboard/set_activity_feed_setting',{
+            this.toggleFollower = function () {
+                $http.post('app/streamboard/set_activity_feed_setting', {
                     showFollower: Service.showFollower
                 });
             }
@@ -56,13 +56,13 @@
                 });
             }
 
-            this.testData = function (type, number) {
+            this.testData = function (type, number, regionNumber) {
                 if (!number) {
                     number = 1;
                 }
                 var message;
 
-                switch (type){
+                switch (type) {
                     case 'donations':
                         message = 'just donated to ...';
                         break;
@@ -73,21 +73,26 @@
                         message = 'just subscribed to your channel';
                         break;
                     case 'all':
-                        this.testData('donations',number);
-                        this.testData('followers',number);
-                        this.testData('subscribers',number);
+                        this.testData('donations', number, regionNumber);
+                        this.testData('followers', number, regionNumber);
+                        this.testData('subscribers', number, regionNumber);
                         return;
                     default:
                         throw new Exception('testData wrong type');
                 }
 
                 for (var i = 0; i < number; i++) {
-                    var notification = {"id":-1,"type":"donations","message":"Testaccount"+(i+1)+' '+message, "date": Math.round(new Date().getTime() / 1000)};
+                    var notification = {"id": -1, "type": "donations", "message": "Testaccount" + (i + 1) + ' ' + message, "date": Math.round(new Date().getTime() / 1000)};
                     notification.type = type;
-                    Service.streams[1].push(notification);
-                    if (regions.regions.length > 1) {
-                        /*if we have second region*/
-                        Service.streams[2].push(notification);
+                    if (regionNumber) {
+                        Service.streams[regionNumber].push(notification);
+                    } else {
+                        /**in other case let's push notification for both if region*/
+                        Service.streams[1].push(notification);
+                        if (regions.regions.length > 1) {
+                            /*if we have second region*/
+                            Service.streams[2].push(notification);
+                        }
                     }
                 }
             }
