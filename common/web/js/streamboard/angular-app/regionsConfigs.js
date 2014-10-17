@@ -69,7 +69,7 @@
             templateUrl: 'angular/views/streamboard/region/fontStyle.html'
         }
     });
-    app.controller('RegionConfigCtrl', function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager, regions, stream) {
+    app.controller('RegionConfigCtrl', function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager, regions, stream, simpleMarqueeHelper) {
         $scope.alertMediaManagerService = alertMediaManager;
         $scope.campaignsService = campaigns;
         $scope.streamService = stream;
@@ -78,6 +78,10 @@
         $scope.MIN_FONT_SIZE = 10;
 
         $scope.regionChanged = regions.regionChanged;
+        $scope.fontSizeChange = function(region) {
+            simpleMarqueeHelper.recalculateMarquee();
+            $scope.regionChanged(region);
+        }
 
         $scope.selectSound = function (preference, sound, soundType, region) {
             preference.sound = sound;

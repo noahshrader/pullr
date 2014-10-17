@@ -14,7 +14,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
     <div class="form-group">
         <h5>Font size <span class="slider-value value">{{widget.fontSize}} px</span></h5>
         <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
-                ng-change="regionChanged(region)"></slider>
+                ng-change="fontSizeChange(region)"></slider>
     </div>
     <div class="form-group">
         <h5>Font color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
