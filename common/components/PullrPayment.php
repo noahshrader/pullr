@@ -128,7 +128,6 @@ class PullrPayment extends \yii\base\Component
         $payRequest->currencyCode = "USD";
         $payRequest->returnUrl = $returnUrl;
         $payRequest->cancelUrl = $cancelUrl;
-        $payRequest->memo = "Donation + Pullr fee";
         $payRequest->reverseAllParallelPaymentsOnError = true;
         $payRequest->requestEnvelope = new \RequestEnvelope("en_US");
         $payRequest->receiverList = new \ReceiverList($receivers);
