@@ -6,10 +6,8 @@ use yii\web\View;
 ?>
 <div>
     <div class="module first">
-
         <div class="panel-group">
             <h5>Font Style</h5>
-
             <div font-style ng-model="preference.fontStyle"></div>
         </div>
         <div class="panel-group">

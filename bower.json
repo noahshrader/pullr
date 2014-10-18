@@ -17,7 +17,6 @@
     "angular-ui-select2": "~0.0.5",
     "angular-bootstrap-colorpicker": "~3.0.8",
     "angular-timer": "https://github.com/tq0fqeu/angular-timer.git#18ba2cf230b794e1e1405371d883e8c37654694b",
-    "iframe-resizer": "2.6.1",
     "angular-bootstrap": "~0.11.2",
     "angular-moment": "~0.8.2",
     "moment": "~2.8.3",
