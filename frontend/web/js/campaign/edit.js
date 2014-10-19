@@ -107,7 +107,7 @@ function rememberAccordionState() {
 
 function initBootstrapSwitch() {
     $("#campaignEdit input[type='checkbox']").bootstrapSwitch();
-    $("#campaign-enabledonations").on('click', function() {
+    $("#campaign-enabledonations").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-enabledonations').bootstrapSwitch('state');
         if (value){
             $('.field-campaign-eventid').show('slow');
@@ -116,7 +116,7 @@ function initBootstrapSwitch() {
         }
     });
     
-    $(".field-campaign-twitterenable").on('click', function() {
+    $("#campaign-twitterenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-twitterenable').bootstrapSwitch('state');
         if (value){
             $('.field-campaign-twittername').addClass('show');
@@ -125,7 +125,7 @@ function initBootstrapSwitch() {
         }
     });
     
-    $(".field-campaign-youtubeenable").on('click', function() {
+    $("#campaign-youtubeenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-youtubeenable').bootstrapSwitch('state');
         if (value){
             $('.field-campaign-youtubeurl').addClass('show');
@@ -134,7 +134,7 @@ function initBootstrapSwitch() {
         }
     });
     
-    $(".field-campaign-facebookenable").on('click', function() {
+    $("#campaign-facebookenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-facebookenable').bootstrapSwitch('state');
         if (value){
             $('.field-campaign-facebookurl').addClass('show');
@@ -143,7 +143,7 @@ function initBootstrapSwitch() {
         }
     });
 
-    $(".field-campaign-teamenable").on('click', function() {
+    $("#campaign-teamenable").on('switchChange.bootstrapSwitch', function() {
         var value = $("#campaign-teamenable").bootstrapSwitch('state');
         if (value){
             $('#campaignEdit').addClass('team-enabled');
@@ -152,7 +152,7 @@ function initBootstrapSwitch() {
         }
     });
     
-    $(".field-campaign-tiedtoparent").on('click', function() {
+    $("#campaign-tiedtoparent").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-tiedtoparent').bootstrapSwitch('state');
         if (value){
             $('#collapseOne').addClass('isTied');
