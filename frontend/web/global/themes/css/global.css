@@ -230,6 +230,10 @@ ul {
   border: none;
 }
 /* Headings */
+small,
+.font_small {
+  font-size: 0.618em;
+}
 /* Icons */
 @font-face {
   font-family: 'icomoon';
