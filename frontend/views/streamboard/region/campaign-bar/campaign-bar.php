@@ -3,7 +3,7 @@ use frontend\models\streamboard\StreamboardRegion;
 use frontend\models\streamboard\WidgetCampaignBar;
 ?>
 
-<div ng-show="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'"
+<div id="campaign-bar" ng-show="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'"
      resizable='{"minHeight": <?= WidgetCampaignBar::MIN_HEIGHT ?>, "minWidth": <?= WidgetCampaignBar::MIN_WIDTH ?>, "defaultWidth": <?= WidgetCampaignBar::DEFAULT_WIDTH ?>}'
      draggable position-container="region.widgetCampaignBar" region="region"
      ng-style="{'color': region.widgetCampaignBar.fontColor, 'font-size': region.widgetCampaignBar.fontSize, 'font-family': region.widgetCampaignBar.fontStyle, 'background-color': region.widgetCampaignBar.backgroundColor}">

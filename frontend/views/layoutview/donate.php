@@ -21,7 +21,8 @@ use yii\widgets\MaskedInput;
             <? if ($charityName):?>
                 <h3 class="charity-name">for <span><?= $charityName ?></span>
                 <? if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES): ?>
-                    <span class="approved icon-check-round-fill"></span></h3>
+                    <span class="approved icon-check-round-fill"></span>
+                </h3>
                 <? endif ?>
             <? endif ?>
         <? endif; ?>
@@ -112,7 +113,7 @@ use yii\widgets\MaskedInput;
             <button type="submit" class="btn-primary btn donate <? if($campaign->firstGiving):?>continue<? endif;?>">
                 Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 1 : 5 ?>
             </button>
-            <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">privacy policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">terms of service</a>.</p>
+            <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">Privacy Policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">Terms of Service</a>.</p>
         </div>
     <?php ActiveForm::end(); ?>
 </section>

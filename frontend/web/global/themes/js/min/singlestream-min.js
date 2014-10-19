@@ -1,0 +1,1 @@
+$(window).load(function(){$(".togglechat").click(function(){$(this).toggleClass("chaton"),$(".featuredchat").fadeToggle(),$(".featuredstreamcontainer").toggleClass("biggerFeaturedStream")}),jQuery("#stream").fitVids()});

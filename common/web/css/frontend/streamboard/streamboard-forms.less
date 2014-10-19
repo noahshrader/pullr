@@ -1,9 +1,12 @@
 /* Buttons */
 .btn-sm {
 	background: @gray15;
+	&:hover {
+		background: @gray20;
+	}
 }
 
-/* Miscellaneous */
+/* Main */
 .form-group,
 .panel-group {
 	padding: @halfgutter;
@@ -61,7 +64,6 @@ h5 input.color-choice {
 	}
 }
 
-
 /* Main Region Select Boxes */
 .select2-container {
 	&:after {
@@ -114,14 +116,14 @@ h5 input.color-choice {
 	}
 }
 
-
 /* Checkboxes */
 .checkbox {
 	margin-top: 0;
 	margin-bottom: @streamboardgutter;
 
 	label {
-		font-size: .95em;
+		color: @gray40;
+		font-size: .9em;
 
 		&:before {
 			top: 2px;

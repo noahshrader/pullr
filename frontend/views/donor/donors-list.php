@@ -17,8 +17,8 @@ $this->registerJsFile('@web/js/campaign/donors-filter.js',  [
         <?/*real attributes set in php code just few lines below, that is just mapping*/ ?>
         <a data-bind="attr: { href: href}, css: { active: isActive == true }" class='row campaign-item' >
             <div class="main-info">
-                <h3 data-bind="text: name"></h3>
-                <p data-bind="text: sum"></p>
+                <h3 class="list-title" data-bind="text: name"></h3>
+                <p class="list-total" data-bind="text: sum"></p>
             </div>
         </a>
     </script> 

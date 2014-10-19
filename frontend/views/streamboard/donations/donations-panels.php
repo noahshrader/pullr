@@ -11,7 +11,7 @@
 	<!-- Top 3 Donors -->
 	<div class="module first">
 		<div class="panel-group">
-			<h5>Your Top 3 Donors</h5>
+			<h5>Top 3 Donors</h5>
 			<ul class="top_donors">
 				<li data-ng-repeat="donor in donationsService.stats.top_donors" class="value">
 					{{donor.name ? donor.name : '<?= Donation::ANONYMOUS_NAME ?>'}}

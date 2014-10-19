@@ -14,7 +14,6 @@ $(window).load(function() {
         }
     });
 
-   
     $(".regionsContainer .region:first-child").resizable({
         handles: "s",
         animate: false,
@@ -50,10 +49,6 @@ $(window).load(function() {
             }
         },
         live: true
-    });
-    // resize iframe based on inner content
-    $('iframe').iFrameResize({
-        heightCalculationMethod: 'documentElementScroll'
     });
 });
 

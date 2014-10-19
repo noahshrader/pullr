@@ -65,7 +65,10 @@
 
     <div class="alertsModule_panel slidepanel pane" child-scope>
         <div ng-init="module = widget.alertsModule">
-            <h4 class="panel-title">Alerts Settings</h4>
+            <h4 class="panel-title">
+                Alerts Settings
+                <button class="btn btn-sm" ng-click="streamService.testData('all', 1, region.regionNumber)">Test</button>
+            </h4>
             <?= $this->render('module-alerts') ?>
         </div>
     </div>

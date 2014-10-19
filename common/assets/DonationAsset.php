@@ -11,7 +11,7 @@ class DonationAsset extends AssetBundle
 	public $sourcePath = '@common/web';
 	public $baseUrl = '@web';
 	public $css = [
-            'css/frontend/donation.less',
+            'css/frontend/donation/donation.less',
 	];
         
 	public $js = [

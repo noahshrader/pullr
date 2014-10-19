@@ -2,7 +2,10 @@
 use yii\helpers\Url;
 
 ?>
-<div class="campaigns_list_panel pane">
+<div class="text-center streamboard-settings-header">
+    <button class="btn btn-secondary btn-sm" ng-click="clearButton()">Clear donations list</button>
+</div>
+<div class="settings pane">
     <div class="settings-wrap">
         <div class="campaigns_list module">
             <div class="form-group">
@@ -31,12 +34,6 @@ use yii\helpers\Url;
                         <span>Show Twitch followers</span>
                     </label>
                 </div>
-            </div>
-        </div>
-
-        <div class="module">
-            <div class="text-center form-group">
-                <button class="btn btn-secondary btn-sm" ng-click="clearButton()">Clear donations list</button>
             </div>
         </div>
     </div>
