@@ -1,4 +1,4 @@
-$(window).load(function() {
+$(function() {
 
 	// Toggle Chat
 	$('.togglechat').click(function () {
@@ -8,5 +8,5 @@ $(window).load(function() {
 	});
 
 	// FitVid Init
-	jQuery("#stream").fitVids();
+	$("#stream").fitVids();
 });

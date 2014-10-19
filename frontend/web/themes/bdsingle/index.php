@@ -29,40 +29,38 @@
 <body class="responsive" id="top">
 
 <!-- Header -->
-<header>
-	<div class="container head">		
-		<div class="logo animated fadeInDown">
-			<a href="/" class="icon-pullr logo"></a>
-		</div>
-		<div class="menu-actions">
-			<a href="http://www.pullr.io">Start your campaign</a>
-		</div>
-	</div>	
+<header>	
+	<div class="logo">
+		<a href="/" class="icon-pullr logo"></a>
+	</div>
+	<div class="menu-actions">
+		<a href="http://www.pullr.io">Start your campaign</a>
+	</div>
 </header>
 
 <!-- Main Stats -->
 <section class="stats">
 	<div class="numbers container" ng-cloak>
 		<div class="col-md-4 col-sm-4 col-xs-4 raised">
-			<span>Amount raised</span>
+			<span>Amount Raised</span>
                   <h1 data-pullr='campaign-amountRaisedFormatted' style="color:{{campaign.primaryColor}};">
                       {{campaign.amountRaisedFormatted}}
                   </h1>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-4 center">
-			<span>Target Amount</span>
+			<span>Goal Amount</span>
                   <h1 data-pullr='campaign-goalAmountFormatted'>
                       {{campaign.goalAmountFormatted}}
                   </h1>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-4 right">
-			<span>No. of Donors</span>
+			<span>Donors</span>
                   <h1 data-pullr='campaign-numberOfUniqueDonors'>
                       {{campaign.numberOfUniqueDonors}}
                   </h1>
 		</div>
 	</div>
-	<div class="amount-progress">
+	<div class="amount-progress animated fadeInUp">
 		<div class="project-progress status">
 			<div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
 		</div>
@@ -70,14 +68,15 @@
 </section>
 
 <!-- Campaign Info -->
-<section class="info cf">
+<section class="info container cf" ng-cloak>
 	<div class="container" ng-cloak>
-		<div class="col-md-4 col-sm-4 col-xs-12 right feed-donate">
+		<div class="col-md-4 col-sm-4 col-xs-12 right donate-wrap">
 			<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate</button>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-8 feed-details">
 			<div class="feed-details-title">
 				<h2>{{campaign.name}}</h2>
+				<h4 style="color:{{campaign.primaryColor}};">{{campaign.charity.name}}</h4>
                   	<h5>
                   		<span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
                   	</h5>
@@ -93,10 +92,7 @@
 <footer>
 	<h5>Powered by</h5>
 	<a class="logo icon-pullr" href="http://www.pullr.io" target="_blank"></a>
-	<p>
-		&copy; <? print(Date("Y")); ?> Pullr, LLC.
-	</p>
-	<p class="tandc"><a href="/terms">Terms &amp; Conditions</a> &bull; <a href="/privacy">Privacy Policy</a></p>
+	<span class="copy"> &copy; <? print(Date("Y")); ?> Pullr, LLC. All Rights Reserved.<br/><a href="http://www.pullr.io/terms">Terms &amp; Conditions</a> &bull; <a href="http://www.pullr.io/privacy">Privacy Policy</a></span>
 </footer>
 
 <script type='text/javascript'>

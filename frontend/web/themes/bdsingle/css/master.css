@@ -11,7 +11,7 @@
 /* Twitch hover state */
 /* Twitch purple */
 /* Gray Sets */
-/* 2% darker than background */
+/* 3% darker than background */
 /* 10% gray background */
 /* 12% gray background */
 /* 15% gray background */
@@ -29,6 +29,12 @@
 /* Faded dark background */
 /* Faded dark background */
 /* Structure */
+/* Typography */
+.smallcaps {
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 /* Lists */
 .ulist {
   padding: 0;
@@ -124,10 +130,10 @@
 }
 /* Header */
 header {
-  background: #222225;
-  border-bottom: solid 1px #3a3a40;
+  background: #2e2e32;
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
 }
-header .head .logo a {
+header .logo a {
   color: #ffffff;
 }
 header .menu-actions a {
@@ -143,6 +149,34 @@ header .menu-actions a:before {
 .stats .numbers h1 {
   color: #ffffff;
 }
+.stats .project-progress {
+  background: rgba(9, 10, 12, 0.2);
+}
+/* Campaign Info */
+.info h5 {
+  color: #6b6b75;
+}
+/* Single Stream */
+.user {
+  background: #29292d;
+}
+.user .avatar a {
+  color: #ffffff;
+}
+/* Footer */
+footer h5 {
+  color: #6b6b75;
+}
+footer span.copy {
+  color: #6b6b75;
+  font-size: 0.8em;
+}
+footer span.copy a {
+  color: #6b6b75;
+}
+footer span.copy a:hover {
+  color: #ffffff;
+}
 /* Palette Styling */
 /* Type */
 /* ------------------------------------------------- */
@@ -150,9 +184,7 @@ header .menu-actions a:before {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
   font-family: 'Varela Round', Helvetica, Arial, sans-serif;
   margin: 0;
 }
@@ -175,7 +207,10 @@ h3 {
   font-size: 2em;
 }
 h4 {
-  font-size: 1.6em;
+  font-size: 1.4em;
+}
+h5 {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 }
 p,
 ol,
@@ -206,17 +241,15 @@ body {
   background: #1dbc9c;
 }
 .btn:hover {
-  background: #20d2ae;
+  opacity: .9;
 }
 /* Main Stats */
 .stats {
-  background: #222225;
+  background: #222225 url(../img/stats-back.jpg);
+  overflow: hidden;
 }
 .stats .numbers {
-  padding: 2em 15px 1em;
-}
-.stats .numbers h1 {
-  margin: 0;
+  padding: 3em 15px 1.6em;
 }
 .stats .amount-progress {
   position: relative;
@@ -234,7 +267,6 @@ body {
   height: 91px;
   width: 100%;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.2);
   -webkit-transform: rotate(-1.5deg);
   -ms-transform: rotate(-1.5deg);
   transform: rotate(-1.5deg);
@@ -251,43 +283,18 @@ body {
 }
 /* Campaign Info & Actions */
 .info {
-  padding: 4em 0 2em;
+  padding: 6em 0 3em;
   width: 100%;
+  /* Donate Button */
 }
-.info .feed-details .feed-details-title {
-  display: inline-block;
+.info h4 {
+  margin-bottom: .6em;
 }
-.info .feed-details .sharing {
-  display: inline-block;
-  position: relative;
-  right: 0;
+.info .donate-wrap {
   float: right;
 }
-.info .feed-details .sharing button {
-  background: #373737;
-  border: none;
-  color: #ffffff;
-  padding: 4px 8px;
-  margin-top: 8px;
-}
-.info .feed-details .sharing .dropdown-menu {
-  background: #373737 !important;
-  right: 0;
-  left: auto;
-}
-.info .feed-details .sharing .dropdown-menu li a {
-  color: #ffffff;
-}
-.info .feed-details .sharing .dropdown-menu li a:hover {
-  background: #2a2a2a;
-}
-.info .feed-donate {
-  float: right;
-}
-.info .feed-donate .btn {
-  width: 100%;
-  padding: 1em 3em;
-  max-width: 300px;
+.info .donate-wrap .btn {
+  font-size: 1.4em;
 }
 /* Layout */
 /* ------------------------------------------------- */
@@ -357,6 +364,25 @@ body {
   background-position: top center;
   background-repeat: no-repeat;
   opacity: .5;
+}
+.stream-wrap .user-details {
+  padding: 1em 15px;
+}
+.stream-wrap .user {
+  display: inline-block;
+  padding: .6em;
+  border-radius: 30px;
+  background-clip: padding-box;
+}
+.stream-wrap .user .avatar img {
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+  border-radius: 30px;
+  background-clip: padding-box;
+}
+.stream-wrap .user .avatar a {
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
 }
 /* Responsive */
 /* ------------------------------------------------- */

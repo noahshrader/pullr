@@ -11,7 +11,7 @@
 /* Twitch hover state */
 /* Twitch purple */
 /* Gray Sets */
-/* 2% darker than background */
+/* 3% darker than background */
 /* 10% gray background */
 /* 12% gray background */
 /* 15% gray background */
@@ -29,6 +29,12 @@
 /* Faded dark background */
 /* Faded dark background */
 /* Structure */
+/* Typography */
+.smallcaps {
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 /* Lists */
 .ulist {
   padding: 0;
@@ -695,34 +701,30 @@ header {
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   overflow: hidden;
   z-index: 1;
+  /* Logo */
   /* Right Menu */
 }
-header .head {
-  overflow: hidden;
-  /* Logo */
-}
-header .head .logo {
+header .logo {
   float: left;
 }
-header .head .logo a {
+header .logo a {
   height: 48px;
+  margin-left: 30px;
   font-size: 2em;
   line-height: 48px;
 }
-header .head .logo a:hover {
+header .logo a:hover {
   cursor: pointer;
 }
 header .menu-actions {
-  position: absolute;
-  top: 0;
-  right: 0;
+  float: right;
 }
 header .menu-actions a {
   position: relative;
   display: inline-block;
   font-weight: 500;
   line-height: 48px;
-  padding: 0 2.4em 0 1.4em;
+  padding: 0 2em 0 1em;
   background: transparent;
 }
 header .menu-actions a:hover {
@@ -748,19 +750,26 @@ header .menu-actions a:before {
 .btn {
   color: #ffffff;
   position: relative;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1em;
+  line-height: 45px;
   text-transform: uppercase;
-  padding: 0.4em 2em;
+  width: auto;
+  min-width: 280px;
   outline: 0 !important;
   border: 0;
   border-radius: 4px;
   background-clip: padding-box;
   box-shadow: 0;
 }
+/* Progress Bar */
+.project-progressbar {
+  max-width: 100%;
+}
 footer {
   text-align: center;
-  padding: 2em 0;
+  padding: 1.6em 0;
+  /* Powered */
 }
 footer h5 {
   color: #d4d4d8;
@@ -768,7 +777,7 @@ footer h5 {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: .2em;
+  margin-bottom: .8em;
 }
 footer a.logo:before {
   color: #d4d4d8;
@@ -777,25 +786,7 @@ footer a.logo:before {
 footer a.logo:hover:before {
   color: #53535a;
 }
-footer .powered {
-  text-align: center;
-  text-transform: uppercase;
-}
-footer .tandc {
-  margin-top: 0 !important;
-}
-footer .tandc a {
-  position: relative;
-  margin: 0 6px;
-}
-footer p {
-  text-align: center;
-  margin-bottom: 0;
-}
-footer p a.icon-pullr {
-  color: #ffffff;
-  font-size: 1.2em;
-  margin-left: 2px;
-  position: relative;
-  top: 3px;
+footer span.copy {
+  display: block;
+  padding: 1em 0;
 }

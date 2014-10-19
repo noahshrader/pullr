@@ -1,13 +1,11 @@
 /* Header */
 header {
-	background: @base;
-	border-bottom: solid 1px @gray10;
+	background: @maingray;
+	.box-shadow;
 
-	.head {
-		.logo {
-			a {
-				color: @white;
-			}
+	.logo {
+		a {
+			color: @white;
 		}
 	}
 	.menu-actions {
@@ -29,6 +27,45 @@ header {
 		}
 		h1 {
 			color: @white;
+		}
+	}
+	.project-progress {
+		background: @bglightblackfade;
+	}
+}
+
+/* Campaign Info */
+.info {
+	h5 {
+		color: @gray30;
+	}
+}
+
+/* Single Stream */
+.user {
+	background: @dkgray;
+
+	.avatar {
+		a {
+			color: @white;
+		}
+	}
+}
+
+/* Footer */
+footer {
+	h5 {
+		color: @gray30;
+	}
+	span.copy {
+		color: @gray30;
+		font-size: @fineprint;
+
+		a {
+			color: @gray30;
+			&:hover {
+				color: @white;
+			}
 		}
 	}
 }

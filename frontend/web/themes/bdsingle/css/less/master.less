@@ -18,21 +18,19 @@ body {
 /* Buttons */
 .btn {
 	background: @accent;
+
 	&:hover {
-		background: @accenthover;
+		opacity: .9;
 	}
 }
 
 /* Main Stats */
 .stats {
-	background: @base;
+	background: @base url(../img/stats-back.jpg);
+	overflow: hidden;
 
 	.numbers {
-		padding: 2em @halfgutter 1em;
-
-		h1 {
-			margin: 0;
-		}
+		padding: 3em @halfgutter 1.6em;
 	}
 
 	.amount-progress {
@@ -51,7 +49,6 @@ body {
 			height: 91px;
 			width: 100%;
 			z-index: 10;
-			background: @bglightwhitefade;
 			-webkit-transform: rotate(-1.5deg);
 			-ms-transform: rotate(-1.5deg);
 			transform: rotate(-1.5deg);
@@ -72,48 +69,19 @@ body {
 
 /* Campaign Info & Actions */
 .info {
-	padding: 4em 0 2em;
+	padding: 6em 0 3em;
 	width: 100%;
 
-	.feed-details {
-		.feed-details-title {
-			display: inline-block;
-		}
-		.sharing {display: inline-block;
-		position: relative;
-		right: 0;
-		float: right;
-			button {
-				background: @c2;
-				border: none;
-				color: @white;
-				padding: 4px 8px;
-				margin-top: 8px;
-			}
-		.dropdown-menu {
-		background: @c2 !important;
-		right: 0;
-		left: auto;
-		
-		li {
-			a {
-				color: @white;
-				&:hover {
-					background: darken(@c2, 5%)
-				}
-			}
-				
-				
-				}
-		}
-		}
+	h4 {
+		margin-bottom: .6em;
 	}
-	.feed-donate {
+
+	/* Donate Button */
+	.donate-wrap {
 		float: right;
+
 		.btn {
-			width: 100%;
-			padding: 1em 3em;
-			max-width: 300px;
+			font-size: 1.4em;
 		}
 	}
 }
@@ -122,8 +90,25 @@ body {
 /* ------------------------------------------------- */
 @import "../../../../global/themes/css/less/singlestream.less";
 
-#stream {
-	
+.stream-wrap {
+	.user {
+		display: inline-block;
+		padding: .6em;
+		.round-radius;
+
+		.avatar {
+
+			img {
+				height: 30px;
+				width: 30px;
+				overflow: hidden;
+				.round-radius;
+			}
+			a {
+				.main();
+			}
+		}
+	}
 }
 
 
