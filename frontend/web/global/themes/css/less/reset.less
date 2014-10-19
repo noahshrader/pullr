@@ -1,0 +1,112 @@
+/* Resets
+/* ------------------------------------------------- */
+*,
+*:after,
+*:before {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+html {
+	height: 100%;
+}
+html, body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-weight: 400;
+	.fadein;
+}
+.cf:before,
+.cf:after {
+	content: '';
+	display: table;
+}
+.cf:after {
+	clear: both;
+}
+.cf {
+	*zoom: 1;
+}
+
+/* Common UI Elements */
+a,
+button {
+	outline: 0;
+	cursor: pointer;
+}
+
+a, a:hover {
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+}
+a,
+a:before,
+a:after {
+	.trans;
+}
+a:hover,
+a:focus,
+a:active,
+input,
+input:focus,
+button,
+button:active {
+	outline: 0;
+}
+input,
+button,
+textarea,
+select {
+	margin: 0;
+	outline: 0;
+	box-shadow: none !important;
+}
+iframe {
+	width: 100%;
+	min-height: 100%;
+	border: 0;
+	background: transparent;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+ul {
+	.ulist
+}
+.center {
+	text-align: center;
+}
+.right {
+	text-align: right;
+}
+
+
+::selection {
+	text-shadow: none;
+}
+
+/* Placeholder styling */
+::-webkit-input-placeholder {
+}
+:-moz-placeholder {
+}
+::-moz-placeholder {
+}
+:-ms-input-placeholder {
+}
+
+/* Color swatch styling */
+::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+::-webkit-color-swatch {
+	border: none;
+}

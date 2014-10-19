@@ -1,0 +1,39 @@
+/* ------------------------------------------------- */
+/* Modals */
+/* ------------------------------------------------- */
+.mfp-fade.mfp-bg {
+	background: @base;
+	opacity: 0;
+	-webkit-transition: all 0.15s ease-out;
+	transition: all 0.15s ease-out;
+}
+/* overlay animate in */
+.mfp-fade.mfp-bg.mfp-ready {
+	opacity: 0.8;
+}
+/* overlay animate out */
+.mfp-fade.mfp-bg.mfp-removing {
+	opacity: 0;
+}
+/* content at start */
+.mfp-fade.mfp-wrap .mfp-content {
+	opacity: 0;
+	-webkit-transition: all 0.15s ease-out;
+	transition: all 0.15s ease-out;
+}
+/* content animate it */
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+	margin-bottom: 100px;
+	opacity: 1;
+}
+/* content animate out */
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+	opacity: 0;
+}
+.mfp-iframe-holder .mfp-content {
+	max-width: 680px !important;
+}
+.mfp-iframe-scaler iframe {
+	margin-bottom: 100px;
+	border-radius: 10px;
+}
