@@ -122,10 +122,9 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                     <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
                     ?>
                     <div class="progress">
-                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;"></div>
-                    </div>
-                    <div class="progress-count">
-                        <span><?= round($progress) ?>%</span>
+                        <div class="progress-line" role="progressbar" aria-valuenow="<?= $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress ?>%;">
+                            <span data-toggle="tooltip" data-placement="top" title="<?= round($progress) ?>%"></span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -152,6 +151,15 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                 'campaign' => $campaign
             ]);?>
             <section class="module table">
+                <div class="spinner-wrap">
+                    <div class="spinner">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </div>
                 <?= $this->render('donations-table', [
                     'donations' => $donations
                 ]); ?>

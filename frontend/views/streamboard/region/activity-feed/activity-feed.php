@@ -40,11 +40,11 @@ use frontend\models\streamboard\StreamboardRegion;
 
                 <span ng-if="(donationsService.donations | donationsFilterToSelectedCampaigns).length == 0">
                     <span ng-if="region.widgetDonationFeed.noDonationMessage">{{region.widgetDonationFeed.noDonationMessage}}</span>
-                    <span ng-if="!region.widgetDonationFeed.noDonationMessage">Empty activity feed</span>
+                    <span ng-if="!region.widgetDonationFeed.noDonationMessage">No activity!</span>
                 </span>
                 <span ng-if="(donationsService.donations | donationsFilterToSelectedCampaigns).length == 0">
                     <span ng-if="region.widgetDonationFeed.noDonationMessage">{{region.widgetDonationFeed.noDonationMessage}}</span>
-                    <span ng-if="!region.widgetDonationFeed.noDonationMessage">Empty activity feed</span>
+                    <span ng-if="!region.widgetDonationFeed.noDonationMessage">No activity!</span>
                 </span>
             </div>
     

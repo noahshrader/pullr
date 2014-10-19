@@ -44,7 +44,7 @@ class Campaign extends ActiveRecord {
 
     public static $LAYOUT_TYPES = [self::LAYOUT_TYPE_SINGLE, self::LAYOUT_TYPE_TEAM, self::LAYOUT_TYPE_MULTI];
 
-//    const DONATION_PERSONAL_PAYPAL = 'Personal Paypal';
+    // const DONATION_PERSONAL_PAYPAL = 'Personal Paypal';
     const DONATION_PREAPPROVED_CHARITIES = 'Pre-approved Charities';
     const DONATION_CUSTOM_FUNDRAISER = 'Custom Fundraiser';
     

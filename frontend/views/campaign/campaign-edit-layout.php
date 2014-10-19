@@ -56,7 +56,7 @@ $user = \Yii::$app->user->identity;
                 </label>
                 <span><?= $campaign->theme?$campaign->theme->name:''?></span>
             </div>
-            <button type="button" class="btn btn-primary" onclick="layoutChooseTheme()">Choose a theme</button>
+            <button type="button" class="btn btn-secondary" onclick="layoutChooseTheme()">Choose a theme</button>
             <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Choose how you want to style your layout page. Options based on the Type of Layout you selected and which plan you're on."></i>
             <!-- Background Image Upload (if Pro) -->
             <? if ($user->plan == Plan::PLAN_PRO): ?>

@@ -393,36 +393,55 @@ footer {
 }
 
 /* Main Form */
-#form-errors-summary,
-#donation-form {
-	margin: 0 auto;
-	max-width: 650px;
-}
 #form-errors-summary {
 	text-align: center;
-	padding: 3em 5% 0;
-	margin: 0 auto;
 
 	p {
 		margin: .3em 0;
 	}
 }
+#form-errors-summary,
+#donation-form {
+	margin: 0 auto;
+	padding: 3em 5% 0;
+	max-width: 650px;
+}
 #donation-form {
 	padding: 1em 5%;
-	margin: 0 auto;
 
-	input {
-		width: 100%;
+	.input-item-select {
+		select {
+			border: 0;
+		}
 	}
+	div div {
+		div {
+			margin-bottom: 1em;
+			div {
+				margin: 0;
+			}
+		}
+	}
+	input {
+		width: 100% !important;
+	}
+}
+.processed {
+	display: block;
+	font-size: @fineprint;
+	padding: 2em 0;
 }
 
 
 /* Loader */
 /* ------------------------------------------------- */
-.spinner {
-	margin: 30% auto;
-}
+.spinner-wrap {
+	position: fixed;
 
+	.spinner {
+		margin: 30% auto;
+	}
+}
 
 /* Responsive */
 /* ------------------------------------------------- */

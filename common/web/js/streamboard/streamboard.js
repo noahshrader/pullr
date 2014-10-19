@@ -14,7 +14,6 @@ $(window).load(function() {
         }
     });
 
-   
     $(".regionsContainer .region:first-child").resizable({
         handles: "s",
         animate: false,
