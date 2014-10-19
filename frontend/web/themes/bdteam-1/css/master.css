@@ -125,6 +125,7 @@
 /* Header */
 header {
   background: #222225;
+  border-bottom: solid 1px #3a3a40;
 }
 header .head .logo a {
   color: #ffffff;
@@ -136,7 +137,10 @@ header .menu-actions a:before {
   border-left: 1px solid #3a3a40;
 }
 /* Main Stats */
-.stats h1 {
+.stats .numbers span {
+  color: #6b6b75;
+}
+.stats .numbers h1 {
   color: #ffffff;
 }
 /* Palette Styling */
@@ -306,14 +310,14 @@ body {
 /* Layout */
 /* ------------------------------------------------- */
 .stream-wrap {
-  width: 100%;
+  overflow: hidden;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .stream-wrap #stream {
   position: relative;
   margin: 0 auto;
-  padding: .3em;
+  padding: 0.3em 15px;
   z-index: 10;
 }
 .stream-wrap #stream #featured {

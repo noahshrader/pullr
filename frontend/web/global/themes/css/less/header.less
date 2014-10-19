@@ -15,7 +15,7 @@ header {
 
 			a {
 				height: @headerheight;
-				font-size: 2.2em;
+				font-size: 2em;
 				line-height: @headerheight;
 				&:hover {
 					cursor: pointer;
@@ -26,19 +26,22 @@ header {
 
 	/* Right Menu */
 	.menu-actions {
-		float: right;
+		position: absolute;
+		top: 0;
+		right: 0;
 
 		a {
 			position: relative;
 			display: inline-block;
 			font-weight: 500;
 			line-height: @headerheight;
-			padding-left: 1.4em;
+			padding: 0 2.4em 0 1.4em;
 			background: transparent;
 			&:hover {
+				background: @gray10;
 
 				&:before {
-					background: transparent;
+					background: @gray10;
 				}	
 			}
 			

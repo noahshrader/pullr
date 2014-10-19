@@ -23,7 +23,7 @@
 	<script src="api/script"></script>
 	<script src="/global/themes/global.js"></script>
 	<!-- Fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700,500' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Varela+Round:400' rel='stylesheet' type='text/css'>
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body class="responsive" id="top">
@@ -42,31 +42,29 @@
 
 <!-- Main Stats -->
 <section class="stats">
-	<div class="container" ng-cloak>
-		<div class="row">
-			<div class="col-md-4 col-sm-4 col-xs-4 raised">
-				<span>Amount raised</span>
-                        <h1 data-pullr='campaign-amountRaisedFormatted' style="color:{{campaign.primaryColor}};">
-                            {{campaign.amountRaisedFormatted}}
-                        </h1>
-			</div>
-			<div class="col-md-4 col-sm-4 col-xs-4 center">
-				<span>Target Amount</span>
-                        <h1 data-pullr='campaign-goalAmountFormatted'>
-                            {{campaign.goalAmountFormatted}}
-                        </h1>
-			</div>
-			<div class="col-md-4 col-sm-4 col-xs-4 right">
-				<span>No. of Donors</span>
-                        <h1 data-pullr='campaign-numberOfUniqueDonors'>
-                            {{campaign.numberOfUniqueDonors}}
-                        </h1>
-			</div>
+	<div class="numbers container" ng-cloak>
+		<div class="col-md-4 col-sm-4 col-xs-4 raised">
+			<span>Amount raised</span>
+                  <h1 data-pullr='campaign-amountRaisedFormatted' style="color:{{campaign.primaryColor}};">
+                      {{campaign.amountRaisedFormatted}}
+                  </h1>
 		</div>
-		<div class="amount-progress">
-			<div class="project-progress status">
-				<div class="project-progressbar" style="background:{{campaign.primaryColor}};"></div>
-			</div>
+		<div class="col-md-4 col-sm-4 col-xs-4 center">
+			<span>Target Amount</span>
+                  <h1 data-pullr='campaign-goalAmountFormatted'>
+                      {{campaign.goalAmountFormatted}}
+                  </h1>
+		</div>
+		<div class="col-md-4 col-sm-4 col-xs-4 right">
+			<span>No. of Donors</span>
+                  <h1 data-pullr='campaign-numberOfUniqueDonors'>
+                      {{campaign.numberOfUniqueDonors}}
+                  </h1>
+		</div>
+	</div>
+	<div class="amount-progress">
+		<div class="project-progress status">
+			<div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
 		</div>
 	</div>
 </section>
@@ -74,15 +72,17 @@
 <!-- Campaign Info -->
 <section class="info cf">
 	<div class="container" ng-cloak>
+		<div class="col-md-4 col-sm-4 col-xs-12 right feed-donate">
+			<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate</button>
+		</div>
 		<div class="col-md-6 col-sm-6 col-xs-8 feed-details">
 			<div class="feed-details-title">
-				<h3>{{campaign.name}}</h3>
-                  	<p><span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span></p>
+				<h2>{{campaign.name}}</h2>
+                  	<h5>
+                  		<span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
+                  	</h5>
 			</div>
 		</div>
-	</div>
-	<div class="col-md-4 col-sm-4 col-xs-12 right feed-donate">
-		<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate</button>
 	</div>
 </section>
 
@@ -96,17 +96,12 @@
 	<p>
 		&copy; <? print(Date("Y")); ?> Pullr, LLC.
 	</p>
-	<p class="tandc"><a href="/terms">Terms &amp; Conditions</a> | <a href="/privacy">Privacy Policy</a></p>
+	<p class="tandc"><a href="/terms">Terms &amp; Conditions</a> &bull; <a href="/privacy">Privacy Policy</a></p>
 </footer>
 
 <script type='text/javascript'>
 	Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
 	// Pullr.Ready(function(){alert(Pullr.event.name)});
-	function updatePage(){
-	    var progress = Pullr.campaign.percentageOfGoal+'%';
-	    $('.project-progressbar').css('width', progress);
-	} 
-	Pullr.Ready(updatePage);
 </script>
 <script src="/global/themes/js/singlestream.js"></script>
 </body>
