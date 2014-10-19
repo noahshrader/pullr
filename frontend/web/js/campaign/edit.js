@@ -202,7 +202,7 @@ function selectCharity(el){
 $(function() {
     $('#campaign-layouttype').change(layoutTypeChanged);
     $('[name="Campaign[type]"]').change(campaignTypeChanged);
-    $('[name="Campaign[donationDestination]"').change(donationDestinationChanged);
+    $('[name="Campaign[donationDestination]"]').change(donationDestinationChanged);
     updateLayoutTeams();
     updateCampaignInvites();
     initBootstrapSwitch();
