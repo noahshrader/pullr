@@ -16,6 +16,6 @@
         		frame.height(height);
         		lastSourceHeight = height;
         	}
-        }, 7000);
+        }, 3000);
     });
 })()

@@ -11,7 +11,7 @@
 /* Twitch hover state */
 /* Twitch purple */
 /* Gray Sets */
-/* 2% darker than background */
+/* 3% darker than background */
 /* 10% gray background */
 /* 12% gray background */
 /* 15% gray background */
@@ -29,6 +29,12 @@
 /* Faded dark background */
 /* Faded dark background */
 /* Structure */
+/* Typography */
+.smallcaps {
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 /* Lists */
 .ulist {
   padding: 0;
@@ -124,10 +130,9 @@
 }
 /* Header */
 header {
-  background: #222225;
-  border-bottom: solid 1px #3a3a40;
+  background: #2e2e32;
 }
-header .head .logo a {
+header .logo a {
   color: #ffffff;
 }
 header .menu-actions a {
@@ -141,6 +146,27 @@ header .menu-actions a:before {
   color: #6b6b75;
 }
 .stats .numbers h1 {
+  color: #ffffff;
+}
+/* Campaign Info */
+.info h5 {
+  color: #6b6b75;
+}
+/* Single Stream */
+.user-bar .avatar a {
+  color: #ffffff;
+}
+/* Footer */
+footer h5 {
+  color: #6b6b75;
+}
+footer span.copy {
+  color: #47474d;
+}
+footer span.copy a {
+  color: #47474d;
+}
+footer span.copy a:hover {
   color: #ffffff;
 }
 /* Palette Styling */
@@ -233,7 +259,7 @@ body {
   -ms-transform: rotate(-2deg);
   transform: rotate(-2deg);
   z-index: 10;
-  background: rgba(34, 34, 37, 0.7);
+  background: rgba(14, 15, 17, 0.7);
 }
 .stats .amount-progress .project-progress .project-progressbar {
   content: '';
@@ -310,7 +336,6 @@ body {
 /* Layout */
 /* ------------------------------------------------- */
 .stream-wrap {
-  overflow: hidden;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
@@ -375,6 +400,9 @@ body {
   background-position: top center;
   background-repeat: no-repeat;
   opacity: .5;
+}
+.stream-wrap .user-details {
+  padding: 1em 15px;
 }
 /* Responsive */
 /* ------------------------------------------------- */

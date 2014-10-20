@@ -11,7 +11,7 @@ $class = 'regionsNumber' . $regionsNumber;
 <div class="regionsContainer <?= $class ?>" ng-controller="RegionsCtrl">
     <div class="region resizable-v" ng-repeat="region in regionsService.regions"
          ng-style="{'background-color': region.backgroundColor}">
-        <div ng-show="region.toShow.alert.message && (region.widgetType == 'widget_alerts')" draggable position-container="region.widgetAlerts" region="region">
+        <div ng-show="region.toShow.alert.message && (region.widgetType == 'widget_alerts')" class="widget-alerts" draggable position-container="region.widgetAlerts" region="region">
             <!-- if alert message is showed-->
             <img ng-src="{{region.toShow.alert.image}}" ng-hide='region.toShow.alert.preference.hideAlertImage'>
 

@@ -11,7 +11,7 @@
 /* Twitch hover state */
 /* Twitch purple */
 /* Gray Sets */
-/* 2% darker than background */
+/* 3% darker than background */
 /* 10% gray background */
 /* 12% gray background */
 /* 15% gray background */
@@ -29,6 +29,12 @@
 /* Faded dark background */
 /* Faded dark background */
 /* Structure */
+/* Typography */
+.smallcaps {
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 /* Lists */
 .ulist {
   padding: 0;
@@ -124,10 +130,9 @@
 }
 /* Header */
 header {
-  background: #222225;
-  border-bottom: solid 1px #3a3a40;
+  background: #2e2e32;
 }
-header .head .logo a {
+header .logo a {
   color: #ffffff;
 }
 header .menu-actions a {
@@ -143,6 +148,27 @@ header .menu-actions a:before {
 .stats .numbers h1 {
   color: #ffffff;
 }
+/* Campaign Info */
+.info h5 {
+  color: #6b6b75;
+}
+/* Single Stream */
+.user-bar .avatar a {
+  color: #ffffff;
+}
+/* Footer */
+footer h5 {
+  color: #6b6b75;
+}
+footer span.copy {
+  color: #47474d;
+}
+footer span.copy a {
+  color: #47474d;
+}
+footer span.copy a:hover {
+  color: #ffffff;
+}
 /* Palette Styling */
 /* Type */
 /* ------------------------------------------------- */
@@ -151,9 +177,8 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
-  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+h5 {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   margin: 0;
 }
 h1,
@@ -166,16 +191,22 @@ h4 {
 }
 h1 {
   margin-top: 0;
-  font-size: 3.6em;
+  font-size: 4em;
+  font-weight: 100;
 }
 h2 {
-  font-size: 2.6em;
+  font-size: 2.8em;
+  font-weight: 600;
 }
 h3 {
   font-size: 2em;
 }
 h4 {
-  font-size: 1.6em;
+  font-size: 1.4em;
+}
+h5 {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 1.2em;
 }
 p,
 ol,
@@ -206,20 +237,27 @@ body {
   background: #1dbc9c;
 }
 .btn:hover {
-  background: #20d2ae;
+  opacity: .9;
+}
+/* Header */
+header {
+  position: relative;
+}
+header .container {
+  padding: 0 30px;
 }
 /* Main Stats */
 .stats {
-  background: #222225;
+  position: relative;
+  background-color: #222225;
+  overflow: hidden;
 }
 .stats .numbers {
-  padding: 2em 15px 1em;
-}
-.stats .numbers h1 {
-  margin: 0;
+  padding: 3.6em 15px;
 }
 .stats .amount-progress {
-  position: relative;
+  position: absolute;
+  top: 0;
   text-align: center;
   width: 100%;
   height: 45px;
@@ -228,16 +266,12 @@ body {
 }
 .stats .amount-progress .project-progress {
   position: absolute;
-  bottom: 0;
+  top: 0;
   content: '';
-  margin-bottom: -70px;
-  height: 91px;
+  height: 5px;
   width: 100%;
+  background: rgba(14, 15, 17, 0.2);
   z-index: 10;
-  background: rgba(255, 255, 255, 0.2);
-  -webkit-transform: rotate(-1.5deg);
-  -ms-transform: rotate(-1.5deg);
-  transform: rotate(-1.5deg);
 }
 .stats .amount-progress .project-progress .project-progressbar {
   content: '';
@@ -249,50 +283,60 @@ body {
   -webkit-transition: width 0.7s ease-in-out;
   transition: width 0.7s ease-in-out;
 }
+.user-bar {
+  background: #29292d;
+}
+.user-bar .container {
+  position: relative;
+  height: 55px;
+}
+.user-bar .user {
+  float: left;
+  padding: 0 15px;
+}
+.user-bar .user .avatar {
+  float: left;
+}
+.user-bar .user .avatar img {
+  position: relative;
+  float: left;
+  top: -26px;
+  height: 80px;
+  width: 80px;
+  background: #29292d;
+  border: solid 6px #29292d;
+  border-radius: 50%;
+}
+.user-bar .user .avatar a {
+  float: left;
+  display: inline-block;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  font-weight: 600;
+  line-height: 55px;
+  padding: 0 .6em;
+}
+.user-bar .user .user-details-social {
+  float: left;
+}
 /* Campaign Info & Actions */
 .info {
-  padding: 4em 0 2em;
+  padding: 3.6em 0 3em;
   width: 100%;
+  /* Donate Button */
 }
-.info .feed-details .feed-details-title {
-  display: inline-block;
+.info h5 {
+  margin-bottom: .2em;
 }
-.info .feed-details .sharing {
-  display: inline-block;
-  position: relative;
-  right: 0;
+.info .donate-wrap {
   float: right;
 }
-.info .feed-details .sharing button {
-  background: #373737;
-  border: none;
-  color: #ffffff;
-  padding: 4px 8px;
-  margin-top: 8px;
-}
-.info .feed-details .sharing .dropdown-menu {
-  background: #373737 !important;
-  right: 0;
-  left: auto;
-}
-.info .feed-details .sharing .dropdown-menu li a {
-  color: #ffffff;
-}
-.info .feed-details .sharing .dropdown-menu li a:hover {
-  background: #2a2a2a;
-}
-.info .feed-donate {
-  float: right;
-}
-.info .feed-donate .btn {
-  width: 100%;
-  padding: 1em 3em;
-  max-width: 300px;
+.info .donate-wrap .btn {
+  font-size: 1.4em;
 }
 /* Layout */
 /* ------------------------------------------------- */
 .stream-wrap {
-  overflow: hidden;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
@@ -357,6 +401,18 @@ body {
   background-position: top center;
   background-repeat: no-repeat;
   opacity: .5;
+}
+.stream-wrap .user-details {
+  padding: 1em 15px;
+}
+.stream-wrap #stream {
+  padding: 15px;
+  background: #29292d;
+  border-radius: 10px;
+}
+/* Footer */
+footer span.copy {
+  font-size: 0.8em;
 }
 /* Responsive */
 /* ------------------------------------------------- */

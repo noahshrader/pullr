@@ -14,13 +14,13 @@ use yii\widgets\MaskedInput;
                if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
                    $charityName = $campaign->customCharity;
                } 
-               if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES && $campaign->charityId){
+               if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && $campaign->charityId){
                    $charityName = $campaign->charity->name;
                } 
             ?>
             <? if ($charityName):?>
                 <h3 class="charity-name">for <span><?= $charityName ?></span>
-                <? if ($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES): ?>
+                <? if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES): ?>
                     <span class="approved icon-check-round-fill"></span>
                 </h3>
                 <? endif ?>

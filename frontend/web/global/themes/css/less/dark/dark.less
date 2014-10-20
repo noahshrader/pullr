@@ -1,13 +1,10 @@
 /* Header */
 header {
-	background: @base;
-	border-bottom: solid 1px @gray10;
+	background: @maingray;
 
-	.head {
-		.logo {
-			a {
-				color: @white;
-			}
+	.logo {
+		a {
+			color: @white;
 		}
 	}
 	.menu-actions {
@@ -29,6 +26,41 @@ header {
 		}
 		h1 {
 			color: @white;
+		}
+	}
+}
+
+/* Campaign Info */
+.info {
+	h5 {
+		color: @gray30;
+	}
+}
+
+/* Single Stream */
+.user-bar {
+
+	.avatar {
+		a {
+			color: @white;
+		}
+	}
+}
+
+/* Footer */
+footer {
+
+	h5 {
+		color: @gray30;
+	}
+	span.copy {
+		color: @gray15;
+
+		a {
+			color: @gray15;
+			&:hover {
+				color: @white;
+			}
 		}
 	}
 }

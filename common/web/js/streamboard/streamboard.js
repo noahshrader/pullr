@@ -50,6 +50,8 @@ $(window).load(function() {
         },
         live: true
     });
+
+    $('.widget-alert').draggable();
 });
 
 $(function () {
@@ -103,18 +105,23 @@ $(function () {
     var currentStreamboardTop = window.screenY;
 
 
-    setInterval(function(){
+    setInterval(function() {
         if ( (window.screenX != currentStreamboardLeft ) || (window.screenY != currentStreamboardTop)){
             currentStreamboardLeft = window.screenX;
             currentStreamboardTop = window.screenY;
             $.post('app/streamboard/set_streamboard_window_position', {left: currentStreamboardLeft, top: currentStreamboardTop});
             /*parent window can be closed*/
-            if (window.opener){
+            if (window.opener) {
                 window.opener.Pullr.Streamboard.streamboardLeft = currentStreamboardLeft;
                 window.opener.Pullr.Streamboard.streamboardTop =  currentStreamboardTop;
             }
         }
     }, 1000)
+
+    var client = new ZeroClipboard($("#btn-copy-source-link"));
+    client.on( "aftercopy", function( event ) {        
+        alert('Copied to clipboard');
+    });
 });
 // google fonts
 function requireGoogleFont(fontFamily){

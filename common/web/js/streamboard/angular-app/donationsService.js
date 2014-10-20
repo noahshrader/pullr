@@ -74,7 +74,7 @@
                     newDonations.push(donation);
                 }
                 newDonations.sort(function (a, b) {
-                    return b.paymentDate - a.paymentDate;
+                    return b.amount - a.amount;
                 });
                 Service.donations = newDonations;             
             };

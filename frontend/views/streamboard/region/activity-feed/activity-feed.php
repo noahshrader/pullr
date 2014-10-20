@@ -15,7 +15,7 @@ use frontend\models\streamboard\StreamboardRegion;
             ng-style="{'color': region.widgetDonationFeed.fontColor, 'font-size': region.widgetDonationFeed.fontSize, 'font-family': region.widgetDonationFeed.fontStyle}"
               >
                 <span
-                    ng-repeat="donation in donationsService.donations | donationsFilterToSelectedCampaigns | limitTo: 20"
+                    ng-repeat="donation in donationsService.donations | orderBy: amount | donationsFilterToSelectedCampaigns  | limitTo: 20"
                     class="commaAfter">
                 <span>
                     &nbsp;{{donation.displayName}} (${{number_format(donation.amount)}})<!--removing space for .commaAfter
