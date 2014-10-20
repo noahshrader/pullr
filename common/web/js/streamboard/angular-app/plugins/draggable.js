@@ -3,9 +3,8 @@ angular.module('pullr.streamboard.draggable', ['pullr.streamboard.regions']).
         return {
             link: function (scope, element, attr) {
                 var startX = 0, startY = 0, x = 0, y = 0;
-                /**edget is 10% of an element to use with resizable plugin*/
+                /**edge is 2% of an element to use with resizable plugin*/
                 var EDGE = 0.98;
-
                 if (scope.positionContainer) {
                     x = scope.positionContainer.positionX;
                     y = scope.positionContainer.positionY;
@@ -17,13 +16,15 @@ angular.module('pullr.streamboard.draggable', ['pullr.streamboard.regions']).
                     console.log('Position container is not available');
                 }
                 element.css({
-                    position: 'relative',
+                    position: 'absolute',
                     cursor: 'pointer',
                     display: 'block'
                 });
                 element.on('mousedown', function (event) {
                     // Prevent default dragging of selected content
                     event.preventDefault();
+                    event.stopPropagation();
+
                     var offset =  $(element).offset();
                     if (attr.resizable && ( ( (event.pageX - offset.left) / $(element).width()) >= EDGE || ( (event.pageY - offset.top) / $(element).height()) >= EDGE )) {
                         return;
@@ -64,6 +65,8 @@ angular.module('pullr.streamboard.draggable', ['pullr.streamboard.regions']).
 
                     scope.positionContainer.positionX = x;
                     scope.positionContainer.positionY = y;
+                    console.log(scope.positionContainer);
+                    console.log(scope.region);
                     regions.regionChanged(scope.region);
                 }
             },

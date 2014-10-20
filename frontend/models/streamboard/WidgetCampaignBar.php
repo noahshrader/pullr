@@ -13,11 +13,16 @@ use common\models\User;
  * @property boolean $messagesEnable
  * @property boolean $timerEnable
  * @property boolean $progressBarEnable
+ * @property string $fontColor
+ * @property integer $height
+ * @property integer $width
  * @property WidgetCampaignBarAlerts $alertsModule
  * @property WidgetCampaignBarMessages $messagesModule
  * @property WidgetCampaignBarTimer $timerModule
+ * @property WidgetCampaignBarCurrentTotal $currentTotalModule
  */
-class WidgetCampaignBar extends ActiveRecord {
+class WidgetCampaignBar extends ActiveRecord
+{
     const DEFAULT_WIDTH = 900;
     const DEFAULT_HEIGHT = 100;
     const MIN_HEIGHT = 100;
@@ -26,25 +31,31 @@ class WidgetCampaignBar extends ActiveRecord {
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'tbl_streamboard_widget_campaign_bar';
     }
 
-    public function scenarios() {
+    public function scenarios()
+    {
         return [
             'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
                 'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY', 'height', 'width']
         ];
     }
 
-    public function fields(){
+    public function fields()
+    {
         return ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
-            'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule', 'positionX', 'positionY', 'height', 'width'];
+            'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule', 'currentTotalModule', 'positionX', 'positionY', 'height', 'width'];
     }
 
-    public function beforeValidate() {
+    public function beforeValidate()
+    {
         if ($this->isNewRecord) {
             $this->fontColor = '#FFFFFF';
+            $this->height = self::DEFAULT_HEIGHT;
+            $this->width = self::DEFAULT_WIDTH;
         }
         return parent::beforeValidate();
     }
@@ -68,32 +79,49 @@ class WidgetCampaignBar extends ActiveRecord {
             $module->userId = $this->userId;
             $module->regionNumber = $this->regionNumber;
             $module->save();
+
+            $module = new WidgetCampaignBarCurrentTotal();
+            $module->userId = $this->userId;
+            $module->regionNumber = $this->regionNumber;
+            $module->save();
         }
     }
 
-    public function getAlertsModule(){
+    public function getAlertsModule()
+    {
         return $this->hasOne(WidgetCampaignBarAlerts::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber']);
     }
 
-    public function getMessagesModule(){
+    public function getMessagesModule()
+    {
         return $this->hasOne(WidgetCampaignBarMessages::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber']);
     }
 
-    public function getTimerModule(){
+    public function getTimerModule()
+    {
         return $this->hasOne(WidgetCampaignBarTimer::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber']);
     }
 
-    public function updateFromArray($data){
-        return $this->load($data, '') && $this->save() &&
-        $this->alertsModule->load($data,'alertsModule') &&
-        $this->alertsModule->save() &&
-        $this->messagesModule->load($data,'messagesModule') &&
-        $this->messagesModule->save() &&
-        $this->timerModule->load($data,'timerModule') &&
-        $this->timerModule->save();
+    public function getCurrentTotalModule()
+    {
+        return $this->hasOne(WidgetCampaignBarCurrentTotal::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber']);
     }
 
-    public function toArray(array $fields = [], array $expand = [], $recursive = true){
+    public function updateFromArray($data)
+    {
+        return $this->load($data, '') && $this->save() &&
+        $this->alertsModule->load($data, 'alertsModule') &&
+        $this->alertsModule->save() &&
+        $this->messagesModule->load($data, 'messagesModule') &&
+        $this->messagesModule->save() &&
+        $this->timerModule->load($data, 'timerModule') &&
+        $this->timerModule->save() &&
+        $this->currentTotalModule->load($data, 'currentTotalModule') &&
+        $this->currentTotalModule->save();
+    }
+
+    public function toArray(array $fields = [], array $expand = [], $recursive = true)
+    {
         $data = parent::toArray($fields, $expand, $recursive);
         /*as 1 and true in angular are not equal for checkbox, so let's pass true/false values*/
         $data['alertsEnable'] = $this->alertsEnable == 1;
