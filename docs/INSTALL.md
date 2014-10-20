@@ -28,6 +28,12 @@ Next step let's load tables and sampe db data, run from pullr project folder
 Next we will load js libraries and npm packages we need  
 `npm install`
 
+Install "forever", it's NodeJs package which keep our NodeJs script alive
+`npm install -g forever`
+
+Now run our NodeJs script, this script will get list of followers and subscribers from last online user
+`forever start node_app/app.js`
+
 ####Update your local repository with new changes
 To update files use your GUI App to sync or use that to run via terminal:   
 `git pull`
