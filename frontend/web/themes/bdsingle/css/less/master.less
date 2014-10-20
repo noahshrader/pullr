@@ -1,0 +1,158 @@
+/* Base */
+/* ------------------------------------------------- */
+@import "../../../../global/themes/css/less/variables.less";
+@import "../../../../global/themes/css/less/dark/dark.less";
+@import "palette.less";
+
+/* Type */
+/* ------------------------------------------------- */
+@import "type.less";
+
+body {
+	.secondary();
+	background-color: @maingray;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+/* Buttons */
+.btn {
+	background: @accent;
+
+	&:hover {
+		opacity: .9;
+	}
+}
+
+/* Header */
+header {
+	position: relative;
+
+	.container {
+		padding: 0 @gutter;
+	}
+}
+
+/* Main Stats */
+.stats {
+	position: relative;
+	background-color: @base;
+	overflow: hidden;
+
+	.numbers {
+		padding: 3.6em @halfgutter;
+	}
+
+	.amount-progress {
+		position: absolute;
+		top: 0;
+		text-align: center;
+		width: 100%;
+		height: 45px;
+		overflow: hidden;
+		background: transparent;
+
+		.project-progress {
+			position: absolute;
+			top: 0;
+			content: '';
+			height: 5px;
+			width: 100%;
+			background: @bglightblackfade;
+			z-index: 10;
+			
+			.project-progressbar {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 0;
+				-webkit-transition: width 0.7s ease-in-out;
+				transition: width 0.7s ease-in-out;
+			}
+		}
+	}	
+}
+
+.user-bar {
+	background: @dkgray;
+
+	.container {
+		position: relative;
+		height: 55px;
+	}
+	.user {
+		float: left;
+		padding: 0 @halfgutter;
+
+		.avatar {
+			float: left;
+
+			img {
+				position: relative;
+				float: left;
+				top: -14px;
+				height: 80px;
+				width: 80px;
+				background: @dkgray;
+				border: solid 6px @dkgray;
+				border-radius: 50%;
+			}
+			a {
+				float: left;
+				display: inline-block;
+				.main();
+				font-size: 1.2em;
+				font-weight: 600;
+				line-height: 55px;
+				padding: 0 .6em;
+			}
+		}
+		.user-details-social {
+			float: left;
+		}
+	}
+}
+
+/* Campaign Info & Actions */
+.info {
+	padding: 3.6em 0 3em;
+	width: 100%;
+
+	h5 {
+		margin-bottom: .2em;
+	}
+
+	/* Donate Button */
+	.donate-wrap {
+		float: right;
+
+		.btn {
+			font-size: 1.4em;
+		}
+	}
+}
+
+/* Layout */
+/* ------------------------------------------------- */
+@import "../../../../global/themes/css/less/singlestream.less";
+
+.stream-wrap {
+	#stream {
+		padding: @halfgutter;
+		background: @dkgray;
+		.element-radius;
+	}
+}
+
+/* Footer */
+footer {
+	span.copy {
+		font-size: @fineprint;
+	}
+}
+
+/* Responsive */
+/* ------------------------------------------------- */
+@import "responsive.less";

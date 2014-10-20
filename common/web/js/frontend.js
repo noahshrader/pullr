@@ -28,7 +28,6 @@ $('.streamboard').click(function(event) {
     window.open($(this).attr("href"),"popupWindow","width="+width+",height="+height+
         ",left="+left+",top="+top+",scrollbars=yes");
 });
-
 $(function(){
     // store sidebar memory
     if (localStorage.getItem('menu-collapse') === "true"){
@@ -100,4 +99,9 @@ $(window).resize(function() {
         $('.logo').removeClass('icon-pullr-logo').addClass('icon-pullr-logo2');
         $('.primary-nav-toggle .icon').removeClass('icon-arrowleft2').addClass('icon-arrowright3');
     }
+});
+
+$(window).load(function() {
+    // loader
+    $(".spinner-wrap").fadeOut();
 });

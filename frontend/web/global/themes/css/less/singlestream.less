@@ -1,0 +1,72 @@
+.stream-wrap {
+	overflow: hidden;
+	.trans;
+
+	#stream {
+		position: relative;
+		margin: 0 auto;
+		padding: .3em @halfgutter;
+		z-index: 10;
+
+		#featured {
+			position: relative;
+			overflow: hidden;
+
+			.featuredstreamcontainer {
+				position: relative;
+				float: left;
+				width: 100%;
+				z-index: 10;
+				.trans;
+			}
+			.featuredchat {
+				position: absolute;
+				top: 0;
+				right: 0;
+				/*display: none;*/
+				height: 100%;
+				width: 35%;
+				min-width: 300px;
+				z-index: 1;
+				padding-bottom: 32%;
+
+				iframe {
+					height: 100%;
+					width: 100%;
+					min-height: 335px;
+				}
+			}
+			.biggerFeaturedStream {
+				width: 65%;
+			}
+		}
+		.stream-controls {
+			position: absolute;
+			top: 0;
+			right: -75px;
+			bottom: 0;
+			text-align: center;
+			padding: 1.2em 0;
+			clear: both;
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+		}
+			.stream-controls a {
+				display: block;
+				color: #FFF;
+				width: 60px;
+				font-size: .7em;
+				font-weight: 400;
+				line-height: 1.2em;
+				text-align: center;
+				padding-top: 35px;
+				margin: .4em .4em 2em .4em;
+				background-position: top center;
+				background-repeat: no-repeat;
+				opacity: .5;
+			}
+	}
+	.user-details {
+		padding: 1em @halfgutter;
+	}
+}

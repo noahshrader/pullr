@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "*",
+        "yiisoft/yii2": "@stable",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "nodge/yii2-eauth": "*",
@@ -20,6 +20,7 @@
         "paypal/sdk-core-php": "v1.4.2",
         "paypal/rest-api-sdk-php": "*",
         "paypal/merchant-sdk-php":"2.*",
+		"paypal/adaptivepayments-sdk-php":"v2.5.106",
         "ritero/twitch-sdk": "dev-master",
         "2amigos/yii2-ckeditor-widget": "*"
     },

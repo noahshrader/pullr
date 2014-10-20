@@ -1,8 +1,8 @@
-@import "../base.less";
-@import "../variables.less";
-@import "../type.less";
-@import "../forms.less";
-@import "../common.less";
+@import "../../base.less";
+@import "../../variables.less";
+@import "../../type.less";
+@import "../../forms.less";
+@import "../../common.less";
 
 
 /* General */
@@ -16,7 +16,7 @@ body {
 /* Forms */
 /* ------------------------------------------------- */
 label {
-	display: inline-block;
+	display: block;
 	color: @gray70;
 	font-size: 0.9em;
 	font-weight: 600;
@@ -67,11 +67,11 @@ label {
 /* ------------------------------------------------- */
 @font-face {
 	font-family: 'icomoon';
-	src:url('../../fonts/icomoon.eot?u7owa9');
-	src:url('../../fonts/icomoon.eot?#iefixu7owa9') format('embedded-opentype'),
-	url('../../fonts/icomoon.woff?u7owa9') format('woff'),
-	url('../../fonts/icomoon.ttf?u7owa9') format('truetype'),
-	url('../../fonts/icomoon.svg?u7owa9#icomoon') format('svg');
+	src:url('../../../fonts/icomoon.eot?u7owa9');
+	src:url('../../../fonts/icomoon.eot?#iefixu7owa9') format('embedded-opentype'),
+	url('../../../fonts/icomoon.woff?u7owa9') format('woff'),
+	url('../../../fonts/icomoon.ttf?u7owa9') format('truetype'),
+	url('../../../fonts/icomoon.svg?u7owa9#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -81,7 +81,7 @@ label {
 /* ------------------------------------------------- */
 .donation-form-header {
 	margin: 0 auto;
-	padding: 6em 5% 0;
+	padding: 4.8em 5% 0;
 	max-width: 800px;
 
 	h1.campaign-name {
@@ -233,7 +233,7 @@ footer {
 
 	 form {
 		margin: 0 auto;
-		padding: 3em 5%;
+		padding: 3em 5% 1em;
 		width: 100%;
 		max-width: 650px;
 	 }
@@ -378,7 +378,7 @@ footer {
 }
 
 
-/* Payment Section */
+/* Payment Section (Charity) */
 /* ------------------------------------------------- */
 .group {
 	background: @white;
@@ -388,6 +388,40 @@ footer {
 	fieldset {
 		border: 0;
 	}
+#loader {
+	display: none;
+}
+
+/* Main Form */
+#form-errors-summary,
+#donation-form {
+	margin: 0 auto;
+	max-width: 650px;
+}
+#form-errors-summary {
+	text-align: center;
+	padding: 3em 5% 0;
+	margin: 0 auto;
+
+	p {
+		margin: .3em 0;
+	}
+}
+#donation-form {
+	padding: 1em 5%;
+	margin: 0 auto;
+
+	input {
+		width: 100%;
+	}
+}
+
+
+/* Loader */
+/* ------------------------------------------------- */
+.spinner {
+	margin: 30% auto;
+}
 
 
 /* Responsive */

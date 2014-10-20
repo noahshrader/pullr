@@ -1,4 +1,4 @@
-<div class="stream-wrap" ng-show='isDataReady'>
+<div class="stream-wrap container" ng-show='isDataReady'>
 	<div id="stream">
 		<div id="featured">
 			<div class="featuredstreamcontainer">
@@ -13,22 +13,5 @@
 		<div class="stream-controls">
 			<a class="togglechat" href="javascript:void(0);">Chat</a>
 		</div>
-	</div>
-</div>
-<div class="user-details">
-	<div class="username">
-		<img src="{{channel.logo}}"/>
-		
-		<a href="{{channel._links.self}}">{{channel.display_name}}</a>
-
-		<div class="user-details-social">
-			<a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" ng-show="{{campaign.twitterEnable == 1}}">{{campaign.twitterName}}</a>
-			<a href="{{campaign.facebookUrl}}" class="icon-facebook" ng-show="{{campaign.facebookUrl == 1}}">{{campaign.name}}</a>
-			<a href="{{campaign.youtubeUrl}}" class="icon-youtube" ng-show="{{campaign.youtubeEnable == 1}}">{{campaign.name}}</a>
-			<a href="{{channel._links.self}}" class="icon-twitch2">{{channel.display_name}}</a>
-		</div>
-	</div>
-	<div class="user-viewers">
-		{{channel.views}}
 	</div>
 </div>

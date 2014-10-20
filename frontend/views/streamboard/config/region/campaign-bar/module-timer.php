@@ -2,8 +2,8 @@
 use frontend\models\streamboard\WidgetCampaignBarTimer;
 
 ?>
-<div class="module">
-    <div class="form-group timer-module">
+<div class="module first">
+    <div class="panel-group timer-module">
         <h5>Type of Timer</h5>
         <div ng-init='TIMER_TYPES=<?= json_encode(WidgetCampaignBarTimer::$TIMER_TYPES) ?>'></div>
         <select class="timerType" ui-select2="{minimumResultsForSearch: -1}" ng-model="module.timerType" ng-change="regionChanged(region)"

@@ -1,0 +1,225 @@
+/* Accents */
+@pullr-text-color : #fff; /* */
+@pullr-bg-lighter : #666;
+
+/* Base */
+@base: #222225;
+@white: #FFF;
+@offwhite: darken(@white, 3%);
+
+/* Main Accent */
+@accent: #1dbc9c;	/* Primary accent */
+@accenthover: lighten(@accent, 5%); /* Primary accent hover state */
+@dkaccent: darken(@accent, 4%);
+@dkraccent: darken(@accent, 16%);
+
+/* Other Colors */
+@twitchpurple: #6441a5; /* Twitch purple */
+@twitchhover: lighten(@twitchpurple, 5%); /* Twitch hover state */
+@twitchdark: lighten(@twitchpurple, 20%); /* Twitch purple */
+
+/* Gray Sets */
+@maingray: lighten(@base, 5%);
+@dkgray: lighten(@base, 3%); /* 3% darker than background */
+@gray10: lighten(@base, 10%); /* 10% gray background */
+@gray12: lighten(@base, 13%); /* 12% gray background */
+@gray15: lighten(@base, 15%); /* 15% gray background */
+@gray20: lighten(@base, 20%); /* 20% gray background */
+@gray25: lighten(@base, 25%); /* 25% gray background */
+@gray30: lighten(@base, 30%); /* 30% gray background */
+@gray40: lighten(@base, 40%); /* 40% gray background */
+@gray50: lighten(@base, 50%); /* 50% gray background */
+@gray60: lighten(@base, 60%); /* 60% gray background */
+@gray70: lighten(@base, 70%); /* 70% gray background */
+@gray72: lighten(@base, 74%); /* 72% gray background */
+@gray75: lighten(@base, 78%); /* 78% gray background */
+
+@bgwhitefade: rgba(255,255,255,.7); /* Faded light background */
+@bglightwhitefade: rgba(255,255,255,.2); /* Faded light background */
+@bgblackfade: rgba(14,15,17,.7); /* Faded dark background */
+@bglightblackfade: rgba(14,15,17,.2); /* Faded dark background */
+
+/* Structure */
+@headerheight: 48px;
+@gutter: 30px;
+@halfgutter: 15px;
+
+/* Typography */
+@basefontsize: 16px;
+@smalltext: .9em;
+@fineprint: .8em;
+
+.smallcaps {
+	font-size: @fineprint;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+/* Lists */
+.ulist {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+/* Borders & Box shadows */
+.border-radius (@radius: 4px) {
+	border-radius: @radius;
+	background-clip: padding-box;
+}
+.element-radius (@radius: 10px) {
+	border-radius: @radius;
+}
+.round-radius (@radius: 30px) {
+	border-radius: @radius;
+	background-clip: padding-box;
+}
+.topcut-radius (@radius: 10px) {
+	border-top-left-radius: @radius;
+	background-clip: padding-box;
+}
+.tab-radius (@radius: 10px) {
+	border-top-left-radius: @radius;
+	border-top-right-radius: @radius;
+	-moz-border-radius-topleft: @radius;
+	-moz-border-radius-topright: @radius;
+}
+.box-shadow (@shadow: 0 0 2px rgba(0,0,0,.1)) {
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+	box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+}
+
+
+/* Arrows */
+.arrow-up,
+.arrow-down,
+.arrow-left,
+.arrow-right {
+	content: '';
+	position: absolute;
+	width: 0; 
+	height: 0; 
+	border-style: solid;
+}
+.arrow-up {
+	border-width: 0 10px 10px 10px;
+	border-color: transparent transparent @white transparent;
+}
+.arrow-down {
+	border-width: 10px 10px 0 10px;
+	border-color: @white transparent transparent transparent;
+}
+.arrow-left {
+	border-width: 10px 10px 10px 0;
+	border-color: transparent @white transparent transparent;
+}
+.arrow-right {
+	border-width: 10px 0 10px 10px;
+	border-color: transparent transparent transparent @white;
+}
+
+/* Transitions/Animations */
+.trans (@trans: linear .08s) {
+	-webkit-transition: @trans;
+	-moz-transition: @trans;
+	-ms-transition: @trans;
+	transition: @trans;
+}
+.slowtrans (@slowtrans: all ease-in-out .2s) {
+	-webkit-transition: @slowtrans;
+	-moz-transition: @slowtrans;
+	-ms-transition: @slowtrans;
+	transition: @slowtrans;
+}
+.trans-opacity (@trans-opacity: opacity .16s) {
+	-webkit-transition: @trans-opacity;
+	-moz-transition: @trans-opacity;
+	-ms-transition: @trans-opacity;
+	transition: @trans-opacity;
+}
+.trans-width (@trans-width: width .8s ease-in-out) {
+	-webkit-transition: @trans-width;
+	-moz-transition: @trans-width;
+	-ms-transition: @trans-width;
+	transition: @trans-width;
+}
+.fadein (@fade-in: fadein .3s) {
+	-webkit-animation: @fade-in;
+	-moz-animation: @fade-in;
+	-ms-animation: @fade-in;
+	animation: @fade-in;
+}
+.longfadein (@fade-in: fadein 1s) {
+	-webkit-animation: @fade-in;
+	-moz-animation: @fade-in;
+	-ms-animation: @fade-in;
+	animation: @fade-in;
+}
+.animate-bar (@animate-bar: animate-bar 1s 1 ease) {
+	-webkit-animation: @animate-bar;
+	-moz-animation: @animate-bar;
+	-ms-animation: @animate-bar;
+	animation: @animate-bar;
+}
+.adjusthue (@adjusthue: 6s ease 0s alternate none infinite adjustHue) {
+	-webkit-animation: @adjusthue;
+	-moz-animation: @adjusthue;
+	-ms-animation: @adjusthue;
+	animation: @adjusthue;
+}
+
+/* Progress Bar Animations */
+/* ------------------------------------------------- */
+
+/* Animate Bar */
+@keyframes animate-bar {
+  0% { width: 0%; }
+}
+@-moz-keyframes animate-bar {
+  0% { width: 0%; }
+}
+@-webkit-keyframes animate-bar {
+  0% { width: 0%; }
+}
+@-ms-keyframes animate-bar {
+  0% { width: 0%; }
+}
+
+/* Fade In */
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Adjust Hue */
+@-webkit-keyframes adjustHue {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    -webkit-filter: hue-rotate(30deg);
+    filter: hue-rotate(30deg);
+  }
+  50% {
+    -webkit-filter: hue-rotate(60deg);
+    filter: hue-rotate(60deg);
+  }
+  75% {
+    -webkit-filter: hue-rotate(90deg);
+    filter: hue-rotate(90deg);
+  }
+  100% {
+    -webkit-filter: hue-rotate(120deg);
+    filter: hue-rotate(120deg);
+  }
+}

@@ -6,7 +6,7 @@ use frontend\models\streamboard\StreamboardRegion;
 $typesList = [
     ['name' => 'Alerts', 'value' => StreamboardRegion::WIDGET_ALERTS],
     ['name' => 'Campaign Bar', 'value' => StreamboardRegion::WIDGET_CAMPAIGN_BAR],
-    ['name' => 'Donations Feed', 'value' => StreamboardRegion::WIDGET_DONATION_FEED],
+    ['name' => 'Activity Feed', 'value' => StreamboardRegion::WIDGET_DONATION_FEED],
 ]
 ?>
 <div class="regions-panel pane">

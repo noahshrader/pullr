@@ -1,0 +1,55 @@
+header {
+	width: 100%;
+	overflow: hidden;
+	
+	/* Logo */
+	.logo {
+		float: left;
+
+		a {
+			height: @headerheight;
+			font-size: 2em;
+			line-height: @headerheight;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	/* Right Menu */
+	.menu-actions {
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		a {
+			position: relative;
+			display: inline-block;
+			font-weight: 500;
+			line-height: @headerheight;
+			padding: 0 2em 0 1em;
+			background: transparent;
+			&:hover {
+				background: @gray10;
+
+				&:before {
+					background: @gray10;
+				}	
+			}
+			
+			&:before {
+				content: '';
+				position: absolute;
+				top: -4px;
+				bottom: -4px;
+				left: -16px;
+				display: inline-block;
+				width: 28px;
+				background: transparent;
+				transform: rotate(15deg);
+				-ms-transform: rotate(15deg);
+				-webkit-transform: rotate(15deg);
+			}
+		}
+	}
+}	

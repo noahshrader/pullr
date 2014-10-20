@@ -21,8 +21,3 @@ $('ul.campaign-quick-links > li > a').click(function(e) {
 $('body').click(function(){ 
     $('ul.campaign-quick-links').removeClass('drop');
 });
-
-$(window).load(function() {
-    // streamboard loader
-    $(".spinner-wrap").fadeOut();
-});

@@ -6,10 +6,8 @@ use yii\web\View;
 ?>
 <div>
     <div class="module first">
-
         <div class="panel-group">
             <h5>Font Style</h5>
-
             <div font-style ng-model="preference.fontStyle"></div>
         </div>
         <div class="panel-group">
@@ -28,10 +26,6 @@ use yii\web\View;
                     <input type="checkbox" ng-model="preference.hideAlertText" ng-change="regionChanged(region)">
                     Hide alert text
                 </label>
-            </div>            
-        </div>
-        <div class="panel-group">
-            <div class='checkbox'>
                 <label ng-class="{on:preference.hideAlertImage}">
                     <input type="checkbox" ng-model="preference.hideAlertImage" ng-change="regionChanged(region)">
                     Hide alert image

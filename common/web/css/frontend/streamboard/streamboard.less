@@ -17,7 +17,7 @@ h5 {
 	color: @gray30;
 	.smallcaps;
 	line-height: 1.4em;
-	margin: .2em 0;
+	margin: .2em 0 .4em;
 }
 
 
@@ -28,12 +28,6 @@ h5 {
 
 /* Components & Elements */
 /* ------------------------------------------------- */
-
-/* Moveable Elements (jQuery UI) */
-.movable {
-	position: absolute;
-	cursor: move;
-}
 
 /* Sliders */
 slider {
@@ -136,21 +130,19 @@ span.slider-value {
 		.pane {
 			position: absolute;
 			width: 100%;
+			bottom: @sidenavheight+@sidenavheight;
 			&.adv {
 				top: @sidenavheight;
 			}
 		}
 		> .pane {
 			top: 0;
-			bottom: @sidenavheight;
-
-			&.view-source {
-				top: @sidenavheight;
-				bottom: @sidenavheight + @sidenavheight;
-			}
 		}
-		.regions-panel.pane {
-			bottom: @sidenavheight + @sidenavheight;
+		.donations-list.pane {
+			bottom: @sidenavheight;
+		}
+		.settings.pane {
+			top: @sidenavheight;
 		}
 		.settings-wrap {
 			padding: @streamboardgutter;
@@ -187,7 +179,7 @@ span.slider-value {
 	}
 
 	/* Slideup Panel */
-	.slidepanel {
+	.slidepanel.pane {
 		position: absolute;
 		bottom: -400px;
 		right: 0;
@@ -224,6 +216,11 @@ span.slider-value {
 			background: @gray10;
 			border-bottom: solid 1px @maingray;
 			z-index: 1001;
+
+			button {
+				float: right;
+				margin: .6em 0;
+			}
 		}
 		h5 {
 			margin-bottom: 4px;
@@ -262,6 +259,16 @@ span.slider-value {
 	&:hover {
 		color: @white;
 		opacity: 1;
+	}
+}
+
+.streamboard-settings-header {
+	height: @sidenavheight;
+	background: @gray10;
+	border-bottom: solid 1px @maingray;
+
+	button {
+		margin: .6em 0;
 	}
 }
 
@@ -334,10 +341,14 @@ ul.panel-nav {
 			position: relative;
 			display: block;
 			color: @gray30;
-			padding: @gutter;
 			margin: 0;
-			background: @gray10;
+			background: @maingray;
 			border-bottom: solid 1px @maingray;
+
+			.donation-wrap {
+				padding: @gutter;
+				background: @gray10;
+			}
 			&.wasRead {
 				.donation-wrap {
 					opacity: .2;
@@ -410,28 +421,6 @@ ul.panel-nav {
 	}
 }
 
-
-/* Settings Panel */
-/* ------------------------------------------------- */
-#settingsTab {
-	ul.nav-tabs {
-		
-		li {
-			width: 33.33%;
-			width: -webkit-calc(33.33333333%);
-			width: calc(33.33333333%);
-
-			a {
-				display: block;
-				font-size: .9em;
-				line-height: normal;
-				padding: 16px 0px;
-			}
-		}
-	}
-}
-
-
 /* Media */
 /* ------------------------------------------------- */
 @import "streamboard-media.less";
@@ -480,6 +469,11 @@ ul.panel-nav {
 		.region {
 	      	height: 50%;
 	    	}
+ 	}
+ 	.region {
+ 		div {
+			cursor: move !important;
+		}
  	}
 }
 
