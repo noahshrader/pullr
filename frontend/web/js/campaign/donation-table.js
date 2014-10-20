@@ -36,12 +36,12 @@ $(function(){
 
     /*add csv button*/
     if ($table.fnSettings().fnRecordsTotal()){
-        if ($('.donor-view').length > 0){
+        if ($('.donor-view-wrap').length > 0){
             
-            var email = $('.donor-view').data('email');
+            var email = $('#content').data('email');
             var href = 'app/campaign/exportdonations?email='+encodeURI(email);
         } else {
-            var id = $('.campaign-view-selected').data('id');
+            var id = $('#content').data('id');
             var href = 'app/campaign/exportdonations?id='+id;
         }
         var csvButton = $('<a>').addClass('btn btn-csv btn-secondary btn-sm').attr('href', href).html
