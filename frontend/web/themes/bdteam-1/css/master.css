@@ -336,7 +336,6 @@ body {
 /* Layout */
 /* ------------------------------------------------- */
 .stream-wrap {
-  overflow: hidden;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
