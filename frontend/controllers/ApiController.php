@@ -99,7 +99,7 @@ class ApiController extends \yii\web\Controller {
         $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
         $campaignArray['amountRaisedFormatted'] = '$'.number_format($campaign['amountRaised']);
         $campaignArray['percentageOfGoal'] = round($campaign['amountRaised'] / $campaign['goalAmount'] * 100);
-        if (($campaign->donationDestination == Campaign::DONATION_PREAPPROVED_CHARITIES) && ($campaign->type === Campaign::TYPE_CHARITY_FUNDRAISER) && $campaign->charity) {
+        if (($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES) && ($campaign->type === Campaign::TYPE_CHARITY_FUNDRAISER) && $campaign->charity) {
             $campaignArray['charity'] = $campaign->charity->toArray();
         } else {
             $campaignArray['charity'] = null;
