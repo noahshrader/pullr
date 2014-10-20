@@ -31,24 +31,18 @@ header {
 			background: transparent;
 			&:hover {
 				background: @gray10;
-
-				&:before {
-					background: @gray10;
-				}	
 			}
 			
 			&:before {
-				content: '';
+				height: 0;
+				width: 0;
+				content: "";
+				display: block;
 				position: absolute;
-				top: -4px;
-				bottom: -4px;
-				left: -16px;
-				display: inline-block;
-				width: 28px;
-				background: transparent;
-				transform: rotate(15deg);
-				-ms-transform: rotate(15deg);
-				-webkit-transform: rotate(15deg);
+				border-bottom: 56px solid transparent;
+				border-left: 24px solid rgba(0,0,0,0);
+				top: 0;
+				left: -24px;
 			}
 		}
 	}

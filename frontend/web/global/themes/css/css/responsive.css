@@ -1,0 +1,33 @@
+@media only screen and (max-width: 1140px) {
+  #stream {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 1010px) {
+  .stream-controls a.togglechat,
+  #featured .featuredchat {
+    display: none !important;
+  }
+  #featured .biggerFeaturedStream {
+    width: 100%;
+  }
+}
+/* Max 768px */
+@media screen and (max-width: 768px) {
+  #stream {
+    padding: .3em;
+  }
+  .stream-controls {
+    position: static;
+    float: left;
+    clear: both;
+    width: 100%;
+    padding: .8em 0;
+  }
+  .stream-controls a {
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 0;
+  }
+}
+/* Max 480px */

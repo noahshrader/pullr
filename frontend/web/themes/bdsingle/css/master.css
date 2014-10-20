@@ -28,6 +28,7 @@
 /* Faded light background */
 /* Faded dark background */
 /* Faded dark background */
+/* Social Icons */
 /* Structure */
 /* Typography */
 .smallcaps {
@@ -178,7 +179,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
   margin: 0;
 }
 h1,
@@ -191,18 +192,19 @@ h4 {
 }
 h1 {
   margin-top: 0;
-  font-size: 4em;
+  font-size: 3.8em;
   font-weight: 100;
 }
 h2 {
-  font-size: 2.8em;
+  font-size: 2.6em;
   font-weight: 600;
+  margin-bottom: .1em;
 }
 h3 {
   font-size: 2em;
 }
 h4 {
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 h5 {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
@@ -283,6 +285,7 @@ header .container {
   -webkit-transition: width 0.7s ease-in-out;
   transition: width 0.7s ease-in-out;
 }
+/* User */
 .user-bar {
   background: #29292d;
 }
@@ -293,6 +296,7 @@ header .container {
 .user-bar .user {
   float: left;
   padding: 0 15px;
+  /* Social Links */
 }
 .user-bar .user .avatar {
   float: left;
@@ -300,9 +304,9 @@ header .container {
 .user-bar .user .avatar img {
   position: relative;
   float: left;
-  top: -26px;
-  height: 80px;
-  width: 80px;
+  top: -24px;
+  height: 76px;
+  width: 76px;
   background: #29292d;
   border: solid 6px #29292d;
   border-radius: 50%;
@@ -311,17 +315,49 @@ header .container {
   float: left;
   display: inline-block;
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: 600;
   line-height: 55px;
   padding: 0 .6em;
 }
 .user-bar .user .user-details-social {
   float: left;
+  margin: 15px 0;
+  background: #2e2e32;
+  border-radius: 30px;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+.user-bar .user .user-details-social a {
+  position: relative;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 24px;
+  text-align: center;
+  padding: 0 .3em;
+  width: 30px;
+}
+.user-bar .user .user-details-social a:hover {
+  color: #ffffff;
+}
+.user-bar .user .user-details-social a.icon-twitch2:after,
+.user-bar .user .user-details-social a.icon-youtube:after,
+.user-bar .user .user-details-social a.icon-facebook:after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  top: -4px;
+  bottom: -4px;
+  left: -2px;
+  width: 2px;
+  background: #29292d;
+  transform: rotate(15deg);
+  -ms-transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
 }
 /* Campaign Info & Actions */
 .info {
-  padding: 3.6em 0 3em;
+  padding: 3.8em 0 3em;
   width: 100%;
   /* Donate Button */
 }
@@ -353,16 +389,15 @@ header .container {
 .stream-wrap #stream #featured .featuredstreamcontainer {
   position: relative;
   float: left;
-  width: 100%;
+  width: 65%;
   z-index: 10;
-  -webkit-transition: linear 0.08s;
-  transition: linear 0.08s;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream #featured .featuredchat {
   position: absolute;
   top: 0;
   right: 0;
-  /*display: none;*/
   height: 100%;
   width: 35%;
   min-width: 300px;
@@ -375,20 +410,11 @@ header .container {
   min-height: 335px;
 }
 .stream-wrap #stream #featured .biggerFeaturedStream {
-  width: 65%;
+  width: 100%;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 }
-.stream-wrap #stream .stream-controls {
-  position: absolute;
-  top: 0;
-  right: -75px;
-  bottom: 0;
-  text-align: center;
-  padding: 1.2em 0;
-  clear: both;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-.stream-wrap #stream .stream-controls a {
+.stream-wrap #stream a.togglechat {
   display: block;
   color: #FFF;
   width: 60px;
@@ -409,6 +435,9 @@ header .container {
   padding: 15px;
   background: #29292d;
   border-radius: 10px;
+}
+.stream-wrap #stream a.togglechat {
+  background: #29292d;
 }
 /* Footer */
 footer span.copy {
@@ -458,6 +487,9 @@ footer span.copy {
   body {
     font-size: 16px;
   }
+  .container {
+    width: 800px;
+  }
   .right {
     text-align: center;
   }
@@ -472,6 +504,12 @@ footer span.copy {
   }
   .team-mates .team-mate-single-social {
     display: none !important;
+  }
+}
+/* Max 600px */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 600px;
   }
 }
 /* Max 480px */

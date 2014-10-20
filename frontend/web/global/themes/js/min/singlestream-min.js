@@ -1,1 +1,1 @@
-$(function(){$(".togglechat").click(function(){$(this).toggleClass("chaton"),$(".featuredchat").fadeToggle(),$(".featuredstreamcontainer").toggleClass("biggerFeaturedStream")}),$("#stream").fitVids()});
+$(function(){$("body").on("click",".togglechat",function(e){$(this).toggleClass("chaton"),$(".featuredchat").fadeToggle(),$(".featuredstreamcontainer").toggleClass("biggerFeaturedStream"),$("#stream").fitVids(),e.preventDefault()})});

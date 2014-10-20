@@ -28,6 +28,7 @@
 /* Faded light background */
 /* Faded dark background */
 /* Faded dark background */
+/* Social Icons */
 /* Structure */
 /* Typography */
 .smallcaps {
@@ -352,16 +353,15 @@ body {
 .stream-wrap #stream #featured .featuredstreamcontainer {
   position: relative;
   float: left;
-  width: 100%;
+  width: 65%;
   z-index: 10;
-  -webkit-transition: linear 0.08s;
-  transition: linear 0.08s;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream #featured .featuredchat {
   position: absolute;
   top: 0;
   right: 0;
-  /*display: none;*/
   height: 100%;
   width: 35%;
   min-width: 300px;
@@ -374,20 +374,11 @@ body {
   min-height: 335px;
 }
 .stream-wrap #stream #featured .biggerFeaturedStream {
-  width: 65%;
+  width: 100%;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 }
-.stream-wrap #stream .stream-controls {
-  position: absolute;
-  top: 0;
-  right: -75px;
-  bottom: 0;
-  text-align: center;
-  padding: 1.2em 0;
-  clear: both;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-.stream-wrap #stream .stream-controls a {
+.stream-wrap #stream a.togglechat {
   display: block;
   color: #FFF;
   width: 60px;

@@ -79,9 +79,9 @@
 			</div>
 
 			<div class="user-details-social">
-				<a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" ng-show="{{campaign.twitterEnable == 1}}"></a>
-				<a href="{{campaign.facebookUrl}}" class="icon-facebook" ng-show="{{campaign.facebookUrl == 1}}"></a>
-				<a href="{{campaign.youtubeUrl}}" class="icon-youtube" ng-show="{{campaign.youtubeEnable == 1}}"></a>
+				<a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" ng-show="campaign.twitterEnable == 1"></a>
+				<a href="{{campaign.facebookUrl}}" class="icon-facebook" ng-show="campaign.facebookUrl == 1"></a>
+				<a href="{{campaign.youtubeUrl}}" class="icon-youtube" ng-show="campaign.youtubeEnable == 1"></a>
 				<a href="http://www.twitch.tv/{{channel.display_name}}" class="icon-twitch2"></a>
 			</div>
 		</div>
@@ -96,11 +96,11 @@
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-8 feed-details">
 			<div class="feed-details-title">
-				<h2>{{campaign.name}}</h2>
-				<h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>
 				<h5>
                   		<span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
                   	</h5>
+				<h2>{{campaign.name}}</h2>
+				<h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>
 			</div>
 		</div>
 	</div>

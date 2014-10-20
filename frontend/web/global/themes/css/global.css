@@ -28,6 +28,7 @@
 /* Faded light background */
 /* Faded dark background */
 /* Faded dark background */
+/* Social Icons */
 /* Structure */
 /* Typography */
 .smallcaps {
@@ -727,9 +728,6 @@ header .menu-actions a {
 header .menu-actions a:hover {
   background: #3a3a40;
 }
-header .menu-actions a:hover:before {
-  background: #3a3a40;
-}
 header .menu-actions a:before {
   content: '';
   position: absolute;
@@ -737,8 +735,8 @@ header .menu-actions a:before {
   bottom: -4px;
   left: -16px;
   display: inline-block;
-  width: 28px;
-  background: transparent;
+  width: 1px;
+  background: #3a3a40;
   transform: rotate(15deg);
   -ms-transform: rotate(15deg);
   -webkit-transform: rotate(15deg);
@@ -762,6 +760,19 @@ header .menu-actions a:before {
 /* Progress Bar */
 .project-progressbar {
   max-width: 100%;
+}
+/* Social Links */
+.icon-twitch2 {
+  color: #643ca8;
+}
+.icon-twitter {
+  color: #50abf1;
+}
+.icon-youtube {
+  color: #cf1c11;
+}
+.icon-facebook {
+  color: #3c5690;
 }
 footer {
   text-align: center;
@@ -788,3 +799,34 @@ footer span.copy {
   display: block;
   padding: 1em 0;
 }
+@media only screen and (max-width: 1010px) {
+  .stream-controls a.togglechat,
+  #featured .featuredchat {
+    display: none !important;
+  }
+  #featured .biggerFeaturedStream {
+    width: 100%;
+  }
+}
+/* Max 768px */
+@media screen and (max-width: 768px) {
+  .stream-wrap #stream #featured .featuredstreamcontainer {
+    width: 100% !important;
+  }
+  #stream {
+    padding: .3em;
+  }
+  #stream .stream-controls {
+    position: static;
+    float: left;
+    clear: both;
+    width: 100%;
+    padding: .8em 0;
+  }
+  #stream .stream-controls a {
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 0;
+  }
+}
+/* Max 480px */

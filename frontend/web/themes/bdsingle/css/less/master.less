@@ -75,6 +75,7 @@ header {
 	}	
 }
 
+/* User */
 .user-bar {
 	background: @dkgray;
 
@@ -92,9 +93,9 @@ header {
 			img {
 				position: relative;
 				float: left;
-				top: -26px;
-				height: 80px;
-				width: 80px;
+				top: -24px;
+				height: 76px;
+				width: 76px;
 				background: @dkgray;
 				border: solid 6px @dkgray;
 				border-radius: 50%;
@@ -102,22 +103,59 @@ header {
 			a {
 				float: left;
 				display: inline-block;
-				.main();
-				font-size: 1.3em;
+				.secondary();
+				font-size: 1.2em;
 				font-weight: 600;
 				line-height: 55px;
 				padding: 0 .6em;
 			}
 		}
+
+		/* Social Links */
 		.user-details-social {
 			float: left;
+			margin: @halfgutter 0;
+			background: @maingray;
+			.round-radius;
+			overflow: hidden;
+
+			a {
+				position: relative;
+				display: inline-block;
+				font-size: 1em;
+				line-height: 24px;
+				text-align: center;
+				padding: 0 .3em;
+				width: 30px;
+				&:hover {
+					color: @white;
+				}
+
+				&.icon-twitch2,
+				&.icon-youtube,
+				&.icon-facebook {
+					&:after {
+						content: '';
+						position: absolute;
+						display: inline-block;
+						top: -4px;
+						bottom: -4px;
+						left: -2px;
+						width: 2px;
+						background: @dkgray;
+						transform: rotate(15deg);
+						-ms-transform: rotate(15deg);
+						-webkit-transform: rotate(15deg);
+					}
+				}
+			}
 		}
 	}
 }
 
 /* Campaign Info & Actions */
 .info {
-	padding: 3.6em 0 3em;
+	padding: 3.8em 0 3em;
 	width: 100%;
 
 	h5 {
@@ -143,6 +181,10 @@ header {
 		padding: @halfgutter;
 		background: @dkgray;
 		.element-radius;
+
+		a.togglechat {
+			background: @dkgray;
+		}
 	}
 }
 
