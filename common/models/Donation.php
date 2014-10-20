@@ -176,7 +176,9 @@ class Donation extends ActiveRecord
         $donors = [];
         foreach ($donations as $donation){
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
-            $donors[] = [ 'name' => $name, 'amount' => $sumByEmail[$donation->email], 'email' => $donation->email];
+            $donors[] = [ 'name' => $name, 
+                        'amount' => $sumByEmail[$donation->email], 
+                        'email' => $donation->email];
         }
         return $donors;
     }

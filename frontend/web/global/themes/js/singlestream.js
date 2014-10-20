@@ -9,6 +9,5 @@ $(function(){
 	  	e.preventDefault();
 	});
 
-	// FitVid Init
 	
 });

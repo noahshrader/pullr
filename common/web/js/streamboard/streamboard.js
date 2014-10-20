@@ -118,8 +118,7 @@ $(function () {
 
     var client = new ZeroClipboard($("#btn-copy-source-link"));
     client.on( "aftercopy", function( event ) {        
-        $('#copied-message').show();
-        $('#sidepanel .tab-pane>.pane.view-source').css('top',60);
+        alert('Copied to clipboard');
     });
 });
 // google fonts
