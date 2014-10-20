@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Theme;
 
-$this->registerJSFile('@web/js/event/index.js',  \common\assets\CommonAsset::className());
+//$this->registerJSFile('@web/js/event/index.js',  \common\assets\CommonAsset::className());
 
 $this->title = 'Themes';
 ?>
