@@ -21,6 +21,7 @@ $(function(){
 
     // Add event listener for opening and closing details
     $el.find('tbody').on('click', 'tr.odd, tr.even', function () {
+        if(! $(this).data('comments').length) return;
         var dt = $el.DataTable();
         $row = $(this).closest('tr');
         var row = dt.row( $row );
@@ -51,7 +52,10 @@ $(function(){
 
     // Rotate table details area on click
     $('tr.donation-entry').click(function() {
-        $(this).toggleClass('drop');
+        if ($(this).data('comments').length)
+        {
+            $(this).toggleClass('drop');
+        }
     });
     
     $wrapper.find('.dataTables_filter input').addClass("form-control input-medium"); // modify table search input
