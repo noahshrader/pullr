@@ -300,7 +300,7 @@ header .container {
 .user-bar .user .avatar img {
   position: relative;
   float: left;
-  top: -14px;
+  top: -26px;
   height: 80px;
   width: 80px;
   background: #29292d;
@@ -311,7 +311,7 @@ header .container {
   float: left;
   display: inline-block;
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 600;
   line-height: 55px;
   padding: 0 .6em;

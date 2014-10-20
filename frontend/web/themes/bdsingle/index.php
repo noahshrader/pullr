@@ -97,6 +97,7 @@
 		<div class="col-md-6 col-sm-6 col-xs-8 feed-details">
 			<div class="feed-details-title">
 				<h2>{{campaign.name}}</h2>
+				<h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>
 				<h5>
                   		<span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
                   	</h5>
@@ -107,6 +108,8 @@
 
 <!-- Layout -->
 <div pullr-campaign-layout></div>
+
+<div class="asd">{{campaign.description}}</div>
 
 <!-- Footer -->
 <footer>
