@@ -225,7 +225,7 @@ body {
   -ms-transform: rotate(-2deg);
   transform: rotate(-2deg);
   z-index: 10;
-  background: rgba(9, 10, 12, 0.7);
+  background: rgba(14, 15, 17, 0.7);
 }
 .stats .amount-progress .project-progress .project-progressbar {
   content: '';

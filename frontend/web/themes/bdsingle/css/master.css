@@ -131,7 +131,6 @@
 /* Header */
 header {
   background: #2e2e32;
-  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
 }
 header .logo a {
   color: #ffffff;
@@ -149,18 +148,12 @@ header .menu-actions a:before {
 .stats .numbers h1 {
   color: #ffffff;
 }
-.stats .project-progress {
-  background: rgba(9, 10, 12, 0.2);
-}
 /* Campaign Info */
 .info h5 {
   color: #6b6b75;
 }
 /* Single Stream */
-.user {
-  background: #29292d;
-}
-.user .avatar a {
+.user-bar .avatar a {
   color: #ffffff;
 }
 /* Footer */
@@ -168,11 +161,10 @@ footer h5 {
   color: #6b6b75;
 }
 footer span.copy {
-  color: #6b6b75;
-  font-size: 0.8em;
+  color: #47474d;
 }
 footer span.copy a {
-  color: #6b6b75;
+  color: #47474d;
 }
 footer span.copy a:hover {
   color: #ffffff;
@@ -184,8 +176,9 @@ footer span.copy a:hover {
 h1,
 h2,
 h3,
-h4 {
-  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+h4,
+h5 {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   margin: 0;
 }
 h1,
@@ -198,10 +191,12 @@ h4 {
 }
 h1 {
   margin-top: 0;
-  font-size: 3.6em;
+  font-size: 4em;
+  font-weight: 100;
 }
 h2 {
-  font-size: 2.6em;
+  font-size: 2.8em;
+  font-weight: 600;
 }
 h3 {
   font-size: 2em;
@@ -211,6 +206,7 @@ h4 {
 }
 h5 {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 1.2em;
 }
 p,
 ol,
@@ -243,16 +239,25 @@ body {
 .btn:hover {
   opacity: .9;
 }
+/* Header */
+header {
+  position: relative;
+}
+header .container {
+  padding: 0 30px;
+}
 /* Main Stats */
 .stats {
-  background: #222225 url(../img/stats-back.jpg);
+  position: relative;
+  background-color: #222225;
   overflow: hidden;
 }
 .stats .numbers {
-  padding: 3em 15px 1.6em;
+  padding: 3.6em 15px;
 }
 .stats .amount-progress {
-  position: relative;
+  position: absolute;
+  top: 0;
   text-align: center;
   width: 100%;
   height: 45px;
@@ -261,15 +266,12 @@ body {
 }
 .stats .amount-progress .project-progress {
   position: absolute;
-  bottom: 0;
+  top: 0;
   content: '';
-  margin-bottom: -70px;
-  height: 91px;
+  height: 5px;
   width: 100%;
+  background: rgba(14, 15, 17, 0.2);
   z-index: 10;
-  -webkit-transform: rotate(-1.5deg);
-  -ms-transform: rotate(-1.5deg);
-  transform: rotate(-1.5deg);
 }
 .stats .amount-progress .project-progress .project-progressbar {
   content: '';
@@ -281,14 +283,50 @@ body {
   -webkit-transition: width 0.7s ease-in-out;
   transition: width 0.7s ease-in-out;
 }
+.user-bar {
+  background: #29292d;
+}
+.user-bar .container {
+  position: relative;
+  height: 55px;
+}
+.user-bar .user {
+  float: left;
+  padding: 0 15px;
+}
+.user-bar .user .avatar {
+  float: left;
+}
+.user-bar .user .avatar img {
+  position: relative;
+  float: left;
+  top: -14px;
+  height: 80px;
+  width: 80px;
+  background: #29292d;
+  border: solid 6px #29292d;
+  border-radius: 50%;
+}
+.user-bar .user .avatar a {
+  float: left;
+  display: inline-block;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-size: 1.2em;
+  font-weight: 600;
+  line-height: 55px;
+  padding: 0 .6em;
+}
+.user-bar .user .user-details-social {
+  float: left;
+}
 /* Campaign Info & Actions */
 .info {
-  padding: 6em 0 3em;
+  padding: 3.6em 0 3em;
   width: 100%;
   /* Donate Button */
 }
-.info h4 {
-  margin-bottom: .6em;
+.info h5 {
+  margin-bottom: .2em;
 }
 .info .donate-wrap {
   float: right;
@@ -368,21 +406,14 @@ body {
 .stream-wrap .user-details {
   padding: 1em 15px;
 }
-.stream-wrap .user {
-  display: inline-block;
-  padding: .6em;
-  border-radius: 30px;
-  background-clip: padding-box;
+.stream-wrap #stream {
+  padding: 15px;
+  background: #29292d;
+  border-radius: 10px;
 }
-.stream-wrap .user .avatar img {
-  height: 30px;
-  width: 30px;
-  overflow: hidden;
-  border-radius: 30px;
-  background-clip: padding-box;
-}
-.stream-wrap .user .avatar a {
-  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+/* Footer */
+footer span.copy {
+  font-size: 0.8em;
 }
 /* Responsive */
 /* ------------------------------------------------- */

@@ -695,12 +695,8 @@ small,
 /* Components */
 /* ------------------------------------------------- */
 header {
-  position: relative;
   width: 100%;
-  padding: 0;
-  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   overflow: hidden;
-  z-index: 1;
   /* Logo */
   /* Right Menu */
 }
@@ -709,7 +705,6 @@ header .logo {
 }
 header .logo a {
   height: 48px;
-  margin-left: 30px;
   font-size: 2em;
   line-height: 48px;
 }
@@ -717,7 +712,9 @@ header .logo a:hover {
   cursor: pointer;
 }
 header .menu-actions {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 header .menu-actions a {
   position: relative;
@@ -768,16 +765,17 @@ header .menu-actions a:before {
 }
 footer {
   text-align: center;
-  padding: 1.6em 0;
+  padding: 2em 0;
+  margin-top: 1em;
   /* Powered */
 }
 footer h5 {
   color: #d4d4d8;
-  font-size: .6em;
+  font-size: .75em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: .8em;
+  margin-bottom: .3em;
 }
 footer a.logo:before {
   color: #d4d4d8;

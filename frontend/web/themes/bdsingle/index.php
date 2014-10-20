@@ -29,12 +29,14 @@
 <body class="responsive" id="top">
 
 <!-- Header -->
-<header>	
-	<div class="logo">
-		<a href="/" class="icon-pullr logo"></a>
-	</div>
-	<div class="menu-actions">
-		<a href="http://www.pullr.io">Start your campaign</a>
+<header>
+	<div class="container">
+		<div class="logo">
+			<a href="/" class="icon-pullr logo"></a>
+		</div>
+		<div class="menu-actions">
+			<a href="http://www.pullr.io">Start your campaign</a>
+		</div>
 	</div>
 </header>
 
@@ -60,9 +62,28 @@
                   </h1>
 		</div>
 	</div>
-	<div class="amount-progress animated fadeInUp">
+	<div class="amount-progress">
 		<div class="project-progress status">
 			<div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
+		</div>
+	</div>
+</section>
+
+<!-- User -->
+<section class="user-bar">
+	<div class="container">
+		<div class="user">
+			<div class="avatar">
+				<img src="{{channel.logo}}"/>
+				<a href="http://www.twitch.tv/{{channel.display_name}}">{{channel.display_name}}</a>
+			</div>
+
+			<div class="user-details-social">
+				<a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" ng-show="{{campaign.twitterEnable == 1}}"></a>
+				<a href="{{campaign.facebookUrl}}" class="icon-facebook" ng-show="{{campaign.facebookUrl == 1}}"></a>
+				<a href="{{campaign.youtubeUrl}}" class="icon-youtube" ng-show="{{campaign.youtubeEnable == 1}}"></a>
+				<a href="http://www.twitch.tv/{{channel.display_name}}" class="icon-twitch2"></a>
+			</div>
 		</div>
 	</div>
 </section>
@@ -71,13 +92,12 @@
 <section class="info container cf" ng-cloak>
 	<div class="container" ng-cloak>
 		<div class="col-md-4 col-sm-4 col-xs-12 right donate-wrap">
-			<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate</button>
+			<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate!</button>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-8 feed-details">
 			<div class="feed-details-title">
 				<h2>{{campaign.name}}</h2>
-				<h4 style="color:{{campaign.primaryColor}};">{{campaign.charity.name}}</h4>
-                  	<h5>
+				<h5>
                   		<span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
                   	</h5>
 			</div>
@@ -92,7 +112,7 @@
 <footer>
 	<h5>Powered by</h5>
 	<a class="logo icon-pullr" href="http://www.pullr.io" target="_blank"></a>
-	<span class="copy"> &copy; <? print(Date("Y")); ?> Pullr, LLC. All Rights Reserved.<br/><a href="http://www.pullr.io/terms">Terms &amp; Conditions</a> &bull; <a href="http://www.pullr.io/privacy">Privacy Policy</a></span>
+	<span class="copy"> &copy; <? print(Date("Y")); ?> Pullr, LLC. All Rights Reserved. <a href="http://www.pullr.io/terms">Terms &amp; Conditions</a> &bull; <a href="http://www.pullr.io/privacy">Privacy Policy</a></span>
 </footer>
 
 <script type='text/javascript'>
