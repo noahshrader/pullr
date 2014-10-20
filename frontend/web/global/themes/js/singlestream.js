@@ -1,12 +1,14 @@
-$(function() {
+$(function(){
 
 	// Toggle Chat
-	$('.togglechat').click(function () {
+	$('body').on('click','.togglechat',function (e) {			
 		$(this).toggleClass('chaton');
 	  	$('.featuredchat').fadeToggle();
 	  	$('.featuredstreamcontainer').toggleClass('biggerFeaturedStream');
+	  	$("#stream").fitVids();
+	  	e.preventDefault();
 	});
 
 	// FitVid Init
-	$("#stream").fitVids();
+	
 });
