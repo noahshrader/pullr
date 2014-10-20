@@ -50,6 +50,8 @@ $(window).load(function() {
         },
         live: true
     });
+
+    $('.widget-alert').draggable();
 });
 
 $(function () {
