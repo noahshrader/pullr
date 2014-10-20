@@ -135,7 +135,12 @@ class StreamboardController extends FrontendController
         $user = Application::getCurrentUser();
         $sinceDate = $user->streamboardConfig->clearedDate;
         /*we are limiting by 100 here, but on html after applying campaign's filter we will limit to just 20*/
-        $donations = $user->getDonations(['sinceId' => $since_id])->andWhere('paymentDate > ' . $sinceDate)->with('campaign', 'streamboard')->limit(100)->all();
+        $donations = $user->getDonations(['sinceId' => $since_id])
+                            ->andWhere('paymentDate > ' . $sinceDate)
+                            ->with('campaign', 'streamboard')
+                            ->orderBy('amount DESC')
+                            ->limit(100)                            
+                            ->all();
 
         $donationsArray = [];
         foreach ($donations as $donation) {

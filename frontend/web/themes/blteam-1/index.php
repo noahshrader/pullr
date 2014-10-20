@@ -65,7 +65,7 @@
         </div>
         <div class="amount-progress">
             <div class="project-progress status">
-                <div class="project-progressbar" style="background:{{campaign.primaryColor}};"></div>
+                <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
             </div>
         </div>
     </div>
@@ -102,11 +102,6 @@
 <script>
     Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
     // Pullr.Ready(function(){alert(Pullr.event.name)});
-    function updatePage() {
-        var progress = Pullr.campaign.percentageOfGoal + '%';
-        $('.project-progressbar').css('width', progress);
-    }
-    Pullr.Ready(updatePage);
 </script>
 </body>
 </html>

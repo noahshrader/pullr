@@ -20,7 +20,7 @@
 
 /* Gray Sets */
 @maingray: lighten(@base, 5%);
-@dkgray: darken(@base, 1%); /* 2% darker than background */
+@dkgray: lighten(@base, 3%); /* 3% darker than background */
 @gray10: lighten(@base, 10%); /* 10% gray background */
 @gray12: lighten(@base, 13%); /* 12% gray background */
 @gray15: lighten(@base, 15%); /* 15% gray background */
@@ -36,11 +36,24 @@
 
 @bgwhitefade: rgba(255,255,255,.7); /* Faded light background */
 @bglightwhitefade: rgba(255,255,255,.2); /* Faded light background */
-@bgblackfade: rgba(34,34,37,.7); /* Faded dark background */
-@bglightblackfade: rgba(34,34,37,.2); /* Faded dark background */
+@bgblackfade: rgba(14,15,17,.7); /* Faded dark background */
+@bglightblackfade: rgba(14,15,17,.2); /* Faded dark background */
 
 /* Structure */
 @headerheight: 48px;
+@gutter: 30px;
+@halfgutter: 15px;
+
+/* Typography */
+@basefontsize: 16px;
+@smalltext: .9em;
+@fineprint: .8em;
+
+.smallcaps {
+	font-size: @fineprint;
+	font-weight: 600;
+	text-transform: uppercase;
+}
 
 /* Lists */
 .ulist {

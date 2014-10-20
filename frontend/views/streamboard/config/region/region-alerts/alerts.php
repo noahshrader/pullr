@@ -41,7 +41,7 @@ use yii\web\View;
         <div ng-init="preference = widget.donationsPreference">
             <h4 class="panel-title">
                 Donation Alerts 
-                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1)">Test</button>
+                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region.regionNumber)">Test</button>
             </h4>            
             <?= $this->render('alerts-preference') ?>
         </div>
@@ -50,7 +50,7 @@ use yii\web\View;
         <div ng-init="preference = widget.followersPreference">
             <h4 class="panel-title">
                 Follower Alerts 
-                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1)">Test</button>
+                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region.regionNumber)">Test</button>
             </h4>
             <?= $this->render('alerts-preference') ?>
         </div>
@@ -59,7 +59,7 @@ use yii\web\View;
         <div ng-init="preference = widget.subscribersPreference">
             <h4 class="panel-title">
                 Subscriber Alerts 
-                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1)">Test</button>
+                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region.regionNumber)">Test</button>
             </h4>
             <?= $this->render('alerts-preference') ?>
         </div>

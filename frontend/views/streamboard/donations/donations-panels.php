@@ -14,7 +14,7 @@
 			<h5>Top 3 Donors</h5>
 			<ul class="top_donors">
 				<li data-ng-repeat="donor in donationsService.stats.top_donors" class="value">
-					{{donor.name ? donor.name : '<?= Donation::ANONYMOUS_NAME ?>'}}
+					{{donor.name ? donor.name : '<?= Donation::ANONYMOUS_NAME ?>'}} (Total: {{donor.amount}})
 				</li>
 			</ul>
 		</div>
