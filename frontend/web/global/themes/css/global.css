@@ -783,6 +783,10 @@ header .menu-actions a:before {
 .icon-facebook {
   color: #3c5690;
 }
+/* Info */
+.info h4 {
+  color: #1dbc9c;
+}
 footer {
   text-align: center;
   padding: 2em 0;

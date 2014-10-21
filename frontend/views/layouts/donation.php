@@ -18,14 +18,14 @@ $campaign = \Yii::$app->controller->campaign;
        <!-- BEGIN Progress Bar -->
         <div class="form-progress" data-amountraised="<?= $campaign->amountRaised ?>" data-goalamount = <?= $campaign->goalAmount ?>>
                 <div class="form-progress-wrap">
-                    <div class="progress" style="width:<?= 100*$campaign->amountRaised/max(1,$campaign->goalAmount) ?>%;"></div>
+                    <div class="progress" style="width:<?= 100*$campaign->amountRaised/max(1,$campaign->goalAmount) ?>%;" ng-cloak></div>
                         <div class="separation">
                                 <div class="separation-left"></div>
                                 <div class="separation-right"></div>
                         </div>
                 </div>
                 <div class="totals">
-                    <span class="total amountRaised">$<?= number_format($campaign->amountRaised) ?></span> of <span class="goal">$<?= number_format($campaign->goalAmount) ?></span>
+                    <span class="total amountRaised" ng-cloak>$<?= number_format($campaign->amountRaised) ?></span> of <span class="goal">$<?= number_format($campaign->goalAmount) ?></span>
                 </div>
         </div>
        <!-- ENG Progress Bar -->
@@ -39,6 +39,9 @@ $campaign = \Yii::$app->controller->campaign;
             <h5>Powered by</h5>
             <a class="logo icon-pullr-logo" href="http://www.pullr.io" target="_blank"></a>
         </footer>
+        <script type='text/javascript'>
+            Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
+        </script>
     </body>
 </html>
 <?php $this->endPage() ?>

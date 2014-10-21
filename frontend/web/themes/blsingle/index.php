@@ -23,7 +23,7 @@
 	<script src="api/script"></script>
 	<script src="/global/themes/global.js"></script>
 	<!-- Fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Varela+Round:400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
 	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body class="responsive" id="top">
@@ -94,7 +94,7 @@
                   	<span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
 				</h5>
 				<h2>{{campaign.name}}</h2>
-				<h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>
+				<h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}{{campaign.customCharity}}</h4>
 			</div>
 		</div>
 	</div>

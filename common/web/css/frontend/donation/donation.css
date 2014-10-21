@@ -96,11 +96,11 @@ ul {
   list-style: none;
 }
 ::-moz-selection {
-  background: #eaeaeb;
+  background: #efeff0;
   text-shadow: none;
 }
 ::selection {
-  background: #eaeaeb;
+  background: #efeff0;
   text-shadow: none;
 }
 /* Placeholder styling */
@@ -986,7 +986,7 @@ select.form-control,
   outline: 0;
   padding: 0 15px;
   min-height: 45px;
-  border: 2px solid #eaeaeb;
+  border: 2px solid #efeff0;
   background: #ffffff;
   border-radius: 4px;
   background-clip: padding-box;
@@ -1102,7 +1102,7 @@ input.color-choice {
   color: #53535a;
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   font-size: 16px;
-  background: #eaeaeb;
+  background: #efeff0;
   border: 0;
   box-shadow: none !important;
 }
@@ -1136,7 +1136,7 @@ input.color-choice {
 .select2-dropdown-open.select2-drop-above .select2-choice,
 .select2-dropdown-open.select2-drop-above .select2-choices {
   border: 0;
-  background: #eaeaeb;
+  background: #efeff0;
 }
 .select2-drop {
   box-shadow: none;
@@ -1222,7 +1222,7 @@ input.color-choice {
   position: relative;
   top: 3px;
   display: inline-block;
-  color: #eaeaeb;
+  color: #efeff0;
   font-family: 'icomoon';
   font-size: 12px;
   line-height: 16px;
@@ -1239,7 +1239,7 @@ input.color-choice {
   text-indent: 0;
   border-radius: 4px;
   background-clip: padding-box;
-  background: #eaeaeb;
+  background: #efeff0;
 }
 .checkbox label.on:before {
   color: #85858e;
@@ -1252,7 +1252,7 @@ input.color-choice {
 .bootstrap-switch {
   display: block !important;
   max-width: 120px;
-  border: solid 2px #eaeaeb !important;
+  border: solid 2px #efeff0 !important;
 }
 /* Combined Forms */
 .combined-form-wrap {
@@ -1402,7 +1402,7 @@ body.campaignflow {
   background-color: #20d2ae;
 }
 .btn-secondary {
-  background-color: #eaeaeb;
+  background-color: #efeff0;
   color: #6b6b75;
 }
 .btn-secondary:hover {
@@ -1455,7 +1455,7 @@ body.campaignflow {
 .stats-overview .stats-box {
   padding: 1.4em 0;
   min-height: 110px;
-  border-left: solid 1px #eaeaeb;
+  border-left: solid 1px #efeff0;
 }
 .stats-overview .stats-box:first-child {
   border-left: 0px;
@@ -1478,7 +1478,7 @@ body.campaignflow {
   line-height: 1.4em;
   padding: 0 .6em;
   margin-left: 3px;
-  background: #eaeaeb;
+  background: #efeff0;
   border-radius: 30px;
   background-clip: padding-box;
 }
@@ -1488,7 +1488,7 @@ body.campaignflow {
 }
 .stats-overview .stats-box.top-donor,
 .stats-overview .stats-box.top-donation {
-  border-top: solid 1px #eaeaeb;
+  border-top: solid 1px #efeff0;
 }
 .stats-overview .progress-wrap {
   position: absolute;
@@ -1515,6 +1515,7 @@ body.campaignflow {
 .stats-overview .progress-wrap .tooltip {
   right: -25px;
   left: auto !important;
+  font-size: 12px;
   text-align: center;
   width: 50px;
 }
@@ -1553,14 +1554,14 @@ body.campaignflow {
 ul.content-nav {
   height: 50px;
   background: #f7f7f7;
-  border-bottom: solid 1px #eaeaeb;
+  border-bottom: solid 1px #efeff0;
 }
 ul.content-nav li {
   position: relative;
   float: left;
   display: inline-block;
   border: 0;
-  border-right: solid 1px #eaeaeb;
+  border-right: solid 1px #efeff0;
 }
 ul.content-nav li.active a,
 ul.content-nav li.active a:hover {
@@ -1786,7 +1787,7 @@ span.list-info {
   }
   .large-menu-toggled .stats-overview .top-donation,
   .large-menu-toggled .stats-overview .top-donor {
-    border-left: solid 1px #eaeaeb;
+    border-left: solid 1px #efeff0;
     border-top: 0;
   }
 }
@@ -1802,12 +1803,12 @@ span.list-info {
   }
   .small-menu-toggled .stats-overview .top-donation,
   .small-menu-toggled .stats-overview .top-donor {
-    border-left: solid 1px #eaeaeb;
+    border-left: solid 1px #efeff0;
     border-top: 0;
   }
   .small-menu-toggled .stats-overview .top-donation,
   .small-menu-toggled .stats-overview .top-donor {
-    border-left: solid 1px #eaeaeb;
+    border-left: solid 1px #efeff0;
     border-top: 0;
   }
 }
@@ -1879,10 +1880,9 @@ label {
 }
 .donation-form-header h1.campaign-name {
   color: #53535a;
-  font-family: 'Varela Round', 'Source Sans Pro', Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
   padding: 0 5%;
   margin: 0;
 }
@@ -1923,7 +1923,7 @@ label {
   text-align: center;
   height: 24px;
   width: 100%;
-  background: #eaeaeb;
+  background: #efeff0;
 }
 .form-progress-wrap .progress {
   height: 100%;
@@ -2059,7 +2059,6 @@ footer a.logo:hover:before {
 }
 .events-form #donation-amount .fieldamount label {
   color: #53535a;
-  font-family: 'Varela Round', 'Source Sans Pro', Helvetica, Arial, sans-serif;
   font-size: 1.4em;
   font-weight: 400;
   line-height: 90px;
@@ -2097,7 +2096,7 @@ footer a.logo:hover:before {
   background: #ffffff;
   border-radius: 4px;
   background-clip: padding-box;
-  border: solid 2px #eaeaeb;
+  border: solid 2px #efeff0;
   overflow: hidden;
 }
 .events-form #donation-amount #other a.closethis {
