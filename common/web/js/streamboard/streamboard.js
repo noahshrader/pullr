@@ -117,11 +117,13 @@ $(function () {
             }
         }
     }, 1000)
+       $("#btn-copy-source-link").tooltip({
+        title:'Copied link to clipboard',
+        trigger: 'click',
+        placement:'bottom'
+    })
+//    var client = new ZeroClipboard($("#btn-copy-source-link"));
 
-    var client = new ZeroClipboard($("#btn-copy-source-link"));
-    client.on( "aftercopy", function( event ) {        
-        alert('Copied to clipboard');
-    });
 });
 // google fonts
 function requireGoogleFont(fontFamily){

@@ -1,11 +1,15 @@
+var myCustomAfterRender = function(){
+
+}
 $(function(){
 
-	// Toggle Chat
-	// $('body').on('click','.togglechat',function (e) {			
-	// 	$(this).toggleClass('chaton');
-	//   	$('.featuredchat').fadeToggle();
-	//   	$('.featuredstreamcontainer').toggleClass('biggerFeaturedStream');
-	//   	$("#stream").fitVids();
-	//   	e.preventDefault();
-	// });
+	myCustomAfterRender = function(){
+		$('.togglechat').click(function (e) {			
+			$(this).toggleClass('chaton');
+		  	$('.featuredchat').fadeToggle();
+		  	$('.featuredstreamcontainer').toggleClass('biggerFeaturedStream');
+		  	$("#stream").fitVids();
+		  	e.preventDefault();
+		});
+	}	
 });

@@ -120,13 +120,8 @@ app.directive('pullrCampaignLayout', function($interval, $timeout, CampaignDataS
 
 			scope.afterLoadTemplate = function(){
 				console.log('Campaign template loaded');
-				$('.togglechat').click(function (e) {			
-					$(this).toggleClass('chaton');
-				  	$('.featuredchat').fadeToggle();
-				  	$('.featuredstreamcontainer').toggleClass('biggerFeaturedStream');
-				  	$("#stream").fitVids();
-				  	e.preventDefault();
-				});
+				myCustomAfterRender = myCustomAfterRender || function(){};
+				myCustomAfterRender();
 			}
 		},
 		template:'<div ng-include="getLayoutUrl() | trusted" onload="afterLoadTemplate()" ng-cloak></div>' 
