@@ -1,18 +1,86 @@
 .team-content {
-	overflow: hidden;
-	padding: .6em;
-	background: @gray70;
-	.element-radius;
+	padding: 0 @halfgutter;
 
 	.team-wrap {
+		padding: .6%;
+		background: @gray70;
+		.element-radius;
 
 		.team-members {
+			position: relative;
 			float: left;
 			display: inline-block;
+			width: 16.66%;
+			width: -webkit-calc(100% / 7);
+			width: calc(100% / 7);
+			padding: .6%;
 
 			img {
-				width: 120px;
+				width: 100%;
 				height: auto;
+			}
+			.team-member {
+				cursor: pointer;
+
+				&.offline img {
+					opacity: .4;
+					-webkit-filter: grayscale(100%);
+					-moz-filter: grayscale(100%);
+					filter: gray;
+					filter: grayscale(100%);
+					.trans;
+					&:hover {
+						opacity: 1;
+						-webkit-filter: grayscale(0%);
+						-moz-filter: grayscale(0%);
+						filter: grayscale(0%);
+					}
+				}
+				.team-member-stats {
+					display: none;
+					position: absolute;
+					bottom: 80%;
+					left: 50%;
+					color: @white;
+					padding: @halfgutter;
+					margin-left: -100px;
+					width: 200px;
+					background: @maingray;
+					.border-radius;
+					.box-shadow;
+					z-index: 9999;
+					&:after {
+						.arrow-down;
+						bottom: -10px;
+						left: 50%;
+						margin-left: -10px;
+						border-color: @maingray transparent transparent transparent;
+					}
+					h4 {
+						font-weight: 600;
+					}
+					.game {
+						display: block;
+						color: @gray30;
+						line-height: 1;
+						padding: .3em 0;
+					}
+					.viewers {
+						margin-right: 3px;
+					}
+					.viewers,
+					.followers {
+						i {
+							color: @gray30;
+							font-size: 12px;
+						}
+					}
+				}
+				&:hover {
+					.team-member-stats {
+						display: block;
+					}
+				}
 			}
 		}
 	}

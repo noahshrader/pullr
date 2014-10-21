@@ -744,6 +744,9 @@ header .menu-actions a:before {
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
+.container {
+  padding: 0 15px;
+}
 /* Buttons */
 .btn {
   color: #ffffff;

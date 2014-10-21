@@ -283,7 +283,7 @@ header .container {
   overflow: hidden;
 }
 .stats .numbers {
-  padding: 3.4em 15px 3em;
+  padding: 3.6em 15px;
 }
 .stats .amount-progress {
   position: absolute;

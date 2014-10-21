@@ -283,7 +283,7 @@ header .container {
   overflow: hidden;
 }
 .stats .numbers {
-  padding: 3.4em 15px 3em;
+  padding: 3.6em 15px;
 }
 .stats .amount-progress {
   position: absolute;
@@ -457,18 +457,91 @@ header .container {
   padding: 1em 15px;
 }
 .team-content {
-  overflow: hidden;
-  padding: .6em;
+  padding: 0 15px;
+}
+.team-content .team-wrap {
+  padding: .6%;
   background: #d4d4d8;
   border-radius: 10px;
 }
 .team-content .team-wrap .team-members {
+  position: relative;
   float: left;
   display: inline-block;
+  width: 16.66%;
+  width: calc(14.28571429%);
+  padding: .6%;
 }
 .team-content .team-wrap .team-members img {
-  width: 120px;
+  width: 100%;
   height: auto;
+}
+.team-content .team-wrap .team-members .team-member {
+  cursor: pointer;
+}
+.team-content .team-wrap .team-members .team-member.offline img {
+  opacity: .4;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  filter: gray;
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  -webkit-transition: linear 0.08s;
+  transition: linear 0.08s;
+}
+.team-content .team-wrap .team-members .team-member.offline img:hover {
+  opacity: 1;
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats {
+  display: none;
+  position: absolute;
+  bottom: 80%;
+  left: 50%;
+  color: #ffffff;
+  padding: 15px;
+  margin-left: -100px;
+  width: 200px;
+  background: #2e2e32;
+  border-radius: 4px;
+  background-clip: padding-box;
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  z-index: 9999;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #ffffff transparent transparent transparent;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border-color: #2e2e32 transparent transparent transparent;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats h4 {
+  font-weight: 600;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats .game {
+  display: block;
+  color: #6b6b75;
+  line-height: 1;
+  padding: .3em 0;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats .viewers {
+  margin-right: 3px;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats .viewers i,
+.team-content .team-wrap .team-members .team-member .team-member-stats .followers i {
+  color: #6b6b75;
+  font-size: 12px;
+}
+.team-content .team-wrap .team-members .team-member:hover .team-member-stats {
+  display: block;
 }
 .stream-wrap #stream {
   background: #d4d4d8;
