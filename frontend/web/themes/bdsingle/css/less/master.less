@@ -2,7 +2,6 @@
 /* ------------------------------------------------- */
 @import "../../../../global/themes/css/less/variables.less";
 @import "../../../../global/themes/css/less/dark/dark.less";
-@import "palette.less";
 
 /* Type */
 /* ------------------------------------------------- */
@@ -17,7 +16,6 @@ body {
 
 /* Buttons */
 .btn {
-	background: @accent;
 
 	&:hover {
 		opacity: .9;
@@ -36,11 +34,11 @@ header {
 /* Main Stats */
 .stats {
 	position: relative;
-	background-color: @base;
+	min-height: 160px;
 	overflow: hidden;
 
 	.numbers {
-		padding: 3.6em @halfgutter;
+		padding: 3.4em @halfgutter 3em;
 	}
 
 	.amount-progress {
@@ -56,7 +54,7 @@ header {
 			position: absolute;
 			top: 0;
 			content: '';
-			height: 5px;
+			height: 4px;
 			width: 100%;
 			background: @bglightblackfade;
 			z-index: 10;
@@ -75,8 +73,8 @@ header {
 	}	
 }
 
+/* User */
 .user-bar {
-	background: @dkgray;
 
 	.container {
 		position: relative;
@@ -92,9 +90,9 @@ header {
 			img {
 				position: relative;
 				float: left;
-				top: -26px;
-				height: 80px;
-				width: 80px;
+				top: -24px;
+				height: 76px;
+				width: 76px;
 				background: @dkgray;
 				border: solid 6px @dkgray;
 				border-radius: 50%;
@@ -102,22 +100,61 @@ header {
 			a {
 				float: left;
 				display: inline-block;
-				.main();
-				font-size: 1.3em;
+				.secondary();
+				font-size: 1.2em;
 				font-weight: 600;
 				line-height: 55px;
 				padding: 0 .6em;
 			}
 		}
+
+		/* Social Links */
 		.user-details-social {
 			float: left;
+			margin: 14px 4px;
+			.round-radius;
+			overflow: hidden;
+
+			a {
+				position: relative;
+				display: inline-block;
+				font-size: 15px;
+				line-height: 25px;
+				text-align: center;
+				padding: 0 .3em;
+				width: 35px;
+				&:hover {
+					color: @white;
+				}
+
+				&.icon-twitch2 {
+					font-size: 13px;
+				}
+				&.icon-twitter,
+				&.icon-youtube,
+				&.icon-facebook {
+					&:after {
+						content: '';
+						position: absolute;
+						display: inline-block;
+						top: -4px;
+						bottom: -4px;
+						left: -2px;
+						width: 2px;
+						background: @dkgray;
+						transform: rotate(15deg);
+						-ms-transform: rotate(15deg);
+						-webkit-transform: rotate(15deg);
+					}
+				}
+			}
 		}
 	}
 }
 
 /* Campaign Info & Actions */
 .info {
-	padding: 3.6em 0 3em;
+	padding: 3.8em 0 1em;
 	width: 100%;
 
 	h5 {
@@ -140,7 +177,6 @@ header {
 
 .stream-wrap {
 	#stream {
-		padding: @halfgutter;
 		background: @dkgray;
 		.element-radius;
 	}

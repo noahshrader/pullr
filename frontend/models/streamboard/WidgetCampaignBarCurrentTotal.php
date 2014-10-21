@@ -11,17 +11,17 @@ use common\models\User;
  * @property integer $userId
  * @property integer $regionNumber - either 1 / 2
  */
-class WidgetCampaignBarMessages extends ActiveRecord {
+class WidgetCampaignBarCurrentTotal extends ActiveRecord {
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
     public static function tableName() {
-        return 'tbl_streamboard_widget_campaign_bar_messages';
+        return 'tbl_streamboard_widget_campaign_bar_current_total';
     }
 
     public function scenarios() {
         return [
-            'default' => ['message1','message2', 'message3', 'message4', 'messages5', 'rotationSpeed', 'positionX', 'positionY']
+            'default' => ['positionX', 'positionY']
         ];
     }
 }

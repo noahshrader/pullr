@@ -13,6 +13,7 @@ use common\models\User;
  * @property boolean $includeFollowers
  * @property boolean $includeSubscribers
  * @property boolean $includeDonations
+ * @property string $fontColor
  */
 class WidgetCampaignBarAlerts extends ActiveRecord {
     /**
@@ -25,7 +26,7 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'fontStyle', 'fontSize',
-                'fontColor', 'backgroundColor', 'animationDirection', 'animationDuration', 'animationDelay']
+                'fontColor', 'backgroundColor', 'animationDirection', 'animationDuration', 'animationDelay', 'positionX', 'positionY']
         ];
     }
 

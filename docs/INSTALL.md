@@ -9,8 +9,8 @@ Select folder to locate pullr
 Download composer (e.g. to you home folder, next home folder will be supposed)  
 `https://getcomposer.org/download/`
 
-Plugin for composer  
-`~/composer.phar global require "fxp/composer-asset-plugin:1.0.0-beta2"`
+Plugin for composer
+`~/composer.phar global require "fxp/composer-asset-plugin:1.0.0-beta3"`
 
 Next from pullr folder run  
 `~/composer.phar update`

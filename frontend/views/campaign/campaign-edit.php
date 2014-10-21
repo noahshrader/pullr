@@ -48,6 +48,13 @@ $user = \Yii::$app->user->identity;
                                     JSON
                                 </a>
                             </li>
+                            <li class="cf">
+                                <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                                <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
+                                    <i class="icon icon-list"></i>
+                                    Form
+                                </a>
+                            </li>
                             <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                             <li class="cf">
                                 <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">

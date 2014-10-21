@@ -9,9 +9,6 @@ return [
     'backendUrl' => '../../backend/web/',
     'monthSubscription' => 3.99,
     'yearSubscription' => 48,
-    /*overright it in params-local.php as params-local is not included in git repository*/
-    'paypalClientId' => 'AdhS6hAM2klW0zvrByqMTUAwosKCt8kMrhUPN6-HHzoCaJscFJHsGfGUvLzP',
-    'paypalClientSecret' => 'EHYMZhAE29WHfY8T37s-j-2wMOL8SMjjB3uX-9h9uz2snme0pL_tKYLg3YK4',
     'maxCampaignsBasic' => 2,
     'maxCampaignsPro' => 6,
     /*use that link to add/change your application
@@ -22,18 +19,5 @@ return [
 
     'googleAPIKey' => 'AIzaSyBCaACEmXOZ9F2u9DF9O-U-1-_BmTfNQfE',
     //First Giving params
-    'firstGiving' => [
-        'donateHost' => 'https://donatenowstaging.firstgiving.com',
-        'formStyleSheetURL' => 'https://dl.dropbox.com/s/s7d43ysw7nppro1/donation.css',
-        'donationApiHost' => 'http://usapisandbox.fgdev.net/',
-        //dont change keys of array
-        'callbackSuccessPair' => [
-            'key' => 'kobdffjuux',
-            'value' => 'ieDEaolClvseqLF'
-        ],
-        'affiliate' =>[
-            'common' => 'Pullr',
-            'pro' => 'Pull-pro'
-        ]
-    ]
+
 ];

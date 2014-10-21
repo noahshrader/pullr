@@ -9,6 +9,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
 use frontend\models\streamboard\WidgetCampaignBarAlerts;
 use frontend\models\streamboard\WidgetCampaignBarMessages;
 use frontend\models\streamboard\WidgetCampaignBarTimer;
+use frontend\models\streamboard\WidgetCampaignBarCurrentTotal;
 use frontend\models\streamboard\WidgetDonationFeed;
 
 class m140729_125121_streamboard_region extends ExtendedMigration
@@ -119,7 +120,9 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'animationDirection' => Schema::TYPE_STRING.' NOT NULL',
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
             'animationDelay' => Schema::TYPE_INTEGER.' NOT NULL',
-            'volume' => Schema::TYPE_FLOAT.' NOT NULL',                        
+            'volume' => Schema::TYPE_FLOAT.' NOT NULL',
+            'positionX' => Schema::TYPE_INTEGER.' NOT NULL',
+            'positionY' => Schema::TYPE_INTEGER.' NOT NULL'
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar_alerts', WidgetCampaignBarAlerts::tableName(), ['userId', 'regionNumber']);
 
@@ -132,6 +135,8 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'message4' => Schema::TYPE_STRING. ' NOT NULL',
             'message5' => Schema::TYPE_STRING. ' NOT NULL',
             'rotationSpeed' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'positionX' => Schema::TYPE_INTEGER.' NOT NULL',
+            'positionY' => Schema::TYPE_INTEGER.' NOT NULL'
         ]);
         $this->addPrimaryKey('streamboard_widget_campaign_bar_messages', WidgetCampaignBarMessages::tableName(), ['userId', 'regionNumber']);
 
@@ -146,8 +151,22 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'countUpStartTime' => Schema::TYPE_STRING. ' NOT NULL',
             'countUpPauseTime' => Schema::TYPE_STRING. ' NOT NULL',
             'countUpStatus' => Schema::TYPE_BOOLEAN. ' NOT NULL',
+            'positionX' => Schema::TYPE_INTEGER.' NOT NULL',
+            'positionY' => Schema::TYPE_INTEGER.' NOT NULL'
         ]);
+
         $this->addPrimaryKey('streamboard_widget_campaign_bar_timer', WidgetCampaignBarTimer::tableName(), ['userId', 'regionNumber']);
+
+        $this->createTable(WidgetCampaignBarCurrentTotal::tableName(),[
+            'userId' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'regionNumber' => Schema::TYPE_INTEGER. ' NOT NULL',
+            'positionX' => Schema::TYPE_INTEGER.' NOT NULL',
+            'positionY' => Schema::TYPE_INTEGER.' NOT NULL'
+        ]);
+        $this->addPrimaryKey('streamboard_widget_campaign_bar_current_total', WidgetCampaignBarCurrentTotal::tableName(), ['userId', 'regionNumber']);
+
+
+
     }
 
     public function down()
@@ -160,5 +179,6 @@ class m140729_125121_streamboard_region extends ExtendedMigration
         $this->dropTable(WidgetCampaignBarAlerts::tableName());
         $this->dropTable(WidgetCampaignBarMessages::tableName());
         $this->dropTable(WidgetCampaignBarTimer::tableName());
+        $this->dropTable(WidgetCampaignBarCurrentTotal::tableName());
     }
 }

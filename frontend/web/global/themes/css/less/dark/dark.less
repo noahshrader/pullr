@@ -10,9 +10,16 @@ header {
 	.menu-actions {
 		a {
 			color: @white;
+			background: @dkgray;
 
+			&:hover {
+				background: @gray10;
+				&:before {
+					border-bottom-color: @gray10;
+				}
+			}
 			&:before {
-				border-left: 1px solid @gray10;
+				border-bottom-color: @dkgray;
 			}
 		}
 	}
@@ -20,12 +27,34 @@ header {
 
 /* Main Stats */
 .stats {
+	background: @base;
+	
 	.numbers {
 		span {
 			color: @gray30;
 		}
 		h1 {
 			color: @white;
+		}
+	}
+}
+
+/* User Bar */
+.user-bar {
+	background: @dkgray;
+
+	.avatar {
+		a {
+			color: @white;
+		}
+	}
+
+	/* Social Links */
+	.user-details-social {
+		background: @maingray;
+
+		a {
+
 		}
 	}
 }
@@ -37,12 +66,19 @@ header {
 	}
 }
 
-/* Single Stream */
-.user-bar {
+/* Stream */
+.stream-wrap {
 
-	.avatar {
-		a {
+	#stream {
+		a.togglechat {
 			color: @white;
+			
+			&:hover {
+				color: @white;
+			}
+			&.chaton {
+				color: @gray30;
+			}
 		}
 	}
 }
@@ -51,7 +87,13 @@ header {
 footer {
 
 	h5 {
-		color: @gray30;
+		color: @gray20;
+	}
+	a.logo {
+		color: @gray20;
+		&:hover {
+			color: @white;
+		}
 	}
 	span.copy {
 		color: @gray15;

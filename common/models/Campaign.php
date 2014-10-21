@@ -45,10 +45,10 @@ class Campaign extends ActiveRecord {
     public static $LAYOUT_TYPES = [self::LAYOUT_TYPE_SINGLE, self::LAYOUT_TYPE_TEAM, self::LAYOUT_TYPE_MULTI];
 
     // const DONATION_PERSONAL_PAYPAL = 'Personal Paypal';
-    const DONATION_PREAPPROVED_CHARITIES = 'Pre-approved Charities';
+    const DONATION_PARTNERED_CHARITIES = 'Partnered Charities';
     const DONATION_CUSTOM_FUNDRAISER = 'Custom Fundraiser';
     
-    public static $DONATION_DESTINATIONS = [self::DONATION_PREAPPROVED_CHARITIES, self::DONATION_CUSTOM_FUNDRAISER];
+    public static $DONATION_DESTINATIONS = [self::DONATION_PARTNERED_CHARITIES, self::DONATION_CUSTOM_FUNDRAISER];
     
     const DESCRIPTION_MAX_LENGTH = 1000;
 
@@ -86,7 +86,7 @@ class Campaign extends ActiveRecord {
         $this->formVisibility = true;
         $this->enableDonorComments = true;
         $this->enableThankYouPage = false;
-        $this->donationDestination = self::DONATION_PREAPPROVED_CHARITIES;
+        $this->donationDestination = self::DONATION_PARTNERED_CHARITIES;
     }
     
     public function beforeSave($insert) {

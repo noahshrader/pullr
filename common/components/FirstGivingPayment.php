@@ -119,6 +119,13 @@ class FirstGivingPayment extends Component{
             $styleSheetUrl = Yii::$app->urlManager->hostInfo . $styleSheetUrl;
         }
 
+        $user = Application::getCurrentUser();
+        $affiliate_id = $this->config['affiliate']['common'];
+        if (isset($user) && ($user->getPlan() == Plan::PLAN_PRO))
+        {
+            $affiliate_id = $this->config['affiliate']['pro'];
+        }
+
         $formUrl = sprintf(
             '%s/secure/payment/%s?amount=%s&_pb_success=%s&buttonText=%s&styleSheetURL=%s&affiliate_id=%s&_cb_success=%s',
             $this->config['donateHost'], // donate host
@@ -127,7 +134,7 @@ class FirstGivingPayment extends Component{
             base64_encode($this->config['pb_success']), // _pb_success
             'Donate $'.number_format($this->donation->amount), // buttonText
             base64_encode($styleSheetUrl), // styleSheetURL
-            Application::getCurrentUser()->getPlan() == Plan::PLAN_PRO ? $this->config['affiliate']['pro'] : $this->config['affiliate']['common'], //affiliate_id
+            $affiliate_id,
             base64_encode($callbackUrl) // _cb_success
         );
 
