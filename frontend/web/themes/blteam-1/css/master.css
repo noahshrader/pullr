@@ -152,7 +152,7 @@ header .menu-actions a:before {
 }
 /* Main Stats */
 .stats {
-  background: #47474d;
+  background: #2e2e32;
 }
 .stats .numbers span {
   color: #9f9fa7;
@@ -207,7 +207,6 @@ footer span.copy a {
 footer span.copy a:hover {
   color: #47474d;
 }
-/* Palette Styling */
 /* Type */
 /* ------------------------------------------------- */
 /* Main Fonts */
@@ -215,10 +214,9 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
-  font-family: 'Roboto Slab', serif;
-  margin: 0.6em 0 0.5em;
+h5 {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  margin: 0;
 }
 h1,
 h2,
@@ -230,17 +228,24 @@ h4 {
 }
 h1 {
   margin-top: 0;
-  font-size: 4.2em;
+  font-size: 4em;
+  font-weight: 400;
+  letter-spacing: -1px;
 }
 h2 {
-  font-size: 3.2em;
-  color: #c3c1c4;
+  font-size: 2.8em;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin-bottom: .1em;
 }
 h3 {
-  font-size: 2.1em;
+  font-size: 2em;
 }
 h4 {
-  font-size: 1.6em;
+  font-size: 1.3em;
+}
+h5 {
+  font-size: 1.2em;
 }
 p,
 ol,
@@ -254,50 +259,49 @@ code {
   margin-bottom: 1.5em;
   line-height: 1.5em;
 }
-p,
-ol,
-ul,
-blockquote {
-  font-family: 'Roboto', sans-serif;
-}
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #2e2e32;
-  background-image: url(../img/bg.jpg);
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  background-color: #efeff0;
   background-repeat: no-repeat;
   background-size: 100%;
 }
 /* Buttons */
-.btn {
-  background: #1dbc9c;
-  color: #ffffff;
-}
 .btn:hover {
-  background: #20d2ae;
+  opacity: .9;
+}
+/* Header */
+header {
+  position: relative;
+}
+header .container {
+  padding: 0 30px;
 }
 /* Main Stats */
 .stats {
-  margin-top: 2.5em;
+  position: relative;
+  min-height: 160px;
+  overflow: hidden;
+}
+.stats .numbers {
+  padding: 3.4em 15px 3em;
 }
 .stats .amount-progress {
+  position: absolute;
+  top: 0;
   text-align: center;
-  padding-top: 2em;
   width: 100%;
+  height: 45px;
   overflow: hidden;
-  z-index: 9999;
   background: transparent;
 }
 .stats .amount-progress .project-progress {
-  position: relative;
+  position: absolute;
+  top: 0;
   content: '';
-  margin-bottom: -70px;
-  height: 91px;
+  height: 4px;
   width: 100%;
-  -webkit-transform: rotate(-2deg);
-  -ms-transform: rotate(-2deg);
-  transform: rotate(-2deg);
+  background: rgba(14, 15, 17, 0.15);
   z-index: 10;
-  background: rgba(14, 15, 17, 0.7);
 }
 .stats .amount-progress .project-progress .project-progressbar {
   content: '';
@@ -306,73 +310,238 @@ body {
   left: 0;
   height: 100%;
   width: 0;
-  background: #1dbc9c;
   -webkit-transition: width 0.7s ease-in-out;
   transition: width 0.7s ease-in-out;
 }
-.stats .amount-progress .project-progress span {
-  display: block;
-  position: absolute;
-  top: -44px;
-  left: 0;
-  opacity: 0;
-  color: #FFF;
-  font-weight: 600;
-  margin-left: -30px;
-  -webkit-transition: opacity 0.7s;
-  transition: opacity 0.7s;
-  -webkit-transition-delay: 0.7s;
-  transition-delay: 0.7s;
+/* User */
+.user-bar {
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
 }
-.stats .amount-progress .project-progress.status .project-progressbar {
-  width: 45%;
+.user-bar .container {
+  position: relative;
+  height: 55px;
+}
+.user-bar .user {
+  float: left;
+  padding: 0 15px;
+  /* Social Links */
+}
+.user-bar .user .avatar {
+  float: left;
+}
+.user-bar .user .avatar img {
+  position: relative;
+  float: left;
+  top: -24px;
+  height: 76px;
+  width: 76px;
+  background: #ffffff;
+  border: solid 6px #ffffff;
+  border-radius: 50%;
+}
+.user-bar .user .avatar a {
+  float: left;
+  display: inline-block;
+  font-size: 1.2em;
+  font-weight: 600;
+  line-height: 55px;
+  padding: 0 .6em;
+}
+.user-bar .user .user-details-social {
+  float: left;
+  margin: 14px 4px;
+  border-radius: 30px;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+.user-bar .user .user-details-social a {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 25px;
+  text-align: center;
+  padding: 0 .3em;
+  width: 35px;
+}
+.user-bar .user .user-details-social a:hover {
+  color: #ffffff;
+}
+.user-bar .user .user-details-social a.icon-twitch2 {
+  font-size: 13px;
+}
+.user-bar .user .user-details-social a.icon-twitter:after,
+.user-bar .user .user-details-social a.icon-youtube:after,
+.user-bar .user .user-details-social a.icon-facebook:after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  top: -4px;
+  bottom: -4px;
+  left: -2px;
+  width: 2px;
+  background: #ffffff;
+  transform: rotate(15deg);
+  -ms-transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
 }
 /* Campaign Info & Actions */
 .info {
+  padding: 3.8em 0 1em;
   width: 100%;
-  margin-top: 4.5em;
+  /* Donate Button */
 }
-.info .container {
-  width: 88% !important;
-  max-width: 1170px;
+.info h5 {
+  margin-bottom: .2em;
 }
-.info .feed-details .feed-details-title {
-  display: inline-block;
-}
-.info .feed-details .sharing {
-  display: inline-block;
-  position: relative;
-  right: 0;
+.info .donate-wrap {
   float: right;
 }
-.info .feed-details .sharing button {
-  background: #c3c1c4;
-  border: none;
-  color: #ffffff;
-  padding: 4px 8px;
-  margin-top: 8px;
-}
-.info .feed-details .sharing .dropdown-menu {
-  background: #c3c1c4 !important;
-  right: 0;
-  left: auto;
-}
-.info .feed-details .sharing .dropdown-menu li a {
-  color: #ffffff;
-}
-.info .feed-details .sharing .dropdown-menu li a:hover {
-  background: #b6b4b8;
-}
-.info .feed-donate {
-  float: right;
-}
-.info .feed-donate .btn {
-  width: 100%;
-  padding: 1em 3em;
-  max-width: 300px;
+.info .donate-wrap .btn {
+  font-size: 1.4em;
 }
 /* Layout */
 /* ------------------------------------------------- */
+.stream-wrap {
+  padding: 30px 15px;
+  -webkit-transition: linear 0.08s;
+  transition: linear 0.08s;
+}
+.stream-wrap #stream {
+  position: relative;
+  margin: 0 auto;
+  padding: 10px;
+  z-index: 10;
+}
+.stream-wrap #stream #featured {
+  position: relative;
+  overflow: hidden;
+}
+.stream-wrap #stream #featured .featuredstreamcontainer {
+  position: relative;
+  float: left;
+  width: 65%;
+  z-index: 10;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.stream-wrap #stream #featured .featuredchat {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 35%;
+  min-width: 300px;
+  z-index: 1;
+}
+.stream-wrap #stream #featured .featuredchat iframe {
+  height: 100%;
+  width: 100%;
+  min-height: 335px;
+}
+.stream-wrap #stream #featured .biggerFeaturedStream {
+  width: 100%;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.stream-wrap #stream a.togglechat {
+  position: absolute;
+  top: -30px;
+  right: 15px;
+  display: block;
+  font-size: 0.9em;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: center;
+}
+.stream-wrap .user-details {
+  padding: 1em 15px;
+}
+/* Max 1200px */
+@media screen and (max-width: 1200px) {
+  .featuredchat {
+    min-height: 373px !important;
+  }
+}
+/* Max 1089px */
+@media screen and (max-width: 1089px) {
+  .stream-controls {
+    right: -60px !important;
+  }
+}
+/* Max 992px */
+@media screen and (max-width: 992px) {
+  h1 {
+    margin-top: 0;
+    font-size: 3.2em;
+  }
+  h2 {
+    font-size: 2.1em;
+  }
+  h3 {
+    font-size: 1.6em;
+  }
+  h4 {
+    font-size: 1.3em;
+  }
+  .team-mates .team-mate-single .team-mate-single-social {
+    line-height: 1.5em;
+  }
+  .stream-controls {
+    display: none;
+  }
+  .featuredchat {
+    min-height: 285px !important;
+  }
+}
+/* Max 768px */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  .right {
+    text-align: center;
+  }
+  .feed-donate {
+    margin-bottom: 2em;
+  }
+  .charity-info {
+    margin-bottom: 4em;
+  }
+  .team-mates {
+    padding-left: 0;
+  }
+  .team-mates .team-mate-single-social {
+    display: none !important;
+  }
+}
+/* Max 480px */
+@media screen and (max-width: 480px) {
+  h1 {
+    margin-top: 0;
+    font-size: 2.8em;
+  }
+  h2 {
+    font-size: 2.0em;
+  }
+  h3 {
+    font-size: 1.4em;
+  }
+  h4 {
+    font-size: 1.2em;
+  }
+  .featuredchat {
+    min-height: 373px;
+  }
+}
+.stream-wrap #stream {
+  background: #d4d4d8;
+  border-radius: 10px;
+}
+/* Multichannel */
+/* Footer */
+footer span.copy {
+  font-size: 0.8em;
+}
 /* Responsive */
 /* ------------------------------------------------- */
 /* Max 1200px */
