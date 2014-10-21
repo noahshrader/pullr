@@ -91,7 +91,7 @@ app.directive('pullrCampaignName', function(CampaignDataService) {
 	}
 });
 
-app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
+app.directive('pullrCampaignLayout', function($interval, $timeout, CampaignDataService) {
 	return {
 		restrict: 'A',
 		scope: '@',
@@ -117,8 +117,19 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 					}	
 				}				
 			}
+
+			scope.afterLoadTemplate = function(){
+				console.log('Campaign template loaded');
+				$('.togglechat').click(function (e) {			
+					$(this).toggleClass('chaton');
+				  	$('.featuredchat').fadeToggle();
+				  	$('.featuredstreamcontainer').toggleClass('biggerFeaturedStream');
+				  	$("#stream").fitVids();
+				  	e.preventDefault();
+				});
+			}
 		},
-		template:'<div ng-include="getLayoutUrl() | trusted" ng-cloak></div>' 
+		template:'<div ng-include="getLayoutUrl() | trusted" onload="afterLoadTemplate()" ng-cloak></div>' 
 	}
 });
 
