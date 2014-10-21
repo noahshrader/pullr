@@ -17,7 +17,7 @@ $user = \Yii::$app->user->identity;
             <i class="icon icon-help" data-toggle="tooltip" data-placement="bottom" title="Some tooltip here."></i>
             <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
             <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block']) ?>
-        </div>
+        </div> 
 
         <!-- if Single Channel -->
         <div id="campaign-channelname" class="form-group highlight-wrap">
