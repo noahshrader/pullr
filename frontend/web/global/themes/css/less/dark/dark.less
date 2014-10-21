@@ -10,22 +10,40 @@ header {
 	.menu-actions {
 		a {
 			color: @white;
-
-			&:before {
-				border-left: 1px solid @gray10;
-			}
 		}
 	}
 }
 
 /* Main Stats */
 .stats {
+	background: @base;
+	
 	.numbers {
 		span {
 			color: @gray30;
 		}
 		h1 {
 			color: @white;
+		}
+	}
+}
+
+/* User Bar */
+.user-bar {
+	background: @dkgray;
+
+	.avatar {
+		a {
+			color: @white;
+		}
+	}
+
+	/* Social Links */
+	.user-details-social {
+		background: @maingray;
+
+		a {
+
 		}
 	}
 }
@@ -37,12 +55,19 @@ header {
 	}
 }
 
-/* Single Stream */
-.user-bar {
+/* Stream */
+.stream-wrap {
 
-	.avatar {
-		a {
+	#stream {
+		a.togglechat {
 			color: @white;
+			
+			&:hover {
+				color: @white;
+			}
+			&.chaton {
+				color: @gray30;
+			}
 		}
 	}
 }
@@ -52,6 +77,12 @@ footer {
 
 	h5 {
 		color: @gray30;
+	}
+	a.logo {
+		color: @white;
+		&:hover {
+			color: @gray75;
+		}
 	}
 	span.copy {
 		color: @gray15;

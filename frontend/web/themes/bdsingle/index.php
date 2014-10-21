@@ -45,21 +45,15 @@
 	<div class="numbers container" ng-cloak>
 		<div class="col-md-4 col-sm-4 col-xs-4 raised">
 			<span>Amount Raised</span>
-                  <h1 data-pullr='campaign-amountRaisedFormatted' style="color:{{campaign.primaryColor}};">
-                      {{campaign.amountRaisedFormatted}}
-                  </h1>
+			<h1 style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h1>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-4 center">
 			<span>Goal Amount</span>
-                  <h1 data-pullr='campaign-goalAmountFormatted'>
-                      {{campaign.goalAmountFormatted}}
-                  </h1>
+			<h1>{{campaign.goalAmountFormatted}}</h1>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-4 right">
 			<span>Donors</span>
-                  <h1 data-pullr='campaign-numberOfUniqueDonors'>
-                      {{campaign.numberOfUniqueDonors}}
-                  </h1>
+			<h1>{{campaign.numberOfUniqueDonors}}</h1>
 		</div>
 	</div>
 	<div class="amount-progress">
@@ -74,15 +68,15 @@
 	<div class="container">
 		<div class="user">
 			<div class="avatar">
-				<img src="{{channel.logo}}"/>
-				<a href="http://www.twitch.tv/{{channel.display_name}}">{{channel.display_name}}</a>
+				<img src="{{channel.logo}}" ng-cloak/>
+				<a href="http://www.twitch.tv/{{channel.display_name}}" ng-cloak>{{channel.display_name}}</a>
 			</div>
 
 			<div class="user-details-social">
-				<a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" ng-show="campaign.twitterEnable == 1"></a>
-				<a href="{{campaign.facebookUrl}}" class="icon-facebook" ng-show="campaign.facebookUrl == 1"></a>
-				<a href="{{campaign.youtubeUrl}}" class="icon-youtube" ng-show="campaign.youtubeEnable == 1"></a>
-				<a href="http://www.twitch.tv/{{channel.display_name}}" class="icon-twitch2"></a>
+				<a href="http://www.twitch.tv/{{channel.display_name}}" title="Twitch" class="icon-twitch2"></a>
+				<a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" title="Twitter" ng-show="campaign.twitterEnable == 1"></a>
+				<a href="{{campaign.facebookUrl}}" class="icon-facebook" title="Facebook" ng-show="campaign.facebookUrl == 1"></a>
+				<a href="{{campaign.youtubeUrl}}" class="icon-youtube" title="YouTube" ng-show="campaign.youtubeEnable == 1"></a>
 			</div>
 		</div>
 	</div>
@@ -97,8 +91,8 @@
 		<div class="col-md-6 col-sm-6 col-xs-8 feed-details">
 			<div class="feed-details-title">
 				<h5>
-                  		<span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
-                  	</h5>
+                  	<span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
+				</h5>
 				<h2>{{campaign.name}}</h2>
 				<h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>
 			</div>
@@ -108,8 +102,6 @@
 
 <!-- Layout -->
 <div pullr-campaign-layout></div>
-
-<div class="asd">{{campaign.description}}</div>
 
 <!-- Footer -->
 <footer>

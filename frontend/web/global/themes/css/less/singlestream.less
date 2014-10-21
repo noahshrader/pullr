@@ -1,10 +1,11 @@
 .stream-wrap {
+	padding: @gutter @halfgutter;
 	.trans;
 
 	#stream {
 		position: relative;
 		margin: 0 auto;
-		padding: .3em @halfgutter;
+		padding: 10px;
 		z-index: 10;
 
 		#featured {
@@ -26,7 +27,6 @@
 				width: 35%;
 				min-width: 300px;
 				z-index: 1;
-				padding-bottom: 32%;
 
 				iframe {
 					height: 100%;
@@ -40,18 +40,14 @@
 			}
 		}
 		a.togglechat {
+			position: absolute;
+			top: -30px;
+			right: @halfgutter;
 			display: block;
-			color: #FFF;
-			width: 60px;
-			font-size: .7em;
+			font-size: @smalltext;
 			font-weight: 400;
-			line-height: 1.2em;
+			line-height: 30px;
 			text-align: center;
-			padding-top: 35px;
-			margin: .4em .4em 2em .4em;
-			background-position: top center;
-			background-repeat: no-repeat;
-			opacity: .5;
 		}
 	}
 	.user-details {

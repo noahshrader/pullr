@@ -1,11 +1,101 @@
 /* Header */
 header {
-	background: @gray70;
+	background: @white;
 
-	.head {
+	.logo {
+		a {
+			color: @gray15;
+		}
+	}
+	.menu-actions {
+		a {
+			color: @gray15;
+		}
+	}
+}
 
-		.logo {
-			color: ;
+/* Main Stats */
+.stats {
+	background: @gray15;
+
+	.numbers {
+		span {
+			color: @gray50;
+		}
+		h1 {
+			color: @white;
+		}
+	}
+}
+
+/* User Bar */
+.user-bar {
+	background: @white;
+
+	.avatar {
+
+		a {
+			color: @gray15;
+		}
+	}
+
+	/* Social Links */
+	.user-details-social {
+		background: @offwhite;
+
+		a {
+
+		}
+	}
+}
+
+/* Campaign Info */
+.info {
+	h2 {
+		color: @gray15;
+	}
+	h5 {
+		color: @gray50;
+	}
+}
+
+/* Stream */
+.stream-wrap {
+
+	#stream {
+		a.togglechat {
+			color: @gray15;
+			
+			&:hover {
+				color: @gray60;
+			}
+			&.chaton {
+				color: @gray60;
+			}
+		}
+	}
+}
+
+/* Footer */
+footer {
+
+	h5 {
+		color: @gray60;
+	}
+	a.logo {
+		color: @gray15;
+		&:hover {
+			color: @maingray;
+		}
+	}
+	span.copy {
+		color: @gray60;
+
+		a {
+			color: @gray60;
+			&:hover {
+				color: @gray15;
+			}
 		}
 	}
 }

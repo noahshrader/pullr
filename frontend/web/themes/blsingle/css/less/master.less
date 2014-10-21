@@ -1,7 +1,7 @@
 /* Base */
 /* ------------------------------------------------- */
 @import "../../../../global/themes/css/less/variables.less";
-@import "palette.less";
+@import "../../../../global/themes/css/less/light/light.less";
 
 /* Type */
 /* ------------------------------------------------- */
@@ -9,42 +9,55 @@
 
 body {
 	.secondary();
-	background-color: @maingray;
-	background-image: url(../img/bg.jpg);
+	background-color: @offwhite;
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
 
 /* Buttons */
 .btn {
-	background: @accent;
-	color: @white;
+
 	&:hover {
-		background: @accenthover;
+		opacity: .9;
+	}
+}
+
+/* Header */
+header {
+	position: relative;
+
+	.container {
+		padding: 0 @gutter;
 	}
 }
 
 /* Main Stats */
 .stats {
-	margin-top: 2.5em;
-	.amount-progress {	
+	position: relative;
+	min-height: 160px;
+	overflow: hidden;
+
+	.numbers {
+		padding: 3.4em @halfgutter 3em;
+	}
+
+	.amount-progress {
+		position: absolute;
+		top: 0;
 		text-align: center;
-		padding-top: 2em;
 		width: 100%;
+		height: 45px;
 		overflow: hidden;
-		z-index: 9999;
 		background: transparent;
+
 		.project-progress {
-			position: relative;
+			position: absolute;
+			top: 0;
 			content: '';
-			margin-bottom: -70px;
-			height: 91px;
+			height: 4px;
 			width: 100%;
-			-webkit-transform: rotate(-2deg);
-			-ms-transform: rotate(-2deg);
-			transform: rotate(-2deg);
+			background: @bglightblackfade;
 			z-index: 10;
-			background: @bgblackfade;
 			
 			.project-progressbar {
 				content: '';
@@ -53,78 +66,108 @@ body {
 				left: 0;
 				height: 100%;
 				width: 0;
-				background: @c1;
 				-webkit-transition: width 0.7s ease-in-out;
 				transition: width 0.7s ease-in-out;
-				}
-			span {
-				display: block;
-				position: absolute;
-				top: -44px;
-				left: 0;
-				opacity: 0;
-				color: #FFF;
+			}
+		}
+	}	
+}
+
+/* User */
+.user-bar {
+	.box-shadow;
+
+	.container {
+		position: relative;
+		height: 55px;
+	}
+	.user {
+		float: left;
+		padding: 0 @halfgutter;
+
+		.avatar {
+			float: left;
+
+			img {
+				position: relative;
+				float: left;
+				top: -24px;
+				height: 76px;
+				width: 76px;
+				background: @white;
+				border: solid 6px @white;
+				border-radius: 50%;
+			}
+			a {
+				float: left;
+				display: inline-block;
+				.secondary();
+				font-size: 1.2em;
 				font-weight: 600;
-				margin-left: -30px;
-				-webkit-transition: opacity 0.7s;
-				transition: opacity 0.7s;
-				-webkit-transition-delay: 0.7s;
-				transition-delay: 0.7s;
-				}	
+				line-height: 55px;
+				padding: 0 .6em;
 			}
-		.project-progress.status .project-progressbar {
-			width: 45%;
+		}
+
+		/* Social Links */
+		.user-details-social {
+			float: left;
+			margin: 14px 4px;
+			.round-radius;
+			overflow: hidden;
+
+			a {
+				position: relative;
+				display: inline-block;
+				font-size: 15px;
+				line-height: 25px;
+				text-align: center;
+				padding: 0 .3em;
+				width: 35px;
+				&:hover {
+					color: @white;
+				}
+
+				&.icon-twitch2 {
+					font-size: 13px;
+				}
+				&.icon-twitter,
+				&.icon-youtube,
+				&.icon-facebook {
+					&:after {
+						content: '';
+						position: absolute;
+						display: inline-block;
+						top: -4px;
+						bottom: -4px;
+						left: -2px;
+						width: 2px;
+						background: @white;
+						transform: rotate(15deg);
+						-ms-transform: rotate(15deg);
+						-webkit-transform: rotate(15deg);
+					}
+				}
 			}
-		}	
+		}
+	}
 }
 
 /* Campaign Info & Actions */
 .info {
+	padding: 3.8em 0 1em;
 	width: 100%;
-	margin-top: 4.5em;
-	.container {
-		width: 88% !important;
-		max-width: 1170px;
+
+	h5 {
+		margin-bottom: .2em;
 	}
-	.feed-details {
-		.feed-details-title {
-			display: inline-block;
-		}
-		.sharing {display: inline-block;
-		position: relative;
-		right: 0;
+
+	/* Donate Button */
+	.donate-wrap {
 		float: right;
-			button {
-				background: @c2;
-				border: none;
-				color: @white;
-				padding: 4px 8px;
-				margin-top: 8px;
-			}
-		.dropdown-menu {
-		background: @c2 !important;
-		right: 0;
-		left: auto;
-		
-		li {
-			a {
-				color: @white;
-				&:hover {
-					background: darken(@c2, 5%)
-				}
-			}
-				
-				
-				}
-		}
-		}
-	}
-	.feed-donate {
-		float: right;
+
 		.btn {
-			width: 100%;
-			padding: 1em 3em;
-			max-width: 300px;
+			font-size: 1.4em;
 		}
 	}
 }
@@ -133,6 +176,19 @@ body {
 /* ------------------------------------------------- */
 @import "../../../../global/themes/css/less/singlestream.less";
 
+.stream-wrap {
+	#stream {
+		background: @gray70;
+		.element-radius;
+	}
+}
+
+/* Footer */
+footer {
+	span.copy {
+		font-size: @fineprint;
+	}
+}
 
 /* Responsive */
 /* ------------------------------------------------- */

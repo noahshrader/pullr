@@ -1,4 +1,11 @@
-@media only screen and (max-width:1010px) {
+@media (min-width: 1200px) {
+	.container {
+		width: 1140px;
+	}
+}
+
+/* Max 1024px */
+@media only screen and (max-width:1024px) {
 	.stream-controls a.togglechat,
 	#featured .featuredchat {
 		display: none !important;
@@ -6,15 +13,25 @@
 	#featured .biggerFeaturedStream {
 		width: 100%;
 	}
-}.
+}
+
+/* Max 900px */
+@media (min-width: 992px) {
+
+	.container {
+		width: 1024px;
+	}
+}
 
 /* Max 768px */
 @media screen and (max-width: 768px) {
 
+	.container {
+		width: 800px;
+	}
 	.stream-wrap #stream #featured .featuredstreamcontainer {
 		width: 100% !important;
 	}
-
 	#stream {
 		padding: .3em;
 		
@@ -34,7 +51,14 @@
 	}
 }
 
+/* Max 600px */
+@media screen and (max-width: 600px) {
+
+	.container {
+		width: 600px;
+	}
+}
+
 /* Max 480px */
 @media screen and (max-width: 480px) {
-
 }

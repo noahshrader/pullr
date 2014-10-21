@@ -36,6 +36,7 @@
   font-weight: 600;
   text-transform: uppercase;
 }
+/* Icons */
 /* Lists */
 .ulist {
   padding: 0;
@@ -261,6 +262,11 @@ small,
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon {
+  position: relative;
+  top: 1px;
+  margin-right: 3px;
 }
 .icon-add:before {
   content: "\e600";
@@ -729,17 +735,15 @@ header .menu-actions a:hover {
   background: #3a3a40;
 }
 header .menu-actions a:before {
-  content: '';
+  height: 0;
+  width: 0;
+  content: "";
+  display: block;
   position: absolute;
-  top: -4px;
-  bottom: -4px;
-  left: -16px;
-  display: inline-block;
-  width: 1px;
-  background: #3a3a40;
-  transform: rotate(15deg);
-  -ms-transform: rotate(15deg);
-  -webkit-transform: rotate(15deg);
+  border-bottom: 56px solid transparent;
+  border-left: 24px solid rgba(0, 0, 0, 0);
+  top: 0;
+  left: -24px;
 }
 /* Buttons */
 .btn {
@@ -752,6 +756,7 @@ header .menu-actions a:before {
   width: auto;
   min-width: 280px;
   outline: 0 !important;
+  background: #1dbc9c;
   border: 0;
   border-radius: 4px;
   background-clip: padding-box;
@@ -760,6 +765,11 @@ header .menu-actions a:before {
 /* Progress Bar */
 .project-progressbar {
   max-width: 100%;
+  background: #1dbc9c;
+}
+/* Stats */
+.stats .numbers .raised h1 {
+  color: #1dbc9c;
 }
 /* Social Links */
 .icon-twitch2 {
@@ -788,18 +798,20 @@ footer h5 {
   letter-spacing: 2px;
   margin-bottom: .3em;
 }
-footer a.logo:before {
-  color: #d4d4d8;
+footer a.logo {
   font-size: 2em;
-}
-footer a.logo:hover:before {
-  color: #53535a;
 }
 footer span.copy {
   display: block;
   padding: 1em 0;
 }
-@media only screen and (max-width: 1010px) {
+@media (min-width: 1200px) {
+  .container {
+    width: 1140px;
+  }
+}
+/* Max 1024px */
+@media only screen and (max-width: 1024px) {
   .stream-controls a.togglechat,
   #featured .featuredchat {
     display: none !important;
@@ -808,8 +820,17 @@ footer span.copy {
     width: 100%;
   }
 }
+/* Max 900px */
+@media (min-width: 992px) {
+  .container {
+    width: 1024px;
+  }
+}
 /* Max 768px */
 @media screen and (max-width: 768px) {
+  .container {
+    width: 800px;
+  }
   .stream-wrap #stream #featured .featuredstreamcontainer {
     width: 100% !important;
   }
@@ -827,6 +848,12 @@ footer span.copy {
     display: inline-block;
     vertical-align: top;
     margin-bottom: 0;
+  }
+}
+/* Max 600px */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 600px;
   }
 }
 /* Max 480px */
