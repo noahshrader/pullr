@@ -4,8 +4,9 @@ angular.module('pullr.streamboard.resizable', []).
             link: function (scope, element, attr) {
                 var options = JSON.parse(attr.resizable);
 
-                options.stop = function (event, ui){
-                    console.log(ui.size);
+                options.stop = function (event, ui) {
+                    scope.region[attr.resizablePath].width = ui.size.width;
+                    scope.region[attr.resizablePath].height = ui.size.height;
                     regions.regionChanged(scope.region);
                 };
 
@@ -17,8 +18,11 @@ angular.module('pullr.streamboard.resizable', []).
                     $(element).css({minWidth: options.minWidth});
                 }
 
-                if (options.defaultWidth) {
-                    $(element).css({width: options.defaultWidth});
+                if (scope.region[attr.resizablePath]) {
+                    $(element).css({
+                        width: scope.region[attr.resizablePath].width,
+                        height: scope.region[attr.resizablePath].height}
+                    );
                 }
 
                 $(element).resizable(options);

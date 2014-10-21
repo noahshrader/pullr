@@ -27,7 +27,7 @@ class WidgetCampaignBarTimer extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['timerType', 'countDownFrom', 'countDownTo', 'countUpStartTime', 'countUpPauseTime', 'countUpStatus']
+            'default' => ['timerType', 'countDownFrom', 'countDownTo', 'countUpStartTime', 'countUpPauseTime', 'countUpStatus', 'positionX', 'positionY']
         ];
     }
 }

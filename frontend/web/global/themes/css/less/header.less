@@ -27,28 +27,20 @@ header {
 			display: inline-block;
 			font-weight: 500;
 			line-height: @headerheight;
-			padding: 0 2em 0 1em;
+			padding: 0 1.6em 0 1.3em;
 			background: transparent;
-			&:hover {
-				background: @gray10;
-
-				&:before {
-					background: @gray10;
-				}	
-			}
 			
 			&:before {
-				content: '';
+				height: 0;
+				width: 0;
+				content: "";
+				display: block;
 				position: absolute;
-				top: -4px;
-				bottom: -4px;
-				left: -16px;
-				display: inline-block;
-				width: 28px;
-				background: transparent;
-				transform: rotate(15deg);
-				-ms-transform: rotate(15deg);
-				-webkit-transform: rotate(15deg);
+				border-left: 24px solid transparent;
+				border-bottom: 56px solid transparent;
+				top: 0;
+				left: -24px;
+				.trans;
 			}
 		}
 	}

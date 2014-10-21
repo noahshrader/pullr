@@ -8,6 +8,4 @@ $(function(){
 	  	$("#stream").fitVids();
 	  	e.preventDefault();
 	});
-
-	
 });

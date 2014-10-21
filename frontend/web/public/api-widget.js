@@ -119,7 +119,6 @@ app.directive('pullrCampaignLayout', function($interval, CampaignDataService) {
 			}
 		},
 		template:'<div ng-include="getLayoutUrl() | trusted" ng-cloak></div>' 
-
 	}
 });
 

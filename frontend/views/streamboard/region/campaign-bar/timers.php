@@ -2,7 +2,8 @@
 use frontend\models\streamboard\WidgetCampaignBarTimer;
 
 ?>
-<div ng-if="region.widgetCampaignBar.timerEnable" child-scope ng-init="module = region.widgetCampaignBar.timerModule">
+<div ng-if="region.widgetCampaignBar.timerEnable" child-scope ng-init="module = region.widgetCampaignBar.timerModule"
+     draggable position-container="region.widgetCampaignBar.timerModule" region="region">
     <div>
         <div ng-if="module.timerType == '<?= WidgetCampaignBarTimer::TIMER_TYPE_LOCALTIME ?>' ">
             Current time: <span current-time format="h:mma"></span>
@@ -23,8 +24,8 @@ use frontend\models\streamboard\WidgetCampaignBarTimer;
             <div ng-if="!module.countUpStatus">
                 <div count-up-timer>
                     <!--really that html generated inside of 'count-up-timer'. So code below is unused.-->
-<!--                    <timer autostart="false" countdown="time">-->
-<!--                    </timer>-->
+                    <!--                    <timer autostart="false" countdown="time">-->
+                    <!--                    </timer>-->
                 </div>
             </div>
         </div>
