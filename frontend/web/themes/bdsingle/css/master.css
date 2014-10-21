@@ -139,6 +139,16 @@ header .logo a {
 }
 header .menu-actions a {
   color: #ffffff;
+  background: #29292d;
+}
+header .menu-actions a:hover {
+  background: #3a3a40;
+}
+header .menu-actions a:hover:before {
+  border-bottom-color: #3a3a40;
+}
+header .menu-actions a:before {
+  border-bottom-color: #29292d;
 }
 /* Main Stats */
 .stats {
@@ -177,13 +187,13 @@ header .menu-actions a {
 }
 /* Footer */
 footer h5 {
-  color: #6b6b75;
+  color: #53535a;
 }
 footer a.logo {
-  color: #ffffff;
+  color: #53535a;
 }
 footer a.logo:hover {
-  color: #eaeaeb;
+  color: #ffffff;
 }
 footer span.copy {
   color: #47474d;

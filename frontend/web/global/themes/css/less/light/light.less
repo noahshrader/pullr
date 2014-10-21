@@ -10,6 +10,17 @@ header {
 	.menu-actions {
 		a {
 			color: @gray15;
+			background: @gray75;
+
+			&:hover {
+				background: @gray70;
+				&:before {
+					border-bottom-color: @gray70;
+				}
+			}
+			&:before {
+				border-bottom-color: @gray75;
+			}
 		}
 	}
 }
@@ -83,9 +94,9 @@ footer {
 		color: @gray60;
 	}
 	a.logo {
-		color: @gray15;
+		color: @gray60;
 		&:hover {
-			color: @maingray;
+			color: @gray15;
 		}
 	}
 	span.copy {

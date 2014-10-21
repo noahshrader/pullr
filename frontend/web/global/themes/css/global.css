@@ -728,11 +728,8 @@ header .menu-actions a {
   display: inline-block;
   font-weight: 500;
   line-height: 48px;
-  padding: 0 2em 0 1em;
+  padding: 0 1.6em 0 1.3em;
   background: transparent;
-}
-header .menu-actions a:hover {
-  background: #3a3a40;
 }
 header .menu-actions a:before {
   height: 0;
@@ -740,10 +737,12 @@ header .menu-actions a:before {
   content: "";
   display: block;
   position: absolute;
+  border-left: 24px solid transparent;
   border-bottom: 56px solid transparent;
-  border-left: 24px solid rgba(0, 0, 0, 0);
   top: 0;
   left: -24px;
+  -webkit-transition: linear 0.08s;
+  transition: linear 0.08s;
 }
 /* Buttons */
 .btn {
@@ -796,7 +795,7 @@ footer h5 {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: .3em;
+  margin-bottom: .2em;
 }
 footer a.logo {
   font-size: 2em;

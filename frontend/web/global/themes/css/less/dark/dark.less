@@ -10,6 +10,17 @@ header {
 	.menu-actions {
 		a {
 			color: @white;
+			background: @dkgray;
+
+			&:hover {
+				background: @gray10;
+				&:before {
+					border-bottom-color: @gray10;
+				}
+			}
+			&:before {
+				border-bottom-color: @dkgray;
+			}
 		}
 	}
 }
@@ -76,12 +87,12 @@ header {
 footer {
 
 	h5 {
-		color: @gray30;
+		color: @gray20;
 	}
 	a.logo {
-		color: @white;
+		color: @gray20;
 		&:hover {
-			color: @gray75;
+			color: @white;
 		}
 	}
 	span.copy {

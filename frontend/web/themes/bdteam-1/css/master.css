@@ -36,6 +36,7 @@
   font-weight: 600;
   text-transform: uppercase;
 }
+/* Icons */
 /* Lists */
 .ulist {
   padding: 0;
@@ -138,28 +139,61 @@ header .logo a {
 }
 header .menu-actions a {
   color: #ffffff;
+  background: #29292d;
+}
+header .menu-actions a:hover {
+  background: #3a3a40;
+}
+header .menu-actions a:hover:before {
+  border-bottom-color: #3a3a40;
 }
 header .menu-actions a:before {
-  border-left: 1px solid #3a3a40;
+  border-bottom-color: #29292d;
 }
 /* Main Stats */
+.stats {
+  background: #222225;
+}
 .stats .numbers span {
   color: #6b6b75;
 }
 .stats .numbers h1 {
   color: #ffffff;
 }
+/* User Bar */
+.user-bar {
+  background: #29292d;
+  /* Social Links */
+}
+.user-bar .avatar a {
+  color: #ffffff;
+}
+.user-bar .user-details-social {
+  background: #2e2e32;
+}
 /* Campaign Info */
 .info h5 {
   color: #6b6b75;
 }
-/* Single Stream */
-.user-bar .avatar a {
+/* Stream */
+.stream-wrap #stream a.togglechat {
   color: #ffffff;
+}
+.stream-wrap #stream a.togglechat:hover {
+  color: #ffffff;
+}
+.stream-wrap #stream a.togglechat.chaton {
+  color: #6b6b75;
 }
 /* Footer */
 footer h5 {
-  color: #6b6b75;
+  color: #53535a;
+}
+footer a.logo {
+  color: #53535a;
+}
+footer a.logo:hover {
+  color: #ffffff;
 }
 footer span.copy {
   color: #47474d;
@@ -337,13 +371,14 @@ body {
 /* Layout */
 /* ------------------------------------------------- */
 .stream-wrap {
+  padding: 30px 15px;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .stream-wrap #stream {
   position: relative;
   margin: 0 auto;
-  padding: 0.3em 15px;
+  padding: 10px;
   z-index: 10;
 }
 .stream-wrap #stream #featured {
@@ -366,7 +401,6 @@ body {
   width: 35%;
   min-width: 300px;
   z-index: 1;
-  padding-bottom: 32%;
 }
 .stream-wrap #stream #featured .featuredchat iframe {
   height: 100%;
@@ -379,18 +413,14 @@ body {
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream a.togglechat {
+  position: absolute;
+  top: -30px;
+  right: 15px;
   display: block;
-  color: #FFF;
-  width: 60px;
-  font-size: .7em;
+  font-size: 0.9em;
   font-weight: 400;
-  line-height: 1.2em;
+  line-height: 30px;
   text-align: center;
-  padding-top: 35px;
-  margin: .4em .4em 2em .4em;
-  background-position: top center;
-  background-repeat: no-repeat;
-  opacity: .5;
 }
 .stream-wrap .user-details {
   padding: 1em 15px;

@@ -139,6 +139,16 @@ header .logo a {
 }
 header .menu-actions a {
   color: #47474d;
+  background: #efeff0;
+}
+header .menu-actions a:hover {
+  background: #d4d4d8;
+}
+header .menu-actions a:hover:before {
+  border-bottom-color: #d4d4d8;
+}
+header .menu-actions a:before {
+  border-bottom-color: #efeff0;
 }
 /* Main Stats */
 .stats {
@@ -183,10 +193,10 @@ footer h5 {
   color: #bababf;
 }
 footer a.logo {
-  color: #47474d;
+  color: #bababf;
 }
 footer a.logo:hover {
-  color: #2e2e32;
+  color: #47474d;
 }
 footer span.copy {
   color: #bababf;
@@ -256,7 +266,7 @@ blockquote {
 }
 body {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-  background-color: #f7f7f7;
+  background-color: #efeff0;
   background-repeat: no-repeat;
   background-size: 100%;
 }

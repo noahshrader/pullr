@@ -27,11 +27,8 @@ header {
 			display: inline-block;
 			font-weight: 500;
 			line-height: @headerheight;
-			padding: 0 2em 0 1em;
+			padding: 0 1.6em 0 1.3em;
 			background: transparent;
-			&:hover {
-				background: @gray10;
-			}
 			
 			&:before {
 				height: 0;
@@ -39,10 +36,11 @@ header {
 				content: "";
 				display: block;
 				position: absolute;
+				border-left: 24px solid transparent;
 				border-bottom: 56px solid transparent;
-				border-left: 24px solid rgba(0,0,0,0);
 				top: 0;
 				left: -24px;
+				.trans;
 			}
 		}
 	}

@@ -36,6 +36,7 @@
   font-weight: 600;
   text-transform: uppercase;
 }
+/* Icons */
 /* Lists */
 .ulist {
   padding: 0;
@@ -131,10 +132,80 @@
 }
 /* Header */
 header {
+  background: #ffffff;
+}
+header .logo a {
+  color: #47474d;
+}
+header .menu-actions a {
+  color: #47474d;
+  background: #efeff0;
+}
+header .menu-actions a:hover {
   background: #d4d4d8;
 }
-header .head .logo {
-  color: ;
+header .menu-actions a:hover:before {
+  border-bottom-color: #d4d4d8;
+}
+header .menu-actions a:before {
+  border-bottom-color: #efeff0;
+}
+/* Main Stats */
+.stats {
+  background: #47474d;
+}
+.stats .numbers span {
+  color: #9f9fa7;
+}
+.stats .numbers h1 {
+  color: #ffffff;
+}
+/* User Bar */
+.user-bar {
+  background: #ffffff;
+  /* Social Links */
+}
+.user-bar .avatar a {
+  color: #47474d;
+}
+.user-bar .user-details-social {
+  background: #f7f7f7;
+}
+/* Campaign Info */
+.info h2 {
+  color: #47474d;
+}
+.info h5 {
+  color: #9f9fa7;
+}
+/* Stream */
+.stream-wrap #stream a.togglechat {
+  color: #47474d;
+}
+.stream-wrap #stream a.togglechat:hover {
+  color: #bababf;
+}
+.stream-wrap #stream a.togglechat.chaton {
+  color: #bababf;
+}
+/* Footer */
+footer h5 {
+  color: #bababf;
+}
+footer a.logo {
+  color: #bababf;
+}
+footer a.logo:hover {
+  color: #47474d;
+}
+footer span.copy {
+  color: #bababf;
+}
+footer span.copy a {
+  color: #bababf;
+}
+footer span.copy a:hover {
+  color: #47474d;
 }
 /* Palette Styling */
 /* Type */
