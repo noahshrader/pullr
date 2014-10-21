@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="/global/themes/css/animate.css" />
 	<link rel="stylesheet" href="/global/themes/css/global.css" />
 	<!-- Theme Specific -->
-	<link rel="stylesheet" href="/themes/bdsingle/css/master.css" />
+	<link rel="stylesheet" href="/themes/blsingle/css/master.css" />
 	<!-- Scripts -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
 	<script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 

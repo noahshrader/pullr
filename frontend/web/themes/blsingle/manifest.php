@@ -3,6 +3,6 @@
 return [
     'name' => 'Light Single Stream One',
     'description' => 'Light Single Stream',
-    'layoutType' => 'Twitch Single Player',
+    'layoutType' => 'Single Stream',
     'plan' => 'Basic'
 ];
