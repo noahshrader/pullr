@@ -1085,6 +1085,13 @@ input.color-choice {
   border: 0;
   box-shadow: none;
 }
+.theme-color-picker .colorpicker:before {
+  display: none;
+}
+.theme-color-picker .col-sm-6 {
+  padding-left: 0 !important;
+  padding-right: 30px;
+}
 /* Selects (Select2) */
 /* ------------------------------------------------- */
 .select2-container {

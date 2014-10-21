@@ -17,7 +17,7 @@ $user = \Yii::$app->user->identity;
             <i class="icon icon-help" data-toggle="tooltip" data-placement="bottom" title="Some tooltip here."></i>
             <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
             <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block']) ?>
-        </div> 
+        </div>
 
         <!-- if Single Channel -->
         <div id="campaign-channelname" class="form-group highlight-wrap">
@@ -72,21 +72,27 @@ $user = \Yii::$app->user->identity;
             </div>
             <? endif ?>
         </div>
-
-        <!-- Primary Color -->
-        <div class="colorpicker">
-            <div class="colorpickerwrap">
-                <span class="color-choice"></span>
-                <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
-            </div>
-        </div>
-
-        <!-- Secondary Color -->
-        <div class="colorpicker">
-            <div class="colorpickerwrap">
-                <span class="color-choice"></span>
-                <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
-            </div>
-        </div>
+		
+		<div class="row theme-color-picker">
+			<div class="col-sm-6">
+		        <!-- Primary Color -->
+		        <div class="colorpicker">
+		            <div class="colorpickerwrap">
+		                <span class="color-choice"></span>
+		                <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
+		            </div>
+		        </div>
+			</div>
+			
+			<div class="col-sm-6">
+		        <!-- Secondary Color -->
+		        <div class="colorpicker">
+		            <div class="colorpickerwrap">
+		                <span class="color-choice"></span>
+		                <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
+		            </div>
+		        </div>
+			</div>
+		</div>
     </div>
 </div>
