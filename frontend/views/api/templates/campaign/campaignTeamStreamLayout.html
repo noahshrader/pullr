@@ -15,11 +15,11 @@
         </div>
     </div>
     
-    <div class="team-content container">
+    <div class="team-content container cf">
         <div class="team-wrap">
             <div class="team-members" ng-repeat='channel in channels' ng-click='setChannel(channel.name)'>
                 <div class='team-member' data-name="{{channel.name}}" ng-class='{online : channel.status == "live", offline: channel.status ="offline"}'>
-                    <span class='thumbnail'><img src='{{channel.image.size300}}' alt='{{channel.display_name}}' /></span>
+                    <img src='{{channel.image.size300}}' alt='{{channel.display_name}}' />
                     <!--<span class='membername'>{{channel.display_name}}</span>
                     <span class='streamtitle'>{{channel.title}}</span>
                     <span class='viewers'>{{channel.total_views}} viewers</span>

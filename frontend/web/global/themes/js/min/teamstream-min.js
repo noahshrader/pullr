@@ -1,1 +1,1 @@
-var myCustomAfterRender=function(){};$(function(){myCustomAfterRender=function(){var t=$(".team-wrap").innerWidth();$(".team-wrap").width(t)}});
+var myCustomAfterRender=function(){};$(function(){myCustomAfterRender=function(){}});
