@@ -34,19 +34,6 @@ use common\models\User;
         $this->registerJs($onreadyJs);
         ?>
     </script>
-    <script src="api/script"></script>
-    <style>
-        .progress,
-        .btn,
-        .events-form #donation-amount .fieldamount label.active {
-            background:{{campaign.primaryColor}} !important;
-        }
-        a,
-        .total,
-        h3.charity-name span {
-            color:{{campaign.primaryColor}} !important;
-        }
-    </style>
     <!-- Load Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
 </head>

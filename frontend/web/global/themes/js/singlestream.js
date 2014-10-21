@@ -1,6 +1,4 @@
-var myCustomAfterRender = function(){
-
-}
+var myCustomAfterRender = function(){}
 $(function(){
 
 	myCustomAfterRender = function(){

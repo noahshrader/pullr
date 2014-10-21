@@ -456,82 +456,20 @@ header .container {
 .stream-wrap .user-details {
   padding: 1em 15px;
 }
-/* Max 1200px */
-@media screen and (max-width: 1200px) {
-  .featuredchat {
-    min-height: 373px !important;
-  }
+.team-content {
+  overflow: hidden;
+  padding: .6em;
+  height: 120px;
+  background: #d4d4d8;
+  border-radius: 10px;
 }
-/* Max 1089px */
-@media screen and (max-width: 1089px) {
-  .stream-controls {
-    right: -60px !important;
-  }
+.team-content .team-wrap .team-members {
+  float: left;
+  display: inline-block;
 }
-/* Max 992px */
-@media screen and (max-width: 992px) {
-  h1 {
-    margin-top: 0;
-    font-size: 3.2em;
-  }
-  h2 {
-    font-size: 2.1em;
-  }
-  h3 {
-    font-size: 1.6em;
-  }
-  h4 {
-    font-size: 1.3em;
-  }
-  .team-mates .team-mate-single .team-mate-single-social {
-    line-height: 1.5em;
-  }
-  .stream-controls {
-    display: none;
-  }
-  .featuredchat {
-    min-height: 285px !important;
-  }
-}
-/* Max 768px */
-@media screen and (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-  .right {
-    text-align: center;
-  }
-  .feed-donate {
-    margin-bottom: 2em;
-  }
-  .charity-info {
-    margin-bottom: 4em;
-  }
-  .team-mates {
-    padding-left: 0;
-  }
-  .team-mates .team-mate-single-social {
-    display: none !important;
-  }
-}
-/* Max 480px */
-@media screen and (max-width: 480px) {
-  h1 {
-    margin-top: 0;
-    font-size: 2.8em;
-  }
-  h2 {
-    font-size: 2.0em;
-  }
-  h3 {
-    font-size: 1.4em;
-  }
-  h4 {
-    font-size: 1.2em;
-  }
-  .featuredchat {
-    min-height: 373px;
-  }
+.team-content .team-wrap .team-members img {
+  width: 120px;
+  height: auto;
 }
 .stream-wrap #stream {
   background: #d4d4d8;
