@@ -476,6 +476,6 @@ class PullrPayment extends \yii\base\Component
         $profileStatus = new \ManageRecurringPaymentsProfileStatusReq();
         $profileStatus->ManageRecurringPaymentsProfileStatusRequest = $statusRequest;
 
-        return (new \PayPalAPIInterfaceServiceService())->ManageRecurringPaymentsProfileStatus($profileStatus);
+        return (new \PayPalAPIInterfaceServiceService($this->payPalConfig))->ManageRecurringPaymentsProfileStatus($profileStatus);
     }
 }
