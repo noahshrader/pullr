@@ -5,10 +5,18 @@ function layoutTypeChanged() {
 }
 
 function campaignTypeChanged(){
+    $('#campaign-paypaladdress').val('');
+    $('#campaign-customcharity').val('');
+    $('#campaign-customcharitypaypal').val('');
+    $("#firstgiving").select2('val', '');
+
     $('#campaignEdit').attr('data-campaignType', $(this).val());
 }
 
 function donationDestinationChanged(){
+    $("#firstgiving").select2('val', '');
+    $('#campaign-customcharity').val('');
+    $('#campaign-customcharitypaypal').val('');
     $('#donationDestination').attr('data-donationDestination', $(this).val());
 }
 function updateLayoutTeams() {
