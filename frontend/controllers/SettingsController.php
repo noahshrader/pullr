@@ -118,29 +118,31 @@ class SettingsController extends FrontendController
         $session = new Session();
         $payAmount = $session->get("money_amount");
 
-        $apiConfig = $apiConfig = \Yii::$app->params['payPal'];
-        $response = (new PullrPayment($apiConfig))->finishProSubscription($payAmount, $token, $PayerID);
+        try {
+            $apiConfig = $apiConfig = \Yii::$app->params['payPal'];
+            $response = (new PullrPayment($apiConfig))->finishProSubscription($payAmount, $token, $PayerID);
 
-        if (isset($response) && ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile'))
-        {
-            $recurringProfile = RecurringProfile::findOne(['userId' => \Yii::$app->user->identity->id]);
-
-            if (isset($recurringProfile))
+            if (isset($response) && ($response->CreateRecurringPaymentsProfileResponseDetails->ProfileStatus === 'ActiveProfile'))
             {
-                $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
-                $recurringProfile->save();
-            }
-            else
-            {
-                $recurringProfile = new RecurringProfile();
-                $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
-                $recurringProfile->userId = \Yii::$app->user->identity->id;
-                $recurringProfile->save();
-            }
+                $recurringProfile = RecurringProfile::findOne(['userId' => \Yii::$app->user->identity->id]);
 
+                if (isset($recurringProfile)) {
+                    $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
+                    $recurringProfile->save();
+                } else {
+                    $recurringProfile = new RecurringProfile();
+                    $recurringProfile->profileId = $response->CreateRecurringPaymentsProfileResponseDetails->ProfileID;
+                    $recurringProfile->userId = \Yii::$app->user->identity->id;
+                    $recurringProfile->save();
+                }
+            }
             $session->setFlash("pro_success", "");
-            $this->redirect("index");
         }
+        catch (\Exception $ex) {
+            $session->setFlash("pro_failure", "");
+        }
+
+        $this->redirect("index");
     }
 
     /**

@@ -398,8 +398,12 @@ class PullrPayment extends \yii\base\Component
 
             $DoECResponse = $paypalService->DoExpressCheckoutPayment($DoECReq);
 
-            $initPaymentInfo = $DoECResponse->DoExpressCheckoutPaymentResponseDetails->PaymentInfo[0];
+            if($DoECResponse->Ack == "Failure")
+            {
+                throw new \Exception(array_pop($DoECResponse->Errors)->LongMessage);
+            }
 
+            $initPaymentInfo = $DoECResponse->DoExpressCheckoutPaymentResponseDetails->PaymentInfo[0];
             //subscribe user to recurring payment if successfully billed for the first month\year
             if (($DoECResponse->Ack === 'Success') && ($initPaymentInfo->PaymentStatus === 'Completed'))
             {
@@ -407,7 +411,7 @@ class PullrPayment extends \yii\base\Component
                 $payment = new \common\models\Payment();
                 $payment->status = \common\models\Payment::STATUS_APPROVED;
                 $payment->userId = \Yii::$app->user->identity->id;
-                $payment->amount = intval($payAmount);
+                $payment->amount = $payAmount;
                 $payment->payPalTransactionId = $initPaymentInfo->TransactionID;
                 $payment->createdDate = time();
                 $payment->paymentDate = time();

@@ -26,6 +26,12 @@ $this->title = 'Settings';
         </div>
         <?endif;?>
 
+        <?php if (Yii::$app->session->hasFlash('pro_failure')):?>
+            <div class="alert alert-info alert-dismissible systemNotification module">
+                We're unable to process your request. Please try again later.
+            </div>
+        <?endif;?>
+
         <?php if (Yii::$app->session->hasFlash('pro_deactivate')):?>
             <div class="alert alert-info alert-dismissible systemNotification module">
                 You still have Pro account by the end of prepaid period.
