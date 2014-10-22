@@ -6,7 +6,10 @@ $sourceHref = Url::to('', true) . '/source';
 <div class="text-center streamboard-settings-header">
 
     <button class="btn btn-sm" id='btn-copy-source-link' 
-    	data-clipboard-text='<?= $sourceHref ?>' >
+    	data-clipboard-text='<?= $sourceHref ?>' 
+    	tooltip-placement="bottom" tooltip="Copied link to clipboard"
+    	tooltip-trigger="click"
+    	>
         Copy Source URL
  
     </button>

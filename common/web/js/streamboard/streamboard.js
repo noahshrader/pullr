@@ -118,10 +118,14 @@ $(function () {
         }
     }, 1000)
        $("#btn-copy-source-link").tooltip({
-        title:'Copied link to clipboard',
-        trigger: 'click',
-        placement:'bottom'
-    })
+            title:'Copied link to clipboard',
+            trigger: 'click',
+            placement:'bottom'
+        });
+
+        $('#btn-copy-source-link').mouseleave(function(){
+            $('.tooltip bottom fade in').remove();
+        });
 //    var client = new ZeroClipboard($("#btn-copy-source-link"));
 
 });
