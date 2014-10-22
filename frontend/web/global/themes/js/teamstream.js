@@ -1,6 +1,5 @@
 var myCustomAfterRender = function(){}
 $(function(){
-
 	myCustomAfterRender = function(){
 		$('.togglechat').click(function (e) {			
 			$(this).toggleClass('chaton');
@@ -9,5 +8,5 @@ $(function(){
 		  	e.preventDefault();
 		});
 		$("#stream").fitVids();
-	}	
+	}
 });

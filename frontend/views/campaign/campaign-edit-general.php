@@ -121,13 +121,16 @@ $firstGiving = $campaign->getFirstGiving();
     <div class="module team">
 
         <h5>Team Fundraising</h5>
-
-        <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
-        <div class="form-group" id="teamQuestion">
-            <label>Enable team fundraising <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i></label>
-            <?= $form->field($campaign, 'teamEnable')->label(false)->checkbox([], false); ?>
-        </div>
-        <? endif; ?>
+		<div class="row">
+			<div class="col-md-6">
+		        <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
+		        <div class="form-group" id="teamQuestion">
+		            <label>Enable team fundraising <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i></label>
+		            <?= $form->field($campaign, 'teamEnable')->label(false)->checkbox([], false); ?>
+		        </div>
+		        <? endif; ?>
+			</div>
+		
 
         <!-- Parent Campaigns -->
         <? if (sizeof($parentCampaigns) > 0): ?>
@@ -137,14 +140,17 @@ $firstGiving = $campaign->getFirstGiving();
                 $keyValues[$parentCampaign->id] = $parentCampaign->name;
             }
         ?>
-        <div id="tieCampaignContainer">
-            <label>Connect to another campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i></label>
-            <?= $form->field($campaign, 'tiedToParent')->label(false)->checkbox([], false); ?>
-            <div class="form-group field-campaign-parentcampaignid highlight-wrap">
-                <label>Fundraiser Campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i></label>
-                <?= Html::activeDropDownList($campaign, 'parentCampaignId', $keyValues, ['class' => 'select-block']) ?>
-            </div>
+        <div class="col-md-6">
+	        <div id="tieCampaignContainer">
+	            <label>Connect to another campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i></label>
+	            <?= $form->field($campaign, 'tiedToParent')->label(false)->checkbox([], false); ?>
+	            <div class="form-group field-campaign-parentcampaignid highlight-wrap">
+	                <label>Fundraiser Campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select the donation destination."></i></label>
+	                <?= Html::activeDropDownList($campaign, 'parentCampaignId', $keyValues, ['class' => 'select-block']) ?>
+	            </div>
+	        </div>
         </div>
         <? endif; ?>
+        </div>
     </div>
 </div>
