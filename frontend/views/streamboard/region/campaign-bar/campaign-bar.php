@@ -13,7 +13,9 @@ use frontend\models\streamboard\WidgetCampaignBar;
     </div>
     <div ng-if="region.widgetCampaignBar.alertsEnable" child-scope
          ng-init="alertsModule = region.widgetCampaignBar.alertsModule"
-         draggable position-container="region.widgetCampaignBar.alertsModule" region="region">
+         draggable position-container="region.widgetCampaignBar.alertsModule" 
+         region="region"
+         ng-class='region.toShow.alert.animationDirection'>
         <div
             ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'background-color': alertsModule.backgroundColor}">
                 {{region.toShow.alert.message}}

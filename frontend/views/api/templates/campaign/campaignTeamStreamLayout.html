@@ -1,31 +1,33 @@
 <div ng-show='isDataReady'>
-    <div class="jumbotron">
-            <h1>Fun For Freedom!</h1>
-                <div id='streamContainer'>
-                    <div id='stream' >
-                    <div><!-- Insert Twitch Username of Selected Member --></div>
-                        <object type="application/x-shockwave-flash" height="402" width="620" id="live_embed_player_flash" data="{{embedPlayerUrl}}" bgcolor="#181818">
-                        <param name="allowFullScreen" value="true">
-                        <param name="allowScriptAccess" value="always">
-                        <param name="allowNetworking" value="all">
-                        <param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf">
-                        <param name="flashvars" value="{{hostname}}">
-                    </object>
-                    <iframe frameborder="0" scrolling="no" id="chat_embed" src="{{chatUrl | trusted }}" height="400" width="300"></iframe>
+    <div class="stream-wrap container" ng-show='isDataReady'>
+        <div id="stream">
+            <a class="togglechat"><i class="icon icon-chatbubble"></i> Toggle Chat</a>
+            <div id="featured">
+                <div class="featuredstreamcontainer">
+                    <div class="featuredstream">
+                        <object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="{{embedPlayerUrl}}" bgcolor="#000000"><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="{{hostname}}" /></object>
+                    </div>
                 </div>
+                <div class="featuredchat">
+                    <iframe frameborder="0" scrolling="no" src="{{chatUrl | trusted }}" height="500" width="350"></iframe>
+                </div>
+            </div>
         </div>
     </div>
-     
-    <div class="body-content">
-        <div class="row team-members" ng-repeat='channel in channels' ng-click='setChannel(channel.name)'>
-            <div class='team-member' data-name="{{channel.name}}" ng-class='{online : channel.status == "live", offline: channel.status ="offline"}'>
-                <span class='thumbnail'><img src='{{channel.image.size50}}' alt='{{channel.display_name}}' /></span>
-                <span class='membername'>{{channel.display_name}}</span>
-                <span class='streamtitle'>{{channel.title}}</span>
-                <span class='viewers'>{{channel.total_views}} viewers</span>
-                <span class='followers'>{{channel.followers_count}} followers </span>
-                <span class='game'>{{channel.meta_game}}</span>
-            </div>               
+    
+    <div class="team-content container">
+        <div class="team-wrap cf">
+            <div class="team-members" ng-repeat='channel in channels' ng-click='setChannel(channel.name)'>
+                <div class='team-member' data-name="{{channel.name}}" ng-class='{online : channel.status == "live", offline: channel.status ="offline"}'>
+                    <img src='{{channel.image.size300}}' alt='{{channel.display_name}}' />
+                    <div class="team-member-stats">
+                        <h4 class="membername" style="color:{{campaign.primaryColor}};">{{channel.display_name}}</h4>
+                        <h5 class="streamtitle" style="color:{{campaign.secondaryColor}};">{{channel.title}}</h5>
+                        <span class="game">{{channel.meta_game}}</span>
+                        <span class="viewers"><i class="icon icon-view"></i>{{channel.total_views}}</span>
+                        <span class="followers"><i class="icon icon-user"></i>{{channel.followers_count}}</span>
+                    </div>
+                </div>               
+            </div>
         </div>
-    </div>
 </div>

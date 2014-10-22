@@ -152,7 +152,7 @@ header .menu-actions a:before {
 }
 /* Main Stats */
 .stats {
-  background: #47474d;
+  background: #2e2e32;
 }
 .stats .numbers span {
   color: #9f9fa7;
@@ -215,7 +215,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   margin: 0;
 }
 h1,
@@ -228,12 +228,14 @@ h4 {
 }
 h1 {
   margin-top: 0;
-  font-size: 3.8em;
-  font-weight: 100;
+  font-size: 4em;
+  font-weight: 400;
+  letter-spacing: -1px;
 }
 h2 {
-  font-size: 2.6em;
+  font-size: 2.8em;
   font-weight: 600;
+  letter-spacing: -1px;
   margin-bottom: .1em;
 }
 h3 {
@@ -243,7 +245,6 @@ h4 {
   font-size: 1.3em;
 }
 h5 {
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   font-size: 1.2em;
 }
 p,
@@ -257,12 +258,6 @@ code {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   line-height: 1.5em;
-}
-p,
-ol,
-ul,
-blockquote {
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 }
 body {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
@@ -288,7 +283,7 @@ header .container {
   overflow: hidden;
 }
 .stats .numbers {
-  padding: 3.4em 15px 3em;
+  padding: 3.6em 15px;
 }
 .stats .amount-progress {
   position: absolute;
@@ -347,7 +342,6 @@ header .container {
 .user-bar .user .avatar a {
   float: left;
   display: inline-block;
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   font-size: 1.2em;
   font-weight: 600;
   line-height: 55px;

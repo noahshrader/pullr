@@ -117,11 +117,17 @@ $(function () {
             }
         }
     }, 1000)
+       $("#btn-copy-source-link").tooltip({
+            title:'Copied link to clipboard',
+            trigger: 'click',
+            placement:'bottom'
+        });
 
-    var client = new ZeroClipboard($("#btn-copy-source-link"));
-    client.on( "aftercopy", function( event ) {        
-        alert('Copied to clipboard');
-    });
+        $('#btn-copy-source-link').mouseleave(function(){
+            $('.tooltip bottom fade in').remove();
+        });
+//    var client = new ZeroClipboard($("#btn-copy-source-link"));
+
 });
 // google fonts
 function requireGoogleFont(fontFamily){

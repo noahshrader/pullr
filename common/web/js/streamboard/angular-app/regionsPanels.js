@@ -9,6 +9,8 @@
             $scope.campaignsService = campaigns;
             $scope.scroll = true;
             $scope.duration = 1500;
+
+            var animationEndTimer = null;
             $scope.regionsService.ready(function () {
                 requireAllFonts();
                 /*whenever regions are changes we are checking that we have right fonts*/
@@ -20,6 +22,7 @@
                     $.each($scope.regionsService.regions, function (index, region) {                    
                         /*creating namespace for showing data*/
                         region.toShow = {alert: {
+                            animationDirectionArray:[]
                         }};
                         $interval(function () {
                             showAlert(region)
@@ -83,11 +86,12 @@
                     console.log(['WE HAVE NOTIFICATION FOR REGION ' + region.regionNumber]);
                     console.log(notification);
                     var toShow = region.toShow.alert;
-
+                    toShow.animationDirection = '';                    
                     toShow.message = notification.message;
 
                     if (region.widgetType == 'widget_alerts') {                        
-                        toShow.preference = region.widgetAlerts[notification.type + 'Preference'];                        
+                        toShow.preference = region.widgetAlerts[notification.type + 'Preference'];   
+
                         var preference = toShow.preference;
                         toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);                        
                         alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
@@ -98,6 +102,15 @@
                     } else {
                         /**so we have campaign bar*/
                         var alertsModule = region.widgetCampaignBar.alertsModule;
+                        toShow.animationDirectionArray = alertsModule.animationDirection.split(',');
+                        console.log(toShow.animationDirectionArray);
+                        if(toShow.animationDirectionArray.length > 1){
+                            toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];    
+                            if (animationEndTimer) {
+                                $interval.cancel(animationEndTimer);
+                            }
+                        }
+                        
                         $interval(function () {
                             hideAlert(region);
                         }, alertsModule.animationDuration * 1000, 1);
@@ -111,14 +124,25 @@
             }
 
             function hideAlert(region) {
-                region.toShow.alert = {};
+                
                 var delay = 0;
                 if (region.widgetType == 'widget_alerts') {
                     delay = region.widgetAlerts.animationDelaySeconds;
                 } else if (region.widgetType =='widget_campaign_bar' && region.widgetCampaignBar.alertsEnable){
                     delay = region.widgetCampaignBar.alertsModule.animationDelay;
                 }
-
+                if (region.toShow.alert.animationDirectionArray.length > 1) {
+                    region.toShow.alert.animationDirection = 'animated ' + region.toShow.alert.animationDirectionArray[1];
+                    animationEndTimer = $interval(function(){
+                        region.toShow.alert.message = null;    
+                        region.toShow.alert.animationDirectionArray = [];    
+                    }, 500, 1);
+                } else {
+                    region.toShow.alert.animationDirection = '';
+                    region.toShow.alert.message = null;
+                    region.toShow.alert.image = null;
+                }
+                
                 $interval(function () {
                     showAlert(region);
                 }, delay * 1000, 1)

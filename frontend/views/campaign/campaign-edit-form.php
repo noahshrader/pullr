@@ -14,13 +14,19 @@
                 <? $keyValues = [ true => 'Visible', false => 'Hidden']; ?>
                 <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
         </div>
-        <!-- Donor Comments -->
-        <div class="form-group">
-            <?= $form->field($campaign, 'enableDonorComments')->checkbox([], false); ?>
-        </div>
-        <!-- Enable Thank You Page -->
-        <div class="form-group">
-            <?= $form->field($campaign, 'enableThankYouPage')->checkbox([], false); ?>
+        <div class="row">
+	        <div class="col-sm-6">
+		        <!-- Donor Comments -->
+		        <div class="form-group">
+		            <?= $form->field($campaign, 'enableDonorComments')->checkbox([], false); ?>
+		        </div>
+	        </div>
+	        <div class="col-sm-6">
+		        <!-- Enable Thank You Page -->
+		        <div class="form-group">
+		            <?= $form->field($campaign, 'enableThankYouPage')->checkbox([], false); ?>
+		        </div>
+	        </div>
         </div>
         <!-- Custom Thank You HTML -->
         <div class="form-group">

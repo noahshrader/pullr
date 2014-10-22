@@ -744,6 +744,9 @@ header .menu-actions a:before {
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
+.container {
+  padding: 0 15px;
+}
 /* Buttons */
 .btn {
   color: #ffffff;
@@ -782,6 +785,10 @@ header .menu-actions a:before {
 }
 .icon-facebook {
   color: #3c5690;
+}
+/* Info */
+.info h4 {
+  color: #1dbc9c;
 }
 footer {
   text-align: center;

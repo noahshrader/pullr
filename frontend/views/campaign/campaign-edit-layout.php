@@ -72,21 +72,27 @@ $user = \Yii::$app->user->identity;
             </div>
             <? endif ?>
         </div>
-
-        <!-- Primary Color -->
-        <div class="colorpicker">
-            <div class="colorpickerwrap">
-                <span class="color-choice"></span>
-                <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
-            </div>
-        </div>
-
-        <!-- Secondary Color -->
-        <div class="colorpicker">
-            <div class="colorpickerwrap">
-                <span class="color-choice"></span>
-                <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
-            </div>
-        </div>
+		
+		<div class="row theme-color-picker">
+			<div class="col-sm-6">
+		        <!-- Primary Color -->
+		        <div class="colorpicker">
+		            <div class="colorpickerwrap">
+		                <span class="color-choice"></span>
+		                <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
+		            </div>
+		        </div>
+			</div>
+			
+			<div class="col-sm-6">
+		        <!-- Secondary Color -->
+		        <div class="colorpicker">
+		            <div class="colorpickerwrap">
+		                <span class="color-choice"></span>
+		                <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
+		            </div>
+		        </div>
+			</div>
+		</div>
     </div>
 </div>
