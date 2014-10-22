@@ -88,7 +88,7 @@ label {
 		color: @gray20;
 		font-weight: 400;
 		line-height: 1;
-		letter-spacing: -2px;
+		letter-spacing: -1px;
 		padding: 0 5%;
 		margin: 0;
 	}
@@ -134,7 +134,7 @@ label {
 .form-progress-wrap {
 	position: relative;
 	text-align: center;
-	height: 24px;
+	height: 30px;
 	width: 100%;
 	background: @gray75;
 
@@ -391,55 +391,36 @@ footer {
 }
 
 /* Main Form */
+#form-errors-summary,
+#donation-form {
+	margin: 0 auto;
+	max-width: 650px;
+}
 #form-errors-summary {
 	text-align: center;
+	padding: 3em 5% 0;
+	margin: 0 auto;
 
 	p {
 		margin: .3em 0;
 	}
 }
-#form-errors-summary,
-#donation-form {
-	margin: 0 auto;
-	padding: 3em 5% 0;
-	max-width: 650px;
-}
 #donation-form {
 	padding: 1em 5%;
+	margin: 0 auto;
 
-	.input-item-select {
-		select {
-			border: 0;
-		}
-	}
-	div div {
-		div {
-			margin-bottom: 1em;
-			div {
-				margin: 0;
-			}
-		}
-	}
 	input {
-		width: 100% !important;
+		width: 100%;
 	}
-}
-.processed {
-	display: block;
-	font-size: @fineprint;
-	padding: 2em 0;
 }
 
 
 /* Loader */
 /* ------------------------------------------------- */
-.spinner-wrap {
-	position: fixed;
-
-	.spinner {
-		margin: 30% auto;
-	}
+.spinner {
+	margin: 30% auto;
 }
+
 
 /* Responsive */
 /* ------------------------------------------------- */
@@ -460,4 +441,67 @@ footer {
 	.form-wrapper {
 		padding: 0;
 	}
+}
+
+/* Dark Styles (if opted) */
+/* ------------------------------------------------- */
+html.dark,
+html.dark body {
+	background: @base;
+}
+/* Progress Bar */
+html.dark .form-progress .totals {
+	color: #53555a;
+}
+html.dark .form-progress-wrap {
+	background: #3a3c40;
+}
+html.dark div.separation > div.separation-left,
+html.dark div.separation > div.separation-right {
+	background: #222325;
+}
+html.dark div.separation > div.separation-left:after,
+html.dark div.separation > div.separation-right:after {
+	border-bottom: 60px solid #222325;
+}
+/* General */
+html.dark h1.campaign-name {
+	color: @white;
+}
+/* Forms */
+html.dark input,
+html.dark textarea {
+	color: @white;
+	border: 0;
+	background: #2e3032;
+}
+html.dark .events-form #donation-amount .fieldamount label {
+	color: #85888e;
+	background: #2e3032;
+}
+html.dark .events-form #donation-amount .fieldamount label:hover {
+	background: #3a3c40;
+}
+html.dark .events-form #donation-amount #other {
+	background: #2e3032;
+	border: solid 1px #2e3032;
+}
+html.dark .events-form #donation-amount #other a.closethis {
+	color: #6b6e75;
+}
+html.dark .events-form #donation-amount #other a.closethis:hover {
+	color: @white;
+}
+html.dark .events-form #donation-amount #other span.dollar-sign {
+	color: #6b6e75;
+}
+/* Footer */
+html.dark h5 {
+	color: #3a3c40;
+}
+html.dark footer a.logo:before {
+	color: #3a3c40;
+}
+html.dark footer a.logo:hover:before {
+	color: @white;
 }

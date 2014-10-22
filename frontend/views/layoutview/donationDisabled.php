@@ -2,7 +2,7 @@
 
 <section class="tip-jar">
     <div class="form-wrapper">
-        <p class="info">Sorry, donations disabled</a>.</p>
+        <p class="info">Donations are currently disabled at this time</a>.</p>
     </div>
 </section>
 <!-- END Donation Form -->

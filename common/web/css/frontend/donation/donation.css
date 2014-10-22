@@ -1073,6 +1073,13 @@ input.color-choice {
   border: 0;
   box-shadow: none;
 }
+.theme-color-picker .colorpicker:before {
+  display: none;
+}
+.theme-color-picker .col-sm-6 {
+  padding-left: 0 !important;
+  padding-right: 30px;
+}
 /* Selects (Select2) */
 /* ------------------------------------------------- */
 .select2-container {
@@ -1731,7 +1738,7 @@ span.list-info {
 .modal .modal-dialog {
   position: relative;
   display: inline-block;
-  margin: 4em auto;
+  margin: 6em auto 3em;
   width: 100%;
   background: #ffffff;
   border-radius: 10px;
@@ -1882,7 +1889,7 @@ label {
   color: #53535a;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   padding: 0 5%;
   margin: 0;
 }
@@ -1921,7 +1928,7 @@ label {
 .form-progress-wrap {
   position: relative;
   text-align: center;
-  height: 24px;
+  height: 30px;
   width: 100%;
   background: #efeff0;
 }
@@ -2146,44 +2153,29 @@ fieldset {
   display: none;
 }
 /* Main Form */
+#form-errors-summary,
+#donation-form {
+  margin: 0 auto;
+  max-width: 650px;
+}
 #form-errors-summary {
   text-align: center;
+  padding: 3em 5% 0;
+  margin: 0 auto;
 }
 #form-errors-summary p {
   margin: .3em 0;
 }
-#form-errors-summary,
-#donation-form {
-  margin: 0 auto;
-  padding: 3em 5% 0;
-  max-width: 650px;
-}
 #donation-form {
   padding: 1em 5%;
-}
-#donation-form .input-item-select select {
-  border: 0;
-}
-#donation-form div div div {
-  margin-bottom: 1em;
-}
-#donation-form div div div div {
-  margin: 0;
+  margin: 0 auto;
 }
 #donation-form input {
-  width: 100% !important;
-}
-.processed {
-  display: block;
-  font-size: 0.8em;
-  padding: 2em 0;
+  width: 100%;
 }
 /* Loader */
 /* ------------------------------------------------- */
-.spinner-wrap {
-  position: fixed;
-}
-.spinner-wrap .spinner {
+.spinner {
   margin: 30% auto;
 }
 /* Responsive */
@@ -2204,4 +2196,66 @@ fieldset {
   .form-wrapper {
     padding: 0;
   }
+}
+/* Dark Styles (if opted) */
+/* ------------------------------------------------- */
+html.dark,
+html.dark body {
+  background: #222225;
+}
+/* Progress Bar */
+html.dark .form-progress .totals {
+  color: #53555a;
+}
+html.dark .form-progress-wrap {
+  background: #3a3c40;
+}
+html.dark div.separation > div.separation-left,
+html.dark div.separation > div.separation-right {
+  background: #222325;
+}
+html.dark div.separation > div.separation-left:after,
+html.dark div.separation > div.separation-right:after {
+  border-bottom: 60px solid #222325;
+}
+/* General */
+html.dark h1.campaign-name {
+  color: #ffffff;
+}
+/* Forms */
+html.dark input,
+html.dark textarea {
+  color: #ffffff;
+  border: 0;
+  background: #2e3032;
+}
+html.dark .events-form #donation-amount .fieldamount label {
+  color: #85888e;
+  background: #2e3032;
+}
+html.dark .events-form #donation-amount .fieldamount label:hover {
+  background: #3a3c40;
+}
+html.dark .events-form #donation-amount #other {
+  background: #2e3032;
+  border: solid 1px #2e3032;
+}
+html.dark .events-form #donation-amount #other a.closethis {
+  color: #6b6e75;
+}
+html.dark .events-form #donation-amount #other a.closethis:hover {
+  color: #ffffff;
+}
+html.dark .events-form #donation-amount #other span.dollar-sign {
+  color: #6b6e75;
+}
+/* Footer */
+html.dark h5 {
+  color: #3a3c40;
+}
+html.dark footer a.logo:before {
+  color: #3a3c40;
+}
+html.dark footer a.logo:hover:before {
+  color: #ffffff;
 }

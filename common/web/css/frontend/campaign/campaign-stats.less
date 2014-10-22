@@ -122,7 +122,7 @@ body.trash .campaigns-list {
 	background: @gray72;
 	.element-radius;
 	.box-shadow;
-	z-index: 1000;
+	z-index: 900;
 
 	.campaign-nav {
 		position: absolute;
@@ -237,6 +237,10 @@ body.trash .campaigns-list {
 
 	&.dataTable th {
 		padding: .9em 4% !important;
+	}
+	&.dataTable tbody th,
+	&.dataTable tbody td {
+		cursor: auto;
 	}
 	td.raised {
 		text-align: right;
