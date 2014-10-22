@@ -3,9 +3,12 @@
     angular.module('pullr.streamboard.rotatingMessages', [])
         .directive('rotatingMessages', function ($interval) {
             function link(scope, element, attrs) {
+             
+                var $messageContainer = $('#rotating-message-container');
+                var isRunning = false;
                 var messagesModule = null,
                     i = -1,
-                    intervalId = null,
+          
                     rotationSpeed = 5;
 
                 scope.$watch(attrs.rotationSpeed, function (value) {
@@ -13,13 +16,14 @@
                 });
                 scope.$watch(attrs.messagesModule, function (value) {
                     messagesModule = value;
-                    if (!intervalId) {
+                    if ( ! isRunning ) {
+                        isRunning = true;
                         nextMessage();
                     }
                 });
 
                 element.on('$destroy', function () {
-                    $interval.cancel(intervalId);
+                    isRunning = false;
                 });
 
                 function getMessage(i) {
@@ -45,15 +49,32 @@
                         i = (i + 1) % 5;
                         j++;
                     }
-                    if (getMessage(i)) {
-                        $(element).text(getMessage(i));
+                    console.log(getMessage(i));
+                    if (getMessage(i)) {                        
+                        $messageContainer.html(getMessage(i));
+                        $messageContainer.removeClass().addClass('animated fadeIn').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                            $interval(function(){
+                                $messageContainer.removeClass().addClass('animated fadeOut');
+                                if( isRunning ) {
+                                    $messageContainer.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', nextMessage);                                
+                                }  
+                            }, rotationSpeed * 1000, 1)                                          
+                        });                        
                     }
-                    intervalId = $interval(nextMessage, rotationSpeed * 1000, 1);
+
+                  
+                    
                 }
             }
 
             return {
-                link: link
+                compile: function(tElement) {
+                    var $element = $(tElement);
+                    $element.append('<div id="rotating-message-container"></div>');
+                    return {
+                        post: link
+                    }
+                }                
             }
         });
 })();
