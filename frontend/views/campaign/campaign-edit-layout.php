@@ -7,6 +7,7 @@ $user = \Yii::$app->user->identity;
 
 ?>
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
+	<h4>How would you like your campaign page to look?</h4>
     <div class="module">
 
         <h5>Layout</h5>
