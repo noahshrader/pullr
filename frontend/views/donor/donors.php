@@ -19,9 +19,11 @@ $user = \Yii::$app->user->identity;
 
 <? if (!sizeof($donors)):?>
     <section class="donor-view-wrap">
-        <div id="content" class="adv red pane">
-            <div class="content-wrap text-center">
-                No donors here yet
+        <div id="content" class="blank adv">
+            <div class="no-entries">
+                <div>
+                    <h3>Donors will be arriving soon.</h3>
+                </div>
             </div>
         </div>
     </section>
