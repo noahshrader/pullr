@@ -14,7 +14,7 @@ $user = \Yii::$app->user->identity;
         <!-- Campaign Page Layout -->
         <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
             <label class="control-label">Layout Type</label>
-            <i class="icon icon-help" data-toggle="tooltip" data-placement="bottom" title="Select 'Single Stream' for a single channel view. Select 'team stream' to pull in an entire Twitch team. Select 'Multi Stream' to pull in your own channels."></i>
+            <i class="icon icon-help" data-toggle="tooltip" data-placement="bottom" title="Select <b>Single Stream</b> for a single channel view. <br /> <b>Team Stream</b> pulls in an entire Twitch team.<br /><b>Multi Stream</b> pulls in your own channels."></i>
             <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
             <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block']) ?>
         </div>
