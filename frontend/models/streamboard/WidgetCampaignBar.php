@@ -40,14 +40,17 @@ class WidgetCampaignBar extends ActiveRecord
     {
         return [
             'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
-                'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY', 'height', 'width']
+                'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY', 'height', 'width',
+                'background']
         ];
     }
 
     public function fields()
     {
         return ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
-            'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule', 'currentTotalModule', 'positionX', 'positionY', 'height', 'width'];
+            'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule', 
+            'currentTotalModule', 'positionX', 'positionY', 'height', 'width',
+            'background'];
     }
 
     public function beforeValidate()
@@ -128,7 +131,7 @@ class WidgetCampaignBar extends ActiveRecord
         $data['messagesEnable'] = $this->messagesEnable == 1;
         $data['timerEnable'] = $this->timerEnable == 1;
         $data['progressBarEnable'] = $this->progressBarEnable == 1;
-
+        
         return $data;
     }
 }

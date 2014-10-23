@@ -24,7 +24,7 @@
 
                 element.on('$destroy', function () {
                     isRunning = false;
-                });
+                });      
 
                 function getMessage(i) {
                     switch (i) {

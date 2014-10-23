@@ -9,8 +9,13 @@
             $scope.campaignsService = campaigns;
             $scope.scroll = true;
             $scope.duration = 1500;
-
+            $scope.alertMediaManagerService = alertMediaManager;
             var animationEndTimer = null;
+
+            $scope.getBackgroundStyle = function(image) {
+                var url =  'url(' + alertMediaManager.getCampaignBackgroundUrl(image) + ')';                
+                return url;
+            }
             $scope.regionsService.ready(function () {
                 requireAllFonts();
                 /*whenever regions are changes we are checking that we have right fonts*/

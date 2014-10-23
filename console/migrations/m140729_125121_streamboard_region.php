@@ -93,6 +93,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'fontStyle' => Schema::TYPE_STRING. ' NOT NULL',
             'fontSize' => Schema::TYPE_STRING. ' NOT NULL',
             'fontColor' => Schema::TYPE_STRING. ' DEFAULT "#fff" NOT NULL',
+            'background' => Schema::TYPE_STRING,
             'backgroundColor' => Schema::TYPE_STRING. ' DEFAULT "#333" NOT NULL',
             'alertsEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',
             'messagesEnable' => Schema::TYPE_BOOLEAN. ' NOT NULL',

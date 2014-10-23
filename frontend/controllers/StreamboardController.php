@@ -395,8 +395,11 @@ class StreamboardController extends FrontendController
             case 'image':
                 $result = AlertMediaManager::uploadImage();
                 break;
+            case 'campaignBackground':
+                $result = AlertMediaManager::uploadCampaignBackgrounds();
+                break;
             default:
-                throw new ErrorException('Upload type should be either "image" or "sound"');
+                throw new ErrorException('Upload type should be either "image" or "sound" or "campaignBackground"');
         }
         if (!$result){
             throw new ErrorException('Error during upload');
@@ -407,6 +410,8 @@ class StreamboardController extends FrontendController
                 return $manager->getCustomSounds();
             case 'image':
                 return $manager->getCustomImages();
+            case 'campaignBackground':
+                return $manager->getCustomCampaignBackgrounds();
         }
     }
 
@@ -424,10 +429,15 @@ class StreamboardController extends FrontendController
                 $result = AlertMediaManager::removeSound($fileName);
                 $files = $manager->getCustomSounds();
                 break;
+            case 'campaignBackground':
+                $result = AlertMediaManager::removeCampaignBackground($fileName);
+                $files = $manager->getCustomCampaignBackgrounds();
+                break;
             case 'image' :
                 $result = AlertMediaManager::removeImage($fileName);
                 $files = $manager->getCustomImages();
                 break;
+
         }
 
         if ($result){
@@ -437,6 +447,9 @@ class StreamboardController extends FrontendController
         }
     }
 
+    public function actionAlert_remove_campaign_background_ajax(){
+        return $this->removeAlert_file_ajax('campaignBackground');
+    }
     public function actionAlert_remove_sound_ajax(){
        return $this->removeAlert_file_ajax('sound');
     }

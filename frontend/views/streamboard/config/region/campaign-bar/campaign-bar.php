@@ -1,3 +1,8 @@
+<? 
+use yii\helpers\Html;
+use yii\helpers\Url;
+use frontend\models\streamboard\WidgetAlertsPreference;
+?>
 <div class="module">
     <div class="form-group">
         <h5>Campaign</h5>
@@ -27,6 +32,45 @@
         <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
     </div>
 </div>
+
+<div class="module">
+    <ul class="library-tabs cf">        
+        <li class="active"><a href='#' data-toggle="tab"><i class="icon-picture"></i>Graphics</a></li>
+    </ul>
+    <div class="tab-content sounds-graphics-content">        
+        <div id="region-1-preference-donations-images" class="tab-pane active">
+            <div child-scope="" ng-init="fileType = 'campaignBackground';uploadError = null;" class="ng-scope">
+            <!--main variable - preference -->
+                
+                <div class="tab-content sounds-graphics-content">
+                    <div id="region-1-preference-donations-images-custom" class="tab-pane active">
+                        <div class="error">
+                            {{error}}
+                        </div>
+                        <div class="panel-group">
+                            <div class="uploader" ng-file-drop="onFileUpload($files, fileType, this)" ng-file-drag-over-class="uploader-drag-over">
+                                <span>Drops Files Here</span>
+                            </div>
+                        </div>
+                        <div class="files-container">
+                            <div ng-repeat="file in (alertMediaManagerService.customCampaignBackgrounds)">
+                                <div class="panel-group media-item images cf" ng-class="{selected: file==widget.background}" ng-click="campaignBackgroundChanged(file, region)">
+                                    <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
+                                    <div class='mediaActions'>
+                                        <i class="glyphicon glyphicon-remove" ng-click="alertMediaManagerService.removeCampaignBackground(file)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="module last">
     <div class="form-group">
         <h5>Modules</h5>

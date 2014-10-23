@@ -57,6 +57,21 @@
                 }
                 return path;
             }
+
+            this.getCampaignBackgroundUrl = function(image){
+                if (!image) {
+                    return null;
+                } else {
+                    return addUserToPath(Service.PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS) + image;
+                }
+
+            }
+
+            this.removeCampaignBackground = function(image){
+                $http.post('app/streamboard/alert_remove_campaign_background_ajax', image).success(function(data){
+                    Service.customCampaignBackgrounds = data;
+                });
+            }
             this.removeSound = function(sound){
                 $http.post('app/streamboard/alert_remove_sound_ajax', sound).success(function(data){
                     Service.customSounds = data;

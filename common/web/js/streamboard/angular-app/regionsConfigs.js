@@ -93,6 +93,11 @@
             preference.imageType = imageType;
             $scope.regionChanged(region);
         };
+        $scope.campaignBackgroundChanged = function(background, region) {
+            console.log(region);
+            region.widgetCampaignBar.background = background;
+            $scope.regionChanged(region);
+        }
         $scope.onSetTimeCountDownFrom = function (newDate, oldDate) {
             var scope = this.$parent;
             /*we need to update value first to sending to server*/
@@ -130,6 +135,8 @@
                     case 'image':
                         alertMediaManager.customImages = data;
                         break;
+                    case 'campaignBackground':
+                        alertMediaManager.customCampaignBackgrounds = data;
                 }
                 scope.error = '';
             }).error(function (data) {

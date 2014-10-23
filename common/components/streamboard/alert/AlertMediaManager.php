@@ -19,8 +19,12 @@ class AlertMediaManager extends Model
     private static $SOUNDS_EXTENSIONS = ['mp3'];
     const MAX_IMAGE_SIZE = 2000000;
     const MAX_IMAGE_SIZE_MESSAGE = 'File size should be less than 2 MB';
+
     const MAX_SOUND_SIZE = 2000000;
     const MAX_SOUND_SIZE_MESSAGE = self::MAX_IMAGE_SIZE_MESSAGE;
+
+    const MAX_CAMPAIGN_BACKGROUND_SIZE = 5000000;
+    const MAX_CAMPAIGN_BACKGROUND_SIZE_MESSAGE = 'File size should be less than 5 MB';
     /*all files' names will be trimmed to contain [MAX_FILE_NAME_LENGTH] at max*/
     const MAX_FILE_NAME_LENGTH = 30;
     /*maximum number of uploads per user per one media type (sounds or images)*/
@@ -33,9 +37,10 @@ class AlertMediaManager extends Model
     const PATH_TO_CUSTOM_IMAGES = 'usermedia/streamboard/alerts/images/';
     const PATH_TO_CUSTOM_SOUNDS = 'usermedia/streamboard/alerts/sounds/';
 
+    const PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS = 'usermedia/streamboard/campaign/backgrounds/';
     public function fields()
     {
-        return ['customImages', 'customSounds', 'libraryImages', 'librarySounds'];
+        return ['customImages', 'customSounds', 'libraryImages', 'librarySounds', 'customCampaignBackgrounds'];
     }
 
     public function toArray(array $fields = [], array $expand = [], $recursive = true)
@@ -45,7 +50,7 @@ class AlertMediaManager extends Model
         $data['PATH_TO_LIBRARY_IMAGES'] = self::PATH_TO_LIBRARY_IMAGES;
         $data['PATH_TO_CUSTOM_SOUNDS'] = self::PATH_TO_CUSTOM_SOUNDS;
         $data['PATH_TO_CUSTOM_IMAGES'] = self::PATH_TO_CUSTOM_IMAGES;
-
+        $data['PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS'] = self::PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS;
         return $data;
     }
 
@@ -71,6 +76,7 @@ class AlertMediaManager extends Model
     {
         $baseName = strip_tags($baseName);
         $baseName = preg_replace('~[\\\\/:*?"<>|]~', '', $baseName);
+        $baseName = str_replace(' ', '_', $baseName);
         $baseName = trim($baseName);
         $baseName = substr($baseName, 0, self::MAX_FILE_NAME_LENGTH);
         $baseName = trim($baseName);
@@ -108,6 +114,27 @@ class AlertMediaManager extends Model
     {
         $libraryPath = self::addUserToPath(self::PATH_TO_CUSTOM_IMAGES);
         return self::getFilesList($libraryPath, self::$IMAGES_EXTENSIONS);
+    }
+
+    public function getCustomCampaignBackgrounds()
+    {
+        $libraryPath = self::addUserToPath(self::PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS);
+        return self::getFilesList($libraryPath, self::$IMAGES_EXTENSIONS);
+    }
+
+    /**
+     * @return bool true if upload succeed, in either case it throws Exception
+     */
+    public static function uploadCampaignBackgrounds()
+    {
+        $params = [
+            'extensions' => self::$IMAGES_EXTENSIONS,
+            'maxSize' => self::MAX_CAMPAIGN_BACKGROUND_SIZE,
+            'maxSizeMessage' => self::MAX_CAMPAIGN_BACKGROUND_SIZE_MESSAGE,
+            'pathToCustomLibrary' => self::PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS,
+            'getFilesListMethod' => [new AlertMediaManager(), 'getCustomCampaignBackgrounds']
+        ];
+        return self::uploadMediaGeneral($params);
     }
 
     /**
@@ -166,12 +193,16 @@ class AlertMediaManager extends Model
     }
 
 
-    public static function removeSound($fileName){
+    public static function removeSound($fileName) {
         return self::removeFile(self::PATH_TO_CUSTOM_SOUNDS, $fileName, self::$SOUNDS_EXTENSIONS);
     }
 
-    public static function removeImage($fileName){
+    public static function removeImage($fileName) {
         return self::removeFile(self::PATH_TO_CUSTOM_IMAGES, $fileName, self::$IMAGES_EXTENSIONS);
+    }
+
+    public static function removeCampaignBackground($fileName) {
+        return self::removeFile(self::PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS, $fileName, self::$IMAGES_EXTENSIONS);
     }
 
     public static function removeFile($library, $fileName, $extensions){
