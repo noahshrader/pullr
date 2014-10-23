@@ -28,7 +28,7 @@ $this->registerJsFile('@web/js/campaign/donors-filter.js',  [
     ?>
     <? } else { ?>
     <div class="text-center none">
-        No donors here yet.
+        No donors here yet!
     </div>
     <? } ?>
 </div>

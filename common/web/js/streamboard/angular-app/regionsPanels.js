@@ -71,6 +71,7 @@
                 if (region.widgetType == 'widget_alerts' || (region.widgetType == 'widget_campaign_bar' && region.widgetCampaignBar.alertsEnable)) {
                     while (stream.length > 0 && notification == false) {
                         notification = stream.shift();
+                        console.log(notification);
                         if (region.widgetType == 'widget_alerts') {
                             /**checking includeDonations, includeFollowers, includeSubscribers*/
                             if (!region.widgetAlerts['include' + capitaliseFirstLetter(notification.type)]) {

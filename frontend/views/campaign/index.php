@@ -20,7 +20,7 @@ $user = \Yii::$app->user->identity;
     <? if (!sizeof($campaigns)): ?>
         <section class="campaigns-view-wrap">
             <div id="content" class="blank adv">
-                <div class="no-campaigns">
+                <div class="no-entries">
                     <div>
                         <h3>Do something big.</h3>
                         <h5>Click "<i class="icon icon-plus-round"></i>" to add a campaign.</h5>
