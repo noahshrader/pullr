@@ -7,6 +7,7 @@ use common\components\message\ActivityMessage;
 use common\models\Donation;
 use common\models\Campaign;
 use common\models\Plan;
+use yii\helpers\VarDumper;
 
 /*
  * Class for handling donations and recurring payments via PayPal
@@ -224,7 +225,7 @@ class PullrPayment extends \yii\base\Component
      * @throws \Exception
      */
     public function initDonationPayment(Donation $donation, $returnUrl, $cancelUrl)
-    {         
+    {
         if (!$donation->campaign->donationEmail)
         {
             throw new \Exception('Donation PayPal email is not set');
@@ -234,7 +235,7 @@ class PullrPayment extends \yii\base\Component
         $donationReceiver = $this->prepareDonationReceiver($donation);
         $payRequest = $this->preparePayRequest([$feeReceiver, $donationReceiver], $returnUrl, $cancelUrl);
 
-        try 
+        try
         {
             $service = new \AdaptivePaymentsService($this->payPalConfig);
             $response = $service->Pay($payRequest);
@@ -246,12 +247,12 @@ class PullrPayment extends \yii\base\Component
 
             $this->createPendingPayments($donation, $response, $feeReceiver, $donationReceiver);
         }
-        catch(\Exception $ex) 
+        catch(\Exception $ex)
         {
             \Yii::error($ex->getMessage(), 'PayPal');
             throw $ex;
-        }        
-        
+        }
+
         return $response->payKey;
     }
 
@@ -263,7 +264,7 @@ class PullrPayment extends \yii\base\Component
      * @throws \Exception
      */
     public function finishDonationPayment($payKey)
-    {        
+    {
         if(empty($payKey))
         {
             throw new \Exception("payKey cannot be null");
@@ -291,6 +292,11 @@ class PullrPayment extends \yii\base\Component
             {
                 $donationId = $this->approvePayments($payKey, $info, $paymentDate);
             }
+        }
+        $donation = Donation::findOne($donationId);
+        if (!$donation->email){
+            $donation->email = $paymentDetailsResponse->senderEmail;
+            $donation->save();
         }
 
         $this->makeDonationProcessed($donationId, $paymentDate);
@@ -344,7 +350,7 @@ class PullrPayment extends \yii\base\Component
             {
                 throw new \Exception($response->Errors[0]->LongMessage);
             }
-            
+
             return $response;
         }
         catch (\Exception $ex)
@@ -460,8 +466,8 @@ class PullrPayment extends \yii\base\Component
 
     /**
      * Sends request to PayPal to cancel recurring payment profile
-     * 
-     * @param int $profileId 
+     *
+     * @param int $profileId
      * @return mixed
      */
     public function deactivateProSubscription($profileId)
