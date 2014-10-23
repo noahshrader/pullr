@@ -3,6 +3,6 @@
 return [
     'name' => 'Default',
     'description' => 'Default Pullr theme',
-    'layoutType' => 'Twitch Team',
+    'layoutType' => 'Single Stream',
     'plan' => 'Basic'
 ];
