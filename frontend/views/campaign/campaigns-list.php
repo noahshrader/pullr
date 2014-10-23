@@ -45,7 +45,7 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
     ?>
     <? } else { ?>
     <div class="text-center none">
-        No campaigns here yet.
+        No campaigns here yet!
     </div>
     <? } ?>
     </div>

@@ -1,5 +1,7 @@
 <?php
 use common\assets\ThankYouAsset;
+use common\models\Campaign;
+
 ThankYouAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -7,16 +9,28 @@ ThankYouAsset::register($this);
 <html>
 	<head>
         <? $this->head();?>
-        <title>Thank you</title>
+        <title>Thank You! - Pullr</title>
 	</head>
 
 	<body>
         <?php $this->beginBody() ?>
-            <? if ($campaign->enableThankYouPage): ?>
-                <?= $campaign->thankYouPageText ?>
-            <? else: ?>
-            thank you page.
-            <? endif ?>
+            <? 
+               $charityName = '';
+               if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
+                   $charityName = $campaign->customCharity;
+               } 
+               if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && $campaign->charityId){
+                   $charityName = $campaign->charity->name;
+               } 
+            ?>
+        <?= $charityName ?>
+            <div class="form-wrapper thankyou">
+                <h1 class="main-title">Thanks!</h1>
+                <? if ($campaign->enableThankYouPage): ?>
+                    <?= $campaign->thankYouPageText ?>
+                <? else: ?>
+                <? endif ?>
+            </div>
         <?php $this->endBody() ?>
 	</body>
 

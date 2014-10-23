@@ -95,19 +95,27 @@ body.trash .campaigns-list {
 /* ------------------------------------------------- */
 
 /* No Campaigns */
-.no-campaigns {
+.no-entries {
 	position: relative;
 	float: left;
 	height: 100%;
 	width: 100%;
 
-	span {
+	div {
 		position: absolute;
 		top: 50%;
 		text-align: center;
-		margin-top: -20px;
+		margin-top: -45px;
 		width: 100%;
 		display: block;
+
+		h3 {
+			color: @gray30;
+			font-weight: 600;
+		}
+		i {
+			margin: 0;
+		}
 	}
 }
 
