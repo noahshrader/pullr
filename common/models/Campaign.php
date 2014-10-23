@@ -97,9 +97,15 @@ class Campaign extends ActiveRecord {
             return;
         }
 
-        if($this->type == self::TYPE_CHARITY_FUNDRAISER && $this->donationDestination == self::DONATION_CUSTOM_FUNDRAISER && empty($this->customCharityPaypal))
+        if ($this->type == self::TYPE_CHARITY_FUNDRAISER && $this->donationDestination == self::DONATION_CUSTOM_FUNDRAISER && empty($this->customCharityPaypal))
         {
             $this->addError("customCharityPaypal", "A valid charity PayPal address is required");
+            return;
+        }
+
+        if ($this->goalAmount > 0 && $this->goalAmount < 1)
+        {
+            $this->addError("goalAmount", "Goal amount should not be less 1");
             return;
         }
 
@@ -150,9 +156,11 @@ class Campaign extends ActiveRecord {
             ['name', 'nameFilter'],
             ['parentCampaignId', 'parentCampaignIdFilter'],
             ['description', 'filter', 'filter' => 'strip_tags'],
-            ['description', 'string', 'length' => [0,self::DESCRIPTION_MAX_LENGTH]],
-            ['goalAmount', 'required'],
-            ['goalAmount', 'double', 'min' => 1],
+            ['description', 'string', 'length' => [0, self::DESCRIPTION_MAX_LENGTH]],
+            ['goalAmount', 'required',
+                'when' => function($model){return $model->type !== self::TYPE_PERSONAL_FUNDRAISER;},
+                'whenClient' => "function (attribute, value) {return $('#campaign-type option:selected').text() !== '".self::TYPE_PERSONAL_FUNDRAISER."';}"],
+            ['goalAmount', 'double'],
             ['paypalAddress', 'email'],
             ['customCharityPaypal', 'email'],
             ['googleAnalytics', 'filter', 'filter' => 'strip_tags'],
