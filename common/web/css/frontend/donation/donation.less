@@ -7,6 +7,7 @@
 
 /* General */
 /* ------------------------------------------------- */
+html,
 body {
 	background: @white;
 	height: auto;
@@ -24,6 +25,10 @@ label {
 }
 
 .form-wrapper {
+	margin: 0 auto;
+	padding: 3em 5% 1em;
+	width: 100%;
+	max-width: 640px;
 
 	.form-group {
 		margin: 0;
@@ -83,33 +88,32 @@ label {
 	margin: 0 auto;
 	padding: 4.8em 5% 0;
 	max-width: 800px;
+}
+h1.main-title {
+	color: @gray20;
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: -1px;
+	padding: 0 5%;
+	margin: 0;
+}
+h3.charity-name {
+	color: @gray60;
+	font-size: 1.15em;
+	line-height: 1.2em;
+	padding: 0 5%;
+	margin-top: .8em;
 
-	h1.campaign-name {
-		color: @gray20;
-		font-weight: 400;
-		line-height: 1;
-		letter-spacing: -1px;
-		padding: 0 5%;
-		margin: 0;
-	}
-	h3.charity-name {
-		color: @gray60;
-		font-size: 1.15em;
-		line-height: 1.2em;
-		padding: 0 5%;
-		margin-top: .8em;
+	span {
+		color: @accent;
 
-		span {
-			color: @accent;
-
-			&.approved {
-				position: relative;
-				top: 2px;
-				display: inline-block;
-				font-size: 1em;
-				font-weight: 600;
-				margin-left: @iconspace;
-			}
+		&.approved {
+			position: relative;
+			top: 2px;
+			display: inline-block;
+			font-size: 1em;
+			font-weight: 600;
+			margin-left: @iconspace;
 		}
 	}
 }
@@ -143,6 +147,7 @@ label {
 		max-width: 100%;
 		background: @accent;
 		.animate-bar;
+		.slowtrans;
 	}
 }
 
@@ -207,35 +212,6 @@ footer {
 			color: @gray20;
 		}
 	}
-}
-
-
-/* Responsive */
-/* ------------------------------------------------- */
-@media only screen and (max-width: 480px) {
-	h1.campaign-name {
-		font-size: 2.4em;
-	}
-	h3.charity-name {
-		font-size: 1em;
-	}
-	button.donate {
-		width: 100%;
-	}
-}
-
-
-/* Shared Styles */
-/* ------------------------------------------------- */
-.tip-jar,
-.events-form {
-
-	 form {
-		margin: 0 auto;
-		padding: 3em 5% 1em;
-		width: 100%;
-		max-width: 650px;
-	 }
 }
 
 
@@ -422,6 +398,14 @@ footer {
 }
 
 
+/* Thank You Page */
+/* ------------------------------------------------- */
+.thankyou {
+	text-align: center;
+	padding-top: 9em;
+}
+
+
 /* Responsive */
 /* ------------------------------------------------- */
 @media only screen and (max-width: 540px) {
@@ -438,70 +422,15 @@ footer {
 		text-indent: 18%;
 		padding: .9em 10% !important;
 	}
-	.form-wrapper {
-		padding: 0;
+}
+@media only screen and (max-width: 480px) {
+	h1.campaign-name {
+		font-size: 2.4em;
 	}
-}
-
-/* Dark Styles (if opted) */
-/* ------------------------------------------------- */
-html.dark,
-html.dark body {
-	background: @base;
-}
-/* Progress Bar */
-html.dark .form-progress .totals {
-	color: #53555a;
-}
-html.dark .form-progress-wrap {
-	background: #3a3c40;
-}
-html.dark div.separation > div.separation-left,
-html.dark div.separation > div.separation-right {
-	background: #222325;
-}
-html.dark div.separation > div.separation-left:after,
-html.dark div.separation > div.separation-right:after {
-	border-bottom: 60px solid #222325;
-}
-/* General */
-html.dark h1.campaign-name {
-	color: @white;
-}
-/* Forms */
-html.dark input,
-html.dark textarea {
-	color: @white;
-	border: 0;
-	background: #2e3032;
-}
-html.dark .events-form #donation-amount .fieldamount label {
-	color: #85888e;
-	background: #2e3032;
-}
-html.dark .events-form #donation-amount .fieldamount label:hover {
-	background: #3a3c40;
-}
-html.dark .events-form #donation-amount #other {
-	background: #2e3032;
-	border: solid 1px #2e3032;
-}
-html.dark .events-form #donation-amount #other a.closethis {
-	color: #6b6e75;
-}
-html.dark .events-form #donation-amount #other a.closethis:hover {
-	color: @white;
-}
-html.dark .events-form #donation-amount #other span.dollar-sign {
-	color: #6b6e75;
-}
-/* Footer */
-html.dark h5 {
-	color: #3a3c40;
-}
-html.dark footer a.logo:before {
-	color: #3a3c40;
-}
-html.dark footer a.logo:hover:before {
-	color: @white;
+	h3.charity-name {
+		font-size: 1em;
+	}
+	button.donate {
+		width: 100%;
+	}
 }
