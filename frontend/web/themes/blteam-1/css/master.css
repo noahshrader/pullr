@@ -461,7 +461,6 @@ header .container {
 }
 .team-content .team-wrap {
   padding: .6%;
-  background: #d4d4d8;
   border-radius: 10px;
 }
 .team-content .team-wrap .team-members {
@@ -480,7 +479,7 @@ header .container {
   cursor: pointer;
 }
 .team-content .team-wrap .team-members .team-member.offline img {
-  opacity: .4;
+  opacity: .3;
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   filter: gray;
@@ -548,6 +547,9 @@ header .container {
   border-radius: 10px;
 }
 /* Multichannel */
+.team-content .team-wrap {
+  background: #d4d4d8;
+}
 /* Footer */
 footer span.copy {
   font-size: 0.8em;
