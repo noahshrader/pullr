@@ -9,7 +9,7 @@
         
         <!-- Form Visibility -->
         <div class="form-group field-campaign-formvisibility">
-                <label>Form Visibility</label><i class="icon icon-help" data-toggle="tooltip" data-placement="bottom" title="Select form visibility."></i>
+                <label>Form Visibility</label><i class="icon icon-help" data-toggle="tooltip" data-placement="bottom" title="Select 'Visible' if you want to show your form. Select 'Hidden' to hide your form."></i>
                 
                 <? $keyValues = [ true => 'Visible', false => 'Hidden']; ?>
                 <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>

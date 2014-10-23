@@ -90,6 +90,19 @@ class Campaign extends ActiveRecord {
     }
     
     public function beforeSave($insert) {
+
+        if ($this->type == self::TYPE_PERSONAL_FUNDRAISER && empty($this->paypalAddress))
+        {
+            $this->addError("paypalAddress", "A valid PayPal address is required");
+            return;
+        }
+
+        if($this->type == self::TYPE_CHARITY_FUNDRAISER && $this->donationDestination == self::DONATION_CUSTOM_FUNDRAISER && empty($this->customCharityPaypal))
+        {
+            $this->addError("customCharityPaypal", "A valid charity PayPal address is required");
+            return;
+        }
+
         if ($insert) {
             if (isset(\Yii::$app->user) && !\Yii::$app->user->isGuest) {
                 $this->userId = \Yii::$app->user->id;
@@ -141,6 +154,7 @@ class Campaign extends ActiveRecord {
             ['goalAmount', 'required'],
             ['goalAmount', 'double', 'min' => 1],
             ['paypalAddress', 'email'],
+            ['customCharityPaypal', 'email'],
             ['googleAnalytics', 'filter', 'filter' => 'strip_tags'],
             ['channelName', 'filter', 'filter' => 'strip_tags'],
             ['channelTeam', 'filter', 'filter' => 'strip_tags'],

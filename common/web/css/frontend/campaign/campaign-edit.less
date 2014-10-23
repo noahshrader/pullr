@@ -117,12 +117,15 @@
 
 	/* Team List (for team fundraising and multichannel teams) */
 	.team-list {
-		margin-top: @halfgutter;
+		
 
 		ul {
 			li {
 				line-height: 40px;
 				border-bottom: 1px solid @gray75;
+				&:first-of-type {
+					margin-top: @halfgutter;
+				}
 
 				a {
 					display: inline-block;
