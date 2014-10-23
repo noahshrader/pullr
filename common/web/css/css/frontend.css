@@ -1981,7 +1981,7 @@ yx-axis
 }
 .module .module {
   position: static;
-  margin: 15px 0 45px;
+  margin: 15px 0 40px;
   padding: 0 30px 15px;
   border: solid 1px #efeff0;
   box-shadow: none;
@@ -1993,14 +1993,22 @@ yx-axis
 .module .module > h5 {
   text-align: center;
   position: relative;
-  top: -15px;
+  top: -12px;
   left: -1em;
   display: inline-block;
-  color: #53535a;
+  color: #6b6b75;
+  font-size: 18px;
   font-weight: 600;
   padding: 0 1em;
   margin: 0 0 15px;
   background: #FFF;
+}
+.module .module > h5 i {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  font-size: 18px;
+  margin-right: 6px;
 }
 /* Sidebar */
 /* ------------------------------------------------- */
@@ -2226,8 +2234,6 @@ yx-axis
   line-height: 40px;
   margin-right: 8px;
 }
-/* Errors/Alerts */
-/* ------------------------------------------------- */
 /* Pace Loader Bar */
 /* ------------------------------------------------- */
 .pace .pace-progress {
@@ -2432,7 +2438,7 @@ table.dataTable thead td {
   background: #ffffff;
 }
 .campaign-edit-wrap .tab-content {
-  padding: 45px 30px;
+  padding: 45px 60px;
   margin: 0 auto;
   max-width: 700px;
 }
@@ -2555,6 +2561,9 @@ table.dataTable thead td {
 #campaignEdit .team-list ul li a.active {
   color: #1dbc9c;
 }
+#campaignEdit .team-list ul li a.icon-bubble {
+  display: none;
+}
 #campaignEdit.team-enabled .team-list {
   padding-bottom: 30px;
 }
@@ -2628,6 +2637,12 @@ table.dataTable thead td {
 }
 .select2-drop.charitydrop .select2-results .select2-result-label br {
   display: none;
+}
+#collapseOne > h4,
+#collapseTwo > h4,
+#campaign-edit-form > h4,
+#collapseFour > h4 {
+  text-align: center;
 }
 /* CKE Editor */
 /* ------------------------------------------------- */
@@ -2791,12 +2806,6 @@ a.cke_dialog_ui_button_ok:hover {
 }
 #campaignEdit[data-campaigntype="Charity Fundraiser"] #tieCampaignContainer {
   display: block;
-}
-#campaignEdit[data-campaigntype="Charity Fundraiser"] .isTied .field-campaign-parentcampaignid {
-  display: block;
-}
-#campaignEdit[data-campaigntype="Charity Fundraiser"] .isTied #notTiedCampaignContainer {
-  display: none;
 }
 [data-donationDestination='Partnered Charities'] .customCharity {
   display: none;
@@ -2968,19 +2977,26 @@ body.trash .campaigns-list .list-search {
 /* Main Campaigns View */
 /* ------------------------------------------------- */
 /* No Campaigns */
-.no-campaigns {
+.no-entries {
   position: relative;
   float: left;
   height: 100%;
   width: 100%;
 }
-.no-campaigns span {
+.no-entries div {
   position: absolute;
   top: 50%;
   text-align: center;
-  margin-top: -20px;
+  margin-top: -45px;
   width: 100%;
   display: block;
+}
+.no-entries div h3 {
+  color: #6b6b75;
+  font-weight: 600;
+}
+.no-entries div i {
+  margin: 0;
 }
 /* Campaign View Navigation */
 .campaign-actions {
@@ -3056,7 +3072,7 @@ body.trash .campaigns-list .list-search {
   border-color: #85858e transparent transparent transparent;
 }
 .campaign-actions h4 {
-  font-size: 1.3em;
+  font-size: 1.36em;
   font-weight: 600;
   line-height: 58px;
   text-align: center;
