@@ -5,16 +5,13 @@
             function link(scope, element, attrs) {
              
                 var $messageContainer = $('#rotating-message-container');
-                var isRunning = false,
-                
-                    i = -1,
+                var isRunning = false,                
+                    i = -1;
           
-                    rotationSpeed = 5;
+        
                 var timer;
                 var messagesModule;
-                scope.$watch(attrs.rotationSpeed, function (value) {
-                    rotationSpeed = value;
-                });
+        
                 scope.$watch('messagesModule', function (value) {
                     messagesModule = value;              
                     if (messagesModule) {
@@ -88,18 +85,16 @@
                                 if( isRunning ) {
                                     $messageContainer.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', nextMessage);                                
                                 }  
-                            }, rotationSpeed * 1000, 1)                                          
+                            }, scope.rotationSpeed * 1000, 1)                                          
                         });                        
-                    } 
-
-                  
-                    
+                    }                                      
                 }
             }
 
             return {
                 scope: {
-                    messagesModule:'='
+                    messagesModule : '=',
+                    rotationSpeed : '='
                 },
                 compile: function(tElement) {
                     var $element = $(tElement);
