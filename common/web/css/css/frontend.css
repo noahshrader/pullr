@@ -2638,11 +2638,13 @@ table.dataTable thead td {
 .select2-drop.charitydrop .select2-results .select2-result-label br {
   display: none;
 }
-#collapseOne > h4,
-#collapseTwo > h4,
-#campaign-edit-form > h4,
-#collapseFour > h4 {
+#collapseOne > h2,
+#collapseTwo > h2,
+#campaign-edit-form > h2,
+#collapseFour > h2 {
   text-align: center;
+  font-weight: 300;
+  margin-bottom: 30px;
 }
 /* CKE Editor */
 /* ------------------------------------------------- */

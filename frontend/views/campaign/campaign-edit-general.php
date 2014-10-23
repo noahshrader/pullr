@@ -23,7 +23,7 @@ $firstGiving = $campaign->getFirstGiving();
 ?>
 
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
-	<h4>Start setting up your campaign here</h4>
+	<h2>Start setting up your campaign here</h2>
     <div class="module">
         <h5><i class="icon-list"></i>Campaign Details</h5>
         

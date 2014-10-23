@@ -1,5 +1,5 @@
 <div id="collapseFour" class="<?= ($campaign->twitterEnable? 'twitterEnable ': '').($campaign->youtubeEnable? 'youtubeEnable ': '').($campaign->facebookEnable? 'facebookEnable ': '') ?> socialenable">
-<h4 class="center">Add your social links to your campaign page</h4>
+<h2>Add your social links to your campaign page</h2>
 	<!-- Twitter -->
 	<div class="module cf">
         <h5>Twitter</h5>
