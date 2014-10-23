@@ -57,7 +57,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
                                 <div class="panel-group media-item images cf" ng-class="{selected: file==widget.background}" ng-click="campaignBackgroundChanged(file, region)">
                                     <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
                                     <div class='mediaActions'>
-                                        <i class="glyphicon glyphicon-remove" ng-click="alertMediaManagerService.removeCampaignBackground(file)"></i>
+                                        <i class="glyphicon glyphicon-remove" ng-click="removeCampaignBackground(file, region, $event)"></i>
                                     </div>
                                 </div>
                             </div>

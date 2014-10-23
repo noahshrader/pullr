@@ -93,10 +93,18 @@
             preference.imageType = imageType;
             $scope.regionChanged(region);
         };
-        $scope.campaignBackgroundChanged = function(background, region) {
-            console.log(region);
+        $scope.campaignBackgroundChanged = function(background, region) {            
             region.widgetCampaignBar.background = background;
             $scope.regionChanged(region);
+        }
+        $scope.removeCampaignBackground = function(image, region, event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            region.widgetCampaignBar.background = '';                                 
+            alertMediaManager.removeCampaignBackground(image);
+            
         }
         $scope.onSetTimeCountDownFrom = function (newDate, oldDate) {
             var scope = this.$parent;
