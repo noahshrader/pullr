@@ -238,6 +238,7 @@ class Sample_dataController extends Controller
         $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
         $campaign->userId = $this->adminUser->id;
         $campaign->goalAmount = 15000;
+        $campaign->paypalAddress = '11@mail.ru';
         $campaign->save();
 
         CampaignInvite::addInvite($this->user1->id, $campaign->id);
