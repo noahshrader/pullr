@@ -93,13 +93,13 @@ class Campaign extends ActiveRecord {
 
         if ($this->type == self::TYPE_PERSONAL_FUNDRAISER && empty($this->paypalAddress))
         {
-            $this->addError("paypalAddress", "PayPal Address cannot be null");
+            $this->addError("paypalAddress", "A valid PayPal address is required");
             return;
         }
 
         if($this->type == self::TYPE_CHARITY_FUNDRAISER && $this->donationDestination == self::DONATION_CUSTOM_FUNDRAISER && empty($this->customCharityPaypal))
         {
-            $this->addError("customCharityPaypal", "Charity PayPal Address cannot be null");
+            $this->addError("customCharityPaypal", "A valid charity PayPal address is required");
             return;
         }
 

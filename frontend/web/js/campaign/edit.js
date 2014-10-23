@@ -127,27 +127,27 @@ function initBootstrapSwitch() {
     $("#campaign-twitterenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-twitterenable').bootstrapSwitch('state');
         if (value){
-            $('.field-campaign-twittername').addClass('show');
+            $('.field-campaign-twittername').fadeIn(300);
         } else {
-            $('.field-campaign-twittername').removeClass('show');
+            $('.field-campaign-twittername').fadeOut(300);
         }
     });
     
     $("#campaign-youtubeenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-youtubeenable').bootstrapSwitch('state');
         if (value){
-            $('.field-campaign-youtubeurl').addClass('show');
+            $('.field-campaign-youtubeurl').fadeIn(300);
         } else {
-            $('.field-campaign-youtubeurl').removeClass('show');
+            $('.field-campaign-youtubeurl').fadeOut(300);
         }
     });
     
     $("#campaign-facebookenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-facebookenable').bootstrapSwitch('state');
         if (value){
-            $('.field-campaign-facebookurl').addClass('show');
+            $('.field-campaign-facebookurl').fadeIn(300);
         } else {
-            $('.field-campaign-facebookurl').removeClass('show');
+            $('.field-campaign-facebookurl').fadeOut(300);
         }
     });
 
@@ -163,9 +163,9 @@ function initBootstrapSwitch() {
     $("#campaign-tiedtoparent").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-tiedtoparent').bootstrapSwitch('state');
         if (value){
-            $('#collapseOne').addClass('isTied');
+            $('.field-campaign-parentcampaignid').fadeIn(300);
         } else {
-            $('#collapseOne').removeClass('isTied');
+            $('.field-campaign-parentcampaignid').fadeOut(300);
         }
     });
 }
