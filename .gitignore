@@ -11,8 +11,7 @@ Vagrantfile
 .vagrant
 /.gitattributes
 node_app/config.json
-/Pullr.v12.suo
-/Pullr.phpproj
-/Pullr.phpproj.user
-/Pullr.sln
-
+/*.suo
+/*.phpproj
+/*.user
+/*.sln
