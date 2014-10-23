@@ -19,6 +19,7 @@ use frontend\models\streamboard\StreamboardCampaign;
  * @property Campaign $parentCampaign
  * @property StreamboardCampaign $streamboard
  * @property string $donationDestination
+ * @property bool $enableDonationProgressBar
  * @description To consider account on other the base you also should check expire field to be more than current time
  */
 class Campaign extends ActiveRecord {
@@ -65,7 +66,7 @@ class Campaign extends ActiveRecord {
                 'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal',
                 'channelName', 'channelTeam', 'primaryColor', 'secondaryColor', 'themeId', 'twitterEnable',
                 'twitterName', 'facebookEnable', 'facebookUrl', 'youtubeEnable', 'youtubeUrl',
-                'enableDonorComments', 'enableThankYouPage', 'thankYouPageText', 'teamEnable', 'formVisibility']
+                'enableDonorComments', 'enableThankYouPage', 'enableDonationProgressBar', 'thankYouPageText', 'teamEnable', 'formVisibility']
         ];
     }
 
@@ -86,6 +87,7 @@ class Campaign extends ActiveRecord {
         $this->formVisibility = true;
         $this->enableDonorComments = true;
         $this->enableThankYouPage = false;
+        $this->enableDonationProgressBar = true;
         $this->donationDestination = self::DONATION_PARTNERED_CHARITIES;
     }
     
