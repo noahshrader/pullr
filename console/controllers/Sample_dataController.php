@@ -223,6 +223,7 @@ class Sample_dataController extends Controller
         $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
         $campaign->userId = $this->user1->id;
         $campaign->goalAmount = 15000;
+        $campaign->paypalAddress = '11@mail.ru';
         $campaign->save();
 
         $campaign = new Campaign();
@@ -230,6 +231,7 @@ class Sample_dataController extends Controller
         $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
         $campaign->userId = $this->user1->id;
         $campaign->goalAmount = 15000;
+        $campaign->paypalAddress = '11@mail.ru';
         $campaign->save();
 
 
