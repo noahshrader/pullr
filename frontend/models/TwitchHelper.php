@@ -11,49 +11,41 @@ use common\components\Application;
 
 class TwitchHelper 
 {
-	public static function updateFollows()
-	{
-        $user = Application::getCurrentUser();
-        if ($user) {
-	        $channel = $user->userFields->twitchChannel;
-	        $twitchPartner = $user->userFields->twitchPartner;
+	public static function updateFollowerNumber($user)
+	{      
+		
+        $channel = $user->userFields->twitchChannel;
+        
+        if ( ! $channel) {
+            return;
+        }
 
-	        if ( !$channel || !$twitchPartner){
-	            return;
-	        }
-
-	        /**
-	         * @var TwitchSDK $twitchSDK
-	         */
-	        $twitchSDK = \Yii::$app->twitchSDK;
-	        $data = $twitchSDK->channelFollows($channel, 100);
-	       	$data = json_decode(json_encode($data), true);
-	        TwitchUser::updateFollowersNumber($user->id, $data['_total']);	       
-	        TwitchFollow::updateFollows($user->id, $data['follows']);	
-        }              
+        /**
+         * @var TwitchSDK $twitchSDK
+         */
+        $twitchSDK = \Yii::$app->twitchSDK;
+        $data = $twitchSDK->channelFollows($channel, 1);
+       	$data = json_decode(json_encode($data), true);
+        TwitchUser::updateFollowersNumber($user->id, $data['_total']);	 	            	              
     }
 
-    public static function updateSubscriptions()
-    {
-        $user = Application::getCurrentUser();
-        if ($user) {
-        	$accessToken = $user->userFields->twitchAccessToken;
-	        $channel = $user->userFields->twitchChannel;
-	        $twitchPartner = $user->userFields->twitchPartner;
+    public static function updateSubscriberNumber($user)
+    {    
+    	$accessToken = $user->userFields->twitchAccessToken;
+        $channel = $user->userFields->twitchChannel;
+        $twitchPartner = $user->userFields->twitchPartner;
 
-	        if (!$accessToken || !$channel || !$twitchPartner){
-	            return;
-	        }
+        if ( ! $accessToken || ! $channel || ! $twitchPartner) {
+            return;
+        }
 
-	        /**
-	         * @var TwitchSDK $twitchSDK
-	         */
-	        $twitchSDK = \Yii::$app->twitchSDK;
-	        $data = $twitchSDK->authChannelSubscriptions($accessToken, $channel, 100);
-	        /*to have array instead of object */
-	        $data = json_decode(json_encode($data),true);
-	        TwitchUser::updateSubscribersNumber($user->id, $data['_total']);
-	        TwitchSubscription::updateSubscriptions($user->id, $data['subscriptions']);
-        }        
+        /**
+         * @var TwitchSDK $twitchSDK
+         */
+        $twitchSDK = \Yii::$app->twitchSDK;
+        $data = $twitchSDK->authChannelSubscriptions($accessToken, $channel, 1);
+        /*to have array instead of object */
+        $data = json_decode(json_encode($data),true);
+        TwitchUser::updateSubscribersNumber($user->id, $data['_total']);	                      
     }
 }

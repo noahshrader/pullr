@@ -76,7 +76,16 @@ SubscriberHelper.prototype.getApiLink = function(){
 		return false;
 	}
 	
-}
+};
+
+SubscriberHelper.prototype.updateTotalNumber = function(number) {
+	var sql = 'insert into tbl_twitch_user(userId, subscribersNumber) values(?, ?) on duplicate key update subscribersNumber = ?';
+	connection.query(sql, [this.user.id, number, number], function(err){
+		if ( err ) {
+			console.log('Error update total subscriber numbers');
+		}
+	});
+};
 
 SubscriberHelper.prototype.requestSubscribersAndUpdate = function () {	
 
@@ -117,7 +126,8 @@ SubscriberHelper.prototype.requestSubscribersAndUpdate = function () {
 			}				
 			
 			_this.saveNewFollowers(body.subscriptions);
-			
+			_this.updateTotalNumber(total);
+
 			while (count < total) {				
 				var nextUrl = url + '&offset=' + count;
 				options.url = nextUrl;
