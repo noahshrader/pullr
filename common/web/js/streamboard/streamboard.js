@@ -117,16 +117,21 @@ $(function () {
             }
         }
     }, 1000)
-       $("#btn-copy-source-link").tooltip({
-            title:'Copied link to clipboard',
-            trigger: 'click',
-            placement:'bottom'
+    var $copySourceUrlButton = $("#btn-copy-source-link");
+    var $tooltip = $('#copied-clipboard-tooltip');
+    var client = new ZeroClipboard($copySourceUrlButton);
+    client.on('aftercopy', function(){
+        var top = $copySourceUrlButton.position().top + $copySourceUrlButton.height() + 10;
+        var left = $copySourceUrlButton.position().left - ($tooltip.outerWidth() / 2 - $copySourceUrlButton.outerWidth() / 2);
+        $tooltip.css({
+            left: left,
+            top: top
         });
-
-        $('#btn-copy-source-link').mouseleave(function(){
-            $('.tooltip bottom fade in').remove();
-        });
-//    var client = new ZeroClipboard($("#btn-copy-source-link"));
+        $tooltip.show();
+    });
+    $copySourceUrlButton.mouseout(function(){
+        $tooltip.hide();
+    })
 
 });
 // google fonts
