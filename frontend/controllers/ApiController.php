@@ -112,6 +112,16 @@ class ApiController extends \yii\web\Controller {
         $this->validateRequest();
     }
 
+    public function actionTeam() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $campaign = $this->validateRequest();
+        if ($campaign->layoutType != Campaign::LAYOUT_TYPE_TEAM || !$campaign->channelTeam) {
+            return [];
+        }
+        $team = $this->twitch->teamGet($campaign->channelTeam);        
+        return $team;
+    }
+
     public function actionChannels() {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $campaign = $this->validateRequest();

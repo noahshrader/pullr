@@ -67,9 +67,13 @@
 <section class="user-bar">
     <div class="container">
         <div class="user">
-            <div class="avatar">
+            <div class="avatar" ng-show='campaign.layoutType == LAYOUT_TYPE_SINGLE || campaign.layoutType == LAYOUT_TYPE_MULTI'>                
                 <img src="{{channel.logo}}" ng-cloak/>
                 <a href="http://www.twitch.tv/{{channel.display_name}}" ng-cloak>{{channel.display_name}}</a>
+            </div>
+            <div class="avatar" ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>                
+                <img src="{{team.logo}}" ng-cloak/>
+                <a href="http://www.twitch.tv/{{campaign.channelTeam}}" ng-cloak>{{team.display_name}}</a>
             </div>
 
             <div class="user-details-social">

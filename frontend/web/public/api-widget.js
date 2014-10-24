@@ -10,6 +10,9 @@ var app = angular.module('PullrApp', []);
 
 app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
 	$scope.isDataReady = false;
+	$scope.LAYOUT_TYPE_SINGLE = Pullr.LAYOUT_TYPE_SINGLE;
+	$scope.LAYOUT_TYPE_MULTI = Pullr.LAYOUT_TYPE_MULTI;
+	$scope.LAYOUT_TYPE_TEAM = Pullr.LAYOUT_TYPE_TEAM;
 	CampaignDataService.loadCampaign(function(data) {
 		$scope.campaign = data;	
 		
@@ -26,6 +29,12 @@ app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
 			}
 			$scope.isDataReady = true;
 		});
+		if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_TEAM) {
+			CampaignDataService.loadTeam(function(data) {
+				$scope.team = data;
+				console.log(data);
+			});
+		}
 		
 	});
 
@@ -77,6 +86,12 @@ app.factory('CampaignDataService', function($http) {
 		});	
 	}
 
+	service.loadTeam = function(callback) {
+		service.call('team', {}, function(data) {
+			service.team = data;
+			callback(data);
+		});	
+	}
 	return service;
 });
 
