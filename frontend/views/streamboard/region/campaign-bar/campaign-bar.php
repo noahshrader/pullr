@@ -17,7 +17,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
             position-container="region.widgetCampaignBar.alertsModule" 
          region="region"
          ng-class='region.toShow.alert.animationDirection'
-         ng-style='{"background-image":getCampaignAlertBackgroundStyle(region.widgetCampaignBar.alertsModule.background),"background-size":"100% 100%"}'>
+         ng-style='{"background-image":getCampaignAlertBackgroundStyle(region.widgetCampaignBar.alertsModule.background),"background-size":"cover"}'>
 
         <div
             ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'background-color': alertsModule.backgroundColor}">
