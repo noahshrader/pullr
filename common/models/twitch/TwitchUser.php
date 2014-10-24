@@ -29,7 +29,7 @@ class TwitchUser extends ActiveRecord {
 
         $twitchUser->$field = $value;
         $twitchUser->updateDate = time();
-        $twitchUser->save();
+        $twitchUser->save();      
     }
 
     public static function updateFollowersNumber($userId, $followersNumber){

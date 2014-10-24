@@ -102,6 +102,16 @@ FollowerHelper.prototype.getFollowersFromDb = function () {
 	return deferred.promise;
 };
 
+FollowerHelper.prototype.updateTotalNumber = function(number) {
+	var sql = 'insert into tbl_twitch_user(userId, followersNumber) values(?, ?) on DUPLICATE key update followersNumber = ?';
+	connection.query(sql, [this.user.id, number, number], function(err){
+		if ( err ) {
+			console.log('Error update total follower numbers');
+			console.log(err);
+		}
+	});
+};
+
 FollowerHelper.prototype.saveNewFollowers = function(followers) {
 	var _this = this;
 	var ids = [];
@@ -211,7 +221,7 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 			}				
 			//save to database					
 			_this.saveNewFollowers(body.follows);
-			
+			_this.updateTotalNumber(total);
 			while (count < total) {				
 				var nextUrl = url + '&offset=' + count;
 				options.url = nextUrl;
@@ -222,7 +232,7 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 						
 					} else {
 						console.log('[1] Error while get followers...')			
-						console.log(err, response);
+						console.log(error, response);
 					}
 				});
 				count += 100;
@@ -230,7 +240,7 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 			
 		} else {
 			console.log('[2] Error while get followers...')
-			console.log(err, response);
+			console.log(error, response);
 		}
 	});	
 };

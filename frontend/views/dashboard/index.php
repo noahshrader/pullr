@@ -88,12 +88,12 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                                <h2><?= TwitchFollow::getFollowerCountByTotal($user->id); ?></h2>
+                                <h2><?= $user->twitchUser->followersNumber; ?></h2>
                                 <h5>Followers</h5>
                             </div>
                             <? if ($twitchPartner): ?>
                             <div class="col-xs-6 text-center stats-box">
-                                <h2><?= TwitchSubscription::getSubscriberCountByTotal($user->id) ?></h2>
+                                <h2><?= $user->twitchUser->subscribersNumber; ?></h2>
                                 <h5>Subscribers</h5>
                             </div>
                             <? endif ?>
