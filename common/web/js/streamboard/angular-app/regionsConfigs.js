@@ -82,6 +82,10 @@
             simpleMarqueeHelper.recalculateMarquee();
             $scope.regionChanged(region);
         }
+        $scope.donationMessageChanged = function(region){
+            simpleMarqueeHelper.recalculateMarquee();
+            $scope.regionChanged(region);   
+        }
 
         $scope.selectSound = function (preference, sound, soundType, region) {
             preference.sound = sound;
