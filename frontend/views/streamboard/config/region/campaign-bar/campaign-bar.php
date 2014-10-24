@@ -34,14 +34,13 @@ use frontend\models\streamboard\WidgetAlertsPreference;
 </div>
 
 <div class="module">
-    <ul class="library-tabs cf">        
-        <li class="active"><a href='#' data-toggle="tab"><i class="icon-picture"></i>Graphics</a></li>
-    </ul>
+    <div class="module-title">
+        <h5>Background Image</h5>
+    </div>
     <div class="tab-content sounds-graphics-content">        
         <div id="region-1-preference-donations-images" class="tab-pane active">
             <div child-scope="" ng-init="fileType = 'campaignBackground';uploadError = null;" class="ng-scope">
             <!--main variable - preference -->
-                
                 <div class="tab-content sounds-graphics-content">
                     <div id="region-1-preference-donations-images-custom" class="tab-pane active">
                         <div class="error">
@@ -57,20 +56,17 @@ use frontend\models\streamboard\WidgetAlertsPreference;
                                 <div class="panel-group media-item images cf" ng-class="{selected: file==widget.background}" ng-click="campaignBackgroundChanged(file, region)">
                                     <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
                                     <div class='mediaActions'>
-                                        <i class="glyphicon glyphicon-remove" ng-click="removeCampaignBackground(file, region, $event)"></i>
+                                        <i class="icon-close" ng-click="removeCampaignBackground(file, region, $event)"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <div class="module last">
     <div class="form-group">
         <h5>Modules</h5>
