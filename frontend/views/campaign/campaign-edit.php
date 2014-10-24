@@ -91,7 +91,7 @@ $user = \Yii::$app->user->identity;
                 <a href="app/campaign/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
             </h4>
             <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-            <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank"><i class="icon icon-eye"></i></a>
+            <a class="view-campaign" href='<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon icon-eye"></i></a>
         </div>
         <? endif ?>
         <div class="module">

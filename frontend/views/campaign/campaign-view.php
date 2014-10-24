@@ -112,7 +112,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                     </span>
                 </h4>
                 <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                <a class="view-campaign" href='<?= $campaign->user->getUrl() . $campaign->alias ?>' target="_blank"><i class="icon icon-eye"></i></a>
+                <a class="view-campaign" href='<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon icon-eye"></i></a>
             </div>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER && $campaign->startDate && $campaign->endDate): ?>
             <? endif ?>
