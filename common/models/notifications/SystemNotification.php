@@ -31,7 +31,8 @@ class SystemNotification extends ActiveRecord {
     
     public static function getNotificationForUser($userId){
         $time = UserFields::findOne($userId)->systemNotificationDate;
-        return SystemNotification::find(['userId' => $userId])->andWhere('date > '.$time)->orderBy('date DESC')->one();
+        //return SystemNotification::find(['userId' => $userId])->andWhere('date > '.$time)->orderBy('date DESC')->one();
+        return SystemNotification::findOne(["status" => "active"]);
     }
     
     public static function readNotificationForUser($userId, $notificationId){
