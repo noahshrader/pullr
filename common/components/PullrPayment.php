@@ -62,6 +62,12 @@ class PullrPayment extends \yii\base\Component
                 $params['paymentType'] = \common\models\Payment::TYPE_PRO_MONTH;
                 break;
 
+            case 11.97:
+                $params['days'] = (365.25) / 4;
+                $params['subscription'] = Plan::SUBSCRIPTION_THREE_MONTH;
+                $params['paymentType'] = '';
+                break;
+
             default:
                 throw new \Exception("Wrong money amount");
         }

@@ -15,6 +15,7 @@ class Plan extends ActiveRecord {
     const PLAN_PRO = 'Pro';
     const SUBSCRIPTION_YEAR = 'year';
     const SUBSCRIPTION_MONTH = 'month';
+    const SUBSCRIPTION_THREE_MONTH = 'three_month';
     
     public static $PLANS = [self::PLAN_BASE, self::PLAN_PRO];
     /**
