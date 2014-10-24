@@ -158,8 +158,8 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 							stopAnimation();
 						}												
 					}
-					var $parent = $element.parent('.marquee-container');
-					$('.marquee-container').resizable({
+					var $parent = $element.parent('.marquee-container:eq(0)');
+					$parent.resizable({
 		                handles: "w, e",
 		                minWidth: 350,
 		                minHeight: 100,
