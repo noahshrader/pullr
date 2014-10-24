@@ -8,7 +8,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
      resizable-path="widgetCampaignBar"
      draggable position-container="region.widgetCampaignBar" region="region"
      background='{{region.widgetCampaignBar.background}}'
-     ng-style="{'color': region.widgetCampaignBar.fontColor, 'font-size': region.widgetCampaignBar.fontSize, 'font-family': region.widgetCampaignBar.fontStyle, 'background-color': region.widgetCampaignBar.backgroundColor,'background-image': getBackgroundStyle(region.widgetCampaignBar.background)}">
+     ng-style="{'color': region.widgetCampaignBar.fontColor, 'font-size': region.widgetCampaignBar.fontSize, 'font-family': region.widgetCampaignBar.fontStyle, 'background-color': region.widgetCampaignBar.backgroundColor,'background-image': getCampaignBackgroundStyle(region.widgetCampaignBar.background)}">
     <div ng-if="region.widgetCampaignBar.campaignId" draggable position-container="region.widgetCampaignBar.currentTotalModule" region="region">
         Current total: ${{number_format(campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised)}}
     </div>
