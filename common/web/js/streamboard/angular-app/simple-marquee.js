@@ -158,7 +158,8 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 							stopAnimation();
 						}												
 					}
-					var $parent = $element.parent('.marquee-container');
+					var $parent = $element.parent('.marquee-container:eq(0)');
+					
 					$parent.resizable({
 		                handles: "w, e",
 		                minWidth: 350,
@@ -187,6 +188,11 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 						}, 500);
 						
 					});
+
+
+					$timeout(function(){
+						recalculateMarquee();
+					}, 2000);
 
 					scope.$watch(attrs.duration, function(durationText) {
 						switch (durationText) {
