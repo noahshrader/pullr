@@ -135,6 +135,10 @@ class SiteController extends FrontendController
                 $user->smallPhoto = $userInfo->logo;
                 $user->save();
 
+                // <Temp solution for beta test>
+                $user->prolong(11.97);
+                // </Temp solution for beta test>
+
                 $user->userFields->twitchChannel = $userInfo->name;
                 $user->userFields->save();
 
