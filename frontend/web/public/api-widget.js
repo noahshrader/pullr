@@ -113,9 +113,9 @@ app.directive('pullrCampaignLayout', function($interval, $timeout, CampaignDataS
 		link: function(scope, element, attr) {
 			scope.$watch('selectedChannel', function(selectedChannel) {
 				if (selectedChannel != null) {
-					scope.embedPlayerUrl = 'http://www.twitch.tv/widgets/live_embed_player.swf?channel=' + scope.selectedChannel;
+					scope.embedPlayerUrl = '//www.twitch.tv/widgets/live_embed_player.swf?channel=' + scope.selectedChannel;
 					scope.hostname = 'hostname=www.twitch.tv&channel=' + scope.selectedChannel + '&auto_play=true&start_volume=25';
-					scope.chatUrl = 'http://twitch.tv/' + scope.selectedChannel + '/chat?popout=';
+					scope.chatUrl = '//twitch.tv/' + scope.selectedChannel + '/chat?popout=';
 				}
 			});
 			scope.setChannel = function(channelName) {
