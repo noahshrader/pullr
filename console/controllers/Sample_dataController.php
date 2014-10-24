@@ -172,7 +172,7 @@ class Sample_dataController extends Controller
     private function sampleNotification()
     {
         $notification = new SystemNotification();
-        $notification->message = 'Welcome to Pullr Alpha Test. Thank you for your collaboration.';
+        $notification->message = 'Welcome beta tester! Please excuse my bugs ^_^';
         $notification->save();
     }
 
