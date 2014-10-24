@@ -65,7 +65,7 @@ class PullrPayment extends \yii\base\Component
             case 11.97:
                 $params['days'] = (365.25) / 4;
                 $params['subscription'] = Plan::SUBSCRIPTION_THREE_MONTH;
-                $params['paymentType'] = '';
+                $params['paymentType'] = \common\models\Payment::TYPE_PRO_MONTH;
                 break;
 
             default:
@@ -85,7 +85,7 @@ class PullrPayment extends \yii\base\Component
         $percent = 0.2;
         if (!\Yii::$app->user->isGuest && (\Yii::$app->user->identity->getPlan() == Plan::PLAN_PRO))
         {
-            $percent = 0.05;
+            $percent = 0;
         }
 
         return $percent;
@@ -160,14 +160,17 @@ class PullrPayment extends \yii\base\Component
         $donationPayment->createdDate = time();
         $donationPayment->save();
 
-        $percentPayment = new \common\models\Payment();
-        $percentPayment->userId = \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
-        $percentPayment->type = \common\models\Payment::TYPE_DONATION_PERCENT;
-        $percentPayment->payKey = $response->payKey;
-        $percentPayment->amount = $feeReceiver->amount;
-        $percentPayment->relatedId = $donation->id;
-        $percentPayment->createdDate = time();
-        $percentPayment->save();
+        if ($feeReceiver->amount > 0)
+        {
+            $percentPayment = new \common\models\Payment();
+            $percentPayment->userId = \Yii::$app->user->isGuest ? null : \Yii::$app->user->id;
+            $percentPayment->type = \common\models\Payment::TYPE_DONATION_PERCENT;
+            $percentPayment->payKey = $response->payKey;
+            $percentPayment->amount = $feeReceiver->amount;
+            $percentPayment->relatedId = $donation->id;
+            $percentPayment->createdDate = time();
+            $percentPayment->save();
+        }
     }
 
     /**
@@ -239,7 +242,8 @@ class PullrPayment extends \yii\base\Component
 
         $feeReceiver = $this->prepareFeeReceiver($donation);
         $donationReceiver = $this->prepareDonationReceiver($donation);
-        $payRequest = $this->preparePayRequest([$feeReceiver, $donationReceiver], $returnUrl, $cancelUrl);
+        $receivers = $feeReceiver->amount > 0 ? [$feeReceiver, $donationReceiver] : [$donationReceiver];
+        $payRequest = $this->preparePayRequest($receivers, $returnUrl, $cancelUrl);
 
         try
         {
