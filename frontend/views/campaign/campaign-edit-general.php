@@ -23,9 +23,9 @@ $firstGiving = $campaign->getFirstGiving();
 ?>
 
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
-	<h2>Start setting up your campaign here</h2>
+	<h2>Set up your campaign.</h2>
     <div class="module">
-        <h5><i class="icon-list"></i>Campaign Details</h5>
+        <h5><i class="icon-settings"></i>Campaign Details</h5>
         
         <!-- Campaign Name -->
         <div class="form-group">

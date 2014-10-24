@@ -100,10 +100,10 @@ $user = \Yii::$app->user->identity;
                 <a href="<?= Url::to()?>#general" data-toggle="tab">General</a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#layout" data-toggle="tab">Campaign Page</a>
+                <a href="<?= Url::to()?>#layout" data-toggle="tab">Layout</a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Donation Form</a>
+                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Form</a>
             </li>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
                 <li id="campaign-edit-team-li">
