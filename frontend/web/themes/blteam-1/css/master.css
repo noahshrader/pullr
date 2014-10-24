@@ -445,7 +445,7 @@ header .container {
 }
 .stream-wrap #stream a.togglechat {
   position: absolute;
-  top: -30px;
+  top: -32px;
   right: 15px;
   display: block;
   font-size: 0.9em;

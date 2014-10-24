@@ -445,7 +445,7 @@ header .container {
 }
 .stream-wrap #stream a.togglechat {
   position: absolute;
-  top: -30px;
+  top: -32px;
   right: 15px;
   display: block;
   font-size: 0.9em;
@@ -459,6 +459,15 @@ header .container {
 .stream-wrap #stream {
   background: #29292d;
   border-radius: 10px;
+}
+/* Campaign Description */
+.campaign-description p {
+  float: left;
+  color: #9f9fa7;
+  font-size: 1.2em;
+  padding: 0 15px;
+  width: 90%;
+  max-width: 640px;
 }
 /* Footer */
 footer span.copy {
