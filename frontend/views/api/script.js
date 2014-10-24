@@ -1,6 +1,6 @@
 window.Pullr = window.Pullr || {};
 
-Pullr.MAIN_URL = "http://<?=$_SERVER['HTTP_HOST']?><?= \Yii::$app->urlManager->baseUrl?>/";
+Pullr.MAIN_URL = "//<?=$_SERVER['HTTP_HOST']?><?= \Yii::$app->urlManager->baseUrl?>/";
 Pullr.API_URL = Pullr.MAIN_URL + "api/";
 
 Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
@@ -8,7 +8,7 @@ Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.
 Pullr.MAGNIFIC_POPUP_JS_URL = Pullr.MAIN_URL + "js/lib/magnificpopup.js";
 Pullr.MAGNIFIC_POPUP_CSS_URL = Pullr.MAIN_URL + "js/lib/magnificpopup.css";
 
-Pullr.ANGULAR_LIB_URL = 'http://code.angularjs.org/snapshot/angular.js';
+Pullr.ANGULAR_LIB_URL = '//code.angularjs.org/snapshot/angular.js';
 Pullr.ANGULAR_APP_URL = Pullr.MAIN_URL + "public/api-widget.js";
 
 Pullr.LAYOUT_TYPE_SINGLE = "<? echo common\models\Campaign::LAYOUT_TYPE_SINGLE; ?>";
