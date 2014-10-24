@@ -7,14 +7,14 @@ $user = \Yii::$app->user->identity;
 
 ?>
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
+	<h2>Make it look good.</h2>
     <div class="module">
 
-        <h5>Layout</h5>
-        
+        <h5><i class="icon-design3"></i>Layout</h5>
         <!-- Campaign Page Layout -->
         <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
             <label class="control-label">Layout Type</label>
-            <i class="icon icon-help" data-toggle="tooltip" data-placement="bottom" title="Select 'Single Stream' for a single channel view. Select 'team stream' to pull in an entire Twitch team. Select 'Multi Stream' to pull in your own channels."></i>
+            <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Select <b>Single Stream</b> for a single channel view. <br /> <b>Team Stream</b> pulls in an entire Twitch team.<br /><b>Multi Stream</b> pulls in your own channels."></i>
             <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
             <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block']) ?>
         </div>
@@ -43,8 +43,7 @@ $user = \Yii::$app->user->identity;
     </div>
     <div class="module">
 
-        <h5>Theme</h5>
-
+        <h5><i class="icon-design2"></i>Theme</h5>
         <!-- Choose a Theme -->
         <div class="hide">
             <?= $form->field($campaign, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>

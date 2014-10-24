@@ -9,6 +9,7 @@ use common\models\Donation;
 use common\components\PullrPayment;
 use common\components\FirstGivingPayment;
 use yii\web\Request;
+use yii\helpers\Url;
 
 /**
  * Controller to view exported layout donations
@@ -89,7 +90,7 @@ class LayoutviewController extends \yii\web\Controller {
             $payKey = (new \yii\web\Session())->get("payKey");
             if((new PullrPayment($apiConfig))->finishDonationPayment($payKey))
             {
-                $this->redirect(sprintf("/%s/%s/thankyou", $userAlias, $campaignAlias));
+                $this->redirect(Url::to([sprintf("/%s/%s/thankyou", $userAlias, $campaignAlias)]));
                 
                 \Yii::$app->end();
             }

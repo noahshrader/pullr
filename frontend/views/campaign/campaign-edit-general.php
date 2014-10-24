@@ -23,8 +23,9 @@ $firstGiving = $campaign->getFirstGiving();
 ?>
 
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
+	<h2>Set up your campaign.</h2>
     <div class="module">
-        <h5><i class="icon-list"></i>Campaign Details</h5>
+        <h5><i class="icon-settings"></i>Campaign Details</h5>
         
         <!-- Campaign Name -->
         <div class="form-group">
@@ -52,7 +53,7 @@ $firstGiving = $campaign->getFirstGiving();
 
             <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
             <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
-                <label> Charity Type <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Raise money for your own cause. Or, search a list of popular charity organizations."></i>
+                <label> Charity Type <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Raise money for your own cause. Or, search a list of <b>1.6m</b> charities to support."></i>
                 </label>
                 <div class="form-group field-campaign-donationDestination">
                     <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'select-block']) ?>

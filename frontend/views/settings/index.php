@@ -40,7 +40,7 @@ $this->title = 'Settings';
 
 		<section class="module">
 			<div class="module">
-				<h5>General</h5>
+				<h5><i class="icon-user"></i>General</h5>
 				<?= $form->field($user, 'name') ?>
 				<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
 				<?
@@ -50,12 +50,12 @@ $this->title = 'Settings';
 				<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 			</div>
 			<div class="dashboard-notifications module">
-				<h5>Dashboard Notifications</h5>
+				<h5><i class="icon-notify"></i>Dashboard Notifications</h5>
 				<?= $form->field($notification, Notification::$NOTIFY_NEW_FOLLOWER)->checkbox(); ?>
 				<?= $form->field($notification, Notification::$NOTIFY_NEW_SUBSCRIBER)->checkbox(); ?>
 			</div>
 			<div class="email-notifications module">
-				<h5>Email Notifications</h5>
+				<h5><i class="icon-mail"></i>Email Notifications</h5>
 				<div>
 					<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
 					<? $attributes = $notification->getNotificationsAttributes(); ?>

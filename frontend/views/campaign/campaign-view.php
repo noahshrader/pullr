@@ -125,6 +125,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                     <h1>$<?= number_format($campaign->goalAmount) ?></h1>
                     <h5>Goal</h5>
                 </div>
+
+                <? if($campaign->goalAmount > 0):?>
                 <div class="progress-wrap">
                     <? $progress = ($campaign->amountRaised / max(1, $campaign->goalAmount))*100;
                     ?>
@@ -134,6 +136,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                         </div>
                     </div>
                 </div>
+                <? endif;?>
+
             </section>
             <section class="stats-overview module">
                 <div class='stats-box col-xs-6 total-donations'>
