@@ -112,6 +112,11 @@ class Campaign extends ActiveRecord {
             return;
         }
 
+        if (empty($this->goalAmount))
+        {
+            $this->goalAmount = 0;
+        }
+
         if ($insert) {
             if (isset(\Yii::$app->user) && !\Yii::$app->user->isGuest) {
                 $this->userId = \Yii::$app->user->id;
