@@ -12,8 +12,12 @@
             $scope.alertMediaManagerService = alertMediaManager;
             var animationEndTimer = null;
 
-            $scope.getBackgroundStyle = function(image) {
+            $scope.getCampaignBackgroundStyle = function(image) {                
                 var url =  'url(' + alertMediaManager.getCampaignBackgroundUrl(image) + ')';                
+                return url;
+            }
+            $scope.getCampaignAlertBackgroundStyle = function(image) {
+                var url =  'url(' + alertMediaManager.getCampaignAlertBackgroundUrl(image) + ')';                
                 return url;
             }
             $scope.regionsService.ready(function () {
@@ -71,7 +75,6 @@
                 if (region.widgetType == 'widget_alerts' || (region.widgetType == 'widget_campaign_bar' && region.widgetCampaignBar.alertsEnable)) {
                     while (stream.length > 0 && notification == false) {
                         notification = stream.shift();
-                        console.log(notification);
                         if (region.widgetType == 'widget_alerts') {
                             /**checking includeDonations, includeFollowers, includeSubscribers*/
                             if (!region.widgetAlerts['include' + capitaliseFirstLetter(notification.type)]) {
@@ -109,7 +112,8 @@
                         /**so we have campaign bar*/
                         var alertsModule = region.widgetCampaignBar.alertsModule;
                         toShow.animationDirectionArray = alertsModule.animationDirection.split(',');
-                        console.log(toShow.animationDirectionArray);
+                        toShow.image = alertMediaManager.getCampaignAlertBackgroundUrl(alertsModule.image);
+                        
                         if(toShow.animationDirectionArray.length > 1){
                             toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];    
                             if (animationEndTimer) {
@@ -142,11 +146,12 @@
                     animationEndTimer = $interval(function(){
                         region.toShow.alert.message = null;    
                         region.toShow.alert.animationDirectionArray = [];    
+                        region.toShow.alert.image = '';
                     }, 500, 1);
                 } else {
                     region.toShow.alert.animationDirection = '';
                     region.toShow.alert.message = null;
-                    region.toShow.alert.image = null;
+                    region.toShow.alert.image = '';
                 }
                 
                 $interval(function () {

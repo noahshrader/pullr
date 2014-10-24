@@ -118,6 +118,7 @@ class m140729_125121_streamboard_region extends ExtendedMigration
             'fontSize' => Schema::TYPE_INTEGER.' NOT NULL',
             'fontColor' => Schema::TYPE_STRING.' DEFAULT "fff" NOT NULL',
             'backgroundColor' => Schema::TYPE_STRING.' NOT NULL',
+            'background' => Schema::TYPE_STRING, 
             'animationDirection' => Schema::TYPE_STRING.' NOT NULL',
             'animationDuration' => Schema::TYPE_INTEGER.' NOT NULL',
             'animationDelay' => Schema::TYPE_INTEGER.' NOT NULL',

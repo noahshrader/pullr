@@ -38,9 +38,10 @@ class AlertMediaManager extends Model
     const PATH_TO_CUSTOM_SOUNDS = 'usermedia/streamboard/alerts/sounds/';
 
     const PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS = 'usermedia/streamboard/campaign/backgrounds/';
+    const PATH_TO_CUSTOM_CAMPAIGN_ALERT_BACKGROUNDS = 'usermedia/streamboard/campaign/alert_backgrounds/';
     public function fields()
     {
-        return ['customImages', 'customSounds', 'libraryImages', 'librarySounds', 'customCampaignBackgrounds'];
+        return ['customImages', 'customSounds', 'libraryImages', 'librarySounds', 'customCampaignBackgrounds', 'customCampaignAlertBackgrounds'];
     }
 
     public function toArray(array $fields = [], array $expand = [], $recursive = true)
@@ -51,6 +52,7 @@ class AlertMediaManager extends Model
         $data['PATH_TO_CUSTOM_SOUNDS'] = self::PATH_TO_CUSTOM_SOUNDS;
         $data['PATH_TO_CUSTOM_IMAGES'] = self::PATH_TO_CUSTOM_IMAGES;
         $data['PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS'] = self::PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS;
+        $data['PATH_TO_CUSTOM_CAMPAIGN_ALERT_BACKGROUNDS'] = self::PATH_TO_CUSTOM_CAMPAIGN_ALERT_BACKGROUNDS;
         return $data;
     }
 
@@ -120,6 +122,24 @@ class AlertMediaManager extends Model
     {
         $libraryPath = self::addUserToPath(self::PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS);
         return self::getFilesList($libraryPath, self::$IMAGES_EXTENSIONS);
+    }
+
+    public function getCustomCampaignAlertBackgrounds()
+    {
+        $libraryPath = self::addUserToPath(self::PATH_TO_CUSTOM_CAMPAIGN_ALERT_BACKGROUNDS);
+        return self::getFilesList($libraryPath, self::$IMAGES_EXTENSIONS);    
+    }
+
+    public static function uploadCampaignAlertBackgrounds()
+    {
+        $params = [
+            'extensions' => self::$IMAGES_EXTENSIONS,
+            'maxSize' => self::MAX_IMAGE_SIZE,
+            'maxSizeMessage' => self::MAX_IMAGE_SIZE_MESSAGE,
+            'pathToCustomLibrary' => self::PATH_TO_CUSTOM_CAMPAIGN_ALERT_BACKGROUNDS,
+            'getFilesListMethod' => [new AlertMediaManager(), 'getCustomCampaignAlertBackgrounds']
+        ];
+        return self::uploadMediaGeneral($params);
     }
 
     /**
@@ -205,6 +225,10 @@ class AlertMediaManager extends Model
         return self::removeFile(self::PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS, $fileName, self::$IMAGES_EXTENSIONS);
     }
 
+    public static function removeCampaignAlertBackground($filename) {
+        return self::removeFile(self::PATH_TO_CUSTOM_CAMPAIGN_ALERT_BACKGROUNDS, $filename, self::$IMAGES_EXTENSIONS);
+    }
+    
     public static function removeFile($library, $fileName, $extensions){
         $library = self::addUserToPath($library);
         $pathInfo = pathinfo($fileName);

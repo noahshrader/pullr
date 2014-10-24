@@ -1,3 +1,6 @@
+<? 
+use frontend\models\streamboard\WidgetAlertsPreference;
+?>
 <div class="module first">
     <div class="panel-group">
         <h5>Alerts</h5>
@@ -69,5 +72,42 @@
         <h5>Delay <span class="slider-value value">{{module.animationDelay}} sec</span></h5>
         <slider ng-model="module.animationDelay" floor="0" ceiling="30" step="1"
                 ng-change="regionChanged(region)"></slider>
+    </div>
+</div>
+
+<div class="module">
+    <ul class="library-tabs cf">        
+        <li class="active"><a href='#' data-toggle="tab"><i class="icon-picture"></i>Graphics</a></li>
+    </ul>
+    <div class="tab-content sounds-graphics-content">        
+        <div id="region-1-preference-donations-images" class="tab-pane active">
+            <div child-scope="" ng-init="fileType = 'campaignAlertBackground';uploadError = null;" class="ng-scope">
+         
+                
+                <div class="tab-content sounds-graphics-content">
+                    <div id="region-1-preference-donations-images-custom" class="tab-pane active">
+                        <div class="error">
+                            {{error}}
+                        </div>
+                        <div class="panel-group">
+                            <div class="uploader" ng-file-drop="onFileUpload($files, fileType, this)" ng-file-drag-over-class="uploader-drag-over">
+                                <span>Drops Files Here</span>
+                            </div>
+                        </div>
+                        <div class="files-container">
+                            <div ng-repeat="file in (alertMediaManagerService.customCampaignAlertBackgrounds)">
+                                <div class="panel-group media-item images cf" ng-class="{selected: file==module.background}" ng-click="selectCampaignAlertBackground(module, file, region)">
+                                    <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignAlertBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
+                                    <div class='mediaActions'>
+                                        <i class="glyphicon glyphicon-remove" ng-click="removeCampaignAlertBackground(file, region, $event)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -14,9 +14,11 @@ use frontend\models\streamboard\WidgetCampaignBar;
     </div>
     <div ng-if="region.widgetCampaignBar.alertsEnable" child-scope
          ng-init="alertsModule = region.widgetCampaignBar.alertsModule"
-         draggable position-container="region.widgetCampaignBar.alertsModule" 
+            position-container="region.widgetCampaignBar.alertsModule" 
          region="region"
-         ng-class='region.toShow.alert.animationDirection'>
+         ng-class='region.toShow.alert.animationDirection'
+         ng-style='{"background-image":getCampaignAlertBackgroundStyle(region.widgetCampaignBar.alertsModule.background),"background-size":"100% 100%"}'>
+
         <div
             ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'background-color': alertsModule.backgroundColor}">
                 {{region.toShow.alert.message}}
