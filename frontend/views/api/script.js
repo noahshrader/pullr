@@ -59,7 +59,7 @@ Pullr.Run = function(){
             func();
         }
     } else {
-        console.log('waiting response');
+      
         setTimeout(function(){
             Pullr.Run();
         }, 20)
