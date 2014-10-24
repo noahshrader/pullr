@@ -13,7 +13,8 @@ $title = $type ? $type : 'Choose a Theme';
         <div class='select-theme-container' data-name='<?= $theme->name ?>'
              data-id='<?= $theme->id ?>'>
             <a href='javascript:void(0)' onclick="selectTheme(this)">Select Theme</a>
-            <h4><?= $theme->name ?></h4>
+            <h3><?= $theme->name ?></h3>
+            <h2><?= $theme->description ?></h2>
         </div>
         <? endforeach; ?>
     <? else: ?>
