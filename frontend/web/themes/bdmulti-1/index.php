@@ -49,8 +49,8 @@
             <h1 style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h1>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4 center campaign-goal">
-            <span>Goal Amount</span>
-            <h1>{{campaign.goalAmountFormatted}}</h1>
+            <span ng-hide='campaign.goalAmount == 0.00'>Goal Amount</span>
+            <h1 ng-hide='campaign.goalAmount == 0.00'>{{campaign.goalAmountFormatted}}</h1>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4 right">
             <span>Donors</span>
