@@ -74,6 +74,7 @@ class Campaign extends ActiveRecord {
         parent::__construct($config);
 
         if ($this->isNewRecord) {
+            $this->goalAmount = 0;
             $this->type = self::TYPE_PERSONAL_FUNDRAISER;
             $this->layoutType = self::LAYOUT_TYPE_SINGLE;
             if (isset(\Yii::$app->components['user']) && !\Yii::$app->user->isGuest){
