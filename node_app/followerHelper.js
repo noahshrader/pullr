@@ -222,7 +222,7 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 						
 					} else {
 						console.log('[1] Error while get followers...')			
-						console.log(err, response);
+						console.log(error, response);
 					}
 				});
 				count += 100;
@@ -230,7 +230,7 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 			
 		} else {
 			console.log('[2] Error while get followers...')
-			console.log(err, response);
+			console.log(error, response);
 		}
 	});	
 };
