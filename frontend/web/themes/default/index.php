@@ -47,7 +47,7 @@
             <span>Amount Raised</span>
             <h1 style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h1>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 center">
+        <div class="col-md-4 col-sm-4 col-xs-4 center campaign-goal">
             <span>Goal Amount</span>
             <h1>{{campaign.goalAmountFormatted}}</h1>
         </div>
