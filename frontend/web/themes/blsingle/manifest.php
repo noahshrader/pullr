@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'name' => 'Light Single Stream One',
-    'description' => 'Light Single Stream',
+    'name' => 'Light Single Theme',
+    'description' => 'Light Single Theme',
     'layoutType' => 'Single Stream',
     'plan' => 'Basic'
 ];

@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'name' => 'Basic Light Team',
-    'description' => 'Basic Light Team Theme',
+    'name' => 'Light Team Theme',
+    'description' => 'Light Team Theme',
     'layoutType' => 'Twitch Team',
     'plan' => 'Basic'
 ];

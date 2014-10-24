@@ -10,16 +10,14 @@ $title = $type ? $type : 'Choose a Theme';
 
     <? if (sizeof($themes) > 0): ?>
         <? foreach ($themes as $theme): ?>
-        <div class='select-theme-container' data-name='<?= $theme->name ?>'
+        <a class='select-theme-container' data-name='<?= $theme->name ?>'
              data-id='<?= $theme->id ?>'>
-            <a href='javascript:void(0)' onclick="selectTheme(this)">Select Theme</a>
-            <h3><?= $theme->name ?></h3>
-            <h2><?= $theme->description ?></h2>
-        </div>
+            <h5><?= $theme->name ?></h5>
+        </a>
         <? endforeach; ?>
     <? else: ?>
         <div class="noThemes">
-            No themes are currently available for this layout type.
+            No themes are currently available for this layout type!
         </div>
     <? endif ?>
 </div>
