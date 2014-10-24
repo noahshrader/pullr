@@ -266,7 +266,7 @@ span.slider-value {
 	height: @sidenavheight;
 	background: @gray10;
 	border-bottom: solid 1px @maingray;
-
+	postion: relative;
 	button {
 		margin: .6em 0;
 	}
@@ -483,6 +483,11 @@ ul.panel-nav {
 @import "streamboard-campaignbar.less";
 @import "streamboard-activityfeed.less";
 
+/* Alerts */
+.widget-alerts {
+	text-align: center;
+}
+
 
 /* Loader */
 /* ------------------------------------------------- */
@@ -541,6 +546,7 @@ ul.panel-nav {
 	}
 }
 
-#copied-message {
+#copied-clipboard-tooltip {
 	display:none;
+	width:200px;
 }
