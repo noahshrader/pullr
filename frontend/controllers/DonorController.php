@@ -28,7 +28,7 @@ class DonorController extends FrontendController {
         $user = \Yii::$app->user->identity;
         $connection = \Yii::$app->db;
         $sql = 'SELECT email, SUM(amount) sum, GROUP_CONCAT(DISTINCT nameFromForm SEPARATOR " ") nameFromForm, firstName, lastName FROM '.Donation::tableName().
-                ' WHERE (campaignUserId = '.$user->id.' or parentCampaignId = '. $user->id.')'.
+                ' WHERE (campaignUserId = '.$user->id.' or parentCampaignUserId = '. $user->id.')'.
                 ' AND paymentDate > 0 AND email<>"" GROUP BY email ORDER BY sum DESC, lastName ASC, firstName ASC';
         $command = $connection->createCommand($sql);
         $donors = $command->queryAll();
