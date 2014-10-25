@@ -49,7 +49,7 @@ $(function(){
             preventDefault: true,
             scrollAmount: 10
         },
-        scrollInertia: 60,
+        scrollInertia: 30,
         callbacks:{
             onTotalScrollBackOffset: 10,
             whileScrolling: function(){
