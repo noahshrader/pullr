@@ -86,14 +86,8 @@ class LayoutviewController extends \yii\web\Controller {
         
         if(isset($_GET["success"]) && ($_GET["success"] == "true"))
         {
-            $apiConfig = \Yii::$app->params['payPal'];
-            $payKey = (new \yii\web\Session())->get("payKey");
-            if((new PullrPayment($apiConfig))->finishDonationPayment($payKey))
-            {
-                $this->redirect(Url::to([sprintf("/%s/%s/thankyou", $userAlias, $campaignAlias)]));
-                
-                \Yii::$app->end();
-            }
+            $this->redirect(Url::to([sprintf("/%s/%s/thankyou", $userAlias, $campaignAlias)]));
+            \Yii::$app->end();
         }
         
         if ($campaign->formVisibility == false)

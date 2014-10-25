@@ -19,7 +19,7 @@ class IpnController extends FrontendController
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['notify'],
+                        'actions' => ['notify', 'notifyadaptive'],
                         'allow' => true,
                     ],
                 ],
@@ -95,7 +95,29 @@ class IpnController extends FrontendController
     }
 
     /**
-     * Gateway for incoming PayPal IPN-requests
+     *  Gateway for incoming PayPal Adaptive IPN-requests
+     */
+    public function actionNotifyadaptive()
+    {
+        $requestData = file_get_contents('php://input');
+
+        $data = $this->requestDataAsArray($requestData);
+
+        $ipnRequest = new Ipn();
+        $ipnRequest->createdDate = time();
+        $ipnRequest->txnType = $data['transaction_type'];
+        $ipnRequest->rawData = $requestData;
+        $ipnRequest->save();
+
+        if (!empty($data['pay_key']))
+        {
+            $apiConfig = \Yii::$app->params['payPal'];
+            (new PullrPayment($apiConfig))->finishDonationPayment($data['pay_key']);
+        }
+    }
+
+    /**
+     * Gateway for incoming PayPal Pro account IPN-requests
      */
     public function actionNotify()
     {

@@ -134,6 +134,7 @@ class PullrPayment extends \yii\base\Component
         $payRequest->currencyCode = "USD";
         $payRequest->returnUrl = $returnUrl;
         $payRequest->cancelUrl = $cancelUrl;
+        $payRequest->ipnNotificationUrl = \Yii::$app->urlManager->createAbsoluteUrl('ipn/notifyadaptive');
         $payRequest->reverseAllParallelPaymentsOnError = true;
         $payRequest->requestEnvelope = new \RequestEnvelope("en_US");
         $payRequest->receiverList = new \ReceiverList($receivers);
@@ -304,7 +305,7 @@ class PullrPayment extends \yii\base\Component
             }
         }
         $donation = Donation::findOne($donationId);
-        if (!$donation->email){
+        if (!$donation->email && isset($donation) &&  isset($paymentDetailsResponse->senderEmail)){
             $donation->email = $paymentDetailsResponse->senderEmail;
             $donation->save();
         }
