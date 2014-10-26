@@ -3,7 +3,12 @@
 ?>
 <!-- Stats Panel Link -->
 <ul class="panel-nav paneltoggle">
-	<li class="stats"><a data-panel="stats" class="icon-reports"></a></li>
+	<li class="stats">
+		<a data-panel="stats">
+			<i class="icon-reports"></i>
+			Stats
+		</a>
+	</li>
 </ul>
 
 <div class="slidepanel pane stats_panel">
