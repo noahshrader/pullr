@@ -112,8 +112,9 @@
                         /**so we have campaign bar*/
                         var alertsModule = region.widgetCampaignBar.alertsModule;
                         toShow.animationDirectionArray = alertsModule.animationDirection.split(',');
-                        toShow.image = alertMediaManager.getCampaignAlertBackgroundUrl(alertsModule.image);
-                        
+                        toShow.background = alertsModule.background;
+                        toShow.image = '';
+                        alertMediaManager.playSound(alertsModule.sound, alertsModule.soundType, alertsModule.volume);
                         if(toShow.animationDirectionArray.length > 1){
                             toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];    
                             if (animationEndTimer) {
@@ -146,7 +147,7 @@
                     animationEndTimer = $interval(function(){
                         region.toShow.alert.message = null;    
                         region.toShow.alert.animationDirectionArray = [];    
-                        region.toShow.alert.image = '';
+                        region.toShow.alert.background = '';
                     }, 500, 1);
                 } else {
                     region.toShow.alert.animationDirection = '';

@@ -17,7 +17,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
             position-container="region.widgetCampaignBar.alertsModule" 
          region="region"
          ng-class='region.toShow.alert.animationDirection'
-         ng-style='{"background-image":getCampaignAlertBackgroundStyle(region.widgetCampaignBar.alertsModule.background),"background-size":"cover","text-align":"center","height":"100%","width":"100%"}'>
+         ng-style='{"background-image":getCampaignBackgroundStyle(region.toShow.alert.background),"background-size":"cover","text-align":"center","height":"100%","width":"100%"}'>
 
         <div
             ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'background-color': alertsModule.backgroundColor}" draggable>

@@ -165,14 +165,14 @@ class ApiController extends \yii\web\Controller {
         }
 
         $membersList = $this->twitch->teamMembersAll($campaign->channelTeam);
-
+        
         $offlines = [];
         $onlines = [];
         foreach ($membersList as $member) {
-            if ($member->channel->status == 'live') {
-                $onlines[] = $member->channel;
+            if ($member->channel->status == 'offline') {
+                $offlines[] = $member->channel;                
             } else {
-                $offlines[] = $member->channel;
+                $onlines[] = $member->channel;
             }
         }
         /**

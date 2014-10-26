@@ -64,22 +64,7 @@
                 } else {
                     return addUserToPath(Service.PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS) + image;
                 }
-
-            }
-
-            this.getCampaignAlertBackgroundUrl = function(image){
-                if (!image) {
-                    return null;
-                } else {
-                    return addUserToPath(Service.PATH_TO_CUSTOM_CAMPAIGN_ALERT_BACKGROUNDS) + image;
-                }                
-            }
-
-            this.removeCampaignAlertBackground = function(image){
-                $http.post('app/streamboard/alert_remove_campaign_alert_background_ajax', image).success(function(data){
-                    Service.customCampaignAlertBackgrounds = data;
-                });
-            }
+            }            
 
             this.removeCampaignBackground = function(image){
                 $http.post('app/streamboard/alert_remove_campaign_background_ajax', image).success(function(data){

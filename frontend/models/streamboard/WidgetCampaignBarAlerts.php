@@ -26,7 +26,8 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'fontStyle', 'fontSize',
-                'fontColor', 'backgroundColor', 'animationDirection', 'animationDuration', 'animationDelay', 'positionX', 'positionY', 'background']
+                'fontColor', 'backgroundColor', 'animationDirection', 'animationDuration', 'animationDelay', 
+                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume']
         ];
     }
 

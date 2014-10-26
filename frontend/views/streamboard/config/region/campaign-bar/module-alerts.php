@@ -1,4 +1,5 @@
 <? 
+use yii\helpers\Url;
 use frontend\models\streamboard\WidgetAlertsPreference;
 ?>
 <div class="module first">
@@ -75,15 +76,26 @@ use frontend\models\streamboard\WidgetAlertsPreference;
     </div>
 </div>
 
-<div class="module">
-    <ul class="library-tabs cf">        
-        <li class="active"><a href='#' data-toggle="tab"><i class="icon-picture"></i>Graphics</a></li>
+<div class="module" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
+    <ul class="library-tabs cf">   
+        <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab"><i
+                    class="icon-volume-more"></i>Sounds</a></li>     
+        <li><a href='<?= Url::to() ?>#{{baseLink}}-images' data-toggle="tab"><i class="icon-picture"></i>Graphics</a></li>
     </ul>
-    <div class="tab-content sounds-graphics-content">        
-        <div id="region-1-preference-donations-images" class="tab-pane active">
-            <div child-scope="" ng-init="fileType = 'campaignAlertBackground';uploadError = null;" class="ng-scope">
-         
-                
+    <div class="tab-content sounds-graphics-content">
+        <div id="{{baseLink}}-sounds" class="tab-pane active" ng-init="preference">
+            <?=
+            $this->render('../region-alerts/alerts-files-gallery', [
+                'fileType' => 'sound'
+            ]) ?>
+            <div class="panel-group">
+                <h5>Volume</h5>
+                <slider ng-model="preference.volume" floor="0" ceiling="100" step="1"
+                        ng-change="regionChanged(region)"></slider>
+            </div>
+        </div>
+        <div id="{{baseLink}}-images" class="tab-pane">
+            <div child-scope="" ng-init="fileType = 'campaignBackground';uploadError = null;" class="ng-scope">                        
                 <div class="tab-content sounds-graphics-content">
                     <div id="region-1-preference-donations-images-custom" class="tab-pane active">
                         <div class="error">
@@ -95,11 +107,11 @@ use frontend\models\streamboard\WidgetAlertsPreference;
                             </div>
                         </div>
                         <div class="files-container">
-                            <div ng-repeat="file in (alertMediaManagerService.customCampaignAlertBackgrounds)">
+                            <div ng-repeat="file in (alertMediaManagerService.customCampaignBackgrounds)">
                                 <div class="panel-group media-item images cf" ng-class="{selected: file==module.background}" ng-click="selectCampaignAlertBackground(module, file, region)">
-                                    <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignAlertBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
+                                    <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
                                     <div class='mediaActions'>
-                                        <i class="glyphicon glyphicon-remove" ng-click="removeCampaignAlertBackground(file, region, $event)"></i>
+                                        <i class="glyphicon glyphicon-remove" ng-click="removeCampaignBackground(file, region, $event)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -111,3 +123,5 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         </div>
     </div>
 </div>
+
+
