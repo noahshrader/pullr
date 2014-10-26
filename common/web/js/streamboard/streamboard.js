@@ -14,17 +14,17 @@ $(window).load(function() {
         }
     });
 
-    $(".regionsContainer .region:first-child").resizable({
-        handles: "s",
+    $(".regionsContainer .region:last-child").resizable({
+        handles: "n",
         animate: false,
         delay: 0,
         resize: function() {
             var remainingSpace = (100 * parseFloat($(this).css('height')) / parseFloat($(this).parent().css('height')));
-            var divTwo = $(this).next();
-            var divOneHeight = (remainingSpace) + '%';
-            var divTwoHeight = (100 - remainingSpace) + '%';
-            $(this).height(divOneHeight);
-            $(divTwo).height(divTwoHeight);
+            var divOne = $(this).prev();
+            var divTwoHeight = (remainingSpace) + '%';
+            var divOneHeight = (100 - remainingSpace) + '%';
+            $(this).height(divTwoHeight);
+            $(divOne).height(divOneHeight);
         }
     });
     // resize fixed elements based on size of sidepanel
@@ -50,8 +50,6 @@ $(window).load(function() {
         },
         live: true
     });
-
-    $('.widget-alert').draggable();
 });
 
 $(function () {

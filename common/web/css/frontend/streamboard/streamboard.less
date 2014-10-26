@@ -10,6 +10,9 @@ label {
 	color: @gray70;
 }
 
+[draggable] {
+	cursor: move !important;
+}
 
 /* Typography */
 /* ------------------------------------------------- */
@@ -463,21 +466,13 @@ ul.panel-nav {
 }
 .regionsContainer{
 	height: 100%;
+
 	.region {
 		position: relative;
-		height: 100%;
+		top: 0 !important;
+		height: 50%;
 		background-color: green;
   	}
-	&.regionsNumber2{
-		.region {
-	      	height: 50%;
-	    	}
- 	}
- 	.region {
- 		div {
-			cursor: move !important;
-		}
- 	}
 }
 
 

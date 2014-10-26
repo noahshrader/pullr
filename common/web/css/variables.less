@@ -259,12 +259,6 @@
 	-ms-animation: @animLoadedLoader;
 	animation: @animLoadedLoader;
 }
-.marquee (@marquee: marquee infinite linear) {
-	-webkit-animation: @marquee;
-	-moz-animation: @marquee;
-	-ms-animation: @marquee;
-	animation: @marquee;
-}
 
 
 /* Progress Bar Animations */
@@ -336,16 +330,6 @@
     	transform: scaleY(1.0);
     	-webkit-transform: scaleY(1.0);
 	}
-}
-
-/* Marquee (Streamboard) */
-@keyframes marquee {
-    0% { text-indent: 100% }
-    100% { text-indent: 0}
-}
-@-webkit-keyframes marquee {
-    0% { text-indent: 100% }
-    100% { text-indent: 0 }
 }
 
 /* Streamboard Loader */

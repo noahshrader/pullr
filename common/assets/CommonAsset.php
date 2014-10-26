@@ -6,12 +6,10 @@ class CommonAsset extends AssetBundle {
     public $sourcePath = '@common/web';
     public $baseUrl = '@web';
     public $css = [
-        'plugins/datatables/jquery.dataTables.css',
         'css/animate.css',
         'css/common.less'
     ];
     public $js = [
-        'plugins/datatables/jquery.dataTables.js',
         'plugins/jquery.mousewheel/jquery.mousewheel.min.js',
         'plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.js',
         'js/common.js',
