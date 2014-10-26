@@ -20,8 +20,8 @@ use frontend\models\streamboard\WidgetCampaignBar;
          ng-style='{"background-image":getCampaignBackgroundStyle(region.toShow.alert.background),"background-size":"cover","text-align":"center","height":"100%","width":"100%"}'>
 
         <div
-            ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'background-color': alertsModule.backgroundColor}" draggable>
-                {{region.toShow.alert.message}}
+            ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'background-color': alertsModule.backgroundColor}" class="alert-window">
+                <span draggable>{{region.toShow.alert.message}}</span>
         </div>
     </div>
     <div ng-if="region.widgetCampaignBar.messagesEnable" draggable position-container="region.widgetCampaignBar.messagesModule" region="region">
