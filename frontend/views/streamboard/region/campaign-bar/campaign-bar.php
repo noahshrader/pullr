@@ -12,7 +12,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
     <div ng-if="region.widgetCampaignBar.campaignId" draggable position-container="region.widgetCampaignBar.currentTotalModule" region="region">
         Current total: ${{number_format(campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised)}}
     </div>
-    <div ng-if="region.widgetCampaignBar.alertsEnable" child-scope
+    <div ng-if="region.widgetCampaignBar.alertsEnable && region.toShow.alert.message" child-scope
          ng-init="alertsModule = region.widgetCampaignBar.alertsModule"
             position-container="region.widgetCampaignBar.alertsModule" 
          region="region"
