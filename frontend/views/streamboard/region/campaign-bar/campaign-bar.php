@@ -12,16 +12,17 @@ use frontend\models\streamboard\WidgetCampaignBar;
     <div ng-if="region.widgetCampaignBar.campaignId" draggable position-container="region.widgetCampaignBar.currentTotalModule" region="region">
         Current total: ${{number_format(campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised)}}
     </div>
+
     <div ng-if="region.widgetCampaignBar.alertsEnable && region.toShow.alert.message" child-scope
          ng-init="alertsModule = region.widgetCampaignBar.alertsModule"
-            position-container="region.widgetCampaignBar.alertsModule" 
+         position-container="region.widgetCampaignBar.alertsModule" 
+         class="bar-alert" 
          region="region"
          ng-class='region.toShow.alert.animationDirection'
          ng-style='{"background-image":getCampaignBackgroundStyle(region.toShow.alert.background),"background-size":"cover","text-align":"center","height":"100%","width":"100%"}'>
 
-        <div
-            ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'background-color': alertsModule.backgroundColor}" draggable>
-                {{region.toShow.alert.message}}
+        <div ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'background-color': alertsModule.backgroundColor}" class="bar-alert-wrap">
+                <span draggable>{{region.toShow.alert.message}}</span>
         </div>
     </div>
     <div ng-if="region.widgetCampaignBar.messagesEnable" draggable position-container="region.widgetCampaignBar.messagesModule" region="region">

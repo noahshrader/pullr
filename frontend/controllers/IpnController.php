@@ -103,11 +103,14 @@ class IpnController extends FrontendController
 
         $data = $this->requestDataAsArray($requestData);
 
-        $ipnRequest = new Ipn();
-        $ipnRequest->createdDate = time();
-        $ipnRequest->txnType = $data['transaction_type'];
-        $ipnRequest->rawData = $requestData;
-        $ipnRequest->save();
+        if (!empty($data['transaction_type']))
+        {
+            $ipnRequest = new Ipn();
+            $ipnRequest->createdDate = time();
+            $ipnRequest->txnType = $data['transaction_type'];
+            $ipnRequest->rawData = $requestData;
+            $ipnRequest->save();
+        }
 
         if (!empty($data['pay_key']))
         {

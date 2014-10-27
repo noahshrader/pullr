@@ -20,8 +20,16 @@ $sourceHref = Url::to('', true) . '/source';
 <div class="right-side-footer">
     <ul class="panel-nav">
         <li class="active">
-            <a href="<?= Url::to() ?>#settings-general" data-toggle="tab" class="icon-tools"></a>
+            <a href="<?= Url::to() ?>#settings-general" data-toggle="tab">
+                <i class="icon-tools"></i>
+                General
+            </a>
         </li>
-        <li><a href="<?= Url::to() ?>#settings-source" data-toggle="tab" class="icon-code"></a></li>
+        <li>
+            <a href="<?= Url::to() ?>#settings-source" data-toggle="tab">
+                <i class="icon-code"></i>
+                Source
+            </a>
+        </li>
     </ul>
 </div>

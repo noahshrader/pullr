@@ -6,8 +6,8 @@ class CommonAsset extends AssetBundle {
     public $sourcePath = '@common/web';
     public $baseUrl = '@web';
     public $css = [
-        'css/animate.css',
-        'css/common.less'
+        'css/common.less',
+        'css/animate.css'
     ];
     public $js = [
         'plugins/jquery.mousewheel/jquery.mousewheel.min.js',

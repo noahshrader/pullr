@@ -51,15 +51,15 @@ use yii\web\View;
     </ul>
     <div class="tab-content sounds-graphics-content">
         <div id="{{baseLink}}-sounds" class="tab-pane active">
-            <?=
-            $this->render('alerts-files-gallery', [
-                'fileType' => 'sound'
-            ]) ?>
-            <div class="panel-group">
+            <div class="panel-group volume">
                 <h5>Volume</h5>
                 <slider ng-model="preference.volume" floor="0" ceiling="100" step="1"
                         ng-change="regionChanged(region)"></slider>
             </div>
+            <?=
+            $this->render('alerts-files-gallery', [
+                'fileType' => 'sound'
+            ]) ?>
         </div>
         <div id="{{baseLink}}-images" class="tab-pane">
             <?=

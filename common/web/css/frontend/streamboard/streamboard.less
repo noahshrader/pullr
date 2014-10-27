@@ -290,20 +290,22 @@ ul.panel-nav {
 		a {
 			line-height: @sidenavheight;
 		}
-        	&.stats {
-        		width: 100%;
-        		a {
-        			font-size: 16px;
 
-        		}
+		/* Stats Panel Nav */
+    	&.stats {
+    		width: 100%;
+    		a {
+    			font-size: 16px;
+
         		i {
         			font-size: 18px;
         			margin-right: @iconspace;
         		}
-        		span {
-        			font-size: @smalltext;
-        		}
-        	}
+    		}
+    		span {
+    			font-size: @smalltext;
+    		}
+    	}
 		&:first-child:nth-last-child(1) {
 			width: 100%;
 		}
@@ -429,7 +431,7 @@ ul.panel-nav {
 
 /* Panel Footer Navigation */
 /* ------------------------------------------------- */
-.right-side-footer{
+.right-side-footer {
 	position: fixed;
 	right: 0px;
 	bottom: 0px;
@@ -441,12 +443,20 @@ ul.panel-nav {
 	z-index: 1000;
 
 	ul.panel-nav {
+
 		li {
 			&.active a {
 				box-shadow: none;
 			}
-			a.icon-code {
-				font-size: 24px;
+			a {
+				font-size: 12px;
+				line-height: 16px;
+				padding: 8px 0;
+
+				i {
+					display: block;
+					font-size: 18px;
+				}
 			}
 		}
 	}
@@ -545,6 +555,9 @@ ul.panel-nav {
 	}
 }
 
+
+/* Settings */
+/* ------------------------------------------------- */
 #copied-clipboard-tooltip {
 	display:none;
 	width:200px;

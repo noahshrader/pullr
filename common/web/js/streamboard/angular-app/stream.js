@@ -58,7 +58,7 @@
 
             $interval(function(){
                 requestStreamData();
-            }, 1000);
+            }, 3000);
             this.testData = function (type, number, regionNumber) {
                 if (!number) {
                     number = 1;
