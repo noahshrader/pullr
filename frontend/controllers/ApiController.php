@@ -7,6 +7,7 @@ use yii\web\Response;
 use yii\base\Exception;
 use yii\web\ForbiddenHttpException;
 use common\models\Campaign;
+use common\models\twitch\TwitchFollow;
 use \ritero\SDK\TwitchTV\TwitchSDK;
 use Yii;
 class ApiController extends \yii\web\Controller {

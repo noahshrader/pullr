@@ -13,7 +13,8 @@ use frontend\models\streamboard\WidgetCampaignBar;
         Current total: ${{number_format(campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised)}}
     </div>
 
-    <div ng-if="region.widgetCampaignBar.alertsEnable && region.toShow.alert.message" child-scope
+    <div ng-if="region.widgetCampaignBar.alertsEnable" child-scope
+         ng-show='region.toShow.alert.message != null'
          ng-init="alertsModule = region.widgetCampaignBar.alertsModule"
          position-container="region.widgetCampaignBar.alertsModule" 
          class="bar-alert" 
@@ -25,7 +26,9 @@ use frontend\models\streamboard\WidgetCampaignBar;
                 <span draggable>{{region.toShow.alert.message}}</span>
         </div>
     </div>
-    <div ng-if="region.widgetCampaignBar.messagesEnable" draggable position-container="region.widgetCampaignBar.messagesModule" region="region">
+    <div ng-if="region.widgetCampaignBar.messagesEnable" 
+        ng-show='region.toShow.alert.message == null'
+        draggable position-container="region.widgetCampaignBar.messagesModule" region="region">
         <div rotating-messages messages-module="region.widgetCampaignBar.messagesModule"
              rotation-speed="region.widgetCampaignBar.messagesModule.rotationSpeed"></div>
     </div>

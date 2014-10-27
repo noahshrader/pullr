@@ -56,6 +56,14 @@ class TwitchFollow extends TwitchFollowBase {
 
     public static function getFollowerCountByTotal($userId)
     {
-        return static::getFollowCountByTotal($userId);
+        $count = \Yii::$app->db->createCommand('select followersNumber from ' . TwitchUser::tableName() . ' where userId=:id')
+                        ->bindValues([
+                            'id'=>$userId
+                        ])
+                        ->queryScalar();
+        if ( ! is_numeric($count)) {
+            $count = 0;
+        }
+        return $count;       
     }
 }

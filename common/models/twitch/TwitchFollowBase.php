@@ -71,13 +71,4 @@ abstract class TwitchFollowBase extends ActiveRecord {
         return $count;
     }
 
-    public static function getFollowCountByTotal($userId)
-    {
-        $count = \Yii::$app->db->createCommand('select count(*) from ' . static::tableName() . ' where userId=:id')
-                        ->bindValues([
-                            'id'=>$userId
-                        ])
-                        ->queryScalar();
-        return $count;       
-    }
 }
