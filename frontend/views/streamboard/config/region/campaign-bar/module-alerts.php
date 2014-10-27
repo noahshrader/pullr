@@ -50,7 +50,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         <select ui-select2="{minimumResultsForSearch: -1}" ng-model="module.animationDirection" ng-change="regionChanged(region)"
              data-placeholder="Select one...">
             <option value=""></option>
-            <option value="bounceIn,bounceOut">Bounce In</option>            
+            <option value="bounceIn, bounceOut">Bounce In</option>            
             <option value="bounceInUp, bounceOutUp">Bounce Down</option>
             <option value="bounceInDown, bounceOutDown">Bounce Up</option>
             <option value="bounceInLeft, bounceOutLeft">Bounce Left</option>
@@ -65,34 +65,43 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         </select>
     </div>
     <div class="panel-group">
-        <h5>Duration <span class="slider-value value">{{module.animationDuration}} sec</span></h5>
-        <slider ng-model="module.animationDuration" floor="1" ceiling="10" step="1"
+        <h5>Delay <span class="slider-value value">{{module.animationDelay}} sec</span></h5>
+        <slider ng-model="module.animationDelay" floor="0" ceiling="30" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>
     <div class="panel-group">
-        <h5>Delay <span class="slider-value value">{{module.animationDelay}} sec</span></h5>
-        <slider ng-model="module.animationDelay" floor="0" ceiling="30" step="1"
+        <h5>Duration <span class="slider-value value">{{module.animationDuration}} sec</span></h5>
+        <slider ng-model="module.animationDuration" floor="1" ceiling="10" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>
 </div>
 
 <div class="module" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
     <ul class="library-tabs cf">   
-        <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab"><i
-                    class="icon-volume-more"></i>Sounds</a></li>     
-        <li><a href='<?= Url::to() ?>#{{baseLink}}-images' data-toggle="tab"><i class="icon-picture"></i>Graphics</a></li>
+        <li class="active">
+            <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">
+                <i class="icon-volume-more"></i>
+                Sounds
+            </a>
+        </li>     
+        <li>
+            <a href='<?= Url::to() ?>#{{baseLink}}-images' data-toggle="tab">
+                <i class="icon-picture"></i>
+                Graphics
+            </a>
+        </li>
     </ul>
     <div class="tab-content sounds-graphics-content">
         <div id="{{baseLink}}-sounds" class="tab-pane active" ng-init="preference">
-            <?=
-            $this->render('../region-alerts/alerts-files-gallery', [
-                'fileType' => 'sound'
-            ]) ?>
-            <div class="panel-group">
+            <div class="panel-group volume">
                 <h5>Volume</h5>
                 <slider ng-model="preference.volume" floor="0" ceiling="100" step="1"
                         ng-change="regionChanged(region)"></slider>
             </div>
+            <?=
+            $this->render('../region-alerts/alerts-files-gallery', [
+                'fileType' => 'sound'
+            ]) ?>
         </div>
         <div id="{{baseLink}}-images" class="tab-pane">
             <div child-scope="" ng-init="fileType = 'campaignBackground';uploadError = null;" class="ng-scope">                        
@@ -111,7 +120,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
                                 <div class="panel-group media-item images cf" ng-class="{selected: file==module.background}" ng-click="selectCampaignAlertBackground(module, file, region)">
                                     <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
                                     <div class='mediaActions'>
-                                        <i class="glyphicon glyphicon-remove" ng-click="removeCampaignBackground(file, region, $event)"></i>
+                                        <i class="icon icon-close" ng-click="removeCampaignBackground(file, region, $event)"></i>
                                     </div>
                                 </div>
                             </div>
@@ -123,5 +132,3 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         </div>
     </div>
 </div>
-
-

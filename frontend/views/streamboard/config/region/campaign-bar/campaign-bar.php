@@ -17,6 +17,35 @@ use frontend\models\streamboard\WidgetAlertsPreference;
 </div>
 <div class="module">
     <div class="form-group">
+        <h5>Modules</h5>
+        <div class="checkbox">
+            <label ng-class="{on:widget.alertsEnable}">
+                <input type="checkbox" ng-model="widget.alertsEnable" ng-change="regionChanged(region)">
+                Alerts
+            </label>
+        </div>
+        <div class="checkbox">
+            <label ng-class="{on:widget.messagesEnable}">
+                <input type="checkbox" ng-model="widget.messagesEnable" ng-change="regionChanged(region)">
+                Rotating Messages
+            </label>
+        </div>
+        <div class="checkbox">
+            <label ng-class="{on:widget.timerEnable}">
+                <input type="checkbox" ng-model="widget.timerEnable" ng-change="regionChanged(region)">
+                Timer
+            </label>
+        </div>
+        <div class="checkbox">
+            <label ng-class="{on:widget.progressBarEnable}">
+                <input type="checkbox" ng-model="widget.progressBarEnable" ng-change="regionChanged(region)">
+                Progress Bar
+            </label>
+        </div>
+    </div>
+</div>
+<div class="module">
+    <div class="form-group">
         <h5>Font style</h5>
         <div font-style ng-model="widget.fontStyle"></div>
     </div>
@@ -32,8 +61,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
     </div>
 </div>
-
-<div class="module">
+<div class="module last">
     <div class="module-title">
         <h5>Background Image</h5>
     </div>
@@ -67,40 +95,26 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         </div>
     </div>
 </div>
-<div class="module last">
-    <div class="form-group">
-        <h5>Modules</h5>
-        <div class="checkbox">
-            <label ng-class="{on:widget.alertsEnable}">
-                <input type="checkbox" ng-model="widget.alertsEnable" ng-change="regionChanged(region)">
-                Alerts
-            </label>
-        </div>
-        <div class="checkbox">
-            <label ng-class="{on:widget.messagesEnable}">
-                <input type="checkbox" ng-model="widget.messagesEnable" ng-change="regionChanged(region)">
-                Rotating Messages
-            </label>
-        </div>
-        <div class="checkbox">
-            <label ng-class="{on:widget.timerEnable}">
-                <input type="checkbox" ng-model="widget.timerEnable" ng-change="regionChanged(region)">
-                Timer
-            </label>
-        </div>
-        <div class="checkbox">
-            <label ng-class="{on:widget.progressBarEnable}">
-                <input type="checkbox" ng-model="widget.progressBarEnable" ng-change="regionChanged(region)">
-                Progress Bar
-            </label>
-        </div>
-    </div>
-</div>
 <div class="right-side-footer" ng-show='widget.alertsEnable || widget.messagesEnable || widget.timerEnable'>
     <ul class="panel-nav paneltoggle">
-        <li ng-if="widget.alertsEnable"><a data-panel="alertsModule" class="icon-notify"></a></li>
-        <li ng-if="widget.messagesEnable"><a data-panel="messagesModule" class="icon-bubble4"></a></li>
-        <li ng-if="widget.timerEnable"><a data-panel="timerModule" class="icon-timer"></a></li>
+        <li ng-if="widget.alertsEnable">
+            <a data-panel="alertsModule">
+                <i class="icon-notify"></i>
+                Alerts
+            </a>
+        </li>
+        <li ng-if="widget.messagesEnable">
+            <a data-panel="messagesModule">
+                <i class="icon-bubble4"></i>
+                Messages
+            </a>
+        </li>
+        <li ng-if="widget.timerEnable">
+            <a data-panel="timerModule">
+                <i class="icon-timer"></i>
+                Timer
+            </a>
+        </li>
     </ul>
 
     <div class="alertsModule_panel slidepanel pane" child-scope>

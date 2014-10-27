@@ -27,7 +27,6 @@ class StreamboardAsset extends AssetBundle
         'js/jquery.marquee.js',
         'js/streamboard/angular-app/angular-marquee.js',
         'js/streamboard/angular-app/simple-marquee.js',
-     //   'js/streamboard/angular-app/simple-marquee-helper.js',
 		'js/streamboard/streamboard.js',
         /* angular-app begin */
         'js/streamboard/angular-app/plugins/draggable.js',

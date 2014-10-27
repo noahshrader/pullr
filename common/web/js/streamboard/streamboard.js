@@ -40,9 +40,9 @@ $(window).load(function() {
         theme:"minimal",
         mouseWheel:{
             preventDefault: true,
-            scrollAmount: 8
+            scrollAmount: 20
         },
-        scrollInertia: 200,
+        scrollInertia: 30,
         callbacks:{
             whileScrolling: function(){
                 $('.colorpicker').removeClass('colorpicker-visible');

@@ -47,7 +47,7 @@ $(function(){
         theme:"minimal",
         mouseWheel:{
             preventDefault: true,
-            scrollAmount: 10
+            scrollAmount: 20
         },
         scrollInertia: 30,
         callbacks:{
