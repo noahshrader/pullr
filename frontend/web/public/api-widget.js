@@ -48,6 +48,12 @@ app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
 			$scope.isDataReady = true;
 		});
 	}, 30000);
+
+	$interval(function(){
+		CampaignDataService.loadCampaign(function(data){
+			$scope.campaign = data;
+		});
+	}, 20000);
 });
 
 app.factory('CampaignDataService', function($http) {
