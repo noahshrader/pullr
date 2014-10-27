@@ -9,7 +9,7 @@ $title = $type ? $type : 'Choose a Theme';
 <div class="modal-body">
     <? if (sizeof($themes) > 0): ?>
         <? foreach ($themes as $theme): ?>
-        <div class='select-theme-container' data-name='<?= $theme->name ?>'>
+        <div class='select-theme-container' data-name='<?= $theme->name ?>' data-id='<?= $theme->id ?>'>
             <a href="javascript:void(0)" onclick="selectTheme(this)">
                 <h5><?= $theme->description ?></h5>
             </a>
