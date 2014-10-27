@@ -82,7 +82,7 @@ class PullrPayment extends \yii\base\Component
      */
     private function calculatePercent()
     {
-        $percent = 0.2;
+        $percent = 0;
         if (!\Yii::$app->user->isGuest && (\Yii::$app->user->identity->getPlan() == Plan::PLAN_PRO))
         {
             $percent = 0;
