@@ -18,21 +18,23 @@ use yii\web\View;
         <div class="activityFeed module">
             <div class="form-group">
                 <h5>Activity Feed</h5>
-                <span ng-repeat="donor in donors" class="commaAfter">
-                    <span class="nowrap">
-                    <span>{{donor.name}}</span>
-                   (<span class="amount accent">${{number_format(donor.amount)}}</span>)<!-- removing space before :after{content:} rule
-                --></span></span>
-                <span ng-repeat="subscriber in subscribers" class="commaAfter" ng-show='streamService.showSubscriber'>
-                    <span class="nowrap">
-                    <span>{{subscriber.display_name}}</span>
-                    <span>(Subscribed)</span><!-- removing space before :after(content:} rule
-                --></span></span>
-                <span ng-repeat="follower in followers" class="commaAfter" ng-show='streamService.showFollower'>
-                    <span class="nowrap">
-                    <span>{{follower.display_name}}</span>
-                    <span>(Followed)</span><!-- removing space before :after(content:} rule
-                --></span></span>
+                <div class="sb-activity-feed">
+                    <span ng-repeat="donor in donors" class="commaAfter">
+                        <span class="nowrap">
+                        <span>{{donor.name}}</span>
+                       (<span class="amount accent">${{number_format(donor.amount)}}</span>)<!-- removing space before :after{content:} rule
+                    --></span></span>
+                    <span ng-repeat="subscriber in subscribers" class="commaAfter" ng-show='streamService.showSubscriber'>
+                        <span class="nowrap">
+                        <span>{{subscriber.display_name}}</span>
+                        <span>(Subscribed)</span><!-- removing space before :after(content:} rule
+                    --></span></span>
+                    <span ng-repeat="follower in followers" class="commaAfter" ng-show='streamService.showFollower'>
+                        <span class="nowrap">
+                        <span>{{follower.display_name}}</span>
+                        <span>(Followed)</span><!-- removing space before :after(content:} rule
+                    --></span></span>
+                </div>
             </div>
         </div>
         <div class="overall module" ng-show="length(campaignsService.campaigns) > 1">

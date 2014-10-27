@@ -87,7 +87,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         <li>
             <a href='<?= Url::to() ?>#{{baseLink}}-images' data-toggle="tab">
                 <i class="icon-picture"></i>
-                Graphics
+                Background
             </a>
         </li>
     </ul>

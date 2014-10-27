@@ -13,7 +13,6 @@ $(window).load(function() {
             $("#sidepanel").css('left', 'auto');
         }
     });
-
     $(".regionsContainer .region:last-child").resizable({
         handles: "n",
         animate: false,
@@ -27,6 +26,25 @@ $(window).load(function() {
             $(divOne).height(divOneHeight);
         }
     });
+    $(".drag img").resizable({
+        aspectRatio: true,
+        containment: ".region",
+        animate: false,
+        delay: 0,
+    });
+    $(".resize").resizable({
+        minWidth: 60,
+        minHeight: 60,
+        containment: ".region",
+        animate: false,
+        delay: 0,
+    });
+
+    /* dragging magic */
+    $(".drag").draggable({
+        containment: ".region"
+    });
+
     // resize fixed elements based on size of sidepanel
     $('#sidepanel').resize(function() {
         var panelhead = $('#sidepanel').width() - 30;

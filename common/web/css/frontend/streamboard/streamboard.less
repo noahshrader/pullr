@@ -92,7 +92,7 @@ span.slider-value {
 		height: @sidenavheight;
 		width: 100%;
 		.slowtrans;
-		z-index: 9999;
+		z-index: 1000;
 
 		/* Sidepanel Tab Menu */
 		ul.panel-nav {
@@ -184,12 +184,12 @@ span.slider-value {
 	/* Slideup Panel */
 	.slidepanel.pane {
 		position: absolute;
-		bottom: -400px;
+		bottom: -480px;
 		right: 0;
 		width: 100%;
-		height: 400px;
+		height: 480px;
 		background: @gray10;
-		z-index: 1000;
+		z-index: 1001;
 		.slowtrans;
 		&.selected {
 			bottom: @sidenavheight;
@@ -440,7 +440,7 @@ ul.panel-nav {
 	max-width: 50%;
 	min-width: 250px;
 	background: @gray10;
-	z-index: 1000;
+	z-index: 9999;
 
 	ul.panel-nav {
 
@@ -482,6 +482,26 @@ ul.panel-nav {
 		top: 0 !important;
 		height: 50%;
 		background-color: green;
+
+		.drag {
+			position: absolute;
+			cursor: move;
+
+			&:hover {
+				.ui-resizable-handle {
+					display: block !important;
+				}
+			}
+			.ui-resizable-handle {
+				display: none !important;
+			}
+			img {
+				width: 100%;
+				height: 100%;
+				max-width: 100%;
+				max-height: 100%;
+			}
+		}
   	}
 }
 
@@ -562,3 +582,8 @@ ul.panel-nav {
 	display:none;
 	width:200px;
 }
+
+
+/* Responsive */
+/* ------------------------------------------------- */
+@import "streamboard-responsive.less";

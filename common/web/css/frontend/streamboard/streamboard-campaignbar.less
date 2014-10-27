@@ -1,6 +1,8 @@
 /* Main */
 #campaign-bar {
 	overflow: hidden;
+	height: 120px;
+	width: 680px;
 	background-size: cover;
 
 	/* Alerts */
@@ -14,6 +16,20 @@
 		}
 	}
 
+	/* Current Total */
+	.current-total {
+		text-align: center;
+
+		span {
+			display: block;
+			font-size: 140%;
+			font-weight: 600;
+			line-height: 1;
+		}
+	}
+
+	/* Rotating Messages */
+
 	/* Progress Bar */
 	.progress {
 		position: absolute;
@@ -22,12 +38,12 @@
 		height: 6px;
 		background: @gray20;
 	}
-}
 
-/* Timer Module */
-.timer-module{
-   min-height: 450px;
-}
-.timerType{
-  margin-bottom: 10px;
+	/* Timer Module */
+	.timer-module{
+		min-height: 450px;
+	}
+	.timerType{
+		margin-bottom: 10px;
+	}
 }
