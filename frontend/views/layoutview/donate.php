@@ -21,7 +21,10 @@ use yii\widgets\MaskedInput;
             <? if ($charityName):?>
                 <h3 class="charity-name">for <span><?= $charityName ?></span>
                 <? if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES): ?>
-                    <span class="approved icon-check-round-fill"></span>
+                    <a class="approved">
+                        <i class="icon icon-check-round-fill"></i>
+                        <span class="approved-info">This is a validated organization.</span>
+                    </a>
                 </h3>
                 <? endif ?>
             <? endif ?>

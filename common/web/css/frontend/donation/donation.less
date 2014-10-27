@@ -104,16 +104,44 @@ h3.charity-name {
 	padding: 0 5%;
 	margin-top: .8em;
 
-	span {
-		color: @accent;
+	a.approved {
+		position: relative;
 
-		&.approved {
-			position: relative;
-			top: 2px;
+		i {
 			display: inline-block;
+			color: @accent;
 			font-size: 1em;
 			font-weight: 600;
 			margin-left: @iconspace;
+			height: 20px;
+			width: 20px;
+		}
+		&:hover .approved-info {
+			display: block;
+		}
+		.approved-info {
+			display: none;
+			position: absolute;
+			top: 32px;
+			left: 50%;
+			color: @white;
+			font-size: @fineprint;
+			line-height: 1;
+			margin-left: -60px;
+			padding: @halfgutter;
+			width: 120px;
+			background: @accent;
+			.border-radius;
+			z-index: 1000;
+			
+			&:before {
+				.arrow-up;
+				top: -8px;
+				left: 50%;
+				margin-left: -8px;
+				border-width: 0 8px 8px 8px;
+				border-color: transparent transparent @accent transparent;
+			}
 		}
 	}
 }
@@ -138,7 +166,7 @@ h3.charity-name {
 .form-progress-wrap {
 	position: relative;
 	text-align: center;
-	height: 30px;
+	height: 24px;
 	width: 100%;
 	background: @gray75;
 
