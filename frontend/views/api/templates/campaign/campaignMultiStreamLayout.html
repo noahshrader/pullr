@@ -16,7 +16,7 @@
     </div>
     <div class="team-content container">
         <div class="team-wrap cf">
-            <div class="team-members" ng-repeat='channel in channels' ng-click='setChannel(channel.name)'>
+            <div class="team-members" ng-repeat='channel in channels' ng-click='setChannel(channel)'>
                 <div class='team-member' data-name="{{channel.name}}">
                     <img src='{{channel.logo}}' alt='{{channel.display_name}}' />
                     <div class="team-member-stats">

@@ -18,5 +18,5 @@
         <h5><i class="icon-facebook"></i>Facebook</h5>
     	<?= $form->field($campaign, 'facebookEnable')->label(false)->checkbox([], false); ?>
     	<?= $form->field($campaign, 'facebookUrl', ['autoPlaceholder' => false])->label("<b>Facebook Username</b> (https://www.facebook.com/<b>XXXX</b>)"); ?>
-    </div>
+    </div> 
 </div>
