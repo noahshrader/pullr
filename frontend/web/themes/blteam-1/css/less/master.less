@@ -37,40 +37,46 @@ header {
 	min-height: 160px;
 	overflow: hidden;
 
-	.numbers {
-		padding: 4.2em @halfgutter;
+	/* Campaign Info */
+	.campaign-info {
+		text-align: center;
+		padding: 4.8em 5% 3em;
+
+		h4 {
+			margin-bottom: .6em;
+		}
 	}
 
-	.amount-progress {
+	/* Numbers */
+	.numbers {
+		position: relative;
+		padding: 3em 0;
+		background: @bglightblackfade;
+		&:before {
+			.arrow-up;
+			top: -10px;
+			left: 50%;
+			margin-left: -10px;
+			border-color: transparent transparent @bglightblackfade transparent;
+		}
+	}
+
+	/* Progress Bar */
+	.project-progress {
 		position: absolute;
 		top: 0;
-		text-align: center;
+		height: 4px;
 		width: 100%;
-		height: 45px;
-		overflow: hidden;
-		background: transparent;
-
-		.project-progress {
-			position: absolute;
-			top: 0;
-			content: '';
-			height: 4px;
-			width: 100%;
-			background: @bglightblackfade;
-			z-index: 10;
-			
-			.project-progressbar {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				height: 100%;
-				width: 0;
-				-webkit-transition: width 0.7s ease-in-out;
-				transition: width 0.7s ease-in-out;
-			}
+		background: @bglightblackfade;
+		z-index: 1;
+		
+		.project-progressbar {
+			height: 100%;
+			width: 0;
+			-webkit-transition: width 0.7s ease-in-out;
+			transition: width 0.7s ease-in-out;
 		}
-	}	
+	}
 }
 
 /* User */
@@ -91,61 +97,75 @@ header {
 			img {
 				position: relative;
 				float: left;
-				top: -24px;
-				height: 76px;
-				width: 76px;
+				top: -14px;
+				left: -10px;
+				height: 80px;
+				width: 80px;
 				background: @white;
 				border: solid 6px @white;
 				border-radius: 50%;
+				z-index: 10;
 			}
 			a {
 				float: left;
 				display: inline-block;
-				font-size: 1.2em;
+				font-size: 1.3em;
 				font-weight: 600;
 				line-height: 55px;
-				padding: 0 .6em;
+				padding-right: .6em;
 			}
 		}
 
-		/* Social Links */
-		.user-details-social {
+		/* User Stats */
+		.user-details {
 			float: left;
 			margin: 12px 4px;
-			.round-radius;
-			overflow: hidden;
 
-			a {
-				position: relative;
+			span {
 				display: inline-block;
-				font-size: 15px;
 				line-height: 30px;
-				text-align: center;
-				padding: 0 .3em;
-				width: 30px;
-				&:hover {
-					color: @white;
-				}
+				padding: 0 .2em;
+			}
+		}
+	}
+	
+	/* Social Links */
+	.user-details-social {
+		float: right;
+		margin: 12px 4px;
+		.round-radius;
+		overflow: hidden;
 
-				&.icon-twitch2 {
-					font-size: 13px;
-				}
-				&.icon-twitter,
-				&.icon-youtube,
-				&.icon-facebook {
-					&:after {
-						content: '';
-						position: absolute;
-						display: inline-block;
-						top: -4px;
-						bottom: -4px;
-						left: -2px;
-						width: 2px;
-						background: @white;
-						transform: rotate(15deg);
-						-ms-transform: rotate(15deg);
-						-webkit-transform: rotate(15deg);
-					}
+		a {
+			position: relative;
+			display: inline-block;
+			font-size: 15px;
+			line-height: 30px;
+			text-align: center;
+			padding: 0 .3em;
+			width: 30px;
+			&:hover {
+				color: @white;
+			}
+
+			&.icon-twitch2 {
+				font-size: 13px;
+			}
+			&.icon-twitter,
+			&.icon-youtube,
+			&.icon-facebook {
+				&:after {
+					content: '';
+					position: absolute;
+					display: inline-block;
+					top: -4px;
+					bottom: -4px;
+					left: -2px;
+					width: 2px;
+					background: @white;
+					transform: rotate(15deg);
+					-ms-transform: rotate(15deg);
+					-webkit-transform: rotate(15deg);
 				}
 			}
 		}

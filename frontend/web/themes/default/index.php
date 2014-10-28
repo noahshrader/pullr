@@ -75,13 +75,12 @@
                 <img src="{{team.logo}}" ng-cloak/>
                 <a href="http://www.twitch.tv/{{campaign.channelTeam}}" ng-cloak>{{team.display_name}}</a>
             </div>
-
-            <div class="user-details-social">
-                <a href="http://www.twitch.tv/{{channel.display_name}}" title="Twitch" class="icon-twitch2"></a>
-                <a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" title="Twitter" ng-show="campaign.twitterEnable == 1"></a>
-                <a href="{{campaign.facebookUrl}}" class="icon-facebook" title="Facebook" ng-show="campaign.facebookUrl == 1"></a>
-                <a href="{{campaign.youtubeUrl}}" class="icon-youtube" title="YouTube" ng-show="campaign.youtubeEnable == 1"></a>
-            </div>
+        </div>
+        <div class="user-details-social">
+            <a href="http://www.twitch.tv/{{channel.display_name}}" title="Twitch" class="icon-twitch2"></a>
+            <a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" title="Twitter" ng-show="campaign.twitterEnable == 1"></a>
+            <a href="{{campaign.facebookUrl}}" class="icon-facebook" title="Facebook" ng-show="campaign.facebookUrl == 1"></a>
+            <a href="{{campaign.youtubeUrl}}" class="icon-youtube" title="YouTube" ng-show="campaign.youtubeEnable == 1"></a>
         </div>
     </div>
 </section>

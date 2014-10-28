@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/global/themes/css/animate.css" />
     <link rel="stylesheet" href="/global/themes/css/global.css" />
     <!-- Theme Specific -->
-    <link rel="stylesheet" href="/themes/blteam-1/css/master.css" />
+    <link rel="stylesheet" href="/themes/blmulti-1/css/master.css" />
     <!-- Scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
     <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
@@ -43,24 +43,29 @@
 
 <!-- Main Stats -->
 <section class="stats">
-    <div class="numbers container" ng-cloak>
-        <div class="col-md-4 col-sm-4 col-xs-4 raised">
-            <span>Amount Raised</span>
-            <h1 style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h1>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 center">
-            <span ng-hide='campaign.goalAmount == 0.00'>Goal Amount</span>
-            <h1 ng-hide='campaign.goalAmount == 0.00'>{{campaign.goalAmountFormatted}}</h1>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4 right">
-            <span>Donors</span>
-            <h1>{{campaign.numberOfUniqueDonors}}</h1>
+    <div class="campaign-info">
+        <h2 ng-cloak>{{campaign.name}}</h2>
+        <h4 style="color:{{campaign.primaryColor}}" ng-cloak>{{campaign.charity.name}}</h4>
+        <h5 data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</h5>
+    </div>
+    <div class="numbers" ng-cloak>
+        <div class="container">
+            <div class="col-md-4 col-sm-4 col-xs-4 raised">
+                <span>Amount Raised</span>
+                <h1 style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h1>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 center">
+                <span ng-hide='campaign.goalAmount == 0.00'>Goal Amount</span>
+                <h1 ng-hide='campaign.goalAmount == 0.00'>{{campaign.goalAmountFormatted}}</h1>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 right">
+                <span>Donors</span>
+                <h1>{{campaign.numberOfUniqueDonors}}</h1>
+            </div>
         </div>
     </div>
-    <div class="amount-progress">
-        <div class="project-progress status">
-            <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
-        </div>
+    <div class="project-progress status">
+        <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
     </div>
 </section>
 
@@ -72,11 +77,8 @@
         </div>
         <div class="col-md-6 col-sm-6 col-xs-8 feed-details">
             <div class="feed-details-title">
-                <h5>
-                    <span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
-                </h5>
-                <h2>{{campaign.name}}</h2>
-                <h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}{{campaign.customCharity}}</h4>
+                <h3 ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.status}}</h3>
+                <h5 ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.game}}</h5>
             </div>
         </div>
     </div>

@@ -773,17 +773,29 @@ header .menu-actions a:before {
   color: #1dbc9c;
 }
 /* Social Links */
-.icon-twitch2 {
+a.icon-twitch2 {
   color: #643ca8;
 }
-.icon-twitter {
+a.icon-twitch2:hover {
+  color: #7d55c2 !important;
+}
+a.icon-twitter {
   color: #50abf1;
 }
-.icon-youtube {
+a.icon-twitter:hover {
+  color: #7fc2f5 !important;
+}
+a.icon-youtube {
   color: #cf1c11;
 }
-.icon-facebook {
+a.icon-youtube:hover {
+  color: #ed3126 !important;
+}
+a.icon-facebook {
   color: #3c5690;
+}
+a.icon-facebook:hover {
+  color: #4b6cb4 !important;
 }
 /* Info */
 .info h4 {
