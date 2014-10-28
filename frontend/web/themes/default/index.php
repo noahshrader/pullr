@@ -98,7 +98,30 @@
                     <span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
                 </h5>
                 <h2>{{campaign.name}}</h2>
-                <h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>
+                <h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>          
+                <div class='channel-meta' ng-cloak>
+                    <!-- username -->
+                    <div class='meta-username' ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.name}}</div>
+
+                    <div class='meta-status'>
+                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.title}}</div>
+                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.status}}</div>
+                    </div>
+                    <div class='meta-game'>
+                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.meta_game}}</div>
+                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.game}}</div>
+                    </div>
+                    <div class='meta-follower'>
+                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.followers_count}}</div>
+                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.followers}}</div>
+                    </div>
+
+                    <div class='meta-views'>
+                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.total_views}}</div>
+                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.views}}</div>
+                    </div>
+
+                </div>      
             </div>
         </div>
     </div>

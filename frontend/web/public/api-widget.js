@@ -19,11 +19,11 @@ app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
 		CampaignDataService.loadChannels(function(data) {
 			if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
 				$scope.channel = data;
-				$scope.selectedChannel = $scope.campaign.channelName;
+				$scope.selectedChannel = data;
 			} else {
 				$scope.channels = data;
 				if (data.length > 0) {
-					$scope.selectedChannel = data[0].name;
+					$scope.selectedChannel = data[0];
 				}
 				
 			}
@@ -116,17 +116,20 @@ app.directive('pullrCampaignLayout', function($interval, $timeout, CampaignDataS
 	return {
 		restrict: 'A',
 		scope: '@',
-		link: function(scope, element, attr) {
+		link : function(scope, element, attr) {
+
 			scope.$watch('selectedChannel', function(selectedChannel) {
 				if (selectedChannel != null) {
-					scope.embedPlayerUrl = '//www.twitch.tv/widgets/live_embed_player.swf?channel=' + scope.selectedChannel;
-					scope.hostname = 'hostname=www.twitch.tv&channel=' + scope.selectedChannel + '&auto_play=true&start_volume=25';
-					scope.chatUrl = '//twitch.tv/' + scope.selectedChannel + '/chat?popout=';
+					scope.embedPlayerUrl = '//www.twitch.tv/widgets/live_embed_player.swf?channel=' + scope.selectedChannel.name;
+					scope.hostname = 'hostname=www.twitch.tv&channel=' + scope.selectedChannel.name + '&auto_play=true&start_volume=25';
+					scope.chatUrl = '//twitch.tv/' + scope.selectedChannel.name + '/chat?popout=';
 				}
 			});
-			scope.setChannel = function(channelName) {
-				scope.selectedChannel = channelName;
+
+			scope.setChannel = function(channel) {
+				scope.selectedChannel = channel;
 			}
+
 			scope.getLayoutUrl = function() {
 				if (typeof(scope.campaign) != 'undefined') {
 					if (scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
@@ -144,6 +147,7 @@ app.directive('pullrCampaignLayout', function($interval, $timeout, CampaignDataS
 				myCustomAfterRender = myCustomAfterRender || function(){};
 				myCustomAfterRender();
 			}
+			
 		},
 		template:'<div ng-include="getLayoutUrl() | trusted" onload="afterLoadTemplate()" ng-cloak></div>' 
 	}
