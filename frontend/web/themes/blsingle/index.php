@@ -53,7 +53,7 @@
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-4 right">
 			<span>Donors</span>
-			<h1>{{campaign.numberOfUniqueDonors}}</h1>
+			<h1>{{campaign.numberOfUniqueDonors}}</h1> 
 		</div>
 	</div>
 	<div class="amount-progress">

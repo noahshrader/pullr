@@ -57,7 +57,7 @@
             <h1>{{campaign.numberOfUniqueDonors}}</h1>
         </div>
     </div>
-    <div class="amount-progress">
+    <div class="amount-progress"> 
         <div class="project-progress status">
             <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
         </div>

@@ -66,7 +66,7 @@
 <!-- User -->
 <section class="user-bar">
     <div class="container">
-        <div class="user">
+        <div class="user"> 
             <div class="avatar" ng-show='campaign.layoutType == LAYOUT_TYPE_SINGLE || campaign.layoutType == LAYOUT_TYPE_MULTI'>                
                 <img src="{{channel.logo}}" ng-cloak/>
                 <a href="http://www.twitch.tv/{{channel.display_name}}" ng-cloak>{{channel.display_name}}</a>

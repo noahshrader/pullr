@@ -8,7 +8,7 @@
     	<?= $form->field($campaign, 'twitterName', ['autoPlaceholder' => false])->label("<b>Twitter Username</b> (https://twitter.com/<b>XXXX</b>)"); ?>
     </div>
     <!-- YouTube -->
-    <div class="module cf">
+    <div class="module cf"> 
         <h5><i class="icon-youtube2"></i>YouTube</h5>
     	<?= $form->field($campaign, 'youtubeEnable')->label(false)->checkbox([], false); ?>
     	<?= $form->field($campaign, 'youtubeUrl', ['autoPlaceholder' => false])->label("<b>YouTube Channel Name</b> (https://www.youtube.com/user/<b>XXXX</b>)"); ?>
