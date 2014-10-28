@@ -95,8 +95,9 @@
         </div>
         <div class="col-md-6 col-sm-6 col-xs-8 feed-details">
             <div class="feed-details-title">
-                <h3 ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.title}}</h3>
-                <h5 ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.meta_game}}</h5>
+                <h4 class='meta-username' style="color:{{campaign.primaryColor}}" ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_TEAM' ng-cloak>{{selectedChannel.name}}</h4>
+                <h3 ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM' ng-cloak>{{selectedChannel.title}}</h3>
+                <h5 ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM' ng-cloak>{{selectedChannel.meta_game}}</h5>
             </div>
         </div>
     </div>

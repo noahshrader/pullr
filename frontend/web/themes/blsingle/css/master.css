@@ -323,6 +323,9 @@ header .container {
   margin-left: -10px;
   border-color: transparent transparent rgba(14, 15, 17, 0.15) transparent;
 }
+.stats .numbers h1 {
+  margin: 0;
+}
 .stats .project-progress {
   position: absolute;
   top: 0;

@@ -769,8 +769,13 @@ header .menu-actions a:before {
   background: #1dbc9c;
 }
 /* Stats */
+.stats .numbers .raised span {
+  display: inline-block;
+  margin-bottom: .4em;
+}
 .stats .numbers .raised h1 {
   color: #1dbc9c;
+  margin: 0;
 }
 /* Social Links */
 a.icon-twitch2 {

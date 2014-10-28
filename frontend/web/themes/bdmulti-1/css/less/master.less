@@ -82,98 +82,6 @@ header {
 	}
 }
 
-/* User */
-.user-bar {
-
-	.container {
-		position: relative;
-		height: 55px;
-	}
-	.user {
-		float: left;
-		padding: 0 @halfgutter;
-
-		.avatar {
-			float: left;
-
-			img {
-				position: relative;
-				float: left;
-				top: -14px;
-				left: -10px;
-				height: 80px;
-				width: 80px;
-				background: @dkgray;
-				border: solid 6px @dkgray;
-				border-radius: 50%;
-				z-index: 10;
-			}
-			a {
-				float: left;
-				display: inline-block;
-				font-size: 1.3em;
-				font-weight: 600;
-				line-height: 55px;
-				padding-right: .6em;
-			}
-		}
-
-		/* User Stats */
-		.user-details {
-			float: left;
-			margin: 12px 4px;
-
-			span {
-				display: inline-block;
-				line-height: 30px;
-				padding: 0 .2em;
-			}
-		}
-	}
-
-	/* Social Links */
-	.user-details-social {
-		float: right;
-		margin: 12px 4px;
-		.round-radius;
-		overflow: hidden;
-
-		a {
-			position: relative;
-			display: inline-block;
-			font-size: 15px;
-			line-height: 30px;
-			text-align: center;
-			padding: 0 .3em;
-			width: 30px;
-			&:hover {
-				color: @white;
-			}
-
-			&.icon-twitch2 {
-				font-size: 13px;
-			}
-			&.icon-twitter,
-			&.icon-youtube,
-			&.icon-facebook {
-				&:after {
-					content: '';
-					position: absolute;
-					display: inline-block;
-					top: -4px;
-					bottom: -4px;
-					left: -3px;
-					width: 2px;
-					background: @dkgray;
-					transform: rotate(15deg);
-					-ms-transform: rotate(15deg);
-					-webkit-transform: rotate(15deg);
-				}
-			}
-		}
-	}
-}
-
 /* Campaign Info & Actions */
 .info {
 	padding: 3.8em 0 1em;
@@ -196,6 +104,7 @@ header {
 /* Layout */
 /* ------------------------------------------------- */
 @import "../../../../global/themes/css/less/singlestream.less";
+@import "layout.less";
 
 .stream-wrap {
 	#stream {
@@ -204,16 +113,10 @@ header {
 	}
 }
 
-/* Campaign Description */
-.campaign-description {
-
-	p {
-		float: left;
-		color: @gray50;
-		font-size: 1.2em;
-		padding: 0 @halfgutter;
-		width: 90%;
-		max-width: 640px;
+/* Multichannel */
+.team-content {
+	.team-wrap {
+		background: @dkgray;
 	}
 }
 

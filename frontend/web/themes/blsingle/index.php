@@ -77,8 +77,8 @@
 				<a href="http://www.twitch.tv/{{channel.display_name}}" ng-cloak>{{channel.display_name}}</a>
 			</div>
 			<div class="user-details">
-				<span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'><i class="icon icon-user"></i>{{selectedChannel.followers}}</span>
-				<span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'><i class="icon icon-view"></i>{{selectedChannel.views}}</span>
+				<span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE' ng-cloak><i class="icon icon-user"></i>{{selectedChannel.followers}}</span>
+				<span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE' ng-cloak><i class="icon icon-view"></i>{{selectedChannel.views}}</span>
 			</div>
 		</div>
 		<div class="user-details-social">
