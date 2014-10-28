@@ -86,7 +86,7 @@
 <section class="info container cf" ng-cloak>
 	<div class="container" ng-cloak>
 		<div class="col-md-4 col-sm-4 col-xs-12 right donate-wrap">
-			<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate!</button>
+			<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate</button>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-8 feed-details">
 			<div class="feed-details-title">

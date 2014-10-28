@@ -285,7 +285,7 @@ header .container {
   overflow: hidden;
 }
 .stats .numbers {
-  padding: 3.6em 15px;
+  padding: 4.2em 15px;
 }
 .stats .amount-progress {
   position: absolute;
@@ -341,7 +341,6 @@ header .container {
 .user-bar .user .avatar a {
   float: left;
   display: inline-block;
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   font-size: 1.2em;
   font-weight: 600;
   line-height: 55px;
@@ -349,7 +348,7 @@ header .container {
 }
 .user-bar .user .user-details-social {
   float: left;
-  margin: 14px 4px;
+  margin: 12px 4px;
   border-radius: 30px;
   background-clip: padding-box;
   overflow: hidden;
@@ -358,10 +357,10 @@ header .container {
   position: relative;
   display: inline-block;
   font-size: 15px;
-  line-height: 25px;
+  line-height: 30px;
   text-align: center;
   padding: 0 .3em;
-  width: 35px;
+  width: 30px;
 }
 .user-bar .user .user-details-social a:hover {
   color: #ffffff;
@@ -377,7 +376,7 @@ header .container {
   display: inline-block;
   top: -4px;
   bottom: -4px;
-  left: -2px;
+  left: -3px;
   width: 2px;
   background: #29292d;
   transform: rotate(15deg);
@@ -391,7 +390,7 @@ header .container {
   /* Donate Button */
 }
 .info h5 {
-  margin-bottom: .2em;
+  margin-bottom: .4em;
 }
 .info .donate-wrap {
   float: right;

@@ -64,25 +64,6 @@
     </div>
 </section>
 
-<!-- User -->
-<section class="user-bar">
-    <div class="container">
-        <div class="user">
-            <div class="avatar">
-                <img ng-src="{{team.logo}}" ng-cloak/>
-                <a href="http://www.twitch.tv/{{team.display_name}}" ng-cloak>{{team.display_name}}</a>
-            </div>
-
-            <div class="user-details-social">
-                <a href="http://www.twitch.tv/{{campaign.channelTeam}}" title="Twitch" class="icon-twitch2"></a>
-                <a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" title="Twitter" ng-show="campaign.twitterEnable == 1"></a>
-                <a href="{{campaign.facebookUrl}}" class="icon-facebook" title="Facebook" ng-show="campaign.facebookUrl == 1"></a>
-                <a href="{{campaign.youtubeUrl}}" class="icon-youtube" title="YouTube" ng-show="campaign.youtubeEnable == 1"></a>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Campaign Info -->
 <section class="info container cf" ng-cloak>
     <div class="container" ng-cloak>

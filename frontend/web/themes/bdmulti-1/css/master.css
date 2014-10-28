@@ -80,11 +80,6 @@
     width: 0%;
   }
 }
-@-moz-keyframes animate-bar {
-  0% {
-    width: 0%;
-  }
-}
 @-webkit-keyframes animate-bar {
   0% {
     width: 0%;
@@ -97,14 +92,6 @@
 }
 /* Fade In */
 @keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-moz-keyframes fadein {
   from {
     opacity: 0;
   }
@@ -145,80 +132,77 @@
 }
 /* Header */
 header {
-  background: #ffffff;
+  background: #2e2e32;
 }
 header .logo a {
-  color: #47474d;
+  color: #ffffff;
 }
 header .menu-actions a {
-  color: #47474d;
-  background: #efeff0;
+  color: #ffffff;
+  background: #29292d;
 }
 header .menu-actions a:hover {
-  background: #d4d4d8;
+  background: #3a3a40;
 }
 header .menu-actions a:hover:before {
-  border-bottom-color: #d4d4d8;
+  border-bottom-color: #3a3a40;
 }
 header .menu-actions a:before {
-  border-bottom-color: #efeff0;
+  border-bottom-color: #29292d;
 }
 /* Main Stats */
 .stats {
-  background: #2e2e32;
+  background: #222225;
 }
 .stats .numbers span {
-  color: #9f9fa7;
+  color: #6b6b75;
 }
 .stats .numbers h1 {
   color: #ffffff;
 }
 /* User Bar */
 .user-bar {
-  background: #ffffff;
+  background: #29292d;
   /* Social Links */
 }
 .user-bar .avatar a {
-  color: #47474d;
+  color: #ffffff;
 }
 .user-bar .user-details-social {
-  background: #f7f7f7;
+  background: #2e2e32;
 }
 /* Campaign Info */
-.info h2 {
-  color: #47474d;
-}
 .info h5 {
-  color: #9f9fa7;
+  color: #6b6b75;
 }
 /* Stream */
 .stream-wrap #stream a.togglechat {
-  color: #47474d;
+  color: #ffffff;
 }
 .stream-wrap #stream a.togglechat:hover {
-  color: #bababf;
+  color: #ffffff;
 }
 .stream-wrap #stream a.togglechat.chaton {
-  color: #bababf;
+  color: #6b6b75;
 }
 /* Footer */
 footer h5 {
-  color: #bababf;
+  color: #53535a;
 }
 footer a.logo {
-  color: #bababf;
+  color: #53535a;
 }
 footer a.logo:hover {
-  color: #47474d;
+  color: #ffffff;
 }
 footer span.copy {
-  color: #bababf;
+  color: #47474d;
 }
 footer span.copy a {
-  color: #bababf;
+  color: #47474d;
 }
 footer span.copy a:hover {
-  color: #47474d;
+  color: #ffffff;
 }
 /* Type */
 /* ------------------------------------------------- */
@@ -228,7 +212,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
   margin: 0;
 }
 h1,
@@ -241,14 +225,12 @@ h4 {
 }
 h1 {
   margin-top: 0;
-  font-size: 4em;
-  font-weight: 400;
-  letter-spacing: -1px;
+  font-size: 3.8em;
+  font-weight: 100;
 }
 h2 {
-  font-size: 2.8em;
+  font-size: 2.6em;
   font-weight: 600;
-  letter-spacing: -1px;
   margin-bottom: .1em;
 }
 h3 {
@@ -258,6 +240,7 @@ h4 {
   font-size: 1.3em;
 }
 h5 {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
   font-size: 1.2em;
 }
 p,
@@ -272,9 +255,15 @@ code {
   margin-bottom: 1.5em;
   line-height: 1.5em;
 }
+p,
+ol,
+ul,
+blockquote {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+}
 body {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-  background-color: #efeff0;
+  background-color: #2e2e32;
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -296,7 +285,7 @@ header .container {
   overflow: hidden;
 }
 .stats .numbers {
-  padding: 3.6em 15px;
+  padding: 4.2em 15px;
 }
 .stats .amount-progress {
   position: absolute;
@@ -328,8 +317,6 @@ header .container {
 }
 /* User */
 .user-bar {
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
-  -moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
 }
 .user-bar .container {
@@ -350,8 +337,8 @@ header .container {
   top: -24px;
   height: 76px;
   width: 76px;
-  background: #ffffff;
-  border: solid 6px #ffffff;
+  background: #29292d;
+  border: solid 6px #29292d;
   border-radius: 50%;
 }
 .user-bar .user .avatar a {
@@ -364,7 +351,7 @@ header .container {
 }
 .user-bar .user .user-details-social {
   float: left;
-  margin: 14px 4px;
+  margin: 12px 4px;
   border-radius: 30px;
   background-clip: padding-box;
   overflow: hidden;
@@ -373,10 +360,10 @@ header .container {
   position: relative;
   display: inline-block;
   font-size: 15px;
-  line-height: 25px;
+  line-height: 30px;
   text-align: center;
   padding: 0 .3em;
-  width: 35px;
+  width: 30px;
 }
 .user-bar .user .user-details-social a:hover {
   color: #ffffff;
@@ -394,7 +381,7 @@ header .container {
   bottom: -4px;
   left: -2px;
   width: 2px;
-  background: #ffffff;
+  background: #29292d;
   transform: rotate(15deg);
   -ms-transform: rotate(15deg);
   -webkit-transform: rotate(15deg);
@@ -406,7 +393,7 @@ header .container {
   /* Donate Button */
 }
 .info h5 {
-  margin-bottom: .2em;
+  margin-bottom: .4em;
 }
 .info .donate-wrap {
   float: right;
@@ -419,8 +406,6 @@ header .container {
 .stream-wrap {
   padding: 30px 15px;
   -webkit-transition: linear 0.08s;
-  -moz-transition: linear 0.08s;
-  -ms-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .stream-wrap #stream {
@@ -439,8 +424,6 @@ header .container {
   width: 65%;
   z-index: 10;
   -webkit-transition: all ease-in-out 0.2s;
-  -moz-transition: all ease-in-out 0.2s;
-  -ms-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream #featured .featuredchat {
@@ -460,13 +443,11 @@ header .container {
 .stream-wrap #stream #featured .biggerFeaturedStream {
   width: 100%;
   -webkit-transition: all ease-in-out 0.2s;
-  -moz-transition: all ease-in-out 0.2s;
-  -ms-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream a.togglechat {
   position: absolute;
-  top: -30px;
+  top: -32px;
   right: 15px;
   display: block;
   font-size: 0.9em;
@@ -477,9 +458,99 @@ header .container {
 .stream-wrap .user-details {
   padding: 1em 15px;
 }
-.stream-wrap #stream {
-  background: #d4d4d8;
+.team-content {
+  padding: 0 15px;
+}
+.team-content .team-wrap {
+  padding: .6%;
   border-radius: 10px;
+}
+.team-content .team-wrap .team-members {
+  position: relative;
+  float: left;
+  display: inline-block;
+  width: 16.66%;
+  width: calc(14.28571429%);
+  padding: .6%;
+}
+.team-content .team-wrap .team-members img {
+  width: 100%;
+  height: auto;
+}
+.team-content .team-wrap .team-members .team-member {
+  cursor: pointer;
+}
+.team-content .team-wrap .team-members .team-member.offline img {
+  opacity: .3;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  filter: gray;
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  -webkit-transition: linear 0.08s;
+  transition: linear 0.08s;
+}
+.team-content .team-wrap .team-members .team-member.offline img:hover {
+  opacity: 1;
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats {
+  display: none;
+  position: absolute;
+  bottom: 80%;
+  left: 50%;
+  color: #ffffff;
+  padding: 15px;
+  margin-left: -100px;
+  width: 200px;
+  background: #2e2e32;
+  border-radius: 4px;
+  background-clip: padding-box;
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  z-index: 9999;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #ffffff transparent transparent transparent;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border-color: #2e2e32 transparent transparent transparent;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats h4 {
+  font-weight: 600;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats .game {
+  display: block;
+  color: #6b6b75;
+  line-height: 1;
+  padding: .3em 0;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats .viewers {
+  margin-right: 5px;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats .viewers i,
+.team-content .team-wrap .team-members .team-member .team-member-stats .followers i {
+  color: #6b6b75;
+  font-size: 12px;
+}
+.team-content .team-wrap .team-members .team-member:hover .team-member-stats {
+  display: block;
+}
+.stream-wrap #stream {
+  background: #29292d;
+  border-radius: 10px;
+}
+/* Multichannel */
+.team-content .team-wrap {
+  background: #29292d;
 }
 /* Footer */
 footer span.copy {
@@ -494,7 +565,7 @@ footer span.copy {
   }
 }
 /* Max 1089px */
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1089px) {
   .stream-controls {
     right: -60px !important;
   }
@@ -545,7 +616,6 @@ footer span.copy {
     display: none !important;
   }
 }
-/* Max 600px */
 /* Max 480px */
 @media screen and (max-width: 480px) {
   h1 {

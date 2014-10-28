@@ -23,7 +23,7 @@
 	<script src="api/script"></script>
 	<script src="/global/themes/global.js"></script>
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Varela+Round:400' rel='stylesheet' type='text/css'>
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body class="responsive" id="top">
@@ -86,7 +86,7 @@
 <section class="info container cf" ng-cloak>
 	<div class="container" ng-cloak>
 		<div class="col-md-4 col-sm-4 col-xs-12 right donate-wrap">
-			<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate!</button>
+			<button href="<?= yii\helpers\Url::to().'/donate' ?>" class="btn btn-primary donate" data-effect="mfp-zoom-in" style="background:{{campaign.primaryColor}}">Donate</button>
 		</div>
 		<div class="col-md-6 col-sm-6 col-xs-8 feed-details">
 			<div class="feed-details-title">

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/global/themes/css/animate.css" />
     <link rel="stylesheet" href="/global/themes/css/global.css" />
     <!-- Theme Specific -->
-    <link rel="stylesheet" href="/themes/blteam-1/css/master.css" />
+    <link rel="stylesheet" href="/themes/bdteam-1/css/master.css" />
     <!-- Scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
     <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
@@ -60,25 +60,6 @@
     <div class="amount-progress">
         <div class="project-progress status">
             <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
-        </div>
-    </div>
-</section>
-
-<!-- User -->
-<section class="user-bar">
-    <div class="container">
-        <div class="user">
-            <div class="avatar">
-                <img ng-src="{{team.logo}}" ng-cloak/>
-                <a href="http://www.twitch.tv/{{team.display_name}}" ng-cloak>{{team.display_name}}</a>
-            </div>
-
-            <div class="user-details-social">
-                <a href="http://www.twitch.tv/{{campaign.channelTeam}}" title="Twitch" class="icon-twitch2"></a>
-                <a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" title="Twitter" ng-show="campaign.twitterEnable == 1"></a>
-                <a href="{{campaign.facebookUrl}}" class="icon-facebook" title="Facebook" ng-show="campaign.facebookUrl == 1"></a>
-                <a href="{{campaign.youtubeUrl}}" class="icon-youtube" title="YouTube" ng-show="campaign.youtubeEnable == 1"></a>
-            </div>
         </div>
     </div>
 </section>
