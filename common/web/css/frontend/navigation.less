@@ -41,16 +41,20 @@
 			a {
 				float: left;
 				display: inline-block;
-				color: @gray60;
-				font-size: 20px;
-				line-height: @top-menu-height;
-				padding: 0 .4em;
+				color: @white;
+				font-size: 11px;
+				text-align: center;
+				line-height: 20px;
+				margin: 1.9em .9em;
+				height: 20px;
+				width: 20px;
+				background: @gray60;
+				.round-radius;
 
 				&:hover {
-					color: @accent;
+					background: @accent;
 				}
 				&:before {
-					float: left;
 					margin-bottom: -.1em;
 				}
 			}

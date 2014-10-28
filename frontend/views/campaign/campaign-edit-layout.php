@@ -7,7 +7,7 @@ $user = \Yii::$app->user->identity;
 
 ?>
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
-	<h2>Make it look good.</h2>
+	<h3>Campaign Page</h3>
     <div class="module">
 
         <h5><i class="icon-design3"></i>Layout</h5>

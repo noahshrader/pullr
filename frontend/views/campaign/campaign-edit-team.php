@@ -1,5 +1,5 @@
 <div id="campaign-edit-team">
-    <h2>Expand your fundraiser with teams.</h2>
+    <h3>Team Fundraising</h3>
     <div class="module">
 
         <h5><i class="icon-adduser"></i>Team Invites</h5>

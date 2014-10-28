@@ -1,6 +1,6 @@
 <div id="collapseFour" class="<?= ($campaign->twitterEnable? 'twitterEnable ': '').($campaign->youtubeEnable? 'youtubeEnable ': '').($campaign->facebookEnable? 'facebookEnable ': '') ?> socialenable">
     
-    <h2>Share yourself on your campaign page.</h2>
+    <h3>Connect</h3>
 	<!-- Twitter -->
 	<div class="module cf">
         <h5><i class="icon-twitter2"></i>Twitter</h5>

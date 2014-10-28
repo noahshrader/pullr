@@ -3,7 +3,7 @@
     use dosamigos\ckeditor\CKEditor;
 ?>
 <div id="campaign-edit-form">
-	<h2>Customize your form.</h2>
+	<h3>Donation Form</h3>
     <div class="module">
 
         <h5><i class="icon-list"></i>General</h5>
