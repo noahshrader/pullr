@@ -38,37 +38,59 @@ $this->title = 'Settings';
             </div>
         <?endif;?>
 
-		<section class="module">
+		<section>
 			<div class="module">
-				<h5><i class="icon-user"></i>General</h5>
-				<?= $form->field($user, 'name') ?>
-				<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
-				<?
+				<h5 class="module-title"><i class="icon-user"></i>General</h5>
+				<div class="module-inner">
+					<?= $form->field($user, 'name') ?>
+					<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
+					<?
 					$timezones = timezone_identifiers_list();
 					$keyValues = array_combine($timezones, $timezones);
-				?>
-				<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
+					?>
+					<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
+				</div>
 			</div>
 			<div class="dashboard-notifications module">
-				<h5><i class="icon-notify"></i>Dashboard Notifications</h5>
-				<?= $form->field($notification, Notification::$NOTIFY_NEW_FOLLOWER)->checkbox(); ?>
-				<?= $form->field($notification, Notification::$NOTIFY_NEW_SUBSCRIBER)->checkbox(); ?>
+				<h5 class="module-title"><i class="icon-notify"></i>Dashboard Notifications</h5>
+				<div class="module-inner">
+					<div class="checkbox">
+						<?= $form->field($notification, Notification::$NOTIFY_NEW_FOLLOWER)->checkbox(); ?>
+					</div>
+					<div class="checkbox">
+						<?= $form->field($notification, Notification::$NOTIFY_NEW_SUBSCRIBER)->checkbox(); ?>
+					</div>
+				</div>
 			</div>
 			<div class="email-notifications module">
-				<h5><i class="icon-mail"></i>Email Notifications</h5>
-				<div>
-					<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
-					<? $attributes = $notification->getNotificationsAttributes(); ?>
-				</div>
-				<label>Email me when:</label>
-				<?= $form->field($notification, Notification::$NOTIFY_DONATION_RECEIVED)->checkbox(); ?>
-				<?= $form->field($notification, Notification::$NOTIFY_NEW_FEATURE_ADDED)->checkbox(); ?>
-				<?= $form->field($notification, Notification::$NOTIFY_NEW_THEME_AVAILABLE)->checkbox(); ?>
-				<?= $form->field($notification, Notification::$NOTIFY_SYSTEM_UPDATE)->checkbox(); ?>			
+				<h5 class="module-title"><i class="icon-mail"></i>Email Notifications</h5>
+				<div class="module-inner">
+					<div>
+						<div class="checkbox">
+							<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
+							<? $attributes = $notification->getNotificationsAttributes(); ?>
+						</div>
+					</div>
+					<label>Email me when:</label>
+					<div class="checkbox">
+						<?= $form->field($notification, Notification::$NOTIFY_DONATION_RECEIVED)->checkbox(); ?>
+					</div>
+					<div class="checkbox">
+						<?= $form->field($notification, Notification::$NOTIFY_NEW_FEATURE_ADDED)->checkbox(); ?>
+					</div>
+					<div class="checkbox">
+						<?= $form->field($notification, Notification::$NOTIFY_NEW_THEME_AVAILABLE)->checkbox(); ?>
+					</div>
+					<div class="checkbox">
+						<?= $form->field($notification, Notification::$NOTIFY_SYSTEM_UPDATE)->checkbox(); ?>
+					</div>
+				</div>	
 			</div>
 		</section>
 		<section class="module">
+			<div class="module-inner">
             	<a class="account-deactivate" data-toggle="modal" data-target="#deactivateModal">Deactivate my account</a>
+            </div>
 		</section>
 		<div class="form-group text-center">
 			<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>

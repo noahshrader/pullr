@@ -94,16 +94,15 @@ $user = \Yii::$app->user->identity;
             <a class="view-campaign" href='<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon icon-eye"></i></a>
         </div>
         <? endif ?>
-        <div class="module">
         <ul class="content-nav cf">
             <li class="active">
                 <a href="<?= Url::to()?>#general" data-toggle="tab">General</a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#layout" data-toggle="tab">Layout</a>
+                <a href="<?= Url::to()?>#layout" data-toggle="tab">Campaign Page</a>
             </li>
             <li>
-                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Form</a>
+                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Donation Form</a>
             </li>
             <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
                 <li id="campaign-edit-team-li">
@@ -114,6 +113,7 @@ $user = \Yii::$app->user->identity;
                 <a href="<?= Url::to()?>#social" data-toggle="tab">Social</a>
             </li>
         </ul>
+        <div class="tab-content">
             <div class="spinner-wrap">
                 <div class="spinner">
                     <div class="rect1"></div>
@@ -123,46 +123,44 @@ $user = \Yii::$app->user->identity;
                     <div class="rect5"></div>
                 </div>
             </div>
-            <div class="tab-content" id="accordion">
-                <div class="tab-pane fade in active" id="general"> <!-- general settings -->
-                 <?= $this->render('campaign-edit-general', [
-                                'form' => $form,
-                                'campaign' => $campaign
-                            ]); ?>    
-                </div>
-                <div class="tab-pane" id="layout"> <!-- layout settings -->
-                <?= $this->render('campaign-edit-layout', [
-                                'form' => $form,
-                                'campaign' => $campaign, 
-                            ]); ?>   
-                </div>
-                <div class="tab-pane" id="campaign-edit-form-container"> <!-- donation form settings -->
-                 <?= $this->render('campaign-edit-form', [
-                                'form' => $form,
-                                'campaign' => $campaign
-                            ]); ?>    
-                </div>
-                <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
-                <div class="tab-pane" id="team"> <!-- team settings -->
-                     <?= $this->render('campaign-edit-team', [
-                                'form' => $form,
-                                'campaign' => $campaign, 
-                            ]); ?>   
-                </div>
-                <? endif; ?>
-                <div class="tab-pane" id="social"> <!-- social settings -->
-                <?= $this->render('campaign-edit-social', [
-                                'form' => $form,
-                                'campaign' => $campaign, 
-                            ]); ?>   
-                </div>
+            <div class="tab-pane fade in active" id="general"> <!-- general settings -->
+             <?= $this->render('campaign-edit-general', [
+                            'form' => $form,
+                            'campaign' => $campaign
+                        ]); ?>    
             </div>
-            <div class="btn-container">
-                <a href="app/campaign/view?id=<?= $campaign->id ?>" class="btn btn-secondary">Cancel</a>
-                <button class="btn btn-primary">Update</button>
+            <div class="tab-pane" id="layout"> <!-- layout settings -->
+            <?= $this->render('campaign-edit-layout', [
+                            'form' => $form,
+                            'campaign' => $campaign, 
+                        ]); ?>   
             </div>
-            <? ActiveForm::end() ?>
+            <div class="tab-pane" id="campaign-edit-form-container"> <!-- donation form settings -->
+             <?= $this->render('campaign-edit-form', [
+                            'form' => $form,
+                            'campaign' => $campaign
+                        ]); ?>    
+            </div>
+            <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
+            <div class="tab-pane" id="team"> <!-- team settings -->
+                 <?= $this->render('campaign-edit-team', [
+                            'form' => $form,
+                            'campaign' => $campaign, 
+                        ]); ?>   
+            </div>
+            <? endif; ?>
+            <div class="tab-pane" id="social"> <!-- social settings -->
+            <?= $this->render('campaign-edit-social', [
+                            'form' => $form,
+                            'campaign' => $campaign, 
+                        ]); ?>   
+            </div>
         </div>
+        <div class="btn-container">
+            <a href="app/campaign/view?id=<?= $campaign->id ?>" class="btn btn-secondary">Cancel</a>
+            <button class="btn btn-primary">Update</button>
+        </div>
+        <? ActiveForm::end() ?>
     </section>
 <? else: ?>
 <? endif ?> 

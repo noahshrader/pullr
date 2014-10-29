@@ -52,39 +52,31 @@
 	&.table {
 		background: @offwhite;
 	}
-
+	&.last {
+		margin: 0;
+	}
 	h4 {
 		font-weight: 600;
 		margin: @gutter 0;
 	}
-
 	h5.module-title {
-		color: @gray60;
+		color: @gray30;
 		font-weight: 600;
 		line-height: 45px;
-		padding: 0 @gutter;
-		margin: 0;
-		height: 45px;
+		padding: 4px @gutter;
+		margin: 0 0 .6em;
 		background: @offwhite;
 		border-bottom: solid 1px @gray75;
-	}
-	.module {
 
-		> h5 {
-			display: inline-block;
-			color: @gray30;
-			font-family: @secfont;
-			font-weight: 600;
-			margin: 0 0 @halfgutter;
-
-			i {
-				display: inline-block;
-				position: relative;
-				top: 2px;
-				font-size: 32px;
-				margin-right: 7px;
-			}
+		i {
+			top: 3px;
+			color: @gray60;
+			font-size: 18px;
+			margin-right: 6px;
 		}
+	}
+	.module-inner {
+		padding: @halfgutter @gutter;
 	}
 }
 
@@ -98,6 +90,11 @@
 
 	.module {
 		margin-top: @gutter;
+
+		h5.module-title {
+			margin: 0;
+			padding: 0 @gutter;
+		}
 	}
 }
 
@@ -380,7 +377,11 @@ table.dataTable {
 		cursor: pointer;
 		.trans;
 		&.raised {
-			color: @accent !important;
+			span {
+				padding: 0 .6em;
+				background: @gray75;
+				.round-radius;
+			}
 		}
 	}
 	th,

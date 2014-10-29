@@ -14,7 +14,7 @@
                     <?= $donation->name ? $donation->name : 'Anonymous' ?>
                 </td>
                 <td class="raised">
-                    $<?= number_format($donation->amount) ?>
+                    <span>$<?= number_format($donation->amount) ?></span>
                 </td>
                 <td>
                    <?= (new DateTime())

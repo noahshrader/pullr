@@ -6,9 +6,18 @@
 
 	.module {
 		background: @white;
+
+		.module-inner {
+			padding: @halfgutter @gutter+@halfgutter;
+		}
+	}
+	ul.content-nav {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 720px;
 	}
 	.tab-content {
-		padding: @halfgutter+@gutter @gutter+@gutter;
+		position: relative;
 		margin: 0 auto;
 		max-width: 720px;
 

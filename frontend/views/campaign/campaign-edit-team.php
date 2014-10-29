@@ -1,20 +1,20 @@
 <div id="campaign-edit-team">
-    <h3>Team Fundraising</h3>
     <div class="module">
-
-        <h5><i class="icon-adduser"></i>Team Invites</h5>
-        <? if ($campaign->isNewRecord): ?>
-            <div class="label label-danger">Save campaign before adding emails</div>
-        <? else: ?>
-        <div id="campaign-invites">
-            <div id="addCampaingInviteInfo" class="label label-danger"></div>
-            <label>Invite Pullr users to your team <i class="icon icon-help" data-toggle="tooltip" data-placement="top" title="Type in your Pullr invitee's email address they used to connect with Twitch. Support for channel names coming soon."></i></label>
-            <div class="combined-form-wrap">
-                <input type="text" id="addCampaignInvite" placeholder="Add Twitch Email Address" class="form-control">
-                <a onclick="addNewCampaignInvite()" class="icon icon-plus"></a>
+        <h5 class="module-title"><i class="icon icon-adduser"></i>Team Invites</h5>
+        <div class="module-inner">
+            <? if ($campaign->isNewRecord): ?>
+                <div class="label label-danger">Save campaign before adding emails</div>
+            <? else: ?>
+            <div id="campaign-invites">
+                <div id="addCampaingInviteInfo" class="label label-danger"></div>
+                <label>Invite Pullr users to your team <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Type in your Pullr invitee's email address they used to connect with Twitch. Support for channel names coming soon."></i></label>
+                <div class="combined-form-wrap">
+                    <input type="text" id="addCampaignInvite" placeholder="Add Twitch Email Address" class="form-control">
+                    <a onclick="addNewCampaignInvite()" class="icon icon-plus"></a>
+                </div>
+                <div id="campaignInvitesUsers" class="team-list"></div>
             </div>
-            <div id="campaignInvitesUsers" class="team-list"></div>
+            <? endif ?>
         </div>
-        <? endif ?>
     </div>
 </div>
