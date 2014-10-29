@@ -107,13 +107,40 @@ class StreamboardController extends FrontendController
 
     public function actionSource()
     {
+        $user = Application::getCurrentUser();
         $this->layout = 'streamboard/source';
-        return $this->render('config/settings/source', []);
+        $data = $this->getSourceData();
+        $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$user->id])->one();
+        if ( $donationFeed ) {
+            $donationFeedSetting = $donationFeed->toArray(['showSubscriber', 'showFollower']);
+            $showSubscriber = $donationFeedSetting['showSubscriber'];
+            $showFollower = $donationFeedSetting['showFollower'];
+        } else {
+            $showSubscriber = false;
+            $showFollower = false;
+        }
+        $data['showSubscriber'] = $showSubscriber;
+        $data['showFollower'] = $showFollower;
+
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
+        $data['campaigns'] = $this->getUserCampaigns();
+        $data['twitchPartner'] = $user->userFields->twitchPartner;        
+        // echo '<pre>';
+        // var_dump($data);
+        // exit;
+        return $this->render('config/settings/source', [
+            'data' => $data
+        ]);
     }
 
     public function actionGet_campaigns_ajax()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
+        return $this->getUserCampaigns();
+    }
+
+    public function getUserCampaigns()
+    {
         $user = Application::getCurrentUser();
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->orderBy('amountRaised DESC, id DESC')->all();
         $campaignsArray = [];
@@ -293,6 +320,12 @@ class StreamboardController extends FrontendController
      */
     public function actionGet_source_data()
     {
+        $data = $this->getSourceData();
+        echo json_encode($data);
+    }
+
+    public function getSourceData()
+    {
         $user = Application::getCurrentUser();
         /*We do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.*/
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
@@ -323,6 +356,7 @@ class StreamboardController extends FrontendController
                 $followers[] = $twitchFollower->toArray(['twitchUserId', 'display_name', 'createdAt']);
             }
         }
+            
 
         $data = [
             'stats' => $stats,
@@ -331,9 +365,9 @@ class StreamboardController extends FrontendController
             'subscribers' => $subscribers,
             'followers' => $followers,
             'followersNumber' => TwitchFollow::getFollowerCountByTotal($user->id),
-            'subscribersNumber' => TwitchSubscription::getSubscriberCountByTotal($user->id)
+            'subscribersNumber' => TwitchSubscription::getSubscriberCountByTotal($user->id)          
         ];
-        echo json_encode($data);
+        return $data;
     }
 
     public function actionClear_button_ajax()

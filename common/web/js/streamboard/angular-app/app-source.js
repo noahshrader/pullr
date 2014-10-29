@@ -4,6 +4,8 @@
         $scope.campaignsService = campaigns;
         $scope.streamService = stream;
         $scope.stats = {};
+        isDataReady = false;
+        console.log('SourceCtrl init');
         $scope.requestSourceStats = function(){
             $http.get('app/streamboard/get_source_data').success(function(data){
                 $scope.stats = data['stats'];
@@ -12,13 +14,18 @@
                 $scope.subscribers = data['subscribers'];
                 $scope.followers = data['followers'];
                 $scope.followersNumber = data['followersNumber'];
-                $scope.subscribersNumber = data['subscribersNumber'];                
+                $scope.subscribersNumber = data['subscribersNumber'];  
+                if (false == isDataReady) {
+                    angular.element('#source-wrap-angular').show();
+                    angular.element('#source-wrap-php').hide();
+                    isDataReady = true;
+                }            
             });
         }
         $scope.requestSourceStats();
         setInterval(function() {
             $scope.requestSourceStats();
-        }, 1000);
+        }, 5000);
 
         setInterval(function(){
             $scope.streamService.getActivityFeedSetting();
