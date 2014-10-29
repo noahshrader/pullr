@@ -21,35 +21,16 @@ use yii\web\View;
     <div class="activityFeed module">
         <div class="form-group">
             <h5>Activity Feed</h5>
-            <div class="sb-activity-feed">
-
-                <? foreach($donors as $index => $donor): ?>                    
-                     <?=$donor['name']; ?> ($<?=number_format($donor['amount']);?>)
-
-                    <? if ($index < count($donors) - 1 || ($showSubscriber && count($subscribers) > 0) || ($showFollower && count($followers) > 0)):?>
-                    ,
-                    <? endif; ?>
-                <? endforeach; ?>
-                
-                <? if ($showSubscriber): ?>
-                    <? foreach ($subscribers as $index => $subscriber):?>
-                    <?=$subscribe['display_name']; ?> (Subscribed)
-                    <? if ($index < count($subscribers) - 1 || ($showFollower && count($followers) > 0)):?>
-                    ,
-                    <? endif; ?>
-                    <? endforeach; ?>
-                <? endif;?>
-                
-                <? if ($showFollower): ?>
-                    <? foreach($followers as $index => $follower): ?>
-                     <?=$follower['display_name']; ?> (Followed)
-                     <? if ($index < count($followers) - 1):?>
-                    ,
-                    <? endif; ?>
-                    <? endforeach; ?>
-                <? endif; ?>
-                
-            </div>
+            <div class="sb-activity-feed"><?  
+                    $activityFeed = $this->render('source-activity-feed', [
+                        'donors' => $donors,
+                        'subscribers' => $subscribers,
+                        'followers' => $followers,
+                        'showSubscriber' => $showSubscriber,
+                        'showFollower' => $showFollower
+                    ]);
+                    echo preg_replace("/\s+/", " ", trim($activityFeed));
+                ?></div>
         </div>
     </div>
     <? if (count($campaigns) > 0): ?>
