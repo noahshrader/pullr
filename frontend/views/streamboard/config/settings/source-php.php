@@ -23,33 +23,32 @@ use yii\web\View;
             <h5>Activity Feed</h5>
             <div class="sb-activity-feed">
 
-                <? foreach($donors as $donor): ?>
-                    <span class="commaAfter">
-                    <span class="nowrap">
-                    <span><?=$donor['name']; ?></span>
-                   (<span class="amount accent">$<?=number_format($donor['amount']);?></span>)<!-- removing space before :after{content:} rule
-                --></span></span>
+                <? foreach($donors as $index => $donor): ?>                    
+                     <?=$donor['name']; ?> ($<?=number_format($donor['amount']);?>)
+
+                    <? if ($index < count($donors) - 1 || ($showSubscriber && count($subscribers) > 0) || ($showFollower && count($followers) > 0)):?>
+                    ,
+                    <? endif; ?>
                 <? endforeach; ?>
                 
                 <? if ($showSubscriber): ?>
-                    <? foreach ($subscribers as $subscriber):?>
-                    <span class="commaAfter">
-                        <span class="nowrap">
-                        <span><?=$subscribe['display_name']; ?></span>
-                        <span>(Subscribed)</span><!-- removing space before :after(content:} rule
-                    --></span></span>
+                    <? foreach ($subscribers as $index => $subscriber):?>
+                    <?=$subscribe['display_name']; ?> (Subscribed)
+                    <? if ($index < count($subscribers) - 1 || ($showFollower && count($followers) > 0)):?>
+                    ,
+                    <? endif; ?>
                     <? endforeach; ?>
                 <? endif;?>
                 
                 <? if ($showFollower): ?>
-                    <? foreach($followers as $follower): ?>
-                    <span class="commaAfter">
-                        <span class="nowrap">
-                        <span><?=$follower['display_name']; ?></span>
-                        <span>(Followed)</span><!-- removing space before :after(content:} rule
-                    --></span></span>
+                    <? foreach($followers as $index => $follower): ?>
+                     <?=$follower['display_name']; ?> (Followed)
+                     <? if ($index < count($followers) - 1):?>
+                    ,
+                    <? endif; ?>
                     <? endforeach; ?>
                 <? endif; ?>
+                
             </div>
         </div>
     </div>
