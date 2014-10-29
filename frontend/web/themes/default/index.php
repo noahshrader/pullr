@@ -66,7 +66,7 @@
 <!-- User -->
 <section class="user-bar">
     <div class="container">
-        <div class="user">
+        <div class="user"> 
             <div class="avatar" ng-show='campaign.layoutType == LAYOUT_TYPE_SINGLE || campaign.layoutType == LAYOUT_TYPE_MULTI'>                
                 <img src="{{channel.logo}}" ng-cloak/>
                 <a href="http://www.twitch.tv/{{channel.display_name}}" ng-cloak>{{channel.display_name}}</a>
@@ -79,8 +79,8 @@
             <div class="user-details-social">
                 <a href="http://www.twitch.tv/{{channel.display_name}}" title="Twitch" class="icon-twitch2"></a>
                 <a href="http://twitter.com/{{campaign.twitterName}}" class="icon-twitter" title="Twitter" ng-show="campaign.twitterEnable == 1"></a>
-                <a href="{{campaign.facebookUrl}}" class="icon-facebook" title="Facebook" ng-show="campaign.facebookUrl == 1"></a>
-                <a href="{{campaign.youtubeUrl}}" class="icon-youtube" title="YouTube" ng-show="campaign.youtubeEnable == 1"></a>
+                <a href="http://www.facebook.com/{{campaign.facebookUrl}}" class="icon-facebook" title="Facebook" ng-show="campaign.facebookUrl == 1"></a>
+                <a href="https://www.youtube.com/user/{{campaign.youtubeUrl}}" class="icon-youtube" title="YouTube" ng-show="campaign.youtubeEnable == 1"></a>
             </div>
         </div>
     </div>
@@ -98,30 +98,7 @@
                     <span data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</span>
                 </h5>
                 <h2>{{campaign.name}}</h2>
-                <h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>          
-                <div class='channel-meta' ng-cloak>
-                    <!-- username -->
-                    <div class='meta-username' ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.name}}</div>
-
-                    <div class='meta-status'>
-                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.title}}</div>
-                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.status}}</div>
-                    </div>
-                    <div class='meta-game'>
-                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.meta_game}}</div>
-                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.game}}</div>
-                    </div>
-                    <div class='meta-follower'>
-                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.followers_count}}</div>
-                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.followers}}</div>
-                    </div>
-
-                    <div class='meta-views'>
-                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.total_views}}</div>
-                        <div ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.views}}</div>
-                    </div>
-
-                </div>      
+                <h4 style="color:{{campaign.primaryColor}}">{{campaign.charity.name}}</h4>
             </div>
         </div>
     </div>

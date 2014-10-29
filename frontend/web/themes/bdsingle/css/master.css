@@ -153,6 +153,11 @@ header .menu-actions a:before {
 /* Main Stats */
 .stats {
   background: #222225;
+  /* Campaign Info */
+  /* Numbers */
+}
+.stats .campaign-info h5 {
+  color: #6b6b75;
 }
 .stats .numbers span {
   color: #6b6b75;
@@ -163,10 +168,14 @@ header .menu-actions a:before {
 /* User Bar */
 .user-bar {
   background: #29292d;
+  /* User Stats */
   /* Social Links */
 }
 .user-bar .avatar a {
   color: #ffffff;
+}
+.user-bar .user-details span {
+  color: #6b6b75;
 }
 .user-bar .user-details-social {
   background: #2e2e32;
@@ -214,6 +223,7 @@ h4,
 h5 {
   font-family: 'Varela Round', Helvetica, Arial, sans-serif;
   margin: 0;
+  margin-bottom: .2em;
 }
 h1,
 h2,
@@ -221,23 +231,21 @@ h3,
 h4 {
   color: #ffffff;
   font-weight: inherit;
-  line-height: 1.2;
 }
 h1 {
   margin-top: 0;
-  font-size: 3.8em;
+  font-size: 3.6em;
   font-weight: 100;
+  letter-spacing: -1px;
 }
 h2 {
-  font-size: 2.6em;
-  font-weight: 600;
-  margin-bottom: .1em;
+  font-size: 2.8em;
 }
 h3 {
-  font-size: 2em;
+  font-size: 1.8em;
 }
 h4 {
-  font-size: 1.3em;
+  font-size: 1.4em;
 }
 h5 {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
@@ -283,39 +291,56 @@ header .container {
   position: relative;
   min-height: 160px;
   overflow: hidden;
+  /* Campaign Info */
+  /* Numbers */
+  /* Progress Bar */
+}
+.stats .campaign-info {
+  text-align: center;
+  padding: 4.8em 5% 3em;
+}
+.stats .campaign-info h4 {
+  margin-bottom: .6em;
 }
 .stats .numbers {
-  padding: 4.2em 15px;
+  position: relative;
+  padding: 3em 0;
+  background: rgba(14, 15, 17, 0.15);
 }
-.stats .amount-progress {
-  position: absolute;
-  top: 0;
-  text-align: center;
-  width: 100%;
-  height: 45px;
-  overflow: hidden;
-  background: transparent;
-}
-.stats .amount-progress .project-progress {
-  position: absolute;
-  top: 0;
+.stats .numbers:before {
   content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #ffffff transparent;
+  top: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border-color: transparent transparent rgba(14, 15, 17, 0.15) transparent;
+}
+.stats .numbers h1 {
+  margin: 0;
+}
+.stats .project-progress {
+  position: absolute;
+  top: 0;
   height: 4px;
   width: 100%;
   background: rgba(14, 15, 17, 0.15);
-  z-index: 10;
+  z-index: 1;
 }
-.stats .amount-progress .project-progress .project-progressbar {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+.stats .project-progress .project-progressbar {
   height: 100%;
   width: 0;
   -webkit-transition: width 0.7s ease-in-out;
   transition: width 0.7s ease-in-out;
 }
 /* User */
+.user-bar {
+  /* Social Links */
+}
 .user-bar .container {
   position: relative;
   height: 55px;
@@ -323,7 +348,7 @@ header .container {
 .user-bar .user {
   float: left;
   padding: 0 15px;
-  /* Social Links */
+  /* User Stats */
 }
 .user-bar .user .avatar {
   float: left;
@@ -331,29 +356,40 @@ header .container {
 .user-bar .user .avatar img {
   position: relative;
   float: left;
-  top: -24px;
-  height: 76px;
-  width: 76px;
+  top: -14px;
+  left: -10px;
+  height: 80px;
+  width: 80px;
   background: #29292d;
   border: solid 6px #29292d;
   border-radius: 50%;
+  z-index: 10;
 }
 .user-bar .user .avatar a {
   float: left;
   display: inline-block;
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 600;
   line-height: 55px;
-  padding: 0 .6em;
+  padding-right: .6em;
 }
-.user-bar .user .user-details-social {
+.user-bar .user .user-details {
   float: left;
+  margin: 12px 4px;
+}
+.user-bar .user .user-details span {
+  display: inline-block;
+  line-height: 30px;
+  padding: 0 .2em;
+}
+.user-bar .user-details-social {
+  float: right;
   margin: 12px 4px;
   border-radius: 30px;
   background-clip: padding-box;
   overflow: hidden;
 }
-.user-bar .user .user-details-social a {
+.user-bar .user-details-social a {
   position: relative;
   display: inline-block;
   font-size: 15px;
@@ -362,15 +398,15 @@ header .container {
   padding: 0 .3em;
   width: 30px;
 }
-.user-bar .user .user-details-social a:hover {
+.user-bar .user-details-social a:hover {
   color: #ffffff;
 }
-.user-bar .user .user-details-social a.icon-twitch2 {
+.user-bar .user-details-social a.icon-twitch2 {
   font-size: 13px;
 }
-.user-bar .user .user-details-social a.icon-twitter:after,
-.user-bar .user .user-details-social a.icon-youtube:after,
-.user-bar .user .user-details-social a.icon-facebook:after {
+.user-bar .user-details-social a.icon-twitter:after,
+.user-bar .user-details-social a.icon-youtube:after,
+.user-bar .user-details-social a.icon-facebook:after {
   content: '';
   position: absolute;
   display: inline-block;
