@@ -113,7 +113,8 @@ body {
 .stats-overview {
 	text-align: center;
 
-	h5 {
+	span {
+		color: @gray60;
 		margin-top: .2em;
 	}
 
@@ -130,7 +131,7 @@ body {
 			color: @white;
 			margin: 0;
 		}
-		h5 {
+		span {
 			color: @dkraccent;
 		}
 	}
@@ -240,9 +241,12 @@ body {
 /* Content Navigation */
 /* ------------------------------------------------- */
 ul.content-nav {
-	margin-bottom: 2em;
-	height: @sidenavheight;
-	border-bottom: solid 1px @gray72;
+	margin-bottom: @gutter;
+	height: @sidenavheight + 8px;
+	background: @offwhite;
+	.element-radius;
+	.box-shadow;
+	overflow: hidden;
 
 	li {
 		position: relative;
@@ -253,19 +257,14 @@ ul.content-nav {
 		&.active a,
 		&.active a:hover {
 			color: @gray30;
-		}
-		&.active a {
-			color: @gray30;
-			-webkit-box-shadow: inset 0 -4px 0 0 @gray72;
-			-moz-box-shadow: inset 0 -4px 0 0 @gray72;
-			box-shadow: inset 0 -4px 0 0 @gray72;
+			background: @white;
 		}
 		a {
 			display: inline-block;
 			color: @gray60;
 			font-weight: 600;
-			line-height: @sidenavheight;
-			margin-right: 2.2em;
+			line-height: @sidenavheight + 8px;
+			padding: 0 25px;
 			width: 100%;
 		}
 	}
@@ -317,9 +316,9 @@ ul.panel-nav {
 h3.list-title {
 	color: @gray30;
 	margin-bottom: 2px;
-	font-size: 18px;
+	font-size: 1.1em;
 	font-weight: 600;
-	line-height: 1.2em;
+	line-height: 1.1em;
 	.trans;
 }
 p.list-total {

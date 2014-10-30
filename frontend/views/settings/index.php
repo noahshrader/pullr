@@ -18,7 +18,6 @@ $this->title = 'Settings';
 ?>
 <section id="content" class="settings pane"> <!-- BEGIN main settings -->
 	<div class="content-wrap">
-		<span class="corner"></span>
 
         <?php if (Yii::$app->session->hasFlash('pro_success')):?>
         <div class="alert alert-info alert-dismissible systemNotification module">
@@ -40,7 +39,7 @@ $this->title = 'Settings';
 
 		<section>
 			<div class="module">
-				<h5 class="module-title"><i class="icon-user"></i>General</h5>
+				<h5 class="module-title">General</h5>
 				<div class="module-inner">
 					<?= $form->field($user, 'name') ?>
 					<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
@@ -52,7 +51,7 @@ $this->title = 'Settings';
 				</div>
 			</div>
 			<div class="dashboard-notifications module">
-				<h5 class="module-title"><i class="icon-notify"></i>Dashboard Notifications</h5>
+				<h5 class="module-title">Dashboard Notifications</h5>
 				<div class="module-inner">
 					<div class="checkbox">
 						<?= $form->field($notification, Notification::$NOTIFY_NEW_FOLLOWER)->checkbox(); ?>
@@ -63,7 +62,7 @@ $this->title = 'Settings';
 				</div>
 			</div>
 			<div class="email-notifications module">
-				<h5 class="module-title"><i class="icon-mail"></i>Email Notifications</h5>
+				<h5 class="module-title">Email Notifications</h5>
 				<div class="module-inner">
 					<div>
 						<div class="checkbox">

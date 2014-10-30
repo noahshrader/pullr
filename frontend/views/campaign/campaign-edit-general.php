@@ -23,7 +23,7 @@ $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
     <div class="module">
-        <h5 class="module-title"><i class="icon icon-settings"></i>Campaign Details</h5>
+        <h5 class="module-title">Campaign Details</h5>
         <div class="module-inner">
             <!-- Campaign Name -->
             <div class="form-group">
@@ -118,8 +118,8 @@ $firstGiving = $campaign->getFirstGiving();
         </div>
     </div>
     <div class="module team last">
-        <h5 class="module-title"><i class="icon icon-users"></i>Team Fundraising</h5>
         <div class="module-inner">
+            <h5>Team Fundraising</h5>
     	    <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
     	    <div class="form-group" id="teamQuestion">
     	        <label>Enable Team Fundraising <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Turn on to allow other Pullr users to join and contribute to this campaign."></i></label>
