@@ -94,26 +94,7 @@ $user = \Yii::$app->user->identity;
             <a class="view-campaign" href='<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon icon-eye"></i></a>
         </div>
         <? endif ?>
-        <ul class="content-nav cf">
-            <li class="active">
-                <a href="<?= Url::to()?>#general" data-toggle="tab">General</a>
-            </li>
-            <li>
-                <a href="<?= Url::to()?>#layout" data-toggle="tab">Campaign Page</a>
-            </li>
-            <li>
-                <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Donation Form</a>
-            </li>
-            <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
-                <li id="campaign-edit-team-li">
-                    <a href="<?= Url::to()?>#team" data-toggle="tab">Team</a>
-                </li>
-            <? endif ?>
-            <li>
-                <a href="<?= Url::to()?>#social" data-toggle="tab">Social</a>
-            </li>
-        </ul>
-        <div class="tab-content">
+        <div class="tab-content module">
             <div class="spinner-wrap">
                 <div class="spinner">
                     <div class="rect1"></div>
@@ -123,6 +104,25 @@ $user = \Yii::$app->user->identity;
                     <div class="rect5"></div>
                 </div>
             </div>
+            <ul class="content-nav cf">
+                <li class="active">
+                    <a href="<?= Url::to()?>#general" data-toggle="tab">General</a>
+                </li>
+                <li>
+                    <a href="<?= Url::to()?>#layout" data-toggle="tab">Campaign Page</a>
+                </li>
+                <li>
+                    <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Donation Form</a>
+                </li>
+                <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
+                    <li id="campaign-edit-team-li">
+                        <a href="<?= Url::to()?>#team" data-toggle="tab">Team</a>
+                    </li>
+                <? endif ?>
+                <li>
+                    <a href="<?= Url::to()?>#social" data-toggle="tab">Social</a>
+                </li>
+            </ul>
             <div class="tab-pane fade in active" id="general"> <!-- general settings -->
              <?= $this->render('campaign-edit-general', [
                             'form' => $form,
@@ -155,10 +155,10 @@ $user = \Yii::$app->user->identity;
                             'campaign' => $campaign, 
                         ]); ?>   
             </div>
-        </div>
-        <div class="btn-container">
-            <a href="app/campaign/view?id=<?= $campaign->id ?>" class="btn btn-secondary">Cancel</a>
-            <button class="btn btn-primary">Update</button>
+            <div class="btn-container">
+                <a href="app/campaign/view?id=<?= $campaign->id ?>" class="btn btn-secondary">Cancel</a>
+                <button class="btn btn-primary">Update</button>
+            </div>
         </div>
         <? ActiveForm::end() ?>
     </section>

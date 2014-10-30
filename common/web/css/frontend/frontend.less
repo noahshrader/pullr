@@ -45,21 +45,22 @@
 	position: relative;
 	margin-bottom: @gutter;
 	background: @white;
-	.element-radius;
+	.border-radius;
 	.box-shadow;
 	overflow: hidden;
 	
 	&.table {
 		background: @offwhite;
 	}
-	&.last {
-		margin: 0;
-	}
 	h5 {
 		color: @gray30;
 		font-size: 1.1em;
 		font-weight: 600;
-		margin-bottom: 1.2em;
+		margin-bottom: 1.6em;
+
+		i {
+			margin-right: 6px;
+		}
 
 		&.module-title {
 			line-height: 58px;
@@ -70,7 +71,7 @@
 		}
 	}
 	.module-inner {
-		padding: @halfgutter @gutter;
+		padding: @gutter;
 	}
 }
 

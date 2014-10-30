@@ -8,17 +8,23 @@
 		background: @white;
 
 		.module-inner {
-			padding: @gutter @gutter+@halfgutter;
+			margin: @gutter;
+			padding: @gutter+@halfgutter;
+			background: @offwhite;
+			.border-radius;
+
+			.social {
+				margin-bottom: 1.6em;
+
+				h5 {
+					margin-bottom: 1em;
+				}
+			}
 		}
-	}
-	ul.content-nav {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 720px;
 	}
 	.tab-content {
 		position: relative;
-		margin: 0 auto;
+		margin: 0 auto @gutter;
 		max-width: 720px;
 
 		h3 {
@@ -47,7 +53,7 @@
 	padding-right: 2%;
 }
 #campaignEdit[data-campaigntype="Charity Fundraiser"]{
-    #teamQuestion{
+    #teamQuestion {
       display: block;
     }
 }
@@ -71,15 +77,15 @@
 	.field-campaign-youtubeurl,
 	.field-campaign-facebookurl {
 		position: relative;
-		margin: @halfgutter 0 @gutter;
+		margin: 0;
 		padding: @gutter;
-		background: @offwhite;
-		.element-radius;
+		background: @gray75;
+		.border-radius;
 		&:before {
 			.arrow-up;
 			top: -9px;
 			left: 50px;
-			border-color: transparent transparent @offwhite transparent;
+			border-color: transparent transparent @gray75 transparent;
 		}
 
 		h4 {
@@ -92,6 +98,9 @@
 		.form-group:last-child {
 			margin: 0;
 		}
+	}
+	.highlight-wrap {
+		margin: @halfgutter 0 @gutter;
 	}
 	.logo {
 		max-width: 100px;
@@ -133,7 +142,6 @@
 
 	/* Team List (for team fundraising and multichannel teams) */
 	.team-list {
-		
 
 		ul {
 			li {

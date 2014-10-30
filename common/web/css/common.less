@@ -33,6 +33,10 @@ body {
 .highlight {
 	color: @accent !important;
 }
+.last {
+	margin: 0 !important;
+}
+
 
 /* Buttons */
 /* ------------------------------------------------- */
@@ -104,7 +108,9 @@ body {
 }
 .btn-container {
 	text-align: center;
-	padding: @gutter 0;
+	padding: @halfgutter 0;
+	background: @offwhite;
+	border-top: solid 1px @gray75;
 }
 
 
@@ -241,12 +247,9 @@ body {
 /* Content Navigation */
 /* ------------------------------------------------- */
 ul.content-nav {
-	margin-bottom: @gutter;
 	height: @sidenavheight + 8px;
 	background: @offwhite;
-	.element-radius;
-	.box-shadow;
-	overflow: hidden;
+	border-bottom: solid 1px @gray75;
 
 	li {
 		position: relative;
