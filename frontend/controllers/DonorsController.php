@@ -21,7 +21,7 @@ use common\models\mail\Mail;
 use common\models\Donation;
 use HttpRequest;
 
-class DonorController extends FrontendController {
+class DonorsController extends FrontendController {
 
     public function actionIndex($viewDonorParams = null){
         $selectedEmail = $viewDonorParams ? $viewDonorParams['email'] : null;
