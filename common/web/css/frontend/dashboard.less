@@ -10,30 +10,26 @@
 	position: static;
 	padding-right: @sidepanelwidth;
 
-	.tab-content {
-		padding-bottom: @gutter;
-		.element-radius;
-		overflow: hidden;
-	}
-
 	ul.content-nav {
 		li {
-			&.active {
-				border-right: solid 1px @accent;
-
-				a {
-					color: @white;
-					background: @accent;
-				}
+			&.active a,
+			&.active a:hover {
+				color: @white;
+				background: @accent;
 			}
 		}
+	}
+
+	.tab-content {
+		padding-bottom: @gutter;
+		.border-radius;
+		overflow: hidden;
 	}
 
 	.stats-overview {
 		position: relative;
 		padding: 0;
-		border-bottom-left-radius: 10px;
-		border-bottom-right-radius: 10px;
+		.border-radius;
 
 		h1,
 		h2 {
@@ -45,6 +41,8 @@
 		}
 
 		&.main-totals {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
 			overflow: hidden;
 
 			h5 {
@@ -95,7 +93,7 @@
 			margin: @gutter 0 @gutter+@gutter;
 			background: @white;
 			.box-shadow;
-			.element-radius;
+			.border-radius;
 
 			.stats-box {
 				width: 33.33%;
@@ -109,7 +107,7 @@
 		&.twitch-stats {
 			background: @twitchpurple;
 			.box-shadow;
-			.element-radius;
+			.border-radius;
 
 			h2 {
 				color: @white;
@@ -121,16 +119,15 @@
 				position: absolute;
 				top: -46px;
 				left: 50%;
-				color: @gray70;
-				font-size: 1.2em;
+				color: @offwhite;
+				font-size: 18px;
 				line-height: 34px;
 				text-align: center;
 				margin-left: -16px;
 				height: 34px;
 				width: 34px;
 				.round-radius;
-				background: @gray75;
-				border: solid 2px @gray72;
+				background: @gray72;
 			}
 			span.stick {
 				top: -@gutter + -@gutter;
@@ -143,6 +140,7 @@
 		left: 50%;
 		top: -@gutter;
 		display: block;
+		margin: 0;
 		height: @gutter;
 		width: 2px;
 		background: @gray72;

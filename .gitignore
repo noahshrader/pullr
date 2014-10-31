@@ -15,3 +15,5 @@ node_app/config.json
 /*.phpproj
 /*.user
 /*.sln
+
+whitelist

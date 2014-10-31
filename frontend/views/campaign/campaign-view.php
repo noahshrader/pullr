@@ -119,11 +119,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
             <section class="stats-overview main-values module">
                 <div class='stats-box col-xs-3 raised-total'>
                     <h1>$<?= number_format($campaign->amountRaised) ?></h1>
-                    <h5>Raised</h5>
+                    <span>Raised</span>
                 </div>
                 <div class='stats-box col-xs-3 campaign-goal'>
                     <h1>$<?= number_format($campaign->goalAmount) ?></h1>
-                    <h5>Goal</h5>
+                    <span>Goal</span>
                 </div>
 
                 <? if($campaign->goalAmount > 0):?>
@@ -142,19 +142,19 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
             <section class="stats-overview module">
                 <div class='stats-box col-xs-6 total-donations'>
                     <h2><?= $campaign->numberOfDonations ?></h2>
-                    <h5>Donations</h5>
+                    <span>Donations</span>
                 </div>
                 <div class='stats-box col-xs-6 total-donors'>
                     <h2><?= $campaign->numberOfUniqueDonors ?></h2>
-                    <h5>Donors</h5>
+                    <span>Donors</span>
                 </div>
                 <div class='stats-box col-xs-6 top-donation'>
                     <h3><?= $topDonationText ?></h3>
-                    <h5>Top Donation</h5>
+                    <span>Top Donation</span>
                 </div>
                 <div class='stats-box col-xs-6 top-donor'>
                     <h3><?= $topDonorText ?></h3>
-                    <h5>Top Donor</h5>
+                    <span>Top Donor</span>
                 </div>
                 <div class="clearfix"></div>
             </section>

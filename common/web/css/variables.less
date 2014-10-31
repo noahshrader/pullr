@@ -101,7 +101,7 @@
 @sidenavheight: 50px; /* Sidebar width */
 @top-menu-height: 62px; /* Top bar height */
 @primary-nav-width: 78px; /* Navigation width */
-@primary-nav-lg-width: 180px; /* Large Primary Navigation Width */
+@primary-nav-lg-width: 186px; /* Large Primary Navigation Width */
 @campain-name-height: 58px; /* Top bar height */
 
 /* Padding */
@@ -127,12 +127,9 @@
 
 /* Borders & Box shadows */
 /* ------------------------------------------------- */
-.border-radius (@radius: 4px) {
+.border-radius (@radius: 6px) {
 	border-radius: @radius;
 	background-clip: padding-box;
-}
-.element-radius (@radius: 10px) {
-	border-radius: @radius;
 }
 .round-radius (@radius: 30px) {
 	border-radius: @radius;
@@ -148,10 +145,10 @@
 	-moz-border-radius-topleft: @radius;
 	-moz-border-radius-topright: @radius;
 }
-.box-shadow (@shadow: 0 0 2px rgba(0,0,0,.1)) {
-	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
-	-moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
-	box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+.box-shadow (@shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.15)) {
+	-webkit-box-shadow: @shadow;
+	-moz-box-shadow: @shadow;
+	box-shadow: @shadow;
 }
 
 

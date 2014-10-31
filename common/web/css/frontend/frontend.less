@@ -45,60 +45,33 @@
 	position: relative;
 	margin-bottom: @gutter;
 	background: @white;
-	.element-radius;
+	.border-radius;
 	.box-shadow;
 	overflow: hidden;
 	
 	&.table {
 		background: @offwhite;
 	}
-
-	h4 {
+	h5 {
+		color: @gray30;
+		font-size: 1.1em;
 		font-weight: 600;
-		margin: @gutter 0;
-	}
+		margin-bottom: 1.6em;
 
-	h5.module-title {
-		color: @gray60;
-		font-weight: 600;
-		line-height: 45px;
-		padding: 0 @gutter;
-		margin: 0;
-		height: 45px;
-		background: @offwhite;
-		border-bottom: solid 1px @gray75;
-	}
-	.module {
-		position: static;
-		margin: @halfgutter 0 @gutter+10px;
-		padding: 0 @gutter @halfgutter;
-		border: solid 1px @gray75;
-		box-shadow: none;
-		overflow: visible;
-		&:last-child {
-			margin-bottom: @halfgutter;
+		i {
+			margin-right: 6px;
 		}
 
-		> h5 {
-			text-align: center;
-			position: relative;
-			top: -12px;
-			left: -1em;
-			display: inline-block;
-			color: @gray30;
-			font-weight: 600;
-			padding: 0 1em;
-			margin: 0 0 @halfgutter;
-			background: #FFF;
-
-			i {
-				display: inline-block;
-				position: relative;
-				top: 2px;
-				font-size: 18px;
-				margin-right: 7px;
-			}
+		&.module-title {
+			line-height: 58px;
+			padding: 0 @gutter;
+			margin: 0 0 .6em;
+			background: @offwhite;
+			border-bottom: solid 1px @gray75;
 		}
+	}
+	.module-inner {
+		padding: @gutter;
 	}
 }
 
@@ -112,6 +85,13 @@
 
 	.module {
 		margin-top: @gutter;
+
+		h5.module-title {
+			font-size: @smalltext;
+			line-height: 40px;
+			margin: 0;
+			padding: 0 @gutter;
+		}
 	}
 }
 
@@ -142,6 +122,13 @@
 }
 .campaign-date {
 	display: none;
+}
+.donors-list {
+	.donor-item {
+		&.active p {
+			background: @gray10;
+		}
+	}
 }
 
 /*  Side Listings */
@@ -394,7 +381,11 @@ table.dataTable {
 		cursor: pointer;
 		.trans;
 		&.raised {
-			color: @accent !important;
+			span {
+				padding: 0 .6em;
+				background: @gray75;
+				.round-radius;
+			}
 		}
 	}
 	th,

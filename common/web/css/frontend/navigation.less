@@ -11,7 +11,7 @@
 	box-shadow: none;
 	.slowtrans;
 	&.shadow {
-		box-shadow: 0 0 3px rgba(0,0,0,.3);
+		box-shadow: 0 0 2px rgba(0,0,0,.3);
 	}
 	&.indent {
 		left: @primary-nav-width + @sidepanelwidth;
@@ -33,8 +33,8 @@
 
 			span {
 				float: left;
-				color: @gray60;
-				font-size: 1.3em;
+				color: @gray30;
+				font-size: 1.1em;
 				font-weight: 600;
 				line-height: @top-menu-height;
 			}
@@ -48,15 +48,16 @@
 				margin: 1.9em .9em;
 				height: 20px;
 				width: 20px;
-				background: @gray60;
+				background: @gray70;
 				.round-radius;
 
 				&:hover {
 					background: @accent;
 				}
 				&:before {
-					position: relative;
-					left: .5px;
+					display: block;
+					height: 20px;
+					width: 20px;
 				}
 			}
 		}
@@ -115,6 +116,7 @@
 				img {
 					height: 36px;
 					width: 36px;
+					border: solid 3px @gray72;
 					border-radius: 50%;
 				}
 			}
@@ -182,6 +184,7 @@
 					position: relative;
 					display: block;
 					color: @gray20;
+					font-weight: 600;
 					padding: 0 26px;
 					height: 60px;
 					&:before {
@@ -193,7 +196,7 @@
 						float: left;
 						display: inline-block;
 						font-size: 26px;
-						line-height: 60px;
+						line-height: 58px;
 						vertical-align: middle;
 					}
 

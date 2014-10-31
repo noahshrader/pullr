@@ -501,6 +501,7 @@ header .container {
   color: #9f9fa7;
   font-size: 1.2em;
   padding: 0 15px;
+  margin-top: 0;
   width: 90%;
   max-width: 640px;
 }

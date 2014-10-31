@@ -503,6 +503,7 @@ header .container {
   float: left;
   color: #85858e;
   font-size: 1.2em;
+  margin-top: 0;
   padding: 0 15px;
   width: 90%;
   max-width: 640px;
