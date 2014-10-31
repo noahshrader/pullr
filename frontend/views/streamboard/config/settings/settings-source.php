@@ -2,7 +2,13 @@
 use yii\helpers\Url;
 use common\components\Application;
 $sourceHref = Url::to(['streamboard/source'], true);
-$publicSourceHref = Url::to(['streamboard/source','userId' => Application::getCurrentUser()->id], true);
+$user = Application::getCurrentUser();
+if ($user->userFields && trim($user->userFields->twitchChannel) != '') {
+	$publicSourceHref = Url::to(['streamboard/source','twitchUsername' => $user->userFields->twitchChannel], true);
+} else {
+	$publicSourceHref = Url::to(['streamboard/source','userId' => $user->id], true);
+}
+
 ?>
 <div class="text-center streamboard-settings-header">
 

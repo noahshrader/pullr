@@ -124,21 +124,20 @@ class StreamboardController extends FrontendController
         return $notifications;
     }
 
-    public function actionSource($userId = null)
+    public function actionSource($twitchUsername = null, $userId = null)
     {
         $hideAngularJsPage = false;
 
-        
-
-
-        if ($userId != null) {
-            $user = User::findOne($userId);            
-            if ($user == null) {
+        if ($twitchUsername != null) {
+            $user = User::findByTwitchUsername($twitchUsername);            
+            if ($user === false) {
                 throw new ForbiddenHttpException();
             }
             $hideAngularJsPage = true;
+        } else if ($userId != null) {
+            $user = User::find($userId)->one();     
         } else {
-            $user = Application::getCurrentUser();        
+            $user = Application::getCurrentUser();
         }
         
         $this->layout = 'streamboard/source';

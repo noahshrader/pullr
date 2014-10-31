@@ -104,6 +104,21 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Finds user by Twitch username
+     *
+     * @param string $twitchUsername
+     * @return null|User
+     */
+    public static function findByTwitchUsername($twitchUsername)
+    {
+        $userField = UserFields::find()->andWhere(['twitchChannel' => $twitchUsername])->one();        
+        if ($userField) {
+            return static::find()->andWhere(['id' => $userField->userId])->one();
+        }
+        return false;
+    }
+
+    /**
      * @return int|string|array current user ID
      */
     public function getId()
