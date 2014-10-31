@@ -99,7 +99,7 @@ class StreamboardController extends FrontendController
             $notifications[] = [
                 'id' => $follow->twitchUserId,
                 'type' => 'followers',
-                'message' => ActivityMessage::messageNewTwitchFollower($follow),
+                'message' => ActivityMessage::messageNewTwitchFollower($follow->display_name),
                 'follow' => $follow,
                 'date' => $follow->createdAt
             ];
@@ -110,7 +110,7 @@ class StreamboardController extends FrontendController
             $notifications[] = [
                 'id' => $subscription->twitchUserId,
                 'type' => 'subscribers',
-                'message' => ActivityMessage::messageNewTwitchSubscriber($subscription),
+                'message' => ActivityMessage::messageNewTwitchSubscriber($subscription->display_name),
                 'subscription' => $subscription,
                 'date' => $subscription->createdAtPullr
             ];
