@@ -48,8 +48,7 @@ class Streamboard extends Model {
      * @return Campaign[]
      * @description return selected campaigns for current user
      */
-    public static function getSelectedCampaigns(){
-        $user = Application::getCurrentUser();
+    public static function getSelectedCampaigns($user){        
         /*we select only user campaigns, without parent campaigns */
         return Campaign::find()->from(Campaign::tableName().' campaign')->where(['campaign.userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE])
             ->joinWith(['streamboard' => function($q) use ($user){

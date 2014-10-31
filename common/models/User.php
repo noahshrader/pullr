@@ -12,6 +12,8 @@ use common\models\twitch\TwitchUser;
 use frontend\models\streamboard\StreamboardConfig;
 use common\models\twitch\TwitchSubscription;
 use common\models\twitch\TwitchFollow;
+use common\components\message\ActivityMessage;
+use frontend\models\streamboard\WidgetDonationFeed;
 /**
  * Class User
  * @package common\models
@@ -415,9 +417,8 @@ class User extends ActiveRecord implements IdentityInterface
      * return ActiveQuery object for parent campaigns for current user
      */
     public function getParentCampaigns($status = Campaign::STATUS_ACTIVE)
-    {
-        $userId = \Yii::$app->user->id;
-        $parentIds = CampaignInvite::find()->where(['userId' => $userId, 'status' => CampaignInvite::STATUS_ACTIVE])->select(['campaignId'])->column();
+    {        
+        $parentIds = CampaignInvite::find()->where(['userId' => $this->id, 'status' => CampaignInvite::STATUS_ACTIVE])->select(['campaignId'])->column();
         return Campaign::find()->where(['in', 'id', $parentIds])->andWhere(['status' => $status]);
     }
 
@@ -428,9 +429,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @return ActiveQuery user's campaigns + parent's campaigns
      */
     public function getCampaigns($status = Campaign::STATUS_ACTIVE, $withParentCampaigns = true)
-    {
-        $userId = \Yii::$app->user->id;
-        $query = Campaign::find()->where(['userId' => $userId, 'status' => $status]);
+    {        
+        $query = Campaign::find()->where(['userId' => $this->id, 'status' => $status]);
 
         if ($withParentCampaigns) {
             $query = $query->union($this->getParentCampaigns($status));
@@ -520,6 +520,20 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $plan = Plan::findOne($this->id);
         $plan->prolong($amount);
+    }
+
+    public function getEmptyActivityFeedMessage() {
+        $sql = 'SELECT noDonationMessage FROM ' . WidgetDonationFeed::tableName() . ' WHERE userId = :userId AND noDonationMessage IS NOT NULL AND noDonationMessage != "" LIMIT 1';
+        $row = \Yii::$app->db->createCommand($sql)
+                        ->bindValues([
+                            'userId' => $this->id
+                        ])
+                        ->queryScalar();
+        if ( ! empty($row) ) {
+            return $row;
+        }
+        return ActivityMessage::EMPTY_ACTIVITY_MESSAGE;
+
     }
 
 }

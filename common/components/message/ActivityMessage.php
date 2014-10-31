@@ -13,6 +13,7 @@ class ActivityMessage
     const TEMPLATE_GOAL_REACHED = 'Congratulations! You reached your goal of $%s for %s!';
     const TEMPLATE_NEW_TWITCH_FOLLOWER = '%s just followed your channel %s!';
     const TEMPLATE_NEW_TWITCH_SUBSCRIBER = '%s just subscribed to your channel %s!';
+    const EMPTY_ACTIVITY_MESSAGE = 'Empty activity';
 
     public static function  messageNewCampaign(Campaign $campaign){
         return sprintf(self::TEMPLATE_NEW_CAMPAIGN, $campaign->name);

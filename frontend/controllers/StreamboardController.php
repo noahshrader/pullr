@@ -21,9 +21,28 @@ use yii\web\Response;
 use common\components\streamboard\alert\AlertMediaManager;
 use common\components\message\ActivityMessage;
 use frontend\models\streamboard\WidgetDonationFeed;
-
+use yii\filters\AccessControl;
 class StreamboardController extends FrontendController
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['source'],
+                        'allow' => true
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['frontend'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $this->layout = 'streamboard';
@@ -105,11 +124,25 @@ class StreamboardController extends FrontendController
         return $notifications;
     }
 
-    public function actionSource()
+    public function actionSource($userId = null)
     {
-        $user = Application::getCurrentUser();
+        $hideAngularJsPage = false;
+
+        
+
+
+        if ($userId != null) {
+            $user = User::findOne($userId);            
+            if ($user == null) {
+                throw new ForbiddenHttpException();
+            }
+            $hideAngularJsPage = true;
+        } else {
+            $user = Application::getCurrentUser();        
+        }
+        
         $this->layout = 'streamboard/source';
-        $data = $this->getSourceData();
+        $data = $this->getSourceData($user);
         $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$user->id])->one();
         if ( $donationFeed ) {
             $donationFeedSetting = $donationFeed->toArray(['showSubscriber', 'showFollower']);
@@ -121,37 +154,35 @@ class StreamboardController extends FrontendController
         }
         $data['showSubscriber'] = $showSubscriber;
         $data['showFollower'] = $showFollower;
-
-        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
-        $data['campaigns'] = $this->getUserCampaigns();
+        
+        $data['campaigns'] = $this->getUserCampaigns($user);
         $data['twitchPartner'] = $user->userFields->twitchPartner;        
-        // echo '<pre>';
-        // var_dump($data);
-        // exit;
+        
         return $this->render('config/settings/source', [
-            'data' => $data
+            'data' => $data,
+            'hideAngularJsPage' => $hideAngularJsPage
         ]);
     }
 
     public function actionGet_campaigns_ajax()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return $this->getUserCampaigns();
+        $user = Application::getCurrentUser();
+        return $this->getUserCampaigns($user);
     }
 
-    public function getUserCampaigns()
-    {
-        $user = Application::getCurrentUser();
-        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->orderBy('amountRaised DESC, id DESC')->all();
+    public function getUserCampaigns(User $user)
+    {        
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->orderBy('amountRaised DESC, id DESC')->all();
         $campaignsArray = [];
 
-        foreach ($campaigns as $campaign) {
+        foreach ($campaigns as $campaign) {            
             /**@var $campaign Campaign */
-            $array = $campaign->toArray(['id', 'name', 'goalAmount', 'amountRaised', 'numberOfDonations', 'numberOfUniqueDonors']);
+            $array = $campaign->toArray(['id', 'name', 'goalAmount', 'amountRaised', 'numberOfDonations', 'numberOfUniqueDonors', 'userId']);        
             $array['streamboardSelected'] = $campaign->streamboard->selected ? true : false;
             $campaignsArray[$campaign->id] = $array;
         }
-
+        
         return $campaignsArray;
     }
 
@@ -206,7 +237,7 @@ class StreamboardController extends FrontendController
         }
 
         /*We do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.*/
-        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->with('streamboard')->all();
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
         $selectedCampaigns = [];
 
         foreach ($campaigns as $campaign) {
@@ -320,13 +351,13 @@ class StreamboardController extends FrontendController
      */
     public function actionGet_source_data()
     {
-        $data = $this->getSourceData();
+        $user = Application::getCurrentUser();
+        $data = $this->getSourceData($user);
         echo json_encode($data);
     }
 
-    public function getSourceData()
-    {
-        $user = Application::getCurrentUser();
+    public function getSourceData(User $user)
+    {        
         /*We do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.*/
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
         $stats = Streamboard::getStats($campaigns);
@@ -335,7 +366,7 @@ class StreamboardController extends FrontendController
         $twitchUserArray = $twitchUser ? $twitchUser->toArray(['followersNumber', 'subscribersNumber']) : null;
 
         $sinceDate = $user->streamboardConfig->clearedDate;
-        $selectedCampaigns = Streamboard::getSelectedCampaigns();
+        $selectedCampaigns = Streamboard::getSelectedCampaigns($user);
         $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
 
         $subscribers = [];
@@ -348,7 +379,6 @@ class StreamboardController extends FrontendController
         }
 
         $followers = [];
-
         if ($user->userFields->twitchPartner) {
             $twitchFollowers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
             foreach ($twitchFollowers as $twitchFollower) {
@@ -357,7 +387,6 @@ class StreamboardController extends FrontendController
             }
         }
             
-
         $data = [
             'stats' => $stats,
             'twitchUser' => $twitchUserArray,
@@ -365,7 +394,8 @@ class StreamboardController extends FrontendController
             'subscribers' => $subscribers,
             'followers' => $followers,
             'followersNumber' => TwitchFollow::getFollowerCountByTotal($user->id),
-            'subscribersNumber' => TwitchSubscription::getSubscriberCountByTotal($user->id)          
+            'subscribersNumber' => TwitchSubscription::getSubscriberCountByTotal($user->id),
+            'emptyActivityMessage' => $user->getEmptyActivityFeedMessage()
         ];
         return $data;
     }

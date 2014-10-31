@@ -384,7 +384,7 @@ class Campaign extends ActiveRecord {
      * If campaing is parent it can be at streamboard for a few users. So
      */
     public function getStreamboard(){
-        $userId = $this->userId;
+        $userId = $this->userId;        
         return $this->hasOne(StreamboardCampaign::className(), ['campaignId' => 'id'])->where(['userId' =>  $userId ]);
     }
 

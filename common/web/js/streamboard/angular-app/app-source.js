@@ -5,7 +5,7 @@
         $scope.streamService = stream;
         $scope.stats = {};
         isDataReady = false;
-        console.log('SourceCtrl init');
+        
         $scope.requestSourceStats = function(){
             $http.get('app/streamboard/get_source_data').success(function(data){
                 $scope.stats = data['stats'];
@@ -15,6 +15,7 @@
                 $scope.followers = data['followers'];
                 $scope.followersNumber = data['followersNumber'];
                 $scope.subscribersNumber = data['subscribersNumber'];  
+                $scope.emptyActivityMessage = data['emptyActivityMessage'];
                 if (false == isDataReady) {
                     angular.element('#source-wrap-angular').show();
                     angular.element('#source-wrap-php').hide();

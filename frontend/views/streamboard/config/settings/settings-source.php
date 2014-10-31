@@ -1,12 +1,13 @@
 <?
 use yii\helpers\Url;
-
-$sourceHref = Url::to('', true) . '/source';
+use common\components\Application;
+$sourceHref = Url::to(['streamboard/source'], true);
+$publicSourceHref = Url::to(['streamboard/source','userId' => Application::getCurrentUser()->id], true);
 ?>
 <div class="text-center streamboard-settings-header">
 
     <button class="btn btn-sm" id='btn-copy-source-link' 
-    	data-clipboard-text='<?= $sourceHref ?>'>
+    	data-clipboard-text='<?= $publicSourceHref?>'>
         Copy Source URL
  
     </button>

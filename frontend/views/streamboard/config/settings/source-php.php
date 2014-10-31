@@ -27,7 +27,8 @@ use yii\web\View;
                         'subscribers' => $subscribers,
                         'followers' => $followers,
                         'showSubscriber' => $showSubscriber,
-                        'showFollower' => $showFollower
+                        'showFollower' => $showFollower,
+                        'emptyActivityMessage' => $emptyActivityMessage
                     ]);
                     echo preg_replace("/\s+/", " ", trim($activityFeed));
                 ?></div>

@@ -38,7 +38,7 @@ class WidgetDonationFeed extends ActiveRecord {
         return parent::beforeValidate();
     }
 
-    public function toArray(array $fields = [], array $expand = [], $recursive = true){
+    public function toArray(array $fields = [], array $expand = [], $recursive = true) {
         $data = parent::toArray($fields, $expand, $recursive);
         /*as 1 and true in angular are not equal for checkbox, so let's pass true/false values*/
         $data['scrolling'] = $this->scrolling == 1;
@@ -46,4 +46,5 @@ class WidgetDonationFeed extends ActiveRecord {
         $data['showFollower'] = $this->showFollower == 1;
         return $data;
     }
+
 }

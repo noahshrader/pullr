@@ -33,6 +33,9 @@ use yii\web\View;
                     <span>{{follower.display_name}}</span>
                     <span>(Followed)</span><!-- removing space before :after(content:} rule
                 --></span></span>
+                <span ng-if="(donors.length == 0 && ( ! streamService.showSubscriber || subscribers.length == 0 ) && ( ! streamService.showFollower || followers.length == 0 )) ">
+                    {{emptyActivityMessage}}
+                </span>
             </div>
         </div>
     </div>
