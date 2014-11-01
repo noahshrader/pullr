@@ -1276,9 +1276,8 @@ input.color-choice {
 .help-block {
   display: block;
   position: absolute;
-  bottom: -50px;
+  bottom: -46px;
   left: 0;
-  font-size: 0.9em;
   font-weight: 600;
   padding: .6em 1.2em;
   z-index: 1000;
@@ -1577,6 +1576,9 @@ ul.content-nav li.active a:hover {
   color: #6b6b75;
   background: #ffffff;
 }
+ul.content-nav li:last-child {
+  border: 0;
+}
 ul.content-nav li a {
   display: inline-block;
   color: #bababf;
@@ -1841,7 +1843,7 @@ label {
 }
 .form-wrapper {
   margin: 0 auto;
-  padding: 3em 5% 1em;
+  padding: 3em 7.5% 1em;
   width: 100%;
   max-width: 640px;
 }
@@ -1878,6 +1880,11 @@ label {
   margin: .3em auto .6em;
   padding: .4em 2em;
   height: auto;
+}
+a.close {
+  display: block;
+  margin-bottom: 2em;
+  line-height: 45px;
 }
 /* Icon Fonts */
 /* ------------------------------------------------- */
@@ -1918,7 +1925,6 @@ h3.charity-name {
   color: #bababf;
   font-size: 1.15em;
   line-height: 1.2em;
-  padding: 0 5%;
   margin-top: .8em;
 }
 h3.charity-name a.approved {
@@ -1943,7 +1949,7 @@ h3.charity-name a.approved .approved-info {
   left: 50%;
   color: #ffffff;
   font-size: 0.8em;
-  line-height: 1;
+  line-height: 1.2em;
   margin-left: -60px;
   padding: 15px;
   width: 120px;

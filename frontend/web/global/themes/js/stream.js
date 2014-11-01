@@ -20,7 +20,6 @@ $(function(){
 			width: 580,
 			overlap: 0,
 			transitionDuration: '0.5s',
-			threshold: 40,
 			mouse: false,
 			gradient: 'rgba(9,10,12,.6) 100%, rgba(9,10,12,.6) 100%)',
 			touch: true
@@ -30,6 +29,9 @@ $(function(){
 			e.stopPropagation();
 		});
 		$(".wrapper").on( "click", function(e) {
+			meny.close();
+		});
+		$(document).on( "eventhandler", function(e) {
 			meny.close();
 		});
 		// Rolldown stats

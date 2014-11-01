@@ -904,4 +904,10 @@ footer span.copy {
     width: 600px;
   }
 }
+/* Max 580px */
+@media screen and (max-width: 580px) {
+  .donation-form {
+    width: 100% !important;
+  }
+}
 /* Max 480px */

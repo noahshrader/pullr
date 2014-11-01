@@ -112,4 +112,12 @@ $(document).ready(donatePageInit);
 
 $(window).load(function () {
     $(".spinner-wrap").fadeOut();
+    // Close slide donation form when on campaign page
+    if ( window.location !== window.parent.location ) {
+        $('<a class="close"><i class="icon icon-back"></i>Back to Stream</a>').insertAfter('button.donate');
+        $('a.close').click(function(e) {
+            parent.$(parent.document).trigger('eventhandler');
+        });
+    } else {
+    }
 });
