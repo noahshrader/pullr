@@ -31,8 +31,18 @@ $(function(){
 		$(".wrapper").on( "click", function(e) {
 			meny.close();
 		});
-		$(document).on( "eventhandler", function(e) {
+		$(document).on( "eventhandler", function() {
 			meny.close();
+		});
+		// Stats background movement
+		function CampaignPageBG() {
+		scrollPos = $(this).scrollTop();
+		$('.stats').css({
+			'background-position' : '50% ' + (-scrollPos/4)+"px"
+		});
+		}
+		$(window).scroll(function() {
+			CampaignPageBG();
 		});
 		// Rolldown stats
 		$(window).scroll(function() {

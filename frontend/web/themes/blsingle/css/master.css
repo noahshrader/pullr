@@ -156,7 +156,7 @@ header .menu-actions a:before {
 }
 /* Main Stats */
 .stats {
-  background: #2e2e32;
+  background-color: #2e2e32;
   /* Campaign Info */
   /* Numbers */
 }
@@ -313,7 +313,7 @@ header .container {
 .stats .numbers {
   position: relative;
   padding: 3em 0;
-  background: rgba(14, 15, 17, 0.12);
+  background: rgba(14, 15, 17, 0.25);
 }
 .stats .numbers:before {
   content: '';
@@ -326,7 +326,7 @@ header .container {
   top: -10px;
   left: 50%;
   margin-left: -10px;
-  border-color: transparent transparent rgba(14, 15, 17, 0.12) transparent;
+  border-color: transparent transparent rgba(14, 15, 17, 0.25) transparent;
 }
 .stats .numbers h1 {
   margin: 0;
@@ -336,7 +336,7 @@ header .container {
   top: 0;
   height: 4px;
   width: 100%;
-  background: rgba(14, 15, 17, 0.12);
+  background: rgba(14, 15, 17, 0.25);
   z-index: 1;
 }
 .stats .project-progress .project-progressbar {
