@@ -150,6 +150,10 @@ header .menu-actions a:hover:before {
 header .menu-actions a:before {
   border-bottom-color: #29292d;
 }
+/* Slidedown Menu */
+.slidestats {
+  background: #2e2e32;
+}
 /* Main Stats */
 .stats {
   background: #222225;
@@ -297,7 +301,7 @@ header .container {
 }
 .stats .campaign-info {
   text-align: center;
-  padding: 4.8em 5% 3em;
+  padding: 5.4em 5% 4em;
 }
 .stats .campaign-info h4 {
   margin-bottom: .6em;
@@ -305,7 +309,7 @@ header .container {
 .stats .numbers {
   position: relative;
   padding: 3em 0;
-  background: rgba(14, 15, 17, 0.15);
+  background: rgba(14, 15, 17, 0.12);
 }
 .stats .numbers:before {
   content: '';
@@ -318,7 +322,7 @@ header .container {
   top: -10px;
   left: 50%;
   margin-left: -10px;
-  border-color: transparent transparent rgba(14, 15, 17, 0.15) transparent;
+  border-color: transparent transparent rgba(14, 15, 17, 0.12) transparent;
 }
 .stats .numbers h1 {
   margin: 0;
@@ -328,7 +332,7 @@ header .container {
   top: 0;
   height: 4px;
   width: 100%;
-  background: rgba(14, 15, 17, 0.15);
+  background: rgba(14, 15, 17, 0.12);
   z-index: 1;
 }
 .stats .project-progress .project-progressbar {
