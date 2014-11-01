@@ -5,8 +5,6 @@ Pullr.API_URL = Pullr.MAIN_URL + "api/";
 
 Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
 Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.min.js";
-Pullr.MAGNIFIC_POPUP_JS_URL = Pullr.MAIN_URL + "js/lib/magnificpopup.js";
-Pullr.MAGNIFIC_POPUP_CSS_URL = Pullr.MAIN_URL + "js/lib/magnificpopup.css";
 
 Pullr.ANGULAR_LIB_URL = '//code.angularjs.org/snapshot/angular.js';
 Pullr.ANGULAR_APP_URL = Pullr.MAIN_URL + "public/api-widget.js";
@@ -22,7 +20,6 @@ Pullr.LAYOUT_TYPE_MULTI = "<? echo common\models\Campaign::LAYOUT_TYPE_MULTI; ?>
 Pullr.Init = function (requestParams){
     Pullr.requestParams = requestParams;
     Pullr.__ready = [];
-    Pullr.loadMagnificPopup();
     Pullr.LoadAngularLib();
     Pullr.Run();
 };
@@ -64,28 +61,6 @@ Pullr.Run = function(){
             Pullr.Run();
         }, 20)
     }
-}
-
-Pullr.loadMagnificPopup = function() {
-
-    $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', Pullr.MAGNIFIC_POPUP_CSS_URL) );
-    
-    $.getScript(Pullr.MAGNIFIC_POPUP_JS_URL, function(){
-        $('.donate').magnificPopup({
-            items:{
-                src: location.href + '/donate'
-            },
-            type: 'iframe',
-            iframe: {
-                markup: '<div class="mfp-iframe-scaler mfp-with-anim">'+
-                          '<div class="mfp-close"></div>'+
-                          '<iframe class="mfp-iframe" frameborder="0"  onload="javascript:resizeIframe(this);" allowfullscreen></iframe>'+
-                        '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
-            },
-            removalDelay: 300,
-            mainClass: 'mfp-fade'
-        });
-    });
 }
 
 function resizeIframe(obj) {

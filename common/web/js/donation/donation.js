@@ -93,7 +93,6 @@ function amountChangedEvent() {
         btnDonate.text('Donate $' + number_format(value));
     }
 
-
     /**casting to int*/
     value = parseInt(value);
     if (!undefinedFlag) {
@@ -111,7 +110,6 @@ function amountChangedEvent() {
 
 $(document).ready(donatePageInit);
 
-$(window).load(function ()
-{
+$(window).load(function () {
     $(".spinner-wrap").fadeOut();
 });

@@ -7,7 +7,7 @@ use yii\widgets\MaskedInput;
 
 <section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 'tip-jar' :'events-form' ?>">
     <div class="donation-form-header">
-        <h1 class="main-title"><?= $campaign->name ?></h1>
+        <h2 class="main-title"><?= $campaign->name ?></h2>
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
             <? 
                $charityName = '';

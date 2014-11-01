@@ -112,27 +112,6 @@ Pullr.LoadTemplates = function(){
     $.getScript(Pullr.JQUERY_TEMPLATES_URL);
 }
 
-Pullr.loadMagnificPopup = function(){
-    $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', Pullr.MAGNIFIC_POPUP_CSS_URL) );
-    
-    $.getScript(Pullr.MAGNIFIC_POPUP_JS_URL, function(){
-        $('.donate').magnificPopup({
-            items:{
-                src: location.href + '/donate'
-            },
-            type: 'iframe',
-            iframe: {
-                markup: '<div class="mfp-iframe-scaler mfp-with-anim">'+
-                          '<div class="mfp-close"></div>'+
-                          '<iframe class="mfp-iframe" frameborder="0"  onload="javascript:resizeIframe(this);" allowfullscreen></iframe>'+
-                        '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
-            },
-            removalDelay: 300,
-            mainClass: 'mfp-fade'
-        });
-    });
-}
-
 function resizeIframe(obj) {
     obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
 }

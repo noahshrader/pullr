@@ -3,7 +3,7 @@ use yii\helpers\Url;
 
 ?>
 <div class="text-center streamboard-settings-header">
-    <button class="btn btn-secondary btn-sm" ng-click="clearButton()">Clear donations list</button>
+    <button class="btn btn-secondary btn-sm" ng-click="clearButton()">Clear all feeds</button>
 </div>
 <div class="settings pane">
     <div class="settings-wrap">

@@ -1,3 +1,5 @@
+/* Base Imports */
+/* ------------------------------------------------- */
 /* Resets
 /* ------------------------------------------------- */
 *,
@@ -916,7 +918,7 @@ h5 {
   margin: 0;
 }
 h1 {
-  font-size: 3em;
+  font-size: 3.2em;
   font-weight: 300;
   letter-spacing: -2px;
   line-height: 1.4em;
@@ -924,7 +926,7 @@ h1 {
   margin-bottom: 30px;
 }
 h2 {
-  font-size: 2em;
+  font-size: 2.2em;
   line-height: 1.2em;
   letter-spacing: -1px;
 }
@@ -964,14 +966,14 @@ select,
 select.form-control,
 .form-group.has-success input.form-control,
 .form-group.has-success textarea.form-control {
-  color: #3a3a40;
+  color: #6b6b75;
   font-size: 16px;
   outline: 0;
   padding: 0 15px;
   min-height: 45px;
   border: 2px solid #efeff0;
   background: #ffffff;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   box-shadow: none;
 }
@@ -999,7 +1001,7 @@ textarea.form-control {
   max-width: 100%;
 }
 label {
-  line-height: 1.2em;
+  line-height: 1.4em;
 }
 legend,
 label,
@@ -1234,7 +1236,7 @@ input.color-choice {
   text-transform: none;
   -webkit-font-smoothing: antialiased;
   text-indent: 0;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   background: #efeff0;
 }
@@ -1254,7 +1256,7 @@ input.color-choice {
 /* Combined Forms */
 .combined-form-wrap {
   position: relative;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   overflow: hidden;
 }
@@ -1280,7 +1282,7 @@ input.color-choice {
   font-weight: 600;
   padding: .6em 1.2em;
   z-index: 1000;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
 }
 .email-notifications .help-block {
@@ -1289,7 +1291,7 @@ input.color-choice {
 /* Bootstrap Overrides */
 .form-group {
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   /* Colorpicker */
   /* Errors */
 }
@@ -1355,6 +1357,9 @@ body.campaignflow {
 .highlight {
   color: #1dbc9c !important;
 }
+.last {
+  margin: 0 !important;
+}
 /* Buttons */
 /* ------------------------------------------------- */
 .btn {
@@ -1363,7 +1368,7 @@ body.campaignflow {
   outline: 0;
   margin: 0 .1em;
   border: 0;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
@@ -1400,7 +1405,7 @@ body.campaignflow {
   background-color: #20d2ae;
 }
 .btn-secondary {
-  background-color: #efeff0;
+  background-color: #dfdfe2;
   color: #6b6b75;
 }
 .btn-secondary:hover {
@@ -1427,7 +1432,9 @@ body.campaignflow {
 }
 .btn-container {
   text-align: center;
-  padding-top: 15px;
+  padding: 15px 0;
+  background: #f7f7f7;
+  border-top: solid 1px #efeff0;
 }
 /* Main Data Containers */
 /* ------------------------------------------------- */
@@ -1435,7 +1442,8 @@ body.campaignflow {
   text-align: center;
   /* Main Number Values */
 }
-.stats-overview h5 {
+.stats-overview span {
+  color: #bababf;
   margin-top: .2em;
 }
 .stats-overview.main-values {
@@ -1450,7 +1458,7 @@ body.campaignflow {
   color: #ffffff;
   margin: 0;
 }
-.stats-overview.main-values h5 {
+.stats-overview.main-values span {
   color: #127561;
 }
 .stats-overview .stats-box {
@@ -1553,7 +1561,7 @@ body.campaignflow {
 /* Content Navigation */
 /* ------------------------------------------------- */
 ul.content-nav {
-  height: 50px;
+  height: 58px;
   background: #f7f7f7;
   border-bottom: solid 1px #efeff0;
 }
@@ -1570,11 +1578,11 @@ ul.content-nav li.active a:hover {
   background: #ffffff;
 }
 ul.content-nav li a {
-  display: block;
+  display: inline-block;
   color: #bababf;
   font-weight: 600;
-  line-height: 50px;
-  padding: 0 30px;
+  line-height: 58px;
+  padding: 0 25px;
   width: 100%;
 }
 /* Sidebar Navigation */
@@ -1598,7 +1606,7 @@ ul.panel-nav li {
 }
 ul.panel-nav li.active a {
   color: #ffffff;
-  box-shadow: inset 0 -5px 0 0 #1dbc9c;
+  box-shadow: inset 0 -4px 0 0 #1dbc9c;
 }
 ul.panel-nav li a {
   display: block;
@@ -1616,21 +1624,21 @@ ul.panel-nav li a:hover {
 h3.list-title {
   color: #6b6b75;
   margin-bottom: 2px;
-  font-size: 18px;
+  font-size: 1.1em;
   font-weight: 600;
-  line-height: 1.2em;
+  line-height: 1.1em;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 p.list-total {
   display: inline-block;
   color: #6b6b75;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1.4em;
   margin-top: 6px;
   margin-bottom: 0;
-  padding: 0 .8em;
+  padding: 0 .6em;
   background: #424248;
   border-radius: 30px;
   background-clip: padding-box;
@@ -1711,7 +1719,7 @@ span.list-info {
 /* Modals */
 /* ------------------------------------------------- */
 .popup {
-  color: #FFF;
+  color: #ffffff;
   position: relative;
   padding: 4em;
   width: 90%;
@@ -1719,7 +1727,7 @@ span.list-info {
   margin: 0 auto;
 }
 .popup h2 {
-  color: #FFF;
+  color: #ffffff;
   text-align: center;
 }
 .popup .field {
@@ -1734,8 +1742,9 @@ span.list-info {
   display: inline-block;
   margin: 6em auto 3em;
   width: 100%;
-  background: #ffffff;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  background-clip: padding-box;
   z-index: 1050;
 }
 .modal .modal-dialog .modal-content {
@@ -1817,8 +1826,9 @@ span.list-info {
 /* ------------------------------------------------- */
 html,
 body {
-  background: #ffffff;
+  font-size: 14px;
   height: auto;
+  background: #ffffff;
 }
 /* Forms */
 /* ------------------------------------------------- */
@@ -1864,6 +1874,7 @@ label {
 }
 .btn:not(.btn-xs):not(.btn-sm):not(.bnt-lg) {
   font-size: 1.4em;
+  font-weight: 700;
   margin: .3em auto .6em;
   padding: .4em 2em;
   height: auto;
@@ -1877,21 +1888,32 @@ label {
   font-weight: normal;
   font-style: normal;
 }
+/* Typography */
+/* ------------------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+}
 /* Donation Form Header */
 /* ------------------------------------------------- */
 .donation-form-header {
   margin: 0 auto;
-  padding: 4.8em 5% 0;
+  padding: 4.8em 10% 0;
   max-width: 800px;
 }
-h1.main-title {
+/* Campaign Title */
+h2.main-title {
   color: #53535a;
+  font-size: 2.8em;
   font-weight: 400;
   line-height: 1;
   letter-spacing: -1px;
   padding: 0 5%;
   margin: 0;
 }
+/* Charity Info */
 h3.charity-name {
   color: #bababf;
   font-size: 1.15em;
@@ -1926,7 +1948,7 @@ h3.charity-name a.approved .approved-info {
   padding: 15px;
   width: 120px;
   background: #1dbc9c;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   z-index: 1000;
 }
@@ -1961,7 +1983,7 @@ h3.charity-name a.approved .approved-info:before {
 .form-progress-wrap {
   position: relative;
   text-align: center;
-  height: 24px;
+  height: 6px;
   width: 100%;
   background: #efeff0;
 }
@@ -1974,43 +1996,6 @@ h3.charity-name a.approved .approved-info:before {
   animation: animate-bar 1s 1 ease;
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
-}
-/* Separators */
-.separation {
-  position: absolute;
-  bottom: 0;
-  height: 10px;
-  overflow: hidden;
-  width: 100%;
-}
-.separation .separation-left,
-.separation .separation-right {
-  position: absolute;
-  width: 50%;
-  height: 30px;
-  top: 0;
-  left: 0;
-  background: #ffffff;
-  margin-left: -12px;
-}
-.separation .separation-left:after,
-.separation .separation-right:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -90px;
-  height: 0;
-  width: 0;
-  border-left: 90px solid transparent;
-  border-right: 90px solid transparent;
-  border-bottom: 60px solid #ffffff;
-}
-.separation .separation-right {
-  left: 50%;
-  margin-left: 12px;
-}
-.separation .separation-right:after {
-  left: -90px;
 }
 /* Footer */
 /* ------------------------------------------------- */
@@ -2078,15 +2063,16 @@ footer a.logo:hover:before {
   transition: linear .1s;
 }
 .events-form #donation-amount .fieldamount label {
-  color: #53535a;
+  color: #6b6b75;
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
   font-size: 1.4em;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 90px;
   letter-spacing: -1px;
   margin: 0;
   width: 100%;
   background: #efeff0;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
@@ -2114,7 +2100,7 @@ footer a.logo:hover:before {
   left: .5%;
   right: 17%;
   background: #ffffff;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   border: solid 2px #efeff0;
   overflow: hidden;
