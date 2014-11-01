@@ -660,6 +660,15 @@ small,
 .x-ng-cloak {
   display: none !important;
 }
+/* Donation Form */
+.meny-active {
+  overflow: hidden;
+}
+.donation-form {
+  position: fixed;
+  top: 0;
+  right: -580px;
+}
 /* ------------------------------------------------- */
 /* Modals */
 /* ------------------------------------------------- */
@@ -743,6 +752,19 @@ header .menu-actions a:before {
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
+/* Slidedown Menu */
+.slidestats {
+  position: fixed;
+  top: -48px;
+  height: 48px;
+  width: 100%;
+  z-index: 1001;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.slidestats.show {
+  top: 0;
+}
 .container {
   padding: 0 15px;
 }
@@ -751,9 +773,8 @@ header .menu-actions a:before {
   color: #ffffff;
   position: relative;
   font-weight: 700;
-  font-size: 1em;
+  font-size: 1.2em;
   line-height: 45px;
-  text-transform: uppercase;
   width: auto;
   min-width: 280px;
   outline: 0 !important;
@@ -764,7 +785,12 @@ header .menu-actions a:before {
   box-shadow: 0;
 }
 /* Progress Bar */
-.project-progressbar {
+.stats .project-progress.stuck {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+}
+.stats .project-progress .project-progressbar {
   max-width: 100%;
   background: #1dbc9c;
 }
