@@ -1,4 +1,4 @@
-<? if (count($donors) > 0 && ($showSubscriber && count($subscribers) > 0 ) && ($showFollower && count($followers) > 0)): ?>
+<? if (count($donors) > 0 || ($showSubscriber && count($subscribers) > 0 ) || ($showFollower && count($followers) > 0)): ?>
 	<? foreach($donors as $index => $donor): ?>                    
 	     <?=$donor['name']; ?> ($<?=number_format($donor['amount']);?>)<? if ($index < count($donors) - 1 || ($showSubscriber && count($subscribers) > 0) || ($showFollower && count($followers) > 0)):?>,<? endif; ?>
 	<? endforeach; ?>
