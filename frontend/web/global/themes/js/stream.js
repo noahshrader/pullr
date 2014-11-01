@@ -38,7 +38,7 @@ $(function(){
 		function CampaignPageBG() {
 		scrollPos = $(this).scrollTop();
 		$('.stats').css({
-			'background-position' : '50% ' + (-scrollPos/7)+"px"
+			'background-position' : '50% ' + (-scrollPos/8)+"px"
 		});
 		}
 		$(window).scroll(function() {
