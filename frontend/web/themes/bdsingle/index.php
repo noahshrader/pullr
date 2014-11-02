@@ -56,7 +56,6 @@
 			<div class="campaign-info">
 				<h1 ng-cloak>{{campaign.name}}</h1>
 				<h4 style="color:{{campaign.primaryColor}}" ng-cloak>{{campaign.charity.name}}</h4>
-				<h5 data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</h5>
 			</div>
 			<div class="numbers" ng-cloak>
 				<div class="container">
@@ -136,7 +135,6 @@
 </div>
 <script type='text/javascript'>
 	Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
-	// Pullr.Ready(function(){alert(Pullr.event.name)});
 </script>
 <script src="/global/themes/js/stream.js"></script>
 </body>

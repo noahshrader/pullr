@@ -56,7 +56,6 @@
 			<div class="campaign-info">
 				<h1 ng-cloak>{{campaign.name}}</h1>
 				<h4 style="color:{{campaign.primaryColor}}" ng-cloak>{{campaign.charity.name}}</h4>
-				<h5 data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</h5>
 			</div>
 			<div class="numbers" ng-cloak>
 				<div class="container">

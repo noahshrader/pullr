@@ -4,7 +4,7 @@ $(function(){
 	myCustomAfterRender = function(){
 		// Chat toggle
 		$('.togglechat').click(function (e) {			
-			$(this).toggleClass('chaton');
+			$(this).toggleClass('chatoff');
 		  	$('.featuredchat').fadeToggle();
 		  	$('.featuredstreamcontainer').toggleClass('biggerFeaturedStream');
 		  	e.preventDefault();

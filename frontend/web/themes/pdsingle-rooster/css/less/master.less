@@ -1,0 +1,184 @@
+/* Base */
+/* ------------------------------------------------- */
+@import "../../../../global/themes/css/less/variables.less";
+@import "../../../../global/themes/css/less/type.less";
+@import "type.less";
+
+body {
+	.secondary();
+}
+
+/* Palette */
+/* ------------------------------------------------- */
+@import "palette.less";
+
+
+/* Header */
+/* ------------------------------------------------- */
+@import "../../../../global/themes/css/less/header.less";
+
+header {
+	position: absolute;
+	background: @bglightblackfade;
+	z-index: 9999;
+
+	.logo {
+		a {
+			color: @white;
+		}
+	}
+}	
+
+
+/* Main */
+/* ------------------------------------------------- */
+@import "../../../../global/themes/css/less/elements.less";
+@import "elements.less";
+
+/* Buttons */
+.btn {
+	padding: 0 @halfgutter;
+	min-width: 120px;
+	.round-radius;
+
+	&:hover {
+		opacity: .9;
+	}
+}
+
+.bg-image {
+	position: relative;
+	background: @maingray url(../img/bg.png) no-repeat;
+	background-size: cover;
+} 
+
+/* Main Stats */
+.stats {
+	padding: 8em 0 4em;
+
+	/* Avatar */
+	img.avatar {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		height: 100px;
+		width: 100px;
+		background: @white;
+		border: solid 4px @white;
+		border-radius: 50%;
+	}
+
+	.donate-button {
+		padding: @gutter;
+	}
+	
+	/* Numbers */
+	.donor-stats {
+		position: relative;
+		display: block;
+		padding: @halfgutter 0;
+		background: @base;
+		overflow: hidden;
+
+		.col-md-4 {
+			position: relative;
+			border-right: 1px solid #323232;
+
+		}
+		.icon-holder {
+			display: inline-block;
+			height: 100%;
+			float: left;
+			padding-top: 0.2em;
+			
+			[class^="icon-"], [class*=" icon-"] {
+				color: @c1;
+				font-size: 2.6em;
+				margin-right: 0.4em;
+				padding-top: 0;
+			}
+		}
+		span {
+			display: inline-block;
+			margin-right: 0.8em;
+			line-height: 1.1em;
+			color: @lightest;
+			padding-top: 0.4em;
+		}
+		h1 {
+			color: @c2;
+			display: inline-block;
+			font-style: italic;
+			text-align: right;
+			position: absolute;
+			right: 0.4em;
+		}
+ 	}
+
+ 	/* Progress Bar */
+	.amount-progress {	
+		text-align: center;
+		width: 100%;
+		z-index: 9999;
+		background: transparent;
+
+		.project-progress {
+			position: relative;
+			content: '';
+			height: 6px;
+			width: 100%;
+			z-index: 10;
+			background: @bgblackfade;
+			
+			.project-progressbar {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 0;
+				background: @c1;
+				-webkit-transition: width 0.7s ease-in-out;
+				transition: width 0.7s ease-in-out;
+
+			span {
+				display: block;
+				position: absolute;
+				top: -44px;
+				left: 0;
+				opacity: 0;
+				color: #FFF;
+				font-weight: 600;
+				margin-left: -30px;
+				-webkit-transition: opacity 0.7s;
+				transition: opacity 0.7s;
+				-webkit-transition-delay: 0.7s;
+				transition-delay: 0.7s;
+				}	
+			}
+				}
+			
+		}	
+		.progress-marker {
+				left: 45%;
+				height: 20px;
+				width: 20px;
+				border: 4px solid @lightest;
+				background: @c1;
+				position: relative;
+				top: -7px;
+			}
+}
+
+
+/* Layout */
+/* ------------------------------------------------- */
+@import "../../../../global/themes/css/less/singlestream.less";
+
+.stream-wrap {
+	background: @base;
+}
+
+
+/* Footer */
+/* ------------------------------------------------- */
+@import "../../../../global/themes/css/less/footer.less";

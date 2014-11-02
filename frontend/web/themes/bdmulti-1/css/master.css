@@ -771,11 +771,14 @@ header .menu-actions a:before {
   background: #29292d;
 }
 .stream-wrap #stream a.togglechat {
-  color: #6b6b75;
+  color: #ffffff;
   background: #29292d;
 }
 .stream-wrap #stream a.togglechat:hover {
   color: #ffffff;
+}
+.stream-wrap #stream a.togglechat.chatoff {
+  color: #6b6b75;
 }
 /* Multichannel */
 .team-content .team-wrap {

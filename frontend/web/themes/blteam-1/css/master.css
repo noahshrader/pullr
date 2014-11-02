@@ -776,11 +776,14 @@ header .menu-actions a:before {
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
 }
 .stream-wrap #stream a.togglechat {
-  color: #bababf;
+  color: #47474d;
   background: #ffffff;
 }
 .stream-wrap #stream a.togglechat:hover {
   color: #47474d;
+}
+.stream-wrap #stream a.togglechat.chatoff {
+  color: #bababf;
 }
 /* Multichannel */
 .team-content .team-wrap {
