@@ -1,0 +1,188 @@
+/* Main */
+body {
+	background-color: @gray75;
+}
+
+/* Header */
+header {
+	background: @white;
+
+	.logo {
+		a {
+			color: @gray15;
+		}
+	}
+	.menu-actions {
+		a {
+			color: @gray15;
+			background: @gray75;
+
+			&:hover {
+				background: @gray70;
+				&:before {
+					border-bottom-color: @gray70;
+				}
+			}
+			&:before {
+				border-bottom-color: @gray75;
+			}
+		}
+	}
+}
+
+/* Main Stats */
+.stats {
+	background-color: @maingray;
+
+	.stats-wrap {
+
+		/* Campaign Info */
+		.campaign-info {
+			h5 {
+				color: @white;
+			}
+		}
+
+		/* Numbers */
+		.numbers {
+			background: @bglightwhitefade;
+			&:before {
+				border-color: transparent transparent @bglightwhitefade transparent;
+			}
+
+			h1,
+			span {
+				color: @white;
+			}
+		}
+
+		/* Progress Bar */
+		.project-progress {
+			background: @bglightblackfade;
+		}
+	}
+}
+
+/* User Bar */
+.user-bar {
+	background: @white;
+
+	.avatar {
+		img {
+			background: @white;
+			border: solid 4px @white;
+		}
+		a {
+			color: @gray15;
+		}
+	}
+
+	/* User Stats */
+	.user-details {
+		span {
+			color: @gray50;
+		}
+	}
+
+	/* Social Links */
+	.user-details-social {
+		background: @offwhite;
+
+		a {
+			&.icon-twitter,
+			&.icon-youtube,
+			&.icon-facebook {
+				&:after {
+					background: @offwhite;
+				}
+			}
+		}
+	}
+}
+
+/* Campaign Info */
+.info {
+
+	.info-wrap {
+		background: @white;
+		.border-radius;
+		overflow: hidden;
+		.box-shadow;
+
+		h4 {
+			color: @gray15;
+		}
+		span {
+			color: @gray50;
+		}
+		.donate-wrap {
+			background: @offwhite;
+
+			.donate-button {
+
+				.slant {
+					background: @offwhite;
+				}
+			}
+		}
+	}
+}
+
+/* Stream */
+.stream-wrap {
+
+	#stream {
+		background: @white;
+		.box-shadow;
+
+		a.togglechat {
+			color: @gray60;
+			background: @white;
+			
+			&:hover {
+				color: @gray15;
+			}
+		}
+	}
+}
+
+/* Multichannel */
+.team-content {
+	.team-wrap {
+		background: @white;
+		.box-shadow;
+	}
+}
+
+/* Footer */
+footer {
+
+	h5 {
+		color: @gray60;
+	}
+	a.logo {
+		color: @gray60;
+		&:hover {
+			color: @gray15;
+		}
+	}
+	span.copy {
+		color: @gray60;
+
+		a {
+			color: @gray60;
+			&:hover {
+				color: @gray15;
+			}
+		}
+	}
+}
+
+/* Slide Bar */
+.slidestats {
+	background: @white;
+
+	h5 {
+		color: @gray15;
+	}
+}

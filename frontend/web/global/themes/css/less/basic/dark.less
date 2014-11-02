@@ -1,0 +1,183 @@
+/* Main */
+body {
+	background-color: @maingray;
+}
+
+/* Header */
+header {
+	background: @base;
+
+	.logo {
+		a {
+			color: @white;
+		}
+	}
+	.menu-actions {
+		a {
+			color: @white;
+			background: @dkgray;
+
+			&:hover {
+				background: @gray10;
+				&:before {
+					border-bottom-color: @gray10;
+				}
+			}
+			&:before {
+				border-bottom-color: @dkgray;
+			}
+		}
+	}
+}
+
+/* Main Stats */
+.stats {
+	background-color: @base;
+
+	.stats-wrap {
+
+		/* Campaign Info */
+		.campaign-info {
+			h5 {
+				color: @white;
+			}
+		}
+		
+		/* Numbers */
+		.numbers {
+			background: @bglightblackfade;
+			&:before {
+				border-color: transparent transparent @bglightblackfade transparent;
+			}
+
+			h1,
+			span {
+				color: @white;
+			}
+		}
+
+		/* Progress Bar */
+		.project-progress {
+			background: @bglightblackfade;
+		}
+	}
+}
+
+/* User Bar */
+.user-bar {
+	background: @base;
+
+	.avatar {
+		img {
+			background: @base;
+			border: solid 4px @base;
+		}
+		a {
+			color: @white;
+		}
+	}
+
+	/* User Stats */
+	.user-details {
+
+		span {
+			color: @gray20;
+		}
+	}
+
+	/* Social Links */
+	.user-details-social {
+		background: @dkgray;
+
+		a {
+			&.icon-twitter,
+			&.icon-youtube,
+			&.icon-facebook {
+				&:after {
+					background: @dkgray;
+				}
+			}
+		}
+	}
+}
+
+/* Campaign Info */
+.info {
+
+	.info-wrap {
+		background: @dkgray;
+		.border-radius;
+		overflow: hidden;
+
+		span {
+			color: @gray30;
+		}
+		.donate-wrap {
+			background: @base;
+
+			.donate-button {
+
+				.slant {
+					background: @base;
+				}
+			}
+		}
+	}
+}
+
+/* Stream */
+.stream-wrap {
+
+	#stream {
+		background: @dkgray;
+
+		a.togglechat {
+			color: @gray30;
+			background: @dkgray;
+			
+			&:hover {
+				color: @white;
+			}
+		}
+	}
+}
+
+/* Multichannel */
+.team-content {
+	.team-wrap {
+		background: @dkgray;
+	}
+}
+
+/* Footer */
+footer {
+
+	h5 {
+		color: @gray20;
+	}
+	a.logo {
+		color: @gray20;
+		&:hover {
+			color: @white;
+		}
+	}
+	span.copy {
+		color: @gray15;
+
+		a {
+			color: @gray15;
+			&:hover {
+				color: @white;
+			}
+		}
+	}
+}
+
+/* Slide Bar */
+.slidestats {
+	background: @base;
+
+	h5 {
+		color: @white;
+	}
+}

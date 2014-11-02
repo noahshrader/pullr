@@ -7,13 +7,13 @@ use common\models\twitch\TwitchFollow;
 use common\models\twitch\TwitchSubscription;
 class ActivityMessage
 {
-    const TEMPLATE_NEW_CAMPAIGN = 'A new campaign, %s was created';
+    const TEMPLATE_NEW_CAMPAIGN = 'A new campaign, %s, was created';
     const TEMPLATE_DONATION_RECEIVED = '%s donated $%s to %s!';
-    const TEMPLATE_CAMPAIGN_ENDED = 'The campaign %s has ended with a total of $%s';
-    const TEMPLATE_GOAL_REACHED = 'Congratulations! You reached your goal of $%s for %s!';
-    const TEMPLATE_NEW_TWITCH_FOLLOWER = '%s just followed your channel %s!';
-    const TEMPLATE_NEW_TWITCH_SUBSCRIBER = '%s just subscribed to your channel %s!';
-    const EMPTY_ACTIVITY_MESSAGE = 'Empty activity';
+    const TEMPLATE_CAMPAIGN_ENDED = '%s ended with a total of $%s';
+    const TEMPLATE_GOAL_REACHED = 'Awesome! You reached your goal of $%s for %s!';
+    const TEMPLATE_NEW_TWITCH_FOLLOWER = '%s just followed your channel!';
+    const TEMPLATE_NEW_TWITCH_SUBSCRIBER = '%s just subscribed to your channel!';
+    const EMPTY_ACTIVITY_MESSAGE = 'No activity yet!';
 
     public static function  messageNewCampaign(Campaign $campaign){
         return sprintf(self::TEMPLATE_NEW_CAMPAIGN, $campaign->name);

@@ -34,24 +34,9 @@ $(function(){
 		$(document).on( "eventhandler", function() {
 			meny.close();
 		});
-		// Stats background movement
-		function CampaignPageBG() {
-		scrollPos = $(this).scrollTop();
-		$('.stats').css({
-			'background-position' : '50% ' + (-scrollPos/8)+"px"
-		});
-		}
-		$(window).scroll(function() {
-			CampaignPageBG();
-		});
 		// Rolldown stats
 		$(window).scroll(function() {
-			if ($(this).scrollTop() >= 48) {
-				$(".stats .project-progress").addClass('stuck');
-			} else {
-				$(".stats .project-progress").removeClass('stuck');
-			}
-			if ($(this).scrollTop() >= 360) {
+			if ($(this).scrollTop() >= 420) {
 				$(".slidestats").addClass('show');
 			} else {
 				$(".slidestats").removeClass('show');

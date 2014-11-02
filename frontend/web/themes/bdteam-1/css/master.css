@@ -130,93 +130,6 @@
     filter: hue-rotate(120deg);
   }
 }
-/* Header */
-header {
-  background: #2e2e32;
-}
-header .logo a {
-  color: #ffffff;
-}
-header .menu-actions a {
-  color: #ffffff;
-  background: #29292d;
-}
-header .menu-actions a:hover {
-  background: #3a3a40;
-}
-header .menu-actions a:hover:before {
-  border-bottom-color: #3a3a40;
-}
-header .menu-actions a:before {
-  border-bottom-color: #29292d;
-}
-/* Slidedown Menu */
-.slidestats {
-  background: #2e2e32;
-}
-/* Main Stats */
-.stats {
-  background-color: #222225;
-  /* Campaign Info */
-  /* Numbers */
-}
-.stats .campaign-info h5 {
-  color: #ffffff;
-}
-.stats .numbers span {
-  color: #6b6b75;
-}
-.stats .numbers h1 {
-  color: #ffffff;
-}
-/* User Bar */
-.user-bar {
-  background: #29292d;
-  /* User Stats */
-  /* Social Links */
-}
-.user-bar .avatar a {
-  color: #ffffff;
-}
-.user-bar .user-details span {
-  color: #6b6b75;
-}
-.user-bar .user-details-social {
-  background: #2e2e32;
-}
-/* Campaign Info */
-.info h5 {
-  color: #6b6b75;
-}
-/* Stream */
-.stream-wrap #stream a.togglechat {
-  color: #ffffff;
-}
-.stream-wrap #stream a.togglechat:hover {
-  color: #ffffff;
-}
-.stream-wrap #stream a.togglechat.chaton {
-  color: #6b6b75;
-}
-/* Footer */
-footer h5 {
-  color: #53535a;
-}
-footer a.logo {
-  color: #53535a;
-}
-footer a.logo:hover {
-  color: #ffffff;
-}
-footer span.copy {
-  color: #47474d;
-}
-footer span.copy a {
-  color: #47474d;
-}
-footer span.copy a:hover {
-  color: #ffffff;
-}
 /* Type */
 /* ------------------------------------------------- */
 /* Main Fonts */
@@ -238,7 +151,7 @@ h4 {
 }
 h1 {
   margin-top: 0;
-  font-size: 3.6em;
+  font-size: 3.2em;
   font-weight: 100;
   letter-spacing: -1px;
 }
@@ -273,9 +186,10 @@ ul,
 blockquote {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 }
+/* Main */
+/* ------------------------------------------------- */
 body {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-  background-color: #2e2e32;
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -295,23 +209,30 @@ header .container {
   position: relative;
   min-height: 160px;
   overflow: hidden;
+  background-image: url(https://d1zqrvc06emslq.cloudfront.net/assets/img/cover_lol1.jpg);
+  background-size: cover;
+}
+.stats .stats-wrap {
+  position: relative;
+  z-index: 2;
   /* Campaign Info */
   /* Numbers */
-  /* Progress Bar */
 }
-.stats .campaign-info {
+.stats .stats-wrap .campaign-info {
   text-align: center;
   padding: 6em 5% 4em;
 }
-.stats .campaign-info h4 {
+.stats .stats-wrap .campaign-info h4 {
   margin-bottom: .6em;
 }
-.stats .numbers {
-  position: relative;
-  padding: 3em 0;
-  background: rgba(14, 15, 17, 0.3);
+.stats .stats-wrap .campaign-info h5 {
+  font-weight: 300;
 }
-.stats .numbers:before {
+.stats .stats-wrap .numbers {
+  position: relative;
+  padding: 2.6em 0;
+}
+.stats .stats-wrap .numbers:before {
   content: '';
   position: absolute;
   width: 0;
@@ -322,22 +243,43 @@ header .container {
   top: -10px;
   left: 50%;
   margin-left: -10px;
-  border-color: transparent transparent rgba(14, 15, 17, 0.3) transparent;
 }
-.stats .numbers h1 {
+.stats .stats-wrap .numbers span {
+  opacity: .6;
+}
+.stats .stats-wrap .numbers h1 {
   margin: 0;
 }
-.stats .project-progress {
+.stats .stats-wrap .numbers .raised span {
+  display: inline-block;
+  margin-bottom: .4em;
+}
+.stats .stats-wrap .numbers .raised h1 {
+  color: #1dbc9c;
+  margin: 0;
+}
+.stats .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(14, 15, 17, 0.3);
+  z-index: 1;
+}
+/* Progress Bar */
+.project-progress {
   position: absolute;
   top: 0;
   height: 4px;
   width: 100%;
-  background: rgba(14, 15, 17, 0.3);
   z-index: 1;
 }
-.stats .project-progress .project-progressbar {
+.project-progress .project-progressbar {
   height: 100%;
   width: 0;
+  max-width: 100%;
+  background: #1dbc9c;
   -webkit-transition: width 0.7s ease-in-out;
   transition: width 0.7s ease-in-out;
 }
@@ -365,8 +307,6 @@ header .container {
   left: -10px;
   height: 78px;
   width: 78px;
-  background: #29292d;
-  border: solid 4px #29292d;
   border-radius: 50%;
   z-index: 10;
 }
@@ -374,8 +314,8 @@ header .container {
   float: left;
   display: inline-block;
   font-size: 1.3em;
-  font-weight: 600;
-  line-height: 55px;
+  font-weight: 700;
+  line-height: 54px;
   padding-right: .6em;
 }
 .user-bar .user .user-details {
@@ -419,37 +359,62 @@ header .container {
   bottom: -4px;
   left: -2px;
   width: 2px;
-  background: #29292d;
   transform: rotate(15deg);
   -ms-transform: rotate(15deg);
   -webkit-transform: rotate(15deg);
 }
 /* Campaign Info & Actions */
 .info {
-  padding: 3.8em 0 1em;
-  width: 100%;
+  padding: 0 15px;
+  margin: 45px auto 15px;
+}
+.info .info-wrap {
   /* Donate Button */
 }
-.info h5 {
-  margin-bottom: .4em;
+.info .info-wrap div {
+  padding: 15px;
 }
-.info .donate-wrap {
+.info .info-wrap h4 {
+  color: #ffffff;
+}
+.info .info-wrap .feed-details {
+  float: left;
+  padding: 20px 60px 15px 30px;
+  width: 70%;
+}
+.info .info-wrap .donate-wrap {
   float: right;
+  width: 30%;
 }
-.info .donate-wrap .btn {
+.info .info-wrap .donate-wrap .donate-button {
+  position: relative;
+  padding: 0;
+}
+.info .info-wrap .donate-wrap .donate-button .btn {
   font-size: 1.4em;
+  width: 100%;
+  z-index: 2;
+}
+.info .info-wrap .donate-wrap .donate-button .slant {
+  position: absolute;
+  top: -100px;
+  left: -60px;
+  height: 400px;
+  width: 60px;
+  z-index: 1;
+  -webkit-transform: rotate(20deg);
+      -ms-transform: rotate(20deg);
+          transform: rotate(20deg);
 }
 /* Layout */
 /* ------------------------------------------------- */
 .stream-wrap {
-  padding: 30px 15px;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .stream-wrap #stream {
   position: relative;
   margin: 0 auto;
-  padding: 10px;
   z-index: 10;
 }
 .stream-wrap #stream #featured {
@@ -484,9 +449,6 @@ header .container {
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream a.togglechat {
-  position: absolute;
-  top: -32px;
-  right: 15px;
   display: block;
   font-size: 0.9em;
   font-weight: 400;
@@ -500,8 +462,10 @@ header .container {
   padding: 0 15px;
 }
 .team-content .team-wrap {
-  padding: .6%;
-  border-radius: 10px;
+  padding: .5%;
+  margin-top: 15px;
+  border-radius: 6px;
+  background-clip: padding-box;
 }
 .team-content .team-wrap .team-members {
   position: relative;
@@ -509,7 +473,7 @@ header .container {
   display: inline-block;
   width: 16.66%;
   width: calc(14.28571429%);
-  padding: .6%;
+  padding: .5%;
 }
 .team-content .team-wrap .team-members img {
   width: 100%;
@@ -544,10 +508,10 @@ header .container {
   margin-left: -100px;
   width: 200px;
   background: #2e2e32;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
-  z-index: 9999;
+  z-index: 1001;
 }
 .team-content .team-wrap .team-members .team-member .team-member-stats:after {
   content: '';
@@ -582,13 +546,22 @@ header .container {
 .team-content .team-wrap .team-members .team-member:hover .team-member-stats {
   display: block;
 }
-.stream-wrap #stream {
-  background: #29292d;
-  border-radius: 10px;
+.stream-wrap {
+  padding: 0 15px;
+  margin-bottom: 30px;
 }
-/* Multichannel */
-.team-content .team-wrap {
-  background: #29292d;
+.stream-wrap #stream {
+  padding: 1%;
+  border-radius: 6px;
+  background-clip: padding-box;
+}
+.stream-wrap a.togglechat {
+  position: absolute;
+  bottom: -26px;
+  right: 0;
+  padding: 0 15px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
 /* Footer */
 footer span.copy {
@@ -672,4 +645,165 @@ footer span.copy {
   .featuredchat {
     min-height: 373px;
   }
+}
+/* Slide Bar */
+/* ------------------------------------------------- */
+.slidestats {
+  position: fixed;
+  top: -48px;
+  height: 35px;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.slidestats.show {
+  top: 0;
+}
+.slidestats h5 {
+  line-height: 35px;
+}
+.slidestats h5.campaign {
+  float: left;
+  font-weight: 600;
+}
+.slidestats h5.amount-raised {
+  float: right;
+  font-weight: 600;
+}
+.slidestats .project-progress {
+  top: auto;
+  bottom: 0;
+  left: 0;
+}
+/* Main */
+body {
+  background-color: #2e2e32;
+}
+/* Header */
+header {
+  background: #222225;
+}
+header .logo a {
+  color: #ffffff;
+}
+header .menu-actions a {
+  color: #ffffff;
+  background: #29292d;
+}
+header .menu-actions a:hover {
+  background: #3a3a40;
+}
+header .menu-actions a:hover:before {
+  border-bottom-color: #3a3a40;
+}
+header .menu-actions a:before {
+  border-bottom-color: #29292d;
+}
+/* Main Stats */
+.stats {
+  background-color: #222225;
+}
+.stats .stats-wrap {
+  /* Campaign Info */
+  /* Numbers */
+  /* Progress Bar */
+}
+.stats .stats-wrap .campaign-info h5 {
+  color: #ffffff;
+}
+.stats .stats-wrap .numbers {
+  background: rgba(14, 15, 17, 0.3);
+}
+.stats .stats-wrap .numbers:before {
+  border-color: transparent transparent rgba(14, 15, 17, 0.3) transparent;
+}
+.stats .stats-wrap .numbers h1,
+.stats .stats-wrap .numbers span {
+  color: #ffffff;
+}
+.stats .stats-wrap .project-progress {
+  background: rgba(14, 15, 17, 0.3);
+}
+/* User Bar */
+.user-bar {
+  background: #222225;
+  /* User Stats */
+  /* Social Links */
+}
+.user-bar .avatar img {
+  background: #222225;
+  border: solid 4px #222225;
+}
+.user-bar .avatar a {
+  color: #ffffff;
+}
+.user-bar .user-details span {
+  color: #53535a;
+}
+.user-bar .user-details-social {
+  background: #29292d;
+}
+.user-bar .user-details-social a.icon-twitter:after,
+.user-bar .user-details-social a.icon-youtube:after,
+.user-bar .user-details-social a.icon-facebook:after {
+  background: #29292d;
+}
+/* Campaign Info */
+.info .info-wrap {
+  background: #29292d;
+  border-radius: 6px;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+.info .info-wrap span {
+  color: #6b6b75;
+}
+.info .info-wrap .donate-wrap {
+  background: #222225;
+}
+.info .info-wrap .donate-wrap .donate-button .slant {
+  background: #222225;
+}
+/* Stream */
+.stream-wrap #stream {
+  background: #29292d;
+}
+.stream-wrap #stream a.togglechat {
+  color: #6b6b75;
+  background: #29292d;
+}
+.stream-wrap #stream a.togglechat:hover {
+  color: #ffffff;
+}
+/* Multichannel */
+.team-content .team-wrap {
+  background: #29292d;
+}
+/* Footer */
+footer h5 {
+  color: #53535a;
+}
+footer a.logo {
+  color: #53535a;
+}
+footer a.logo:hover {
+  color: #ffffff;
+}
+footer span.copy {
+  color: #47474d;
+}
+footer span.copy a {
+  color: #47474d;
+}
+footer span.copy a:hover {
+  color: #ffffff;
+}
+/* Slide Bar */
+.slidestats {
+  background: #222225;
+}
+.slidestats h5 {
+  color: #ffffff;
 }
