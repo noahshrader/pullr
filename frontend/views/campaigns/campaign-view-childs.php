@@ -15,7 +15,7 @@
         <tr>
             <th><?= sizeof($childCampaigns) ?> Connected Campaigns</th>
             <th></th>
-            <th><span class="child-totals">$<?= number_format($amountRaised) ?></span></th>
+            <th><span class="child-totals">$<?= number_format($amountRaised, 2) ?></span></th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
                     <?=$date->setTimestamp($child->startDate)->format('M j, Y'); ?> - <?=$date->setTimestamp($child->endDate)->format('M j, Y'); ?>
                 <? endif ?>
             </td>
-            <td class="raised">$<?= number_format($child->amountRaised) ?></td>
+            <td class="raised">$<?= number_format($child->amountRaised, 2) ?></td>
         </tr>
         <? endforeach; ?>
         </tbody>

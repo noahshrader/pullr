@@ -51,7 +51,7 @@
     </header>
 
     <!-- Main Stats -->
-    <section class="stats">
+    <section class="stats" bg-image="{{campaign.backgroundImg}}">
         <div class="stats-wrap">
             <div class="campaign-info">
                 <h1 ng-cloak>{{campaign.name}}</h1>

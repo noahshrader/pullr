@@ -40,7 +40,7 @@ $user = \Yii::$app->user->identity;
         </div>
     </div>
     <div class="module-inner">
-        <h5><i class="icon icon-design2"></i>Theme</h5>
+        <h5><i class="icon icon-design2"></i>Design</h5>
         <!-- Choose a Theme -->
         <div class="hide">
             <?= $form->field($campaign, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
@@ -57,7 +57,7 @@ $user = \Yii::$app->user->identity;
             <div id="logo-container">
                 <img class="logo" src="<?= $campaign->backgroundImageSmallUrl ?>">
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
-                    <label class="control-label">Upload a background image</label>
+                    <label class="control-label">Background Image</label>
                     <?=ImageInput::widget(['name' => 'backgroundImage']);?>
                     <? if ($campaign->hasErrors('backgroundImage')): ?>
                         <?= Html::error($campaign, 'backgroundImage', ['class' => 'help-block']); ?>

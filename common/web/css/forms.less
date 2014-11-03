@@ -2,6 +2,7 @@
 /* ------------------------------------------------- */
 input[type="text"],
 input.form-control,
+div.form-control,
 textarea,
 textarea.form-control,
 select,
@@ -163,6 +164,9 @@ input.color-choice {
 			background: none !important;
 		}
 	}
+	input[type="text"].select2-offscreen {
+		min-height: 0;
+	}
 }
 
 /* Dropdown */
@@ -193,7 +197,7 @@ input.color-choice {
 	&:before {
 		position: absolute;
 		top: 50%;
-		content: '\e64f';
+		content: '\e68a';
 		color: @gray70;
 		font-family: 'icomoon';
 		font-size: 14px;
@@ -260,7 +264,7 @@ input.color-choice {
 		padding-left: 0;
 		white-space: normal;
 		&:before {
-			content: '\e6ac';
+			content: '\e62a';
 			float: left;
 			position: relative;
 			top: 3px;

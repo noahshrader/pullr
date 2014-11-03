@@ -132,7 +132,7 @@ class FirstGivingPayment extends Component{
             $this->firstGiving->organization_uuid, // First Giving organization uuid
             $this->donation->amount, //amount
             base64_encode($this->config['pb_success']), // _pb_success
-            'Donate $'.number_format($this->donation->amount), // buttonText
+            'Donate $'.number_format($this->donation->amount, 2), // buttonText
             base64_encode($styleSheetUrl), // styleSheetURL
             $affiliate_id,
             base64_encode($callbackUrl) // _cb_success
