@@ -118,11 +118,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
             <? endif ?>
             <section class="stats-overview main-values module">
                 <div class='stats-box col-xs-3 raised-total'>
-                    <h1>$<?= number_format($campaign->amountRaised) ?></h1>
+                    <h1>$<?= number_format($campaign->amountRaised, 2) ?></h1>
                     <span>Raised</span>
                 </div>
                 <div class='stats-box col-xs-3 campaign-goal'>
-                    <h1>$<?= number_format($campaign->goalAmount) ?></h1>
+                    <h1>$<?= number_format($campaign->goalAmount, 2) ?></h1>
                     <span>Goal</span>
                 </div>
 
