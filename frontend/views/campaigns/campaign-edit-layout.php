@@ -54,18 +54,16 @@ $user = \Yii::$app->user->identity;
             </div>
             <button type="button" class="btn btn-secondary" onclick="layoutChooseTheme()">Choose a theme</button>
             <!-- Background Image Upload (if Pro) -->
-            <? if ($user->plan == Plan::PLAN_PRO): ?>
-            <div id="logo-container" style="display:none;">
+            <div id="logo-container">
                 <img class="logo" src="<?= $campaign->backgroundImageSmallUrl ?>">
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
-                    <label class="control-label">Upload a background image</label> 
-                        <?=ImageInput::widget(['name' => 'backgroundImage']);?>
+                    <label class="control-label">Upload a background image</label>
+                    <?=ImageInput::widget(['name' => 'backgroundImage']);?>
                     <? if ($campaign->hasErrors('backgroundImage')): ?>
                         <?= Html::error($campaign, 'backgroundImage', ['class' => 'help-block']); ?>
                     <? endif ?>
                 </div>
             </div>
-            <? endif ?>
         </div>
 		
 		<div class="theme-color-picker cf">
