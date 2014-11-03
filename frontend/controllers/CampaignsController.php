@@ -305,6 +305,24 @@ class CampaignsController extends FrontendController {
         echo number_format($changesCounter);
     }
 
+    public function actionDefaulttheme()
+    {
+        $layoutType = $_POST['layoutType'];
+        $plan = \Yii::$app->user->identity->getPlan();
+        
+        $themesQuery = Theme::find()->where(['status' => Theme::STATUS_ACTIVE, 'is_default' => Theme::THEME_IS_DEFAULT]);
+        if ($plan == Plan::PLAN_BASE) {
+            $themesQuery->andWhere(['plan' => Plan::PLAN_BASE]);
+        }
+        if ($layoutType) {
+            $themesQuery->andWhere(['layoutType' => $layoutType]);
+        }
+        
+        $theme = $themesQuery->one();
+        
+        return json_encode(array('id' => $theme->id, 'name' => $theme->name));
+    }
+    
     public function actionModalthemes() {
         $layoutType = $_POST['layoutType'];
         $plan = \Yii::$app->user->identity->getPlan();

@@ -170,6 +170,22 @@ function initBootstrapSwitch() {
     });
 }
 
+function getDefaultTheme()
+{
+    var layoutType = $('#campaign-layouttype').val();
+    $.ajax({
+        url: 'app/campaigns/defaulttheme',
+        type: 'POST',
+        cache: false,
+        data: {layoutType: layoutType},
+        dataType: 'json',
+        success: function(data) {
+            $('#campaign-themeid').val(data.id);
+            $('.theme-name span').text(data.name);
+        }
+    });
+}
+
 function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
     $('#modalThemes .modal-content').load('app/campaigns/modalthemes', {layoutType: layoutType}, function(){
