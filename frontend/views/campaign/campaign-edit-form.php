@@ -16,19 +16,19 @@
 	        <div class="col-sm-4">
 		        <!-- Donor Comments -->
 		        <div class="form-group">
-		            <?= $form->field($campaign, 'enableDonorComments')->checkbox([], false); ?>
+		            <?= $form->field($campaign, 'enableDonorComments', ['autoPlaceholder' => false])->label("Donor Comments")->checkbox([], false); ?>
 		        </div>
 	        </div>
 	        <div class="col-sm-4">
 		        <!-- Enable Thank You Page -->
 		        <div class="form-group">
-		            <?= $form->field($campaign, 'enableThankYouPage')->checkbox([], false); ?>
+		            <?= $form->field($campaign, 'enableThankYouPage', ['autoPlaceholder' => false])->label("Thank You Page")->checkbox([], false); ?>
 		        </div>
 	        </div>
             <div class="col-sm-4">
                 <!-- Enable\disable donation form progress bar -->
                 <div class="form-group">
-                    <?= $form->field($campaign, 'enableDonationProgressBar')->checkbox([], false); ?>
+                    <?= $form->field($campaign, 'enableDonationProgressBar', ['autoPlaceholder' => false])->label("Progress Bar")->checkbox([], false); ?>
                 </div>
             </div>
         </div>

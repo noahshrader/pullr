@@ -29,7 +29,7 @@ label {
 
 .form-wrapper {
 	margin: 0 auto;
-	padding: 3em 5% 1em;
+	padding: 3em 7.5% 1em;
 	width: 100%;
 	max-width: 640px;
 
@@ -50,7 +50,7 @@ label {
 			max-width: 100%;
 		}
 		textarea {
-			min-height: 160px;
+			min-height: 140px;
 		}
 		&.comments {
 			margin-bottom: 2em;
@@ -69,6 +69,11 @@ label {
 	margin: .3em auto .6em;
 	padding: .4em 2em;
 	height: auto;
+}
+a.close {
+	display: block;
+	margin-bottom: 2em;
+	line-height: 45px;
 }
 
 
@@ -120,7 +125,6 @@ h3.charity-name {
 	color: @gray60;
 	font-size: 1.15em;
 	line-height: 1.2em;
-	padding: 0 5%;
 	margin-top: .8em;
 
 	a.approved {
@@ -145,7 +149,7 @@ h3.charity-name {
 			left: 50%;
 			color: @white;
 			font-size: @fineprint;
-			line-height: 1;
+			line-height: 1.2em;
 			margin-left: -60px;
 			padding: @halfgutter;
 			width: 120px;
@@ -260,6 +264,7 @@ footer {
 	#donation-amount {
 		position: relative;
 		margin-bottom: 2em;
+		min-height: 90px;
 
 		.fieldamount {
 			position: relative;
@@ -276,8 +281,7 @@ footer {
 
 			label {
 				color: @gray30;
-				font-family: @secfont;
-				font-size: 1.4em;
+				font-size: 1.6em;
 				font-weight: 600;
 				line-height: 90px;
 				letter-spacing: -1px;
@@ -351,7 +355,7 @@ footer {
 
 				input {
 					font-size: 2em;
-					line-height: 44px;
+					line-height: 46px;
 					width: 100%;
 					border: 0;
 					text-indent: 5px;
@@ -428,10 +432,6 @@ footer {
 	}
 	.events-form #donation-amount #other {
 		right: .5%;
-	}
-	.events-form #donation-amount #other .field input {
-		text-indent: 18%;
-		padding: .9em 10% !important;
 	}
 }
 @media only screen and (max-width: 480px) {

@@ -68,7 +68,7 @@ $user = \Yii::$app->user->identity;
             <? endif ?>
         </div>
 		
-		<div class="row theme-color-picker">
+		<div class="theme-color-picker cf">
 			<div class="col-sm-6">
 		        <!-- Primary Color -->
 		        <div class="colorpicker">

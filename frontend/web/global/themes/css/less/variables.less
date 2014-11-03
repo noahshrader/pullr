@@ -35,9 +35,9 @@
 @gray75: lighten(@base, 80%); /* 78% gray background */
 
 @bgwhitefade: rgba(255,255,255,.7); /* Faded light background */
-@bglightwhitefade: rgba(255,255,255,.12); /* Faded light background */
+@bglightwhitefade: rgba(255,255,255,.15); /* Faded light background */
 @bgblackfade: rgba(14,15,17,.7); /* Faded dark background */
-@bglightblackfade: rgba(14,15,17,.12); /* Faded dark background */
+@bglightblackfade: rgba(14,15,17,.3); /* Faded dark background */
 
 /* Social Icons */
 @twitch-icon: #643ca8;
@@ -72,26 +72,13 @@
 }
 
 /* Borders & Box shadows */
-.border-radius (@radius: 4px) {
+.border-radius (@radius: 6px) {
 	border-radius: @radius;
 	background-clip: padding-box;
-}
-.element-radius (@radius: 10px) {
-	border-radius: @radius;
 }
 .round-radius (@radius: 30px) {
 	border-radius: @radius;
 	background-clip: padding-box;
-}
-.topcut-radius (@radius: 10px) {
-	border-top-left-radius: @radius;
-	background-clip: padding-box;
-}
-.tab-radius (@radius: 10px) {
-	border-top-left-radius: @radius;
-	border-top-right-radius: @radius;
-	-moz-border-radius-topleft: @radius;
-	-moz-border-radius-topright: @radius;
 }
 .box-shadow (@shadow: 0 0 2px rgba(0,0,0,.1)) {
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);

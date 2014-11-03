@@ -130,97 +130,6 @@
     filter: hue-rotate(120deg);
   }
 }
-/* Header */
-header {
-  background: #ffffff;
-}
-header .logo a {
-  color: #47474d;
-}
-header .menu-actions a {
-  color: #47474d;
-  background: #efeff0;
-}
-header .menu-actions a:hover {
-  background: #d4d4d8;
-}
-header .menu-actions a:hover:before {
-  border-bottom-color: #d4d4d8;
-}
-header .menu-actions a:before {
-  border-bottom-color: #efeff0;
-}
-/* Slidedown Menu */
-.slidestats {
-  background: #ffffff;
-}
-/* Main Stats */
-.stats {
-  background: #2e2e32;
-  /* Campaign Info */
-  /* Numbers */
-}
-.stats .campaign-info h5 {
-  color: #6b6b75;
-}
-.stats .numbers span {
-  color: #9f9fa7;
-}
-.stats .numbers h1 {
-  color: #ffffff;
-}
-/* User Bar */
-.user-bar {
-  background: #ffffff;
-  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
-  /* User Stats */
-  /* Social Links */
-}
-.user-bar .avatar a {
-  color: #47474d;
-}
-.user-bar .user-details span {
-  color: #9f9fa7;
-}
-.user-bar .user-details-social {
-  background: #f7f7f7;
-}
-/* Campaign Info */
-.info h3 {
-  color: #47474d;
-}
-.info h5 {
-  color: #9f9fa7;
-}
-/* Stream */
-.stream-wrap #stream a.togglechat {
-  color: #47474d;
-}
-.stream-wrap #stream a.togglechat:hover {
-  color: #bababf;
-}
-.stream-wrap #stream a.togglechat.chaton {
-  color: #bababf;
-}
-/* Footer */
-footer h5 {
-  color: #bababf;
-}
-footer a.logo {
-  color: #bababf;
-}
-footer a.logo:hover {
-  color: #47474d;
-}
-footer span.copy {
-  color: #bababf;
-}
-footer span.copy a {
-  color: #bababf;
-}
-footer span.copy a:hover {
-  color: #47474d;
-}
 /* Type */
 /* ------------------------------------------------- */
 /* Main Fonts */
@@ -242,7 +151,7 @@ h4 {
 }
 h1 {
   margin-top: 0;
-  font-size: 3.6em;
+  font-size: 3.2em;
   font-weight: 100;
   letter-spacing: -1px;
 }
@@ -277,9 +186,10 @@ ul,
 blockquote {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 }
+/* Main */
+/* ------------------------------------------------- */
 body {
   font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
-  background-color: #efeff0;
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -299,23 +209,30 @@ header .container {
   position: relative;
   min-height: 160px;
   overflow: hidden;
+  /*background-image: url(https://d1zqrvc06emslq.cloudfront.net/assets/img/cover_lol1.jpg);*/
+  background-size: cover;
+}
+.stats .stats-wrap {
+  position: relative;
+  z-index: 2;
   /* Campaign Info */
   /* Numbers */
-  /* Progress Bar */
 }
-.stats .campaign-info {
+.stats .stats-wrap .campaign-info {
   text-align: center;
-  padding: 5.4em 5% 4em;
+  padding: 6em 5% 4em;
 }
-.stats .campaign-info h4 {
+.stats .stats-wrap .campaign-info h4 {
   margin-bottom: .6em;
 }
-.stats .numbers {
-  position: relative;
-  padding: 3em 0;
-  background: rgba(14, 15, 17, 0.12);
+.stats .stats-wrap .campaign-info h5 {
+  font-weight: 300;
 }
-.stats .numbers:before {
+.stats .stats-wrap .numbers {
+  position: relative;
+  padding: 2.6em 0;
+}
+.stats .stats-wrap .numbers:before {
   content: '';
   position: absolute;
   width: 0;
@@ -326,51 +243,178 @@ header .container {
   top: -10px;
   left: 50%;
   margin-left: -10px;
-  border-color: transparent transparent rgba(14, 15, 17, 0.12) transparent;
 }
-.stats .numbers h1 {
+.stats .stats-wrap .numbers span {
+  opacity: .6;
+}
+.stats .stats-wrap .numbers h1 {
   margin: 0;
 }
-.stats .project-progress {
+.stats .stats-wrap .numbers .raised span {
+  display: inline-block;
+  margin-bottom: .4em;
+}
+.stats .stats-wrap .numbers .raised h1 {
+  color: #1dbc9c;
+  margin: 0;
+}
+.stats .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(14, 15, 17, 0.3);
+  z-index: 1;
+}
+/* Progress Bar */
+.project-progress {
   position: absolute;
   top: 0;
   height: 4px;
   width: 100%;
-  background: rgba(14, 15, 17, 0.12);
   z-index: 1;
 }
-.stats .project-progress .project-progressbar {
+.project-progress .project-progressbar {
   height: 100%;
   width: 0;
+  max-width: 100%;
+  background: #1dbc9c;
   -webkit-transition: width 0.7s ease-in-out;
   transition: width 0.7s ease-in-out;
 }
+/* User */
+.user-bar {
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  /* Social Links */
+}
+.user-bar .container {
+  position: relative;
+  height: 55px;
+}
+.user-bar .user {
+  float: left;
+  padding: 0 15px;
+  /* User Stats */
+}
+.user-bar .user .avatar {
+  float: left;
+}
+.user-bar .user .avatar img {
+  position: relative;
+  float: left;
+  top: -12px;
+  left: -10px;
+  height: 78px;
+  width: 78px;
+  border-radius: 50%;
+  z-index: 10;
+}
+.user-bar .user .avatar a {
+  float: left;
+  display: inline-block;
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 54px;
+  padding-right: .6em;
+}
+.user-bar .user .user-details {
+  float: left;
+  margin: 12px 4px;
+}
+.user-bar .user .user-details span {
+  display: inline-block;
+  line-height: 30px;
+  padding: 0 .2em;
+}
+.user-bar .user-details-social {
+  float: right;
+  margin: 12px 4px;
+  border-radius: 30px;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+.user-bar .user-details-social a {
+  position: relative;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0 .3em;
+  width: 30px;
+}
+.user-bar .user-details-social a:hover {
+  color: #ffffff;
+}
+.user-bar .user-details-social a.icon-twitch2 {
+  font-size: 13px;
+}
+.user-bar .user-details-social a.icon-twitter:after,
+.user-bar .user-details-social a.icon-youtube:after,
+.user-bar .user-details-social a.icon-facebook:after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  top: -4px;
+  bottom: -4px;
+  left: -2px;
+  width: 2px;
+  transform: rotate(15deg);
+  -ms-transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
+}
 /* Campaign Info & Actions */
 .info {
-  padding: 3.8em 0 1em;
-  width: 100%;
+  padding: 0 15px;
+  margin: 45px auto 15px;
+}
+.info .info-wrap {
   /* Donate Button */
 }
-.info h5 {
-  margin-bottom: .4em;
+.info .info-wrap div {
+  padding: 15px;
 }
-.info .donate-wrap {
+.info .info-wrap h4 {
+  color: #ffffff;
+}
+.info .info-wrap .feed-details {
+  float: left;
+  padding: 20px 60px 15px 30px;
+  width: 70%;
+}
+.info .info-wrap .donate-wrap {
   float: right;
+  width: 30%;
 }
-.info .donate-wrap .btn {
+.info .info-wrap .donate-wrap .donate-button {
+  position: relative;
+  padding: 0;
+}
+.info .info-wrap .donate-wrap .donate-button .btn {
   font-size: 1.4em;
+  width: 100%;
+  z-index: 2;
+}
+.info .info-wrap .donate-wrap .donate-button .slant {
+  position: absolute;
+  top: -100px;
+  left: -60px;
+  height: 400px;
+  width: 60px;
+  z-index: 1;
+  -webkit-transform: rotate(20deg);
+      -ms-transform: rotate(20deg);
+          transform: rotate(20deg);
 }
 /* Layout */
 /* ------------------------------------------------- */
 .stream-wrap {
-  padding: 30px 15px;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .stream-wrap #stream {
   position: relative;
   margin: 0 auto;
-  padding: 10px;
   z-index: 10;
 }
 .stream-wrap #stream #featured {
@@ -405,9 +449,6 @@ header .container {
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream a.togglechat {
-  position: absolute;
-  top: -32px;
-  right: 15px;
   display: block;
   font-size: 0.9em;
   font-weight: 400;
@@ -421,8 +462,10 @@ header .container {
   padding: 0 15px;
 }
 .team-content .team-wrap {
-  padding: .6%;
-  border-radius: 10px;
+  padding: .5%;
+  margin-top: 15px;
+  border-radius: 6px;
+  background-clip: padding-box;
 }
 .team-content .team-wrap .team-members {
   position: relative;
@@ -430,7 +473,7 @@ header .container {
   display: inline-block;
   width: 16.66%;
   width: calc(14.28571429%);
-  padding: .6%;
+  padding: .5%;
 }
 .team-content .team-wrap .team-members img {
   width: 100%;
@@ -465,10 +508,10 @@ header .container {
   margin-left: -100px;
   width: 200px;
   background: #2e2e32;
-  border-radius: 4px;
+  border-radius: 6px;
   background-clip: padding-box;
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
-  z-index: 9999;
+  z-index: 1001;
 }
 .team-content .team-wrap .team-members .team-member .team-member-stats:after {
   content: '';
@@ -503,13 +546,22 @@ header .container {
 .team-content .team-wrap .team-members .team-member:hover .team-member-stats {
   display: block;
 }
-.stream-wrap #stream {
-  background: #d4d4d8;
-  border-radius: 10px;
+.stream-wrap {
+  padding: 0 15px;
+  margin-bottom: 30px;
 }
-/* Multichannel */
-.team-content .team-wrap {
-  background: #d4d4d8;
+.stream-wrap #stream {
+  padding: 1%;
+  border-radius: 6px;
+  background-clip: padding-box;
+}
+.stream-wrap a.togglechat {
+  position: absolute;
+  bottom: -26px;
+  right: 0;
+  padding: 0 15px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
 /* Footer */
 footer span.copy {
@@ -593,4 +645,174 @@ footer span.copy {
   .featuredchat {
     min-height: 373px;
   }
+}
+/* Slide Bar */
+/* ------------------------------------------------- */
+.slidestats {
+  position: fixed;
+  top: -48px;
+  height: 35px;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.slidestats.show {
+  top: 0;
+}
+.slidestats h5 {
+  line-height: 35px;
+}
+.slidestats h5.campaign {
+  float: left;
+  font-weight: 600;
+}
+.slidestats h5.amount-raised {
+  float: right;
+  font-weight: 600;
+}
+.slidestats .project-progress {
+  top: auto;
+  bottom: 0;
+  left: 0;
+}
+/* Main */
+body {
+  background-color: #efeff0;
+}
+/* Header */
+header {
+  background: #ffffff;
+}
+header .logo a {
+  color: #47474d;
+}
+header .menu-actions a {
+  color: #47474d;
+  background: #efeff0;
+}
+header .menu-actions a:hover {
+  background: #d4d4d8;
+}
+header .menu-actions a:hover:before {
+  border-bottom-color: #d4d4d8;
+}
+header .menu-actions a:before {
+  border-bottom-color: #efeff0;
+}
+/* Main Stats */
+.stats {
+  background-color: #2e2e32;
+}
+.stats .stats-wrap {
+  /* Campaign Info */
+  /* Numbers */
+  /* Progress Bar */
+}
+.stats .stats-wrap .campaign-info h5 {
+  color: #ffffff;
+}
+.stats .stats-wrap .numbers {
+  background: rgba(255, 255, 255, 0.15);
+}
+.stats .stats-wrap .numbers:before {
+  border-color: transparent transparent rgba(255, 255, 255, 0.15) transparent;
+}
+.stats .stats-wrap .numbers h1,
+.stats .stats-wrap .numbers span {
+  color: #ffffff;
+}
+.stats .stats-wrap .project-progress {
+  background: rgba(14, 15, 17, 0.3);
+}
+/* User Bar */
+.user-bar {
+  background: #ffffff;
+  /* User Stats */
+  /* Social Links */
+}
+.user-bar .avatar img {
+  background: #ffffff;
+  border: solid 4px #ffffff;
+}
+.user-bar .avatar a {
+  color: #47474d;
+}
+.user-bar .user-details span {
+  color: #9f9fa7;
+}
+.user-bar .user-details-social {
+  background: #f7f7f7;
+}
+.user-bar .user-details-social a.icon-twitter:after,
+.user-bar .user-details-social a.icon-youtube:after,
+.user-bar .user-details-social a.icon-facebook:after {
+  background: #f7f7f7;
+}
+/* Campaign Info */
+.info .info-wrap {
+  background: #ffffff;
+  border-radius: 6px;
+  background-clip: padding-box;
+  overflow: hidden;
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+}
+.info .info-wrap h4 {
+  color: #47474d;
+}
+.info .info-wrap span {
+  color: #9f9fa7;
+}
+.info .info-wrap .donate-wrap {
+  background: #f7f7f7;
+}
+.info .info-wrap .donate-wrap .donate-button .slant {
+  background: #f7f7f7;
+}
+/* Stream */
+.stream-wrap #stream {
+  background: #ffffff;
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+}
+.stream-wrap #stream a.togglechat {
+  color: #47474d;
+  background: #ffffff;
+}
+.stream-wrap #stream a.togglechat:hover {
+  color: #47474d;
+}
+.stream-wrap #stream a.togglechat.chatoff {
+  color: #bababf;
+}
+/* Multichannel */
+.team-content .team-wrap {
+  background: #ffffff;
+  box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+}
+/* Footer */
+footer h5 {
+  color: #bababf;
+}
+footer a.logo {
+  color: #bababf;
+}
+footer a.logo:hover {
+  color: #47474d;
+}
+footer span.copy {
+  color: #bababf;
+}
+footer span.copy a {
+  color: #bababf;
+}
+footer span.copy a:hover {
+  color: #47474d;
+}
+/* Slide Bar */
+.slidestats {
+  background: #ffffff;
+}
+.slidestats h5 {
+  color: #47474d;
 }

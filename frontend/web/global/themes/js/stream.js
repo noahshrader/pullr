@@ -4,7 +4,7 @@ $(function(){
 	myCustomAfterRender = function(){
 		// Chat toggle
 		$('.togglechat').click(function (e) {			
-			$(this).toggleClass('chaton');
+			$(this).toggleClass('chatoff');
 		  	$('.featuredchat').fadeToggle();
 		  	$('.featuredstreamcontainer').toggleClass('biggerFeaturedStream');
 		  	e.preventDefault();
@@ -20,7 +20,6 @@ $(function(){
 			width: 580,
 			overlap: 0,
 			transitionDuration: '0.5s',
-			threshold: 40,
 			mouse: false,
 			gradient: 'rgba(9,10,12,.6) 100%, rgba(9,10,12,.6) 100%)',
 			touch: true
@@ -32,14 +31,12 @@ $(function(){
 		$(".wrapper").on( "click", function(e) {
 			meny.close();
 		});
+		$(document).on( "eventhandler", function() {
+			meny.close();
+		});
 		// Rolldown stats
 		$(window).scroll(function() {
-			if ($(this).scrollTop() >= 48) {
-				$(".stats .project-progress").addClass('stuck');
-			} else {
-				$(".stats .project-progress").removeClass('stuck');
-			}
-			if ($(this).scrollTop() >= 360) {
+			if ($(this).scrollTop() >= 420) {
 				$(".slidestats").addClass('show');
 			} else {
 				$(".slidestats").removeClass('show');

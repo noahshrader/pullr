@@ -38,9 +38,9 @@ $this->registerJs($js);
                         <span><?= Html::encode($this->title) ?></span>
                         <? if ($this->context->id == 'campaign'): ?>
                             <? if(\Yii::$app->user->identity->canCreateMoreCampaigns()): ?>
-                                <a href="app/campaign/add" class="icon icon-plus" title="Add Campaign"></a>
+                                <a href="app/campaign/add" class="icon icon-plus2" title="Add Campaign"></a>
                             <? else:?>
-                                <a href="#" onclick="javascript:return false;" class="icon icon-plus" data-toggle="tooltip" data-placement="bottom" title="You have reached your active campaigns limit"></a>
+                                <a href="#" onclick="javascript:return false;" class="icon icon-plus2" data-toggle="tooltip" data-placement="bottom" title="You have reached your active campaigns limit"></a>
                             <? endif;?>
                         <? endif ?>
                     </li>

@@ -34,51 +34,53 @@ $firstGiving = $campaign->getFirstGiving();
             <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 3]); ?>
         </div>
 
-        <!-- Campaign Type -->
-        <div class="form-group field-campaign-type">
-            <label>Campaign Type</label>
-            <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
-        </div>
-
-        <div id="notTiedCampaignContainer">
-            <!-- Personal Fundraiser PayPal -->
-            <div class="form-group pf-paypal">
-                <div class="highlight-wrap">
-                    <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => false])->label("PayPal Address"); ?>
-                </div>
+        <div class="campaign-type">
+            <!-- Campaign Type -->
+            <div class="form-group field-campaign-type">
+                <label>Campaign Type</label>
+                <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
             </div>
 
-            <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
-            <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
-                <label> Charity Type <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Raise money for your own cause. Or, search a list of <b>1.6m</b> charities to support."></i>
-                </label>
-                <div class="form-group field-campaign-donationDestination">
-                    <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'select-block']) ?>
-                    <?= Html::error($campaign, 'donationDestination', ['class' => 'help-block']) ?>
-                </div>
-                <?/*
-                <div class='preapprovedCharity'>
-                    <?= $form->field($campaign, 'charityId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
-                    <div class='charity-name <? if (!$campaign->charityId) { echo 'hidden';} ?>'>
-                        <label>
-                            Selected charity:
-                        </label>
-                        <span><?= $campaign->charity?$campaign->charity->name:''?></span>
+            <div id="notTiedCampaignContainer">
+                <!-- Personal Fundraiser PayPal -->
+                <div class="form-group pf-paypal">
+                    <div class="highlight-wrap">
+                        <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => false])->label("PayPal Address"); ?>
                     </div>
+                </div>
 
-                    <button class="btn btn-primary" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
-                </div>
-                */?>
-                <div class="preapprovedCharity highlight-wrap">
-                    <h5>Choose from one of our partnered organizations:</h5>
-                    <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving', 'class' => 'select-block']); ?>
-                </div>
-                <div class="customCharity highlight-wrap">
-                    <div class="form-group">
-                        <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name"); ?>
+                <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
+                <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
+                    <label> Charity Type <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Raise money for your own cause. Or, search a list of <b>1.6m</b> charities to support."></i>
+                    </label>
+                    <div class="form-group field-campaign-donationDestination">
+                        <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'select-block']) ?>
+                        <?= Html::error($campaign, 'donationDestination', ['class' => 'help-block']) ?>
                     </div>
-                    <div class="form-group">
-                        <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => false])->label("Charity PayPal Address"); ?>
+                    <?/*
+                    <div class='preapprovedCharity'>
+                        <?= $form->field($campaign, 'charityId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
+                        <div class='charity-name <? if (!$campaign->charityId) { echo 'hidden';} ?>'>
+                            <label>
+                                Selected charity:
+                            </label>
+                            <span><?= $campaign->charity?$campaign->charity->name:''?></span>
+                        </div>
+
+                        <button class="btn btn-primary" type="button" onclick="campaignChooseCharity()">Choose a charity</button>
+                    </div>
+                    */?>
+                    <div class="preapprovedCharity highlight-wrap">
+                        <h5>Choose from one of our partnered organizations:</h5>
+                        <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving', 'class' => 'select-block']); ?>
+                    </div>
+                    <div class="customCharity highlight-wrap">
+                        <div class="form-group">
+                            <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name"); ?>
+                        </div>
+                        <div class="form-group">
+                            <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => false])->label("Charity PayPal Address"); ?>
+                        </div>
                     </div>
                 </div>
             </div>
