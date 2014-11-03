@@ -69,7 +69,7 @@ $this->registerJs($js);
                             </a>
                         </li>
                         <li>
-                            <a class="campaign-link" title="Campaigns" href="app/campaign">
+                            <a class="campaign-link" title="Campaigns" href="app/campaigns">
                                 <i class="icon icon-piechart2"></i>
                                 <span class="nav-label">Campaigns</span>
                             </a>

@@ -28,14 +28,14 @@ $user = \Yii::$app->user->identity;
                         <a class="actions-toggle icon-menu"></a>
                         <ul>
                             <li class="cf">
-                                <a href="app/campaign/view?id=<?= $campaign->id ?>">
+                                <a href="app/campaigns/view?id=<?= $campaign->id ?>">
                                     <i class="icon icon-piechart2"></i>
                                     <!-- Overview -->
                                     Overview
                                 </a>
                             </li>
                             <li class="active cf">
-                                <a href="app/campaign/edit?id=<?= $campaign->id ?>">
+                                <a href="app/campaigns/edit?id=<?= $campaign->id ?>">
                                     <i class="icon icon-pencil"></i>
                                     <!-- Edit -->
                                     Edit
@@ -57,7 +57,7 @@ $user = \Yii::$app->user->identity;
                             </li>
                             <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                             <li class="cf">
-                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
+                                <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
                                     <i class="icon icon-archiveit"></i>
                                     <!-- Archive -->
                                     Archive
@@ -66,7 +66,7 @@ $user = \Yii::$app->user->identity;
                             <? endif ?>
                             <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                             <li class="cf">
-                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
+                                <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                                     <i class="icon icon-trash"></i>
                                     <!-- Remove -->
                                     Delete
@@ -75,7 +75,7 @@ $user = \Yii::$app->user->identity;
                             <? endif ?>
                             <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                             <li class="cf">
-                                <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                                <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                                     <i class="icon icon-recover"></i>
                                     <!-- Restore -->
                                     Restore
@@ -88,7 +88,7 @@ $user = \Yii::$app->user->identity;
                 <? endif ?>
             </div>
             <h4>
-                <a href="app/campaign/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
+                <a href="app/campaigns/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
             </h4>
             <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
             <a class="view-campaign" href='<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon icon-eye"></i></a>
@@ -156,7 +156,7 @@ $user = \Yii::$app->user->identity;
                         ]); ?>   
             </div>
             <div class="btn-container">
-                <a href="app/campaign/view?id=<?= $campaign->id ?>" class="btn btn-secondary">Cancel</a>
+                <a href="app/campaigns/view?id=<?= $campaign->id ?>" class="btn btn-secondary">Cancel</a>
                 <button class="btn btn-primary">Update</button>
             </div>
         </div>

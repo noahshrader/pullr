@@ -22,7 +22,7 @@ use common\models\mail\Mail;
 use common\models\Donation;
 use common\models\notifications\RecentActivityNotification;
 
-class CampaignController extends FrontendController {
+class CampaignsController extends FrontendController {
 
     public function actionAdd() {
         $campaign = new Campaign();
@@ -48,7 +48,7 @@ class CampaignController extends FrontendController {
             );
         }
 
-        $this->redirect('app/campaign');
+        $this->redirect('app/campaigns');
     }
     
     public function actionView(){
@@ -107,7 +107,7 @@ class CampaignController extends FrontendController {
                         ActivityMessage::messageNewCampaign($editCampaign)
                     );
 
-                    $this->redirect(['campaign/edit', 'id' => $editCampaign->id]);
+                    $this->redirect(['campaigns/edit', 'id' => $editCampaign->id]);
                 }
             }
         }

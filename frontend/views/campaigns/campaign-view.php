@@ -23,8 +23,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
 <script type="text/javascript">
     function campaignChangeStatus(id, status){
         if (status!= '<?= Campaign::STATUS_DELETED ?>' || confirm('Are you sure to remove campaign?')){
-            $.get('app/campaign/status', {id: id, status: status}, function(){
-                    location.href='app/campaign';    
+            $.get('app/campaigns/status', {id: id, status: status}, function(){
+                    location.href='app/campaigns';    
                 }
             );
         }
@@ -43,14 +43,14 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                             <a class="actions-toggle icon-menu"></a>
                             <ul>
                                 <li class="active cf">
-                                    <a href="app/campaign/view?id=<?= $campaign->id ?>">
+                                    <a href="app/campaigns/view?id=<?= $campaign->id ?>">
                                         <i class="icon icon-piechart2"></i>
                                         <!-- Overview -->
                                         Overview
                                     </a>
                                 </li>
                                 <li class="cf">
-                                    <a href="app/campaign/edit?id=<?= $campaign->id ?>">
+                                    <a href="app/campaigns/edit?id=<?= $campaign->id ?>">
                                         <i class="icon icon-pencil"></i>
                                         <!-- Edit -->
                                         Edit
@@ -72,7 +72,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                                 </li>
                                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                                 <li class="cf">
-                                    <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
+                                    <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
                                         <i class="icon icon-archiveit"></i>
                                         <!-- Archive -->
                                         Archive
@@ -81,7 +81,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                                 <? endif ?>
                                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                                 <li class="cf">
-                                    <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
+                                    <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
                                         <i class="icon icon-recover"></i>
                                         <!-- Restore -->
                                         Restore
@@ -90,7 +90,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                                 <? endif ?>
                                 <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                                 <li class="cf">
-                                    <a href="app/campaign" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
+                                    <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
                                         <i class="icon icon-trash"></i>
                                         <!-- Remove -->
                                         Delete
@@ -103,7 +103,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                     <? endif ?>
                 </div>
                 <h4>
-                    <a href="app/campaign/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
+                    <a href="app/campaigns/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
                     <span class="campaign-date">
                         <? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
                         <?= $date->setTimestamp($campaign->startDate)->format('M j, Y'); ?>
