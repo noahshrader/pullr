@@ -36,7 +36,7 @@ $this->registerJs($js);
                 <ul class="quick-nav">
                     <li class="add-campaign">
                         <span><?= Html::encode($this->title) ?></span>
-                        <? if ($this->context->id == 'campaign'): ?>
+                        <? if ($this->context->id == 'campaigns'): ?>
                             <? if(\Yii::$app->user->identity->canCreateMoreCampaigns()): ?>
                                 <a href="app/campaign/add" class="icon icon-plus2" title="Add Campaign"></a>
                             <? else:?>
