@@ -26,9 +26,9 @@ $this->registerJs($js);
         <?php $this->beginBody() ?>
         
         <div class="main-wrapper large-menu-toggled">
-            <? if ($this->context->id == 'campaign') { ?>
+            <? if ($this->context->id == 'campaigns') { ?>
             <div class="top-menu indent">
-            <? } elseif ($this->context->id == 'donor') { ?>
+            <? } elseif ($this->context->id == 'donors') { ?>
             <div class="top-menu indent">
             <? } else { ?>
             <div class="top-menu"> <!-- BEGIN top bar -->
