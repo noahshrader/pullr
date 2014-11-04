@@ -345,6 +345,13 @@ class StreamboardController extends FrontendController
         $config->save();
     }
 
+    public function actionSet_streamboard_sidepanel_width() {
+        $width = intval($_POST['width']);
+        $config = StreamboardConfig::get();
+        $config->sidePanelWidth = $width;
+        $config->save();
+    }
+
     /**
      * @description - ajax request from app/streamboard/source page
      */

@@ -3,7 +3,12 @@ use frontend\models\streamboard\WidgetCampaignBarTimer;
 
 ?>
 <div ng-if="region.widgetCampaignBar.timerEnable" child-scope ng-init="module = region.widgetCampaignBar.timerModule"
-     draggable position-container="region.widgetCampaignBar.timerModule" region="region">
+     draggable-widget="region.widgetCampaignBar.timerModule" 
+     draggable-region="region" 
+     draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
+     draggable-config="{containment:'#campaign-bar'}"
+     interaction
+     draggable>
     <div>
         <div ng-if="module.timerType == '<?= WidgetCampaignBarTimer::TIMER_TYPE_LOCALTIME ?>' ">
             Current time: <span current-time format="h:mma"></span>

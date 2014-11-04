@@ -23,6 +23,13 @@
             donation.streamboard.wasRead = wasRead;            
             $http.post('app/streamboard/set_donation_streamboard', {id: donation.id, property: 'wasRead', value: wasRead });
         }
+        
+        $scope.onResizeSidebar = function(event, ui) {
+             $("#sidepanel").css('left', 'auto');
+             $http.post('app/streamboard/set_streamboard_sidepanel_width', {
+                width: ui.size.width
+             });
+        }
 
     });
 })();

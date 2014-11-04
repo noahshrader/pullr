@@ -1,8 +1,8 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
-            'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer']).
-        controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns) {
+            'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee']).
+        controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns, simpleMarqueeHelper) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
             $scope.donationsService = donations;
@@ -19,6 +19,25 @@
             $scope.getCampaignAlertBackgroundStyle = function(image) {
                 var url =  'url(' + alertMediaManager.getCampaignAlertBackgroundUrl(image) + ')';                
                 return url;
+            }
+
+            $scope.onResizeCampaignBar = function(region, event, ui) {                
+                if (region != null) {
+                    region.widgetCampaignBar.positionX = ui.position.left;
+                    region.widgetCampaignBar.positionY = ui.position.top;
+                    region.widgetCampaignBar.width = ui.size.width;
+                    region.widgetCampaignBar.height = ui.size.height;
+                    regions.regionChanged(region);    
+                }                
+            }
+
+            $scope.onResizeActivityFeed = function(region, event, ui) {
+                simpleMarqueeHelper.recalculateMarquee();
+                region.widgetDonationFeed.positionX = ui.position.left;
+                region.widgetDonationFeed.positionY = ui.position.top;
+                region.widgetDonationFeed.width = ui.size.width;
+                region.widgetDonationFeed.height = ui.size.height;
+                regions.regionChanged(region);
             }
             $scope.regionsService.ready(function () {
                 requireAllFonts();
@@ -69,6 +88,8 @@
             function capitaliseFirstLetter(string) {
                 return string.charAt(0).toUpperCase() + string.slice(1);
             }
+
+
 
             function showAlert(region) {           
                 var stream = $scope.streamService.streams[region.regionNumber];

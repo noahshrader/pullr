@@ -157,21 +157,7 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 						} else {
 							stopAnimation();
 						}												
-					}
-					var $parent = $element.parent('.marquee-container:eq(0)');
-					
-					$parent.resizable({
-		                handles: "w, e",
-		                minWidth: 350,
-		                minHeight: 100,
-		                animate: false,
-		                delay: 0,
-		                stop: function() {		             
-		            		recalculateMarquee();		
-		                }
-		            });
-
-		            $parent.draggable();
+					}				        
 		            
 					scope.$watch(attrs.marqueeName ,function(marqueeNameAttr) {
 						marqueeName = marqueeNameAttr;

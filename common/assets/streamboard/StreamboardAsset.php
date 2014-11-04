@@ -31,6 +31,7 @@ class StreamboardAsset extends AssetBundle
         /* angular-app begin */
         'js/streamboard/angular-app/plugins/draggable.js',
         'js/streamboard/angular-app/plugins/resizable.js',
+        'js/streamboard/angular-app/plugins/interaction.js',
         'js/streamboard/angular-app/timers/current-time.js',
         'js/streamboard/angular-app/timers/count-up-timer.js',
         'js/streamboard/angular-app/donationsService.js',

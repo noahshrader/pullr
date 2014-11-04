@@ -287,7 +287,7 @@ FollowerHelper.prototype.updateFollowersForUser = function() {
 			console.log('User: ', _this.user.name , ' has: ', _this.savedFollowers.length, ' followers');		
 			_this.requestFollowersAndUpdate();														
 		});
-	})
+	});
 }
 
 function updateFollowers() {

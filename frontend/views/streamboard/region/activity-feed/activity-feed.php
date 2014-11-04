@@ -5,7 +5,18 @@ use frontend\models\streamboard\StreamboardRegion;
 <div
     ng-if='region.widgetType == <?= htmlspecialchars(json_encode(StreamboardRegion::WIDGET_DONATION_FEED)) ?>'>
     <!--angular-marquee container-->
-    <div ng-class='{marqueeStop: ! region.widgetDonationFeed.scrolling}' class='marquee-container'>
+    <div ng-class='{marqueeStop: ! region.widgetDonationFeed.scrolling}' class='marquee-container'
+         draggable-widget="region.widgetDonationFeed" 
+         draggable-region="region" 
+         draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
+         interaction
+         draggable
+         resizable  
+         resizable-config="{minWidth:60, minHeight:60, containment:'.region', handles:'e,w'}"
+         resizable-callback="onResizeActivityFeed"
+         resizable-region="region",
+         resizable-size="{width:region.widgetDonationFeed.width, height: region.widgetDonationFeed.height}"
+        >
         <div simple-marquee 
         marquee-name='region.regionNumber'
         duration="region.widgetDonationFeed.scrollSpeed"

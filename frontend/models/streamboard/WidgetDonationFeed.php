@@ -27,7 +27,8 @@ class WidgetDonationFeed extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'scrolling', 'scrollSpeed', 'positionX', 'positionY']
+            'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'scrolling', 'scrollSpeed', 
+            'positionX', 'positionY', 'width', 'height']
         ];
     }
 

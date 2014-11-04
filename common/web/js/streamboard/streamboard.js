@@ -83,54 +83,54 @@ $(window).load(function() {
     // streamboard loader
     $(".spinner-wrap").addClass('powered').fadeOut();
     
-    // resizing magic
-    $("#sidepanel").resizable({
-        handles: "w",
-        minWidth: 250,
-        animate: false,
-        delay: 0,
-        resize: function( event, ui ) {
-            $("#sidepanel").css('left', 'auto');
-        }
-    });
-    $(".drag img").resizable({
-        containment: ".region",
-        animate: false,
-        delay: 0,
-    });
-    $(".resize").resizable({
-        minWidth: 60,
-        minHeight: 60,
-        containment: ".region",
-        animate: false,
-        delay: 0,
-    });
-    $(".regionsContainer .region:last-child").resizable({
-        handles: "n",
-        animate: false,
-        delay: 0,
-        resize: function() {
-            var remainingSpace = (100 * parseFloat($(this).css('height')) / parseFloat($(this).parent().css('height')));
-            var divOne = $(this).prev();
-            var divTwoHeight = (remainingSpace) + '%';
-            var divOneHeight = (100 - remainingSpace) + '%';
-            $(this).height(divTwoHeight);
-            $(divOne).height(divOneHeight);
-        }
-    });
+    // // resizing magic
+    // $("#sidepanel").resizable({
+    //     handles: "w",
+    //     minWidth: 250,
+    //     animate: false,
+    //     delay: 0,
+    //     resize: function( event, ui ) {
+    //         $("#sidepanel").css('left', 'auto');
+    //     }
+    // });
+    // $(".drag img").resizable({
+    //     containment: ".region",
+    //     animate: false,
+    //     delay: 0,
+    // });
+    // $(".resize").resizable({
+    //     minWidth: 60,
+    //     minHeight: 60,
+    //     containment: ".region",
+    //     animate: false,
+    //     delay: 0,
+    // });
+    // $(".regionsContainer .region:last-child").resizable({
+    //     handles: "n",
+    //     animate: false,
+    //     delay: 0,
+    //     resize: function() {
+    //         var remainingSpace = (100 * parseFloat($(this).css('height')) / parseFloat($(this).parent().css('height')));
+    //         var divOne = $(this).prev();
+    //         var divTwoHeight = (remainingSpace) + '%';
+    //         var divOneHeight = (100 - remainingSpace) + '%';
+    //         $(this).height(divTwoHeight);
+    //         $(divOne).height(divOneHeight);
+    //     }
+    // });
 
-    /* dragging magic */
-    $(".drag").draggable({
-        containment: ".region"
-    });
+    // /* dragging magic */
+    // $(".drag").draggable({
+    //     containment: ".region"
+    // });
 
-    // resize fixed elements based on size of sidepanel
-    $('#sidepanel').resize(function() {
-        var panelhead = $('#sidepanel').width() - 30;
-        var sidefooter = $('#sidepanel').width();
-        $('.panel-head, .panel-title').width(panelhead);
-        $('.right-side-footer, .overlay').width(sidefooter);
-    });
+    // // resize fixed elements based on size of sidepanel
+    // $('#sidepanel').resize(function() {
+    //     var panelhead = $('#sidepanel').width() - 30;
+    //     var sidefooter = $('#sidepanel').width();
+    //     $('.panel-head, .panel-title').width(panelhead);
+    //     $('.right-side-footer, .overlay').width(sidefooter);
+    // });
 
     // custom scrollbars
     $(".pane").mCustomScrollbar({

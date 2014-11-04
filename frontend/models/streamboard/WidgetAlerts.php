@@ -33,13 +33,15 @@ class WidgetAlerts extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'animationDelaySeconds', 'positionX', 'positionY']
+            'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'animationDelaySeconds', 
+            'positionX', 'positionY','imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY']
         ];
     }
 
     public function fields(){
         return ['userId', 'regionNumber', 'includeFollowers', 'includeSubscribers', 'includeDonations',
-            'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference', 'positionX', 'positionY'
+            'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference', 
+            'positionX', 'positionY', 'imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY'
         ];
     }
 
