@@ -189,12 +189,7 @@ FollowerHelper.prototype.createNotification = function (displayNames) {
 
 	if (rows.length > 0) {
 		connection.query('INSERT INTO tbl_notification_recent_activity(userId, message, `date`) VALUES ? ', [rows], function(err, result){
-			
-			if ( ! err ) {
-				console.log(err);
-			} else {
-				console.log('success createNotification');
-			}
+		
 		});	
 	}
 	
