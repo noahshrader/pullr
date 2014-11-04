@@ -1,5 +1,7 @@
 /* Forms */
 /* ------------------------------------------------- */
+
+/* General */
 input[type="text"],
 input.form-control,
 div.form-control,
@@ -44,6 +46,12 @@ label,
 	color: @gray60;
 	font-weight: 400;
 }
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+	opacity: .5;
+}
+
 .icon-help {
 	color: @gray60;
 	margin-left: @iconspace;
@@ -284,7 +292,7 @@ input.color-choice {
 			text-transform: none;
 			-webkit-font-smoothing: antialiased;
 			text-indent: 0;
-			.border-radius;
+			.round-radius;
 			background: @gray75;
 	    }
     	&.on:before {
