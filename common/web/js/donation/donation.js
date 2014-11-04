@@ -121,3 +121,20 @@ $(window).load(function () {
     } else {
     }
 });
+
+// Resize functions for amount options
+$(window).resize(function(){
+    if ($(window).width() <= 540){  
+        $('.other').click(function() {
+            $('#donation-amount label').addClass('hide');
+        });
+        $('a.closethis').click(function() {
+            $('#donation-amount label').removeClass('hide');
+        });
+    } else {
+        $('#donation-amount label').removeClass('hide');
+        $('.other').click(function() {
+            $('#donation-amount label').removeClass('hide');
+        });
+    }
+});

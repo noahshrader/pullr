@@ -12,7 +12,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-}
+
 	.intro-content {
 		display: table-cell;
 		vertical-align: middle;
@@ -50,23 +50,34 @@ html, body {
 			.site-login {
 				margin-top: 1.8em;
 			}
+			a.login-logo.icon-pullr-logo {
+				color: @white;
+				font-size: 46px;
+			}
+			a.btn {
+				margin: .2em 0;
+				
+				i {
+					margin-right: @iconspace;
+				}
+
+				&.twitchLogin {
+					display: inline-block;
+					margin-bottom: .3em;
+					background: @twitchpurple;
+					&:hover {
+						background: @twitchhover;
+					}
+				}
+				&.hitboxLogin {
+					background: @hitboxgreen;
+					opacity: .1;
+					&:hover {
+						background: @hitboxhover;
+					}
+				}
+			}
 		}
-	}
-
-a.login-logo.icon-pullr-logo {
-	color: @white;
-	font-size: 46px;
-}
-a.twitchLogin {
-	display: inline-block;
-	margin-bottom: .3em;
-	background: @twitchpurple;
-	&:hover {
-		background: @twitchhover;
-	}
-
-	i {
-		margin-right: @iconspace;
 	}
 }
 .login-back {

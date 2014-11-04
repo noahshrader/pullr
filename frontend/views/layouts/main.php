@@ -26,9 +26,9 @@ $this->registerJs($js);
         <?php $this->beginBody() ?>
         
         <div class="main-wrapper large-menu-toggled">
-            <? if ($this->context->id == 'campaign') { ?>
+            <? if ($this->context->id == 'campaigns') { ?>
             <div class="top-menu indent">
-            <? } elseif ($this->context->id == 'donor') { ?>
+            <? } elseif ($this->context->id == 'donors') { ?>
             <div class="top-menu indent">
             <? } else { ?>
             <div class="top-menu"> <!-- BEGIN top bar -->
@@ -36,11 +36,11 @@ $this->registerJs($js);
                 <ul class="quick-nav">
                     <li class="add-campaign">
                         <span><?= Html::encode($this->title) ?></span>
-                        <? if ($this->context->id == 'campaign'): ?>
+                        <? if ($this->context->id == 'campaigns'): ?>
                             <? if(\Yii::$app->user->identity->canCreateMoreCampaigns()): ?>
-                                <a href="app/campaign/add" class="icon icon-plus" title="Add Campaign"></a>
+                                <a href="app/campaign/add" class="icon icon-plus2" title="Add Campaign"></a>
                             <? else:?>
-                                <a href="#" onclick="javascript:return false;" class="icon icon-plus" data-toggle="tooltip" data-placement="bottom" title="You have reached your active campaigns limit"></a>
+                                <a href="#" onclick="javascript:return false;" class="icon icon-plus2" data-toggle="tooltip" data-placement="bottom" title="You have reached your active campaigns limit"></a>
                             <? endif;?>
                         <? endif ?>
                     </li>
@@ -69,13 +69,13 @@ $this->registerJs($js);
                             </a>
                         </li>
                         <li>
-                            <a class="campaign-link" title="Campaigns" href="app/campaign">
+                            <a class="campaign-link" title="Campaigns" href="app/campaigns">
                                 <i class="icon icon-piechart2"></i>
                                 <span class="nav-label">Campaigns</span>
                             </a>
                         </li>
                         <li>
-                            <a class="donor-link" title="Donors" href="app/donor">
+                            <a class="donor-link" title="Donors" href="app/donors">
                                 <i class="icon icon-user"></i>
                                 <span class="nav-label">Donors</span>
                             </a>

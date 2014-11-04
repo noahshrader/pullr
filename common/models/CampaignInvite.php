@@ -68,7 +68,7 @@ class CampaignInvite extends ActiveRecord {
         $this->save();
         
         $user = $this->campaign->user;
-        $message = $user->name.' just accepted your invite to fundraiser, '.$this->campaign->name;
+        $message = $user->name.' accepted your invite to connect to '.$this->campaign->name;
         RecentActivityNotification::createNotification($user->id, $message);
     }
 }

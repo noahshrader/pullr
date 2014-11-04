@@ -58,10 +58,6 @@
 		font-weight: 600;
 		margin-bottom: 1.6em;
 
-		i {
-			margin-right: 6px;
-		}
-
 		&.module-title {
 			line-height: 58px;
 			padding: 0 @gutter;
@@ -123,13 +119,7 @@
 .campaign-date {
 	display: none;
 }
-.donors-list {
-	.donor-item {
-		&.active p {
-			background: @gray10;
-		}
-	}
-}
+
 
 /*  Side Listings */
 .list-wrap {
@@ -479,7 +469,7 @@ table.dataTable {
 			position: absolute;
 			top: 50%;
 			left: 26px;
-			content: '\e68e';
+			content: '\e68a';
 			color: @gray60;
 			font-family: 'icomoon';
 			font-size: 14px;
@@ -502,6 +492,7 @@ table.dataTable {
 .table-footer {
 	.select2-container {
 		margin-right: 6px;
+		min-height: 0;
 
 		.select2-choice {
 			height: 36px;

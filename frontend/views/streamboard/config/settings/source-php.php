@@ -38,7 +38,7 @@ use yii\web\View;
     <div class="overall module">
         <div class="form-group">
             <h5>Overall</h5>
-            <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">$<?= number_format($stats['total_amountRaised']); ?></span>
+            <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">$<?= number_format($stats['total_amountRaised'], 2); ?></span>
             </div>
             <div>Total Goal Amount: <span id="total_goal_amount" class="amount accent">$<?= number_format($stats['total_goalAmount']); ?></span>
             </div>
@@ -53,7 +53,7 @@ use yii\web\View;
     <div id="campaign_<?= $campaign['id'];?>" class="source-row module campaign">
         <div class="form-group">
             <h5 id="campaignName_<?= $campaign['id'];?>"><?= $campaign['name']; ?></h5>
-            <div>Amount Raised: <span class="amount accent" id="amountRaised_<?= $campaign['id'];?>">$<?= number_format($campaign['amountRaised']); ?></span>
+            <div>Amount Raised: <span class="amount accent" id="amountRaised_<?= $campaign['id'];?>">$<?= number_format($campaign['amountRaised'], 2); ?></span>
             </div>
             <div>Goal Amount: <span class="amount accent" id="goalAmount_<?= $campaign['id'];?>">$<?= number_format($campaign['goalAmount']); ?></span>
             </div>

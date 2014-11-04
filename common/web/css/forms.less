@@ -1,7 +1,10 @@
 /* Forms */
 /* ------------------------------------------------- */
+
+/* General */
 input[type="text"],
 input.form-control,
+div.form-control,
 textarea,
 textarea.form-control,
 select,
@@ -43,6 +46,12 @@ label,
 	color: @gray60;
 	font-weight: 400;
 }
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+	opacity: .5;
+}
+
 .icon-help {
 	color: @gray60;
 	margin-left: @iconspace;
@@ -79,7 +88,6 @@ input.color-choice {
 	cursor: pointer;
 }
 .colorpicker {
-	padding: 0 !important;
 
 	.colorpickerwrap {
 		position: relative;
@@ -107,10 +115,6 @@ input.color-choice {
 			display: none;
 		}
 	}
-	.col-sm-6 {
-		padding-left: 0 !important;
-		padding-right: 30px;
-	}
 }
 
 
@@ -129,7 +133,7 @@ input.color-choice {
 		border-color: @gray30 transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
-		background: @gray72;
+		background: @gray70;
 	}
 
 	.select2-choices .select2-search-field input,
@@ -138,14 +142,14 @@ input.color-choice {
 		color: @gray30;
 		font-family: @mainfont;
 		font-size: @basefontsize;
-		background: @gray75;
+		background: @gray72;
 		border: 0;
 		box-shadow: none !important;
 		&:focus {
 			outline: 0 !important;
 		}
 		&:hover {
-			background: @gray72;
+			background: @gray70;
 		}
 	}
 	.select2-choice {
@@ -164,6 +168,9 @@ input.color-choice {
 			background: none !important;
 		}
 	}
+	input[type="text"].select2-offscreen {
+		min-height: 0;
+	}
 }
 
 /* Dropdown */
@@ -171,7 +178,7 @@ input.color-choice {
 	.select2-choice,
 	.select2-choices {
 		border: 0;
-		background: @gray75;	
+		background: @gray70;	
 	}
 }
 .select2-drop {
@@ -194,7 +201,7 @@ input.color-choice {
 	&:before {
 		position: absolute;
 		top: 50%;
-		content: '\e68e';
+		content: '\e68a';
 		color: @gray70;
 		font-family: 'icomoon';
 		font-size: 14px;
@@ -236,7 +243,7 @@ input.color-choice {
 	.select2-no-results,
 	.select2-searching,
 	.select2-selection-limit {
-		color: @gray30;
+		color: @gray60;
 		font-size: @smalltext;
 		text-align: center;
 		padding: 6px 0;
@@ -261,7 +268,7 @@ input.color-choice {
 		padding-left: 0;
 		white-space: normal;
 		&:before {
-			content: '\e6ac';
+			content: '\e62a';
 			float: left;
 			position: relative;
 			top: 3px;
@@ -281,7 +288,7 @@ input.color-choice {
 			text-transform: none;
 			-webkit-font-smoothing: antialiased;
 			text-indent: 0;
-			.border-radius;
+			.round-radius;
 			background: @gray75;
 	    }
     	&.on:before {
@@ -298,7 +305,21 @@ input.color-choice {
 .bootstrap-switch {
 	display: block !important;
 	max-width: 120px;
-	border: solid 2px @gray75 !important;
+	border: solid 2px @gray72 !important;
+
+	&.bootstrap-switch-on {
+		border: solid 2px @accent !important;
+	}
+	.bootstrap-switch-handle-on {
+		border-radius: 0 !important;
+	}
+	.bootstrap-switch-handle-on,
+	.bootstrap-switch-handle-off {
+		&.bootstrap-switch-default {
+			color: @gray50 !important;
+			background: @gray72 !important;
+		}
+	}
 }
 
 /* Combined Forms */
@@ -325,8 +346,9 @@ input.color-choice {
 .help-block {
 	display: block;
 	position: absolute;
-	bottom: -48px;
+	bottom: -50px;
 	left: 0;
+	font-size: .9em;
 	font-weight: 600;
 	padding: .6em 1.2em;
 	z-index: 1000;
@@ -369,9 +391,11 @@ input.color-choice {
 		}
 	}
 }
-.form-group .form-group {
-	padding: 0;
-	margin: 0;
+.form-group {
+	.form-group {
+		padding: 0;
+		margin: 0;
+	}
 }
 .form-control {
 	height: auto;

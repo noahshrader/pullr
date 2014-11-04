@@ -28,7 +28,9 @@
 /* Other Colors */
 @twitchpurple: #6441a5; /* Twitch purple */
 @twitchhover: lighten(@twitchpurple, 5%); /* Twitch hover state */
-@twitchdark: lighten(@twitchpurple, 20%); /* Twitch purple */
+@twitchlight: lighten(@twitchpurple, 20%); /* Twitch lighter purple */
+@hitboxgreen: #94c900; /* Hitbox green */
+@hitboxhover: lighten(@hitboxgreen, 5%); /* Hitbox hover state */
 
 /* Gray Sets */
 @maingray: lighten(@base, 5%);
@@ -135,16 +137,6 @@
 .round-radius (@radius: 30px) {
 	border-radius: @radius;
 	background-clip: padding-box;
-}
-.topcut-radius (@radius: 10px) {
-	border-top-left-radius: @radius;
-	background-clip: padding-box;
-}
-.tab-radius (@radius: 10px) {
-	border-top-left-radius: @radius;
-	border-top-right-radius: @radius;
-	-moz-border-radius-topleft: @radius;
-	-moz-border-radius-topright: @radius;
 }
 .box-shadow (@shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.15)) {
 	-webkit-box-shadow: @shadow;

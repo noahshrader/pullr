@@ -8,17 +8,43 @@
 		background: @white;
 
 		.module-inner {
-			margin: @gutter;
-			padding: @gutter+@halfgutter;
+			padding: @gutter @gutter+@gutter;
 			background: @offwhite;
+			margin: @gutter;
 			.border-radius;
 
-			.social {
-				margin-bottom: 1.6em;
+			&.last {
+				margin-bottom: @halfgutter+@gutter;
+			}
+			h5 {
+				text-align: center;
 
-				h5 {
-					margin-bottom: 1em;
+				i {
+					display: block;
+					top: 5px;
+					font-size: 26px;
+					margin: 0 auto .6em;
+					width: 48px;
+					height: 48px;
+					line-height: 48px;
+					background: @white;
+					border-radius: 50%;
 				}
+			}
+		}
+		.social {
+			margin-bottom: 1.6em;
+
+			.module-inner {
+				padding: @halfgutter @gutter;
+			}
+			.form-group {
+				text-align: center;
+			}
+			.bootstrap-switch {
+				display: inline-block !important;
+				text-align: center;
+				min-width: 120px;
 			}
 		}
 	}
@@ -36,6 +62,10 @@
 	}
 	.campaign-actions {
 		margin-top: @gutter;
+	}
+	.col-sm-4,
+	.col-sm-6 {
+		padding: 0;
 	}
 }
 
@@ -67,6 +97,52 @@
   }
 }
 
+/* Theme Selection */
+.theme-selection {
+	text-align: center;
+
+	button {
+		display: block;
+		margin: 0 auto;
+	}
+	.selected-theme {
+		position: relative;
+		display: inline-block;
+		padding: .4em 1em;
+		margin-top: 1em;
+		background: @gray75;
+		.border-radius;
+		&:before {
+			.arrow-up;
+			top: -10px;
+			left: 50%;
+			margin-left: -10px;
+			border-color: transparent transparent @gray75 transparent;
+		}
+	}
+}
+
+/* Background Image */
+.image-upload-preview {
+	position: relative;
+	padding: @halfgutter;
+	max-width: 400px;
+	margin: 0 auto;
+	background: @gray75;
+	&:before {
+		.arrow-up;
+		top: -10px;
+		left: 50%;
+		margin-left: -10px;
+		border-color: transparent transparent @gray75 transparent;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
 
 /* General Campaign Edit */
 /* ------------------------------------------------- */
@@ -77,7 +153,6 @@
 	.field-campaign-youtubeurl,
 	.field-campaign-facebookurl {
 		position: relative;
-		margin: 0;
 		padding: @gutter;
 		background: @gray75;
 		.border-radius;
@@ -88,19 +163,24 @@
 			border-color: transparent transparent @gray75 transparent;
 		}
 
-		h4 {
+		h5 {
 			display: block;
 			color: @gray60;
 			text-align: center;
-			margin: @halfgutter 0;
+			margin: 0 0 @halfgutter;
 			background: transparent;
 		}
 		.form-group:last-child {
 			margin: 0;
 		}
 	}
-	.highlight-wrap {
-		margin: @halfgutter 0 @gutter;
+	.field-campaign-twittername,
+	.field-campaign-youtubeurl,
+	.field-campaign-facebookurl {
+		&:before {
+			left: 50%;
+			margin-left: -10px;
+		}
 	}
 	.logo {
 		max-width: 100px;
@@ -139,6 +219,14 @@
 			display: block;
 		}
 	}
+	.campaign-type {
+		margin-bottom: @halfgutter;
+	}
+	.theme-color-picker {
+		.col-sm-6 {
+			position: static;
+		}
+	}
 
 	/* Team List (for team fundraising and multichannel teams) */
 	.team-list {
@@ -146,7 +234,7 @@
 		ul {
 			li {
 				line-height: 40px;
-				border-bottom: 1px solid @gray75;
+				border-bottom: 1px solid @gray72;
 				&:first-of-type {
 					margin-top: @halfgutter;
 				}

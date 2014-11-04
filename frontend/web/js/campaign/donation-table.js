@@ -40,10 +40,10 @@ $(function(){
         if ($('.donor-view-wrap').length > 0){
             
             var email = $('#content').data('email');
-            var href = 'app/campaign/exportdonations?email='+encodeURI(email);
+            var href = 'app/campaigns/exportdonations?email='+encodeURI(email);
         } else {
             var id = $('#content').data('id');
-            var href = 'app/campaign/exportdonations?id='+id;
+            var href = 'app/campaigns/exportdonations?id='+id;
         }
         var csvButton = $('<a>').addClass('btn btn-csv btn-secondary btn-sm').attr('href', href).html
             ('<i class="icon icon-download2"></i> Export All');

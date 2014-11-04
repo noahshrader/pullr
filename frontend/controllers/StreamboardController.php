@@ -195,7 +195,7 @@ class StreamboardController extends FrontendController
         $donations = $user->getDonations(['sinceId' => $since_id])
                             ->andWhere('paymentDate > ' . $sinceDate)
                             ->with('campaign', 'streamboard')
-                            ->orderBy('amount DESC')
+                            ->orderBy('paymentDate DESC')
                             ->limit(100)                            
                             ->all();
 

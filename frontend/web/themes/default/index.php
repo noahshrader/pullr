@@ -41,7 +41,7 @@
 </header>
 
 <!-- Main Stats -->
-<section class="stats">
+<section class="stats" bg-image="{{campaign.backgroundImg}}">
     <div class="numbers container" ng-cloak>
         <div class="col-md-4 col-sm-4 col-xs-4 raised">
             <span>Amount Raised</span>

@@ -33,6 +33,10 @@
 <div class="wrapper">
     <!-- Slidestats -->
     <div class="slidestats">
+        <div class="container">
+            <h5 class="campaign">{{campaign.name}}</h5>
+            <h5 class="amount-raised" style="color:{{campaign.primaryColor}};"><i class="icon icon-coin"></i>{{campaign.amountRaisedFormatted}}</h5>
+        </div>
     </div>
     <!-- Header -->
     <header>
@@ -47,45 +51,48 @@
     </header>
 
     <!-- Main Stats -->
-    <section class="stats">
-        <div class="campaign-info">
-            <h2 ng-cloak>{{campaign.name}}</h2>
-            <h4 style="color:{{campaign.primaryColor}}" ng-cloak>{{campaign.charity.name}}</h4>
-            <h5 data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</h5>
-        </div>
-        <div class="numbers" ng-cloak>
-            <div class="container">
-                <div class="col-md-4 col-sm-4 col-xs-4 raised">
-                    <span>Amount Raised</span>
-                    <h1 style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h1>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 center">
-                    <span ng-hide='campaign.goalAmount == 0.00'>Goal Amount</span>
-                    <h1 ng-hide='campaign.goalAmount == 0.00'>{{campaign.goalAmountFormatted}}</h1>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 right">
-                    <span>Donors</span>
-                    <h1>{{campaign.numberOfUniqueDonors}}</h1>
+    <section class="stats" bg-image="{{campaign.backgroundImg}}">
+        <div class="stats-wrap">
+            <div class="campaign-info">
+                <h1 ng-cloak>{{campaign.name}}</h1>
+                <h4 style="color:{{campaign.primaryColor}}" ng-cloak>{{campaign.charity.name}}</h4>
+                <h5 data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</h5>
+            </div>
+            <div class="numbers" ng-cloak>
+                <div class="container">
+                    <div class="col-md-4 col-sm-4 col-xs-4 raised">
+                        <span>Amount Raised</span>
+                        <h1 style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h1>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 center">
+                        <span ng-hide='campaign.goalAmount == 0.00'>Goal Amount</span>
+                        <h1 ng-hide='campaign.goalAmount == 0.00'>{{campaign.goalAmountFormatted}}</h1>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 right">
+                        <span>Donors</span>
+                        <h1>{{campaign.numberOfUniqueDonors}}</h1>
+                    </div>
                 </div>
             </div>
+            <div class="project-progress status">
+                <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
+            </div>
         </div>
-        <div class="project-progress status">
-            <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%"></div>
-        </div>
+        <div class="overlay"></div>
     </section>
 
     <!-- Campaign Info -->
-    <section class="info container cf" ng-cloak>
-        <div class="container" ng-cloak>
-            <div class="col-md-4 col-sm-4 col-xs-12 right donate-wrap">
-                <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">Donate</button>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-8 feed-details">
-                <div class="feed-details-title">
-                    <h4 class='meta-username' style="color:{{campaign.primaryColor}}" ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_TEAM' ng-cloak>{{selectedChannel.name}}</h4>
-                    <h3 ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE' ng-cloak>{{selectedChannel.status}}</h3>
-                    <h5 ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE' ng-cloak>{{selectedChannel.game}}</h5>
+    <section class="info container" ng-cloak>
+        <div class="info-wrap cf">
+            <div class="right donate-wrap">
+                <div class="donate-button">
+                    <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">Donate</button>
+                    <div class="slant"></div>
                 </div>
+            </div>
+            <div class="feed-details">
+                <h4 ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.status}}</h4>
+                <span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.game}}</span>
             </div>
         </div>
     </section>

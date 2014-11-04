@@ -101,7 +101,6 @@ span.slider-value {
 			border-bottom: solid 1px @maingray;
 
 			li {
-				width: 25%;
 				&.active a,
 				a:hover {
 					color: @white;
@@ -284,6 +283,7 @@ ul.panel-nav {
 	border-top: solid 1px #2e2e32;
 
 	li {
+		width: 25%;
 		&:last-child {
 			border: 0;
 		}
@@ -292,20 +292,20 @@ ul.panel-nav {
 		}
 
 		/* Stats Panel Nav */
-    	&.stats {
-    		width: 100%;
-    		a {
-    			font-size: 16px;
+	    	&.stats {
+	    		width: 100%;
+	    		a {
+	    			font-size: 16px;
 
-        		i {
-        			font-size: 18px;
-        			margin-right: @iconspace;
-        		}
-    		}
-    		span {
-    			font-size: @smalltext;
-    		}
-    	}
+	        		i {
+	        			font-size: 18px;
+	        			margin-right: @iconspace;
+	        		}
+	    		}
+	    		span {
+	    			font-size: @smalltext;
+	    		}
+	    	}
 		&:first-child:nth-last-child(1) {
 			width: 100%;
 		}
@@ -550,7 +550,7 @@ ul.panel-nav {
 
 		i {
 			color: @white;
-			font-size: 4em;
+			font-size: 3.6em;
 		}
 	}
 	.spinner {

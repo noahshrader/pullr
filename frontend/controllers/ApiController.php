@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\base\BaseImage;
 use common\models\Plan;
 use yii\web\Response;
 use yii\base\Exception;
@@ -96,9 +97,10 @@ class ApiController extends \yii\web\Controller {
             $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
             $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
         }
-        
-        $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount']);
-        $campaignArray['amountRaisedFormatted'] = '$'.number_format($campaign['amountRaised']);
+
+        $campaignArray['backgroundImg'] = BaseImage::getOriginalUrlById($campaign->backgroundImageId);
+        $campaignArray['goalAmountFormatted'] = '$'.number_format($campaign['goalAmount'], 2);
+        $campaignArray['amountRaisedFormatted'] = '$'.number_format($campaign['amountRaised'], 2);
         $campaignArray['percentageOfGoal'] = $campaign['goalAmount'] > 0 ? round($campaign['amountRaised'] / $campaign['goalAmount'] * 100) : 0;
         if (($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES) && ($campaign->type === Campaign::TYPE_CHARITY_FUNDRAISER) && $campaign->charity) {
             $campaignArray['charity'] = $campaign->charity->toArray();

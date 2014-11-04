@@ -21,7 +21,7 @@ function donationDestinationChanged(){
 }
 function updateLayoutTeams() {
     var id = $('#campaignEdit').data('id');
-    $.getJSON('app/campaign/layoutteams', {id: id}, function(teams) {
+    $.getJSON('app/campaigns/layoutteams', {id: id}, function(teams) {
         var $list = $('<ul>');
         for (var key in teams) {
             var team = teams[key];
@@ -36,14 +36,14 @@ function updateLayoutTeams() {
 }
 
 function layoutTeamLink(el, id){
-    $('#modal-social-link .modal-content').load('app/campaign/layoutteamedit', {id: id, get: true}, function(){
+    $('#modal-social-link .modal-content').load('app/campaigns/layoutteamedit', {id: id, get: true}, function(){
         $('#modal-social-link').modal('show');
     })
 }
 function layoutTeamRemove(el) {
     var id = $('#campaignEdit').data('id');
     var name = $(el).parents('li').find('span').text();
-    $.post('app/campaign/layoutteamremove', {id: id, name: name}, function() {
+    $.post('app/campaigns/layoutteamremove', {id: id, name: name}, function() {
         updateLayoutTeams();
     })
 }
@@ -52,7 +52,7 @@ function addNewLayoutTeam() {
     var $el = $('#addLayoutTeam');
     var name = $el.val();
     if (name) {
-        $.post('app/campaign/layoutteamadd', {id: id, name: name}, function() {
+        $.post('app/campaigns/layoutteamadd', {id: id, name: name}, function() {
             $el.val('');
             updateLayoutTeams();
         });
@@ -61,7 +61,7 @@ function addNewLayoutTeam() {
 
 function updateCampaignInvites(){
     var id = $('#campaignEdit').data('id');
-    $.getJSON('app/campaign/getcampaigninvites', {id: id}, function(invites) {
+    $.getJSON('app/campaigns/getcampaigninvites', {id: id}, function(invites) {
         var $list = $('<ul>');
         for (var key in invites) {
             var invite = invites[key];
@@ -78,7 +78,7 @@ function updateCampaignInvites(){
 function campaignInviteRemove(el) {
     var id = $('#campaignEdit').data('id');
     var userid = $(el).parents('li').data('userid');
-    $.post('app/campaign/campaigninviteremove', {id: id, userid: userid}, function() {
+    $.post('app/campaigns/campaigninviteremove', {id: id, userid: userid}, function() {
         updateCampaignInvites();
     })
 }
@@ -88,7 +88,7 @@ function addNewCampaignInvite() {
     var $el = $('#addCampaignInvite');
     var email = $el.val();
     if (email) {
-        $.post('app/campaign/campaigninvite', {id: id, email: email}, function(data) {
+        $.post('app/campaigns/campaigninvite', {id: id, email: email}, function(data) {
             log(data);
             $el.val('');
             updateCampaignInvites();
@@ -170,9 +170,25 @@ function initBootstrapSwitch() {
     });
 }
 
+function getDefaultTheme()
+{
+    var layoutType = $('#campaign-layouttype').val();
+    $.ajax({
+        url: 'app/campaigns/defaulttheme',
+        type: 'POST',
+        cache: false,
+        data: {layoutType: layoutType},
+        dataType: 'json',
+        success: function(data) {
+            $('#campaign-themeid').val(data.id);
+            $('.theme-name span').text(data.name);
+        }
+    });
+}
+
 function layoutChooseTheme(){
     var layoutType = $('#campaign-layouttype').val();
-    $('#modalThemes .modal-content').load('app/campaign/modalthemes', {layoutType: layoutType}, function(){
+    $('#modalThemes .modal-content').load('app/campaigns/modalthemes', {layoutType: layoutType}, function(){
         $('#modalThemes').modal('show');
 
     })
@@ -192,7 +208,7 @@ function selectTheme(el){
 }
 
 function campaignChooseCharity(){
-    $('#modalCharity .modal-content').load('app/campaign/modalcharities', function(){
+    $('#modalCharity .modal-content').load('app/campaigns/modalcharities', function(){
         $('#modalCharity').modal('show');
     });
 }

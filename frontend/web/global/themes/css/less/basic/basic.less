@@ -1,0 +1,322 @@
+/* Base */
+/* ------------------------------------------------- */
+@import "../variables.less";
+
+/* Type */
+/* ------------------------------------------------- */
+@import "type.less";
+
+/* Main */
+/* ------------------------------------------------- */
+body {
+	.secondary();
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+/* Buttons */
+.btn {
+
+	&:hover {
+		opacity: .9;
+	}
+}
+
+/* Header */
+header {
+	position: relative;
+
+	.container {
+		padding: 0 @gutter;
+	}
+}
+
+/* Main Stats */
+.stats {
+	position: relative;
+	min-height: 160px;
+	overflow: hidden;
+	background-position: center center;
+	background-repeat: no-repeat;
+
+	.stats-wrap {
+		position: relative;
+		z-index: 2;
+
+		/* Campaign Info */
+		.campaign-info {
+			text-align: center;
+			padding: 6em 5% 4em;
+
+			h4 {
+				margin-bottom: .6em;
+			}
+			h5 {
+				font-weight: 300;
+			}
+		}
+
+		/* Numbers */
+		.numbers {
+			position: relative;
+			padding: 2.6em 0;
+			&:before {
+				.arrow-up;
+				top: -10px;
+				left: 50%;
+				margin-left: -10px;
+			}
+			span {
+				opacity: .6;
+			}
+			h1 {
+				margin: 0;
+			}
+		}
+	
+		.numbers {
+			.raised {
+				span {
+					display: inline-block;
+					margin-bottom: .4em;
+				}
+				h1 {
+					color: @accent;
+					margin: 0;
+				}
+			}
+		}
+	}
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: @bglightblackfade;
+		z-index: 1;
+	}
+}
+
+/* Progress Bar */
+.project-progress {
+	position: absolute;
+	top: 0;
+	height: 4px;
+	width: 100%;
+	z-index: 1;
+	
+	.project-progressbar {
+		height: 100%;
+		width: 0;
+		max-width: 100%;
+		background: @accent;
+		-webkit-transition: width 0.7s ease-in-out;
+		transition: width 0.7s ease-in-out;
+	}
+}
+
+/* User */
+.user-bar {
+	.box-shadow;
+
+	.container {
+		position: relative;
+		height: 55px;
+	}
+	.user {
+		float: left;
+		padding: 0 @halfgutter;
+
+		.avatar {
+			float: left;
+
+			img {
+				position: relative;
+				float: left;
+				top: -12px;
+				left: -10px;
+				height: 78px;
+				width: 78px;
+				border-radius: 50%;
+				z-index: 10;
+			}
+			a {
+				float: left;
+				display: inline-block;
+				font-size: 1.3em;
+				font-weight: 700;
+				line-height: 54px;
+				padding-right: .6em;
+			}
+		}
+
+		/* User Stats */
+		.user-details {
+			float: left;
+			margin: 12px 4px;
+
+			span {
+				display: inline-block;
+				line-height: 30px;
+				padding: 0 .2em;
+			}
+		}
+	}
+	
+	/* Social Links */
+	.user-details-social {
+		float: right;
+		margin: 12px 4px;
+		.round-radius;
+		overflow: hidden;
+
+		a {
+			position: relative;
+			display: inline-block;
+			font-size: 15px;
+			line-height: 30px;
+			text-align: center;
+			padding: 0 .3em;
+			width: 30px;
+			&:hover {
+				color: @white;
+			}
+
+			&.icon-twitch2 {
+				font-size: 13px;
+			}
+			&.icon-twitter,
+			&.icon-youtube,
+			&.icon-facebook {
+				&:after {
+					content: '';
+					position: absolute;
+					display: inline-block;
+					top: -4px;
+					bottom: -4px;
+					left: -2px;
+					width: 2px;
+					transform: rotate(15deg);
+					-ms-transform: rotate(15deg);
+					-webkit-transform: rotate(15deg);
+				}
+			}
+		}
+	}
+}
+
+/* Campaign Info & Actions */
+.info {
+	padding: 0 @halfgutter;
+	margin: @gutter+@halfgutter auto @halfgutter;
+
+	.info-wrap {
+
+		div {
+			padding: @halfgutter;
+		}
+		h4 {
+			color: @white;
+		}
+
+		.feed-details {
+			float: left;
+			padding: @halfgutter+5px @gutter+@gutter @halfgutter @gutter;
+			width: 70%;
+		}
+
+		/* Donate Button */
+		.donate-wrap {
+			float: right;
+			width: 30%;
+
+			.donate-button {
+				position: relative;
+				padding: 0;
+
+				.btn {
+					font-size: 1.4em;
+					width: 100%;
+					z-index: 2;
+				}
+				.slant {
+					position: absolute;
+					top: -100px;
+					left: -60px;
+					height: 400px;
+					width: 60px;
+					z-index: 1;
+					transform: rotate(20deg);
+				}
+			}
+		}
+	}
+}
+
+/* Layout */
+/* ------------------------------------------------- */
+@import "../singlestream.less";
+@import "layout.less";
+
+.stream-wrap {
+	padding: 0 @halfgutter;
+	margin-bottom: @gutter;
+
+	#stream {
+		padding: 1%;
+		.border-radius;
+	}
+	a.togglechat {
+		position: absolute;
+		bottom: -26px;
+		right: 0;
+		padding: 0 @halfgutter;
+		border-bottom-right-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+}
+
+/* Footer */
+footer {
+	span.copy {
+		font-size: @fineprint;
+	}
+}
+
+/* Responsive */
+/* ------------------------------------------------- */
+@import "responsive.less";
+
+/* Slide Bar */
+/* ------------------------------------------------- */
+.slidestats {
+	position: fixed;
+	top: -@headerheight;
+	height: 35px;
+	width: 100%;
+	z-index: 9999;
+	.box-shadow;
+	.slowtrans;
+	&.show {
+		top: 0;
+	}
+
+	h5 {
+		line-height: 35px;
+
+		&.campaign {
+			float: left;
+			font-weight: 600;
+		}
+		&.amount-raised {
+			float: right;
+			font-weight: 600;
+		}
+	}
+	.project-progress {
+		top: auto;
+		bottom: 0;
+		left: 0;
+	}
+}
