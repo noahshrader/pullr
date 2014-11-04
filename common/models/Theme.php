@@ -12,6 +12,8 @@ class Theme extends ActiveRecord {
     const PLAN_PRO = 'Pro';
     const PLAN_BASIC = 'Basic';
     
+    const THEME_IS_DEFAULT = 1;
+    
     public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_REMOVED];
     /**
      * @return string the name of the table associated with this ActiveRecord class.
