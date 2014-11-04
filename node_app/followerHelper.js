@@ -78,6 +78,7 @@ FollowerHelper.prototype.checkCanPostNotification = function() {
 			} else {
 				_this.canPostNotification = false;
 			}
+
 			deferred.resolve(true);
 		}
 	});
@@ -116,7 +117,7 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 	var _this = this;
 	var ids = [];
 	var batchs = [];
-
+	var notificationsData = [];
 	for (i=0 ; i<followers.length ; i++) {
 		var follower = followers[i];
 
@@ -140,10 +141,8 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 				updateDate
 			];
 			batchs.push(row);
-	
-			if ( _this.canPostNotification ) {
-				//_this.createNotification(row.display_name);	
-			}
+			notificationsData.push(follower.user.display_name);
+			
 			_this.savedFollowers.push(follower.user._id);
 			_this.insertIds.push(follower.user._id);
 			
@@ -155,6 +154,9 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 		connection.query('INSERT INTO ' + _this.tableName + ' (userId, twitchUserId, createdAt, `name`, display_name, jsonResponse, updateDate, createdAtPullr) VALUES ?', [batchs], function(err, result) {
 		
 			if ( ! err ) {
+				if ( _this.canPostNotification ) {
+					_this.createNotification(notificationsData);
+				}
 				_this.pendingFollowerCountdown -= batchs.length;
 				//console.log('Save 1 follower. Left: ', _this.pendingFollowerCountdown);
 									
@@ -170,21 +172,32 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 	
 };
 
-FollowerHelper.prototype.createNotification = function (display_name) {
-
-	var _this = this;
+FollowerHelper.prototype.createNotification = function (displayNames) {
 	
-	var message = util.format(_this.message, display_name,	_this.user.twitchChannel);				
-	var row = {
-		userId: _this.user.id,
-		message: message,
-		date: new Date().getTime()
+	var _this = this;
+	var rows = [];
+	for (var i=0; i< displayNames.length; i++) {
+		var message = util.format(_this.message, displayNames[i], _this.user.twitchChannel);				
+		var date = new Date().getTime() / 1000;
+		var row = [
+			_this.user.id,
+			message,
+			date
+		];
+		rows.push(row);
 	}
-	connection.query('INSERT INTO tbl_notification_recent_activity SET ? ', row, function(err, result){
-		if ( ! err ) {
+
+	if (rows.length > 0) {
+		connection.query('INSERT INTO tbl_notification_recent_activity(userId, message, `date`) VALUES ? ', [rows], function(err, result){
 			
-		}
-	});
+			if ( ! err ) {
+				console.log(err);
+			} else {
+				console.log('success createNotification');
+			}
+		});	
+	}
+	
 
 }
 
@@ -247,7 +260,6 @@ FollowerHelper.prototype.requestFollowersAndUpdate = function () {
 
 FollowerHelper.prototype.finalCallback = function(){
 	console.log('Final callback')
-	console.timeEnd('getFollower');
 	this.deleteUnfollowUser();	
 }
 
@@ -293,7 +305,7 @@ FollowerHelper.prototype.updateFollowersForUser = function() {
 function updateFollowers() {
 
 	getOnlineUser().then(function(onlineUserIds) {			
-		console.time('getFollower');
+		
 		for (var i=0; i < onlineUserIds.length; i++) {
 			var user = onlineUserIds[i];			
 			console.log('Starting update follower for user: ', user.name);

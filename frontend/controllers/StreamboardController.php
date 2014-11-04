@@ -112,7 +112,7 @@ class StreamboardController extends FrontendController
                 'type' => 'subscribers',
                 'message' => ActivityMessage::messageNewTwitchSubscriber($subscription->display_name),
                 'subscription' => $subscription,
-                'date' => $subscription->createdAtPullr
+                'date' => $subscription->createdAt
             ];
         }
 

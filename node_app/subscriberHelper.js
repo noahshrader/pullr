@@ -148,7 +148,6 @@ SubscriberHelper.prototype.requestSubscribersAndUpdate = function () {
 
 SubscriberHelper.prototype.updateSubscribers = function(){
 	var _this = this;
-
 	_this.checkCanPostNotification().then(function(){
 		_this.getFollowersFromDb().then(function() {		
 			console.log('User: ', _this.user.name , ' has: ', _this.savedFollowers.length, ' subscribers');		
