@@ -209,8 +209,8 @@ header .container {
   position: relative;
   min-height: 160px;
   overflow: hidden;
-  /*background-image: url(https://d1zqrvc06emslq.cloudfront.net/assets/img/cover_lol1.jpg);*/
-  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 .stats .stats-wrap {
   position: relative;
