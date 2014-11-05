@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Notification;
+use common\components\PullrUtils;
 use yii\web\View;
 
 /**
@@ -56,7 +57,7 @@ endif;
 					<?= $form->field($user, 'name') ?>
 					<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
 					<?php
-					$timezones = timezone_identifiers_list();
+					$timezones = array_values(common\components\PullrUtils::timezone_list());
 					$keyValues = array_combine($timezones, $timezones);
 					?>
                                     <label class="control-label" for="user-timezone">Timezone:</label> <strong id='timezone'><?= $user->timezone;?></strong><br>
