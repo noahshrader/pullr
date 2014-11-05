@@ -40,6 +40,23 @@ function number_format(number) {
     return str;
 }
 
+/**
+ * 
+ * get current user timezone
+ */
+function timezone()
+{
+    var today = new Date();
+    var jan = new Date(today.getFullYear(), 0, 1);
+    var jul = new Date(today.getFullYear(), 6, 1);
+    var dst = today.getTimezoneOffset() < Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+
+    return {
+        offset: -(today.getTimezoneOffset()/60),
+        dst: +dst
+    };
+}
+
 function twitchEventsMonitor() {
 //     if (window.Twitch) {
 //         var channelName = Pullr.user.userFields.twitchChannel;
