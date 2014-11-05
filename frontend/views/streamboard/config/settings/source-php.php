@@ -38,13 +38,13 @@ use yii\web\View;
     <div class="overall module">
         <div class="form-group">
             <h5>Overall</h5>
-            <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">$<?= number_format($stats['total_amountRaised'], 2); ?></span>
+            <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">$<?= \common\components\NumberUtils::formatNumber($stats['total_amountRaised'], 2); ?></span>
             </div>
-            <div>Total Goal Amount: <span id="total_goal_amount" class="amount accent">$<?= number_format($stats['total_goalAmount']); ?></span>
+            <div>Total Goal Amount: <span id="total_goal_amount" class="amount accent">$<?= \common\components\NumberUtils::formatNumber($stats['total_goalAmount']); ?></span>
             </div>
-            <div>Total Donations: <span id="total_donations" class="amount accent"><?= number_format($stats['number_of_donations']); ?></span>
+            <div>Total Donations: <span id="total_donations" class="amount accent"><?= \common\components\NumberUtils::formatNumber($stats['number_of_donations']); ?></span>
             </div>
-            <div>Total Donors: <span id="total_donors" class="amount accent"><?= number_format($stats['number_of_donors']); ?></span></div>
+            <div>Total Donors: <span id="total_donors" class="amount accent"><?= \common\components\NumberUtils::formatNumber($stats['number_of_donors']); ?></span></div>
         </div>
     </div>
     <? endif; ?>
