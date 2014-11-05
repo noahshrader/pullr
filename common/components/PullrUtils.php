@@ -2,7 +2,7 @@
 
 namespace common\components;
 
-class NumberUtils extends \yii\base\Component
+class PullrUtils extends \yii\base\Component
 {
     /**
      * 

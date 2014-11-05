@@ -15,9 +15,9 @@ $user = \Yii::$app->user->identity;
 $donations = $campaign->getDonations()->all();
 
 $topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
-$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'] . '<span>' . '$' . \common\components\NumberUtils::formatNumber($topDonors[0]['amount'], 2) . '' . '</span>': '';
+$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'] . '<span>' . '$' . \common\components\PullrUtils::formatNumber($topDonors[0]['amount'], 2) . '' . '</span>': '';
 $topDonation = Donation::getTopDonation([$campaign]);
-$topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \common\components\NumberUtils::formatNumber($topDonation->amount, 2) . '' . '</span>': '';
+$topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \common\components\PullrUtils::formatNumber($topDonation->amount, 2) . '' . '</span>': '';
 ?>
 
 <script type="text/javascript">
@@ -118,11 +118,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
             <? endif ?>
             <section class="stats-overview main-values module">
                 <div class='stats-box col-xs-3 raised-total'>
-                    <h1>$<?= \common\components\NumberUtils::formatNumber($campaign->amountRaised, 2); ?></h1>
+                    <h1>$<?= \common\components\PullrUtils::formatNumber($campaign->amountRaised, 2); ?></h1>
                     <span>Raised</span>
                 </div>
                 <div class='stats-box col-xs-3 campaign-goal'>
-                    <h1>$<?= \common\components\NumberUtils::formatNumber($campaign->goalAmount, 2) ?></h1>
+                    <h1>$<?= \common\components\PullrUtils::formatNumber($campaign->goalAmount, 2) ?></h1>
                     <span>Goal</span>
                 </div>
 
