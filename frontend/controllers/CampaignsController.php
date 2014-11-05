@@ -374,6 +374,9 @@ class CampaignsController extends FrontendController {
         die;
     }
 
+    /**
+     * Create manual donation
+     */
     public function actionManualdonation()
     {
         $manualDonation = new ManualDonation();
@@ -398,6 +401,21 @@ class CampaignsController extends FrontendController {
 
             // Dashboard "Donation received" notification
             RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageDonationReceived($donation));
+        }
+
+        $this->redirect("index");
+    }
+
+    /**
+     * Remove user manual donation
+     */
+    public function actionDeletemanualdonation($donationId)
+    {
+        $donation = Donation::findOne(['id' => intval($donationId)]);
+        if (!empty($donation) && ($donation->is_manual == true) && (\Yii::$app->user->id == $donation->userId))
+        {
+            $donation->paymentDate = 0;
+            $donation->save();
         }
 
         $this->redirect("index");

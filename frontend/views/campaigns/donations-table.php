@@ -8,7 +8,8 @@ use yii\widgets\ActiveForm;
             <th width="30%">Donor</th>
             <th width="20%">Amount</th>
             <th width="40%">Date</th>
-            <th width="10%"></th>
+            <th width="5%"></th>
+            <th width="5%"></th>
         </tr>
     </thead>
     <tbody>
@@ -27,9 +28,14 @@ use yii\widgets\ActiveForm;
                        ->format('M j, Y h:iA');
                    ?>
                 </td>
-                <td class="details-control" width="10%">
+                <td class="details-control" width="5%">
                     <? if ($donation->comments): ?>
                         <i class="icon-arrow-down"></i>
+                    <? endif ?>
+                </td>
+                <td class="details-control" width="5%">
+                    <? if ($donation->is_manual): ?>
+                        <a href="<?=\yii\helpers\Url::to(['campaigns/deletemanualdonation', 'donationId' => $donation->id]);?>"><i class="icon-close" id="delete-manual-donation"></i></a>
                     <? endif ?>
                 </td>
             </tr>
