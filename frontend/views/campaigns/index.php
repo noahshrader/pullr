@@ -23,7 +23,7 @@ $user = \Yii::$app->user->identity;
                 <div class="no-entries">
                     <div>
                         <h3>Do something big.</h3>
-                        <h5>Click "<i class="icon icon-plus-round"></i>" to add a campaign.</h5>
+                        <h5>Click "<i class="icon icon-plus2"></i>" to add a campaign.</h5>
                     </div>
                 </div>
             </div>
