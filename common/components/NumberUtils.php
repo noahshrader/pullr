@@ -9,7 +9,7 @@ class NumberUtils extends \yii\base\Component
      * @param float $number
      * @param int $decimal
      */
-    public static function formatNumber($number, $decimal)
+    public static function formatNumber($number, $decimal=2)
     {
         $number = number_format($number, $decimal);
         
