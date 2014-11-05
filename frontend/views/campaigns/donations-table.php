@@ -1,7 +1,3 @@
-<?
-use yii\widgets\ActiveForm;
-?>
-
 <table id="donations-table" class="display donations-table extend" cellspacing="0" width="100%">
     <thead>
         <tr>
@@ -42,31 +38,3 @@ use yii\widgets\ActiveForm;
         <? endforeach; ?>
     </tbody>
 </table>
-
-<? $manualDonation = new \frontend\models\site\ManualDonation(); ?>
-<!-- Modal -->
-<div class="modal fade" id="manualDonationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <? $form = ActiveForm::begin([
-                'action'=> '/app/campaigns/manualdonation'
-            ]) ?>
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <?= $form->field($manualDonation, 'name')->input('text');?>
-                <?= $form->field($manualDonation, 'email')->input('text');?>
-                <?= $form->field($manualDonation, 'amount')->input('text');?>
-                <?= $form->field($manualDonation, 'dateCreated')->label("Donation datetime")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
-                <?= $form->field($manualDonation, 'comments')->textarea();?>
-                <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaignId])->label(false);?>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Add Donation</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-            </div>
-            <? ActiveForm::end() ?>
-        </div>
-    </div>
-</div>

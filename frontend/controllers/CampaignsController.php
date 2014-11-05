@@ -381,7 +381,7 @@ class CampaignsController extends FrontendController {
     {
         $manualDonation = new ManualDonation();
 
-        if($manualDonation->load($_POST))
+        if($manualDonation->load($_POST) && $manualDonation->validate())
         {
             $donation = new Donation();
             if (!\Yii::$app->user->isGuest)
@@ -417,6 +417,8 @@ class CampaignsController extends FrontendController {
             $donation->paymentDate = 0;
             $donation->save();
         }
+
+        Campaign::updateDonationStatistics($donation->campaignId);
 
         $this->redirect("index");
     }
