@@ -1,6 +1,7 @@
 <?
 use yii\helpers\Url;
 use yii\web\View;
+use common\components\PullrUtils;
 
 /**@var $this View */
 ?>
@@ -53,13 +54,13 @@ use yii\web\View;
     <div id="campaign_<?= $campaign['id'];?>" class="source-row module campaign">
         <div class="form-group">
             <h5 id="campaignName_<?= $campaign['id'];?>"><?= $campaign['name']; ?></h5>
-            <div>Amount Raised: <span class="amount accent" id="amountRaised_<?= $campaign['id'];?>">$<?= number_format($campaign['amountRaised'], 2); ?></span>
+            <div>Amount Raised: <span class="amount accent" id="amountRaised_<?= $campaign['id'];?>">$<?= PullrUtils::formatNumber($campaign['amountRaised'], 2); ?></span>
             </div>
-            <div>Goal Amount: <span class="amount accent" id="goalAmount_<?= $campaign['id'];?>">$<?= number_format($campaign['goalAmount']); ?></span>
+            <div>Goal Amount: <span class="amount accent" id="goalAmount_<?= $campaign['id'];?>">$<?= PullrUtils::formatNumber($campaign['goalAmount']); ?></span>
             </div>
-            <div>Donations: <span class="amount accent" id="donations_<?= $campaign['id'];?>"><?= number_format($campaign['numberOfDonations']); ?></span>
+            <div>Donations: <span class="amount accent" id="donations_<?= $campaign['id'];?>"><?= PullrUtils::formatNumber($campaign['numberOfDonations']); ?></span>
             </div>
-            <div>Donors: <span class="amount accent" id="donors_<?= $campaign['id'];?>"><?= number_format($campaign['numberOfUniqueDonors']); ?></span>
+            <div>Donors: <span class="amount accent" id="donors_<?= $campaign['id'];?>"><?= PullrUtils::formatNumber($campaign['numberOfUniqueDonors']); ?></span>
             </div>
         </div>
     </div>
