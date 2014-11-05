@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Notification;
+use yii\web\View;
 
 /**
 * @var yii\web\View $this
@@ -10,6 +11,17 @@ use common\models\Notification;
 * @var common\models\User $user
 */
 $this->title = 'Settings';
+
+if(empty($user->timezone)):
+    $this->registerJs('
+        var timezone = timezone();
+        $.get("/app/settings/detecttimezone", {offset: timezone.offset, dst: timezone.dst}, function(data){
+            $("#user-timezone").select2("val",data);
+            $("#timezone").text(data);
+        });
+
+    ', View::POS_END, 'detect_timezone');
+endif;
 ?>
 
 
@@ -43,11 +55,13 @@ $this->title = 'Settings';
 				<div class="module-inner">
 					<?= $form->field($user, 'name') ?>
 					<?= $form->field($user, 'email')->input('text', ['disabled' => '']) ?>
-					<?
+					<?php
 					$timezones = timezone_identifiers_list();
 					$keyValues = array_combine($timezones, $timezones);
 					?>
-					<?= $form->field($user, 'timezone')->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
+                                    <label class="control-label" for="user-timezone">Timezone:</label> <strong id='timezone'><?= $user->timezone;?></strong><br>
+                                        <label class="control-label">Not your zone. Choose your zone here:</label>
+                                        <?= $form->field($user, 'timezone', ['template'=>'{input}'])->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 				</div>
 			</div>
 			<div class="dashboard-notifications module">
