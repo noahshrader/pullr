@@ -172,7 +172,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                     </div>
                 </div>
                 <?= $this->render('donations-table', [
-                    'donations' => $donations
+                    'donations' => $donations,
+                    'campaignId' => $campaign->id
                 ]); ?>
             </section>
         </div>

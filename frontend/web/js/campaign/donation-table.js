@@ -45,6 +45,14 @@ $(function(){
             var id = $('#content').data('id');
             var href = 'app/campaigns/exportdonations?id='+id;
         }
+
+        var addDonationButton = $('<a>').addClass('btn btn-csv btn-secondary btn-sm').html
+        ('<i class="icon icon-plus2"></i> Add donation')
+            .addClass("manual-donation")
+            .attr('data-target', '#manualDonationModal')
+            .attr('data-toggle', 'modal');
+        addDonationButton.insertAfter($wrapper.find('.dataTables_paginate'));
+
         var csvButton = $('<a>').addClass('btn btn-csv btn-secondary btn-sm').attr('href', href).html
             ('<i class="icon icon-download2"></i> Export All');
         csvButton.insertAfter($wrapper.find('.dataTables_paginate'));

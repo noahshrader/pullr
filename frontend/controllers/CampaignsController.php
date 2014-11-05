@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\components\message\ActivityMessage;
 use common\models\FirstGiving;
 use common\models\Campaign;
+use frontend\models\site\ManualDonation;
 use yii\base\Exception;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
@@ -371,5 +372,34 @@ class CampaignsController extends FrontendController {
         // next echo the text
         echo implode(PHP_EOL, $rows);
         die;
+    }
+
+    public function actionManualdonation()
+    {
+        $manualDonation = new ManualDonation();
+
+        if($manualDonation->load($_POST))
+        {
+            $donation = new Donation();
+            if (!\Yii::$app->user->isGuest)
+            {
+                $donation->userId = \Yii::$app->user->id;
+            }
+            $donation->createdDate = $donation->paymentDate = (new \DateTime($manualDonation->dateCreated))->getTimestamp();
+            $donation->campaignId = $manualDonation->campaignId;
+            $donation->amount = $manualDonation->amount;
+            $donation->nameFromForm = $manualDonation->name;
+            $donation->email = $manualDonation->email;
+            $donation->comments = $manualDonation->comments;
+            $donation->is_manual = true;
+            $donation->save();
+
+            Campaign::updateDonationStatistics($donation->campaignId);
+
+            // Dashboard "Donation received" notification
+            RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageDonationReceived($donation));
+        }
+
+        $this->redirect("index");
     }
 }
