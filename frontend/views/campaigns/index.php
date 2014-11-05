@@ -30,7 +30,7 @@ $user = \Yii::$app->user->identity;
         </section>
     <? endif; ?>
 
-    <!-- main campaign view -->
+    <!-- Main Campaign View -->
     <? if ($selectedCampaign): ?>
          <?= $this->render('campaign-view', [
                     'campaign' => $selectedCampaign
@@ -39,7 +39,7 @@ $user = \Yii::$app->user->identity;
     <? if ($editCampaign):?>
 
 
-    <!-- sidebar -->
+    <!-- Sidebar -->
     <section id="sidepanel" class='sidepanel open'>
         <div class="frontend-right-widget">
             <?= $this->render('campaign-edit', [
@@ -51,7 +51,6 @@ $user = \Yii::$app->user->identity;
     <!-- Charity Browsing -->
 
     <!-- Theme Browsing -->
-
     <section id="sidepanelthree" class="sidepanel">
         <div class="tab-content">
             <div id="modalThemes">

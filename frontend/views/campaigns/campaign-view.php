@@ -162,7 +162,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
             <?= $this->render('campaign-view-childs', [
                 'campaign' => $campaign
             ]);?>
-            <section class="module table">
+            <section class="campaign-table module table">
                 <div class="spinner-wrap">
                     <div class="spinner">
                         <div class="rect1"></div>
@@ -182,6 +182,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
 </section>
 
 <? $manualDonation = new \frontend\models\site\ManualDonation(); ?>
+
 <!-- Modal -->
 <div class="modal fade" id="manualDonationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -222,8 +223,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                 <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaign->id])->label(false);?>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary">Add Donation</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
             </div>
             <? ActiveForm::end() ?>
         </div>

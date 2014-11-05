@@ -35,7 +35,6 @@ $(function(){
         }
     } );
 
-    /*add csv button*/
     if ($table.fnSettings().fnRecordsTotal()){
         if ($('.donor-view-wrap').length > 0){
             
@@ -46,22 +45,23 @@ $(function(){
             var href = 'app/campaigns/exportdonations?id='+id;
         }
 
-        var addDonationButton = $('<a>').addClass('btn btn-csv btn-secondary btn-sm').html
+        /* CSV Button */
+        var csvButton = $('<a>').addClass('btn btn-secondary btn-sm').attr('href', href).html
+            ('<i class="icon icon-download2"></i> Export All');
+        csvButton.prependTo($wrapper.find('.table-footer'));
+
+        /* Manual Donations */
+        var addDonationButton = $('<a>').addClass('btn btn-primary btn-sm').html
         ('<i class="icon icon-plus2"></i> Add donation')
             .addClass("manual-donation")
             .attr('data-target', '#manualDonationModal')
             .attr('data-toggle', 'modal');
-        addDonationButton.insertAfter($wrapper.find('.dataTables_paginate'));
-
-        var csvButton = $('<a>').addClass('btn btn-csv btn-secondary btn-sm').attr('href', href).html
-            ('<i class="icon icon-download2"></i> Export All');
-        csvButton.insertAfter($wrapper.find('.dataTables_paginate'));
+        addDonationButton.prependTo($wrapper.find('.campaign-table .table-footer'));
     }
 
     // Rotate table details area on click
     $('tr.donation-entry').click(function() {
-        if ($(this).data('comments').length)
-        {
+        if ($(this).data('comments').length) {
             $(this).toggleClass('drop');
         }
     });
