@@ -71,6 +71,7 @@ $user = \Yii::$app->user->identity;
                 </div>
             </div>
         </div>
+
         <!-- Background Image -->
         <div class="form-group cf">
             <div id="logo-container">
@@ -84,8 +85,12 @@ $user = \Yii::$app->user->identity;
                 </div>
             </div>
         </div>
+
+        <? if (!empty($campaign->backgroundImageSmallUrl)):?>
         <div class="image-upload-preview">
             <img src="<?= $campaign->backgroundImageSmallUrl ?>">
         </div>
+        <?endif;?>
+
     </div>
 </div>
