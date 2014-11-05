@@ -1,7 +1,10 @@
 /* Forms */
 /* ------------------------------------------------- */
+
+/* General */
 input[type="text"],
 input.form-control,
+div.form-control,
 textarea,
 textarea.form-control,
 select,
@@ -19,6 +22,7 @@ select.form-control,
 	box-shadow: none;
 	&:focus {
 		border: 2px solid @gray60;
+		box-shadow: none;
 	}
 }
 input[type="range"] {
@@ -43,6 +47,12 @@ label,
 	color: @gray60;
 	font-weight: 400;
 }
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+	opacity: .5;
+}
+
 .icon-help {
 	color: @gray60;
 	margin-left: @iconspace;
@@ -106,10 +116,6 @@ input.color-choice {
 			display: none;
 		}
 	}
-	.col-sm-6 {
-		padding-left: 0 !important;
-		padding-right: 30px;
-	}
 }
 
 
@@ -163,6 +169,9 @@ input.color-choice {
 			background: none !important;
 		}
 	}
+	input[type="text"].select2-offscreen {
+		min-height: 0;
+	}
 }
 
 /* Dropdown */
@@ -193,7 +202,7 @@ input.color-choice {
 	&:before {
 		position: absolute;
 		top: 50%;
-		content: '\e64f';
+		content: '\e68a';
 		color: @gray70;
 		font-family: 'icomoon';
 		font-size: 14px;
@@ -260,7 +269,7 @@ input.color-choice {
 		padding-left: 0;
 		white-space: normal;
 		&:before {
-			content: '\e6ac';
+			content: '\e62a';
 			float: left;
 			position: relative;
 			top: 3px;
@@ -280,7 +289,7 @@ input.color-choice {
 			text-transform: none;
 			-webkit-font-smoothing: antialiased;
 			text-indent: 0;
-			.border-radius;
+			.round-radius;
 			background: @gray75;
 	    }
     	&.on:before {

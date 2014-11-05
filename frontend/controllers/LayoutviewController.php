@@ -8,6 +8,7 @@ use common\models\Campaign;
 use common\models\Donation;
 use common\components\PullrPayment;
 use common\components\FirstGivingPayment;
+use common\components\PullrUtils;
 use yii\web\Request;
 use yii\helpers\Url;
 
@@ -163,6 +164,9 @@ class LayoutviewController extends \yii\web\Controller {
     
     public function actionJson($userAlias, $campaignAlias){
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
+        //format number
+        $campaign->amountRaised = PullrUtils::formatNumber($campaign->amountRaised, 2);
+        $campaign->goalAmount = PullrUtils::formatNumber($campaign->goalAmount, 2);
         
         $response = $campaign->toArray(['amountRaised', 'goalAmount', 'startDate', 'endDate']);
         
@@ -174,6 +178,7 @@ class LayoutviewController extends \yii\web\Controller {
         $donations = $campaign->getDonations()->all();
         
         foreach ($donations as $donation){
+            $donation->amount = PullrUtils::formatNumber($donation->amount, 2);
             $donationsArray[] = $donation->toArray(['id', 'amount', 'nameFromForm', 'comments', 'paymentDate']);
         }
         $response['donations'] = $donationsArray;

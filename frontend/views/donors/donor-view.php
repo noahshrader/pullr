@@ -15,11 +15,11 @@ $user = \Yii::$app->user->identity;
             </h1>
             <section class="stats-overview module">
                 <div class='stats-box col-xs-4'>
-                    <h2>$<?= number_format($totalDonated) ?></h2>
+                    <h2>$<?= number_format($totalDonated, 2) ?></h2>
                     <span>Total Donated</span>
                 </div>
                 <div class='stats-box col-xs-4'>
-                    <h2>$<?= number_format($topDonation) ?></h2>
+                    <h2>$<?= number_format($topDonation, 2) ?></h2>
                     <span>Top Donation</span>
                 </div>
                 <div class='stats-box col-xs-4'>

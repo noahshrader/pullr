@@ -101,7 +101,6 @@ span.slider-value {
 			border-bottom: solid 1px @maingray;
 
 			li {
-				width: 25%;
 				&.active a,
 				a:hover {
 					color: @white;
@@ -264,12 +263,14 @@ span.slider-value {
 }
 
 .streamboard-settings-header {
+	padding: 8px @streamboardgutter;
 	height: @sidenavheight;
 	background: @gray10;
 	border-bottom: solid 1px @maingray;
 	postion: relative;
 	button {
-		margin: .6em 0;
+		margin: 0;
+		width: 100%;
 	}
 }
 
@@ -284,6 +285,7 @@ ul.panel-nav {
 	border-top: solid 1px #2e2e32;
 
 	li {
+		width: 25%;
 		&:last-child {
 			border: 0;
 		}
@@ -292,20 +294,20 @@ ul.panel-nav {
 		}
 
 		/* Stats Panel Nav */
-    	&.stats {
-    		width: 100%;
-    		a {
-    			font-size: 16px;
+	    	&.stats {
+	    		width: 100%;
+	    		a {
+	    			font-size: 16px;
 
-        		i {
-        			font-size: 18px;
-        			margin-right: @iconspace;
-        		}
-    		}
-    		span {
-    			font-size: @smalltext;
-    		}
-    	}
+	        		i {
+	        			font-size: 18px;
+	        			margin-right: @iconspace;
+	        		}
+	    		}
+	    		span {
+	    			font-size: @smalltext;
+	    		}
+	    	}
 		&:first-child:nth-last-child(1) {
 			width: 100%;
 		}
@@ -503,6 +505,28 @@ ul.panel-nav {
 			}
 		}
   	}
+}
+
+
+/* Sidebar */
+/* ------------------------------------------------- */
+.capture-link {
+	position: relative;
+	top: 16px;
+	display: block;
+	float: right;
+	color: @gray40;
+	font-size: @fineprint;
+	text-align: center;
+	line-height: 20px;
+	height: 20px;
+	width: 20px;
+	margin-right: 5px;
+	background: @gray15;
+	.round-radius;
+	&:hover {
+		color: @white;
+	}
 }
 
 

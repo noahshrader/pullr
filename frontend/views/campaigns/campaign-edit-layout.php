@@ -40,24 +40,43 @@ $user = \Yii::$app->user->identity;
         </div>
     </div>
     <div class="module-inner">
-        <h5><i class="icon icon-design2"></i>Theme</h5>
+        <h5><i class="icon icon-design2"></i>Design</h5>
         <!-- Choose a Theme -->
         <div class="hide">
             <?= $form->field($campaign, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
         </div>
-        <div class="form-group cf">
-            <div class='theme-name <? if (!$campaign->themeId) { echo 'hidden';} ?>'>
-                <label>
-                    Selected theme:
-                </label>
+        <div class="form-group theme-selection cf">
+            <button type="button" class="btn btn-secondary" onclick="layoutChooseTheme()">Choose a theme</button>
+            <div class='selected-theme theme-name <? if (!$campaign->themeId) { echo 'hidden';} ?>'>
                 <span><?= $campaign->theme?$campaign->theme->name:''?></span>
             </div>
-            <button type="button" class="btn btn-secondary" onclick="layoutChooseTheme()">Choose a theme</button>
-            <!-- Background Image Upload (if Pro) -->
+        </div>
+        <div class="theme-color-picker cf">
+            <div class="col-sm-6">
+                <!-- Primary Color -->
+                <div class="colorpicker">
+                    <div class="colorpickerwrap">
+                        <span class="color-choice"></span>
+                        <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!-- Secondary Color -->
+                <div class="colorpicker">
+                    <div class="colorpickerwrap">
+                        <span class="color-choice"></span>
+                        <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Background Image -->
+        <div class="form-group cf">
             <div id="logo-container">
-                <img class="logo" src="<?= $campaign->backgroundImageSmallUrl ?>">
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
-                    <label class="control-label">Upload a background image</label>
+                    <label class="control-label">Campaign Image</label>
+                    <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page."></i>
                     <?=ImageInput::widget(['name' => 'backgroundImage']);?>
                     <? if ($campaign->hasErrors('backgroundImage')): ?>
                         <?= Html::error($campaign, 'backgroundImage', ['class' => 'help-block']); ?>
@@ -65,27 +84,8 @@ $user = \Yii::$app->user->identity;
                 </div>
             </div>
         </div>
-		
-		<div class="theme-color-picker cf">
-			<div class="col-sm-6">
-		        <!-- Primary Color -->
-		        <div class="colorpicker">
-		            <div class="colorpickerwrap">
-		                <span class="color-choice"></span>
-		                <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
-		            </div>
-		        </div>
-			</div>
-			
-			<div class="col-sm-6">
-		        <!-- Secondary Color -->
-		        <div class="colorpicker">
-		            <div class="colorpickerwrap">
-		                <span class="color-choice"></span>
-		                <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
-		            </div>
-		        </div>
-			</div>
-		</div>
+        <div class="image-upload-preview">
+            <img src="<?= $campaign->backgroundImageSmallUrl ?>">
+        </div>
     </div>
 </div>

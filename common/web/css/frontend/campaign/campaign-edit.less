@@ -8,16 +8,43 @@
 		background: @white;
 
 		.module-inner {
-			margin: @gutter;
+			padding: @gutter @gutter+@gutter;
 			background: @offwhite;
+			margin: @gutter;
 			.border-radius;
 
-			.social {
-				margin-bottom: 1.6em;
+			&.last {
+				margin-bottom: @halfgutter+@gutter;
+			}
+			h5 {
+				text-align: center;
 
-				h5 {
-					margin-bottom: 1em;
+				i {
+					display: block;
+					top: 5px;
+					font-size: 26px;
+					margin: 0 auto .6em;
+					width: 48px;
+					height: 48px;
+					line-height: 48px;
+					background: @white;
+					border-radius: 50%;
 				}
+			}
+		}
+		.social {
+			margin-bottom: 1.6em;
+
+			.module-inner {
+				padding: @halfgutter @gutter;
+			}
+			.form-group {
+				text-align: center;
+			}
+			.bootstrap-switch {
+				display: inline-block !important;
+				text-align: center;
+				min-width: 120px;
 			}
 		}
 	}
@@ -35,6 +62,10 @@
 	}
 	.campaign-actions {
 		margin-top: @gutter;
+	}
+	.col-sm-4,
+	.col-sm-6 {
+		padding: 0;
 	}
 }
 
@@ -76,7 +107,6 @@
 	.field-campaign-youtubeurl,
 	.field-campaign-facebookurl {
 		position: relative;
-		margin: 0;
 		padding: @gutter;
 		background: @gray75;
 		.border-radius;
@@ -96,6 +126,14 @@
 		}
 		.form-group:last-child {
 			margin: 0;
+		}
+	}
+	.field-campaign-twittername,
+	.field-campaign-youtubeurl,
+	.field-campaign-facebookurl {
+		&:before {
+			left: 50%;
+			margin-left: -10px;
 		}
 	}
 	.logo {
@@ -150,7 +188,7 @@
 		ul {
 			li {
 				line-height: 40px;
-				border-bottom: 1px solid @gray75;
+				border-bottom: 1px solid @gray72;
 				&:first-of-type {
 					margin-top: @halfgutter;
 				}

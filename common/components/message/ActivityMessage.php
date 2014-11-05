@@ -20,15 +20,15 @@ class ActivityMessage
     }
 
     public static function  messageDonationReceived(Donation $donation){
-        return sprintf(self::TEMPLATE_DONATION_RECEIVED, $donation->getName(false), number_format($donation->amount), $donation->campaign->name);
+        return sprintf(self::TEMPLATE_DONATION_RECEIVED, $donation->getName(false), number_format($donation->amount, 2), $donation->campaign->name);
     }
 
     public static function  messageCampaignEnded(Campaign $campaign){
-        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, $campaign->name, number_format($campaign->amountRaised));
+        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, $campaign->name, number_format($campaign->amountRaised, 2));
     }
 
     public static function  messageGoalReached(Campaign $campaign){
-        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, number_format($campaign->amountRaised), $campaign->name);
+        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, number_format($campaign->amountRaised, 2), $campaign->name);
     }
 
     public static function messageNewTwitchFollower($displayName){

@@ -28,11 +28,11 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
             </div>
         </a>
     </script> 
-    <?
+    <?php
     $campaignsArray = [];
     foreach ($campaigns as $campaign){
       $array = $campaign->toArray();
-      $array['amountRaised'] = '$'.number_format($campaign->amountRaised, 2);
+      $array['amountRaised'] = '$'.\common\components\PullrUtils::formatNumber($campaign->amountRaised, 2);
       $array['href'] = ($campaign->isNewRecord) ? 'app/campaigns/add' : "app/campaigns/view?id=".$campaign->id;
       $array['isActive'] = $currentCampaign && $campaign->id == $currentCampaign->id;
       $array['type'] = $campaign->type == 'Charity Fundraiser' ? 'Charity' : 'Personal';

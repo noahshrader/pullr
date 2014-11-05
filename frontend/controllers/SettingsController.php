@@ -8,6 +8,7 @@ use frontend\models\site\DeactivatePro;
 use common\models\RecurringProfile;
 use common\components\PullrPayment;
 use common\models\mail\Mail;
+use \common\components\PullrUtils;
 use yii\widgets\ActiveForm;
 use \yii\web\Session;
 use yii\web\Response;
@@ -172,5 +173,38 @@ class SettingsController extends FrontendController
         }
 
         $this->redirect('index');
+    }
+    
+    public  function actionDetecttimezone($offset, $dst, $multiple = false, $default = 'UTC')
+    {
+        $timezone_ids = array();
+
+        // Get the timezone list
+        $timezones = PullrUtils::timezone_list();
+
+        // Try to find a timezone for which both the offset and dst match
+        foreach ($timezones as $timezone_id)
+        {
+            $timezone_data = PullrUtils::get_timezone_data($timezone_id);
+            if ($timezone_data['offset'] == $offset && $dst == $timezone_data['dst'])
+            {
+                array_push($timezone_ids, $timezone_id);
+                if ( ! $multiple)
+                    break;
+            }
+        }
+
+        if (empty($timezone_ids))
+        {
+            $timezone_ids = array($default);
+        }
+        
+        $timezone = $timezone_ids[0];
+        //update user timezone
+        $user = Yii::$app->user->identity;
+        $user->timezone = $timezone;
+        $user->save(false);
+        
+        return $timezone;
     }
 }
