@@ -27,7 +27,7 @@
                     <? if ($donation->comments): ?>
                         <i class="icon-arrow-down"></i>
                     <? endif ?>
-                    <? if ($donation->is_manual): ?>
+                    <? if ($donation->isManual): ?>
                         <a href="<?=\yii\helpers\Url::to(['campaigns/deletemanualdonation', 'donationId' => $donation->id]);?>"><i class="icon-close" id="delete-manual-donation"></i></a>
                     <? endif ?>
                 </td>
