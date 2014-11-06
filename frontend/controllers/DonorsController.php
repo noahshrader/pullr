@@ -19,6 +19,7 @@ use common\models\User;
 use common\models\CampaignInvite;
 use common\models\mail\Mail;
 use common\models\Donation;
+use common\components\PullrUtils;
 use HttpRequest;
 
 class DonorsController extends FrontendController {
@@ -50,7 +51,7 @@ class DonorsController extends FrontendController {
                 $donor['name'] = $donor['nameFromForm'] ? $donor['nameFromForm'] : Donation::ANONYMOUS_NAME;
             }
             
-            $donor['sum'] = '$'.number_format($donor['sum'], 2);
+            $donor['sum'] = '$'.PullrUtils::formatNumber($donor['sum'], 2);
             $donor['href'] = 'app/donors/view?email='.urlencode($donor['email']);
             $donor['isActive'] = $selectedEmail && ($donor['email'] == $selectedEmail);
         }
