@@ -42,7 +42,7 @@ class CampaignsController extends FrontendController {
         $campaign->status = $status;
         $campaign->save();
 
-        if ($status == Campaign::STATUS_PENDING){
+        if (in_array($status, [Campaign::STATUS_PENDING, Campaign::STATUS_DELETED])){
             RecentActivityNotification::createNotification(
                 \Yii::$app->user->id,
                 ActivityMessage::messageCampaignEnded($campaign)
