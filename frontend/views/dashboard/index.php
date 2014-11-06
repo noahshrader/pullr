@@ -3,6 +3,7 @@ use common\models\User;
 use common\models\twitch\openIDToUser;
 use common\models\notifications\SystemNotification;
 use common\components\Application;
+use common\components\PullrUtils;
 
 use common\models\twitch\TwitchFollow;
 use common\models\twitch\TwitchSubscription;
@@ -51,17 +52,17 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <section class="stats-overview main-totals cf">
                         <!-- main total -->
                         <div class="raised-total stats-box">
-                            <h1>$<?= number_format($dashboard['overall']['totalRaised'], 2) ?></h1>
+                            <h1>$<?= PullrUtils::formatNumber($dashboard['overall']['totalRaised'], 2) ?></h1>
                             <h5>Raised Overall</h5>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
-                                <h2>$<?= number_format($dashboard['overall']['charityRaised'], 2) ?></h2>
+                                <h2>$<?= PullrUtils::formatNumber($dashboard['overall']['charityRaised'], 2) ?></h2>
                                 <h5>Charity</h5>
                             </div>
                             <div class="col-xs-6 stats-box">
-                                <h2>$<?= number_format($dashboard['overall']['personalRaised'], 2) ?></h2>
+                                <h2>$<?= PullrUtils::formatNumber($dashboard['overall']['personalRaised'], 2) ?></h2>
                                 <h5>Personal</h5>
                             </div>
                         </div>
@@ -106,17 +107,17 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <section class="stats-overview main-totals cf">
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
-                            <h1>$<?= number_format($dashboard['today']['totalRaised'], 2) ?></h1>
+                            <h1>$<?= PullrUtils::formatNumber($dashboard['today']['totalRaised'], 2) ?></h1>
                             <h5>Raised Today</h5>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
-                                <h2>$<?= number_format($dashboard['today']['charityRaised'], 2) ?></h2>
+                                <h2>$<?= PullrUtils::formatNumber($dashboard['today']['charityRaised'], 2) ?></h2>
                                 <h5>Charity</h5>
                             </div>
                             <div class="col-xs-6 stats-box">
-                                <h2>$<?= number_format($dashboard['today']['personalRaised'], 2) ?></h2>
+                                <h2>$<?= PullrUtils::formatNumber($dashboard['today']['personalRaised'], 2) ?></h2>
                                 <h5>Personal</h5>
                             </div>
                         </div>
@@ -160,17 +161,17 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <section class="stats-overview main-totals cf">
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
-                            <h1>$<?= number_format($dashboard['month']['totalRaised'], 2) ?></h1>
+                            <h1>$<?= PullrUtils::formatNumber($dashboard['month']['totalRaised'], 2) ?></h1>
                             <h5>Raised This Month</h5>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
-                                <h2>$<?= number_format($dashboard['month']['charityRaised'], 2) ?></h2>
+                                <h2>$<?= PullrUtils::formatNumber($dashboard['month']['charityRaised'], 2) ?></h2>
                                 <h5>Charity</h5>
                             </div>
                             <div class="col-xs-6 stats-box">
-                                <h2>$<?= number_format($dashboard['month']['personalRaised'], 2) ?></h2>
+                                <h2>$<?= PullrUtils::formatNumber($dashboard['month']['personalRaised'], 2) ?></h2>
                                 <h5>Personal</h5>
                             </div>
                         </div>
