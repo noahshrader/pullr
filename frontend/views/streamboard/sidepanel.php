@@ -6,7 +6,13 @@ use yii\web\View;
 $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
 ?>
 <!-- // Layout Options Side Panel // -->
-<section id="sidepanel" class="sidepanel open">
+<section id="sidepanel" class="sidepanel open"
+    interaction
+    resizable
+    resizable-callback='onResizeSidebarStop'
+    resizable-config='{handles:"w", delay:0, animate:false}'   
+    ng-controller='sideBarCtrl'
+    >
     <div class="sidepanel-head">
         <ul class="<?= $tabsClass ?> panel-nav cf">
             <li class="active">

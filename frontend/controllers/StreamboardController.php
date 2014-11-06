@@ -185,6 +185,14 @@ class StreamboardController extends FrontendController
         return $campaignsArray;
     }
 
+    public function actionGet_streamboard_config()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $user = Application::getCurrentUser();
+        $streamboardConfig = $user->streamboardConfig;
+        return $streamboardConfig->toArray();
+    }   
+
     public function actionGet_donations_ajax($since_id = null)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -346,12 +354,20 @@ class StreamboardController extends FrontendController
     }
 
     public function actionSet_streamboard_sidepanel_width() {
-        $width = intval($_POST['width']);
+        $data = json_decode(file_get_contents("php://input"), true);
+        $width = intval($data['width']);
         $config = StreamboardConfig::get();
         $config->sidePanelWidth = $width;
         $config->save();
     }
 
+    public function actionSet_streamboard_region2_height() {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $height = intval($data['height']);
+        $config = StreamboardConfig::get();
+        $config->region2HeightPercent = $height;
+        $config->save();
+    }
     /**
      * @description - ajax request from app/streamboard/source page
      */

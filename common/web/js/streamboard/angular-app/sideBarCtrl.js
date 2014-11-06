@@ -1,0 +1,37 @@
+angular.module('streamboardApp').controller('sideBarCtrl', function($scope, $http, streamboardConfig) {
+	$scope.streamboardConfig = streamboardConfig;
+	//load sidebard witdh
+    $scope.$watch('streamboardConfig.config.sidePanelWidth', function(width){                	
+        if (width > 0) {
+            $('#sidepanel').css({
+                position:'absolute',
+                width: width,
+                left: 'auto',
+                top:'0'
+            });
+            setSideBarWidth(width);
+        }
+    });
+    
+    $scope.onResizeSidebarStop = function(event, ui) {
+        $("#sidepanel").css('left', 'auto');
+        $http.post('app/streamboard/set_streamboard_sidepanel_width', {
+        	width: ui.size.width
+        });
+    }
+
+
+    $('#sidepanel').resize(function() {
+    	$("#sidepanel").css('left', 'auto');
+        var width = $('#sidepanel').width();
+        setSideBarWidth(width);
+    });
+
+    function setSideBarWidth(width) {
+    	$("#sidepanel").css('left', 'auto');
+        var panelhead = width - 30;
+        var sidefooter = width;
+        $('.panel-head, .panel-title').width(panelhead);
+        $('.right-side-footer, .overlay').width(sidefooter);
+    }
+});

@@ -45,7 +45,9 @@ class StreamboardAsset extends AssetBundle
         'js/streamboard/angular-app/campaigns.js',
         'js/streamboard/angular-app/settings.js',
         'js/streamboard/angular-app/alertMediaManager.js',
-        'js/streamboard/angular-app/app.js'
+        'js/streamboard/angular-app/app.js',
+        'js/streamboard/angular-app/streamboardConfig.js',
+        'js/streamboard/angular-app/sideBarCtrl.js',
         /* angular-app end */
 	];
 	public $depends = [

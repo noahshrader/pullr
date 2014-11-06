@@ -2,12 +2,11 @@
 use frontend\models\streamboard\StreamboardRegion;
 ?>
 
-<div
-    ng-if='region.widgetType == <?= htmlspecialchars(json_encode(StreamboardRegion::WIDGET_DONATION_FEED)) ?>'>
     <!--angular-marquee container-->
     <div ng-class='{marqueeStop: ! region.widgetDonationFeed.scrolling}' class='marquee-container'
          draggable-widget="region.widgetDonationFeed" 
          draggable-region="region" 
+         draggable-config="{containment:'parent'}"
          draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
          interaction
          draggable
@@ -16,6 +15,7 @@ use frontend\models\streamboard\StreamboardRegion;
          resizable-callback="onResizeActivityFeed"
          resizable-region="region",
          resizable-size="{width:region.widgetDonationFeed.width, height: region.widgetDonationFeed.height}"
+         ng-if='region.widgetType == <?= htmlspecialchars(json_encode(StreamboardRegion::WIDGET_DONATION_FEED)) ?>'
         >
         <div simple-marquee 
         marquee-name='region.regionNumber'
@@ -56,4 +56,3 @@ use frontend\models\streamboard\StreamboardRegion;
         </div>
 
     </div>
-</div>

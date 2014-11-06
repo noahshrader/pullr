@@ -105,6 +105,7 @@ $(window).load(function() {
     //     animate: false,
     //     delay: 0,
     // });
+    
     // $(".regionsContainer .region:last-child").resizable({
     //     handles: "n",
     //     animate: false,
@@ -116,9 +117,10 @@ $(window).load(function() {
     //         var divOneHeight = (100 - remainingSpace) + '%';
     //         $(this).height(divTwoHeight);
     //         $(divOne).height(divOneHeight);
+            
     //     }
     // });
-
+ 
     // /* dragging magic */
     // $(".drag").draggable({
     //     containment: ".region"

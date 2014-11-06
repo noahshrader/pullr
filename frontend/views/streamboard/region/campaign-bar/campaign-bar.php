@@ -11,7 +11,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
      draggable
      draggable-widget="region.widgetCampaignBar" 
      draggable-region="region" 
-     draggable-config="{containment:'.region'}"
+     draggable-config="{containment:'parent'}"
      draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"           
      resizable
      resizable-config="{minWidth:60, minHeight:60, containment:'.region'}"
@@ -50,12 +50,13 @@ use frontend\models\streamboard\WidgetCampaignBar;
     </div>
     <!-- Messages -->
     <div ng-if="region.widgetCampaignBar.messagesEnable" 
+         class='campaign-rotating-message'
          ng-show='region.toShow.alert.message == null'
          interaction
          draggable-widget="region.widgetCampaignBar.messagesModule" 
          draggable-region="region" 
          draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
-         draggable-config="{containment:'#campaign-bar'}"
+         draggable-config="{containment:'parent'}"
          draggable>
         <div rotating-messages 
              messages-module="region.widgetCampaignBar.messagesModule"

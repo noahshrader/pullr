@@ -5,61 +5,58 @@ angular.module('pullr.streamboard.interaction', ['pullr.streamboard.regions']).
                 var $element = $(element);
                 if (attrs.draggable != null) {
                     var $parent = $element.parents('.region:eq(0)');     
-                    var fields = null;        
-                    if (scope.hasOwnProperty('draggableConfig')) {
-                        fields = scope.$eval(attrs.draggableFields);    
-                        var left = scope.draggableWidget[fields['widgetLeftAttribute']];
-                        var top = scope.draggableWidget[fields['widgetTopAttribute']];
+                            
+                    if (scope.draggableFields) {
+                    
+                        var left = scope.draggableWidget[scope.draggableFields.widgetLeftAttribute];
+                        var top = scope.draggableWidget[scope.draggableFields.widgetTopAttribute];
 
                         if (left != 0 && top != 0) {                        
                             $element.css({
-                                left : scope.draggableWidget[fields['widgetLeftAttribute']],
-                                top  : scope.draggableWidget[fields['widgetTopAttribute']]
+                                left : scope.draggableWidget[scope.draggableFields.widgetLeftAttribute],
+                                top  : scope.draggableWidget[scope.draggableFields.widgetTopAttribute]
                             });    
                         }                    
                     }
                     
-                    var defaultConfig = {                                        
+                    var defaultConfig = {   
+                        scroll: false,                                     
                         stop: function(event, ui) {
                             if (scope.hasOwnProperty('draggableWidget') 
-                                && scope.hasOwnProperty('draggableRegion')
-                                && fields != null) {
-                                scope.draggableWidget[fields['widgetLeftAttribute']] = ui.position.left;
-                                scope.draggableWidget[fields['widgetTopAttribute']] = ui.position.top;
+                                && scope.hasOwnProperty('draggableRegion')) {
+                                scope.draggableWidget[scope.draggableFields.widgetLeftAttribute] = ui.position.left;
+                                scope.draggableWidget[scope.draggableFields.widgetTopAttribute] = ui.position.top;
                                 regions.regionChanged(scope.draggableRegion);
                             }                                                                 
                         }
                     };
-                    var userConfig = {};
-                    if (scope.hasOwnProperty('draggableConfig')) {
-                        userConfig = scope.$eval(attrs.draggableConfig);
-                    }
-                    var config = jQuery.extend({}, defaultConfig, userConfig);
-                    
+                 
+                    var config = jQuery.extend({}, defaultConfig, scope.draggableConfig);
+
                     $element.draggable(config);
                 }
 
-                if (attrs.resizable != null) {
-                    console.log(scope.resizableRegion);
+                if (attrs.resizable != null) {                    
                     var defaultConfig = {
                         animate: false,
                         delay: 0,
-                        stop: function(event, ui) {
-                            if (scope.resizableCallback && scope.resizableRegion) {
-                                scope.resizableCallback(scope.resizableRegion, event, ui);
+                        stop: function(event, ui) {                           
+                            if (scope.resizableCallback) {
+                                if (scope.resizableRegion) {
+                                    scope.resizableCallback(scope.resizableRegion, event, ui);
+                                } else {
+                                    scope.resizableCallback(event, ui);
+                                }                                
                             }
                         }
-                    };
-                    var userConfig = {};
-                    if (scope.hasOwnProperty('resizableConfig')) {
-                        userConfig = scope.$eval(attrs.resizableConfig);
-                        console.log(userConfig);
-                    }
-                    var config = $.extend({}, defaultConfig, userConfig);
+                    };                                        
+                    var config = $.extend({}, defaultConfig, scope.resizableConfig);                                      
+                    if ( ! attrs.hasOwnProperty('resizableCondition') || (attrs.hasOwnProperty('resizableCondition') && scope.resizableCondition == true)) {
+                        $element.resizable(config);    
+                    }                    
                     
-                    $element.resizable(config);
 
-                    if (scope.hasOwnProperty('resizableSize')
+                    if (scope.resizableSize
                         && scope.resizableSize.width > 0
                         && scope.resizableSize.height > 0) {                                                
 
@@ -78,7 +75,8 @@ angular.module('pullr.streamboard.interaction', ['pullr.streamboard.regions']).
                 resizableConfig: '=',
                 resizableCallback: '=',
                 resizableRegion: '=',
-                resizableSize: '='
+                resizableSize: '=',
+                resizableCondition: '='
             }
         }
     })

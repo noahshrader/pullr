@@ -6,7 +6,8 @@ use frontend\models\streamboard\WidgetCampaignBarTimer;
      draggable-widget="region.widgetCampaignBar.timerModule" 
      draggable-region="region" 
      draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
-     draggable-config="{containment:'#campaign-bar'}"
+     draggable-config="{containment:'parent'}"
+     class='campaign-timers'
      interaction
      draggable>
     <div>

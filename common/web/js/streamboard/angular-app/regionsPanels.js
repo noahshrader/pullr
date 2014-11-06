@@ -2,7 +2,7 @@
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
             'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee']).
-        controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns, simpleMarqueeHelper) {
+        controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
             $scope.donationsService = donations;
@@ -10,6 +10,8 @@
             $scope.scroll = true;
             $scope.duration = 1500;
             $scope.alertMediaManagerService = alertMediaManager;
+            $scope.streamboardConfig = streamboardConfig;
+            var $region2 = $(".regionsContainer .region:last-child");
             var animationEndEvent = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
             var isShowingNotification = false;
             $scope.getCampaignBackgroundStyle = function(image) {                
@@ -20,6 +22,37 @@
                 var url =  'url(' + alertMediaManager.getCampaignAlertBackgroundUrl(image) + ')';                
                 return url;
             }
+
+            $scope.$watch('streamboardConfig.config.region2HeightPercent', function(height) {            
+                if (height > 0) {
+                    var $region2 = $(".regionsContainer .region:last-child");
+                    $region2.height((height) + '%');
+                    recalculateRegionSize();
+                }
+            });            
+
+            var recalculateRegionSize = function() {     
+                var $region2 = $(".regionsContainer .region:last-child");           
+                var remainingSpace = (100 * parseFloat($region2.css('height')) / parseFloat($region2.parent().css('height')));
+                var divOne = $region2.prev();
+                var divTwoHeight = (remainingSpace) + '%';
+                var divOneHeight = (100 - remainingSpace) + '%';
+                $region2.height(divTwoHeight);
+                $(divOne).height(divOneHeight);            
+            }
+
+            $scope.onRegionResizeCreate = function() {
+                $(".regionsContainer .region:last-child").resize(function() {                
+                    recalculateRegionSize();          
+                });    
+            }
+
+            $scope.onRegionResizeStop = function(event, ui) {
+                var $region2 = $(".regionsContainer .region:last-child");           
+                streamboardConfig.setRegion2Height($region2[0].style.height);
+            }
+
+            
 
             $scope.onResizeCampaignBar = function(region, event, ui) {                
                 if (region != null) {
@@ -125,7 +158,7 @@
 
                     if (region.widgetType == 'widget_alerts') {                        
                         toShow.preference = region.widgetAlerts[notification.type + 'Preference'];   
-
+                        toShow.notificationType = notification.type;
                         var preference = toShow.preference;
                         toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);                        
                         alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
@@ -186,5 +219,6 @@
                 }                            
             }
         });
+           
 
 })()
