@@ -2,6 +2,7 @@
 namespace common\models;
 
 use common\models\User;
+use common\components\PullrUtils;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use Yii;
@@ -177,7 +178,7 @@ class Donation extends ActiveRecord
         foreach ($donations as $donation){
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
             $donors[] = [ 'name' => $name, 
-                        'amount' => $sumByEmail[$donation->email], 
+                        'amount' => PullrUtils::formatNumber($sumByEmail[$donation->email]), 
                         'email' => $donation->email];
         }
         return $donors;

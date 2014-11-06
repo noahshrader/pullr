@@ -390,8 +390,11 @@ class StreamboardController extends FrontendController
     {        
         /*We do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.*/
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
+        
         $stats = Streamboard::getStats($campaigns);
-
+        $stats['total_amountRaised'] = PullrUtils::formatNumber($stats['total_amountRaised'], 2);
+        $stats['total_goalAmount'] = PullrUtils::formatNumber($stats['total_goalAmount'], 2);
+        
         $twitchUser = $user->twitchUser;
         $twitchUserArray = $twitchUser ? $twitchUser->toArray(['followersNumber', 'subscribersNumber']) : null;
 

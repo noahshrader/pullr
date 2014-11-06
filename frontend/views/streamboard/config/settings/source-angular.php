@@ -21,7 +21,7 @@ use yii\web\View;
                 <span ng-repeat="donor in donors" class="commaAfter">
                     <span class="nowrap">
                     <span>{{donor.name}}</span>
-                   (<span class="amount accent">${{number_format(donor.amount)}}</span>)<!-- removing space before :after{content:} rule
+                   (<span class="amount accent">${{donor.amount}}</span>)<!-- removing space before :after{content:} rule
                 --></span></span>
                 <span ng-repeat="subscriber in subscribers" class="commaAfter" ng-show='streamService.showSubscriber'>
                     <span class="nowrap">
@@ -42,9 +42,9 @@ use yii\web\View;
     <div class="overall module" ng-show="length(campaignsService.campaigns) > 1">
         <div class="form-group">
             <h5>Overall</h5>
-            <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">${{number_format(stats.total_amountRaised)}}</span>
+            <div>Total Amount Raised: <span id="total_amount_raised" class="amount accent">${{stats.total_amountRaised}}</span>
             </div>
-            <div>Total Goal Amount: <span id="total_goal_amount" class="amount accent">${{number_format(stats.total_goalAmount)}}</span>
+            <div>Total Goal Amount: <span id="total_goal_amount" class="amount accent">${{stats.total_goalAmount}}</span>
             </div>
             <div>Total Donations: <span id="total_donations" class="amount accent">{{stats.number_of_donations}}</span>
             </div>
@@ -54,13 +54,13 @@ use yii\web\View;
     <div id="campaign_{{campaign.id}}" class="source-row module campaign" ng-repeat="campaign in campaignsService.campaigns">
         <div class="form-group">
             <h5 id="campaignName_{{campaign.id}}">{{campaign.name}}</h5>
-            <div>Amount Raised: <span class="amount accent" id="amountRaised_{{campaign.id}}">${{number_format(campaign.amountRaised)}}</span>
+            <div>Amount Raised: <span class="amount accent" id="amountRaised_{{campaign.id}}">${{(campaign.amountRaised)}}</span>
             </div>
-            <div>Goal Amount: <span class="amount accent" id="goalAmount_{{campaign.id}}">${{number_format(campaign.goalAmount)}}</span>
+            <div>Goal Amount: <span class="amount accent" id="goalAmount_{{campaign.id}}">${{(campaign.goalAmount)}}</span>
             </div>
-            <div>Donations: <span class="amount accent" id="donations_{{campaign.id}}">{{number_format(campaign.numberOfDonations)}}</span>
+            <div>Donations: <span class="amount accent" id="donations_{{campaign.id}}">{{(campaign.numberOfDonations)}}</span>
             </div>
-            <div>Donors: <span class="amount accent" id="donors_{{campaign.id}}">{{number_format(campaign.numberOfUniqueDonors)}}</span>
+            <div>Donors: <span class="amount accent" id="donors_{{campaign.id}}">{{(campaign.numberOfUniqueDonors)}}</span>
             </div>
         </div>
     </div>    
