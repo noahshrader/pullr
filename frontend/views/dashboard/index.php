@@ -215,6 +215,7 @@ $twitchPartner = $user->userFields->twitchPartner;
         </div>
     </section>
     <div id="sidebar" class="dashboard pane">
+        <? if (sizeof($campaignInvites) > 0): ?>
         <div class="invites-wrap module"> <!-- BEGIN campaign invites -->
             <h5 class="module-title">Invites</h5>
             <? if (sizeof($campaignInvites) > 0): ?>
@@ -226,6 +227,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                 <span class="empty">No new invites</span>
             <? endif ?>
         </div> <!-- END campaign invites -->
+        <? endif ?>
         <div class="activity-wrap module"> <!-- BEGIN activity -->
             <h5 class="module-title">Activity</h5>
             <ul class="activity-feed">
