@@ -43,7 +43,7 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
         <div class="tab-pane addpadd" id="region_{{region.regionNumber}}" ng-repeat="region in regionsService.regions">
             <?= $this->render('config/region/region') ?>
         </div>
-        <div class="tab-pane addpadd" id="tagsTab" ng-controller="TagsCtrl">
+        <div class="tab-pane addpadd" id="tagsTab">
             <?= $this->render('config/tags/tags') ?>
         </div>
         <div class="tab-pane addpadd" id="settingsTab" ng-controller="SettingsCtrl">

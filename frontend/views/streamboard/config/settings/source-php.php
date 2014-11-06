@@ -35,6 +35,11 @@ use common\components\PullrUtils;
                 ?></div>
         </div>
     </div>
+    <div class="tags module">
+        <div class="form-group">
+            <h5>Tags</h5>
+        </div>
+    </div>
     <? if (count($campaigns) > 0): ?>
     <div class="overall module">
         <div class="form-group">

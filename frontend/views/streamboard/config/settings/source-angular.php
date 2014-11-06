@@ -39,6 +39,11 @@ use yii\web\View;
             </div>
         </div>
     </div>
+    <div class="tags module">
+        <div class="form-group">
+            <h5>Tags</h5>
+        </div>
+    </div>
     <div class="overall module" ng-show="length(campaignsService.campaigns) > 1">
         <div class="form-group">
             <h5>Overall</h5>
