@@ -58,7 +58,9 @@ angular.module('pullr.streamboard.interaction', ['pullr.streamboard.regions']).
 
                     if (scope.resizableSize
                         && scope.resizableSize.width > 0
-                        && scope.resizableSize.height > 0) {                                                
+                        && scope.resizableSize.height > 0
+                        && scope.resizableSize.width != null
+                        && scope.resizableSize.height != null) {                                                
 
                         $element.css({
                             width: scope.resizableSize.width,

@@ -52,6 +52,13 @@
                 streamboardConfig.setRegion2Height($region2[0].style.height);
             }
 
+            $scope.onResizeAlertImage = function(event, ui) {
+
+            }
+
+            $scope.getContainmentByRegion = function(region) {
+                return '#region-' + region.regionNumber;
+            }
             
 
             $scope.onResizeCampaignBar = function(region, event, ui) {                
@@ -211,7 +218,7 @@
                 } else {
                     region.toShow.alert.animationDirection = '';
                     region.toShow.alert.message = null;
-                    region.toShow.alert.image = '';
+                
                     isShowingNotification = false;
                     $interval(function () {
                         showAlert(region);

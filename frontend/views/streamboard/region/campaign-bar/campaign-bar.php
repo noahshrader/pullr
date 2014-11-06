@@ -11,7 +11,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
      draggable
      draggable-widget="region.widgetCampaignBar" 
      draggable-region="region" 
-     draggable-config="{containment:'parent'}"
+     draggable-config="{containment:getContainmentByRegion(region)}"
      draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"           
      resizable
      resizable-config="{minWidth:60, minHeight:60, containment:'.region'}"

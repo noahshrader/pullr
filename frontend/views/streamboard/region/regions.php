@@ -21,26 +21,36 @@ $class = 'regionsNumber' . $regionsNumber;
         <div ng-show="region.toShow.alert.message && (region.widgetType == 'widget_alerts')" class="widget-alerts"                 
                 draggable-widget="region.widgetAlerts" 
                 draggable-region="region" 
-                draggable-config="{containment: 'parent'}"
+                draggable-config="{containment:getContainmentByRegion(region)}"
                 draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"                          
                 interaction
                 draggable>
             <!-- if alert message is shown -->
-        
-                <img ng-src="{{region.toShow.alert.image}}" 
-                    ng-hide='region.toShow.alert.preference.hideAlertImage' 
+                <div
+                    class='alert-widget-wrapper' 
+                    interaction
+                    draggable
                     draggable-widget="region.widgetAlerts" 
                     draggable-region="region" 
-                    draggable-config="{containment: '.region'}"
+                    draggable-config="{containment:getContainmentByRegion(region) }"
                     draggable-fields="{widgetLeftAttribute:'imagePositionX', widgetTopAttribute:'imagePositionY'}" 
-                    interaction
-                    draggable>
+                    resizable
+                    resizable-config="{containment: getContainmentByRegion(region) }"
+                    resizable-callback="onResizeAlertImage"                    
+                    resizable-region="region",
+                    resizable-size="{width:region.widgetAlerts.imageWidth, height: region.widgetAlerts.imageHeight}">
+                <img ng-src="{{region.toShow.alert.image}}" 
+                    ng-show='region.toShow.alert.image != null'
+                    ng-hide='region.toShow.alert.preference.hideAlertImage' 
+                    
+                    ></div>
           
             <div 
                     ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle}" 
                     ng-hide="region.toShow.alert.preference.hideAlertText"
                     draggable-widget="region.widgetAlerts" 
                     draggable-region="region" 
+                    draggable-config="{containment:getContainmentByRegion(region) }"
                     draggable-fields="{widgetLeftAttribute:'messagePositionX', widgetTopAttribute:'messagePositionY'}" 
                     interaction
                     draggable>
