@@ -29,7 +29,7 @@
 		<div class="panel-group">
 			<h5>Total Donation Amount</h5>
 			<span class="total_amountRaised value highlight large">
-				${{number_format(donationsService.stats.total_amountRaised)}}
+				${{donationsService.stats.total_amountRaised}}
 			</span>
 		</div>
 	</div>
@@ -39,7 +39,7 @@
 			<div class="panel-group">
 				<h5>Top Donation Amount</h5>
 				<span class="top_donation value highlight large">
-					${{number_format(donationsService.stats.top_donation.amount)}} ({{donationsService.stats.top_donation.displayName}})
+					${{donationsService.stats.top_donation.amount}} ({{donationsService.stats.top_donation.displayName}})
 				</span>
 			</div>
 		</div>
