@@ -71,20 +71,26 @@ $user = \Yii::$app->user->identity;
                 </div>
             </div>
         </div>
+
         <!-- Background Image -->
         <div class="form-group cf">
             <div id="logo-container">
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
-                    <label class="control-label">Background Image</label>
+                    <label class="control-label">Campaign Image</label>
+                    <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page."></i>
                     <?=ImageInput::widget(['name' => 'backgroundImage']);?>
                     <? if ($campaign->hasErrors('backgroundImage')): ?>
                         <?= Html::error($campaign, 'backgroundImage', ['class' => 'help-block']); ?>
                     <? endif ?>
                 </div>
-                <div class="image-upload-preview">
-                    <img src="<?= $campaign->backgroundImageSmallUrl ?>">
-                </div>
             </div>
         </div>
+
+        <? if (!empty($campaign->backgroundImageSmallUrl)):?>
+        <div class="image-upload-preview">
+            <img src="<?= $campaign->backgroundImageSmallUrl ?>">
+        </div>
+        <?endif;?>
+
     </div>
 </div>

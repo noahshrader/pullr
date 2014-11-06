@@ -1,6 +1,6 @@
 <? if (count($donors) > 0 || ($showSubscriber && count($subscribers) > 0 ) || ($showFollower && count($followers) > 0)): ?>
 	<? foreach($donors as $index => $donor): ?>                    
-	     <?=$donor['name']; ?> ($<?=number_format($donor['amount'], 2);?>)<? if ($index < count($donors) - 1 || ($showSubscriber && count($subscribers) > 0) || ($showFollower && count($followers) > 0)):?>,<? endif; ?>
+	     <?=$donor['name']; ?> ($<?=\common\components\PullrUtils::formatNumber($donor['amount'], 2);?>)<? if ($index < count($donors) - 1 || ($showSubscriber && count($subscribers) > 0) || ($showFollower && count($followers) > 0)):?>,<? endif; ?>
 	<? endforeach; ?>
 
 	<? if ($showSubscriber): ?>

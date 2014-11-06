@@ -63,15 +63,15 @@ $this->registerJs($js);
                             </a>
                         </li>
                         <li>
-                            <a class="streamboard" title="Streamboard" href="app/streamboard" target="_blank">
-                                <i class="icon icon-board2"></i>
-                                <span class="nav-label">Streamboard</span>
-                            </a>
-                        </li>
-                        <li>
                             <a class="campaign-link" title="Campaigns" href="app/campaigns">
                                 <i class="icon icon-piechart2"></i>
                                 <span class="nav-label">Campaigns</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="streamboard" title="Streamboard" href="app/streamboard" target="_blank">
+                                <i class="icon icon-board2"></i>
+                                <span class="nav-label">Streamboard</span>
                             </a>
                         </li>
                         <li>

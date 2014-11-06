@@ -291,10 +291,10 @@ class Sample_dataController extends Controller
 
     private function sampleDonations(){
         $donations = [];
-        $donations[] = [ 'nameFromForm' => 'Someone', 'email' => 'stas.msu@gmail.com', 'comments' => 'just some comments to test donations'];
-        $donations[] = [ 'nameFromForm' => 'Stanislav', 'email' => 'support@gmail.com', 'comments' => 'just some comments to test donations'];
-        $donations[] = [ 'nameFromForm' => 'Alex', 'email' => 'admin@gmail.com', 'comments' => 'just some comments to test donations'];
-        $donations[] = [ 'nameFromForm' => 'Dave'];
+        $donations[] = [ 'nameFromForm' => 'Someone', 'email' => 'stas.msu@gmail.com', 'amount'=>320.00, 'comments' => 'just some comments to test donations'];
+        $donations[] = [ 'nameFromForm' => 'Stanislav', 'email' => 'support@gmail.com', 'amount'=>150.25, 'comments' => 'just some comments to test donations'];
+        $donations[] = [ 'nameFromForm' => 'Alex', 'email' => 'admin@gmail.com', 'amount'=>200.05, 'comments' => 'just some comments to test donations'];
+        $donations[] = [ 'nameFromForm' => 'Dave', 'amount'=> 120.14];
         $donations[] = [ 'nameFromForm' => 'Crash', 'email' => 'someone@gmail.com', 'comments' => 'just some comments to test donations'];
         $donations[] = [ 'nameFromForm' => 'Noah', 'email' => 'noah@gmail.com', 'comments' => 'just some comments to test donations'];
         $donations[] = [ 'nameFromForm' => 'Nikki', 'email' => 'nikki@gmail.com', 'comments' => 'just some comments to test donations'];
@@ -313,7 +313,7 @@ class Sample_dataController extends Controller
         foreach ($donations as $donationArray){
             $donation = new Donation();
             $donation->campaignId = isset($donationArray['campaignId'])? $donationArray['campaignId'] : $this->campaign1->id;
-            $donation->amount = round(rand(1, 1000));
+            $donation->amount = isset($donationArray['amount']) ? $donationArray['amount'] : round(rand(1, 1000));
             $donation->createdDate = time();
             $donation->paymentDate = time();
             $donation->nameFromForm = isset($donationArray['nameFromForm']) ? $donationArray['nameFromForm'] : '';

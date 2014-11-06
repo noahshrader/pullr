@@ -10,7 +10,10 @@ $typesList = [
 ]
 ?>
 <div class="regions-panel pane">
-    <h4 class="panel-head">Region {{ region.regionNumber}} <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':region.backgroundColor}"></h4>
+    <h4 class="panel-head">Region {{ region.regionNumber}}
+        <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':region.backgroundColor}">
+        <a class="capture-link icon-code"></a>
+    </h4>
     <div class="settings-wrap">
         <div class="module form-group" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">
             <h5>Widget</h5>

@@ -175,7 +175,7 @@
 		position: absolute;
 		top: 50%;
 		left: 30px;
-		content: '\e68e';
+		content: '\e68a';
 		color: @gray30;
 		font-family: 'icomoon';
 		font-size: 14px;
@@ -404,11 +404,21 @@ table.dataTable {
 			+ tr td[colspan~="5"] {
 				padding: .3em 0 !important;
 				background: @white !important;
+				border-top: 0;
 			}
-			&.drop td.details-control i {
+			i {
+				float: left;
+			}
+			&.drop td.details-control i.icon-arrow-down {
 				transform:rotate(180deg);
 				-ms-transform:rotate(180deg);
 				-webkit-transform:rotate(180deg);
+			}
+			td.details-control a {
+				color: @gray40;
+				&:hover {
+					color: @gray30;
+				}
 			}
 		}
 	}
@@ -475,6 +485,9 @@ table.dataTable {
 			font-size: 14px;
 			margin-top: -9px;
 		}
+		input {
+			max-width: 160px;
+		}
 	}
 	.dataTables_paginate {
 		padding: 0px !important;
@@ -520,8 +533,14 @@ table.dataTable {
 	border-bottom: solid 1px @gray70;
 }
 .table-footer {
+	text-align: center;
 	padding: @halfgutter @gutter;
 	border-top: solid 1px @gray75;
+
+	a.btn {
+		float: none;
+		margin: 10px 4px;
+	}
 }
 
 

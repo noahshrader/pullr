@@ -1,7 +1,8 @@
-<?
-
+<?php
 use common\models\Campaign;
 use common\models\Donation;
+use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 
 /**
  * @var $this View
@@ -15,9 +16,9 @@ $user = \Yii::$app->user->identity;
 $donations = $campaign->getDonations()->all();
 
 $topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
-$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'] . '<span>' . '$' . number_format($topDonors[0]['amount'], 2) . '' . '</span>': '';
+$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'] . '<span>' . '$' . \common\components\PullrUtils::formatNumber($topDonors[0]['amount'], 2) . '' . '</span>': '';
 $topDonation = Donation::getTopDonation([$campaign]);
-$topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number_format($topDonation->amount, 2) . '' . '</span>': '';
+$topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \common\components\PullrUtils::formatNumber($topDonation->amount, 2) . '' . '</span>': '';
 ?>
 
 <script type="text/javascript">
@@ -118,11 +119,11 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
             <? endif ?>
             <section class="stats-overview main-values module">
                 <div class='stats-box col-xs-3 raised-total'>
-                    <h1>$<?= number_format($campaign->amountRaised, 2) ?></h1>
+                    <h1>$<?= \common\components\PullrUtils::formatNumber($campaign->amountRaised, 2); ?></h1>
                     <span>Raised</span>
                 </div>
                 <div class='stats-box col-xs-3 campaign-goal'>
-                    <h1>$<?= number_format($campaign->goalAmount) ?></h1>
+                    <h1>$<?= \common\components\PullrUtils::formatNumber($campaign->goalAmount, 2) ?></h1>
                     <span>Goal</span>
                 </div>
 
@@ -161,7 +162,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
             <?= $this->render('campaign-view-childs', [
                 'campaign' => $campaign
             ]);?>
-            <section class="module table">
+            <section class="campaign-table module table">
                 <div class="spinner-wrap">
                     <div class="spinner">
                         <div class="rect1"></div>
@@ -172,9 +173,60 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . number
                     </div>
                 </div>
                 <?= $this->render('donations-table', [
-                    'donations' => $donations
+                    'donations' => $donations,
+                    'campaignId' => $campaign->id
                 ]); ?>
             </section>
         </div>
     </div>
 </section>
+
+<? $manualDonation = new \frontend\models\site\ManualDonation(); ?>
+
+<!-- Modal -->
+<div class="modal fade" id="manualDonationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <? $form = ActiveForm::begin([
+                'action'=> '/app/campaigns/manualdonation'
+            ]) ?>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <?= $form->field($manualDonation, 'name')->input('text');?>
+                <?= $form->field($manualDonation, 'email')->input('text');?>
+                <div class="manualdonation-amount form-group required">
+                    <label for="masked-amount" class="control-label">Amount</label>
+                    <?= MaskedInput::widget([
+                        'name' => 'ManualDonation[amount]',
+                        'value' => 1,
+                        'options' => [
+                            'class' => 'form-control',
+                            'id' => 'masked-amount'
+                        ],
+                        'clientOptions' => [
+                            'value' => 1,
+                            'prefix' => '$',
+                            'alias' =>  'decimal',
+                            'groupSeparator' => ',',
+                            'autoGroup' => true,
+                            'autoUnmask' => true,
+                            'rightAlign' => false,
+                            'allowMinus' => false,
+                            'allowPlus' => false
+                        ],
+                    ]) ?>
+                </div>
+                <?= $form->field($manualDonation, 'dateCreated')->label("Donation datetime")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
+                <?= $form->field($manualDonation, 'comments')->textarea();?>
+                <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaign->id])->label(false);?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Add Donation</button>
+            </div>
+            <? ActiveForm::end() ?>
+        </div>
+    </div>
+</div>

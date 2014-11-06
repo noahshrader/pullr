@@ -4,7 +4,7 @@
 ?>
 <div id="campaign-edit-form">
     <div class="module-inner">
-        <h5><i class="icon icon-list"></i>General</h5>
+        <h5><i class="icon icon-coin"></i>General</h5>
         <!-- Form Visibility -->
         <div class="form-group field-campaign-formvisibility">
                 <label>Form Visibility</label><i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Select 'Visible' if you want to show your form. Select 'Hidden' to hide your form."></i>
