@@ -1,4 +1,6 @@
-<?
+<?php
+use common\components\PullrUtils;
+
 $this->registerJSFile('@web/js/campaign/donation-table.js', [
     'depends' => common\assets\CommonAsset::className(),
 ]);
@@ -15,11 +17,11 @@ $user = \Yii::$app->user->identity;
             </h1>
             <section class="stats-overview module">
                 <div class='stats-box col-xs-4'>
-                    <h2>$<?= number_format($totalDonated, 2) ?></h2>
+                    <h2>$<?= PullrUtils::formatNumber($totalDonated, 2) ?></h2>
                     <span>Total Donated</span>
                 </div>
                 <div class='stats-box col-xs-4'>
-                    <h2>$<?= number_format($topDonation, 2) ?></h2>
+                    <h2>$<?= PullrUtils::formatNumber($topDonation, 2) ?></h2>
                     <span>Top Donation</span>
                 </div>
                 <div class='stats-box col-xs-4'>

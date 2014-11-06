@@ -27,7 +27,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
          draggable-region="region" 
          draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"          
          draggable>
-        Raised<span>${{number_format(campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised)}}</span>
+        Raised<span>${{campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised}}</span>
     </div>
     <!-- Alerts -->
     <div ng-if="region.widgetCampaignBar.alertsEnable" child-scope

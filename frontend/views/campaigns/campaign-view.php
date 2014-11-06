@@ -16,7 +16,7 @@ $user = \Yii::$app->user->identity;
 $donations = $campaign->getDonations()->all();
 
 $topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
-$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'] . '<span>' . '$' . \common\components\PullrUtils::formatNumber($topDonors[0]['amount'], 2) . '' . '</span>': '';
+$topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'] . '<span>$' . $topDonors[0]['amount'] . '</span>': '';
 $topDonation = Donation::getTopDonation([$campaign]);
 $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \common\components\PullrUtils::formatNumber($topDonation->amount, 2) . '' . '</span>': '';
 ?>

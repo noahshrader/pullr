@@ -84,6 +84,7 @@ span.slider-value {
 	padding-bottom: @sidenavheight - 2px;
 	width: @sidepanelwidth;
 	max-width: 50%;
+	min-width: 250px;
 	background: @maingray;
 	z-index: 900;
 
@@ -215,6 +216,8 @@ span.slider-value {
 			padding: 0 @halfgutter;
 			margin-top: -@sidenavheight;
 			width: @sidepanelwidth;
+			max-width: 50%;
+			min-width: 250px;
 			background: @gray10;
 			border-bottom: solid 1px @maingray;
 			z-index: 1001;
@@ -285,7 +288,6 @@ ul.panel-nav {
 	border-top: solid 1px #2e2e32;
 
 	li {
-		width: 25%;
 		&:last-child {
 			border: 0;
 		}
@@ -322,6 +324,10 @@ ul.panel-nav {
 		&:first-child:nth-last-child(4),
 		&:first-child:nth-last-child(4) ~ li {
 			width: 25%;
+		}
+		&:first-child:nth-last-child(5),
+		&:first-child:nth-last-child(5) ~ li {
+			width: 20%;
 		}
 		&.active a {
 			color: @white;

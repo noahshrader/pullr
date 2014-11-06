@@ -17,7 +17,7 @@ use common\models\Donation;
                 <a ng-hide="donation.nameFromForm == ''" ng-click="nameHiddenToggle(donation)" class="icon-eye toggleview"
                    ng-class="{nameHidden: donation.streamboard.nameHidden}"></a>
             </h3>
-            <p class="list-total">${{number_format(donation.amount)}}</p>
+            <p class="list-total">${{donation.amount}}</p>
             <p class="donation-comments">{{donation.comments}}</p>
             <span class="list-info">{{campaignsService.selectedCampaignsNumber > 1 ? donation.campaignName : ''}}</span>
             <span class="list-info">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</span>
