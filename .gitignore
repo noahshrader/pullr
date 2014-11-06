@@ -17,3 +17,4 @@ node_app/config.json
 /*.sln
 
 whitelist
+/frontend/web/assets/

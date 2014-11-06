@@ -1,5 +1,4 @@
 <?php
-
 use common\components\PullrUtils;
 
 $this->registerJSFile('@web/js/campaign/donation-table.js', [

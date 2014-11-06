@@ -3,6 +3,7 @@ namespace common\components\message;
 use common\components\Application;
 use common\models\Donation;
 use common\models\Campaign;
+use common\components\PullrUtils;
 use common\models\twitch\TwitchFollow;
 use common\models\twitch\TwitchSubscription;
 class ActivityMessage
@@ -18,17 +19,16 @@ class ActivityMessage
     public static function  messageNewCampaign(Campaign $campaign){
         return sprintf(self::TEMPLATE_NEW_CAMPAIGN, $campaign->name);
     }
-
     public static function  messageDonationReceived(Donation $donation){
-        return sprintf(self::TEMPLATE_DONATION_RECEIVED, $donation->getName(false), number_format($donation->amount, 2), $donation->campaign->name);
+        return sprintf(self::TEMPLATE_DONATION_RECEIVED, $donation->getName(false), PullrUtils::formatNumber($donation->amount, 2), $donation->campaign->name);
     }
 
     public static function  messageCampaignEnded(Campaign $campaign){
-        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, $campaign->name, number_format($campaign->amountRaised, 2));
+        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, $campaign->name, PullrUtils::formatNumber($campaign->amountRaised, 2));
     }
 
     public static function  messageGoalReached(Campaign $campaign){
-        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, number_format($campaign->amountRaised, 2), $campaign->name);
+        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, PullrUtils::formatNumber($campaign->amountRaised, 2), $campaign->name);
     }
 
     public static function messageNewTwitchFollower($displayName){

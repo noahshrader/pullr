@@ -17,6 +17,7 @@ use yii\base\ErrorException;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
+use common\components\PullrUtils;
 use yii\web\Response;
 use common\components\streamboard\alert\AlertMediaManager;
 use common\components\message\ActivityMessage;
@@ -176,7 +177,12 @@ class StreamboardController extends FrontendController
         $campaignsArray = [];
 
         foreach ($campaigns as $campaign) {            
+            //number format
+            $campaign->goalAmount = PullrUtils::formatNumber($campaign->goalAmount, 2);
+            $campaign->amountRaised = PullrUtils::formatNumber($campaign->amountRaised, 2);
+            $campaign->numberOfDonations = PullrUtils::formatNumber($campaign->numberOfDonations, 2);
             /**@var $campaign Campaign */
+            
             $array = $campaign->toArray(['id', 'name', 'goalAmount', 'amountRaised', 'numberOfDonations', 'numberOfUniqueDonors', 'userId']);        
             $array['streamboardSelected'] = $campaign->streamboard->selected ? true : false;
             $campaignsArray[$campaign->id] = $array;
@@ -209,6 +215,8 @@ class StreamboardController extends FrontendController
 
         $donationsArray = [];
         foreach ($donations as $donation) {
+            
+            $donation->amount = PullrUtils::formatNumber($donation->amount, 2);
             /**@var $donation Donation */
             $array = $donation->toArray(['id', 'campaignId', 'amount', 'nameFromForm', 'paymentDate', 'comments']);
             $array['campaignName'] = $donation->campaign->name;
