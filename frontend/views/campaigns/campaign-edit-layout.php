@@ -19,7 +19,7 @@ $user = \Yii::$app->user->identity;
 
         <!-- if Single Channel -->
         <div id="campaign-channelname" class="form-group highlight-wrap">
-            <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->label("Channel Name"); ?>
+            <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->input('text', ['value' => \Yii::$app->user->identity->uniqueName])->label("Channel Name"); ?>
         </div>
 
         <!-- if Team Channel -->
