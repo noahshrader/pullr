@@ -7,6 +7,7 @@ use yii\base\Model;
 use common\models\User;
 use common\models\Campaign;
 use common\components\Application;
+use common\components\PullrUtils;
 
 class Streamboard extends Model {
     /**
@@ -41,6 +42,7 @@ class Streamboard extends Model {
         }
         $stats['number_of_donations'] = Donation::getDonationsForCampaigns($selectedCampaigns)->count();
         $stats['number_of_donors']  = Donation::getDonationsForCampaigns($selectedCampaigns)->count('DISTINCT email');
+        
         return $stats;
     }
 
