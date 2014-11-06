@@ -12,6 +12,9 @@
                 <? $keyValues = [ true => 'Visible', false => 'Hidden']; ?>
                 <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
         </div>
+
+        <?=$form->field($campaign, 'donationButtonText')->input('text'); ?>
+
         <div class="row">
 	        <div class="col-sm-4">
 		        <!-- Donor Comments -->

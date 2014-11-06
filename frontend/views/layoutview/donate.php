@@ -113,7 +113,7 @@ use yii\widgets\MaskedInput;
                 <span class="counter"></span>
             </div>
             <? endif;?>
-            <button type="submit" class="btn-primary btn donate <? if($campaign->firstGiving):?>continue<? endif;?>">
+            <button type="submit" class="btn-primary btn donate <? if($campaign->firstGiving):?>continue<? endif;?>" data-dtext="<?=htmlspecialchars(trim($campaign->donationButtonText), ENT_QUOTES, 'UTF-8');?>">
                 Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 1 : 5 ?>
             </button>
             <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">Privacy Policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">Terms of Service</a>.</p>

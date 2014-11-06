@@ -394,7 +394,7 @@ class CampaignsController extends FrontendController {
             $donation->nameFromForm = $manualDonation->name;
             $donation->email = $manualDonation->email;
             $donation->comments = $manualDonation->comments;
-            $donation->is_manual = true;
+            $donation->isManual = true;
             $donation->save();
 
             Campaign::updateDonationStatistics($donation->campaignId);
@@ -412,7 +412,7 @@ class CampaignsController extends FrontendController {
     public function actionDeletemanualdonation($donationId)
     {
         $donation = Donation::findOne(['id' => intval($donationId)]);
-        if (!empty($donation) && ($donation->is_manual == true) && (\Yii::$app->user->id == $donation->userId))
+        if (!empty($donation) && ($donation->isManual == true) && (\Yii::$app->user->id == $donation->userId))
         {
             $donation->paymentDate = 0;
             $donation->save();

@@ -27,31 +27,26 @@ class Campaign extends ActiveRecord {
     const STATUS_ACTIVE = 'active';
     const STATUS_PENDING = 'pending';
     const STATUS_DELETED = 'deleted';
-
-    public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_PENDING, self::STATUS_DELETED];
-
     const STREAM_SERVICE_TWITCH = 'Twitch';
     const STREAM_SERVICE_HITBOX = 'Hitbox';
-
-    public static $STREAM_SERVICES = [self::STREAM_SERVICE_TWITCH, self::STREAM_SERVICE_HITBOX];
-    
     const TYPE_PERSONAL_FUNDRAISER = 'Personal Fundraiser';
     const TYPE_CHARITY_FUNDRAISER = 'Charity Fundraiser';
-    public static $TYPES = [self::TYPE_PERSONAL_FUNDRAISER, self::TYPE_CHARITY_FUNDRAISER];
-    
     const LAYOUT_TYPE_SINGLE = 'Single Stream';
     const LAYOUT_TYPE_TEAM = 'Twitch Team';
     const LAYOUT_TYPE_MULTI = 'Multi Stream';
-
-    public static $LAYOUT_TYPES = [self::LAYOUT_TYPE_SINGLE, self::LAYOUT_TYPE_TEAM, self::LAYOUT_TYPE_MULTI];
-
-    // const DONATION_PERSONAL_PAYPAL = 'Personal Paypal';
     const DONATION_PARTNERED_CHARITIES = 'Partnered Charities';
     const DONATION_CUSTOM_FUNDRAISER = 'Custom Fundraiser';
-    
-    public static $DONATION_DESTINATIONS = [self::DONATION_PARTNERED_CHARITIES, self::DONATION_CUSTOM_FUNDRAISER];
-    
     const DESCRIPTION_MAX_LENGTH = 1000;
+
+    public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_PENDING, self::STATUS_DELETED];
+    public static $STREAM_SERVICES = [self::STREAM_SERVICE_TWITCH, self::STREAM_SERVICE_HITBOX];
+    public static $TYPES = [self::TYPE_PERSONAL_FUNDRAISER, self::TYPE_CHARITY_FUNDRAISER];
+    public static $LAYOUT_TYPES = [self::LAYOUT_TYPE_SINGLE, self::LAYOUT_TYPE_TEAM, self::LAYOUT_TYPE_MULTI];
+    public static $DONATION_DESTINATIONS = [self::DONATION_PARTNERED_CHARITIES, self::DONATION_CUSTOM_FUNDRAISER];
+
+    public $backgroundImageUrl;
+    public $backgroundImageSmallUrl;
+    public $backgroundImage;
 
     /**
      * @return string the name of the table associated with this ActiveRecord class.
@@ -62,27 +57,63 @@ class Campaign extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['name', 'alias', 'tiedToParent', 'parentCampaignId', 'description', 'goalAmount', 'streamService', 'type', 'startDate', 'endDate', 'layoutType',
-                'paypalAddress', 'donationDestination', 'charityId', 'customCharity', 'customCharityPaypal',
-                'channelName', 'channelTeam', 'primaryColor', 'secondaryColor', 'themeId', 'twitterEnable',
-                'twitterName', 'facebookEnable', 'facebookUrl', 'youtubeEnable', 'youtubeUrl',
-                'enableDonorComments', 'enableThankYouPage', 'enableDonationProgressBar', 'thankYouPageText', 'teamEnable', 'formVisibility']
+            'default' => [
+                'name',
+                'alias',
+                'tiedToParent',
+                'parentCampaignId',
+                'description',
+                'goalAmount',
+                'streamService',
+                'type',
+                'startDate',
+                'endDate',
+                'layoutType',
+                'paypalAddress',
+                'donationDestination',
+                'charityId',
+                'customCharity',
+                'customCharityPaypal',
+                'channelName',
+                'channelTeam',
+                'primaryColor',
+                'secondaryColor',
+                'themeId',
+                'twitterEnable',
+                'twitterName',
+                'facebookEnable',
+                'facebookUrl',
+                'youtubeEnable',
+                'youtubeUrl',
+                'enableDonorComments',
+                'enableThankYouPage',
+                'enableDonationProgressBar',
+                'thankYouPageText',
+                'teamEnable',
+                'formVisibility',
+                'donationButtonText'
+            ]
         ];
     }
 
-    public function __construct($config = array()) {
+    public function __construct($config = array())
+    {
         parent::__construct($config);
 
-        if ($this->isNewRecord) {
+        if ($this->isNewRecord)
+        {
             $this->goalAmount = 0;
             $this->type = self::TYPE_PERSONAL_FUNDRAISER;
             $this->layoutType = self::LAYOUT_TYPE_SINGLE;
-            if (isset(\Yii::$app->components['user']) && !\Yii::$app->user->isGuest){
+            if (isset(\Yii::$app->components['user']) && !\Yii::$app->user->isGuest)
+            {
                 $this->userId = \Yii::$app->user->id;
             }
         }
     }
-    public function init() {
+
+    public function init()
+    {
         parent::init();
         $this->type = self::TYPE_PERSONAL_FUNDRAISER;
         $this->formVisibility = true;
@@ -92,7 +123,8 @@ class Campaign extends ActiveRecord {
         $this->donationDestination = self::DONATION_PARTNERED_CHARITIES;
     }
     
-    public function beforeSave($insert) {
+    public function beforeSave($insert)
+    {
 
         if ($this->type == self::TYPE_PERSONAL_FUNDRAISER && empty($this->paypalAddress))
         {
@@ -242,17 +274,12 @@ class Campaign extends ActiveRecord {
             $this->thankYouPageText = HtmlPurifier::process($this->thankYouPageText);
         }
     }
+
     public function twitterFilter() {
         if ($this->twitterName && $this->twitterName[0] != '@') {
             $this->twitterName = '@' . $this->twitterName;
         }
     }
-
-    public $backgroundImageUrl;
-    public $backgroundImageSmallUrl;
-    
-    /*that is backgroundImage container photo*/
-    public $backgroundImage;
 
     public function afterFind() {
         parent::afterFind();
@@ -275,7 +302,6 @@ class Campaign extends ActiveRecord {
             $this->backgroundImageSmallUrl = BaseImage::getMiddleUrlById($id);
         }
     }
-
 
     /**
      * 
@@ -360,6 +386,7 @@ class Campaign extends ActiveRecord {
         $charity = $this->charity;
         return ($charity) ? $charity->paypal : '';
     }
+
     /**
      * @description Fired after successful donation. It updates current campaign statistics and parent campaign statistics.
      * @param integer $id
