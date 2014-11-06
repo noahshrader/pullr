@@ -1,3 +1,7 @@
+<?php
+use common\components\PullrUtils;
+?>
+
 <table id="donations-table" class="display donations-table extend donations-table-for-donor" cellspacing="0" width="100%">
     <thead>
         <tr>
@@ -15,7 +19,7 @@
                     <?= $donation->name ? $donation->name : 'Anonymous' ?>
                 </td>
                 <td class="raised" width="15%">
-                    <span>$<?= number_format($donation->amount, 2) ?></span>
+                    <span>$<?= PullrUtils::formatNumber($donation->amount, 2) ?></span>
                 </td>
                 <td width="25%">
                      <?= $donation->campaign->name ?>
