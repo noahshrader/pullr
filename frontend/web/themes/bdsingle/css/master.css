@@ -563,10 +563,6 @@ header .container {
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
 }
-/* Footer */
-footer span.copy {
-  font-size: 0.8em;
-}
 /* Responsive */
 /* ------------------------------------------------- */
 /* Max 1200px */

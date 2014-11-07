@@ -817,6 +817,7 @@ footer a.logo {
 }
 footer span.copy {
   display: block;
+  font-size: 0.8em;
   padding: 1em 0;
 }
 @media (min-width: 1200px) {

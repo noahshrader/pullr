@@ -6,6 +6,7 @@
 
 body {
 	.secondary();
+	background: @base;
 }
 
 /* Palette */
@@ -25,6 +26,14 @@ header {
 	.logo {
 		a {
 			color: @white;
+			height: 42px;
+			line-height: 42px;
+		}
+	}
+	.menu-actions {
+		a {
+			color: @white;
+			line-height: 42px;
 		}
 	}
 }	
@@ -46,15 +55,36 @@ header {
 	}
 }
 
-.bg-image {
+/* Image Container */
+.header-wrap {
 	position: relative;
-	background: @maingray url(../img/bg.png) no-repeat;
-	background-size: cover;
-} 
+
+	.overlay-fade {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 50%;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(34, 35, 37, 0.00)), to(rgba(34, 35, 37, 1.00)));
+		background-image: -webkit-linear-gradient(top, rgba(34, 35, 37, 0.00), rgba(34, 35, 37, 1.00));
+		background-image: -moz-linear-gradient(top, rgba(34, 35, 37, 0.00), rgba(34, 35, 37, 1.00));
+		background-image: -o-linear-gradient(top, rgba(34, 35, 37, 0.00), rgba(34, 35, 37, 1.00));
+		background-image: -ms-linear-gradient(top, rgba(34, 35, 37, 0.00), rgba(34, 35, 37, 1.00));
+		background-image: linear-gradient(top, rgba(34, 35, 37, 0.00), rgba(34, 35, 37, 1.00));
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#222325', EndColorStr='#222325');
+		z-index: 0;
+	}
+}
 
 /* Main Stats */
 .stats {
-	padding: 8em 0 4em;
+	position: relative;
+	padding: 8em 0 3em;
+	z-index: 1;
+
+	h5 {
+		color: @white;
+	}
 
 	/* Avatar */
 	img.avatar {
@@ -75,24 +105,32 @@ header {
 	.donor-stats {
 		position: relative;
 		display: block;
-		padding: @halfgutter 0;
 		background: @base;
 		overflow: hidden;
 
 		.col-md-4 {
 			position: relative;
-			border-right: 1px solid #323232;
+			padding: @halfgutter;
+			border-right: 1px solid @maingray;
 
+			&:last-child {
+				border-right: 0;
+			}
+			&.donors {
+				span {
+					line-height: 30px;
+				}
+			}
 		}
 		.icon-holder {
 			display: inline-block;
-			height: 100%;
 			float: left;
-			padding-top: 0.2em;
+			height: 100%;
 			
-			[class^="icon-"], [class*=" icon-"] {
-				color: @c1;
-				font-size: 2.6em;
+			i {
+				color: @gray10;
+				font-size: 2em;
+				line-height: 36px;
 				margin-right: 0.4em;
 				padding-top: 0;
 			}
@@ -102,11 +140,12 @@ header {
 			margin-right: 0.8em;
 			line-height: 1.1em;
 			color: @lightest;
-			padding-top: 0.4em;
+			padding-top: 0.2em;
+			max-width: 60px;
 		}
 		h1 {
-			color: @c2;
 			display: inline-block;
+			font-size: 2.4em;
 			font-style: italic;
 			text-align: right;
 			position: absolute;
@@ -131,7 +170,7 @@ header {
 			
 			.project-progressbar {
 				content: '';
-				position: absolute;
+				position: relative;
 				top: 0;
 				left: 0;
 				height: 100%;
@@ -140,33 +179,26 @@ header {
 				-webkit-transition: width 0.7s ease-in-out;
 				transition: width 0.7s ease-in-out;
 
-			span {
-				display: block;
-				position: absolute;
-				top: -44px;
-				left: 0;
-				opacity: 0;
-				color: #FFF;
-				font-weight: 600;
-				margin-left: -30px;
-				-webkit-transition: opacity 0.7s;
-				transition: opacity 0.7s;
-				-webkit-transition-delay: 0.7s;
-				transition-delay: 0.7s;
+				span {
+					display: block;
+					position: absolute;
+					top: -7px;
+					right: 0;
+					color: @white;
+					font-weight: 600;
+					margin-left: -30px;
+					height: 20px;
+					width: 20px;
+					border: 4px solid @white;
+					.round-radius;
+					-webkit-transition: opacity 0.7s;
+					transition: opacity 0.7s;
+					-webkit-transition-delay: 0.7s;
+					transition-delay: 0.7s;
 				}	
 			}
-				}
-			
-		}	
-		.progress-marker {
-				left: 45%;
-				height: 20px;
-				width: 20px;
-				border: 4px solid @lightest;
-				background: @c1;
-				position: relative;
-				top: -7px;
-			}
+		}
+	}
 }
 
 
@@ -176,9 +208,47 @@ header {
 
 .stream-wrap {
 	background: @base;
+
+	a.togglechat {
+		position: absolute;
+		bottom: -26px;
+		right: 0;
+		padding: 0 @halfgutter;
+		border-bottom-right-radius: 6px;
+		border-bottom-left-radius: 6px;
+	}
+}
+
+
+/* Campaign Description */
+.campaign-description {
+	background: @white;
 }
 
 
 /* Footer */
 /* ------------------------------------------------- */
 @import "../../../../global/themes/css/less/footer.less";
+
+footer {
+
+	h5 {
+		color: @gray20;
+	}
+	a.logo {
+		color: @gray20;
+		&:hover {
+			color: @white;
+		}
+	}
+	span.copy {
+		color: @gray15;
+
+		a {
+			color: @gray15;
+			&:hover {
+				color: @white;
+			}
+		}
+	}
+}

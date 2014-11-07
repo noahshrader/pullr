@@ -546,77 +546,19 @@ h1,
 h2,
 h3,
 h4 {
-  margin: 0.6em 0 0.5em;
+  font-family: 'Lato', sans-serif;
+  color: #ffffff;
   font-weight: inherit;
   line-height: 1.2;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-bottom: 0;
-  margin-top: 0;
-  font-family: 'Lato', sans-serif;
-}
-p,
-ol,
-ul,
-blockquote,
-pre,
-code {
-  font-size: 1em;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  line-height: 1.5em;
-  color: #ffffff;
-}
-p,
-ol,
-ul,
-blockquote {
-  font-family: 'Lato', sans-serif;
-}
-h1,
-h2,
-h3,
-h4,
-p,
-ol,
-ul,
-blockquote,
-pre,
-code {
-  color: #ffffff;
-}
-.stats h1 {
-  font-family: 'Lato', sans-serif;
-  padding: 0 0 .2em 0;
-}
-.feed-details h3 {
-  font-family: 'Lato', sans-serif;
-  margin-bottom: 0;
-  font-weight: normal;
-}
-.feed-details p {
-  margin-top: 0;
-  font-style: italic;
-}
-.charity-info h4,
-.donor-info h4 {
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  color: #0083c2;
+  margin: 0.6em 0 0.5em;
 }
 h1 {
   margin-top: 0;
-  font-size: 2.6em;
+  font-size: 3em;
   font-weight: 300;
 }
 h2 {
   font-size: 2.2em;
-  color: #0083c2;
 }
 h3 {
   font-size: 1.8em;
@@ -628,13 +570,21 @@ small,
 .font_small {
   font-size: 0.618em;
 }
-date {
+p,
+ol,
+ul,
+blockquote,
+pre,
+code {
   color: #ffffff;
-  font-weight: 700;
-  display: block;
+  font-size: 1em;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  line-height: 1.5em;
 }
 body {
   font-family: 'Lato', sans-serif;
+  background: #222225;
 }
 /* Palette */
 /* ------------------------------------------------- */
@@ -691,6 +641,12 @@ header {
 }
 header .logo a {
   color: #ffffff;
+  height: 42px;
+  line-height: 42px;
+}
+header .menu-actions a {
+  color: #ffffff;
+  line-height: 42px;
 }
 /* Main */
 /* ------------------------------------------------- */
@@ -751,17 +707,33 @@ a.icon-facebook:hover {
 .btn:hover {
   opacity: .9;
 }
-.bg-image {
+/* Image Container */
+.header-wrap {
   position: relative;
-  background: #2e2e32 url(../img/bg.png) no-repeat;
-  background-size: cover;
+}
+.header-wrap .overlay-fade {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(34, 35, 37, 0)), to(#222325));
+  background-image: -webkit-linear-gradient(top, rgba(34, 35, 37, 0), #222325);
+  background-image: linear-gradient(top, rgba(34, 35, 37, 0), #222325);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#222325', EndColorStr='#222325');
+  z-index: 0;
 }
 /* Main Stats */
 .stats {
-  padding: 8em 0 4em;
+  position: relative;
+  padding: 8em 0 3em;
+  z-index: 1;
   /* Avatar */
   /* Numbers */
   /* Progress Bar */
+}
+.stats h5 {
+  color: #ffffff;
 }
 .stats img.avatar {
   margin-top: 1em;
@@ -778,24 +750,29 @@ a.icon-facebook:hover {
 .stats .donor-stats {
   position: relative;
   display: block;
-  padding: 15px 0;
   background: #222225;
   overflow: hidden;
 }
 .stats .donor-stats .col-md-4 {
   position: relative;
-  border-right: 1px solid #323232;
+  padding: 15px;
+  border-right: 1px solid #2e2e32;
+}
+.stats .donor-stats .col-md-4:last-child {
+  border-right: 0;
+}
+.stats .donor-stats .col-md-4.donors span {
+  line-height: 30px;
 }
 .stats .donor-stats .icon-holder {
   display: inline-block;
-  height: 100%;
   float: left;
-  padding-top: 0.2em;
+  height: 100%;
 }
-.stats .donor-stats .icon-holder [class^="icon-"],
-.stats .donor-stats .icon-holder [class*=" icon-"] {
-  color: #1dbc9c;
-  font-size: 2.6em;
+.stats .donor-stats .icon-holder i {
+  color: #3a3a40;
+  font-size: 2em;
+  line-height: 36px;
   margin-right: 0.4em;
   padding-top: 0;
 }
@@ -804,11 +781,12 @@ a.icon-facebook:hover {
   margin-right: 0.8em;
   line-height: 1.1em;
   color: #ffffff;
-  padding-top: 0.4em;
+  padding-top: 0.2em;
+  max-width: 60px;
 }
 .stats .donor-stats h1 {
-  color: #0083c2;
   display: inline-block;
+  font-size: 2.4em;
   font-style: italic;
   text-align: right;
   position: absolute;
@@ -830,7 +808,7 @@ a.icon-facebook:hover {
 }
 .stats .amount-progress .project-progress .project-progressbar {
   content: '';
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   height: 100%;
@@ -842,25 +820,20 @@ a.icon-facebook:hover {
 .stats .amount-progress .project-progress .project-progressbar span {
   display: block;
   position: absolute;
-  top: -44px;
-  left: 0;
-  opacity: 0;
-  color: #FFF;
+  top: -7px;
+  right: 0;
+  color: #ffffff;
   font-weight: 600;
   margin-left: -30px;
+  height: 20px;
+  width: 20px;
+  border: 4px solid #ffffff;
+  border-radius: 30px;
+  background-clip: padding-box;
   -webkit-transition: opacity 0.7s;
   transition: opacity 0.7s;
   -webkit-transition-delay: 0.7s;
   transition-delay: 0.7s;
-}
-.stats .progress-marker {
-  left: 45%;
-  height: 20px;
-  width: 20px;
-  border: 4px solid #ffffff;
-  background: #1dbc9c;
-  position: relative;
-  top: -7px;
 }
 /* Layout */
 /* ------------------------------------------------- */
@@ -917,6 +890,18 @@ a.icon-facebook:hover {
 .stream-wrap {
   background: #222225;
 }
+.stream-wrap a.togglechat {
+  position: absolute;
+  bottom: -26px;
+  right: 0;
+  padding: 0 15px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+/* Campaign Description */
+.campaign-description {
+  background: #ffffff;
+}
 /* Footer */
 /* ------------------------------------------------- */
 footer {
@@ -937,5 +922,24 @@ footer a.logo {
 }
 footer span.copy {
   display: block;
+  font-size: 0.8em;
   padding: 1em 0;
+}
+footer h5 {
+  color: #53535a;
+}
+footer a.logo {
+  color: #53535a;
+}
+footer a.logo:hover {
+  color: #ffffff;
+}
+footer span.copy {
+  color: #47474d;
+}
+footer span.copy a {
+  color: #47474d;
+}
+footer span.copy a:hover {
+  color: #ffffff;
 }
