@@ -550,11 +550,10 @@ h4 {
   color: #ffffff;
   font-weight: inherit;
   line-height: 1.2;
-  margin: 0.6em 0 0.5em;
+  margin: 0;
 }
 h1 {
-  margin-top: 0;
-  font-size: 3em;
+  font-size: 3.2em;
   font-weight: 300;
 }
 h2 {
@@ -564,7 +563,7 @@ h3 {
   font-size: 1.8em;
 }
 h4 {
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 small,
 .font_small {
@@ -697,6 +696,16 @@ a.icon-facebook:hover {
 .info h4 {
   color: #1dbc9c;
 }
+/* Dark Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(14, 15, 17, 0.3);
+  z-index: 0;
+}
 /* Buttons */
 .btn {
   padding: 0 15px;
@@ -726,11 +735,14 @@ a.icon-facebook:hover {
 /* Main Stats */
 .stats {
   position: relative;
-  padding: 8em 0 3em;
+  padding: 8em 0 4em;
   z-index: 1;
   /* Avatar */
   /* Numbers */
   /* Progress Bar */
+}
+.stats h1 {
+  margin-bottom: 10px;
 }
 .stats h5 {
   color: #ffffff;
@@ -738,14 +750,14 @@ a.icon-facebook:hover {
 .stats img.avatar {
   margin-top: 1em;
   margin-bottom: 1em;
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
   background: #ffffff;
   border: solid 4px #ffffff;
   border-radius: 50%;
 }
 .stats .donate-button {
-  padding: 30px;
+  padding: 30px 30px 45px;
 }
 .stats .donor-stats {
   position: relative;

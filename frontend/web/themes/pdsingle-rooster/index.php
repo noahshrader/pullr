@@ -51,7 +51,7 @@
                     <div class="col-md-12 center">
                         <img class="avatar" src="{{channel.logo}}" ng-cloak/>     
                         <h1 ng-cloak>{{campaign.name}}</h1>
-                        <h3 style="color:{{campaign.primaryColor}};" ng-cloak>{{campaign.charity.name}}{{campaign.customCharity}}</h3>
+                        <h4 style="color:{{campaign.secondaryColor}};" ng-cloak>{{campaign.charity.name}}{{campaign.customCharity}}</h4>
                         <h5 ng-cloak>{{campaign.startDateFormatted}} - {{campaign.endDateFormatted}}</h5>
                         <div class="donate-button">
                             <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">Donate</button>
@@ -90,6 +90,7 @@
                 </div>
             </div>
         </section>
+        <div class="overlay"></div>
         <div class="overlay-fade"></div>
     </div>
 

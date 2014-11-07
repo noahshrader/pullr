@@ -258,15 +258,6 @@ header .container {
   color: #1dbc9c;
   margin: 0;
 }
-.stats .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(14, 15, 17, 0.3);
-  z-index: 1;
-}
 /* Progress Bar */
 .project-progress {
   position: absolute;

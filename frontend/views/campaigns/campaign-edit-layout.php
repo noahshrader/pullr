@@ -75,6 +75,11 @@ $user = \Yii::$app->user->identity;
         <!-- Background Image -->
         <div class="form-group cf">
             <div id="logo-container">
+                <? if (!empty($campaign->backgroundImageSmallUrl)):?>
+                <div class="image-upload-preview">
+                    <img src="<?= $campaign->backgroundImageSmallUrl ?>">
+                </div>
+                <?endif;?>
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
                     <label class="control-label">Campaign Image</label>
                     <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page."></i>
