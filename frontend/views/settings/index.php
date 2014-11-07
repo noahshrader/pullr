@@ -59,10 +59,7 @@ endif;
 						$timezones = array_values(common\components\PullrUtils::timezone_list());
 						$keyValues = array_combine($timezones, $timezones);
 						?>
-						<label class="control-label" for="user-timezone">Timezone</label>
-						<div>
-							<strong id='timezone'><?= $user->timezone;?></strong> <span>Not your timezone? Choose one:</span>
-						</div>
+						<label>Timezone: <strong id='timezone'><?= $user->timezone;?></strong></label>
 						<?= $form->field($user, 'timezone', ['template'=>'{input}'])->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 					</div>
 				</div>
@@ -107,7 +104,7 @@ endif;
 	            	<a class="account-deactivate" data-toggle="modal" data-target="#deactivateModal">Deactivate my account</a>
 	            </div>
 			</section>
-			<div class="form-group text-center">
+			<div class="actions">
 				<?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
 			</div>
 		</div>
