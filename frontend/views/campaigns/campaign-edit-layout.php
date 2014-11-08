@@ -77,6 +77,9 @@ $user = \Yii::$app->user->identity;
             <div id="logo-container">
                 <? if (!empty($campaign->backgroundImageSmallUrl)):?>
                 <div class="image-upload-preview">
+                    <div class="close fileinput-remove">
+                        <a id="image-uploaded" data-campaignid="<?=$campaign->id;?>">×</a>
+                    </div>
                     <img src="<?= $campaign->backgroundImageSmallUrl ?>">
                 </div>
                 <?endif;?>

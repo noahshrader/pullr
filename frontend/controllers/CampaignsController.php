@@ -3,13 +3,16 @@
 namespace frontend\controllers;
 
 use common\components\message\ActivityMessage;
+use common\models\base\BaseImage;
 use common\models\FirstGiving;
 use common\models\Campaign;
 use frontend\models\site\ManualDonation;
 use yii\base\Exception;
+use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 use common\components\Application;
 use common\models\LayoutTeam;
+use yii\web\Request;
 use yii\web\Response;
 use Yii;
 use kartik\widgets\ActiveForm;
@@ -421,5 +424,52 @@ class CampaignsController extends FrontendController {
         Campaign::updateDonationStatistics($donation->campaignId);
 
         $this->redirect("index");
+    }
+
+    /**
+     * Removes campaign bg image
+     * Called by Ajax
+     *
+     * @return bool
+     * @throws BadRequestHttpException
+     * @throws \Exception
+     */
+    public function actionBgdelete()
+    {
+        if (!Yii::$app->getRequest()->isAjax)
+        {
+            throw new BadRequestHttpException('Ajax only');
+        }
+
+        $campaignId = intval(Yii::$app->getRequest()->post('campaignId', 0));
+        $campaign = Campaign::findOne(['id' => intval($campaignId)]);
+
+        if (isset($campaign))
+        {
+            if (\Yii::$app->user->id !== $campaign->userId)
+            {
+                throw new BadRequestHttpException('You can alter campaigns you own');
+            }
+
+            if (!empty($campaign->backgroundImageId))
+            {
+                Yii::$app->db->transaction(function() use ($campaign)
+                {
+                    $baseImage = BaseImage::findOne(['id' => $campaign->backgroundImageId]);
+                    if (isset($baseImage))
+                    {
+                        $baseImage->status = 'deleted';
+                        $baseImage->save();
+                    }
+
+                    $campaign->backgroundImageId = null;
+                    $campaign->save();
+                });
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }
