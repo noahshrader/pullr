@@ -4,10 +4,15 @@ use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
 ?>
 <!-- BEGIN Donation Form -->
+<script src="api/script"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type='text/javascript'>
+    Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
+</script>
 
 <section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 'tip-jar' :'events-form' ?>">
     <div class="donation-form-header">
-        <h2 class="main-title"><?= $campaign->name ?></h2>
+        <h2 class="main-title">{{campaign.name}}</h2>
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
             <? 
                $charityName = '';
