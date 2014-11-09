@@ -29,7 +29,9 @@ use common\components\PullrUtils;
                         'followers' => $followers,
                         'showSubscriber' => $showSubscriber,
                         'showFollower' => $showFollower,
-                        'emptyActivityMessage' => $emptyActivityMessage
+                        'emptyActivityMessage' => $emptyActivityMessage,
+                        'groupUser' => $groupUser,
+                        'groupDonors' => $groupDonors,                        
                     ]);
                     echo preg_replace("/\s+/", " ", trim($activityFeed));
                 ?></div>

@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.donations', []).
-        service('donations',function ($http, $interval, $compile, simpleMarqueeHelper) {
+        service('donations',function ($http, $interval, $compile, stream, simpleMarqueeHelper, donationsFilterToSelectedCampaignsFilter, groupByFilter, orderByFilter, limitToFilter) {
             var Service = this;
             this.donations = [];
             this.followers = [];
@@ -8,7 +8,7 @@
             this.unorderedDonations = {};
             this.lastDonationId = 0;
             this.stats = [];
-
+            this.groupDonations = [];
             this.updateDonations = updateDonations;
             this.clear = clear;
 
@@ -36,37 +36,45 @@
                     if (detectChange(data.subscribers, oldSubscribers) || detectChange(data.followers, oldFollowers)) {
                         simpleMarqueeHelper.recalculateMarquee();
                     }
-
-                    if (!data.donations) {
-                        console.log('[ERROR]');
-                        console.log('[donationsService.js -> updateDonations] No donations array in response');
-                        console.log('[RESPONSE]', new Date().getTime() / 1000);
-                    } else if (data.donations.length > 0) {
+                    
+                    if (data.groupDonations) {
+                        if (Service.groupDonations.length == 0 || detectChange(Service.groupDonations, data.groupDonations)) {
+                            Service.groupDonations = data.groupDonations;                                
+                        }                                            
+                    } else if (data.donations && data.donations.length > 0) {
                         Service.lastDonationId = data.donations[0].id;
-                        if ( detectChange(data.donations, Service.donations)) {
-                            simpleMarqueeHelper.recalculateMarquee();
-                        }
                         sortDonations();
-
+                        if ( detectChange(data.donations, Service.donations)) {
+                            simpleMarqueeHelper.recalculateMarquee();                            
+                        }                                                                        
                     }
+
+                     
                 });                
             };
 
-            function detectChange(streamArray1, streamArray2) {
-                var found = false;
-                for (var i=0; i<streamArray1.length; i++) {
-                    for(var j=0; j<streamArray2.length; j++) {
-                        if(streamArray1[i].id == streamArray2[j].id) {
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (found == false) {
-                        return true;
-                    }
+            function detectGroupDonationChange(groupDonations1, groupDonations2) {                
+                if (countGroupDonationItem(groupDonations1) != countGroupDonationItem(groupDonations2)) {
+                    return true;
                 }
                 return false;
             }
+
+            function countGroupDonationItem(groupDonations) {
+                var count = 0;
+                angular.forEach(groupDonations, function(item){
+                    count++;
+                });
+                return count;
+            }
+
+            function detectChange(streamArray1, streamArray2) {
+                if (streamArray2.length != streamArray1.length) {
+                    return true;
+                }
+                return false;
+            }
+
             function sortDonations() {
                 var newDonations = [];
                 for (var key in Service.unorderedDonations) {
@@ -76,8 +84,16 @@
                 newDonations.sort(function (a, b) {
                     return b.amount - a.amount;
                 });
-                Service.donations = newDonations;             
+                Service.donations = newDonations;                         
             };
+
+            function groupDonations() {
+                console.log(Service.donations);
+                var groupDonations = orderByFilter(Service.donations, 'amount');
+                groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations, 'amount');                
+                groupDonations = groupByFilter(groupDonations, 'amount');
+                Service.groupDonations = groupDonations;        
+            }
 
             function clear() {
                 Service.unorderedDonations = {};
@@ -95,5 +111,23 @@
                 }
                 return filteredDonations;
             }
+        }).filter('groupBy', function() {
+            var groupBy = function(list, groupBy) {
+                var groupedList = {};                
+                angular.forEach(list, function(item, index) {
+                    if (! groupedList.hasOwnProperty(item[groupBy])) {                        
+                        lastGroupValue = item[groupBy];                        
+                        groupedList[lastGroupValue] = [];
+                        groupedList[lastGroupValue].push(item);                       
+                        angular.forEach(list, function(item1, index1) {
+                            if ( lastGroupValue == item1[groupBy] && index1 > index) {
+                                groupedList[lastGroupValue].push(item1);                                
+                            }
+                        });
+                    }                    
+                });             
+                return groupedList;
+            }
+            return groupBy;
         });
 })();

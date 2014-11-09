@@ -145,18 +145,54 @@ class StreamboardController extends FrontendController
         $data = $this->getSourceData($user);
         $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$user->id])->one();
         if ( $donationFeed ) {
-            $donationFeedSetting = $donationFeed->toArray(['showSubscriber', 'showFollower']);
+            $donationFeedSetting = $donationFeed->toArray(['showSubscriber', 'showFollower', 'groupUser']);
             $showSubscriber = $donationFeedSetting['showSubscriber'];
             $showFollower = $donationFeedSetting['showFollower'];
+            $groupUser = $donationFeedSetting['groupUser'];
         } else {
             $showSubscriber = false;
             $showFollower = false;
+            $groupUser = false;
         }
+
+        $sinceDate = $user->streamboardConfig->clearedDate;
+        $selectedCampaigns = Streamboard::getSelectedCampaigns($user);
+        $donors = [];
+        $groupDonors = [];
+        if ($groupUser) {
+            $groupDonors = Donation::getTopDonorsForCampaignsGroupByAmount($selectedCampaigns, null, true, $sinceDate);
+        } else {
+            $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
+        }
+        
+
+        $subscribers = [];
+        if ($user->userFields->twitchPartner) {
+            $subscriptions = TwitchSubscription::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
+            foreach ($subscriptions as $subscription) {
+                /** @var TwitchSubscription $subscription */
+                $subscribers[] = $subscription->toArray(['twitchUserId', 'display_name', 'createdAt']);
+            }
+        }
+
+        $followers = [];
+        if ($user->userFields->twitchPartner) {
+            $twitchFollowers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
+            foreach ($twitchFollowers as $twitchFollower) {
+                /** @var TwitchSubscription $subscription */
+                $followers[] = $twitchFollower->toArray(['twitchUserId', 'display_name', 'createdAt']);
+            }
+        }
+
         $data['showSubscriber'] = $showSubscriber;
         $data['showFollower'] = $showFollower;
-        
+        $data['donors'] = $donors;
+        $data['subscribers'] = $subscribers;
+        $data['followers'] = $followers;
+        $data['groupUser'] = $groupUser;
         $data['campaigns'] = $this->getUserCampaigns($user);
         $data['twitchPartner'] = $user->userFields->twitchPartner;        
+        $data['groupDonors'] = $groupDonors;
         
         return $this->render('config/settings/source', [
             'data' => $data,
@@ -203,34 +239,26 @@ class StreamboardController extends FrontendController
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $user = Application::getCurrentUser();
-        $user = Application::getCurrentUser();
+        
         $sinceDate = $user->streamboardConfig->clearedDate;
-        /*we are limiting by 100 here, but on html after applying campaign's filter we will limit to just 20*/
-        $donations = $user->getDonations(['sinceId' => $since_id])
-                            ->andWhere('paymentDate > ' . $sinceDate)
-                            ->with('campaign', 'streamboard')
-                            ->orderBy('paymentDate DESC')
-                            ->limit(100)                            
-                            ->all();
 
-        $donationsArray = [];
-        foreach ($donations as $donation) {
-            
-            $donation->amount = PullrUtils::formatNumber($donation->amount, 2);
-            /**@var $donation Donation */
-            $array = $donation->toArray(['id', 'campaignId', 'amount', 'nameFromForm', 'paymentDate', 'comments']);
-            $array['campaignName'] = $donation->campaign->name;
-            $array['streamboard'] = [
-                'nameHidden' => false,
-                'wasRead' => false
-            ];
-            if ($donation->streamboard) {
-                $array['streamboard']['nameHidden'] = $donation->streamboard->nameHidden;
-                $array['streamboard']['wasRead'] = $donation->streamboard->wasRead;
-            }
-            $array['displayName'] = $donation->displayNameForDonation();
-            $donationsArray[] = $array;
+        $donors = [];
+        $groupDonors = [];
+        $selectedCampaigns = Streamboard::getSelectedCampaigns($user);        
+        $donors = [];
+        $groupDonors = [];
+        $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$user->id])->one();
+        if ( $donationFeed && $donationFeed->groupUser == 1 ) {           
+            $groupUser = true;
+        } else {           
+            $groupUser = false;
         }
+        if ($groupUser) {
+            $groupDonors = Donation::getTopDonorsForCampaignsGroupByAmount($selectedCampaigns, null, true, $sinceDate);
+        } else {
+            $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
+        }
+      
 
         $subscribers = [];
         if ($user->userFields->twitchPartner) {
@@ -266,7 +294,8 @@ class StreamboardController extends FrontendController
 
 
         $data = [];
-        $data['donations'] = $donationsArray;
+        $data['donations'] = $donors;
+        $data['groupDonations'] = $groupDonors;
         $data['stats'] = $stats;
         $data['followers'] = $followers;
         $data['subscribers'] = $subscribers;
@@ -310,7 +339,7 @@ class StreamboardController extends FrontendController
     {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if( ! (isset($data['showSubscriber']) || isset($data['showFollower']))) {
+        if( ! (isset($data['showSubscriber']) || isset($data['showFollower']) || isset($data['groupUser']))) {
             throw new ForbiddenHttpException();
         }
         $userId = \Yii::$app->user->id;
@@ -327,6 +356,10 @@ class StreamboardController extends FrontendController
             $donationFeed->showFollower = $data['showFollower'];
         }
 
+        if (isset($data['groupUser'])) {
+            $donationFeed->groupUser = $data['groupUser'];
+        }
+
         $donationFeed->save();
     }
 
@@ -338,7 +371,7 @@ class StreamboardController extends FrontendController
         if ( ! $donationFeed ) {
             throw new ForbiddenHttpException();
         }
-        return $donationFeed->toArray(['showSubscriber', 'showFollower']);
+        return $donationFeed->toArray(['showSubscriber', 'showFollower', 'groupUser']);
     }
 
     public function actionSet_streamboard_window()
@@ -398,34 +431,11 @@ class StreamboardController extends FrontendController
         $twitchUser = $user->twitchUser;
         $twitchUserArray = $twitchUser ? $twitchUser->toArray(['followersNumber', 'subscribersNumber']) : null;
 
-        $sinceDate = $user->streamboardConfig->clearedDate;
-        $selectedCampaigns = Streamboard::getSelectedCampaigns($user);
-        $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
-
-        $subscribers = [];
-        if ($user->userFields->twitchPartner) {
-            $subscriptions = TwitchSubscription::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
-            foreach ($subscriptions as $subscription) {
-                /** @var TwitchSubscription $subscription */
-                $subscribers[] = $subscription->toArray(['twitchUserId', 'display_name', 'createdAt']);
-            }
-        }
-
-        $followers = [];
-        if ($user->userFields->twitchPartner) {
-            $twitchFollowers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
-            foreach ($twitchFollowers as $twitchFollower) {
-                /** @var TwitchSubscription $subscription */
-                $followers[] = $twitchFollower->toArray(['twitchUserId', 'display_name', 'createdAt']);
-            }
-        }
+        
             
         $data = [
             'stats' => $stats,
-            'twitchUser' => $twitchUserArray,
-            'donors' => $donors,
-            'subscribers' => $subscribers,
-            'followers' => $followers,
+            'twitchUser' => $twitchUserArray,         
             'followersNumber' => TwitchFollow::getFollowerCountByTotal($user->id),
             'subscribersNumber' => TwitchSubscription::getSubscriberCountByTotal($user->id),
             'emptyActivityMessage' => $user->getEmptyActivityFeedMessage()

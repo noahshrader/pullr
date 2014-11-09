@@ -23,14 +23,10 @@ class StreamboardAsset extends AssetBundle
         'bower_components/moment/moment.js',
         'bower_components/angular-moment/angular-moment.min.js',
         'bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
-        'bower_components/zeroclipboard/dist/ZeroClipboard.min.js',        
-        'js/jquery.marquee.js',
-        'js/streamboard/angular-app/angular-marquee.js',
+        'bower_components/zeroclipboard/dist/ZeroClipboard.min.js',                
         'js/streamboard/angular-app/simple-marquee.js',
 		'js/streamboard/streamboard.js',
-        /* angular-app begin */
-        'js/streamboard/angular-app/plugins/draggable.js',
-        'js/streamboard/angular-app/plugins/resizable.js',
+        /* angular-app begin */        
         'js/streamboard/angular-app/plugins/interaction.js',
         'js/streamboard/angular-app/timers/current-time.js',
         'js/streamboard/angular-app/timers/count-up-timer.js',

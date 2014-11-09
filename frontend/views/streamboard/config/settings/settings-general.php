@@ -34,6 +34,12 @@ use yii\helpers\Url;
                         <span>Show Twitch followers</span>
                     </label>
                 </div>
+                <div class="checkbox cf">
+                    <label ng-class="{on:streamService.groupUser}">
+                        <input type="checkbox" ng-model="streamService.groupUser" ng-change="streamService.toggleGroupUser()">
+                        <span>Group user</span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>

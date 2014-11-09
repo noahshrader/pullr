@@ -29,8 +29,7 @@
                 }
                 
                 if (attrs.scroll !== undefined) {
-                    scope.$watch(attrs.scroll, function (value) {                        
-
+                    scope.$watch(attrs.scroll, function (value) {
                         console.log('scroll has been changed', value);                        
                         scroll = value;
                         clearTimer();

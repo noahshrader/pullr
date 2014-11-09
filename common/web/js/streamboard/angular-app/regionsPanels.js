@@ -52,8 +52,12 @@
                 streamboardConfig.setRegion2Height($region2[0].style.height);
             }
 
-            $scope.onResizeAlertImage = function(event, ui) {
-
+            $scope.onResizeAlertImage = function(region, event, ui) {
+                region.widgetAlerts.imageWidth = ui.size.width;
+                region.widgetAlerts.imageHeight = ui.size.height;
+                region.widgetAlerts.positionX = ui.position.left;
+                region.widgetAlerts.positionY = ui.position.top;
+                regions.regionChanged(region);
             }
 
             $scope.getContainmentByRegion = function(region) {

@@ -12,10 +12,13 @@
 
             this.showSubscriber = true;
             this.showFollower = true;
+            this.groupUser = false;
+
             this.getActivityFeedSetting = function () {
                 $http.get('app/streamboard/get_activity_feed_setting').success(function (data) {
                     Service.showSubscriber = data.showSubscriber;
                     Service.showFollower = data.showFollower;
+                    Service.groupUser = data.groupUser;
                 });
             }
 
@@ -28,6 +31,12 @@
             this.toggleFollower = function () {
                 $http.post('app/streamboard/set_activity_feed_setting', {
                     showFollower: Service.showFollower
+                });
+            }
+
+            this.toggleGroupUser = function() {
+                $http.post('app/streamboard/set_activity_feed_setting', {
+                    groupUser: Service.groupUser
                 });
             }
 

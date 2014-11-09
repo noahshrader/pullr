@@ -27,6 +27,7 @@ use yii\db\Query;
  */
 class Donation extends ActiveRecord
 {
+    public $sum = 0;
     const ANONYMOUS_NAME = 'Anonymous';
     /**
      * @return string the name of the table associated with this ActiveRecord class.
@@ -37,7 +38,7 @@ class Donation extends ActiveRecord
     
     public function scenarios() {
         return [
-            'default' => ['nameFromForm','email','comments','amount','createdDate'],
+            'default' => ['nameFromForm','email','comments','amount','createdDate','sum'],
             'firstGiving' => ['nameFromForm','email','comments','amount','createdDate'],
             Campaign::TYPE_PERSONAL_FUNDRAISER => ['nameFromForm','comments','amount','createdDate']
         ];
@@ -182,6 +183,25 @@ class Donation extends ActiveRecord
                         'email' => $donation->email];
         }
         return $donors;
+    }
+    
+    public static function getTopDonorsForCampaignsGroupByAmount($campaigns, $limit, $nameFromForm = false, $sinceDate = null) {
+        $donors = static::getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm, $sinceDate);
+        $groupResult = [];
+        foreach ($donors as $index => $donor) {
+            $amount = $donor['amount'];
+            if ( ! isset($groupResult[$amount])) {
+                $groupResult[$amount] = [];
+
+                foreach ($donors as $index2 => $donor2) {
+                    if ($index2 >= $index && $donor2['amount'] == $amount) {
+                        $groupResult[$amount][] = $donor2;
+                    }
+                }
+            }            
+        }
+        
+        return $groupResult;
     }
 
     /**

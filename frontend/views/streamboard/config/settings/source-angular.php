@@ -18,24 +18,63 @@ use yii\web\View;
         <div class="form-group">
             <h5>Activity Feed</h5>
             <div class="sb-activity-feed">
-                <span ng-repeat="donor in donors" class="commaAfter">
-                    <span class="nowrap">
-                    <span>{{donor.name}}</span>
-                   (<span class="amount accent">${{donor.amount}}</span>)<!-- removing space before :after{content:} rule
-                --></span></span>
-                <span ng-repeat="subscriber in subscribers" class="commaAfter" ng-show='streamService.showSubscriber'>
-                    <span class="nowrap">
-                    <span>{{subscriber.display_name}}</span>
-                    <span>(Subscribed)</span><!-- removing space before :after(content:} rule
-                --></span></span>
-                <span ng-repeat="follower in followers" class="commaAfter" ng-show='streamService.showFollower'>
-                    <span class="nowrap">
-                    <span>{{follower.display_name}}</span>
-                    <span>(Followed)</span><!-- removing space before :after(content:} rule
-                --></span></span>
-                <span ng-if="(donors.length == 0 && ( ! streamService.showSubscriber || subscribers.length == 0 ) && ( ! streamService.showFollower || followers.length == 0 )) ">
-                    {{emptyActivityMessage}}
-                </span>
+                <span ng-if=' ! streamService.groupUser'>
+                    <span
+                        ng-repeat="donation in donationsService.donations | orderBy: amount | donationsFilterToSelectedCampaigns "
+                        class="commaAfter">
+                    <span>
+                        &nbsp;{{donation.name}} (${{donation.amount}})<!--removing space for .commaAfter
+                    --></span>
+                    </span>
+                    
+                    <span
+                        ng-repeat="follower in donationsService.followers"
+                        class="commaAfter" ng-show='streamService.showFollower'>
+                    <span>
+                        &nbsp;{{follower.display_name}} (followed)<!--removing space for .commaAfter
+                    --></span>
+                    </span>
+
+                    <span
+                        ng-repeat="subscriber in donationsService.subscribers"
+                        class="commaAfter" ng-show='streamService.showSubscriber'>
+                    <span>
+                        &nbsp;{{subscriber.display_name}} (subscribed)<!--removing space for .commaAfter
+                    --></span>
+                    </span>
+                    
+                    <span ng-if="(donationsService.donations | donationsFilterToSelectedCampaigns).length == 0 && ( ! streamService.showSubscriber || donationsService.subscribers.length == 0 ) && ( ! streamService.showFollower || donationsService.followers.length == 0 ) ">
+                        <span ng-if="region.widgetDonationFeed.noDonationMessage">{{region.widgetDonationFeed.noDonationMessage}}</span>
+                        <span ng-if="!region.widgetDonationFeed.noDonationMessage">No activity!</span>
+                    </span> 
+                </span> 
+                <span ng-if='streamService.groupUser'>
+                    <span ng-repeat="(groupAmount, groupDonations1) in donationsService.groupDonations"
+                        class="commaAfter">
+                        <span ng-repeat='donation in groupDonations1' class="commaAfter" > {{donation.name}}</span> (${{groupAmount}})
+                    </span>
+
+                    <span
+                        ng-repeat="subscriber in donationsService.subscribers"
+                        ng-show='streamService.showSubscriber'
+                        class="commaAfter">
+                    
+                        &nbsp;{{subscriber.display_name}}<!--removing space for .commaAfter
+                    -->
+                        <span class="commaAfter" ng-show='$last'>(subscribed)</span>
+                    </span> 
+
+                    <span
+                        ng-repeat="follower in donationsService.followers"
+                        ng-show='streamService.showFollower' class="commaAfter">
+                        
+                            &nbsp;{{follower.display_name}}<!--removing space for .commaAfter
+                        -->
+                        <span class="commaAfter" ng-show='$last'>(followed)</span>
+                    </span> 
+
+                    
+                </span>  
             </div>
         </div>
     </div>

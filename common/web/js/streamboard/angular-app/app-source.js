@@ -1,18 +1,16 @@
 (function() {
-    var app = angular.module('pullr.streamboard.sourceApp', ['pullr.common', 'pullr.streamboard.campaigns', 'pullr.streamboard.stream']);
-    app.controller('SourceCtrl', function ($scope, $http, campaigns, stream){
+    var app = angular.module('pullr.streamboard.sourceApp', ['pullr.common', 'pullr.streamboard.campaigns', 'pullr.streamboard.stream','pullr.streamboard.donations','simpleMarquee']);
+    app.controller('SourceCtrl', function ($scope, $http, campaigns, stream, donations){
         $scope.campaignsService = campaigns;
         $scope.streamService = stream;
+        $scope.donationsService = donations;
         $scope.stats = {};
         isDataReady = false;
         
         $scope.requestSourceStats = function(){
             $http.get('app/streamboard/get_source_data').success(function(data){
-                $scope.stats = data['stats'];
-                $scope.donors = data['donors'];
-                $scope.twitchUser = data['twitchUser'];
-                $scope.subscribers = data['subscribers'];
-                $scope.followers = data['followers'];
+                $scope.stats = data['stats'];            
+                $scope.twitchUser = data['twitchUser'];              
                 $scope.followersNumber = data['followersNumber'];
                 $scope.subscribersNumber = data['subscribersNumber'];  
                 $scope.emptyActivityMessage = data['emptyActivityMessage'];

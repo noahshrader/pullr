@@ -45,6 +45,7 @@ class WidgetDonationFeed extends ActiveRecord {
         $data['scrolling'] = $this->scrolling == 1;
         $data['showSubscriber'] = $this->showSubscriber == 1;
         $data['showFollower'] = $this->showFollower == 1;
+        $data['groupUser'] = $this->groupUser == 1;
         return $data;
     }
 
