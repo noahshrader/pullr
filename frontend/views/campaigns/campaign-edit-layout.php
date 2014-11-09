@@ -19,7 +19,7 @@ $user = \Yii::$app->user->identity;
 
         <!-- if Single Channel -->
         <div id="campaign-channelname" class="form-group highlight-wrap">
-            <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->input('text', ['value' => \Yii::$app->user->identity->uniqueName])->label("Channel Name"); ?>
+            <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->input('text', ['value' => $campaign->isNewRecord ? \Yii::$app->user->identity->uniqueName : $campaign->channelName])->label("Channel Name"); ?>
         </div>
 
         <!-- if Team Channel -->
@@ -75,6 +75,14 @@ $user = \Yii::$app->user->identity;
         <!-- Background Image -->
         <div class="form-group cf">
             <div id="logo-container">
+                <? if (!empty($campaign->backgroundImageSmallUrl)):?>
+                <div class="image-upload-preview">
+                    <div class="close fileinput-remove">
+                        <a id="image-uploaded" data-campaignid="<?=$campaign->id;?>">×</a>
+                    </div>
+                    <img src="<?= $campaign->backgroundImageSmallUrl ?>">
+                </div>
+                <?endif;?>
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
                     <label class="control-label">Campaign Image</label>
                     <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page."></i>
@@ -85,12 +93,5 @@ $user = \Yii::$app->user->identity;
                 </div>
             </div>
         </div>
-
-        <? if (!empty($campaign->backgroundImageSmallUrl)):?>
-        <div class="image-upload-preview">
-            <img src="<?= $campaign->backgroundImageSmallUrl ?>">
-        </div>
-        <?endif;?>
-
     </div>
 </div>

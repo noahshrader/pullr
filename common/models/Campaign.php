@@ -228,7 +228,9 @@ class Campaign extends ActiveRecord {
             return;
         }
         if ($this->name){
-            $alias = str_replace(' ', '_', $this->name);
+            
+            $alias = \common\components\PullrUtils::rewriteUrl($this->name);
+            
             /**better to use userId field that current user, because of possible sample data*/
             $query = Campaign::find()->where(['userId' => $userId,'status' => self::STATUS_ACTIVE, 'alias' => $alias]);
             if ($this->id){

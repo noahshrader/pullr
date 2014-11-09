@@ -44,62 +44,58 @@
     </header>
 
     <!-- Main Stats -->
-    <div class="bg-image">
+    <div class="header-wrap" bg-image="{{campaign.backgroundImg}}">
         <section class="stats">
             <div class="container">
                 <div class="row feed-details">
                     <div class="col-md-12 center">
                         <img class="avatar" src="{{channel.logo}}" ng-cloak/>     
                         <h1 ng-cloak>{{campaign.name}}</h1>
-                        <h5 data-pullr='campaign-startDateFormatted' ng-cloak>{{campaign.startDateFormatted}}</span> - <span data-pullr='campaign-endDateFormatted'>{{campaign.endDateFormatted}}</h5>
+                        <h4 style="color:{{campaign.secondaryColor}};" ng-cloak>{{campaign.charity.name}}{{campaign.customCharity}}</h4>
+                        <h5 ng-cloak>{{campaign.startDateFormatted}} - {{campaign.endDateFormatted}}</h5>
                         <div class="donate-button">
                             <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">Donate</button>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="donor-stats">
-                        <div class="col-md-4 col-sm-12 col-xs-12 raised">
-                            <div class="icon-holder">
-                                <span class="icon-coins"></span>
-                            </div>
-                            <span>Amount Raised</span>
-                            <h1 style="color:{{campaign.primaryColor}};" ng-cloak>{{campaign.amountRaisedFormatted}}</h1>
+                <div class="donor-stats">
+                    <div class="col-md-4 col-sm-12 col-xs-12 raised">
+                        <div class="icon-holder">
+                            <i class="icon-coin"></i>
                         </div>
-                        <div class="col-md-4 col-sm-12 col-xs-12">
-                            <div class="icon-holder" ng-hide='campaign.goalAmount == 0.00'>
-                                <span class="icon-coin"></span>
-                            </div>  
-                            <span>Goal Amount</span>
-                            <h1 ng-cloak>{{campaign.goalAmountFormatted}}</h1>
-                        </div>
-                        <div class="col-md-4 col-sm-12 col-xs-12">
-                            <div class="icon-holder">
-                                <span class="icon-charity"></span>
-                            </div>  
-                            <span>Donors</span>
-                            <h1 ng-cloak>{{campaign.numberOfUniqueDonors}}</h1>
-                        </div>
+                        <span>Amount Raised</span>
+                        <h1 style="color:{{campaign.primaryColor}};" ng-cloak>{{campaign.amountRaisedFormatted}}</h1>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="icon-holder" ng-hide='campaign.goalAmount == 0.00'>
+                            <i class="icon-flag2"></i>
+                        </div>  
+                        <span>Goal Amount</span>
+                        <h1 ng-cloak>{{campaign.goalAmountFormatted}}</h1>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12 donors">
+                        <div class="icon-holder">
+                            <i class="icon-user"></i>
+                        </div>  
+                        <span>Donors</span>
+                        <h1 ng-cloak>{{campaign.numberOfUniqueDonors}}</h1>
                     </div>
                 </div>
                 <div class="amount-progress">
                     <div class="project-progress status">
-                        <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width: {{campaign.percentageOfGoal}}%">
-                            <span class="progress-marker"></span>
+                        <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width:{{campaign.percentageOfGoal}}%">
+                            <span class="progress-marker" style="background:{{campaign.secondaryColor}}"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <div class="overlay"></div>
+        <div class="overlay-fade"></div>
     </div>
 
     <!-- Layout -->
     <div pullr-campaign-layout></div>
-
-    <!-- Description -->
-    <section class="campaign-description container">
-        <p>{{campaign.description}}</p>
-    </section>
 
     <!-- Footer -->
     <footer>

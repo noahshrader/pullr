@@ -799,6 +799,16 @@ a.icon-facebook:hover {
 .info h4 {
   color: #1dbc9c;
 }
+/* Dark Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(14, 15, 17, 0.3);
+  z-index: 0;
+}
 footer {
   text-align: center;
   padding: 2em 0;
@@ -817,6 +827,7 @@ footer a.logo {
 }
 footer span.copy {
   display: block;
+  font-size: 0.8em;
   padding: 1em 0;
 }
 @media (min-width: 1200px) {

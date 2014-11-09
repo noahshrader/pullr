@@ -54,6 +54,9 @@
 			margin: 0;
 		}
 	}
+	.file-input {
+		overflow: hidden;
+	}
 	.input-group-btn {
 		position: absolute;
 		top: 0;
@@ -65,7 +68,7 @@
 		width: 40px;
 		z-index: 1000;
 
-		button.kv-fileinput-upload {
+		button {
 			display: none !important;
 		}
 		.btn.btn-file {
@@ -78,24 +81,36 @@
 		}
 	}
 }
-.image-upload-preview {
+.image-upload-preview,
+.file-preview {
 	position: relative;
+	text-align: center;
 	padding: @halfgutter;
-	max-width: 400px;
-	margin: @halfgutter auto 0;
+	margin-bottom: @halfgutter;
 	background: @gray75;
+	border: 0;
 	.border-radius;
 	&:before {
-		.arrow-up;
-		top: -10px;
+		.arrow-down;
+		bottom: -10px;
 		left: 50%;
 		margin-left: -10px;
-		border-color: transparent transparent @gray75 transparent;
+		border-color: @gray75 transparent transparent transparent;
 	}
-
-	img {
-		width: 100%;
+	.file-preview-frame {
+		display: block;
+		float: none;
+		margin: 0;
+		padding: 0;
 		height: auto;
+		border: 0;
+		box-shadow: none;
+
+		img {
+			height: auto;
+			width: 100%;
+			max-width: 400px;
+		}
 	}
 }
 

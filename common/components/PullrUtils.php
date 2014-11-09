@@ -8,6 +8,19 @@ use DateTime;
 class PullrUtils extends \yii\base\Component
 {
     /**
+     * Format url become friendly and remove special character
+     * @param string $url
+     * @return string
+     */
+    public static function rewriteUrl($url) {
+        $url = str_replace(' ', '-', $url);
+        $url = preg_replace('/[^A-Za-z0-9\-]/', '', strtolower($url) );
+        $url = preg_replace('/-+/', '-', $url);
+        
+        return $url;
+    }
+
+    /**
      * 
      * @param float $number
      * @param int $decimal

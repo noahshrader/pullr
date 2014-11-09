@@ -1,6 +1,13 @@
 /* Main Settings Area */
 /* ------------------------------------------------- */
-.settings {
+.settings-wrap {
+	position: fixed;
+	top: @top-menu-height;
+	right: 0;
+}
+#content.settings {
+	position: static;
+	padding-right: @sidepanelwidth;
 
 	a.account-deactivate {
 		color: @gray60;
