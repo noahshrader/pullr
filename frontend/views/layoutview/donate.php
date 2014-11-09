@@ -12,7 +12,7 @@ use yii\widgets\MaskedInput;
         color: {{campaign.primaryColor}} !important;
     }
     h3.charity-name a.approved .approved-info:before {
-        border-color: transparent transparent {{campaign.primaryColor}} transparent;
+        border-color: transparent transparent {{campaign.primaryColor}} transparent !important;
     }
     .progress,
     h3.charity-name a.approved .approved-info,
