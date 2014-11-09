@@ -16,7 +16,7 @@
 
             $interval(function () {
                 Service.updateDonations();
-            }, 3000);
+            }, 5000);
 
 
             function updateDonations(forceAll) {

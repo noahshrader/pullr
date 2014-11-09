@@ -28,6 +28,6 @@
 
         setInterval(function(){
             $scope.streamService.getActivityFeedSetting();
-        }, 3000);
+        }, 5000);
     });
 })();

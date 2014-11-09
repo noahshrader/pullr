@@ -1,6 +1,6 @@
 (function(){
-    var app = angular.module('pullr.streamboard.settings', ['pullr.common', 'pullr.streamboard.campaigns', 'pullr.streamboard.donations']);
-    app.controller('SettingsCtrl', function ($scope,campaigns, stream, donations, $http, $interval){
+    var app = angular.module('pullr.streamboard.settings', ['pullr.common', 'pullr.streamboard.campaigns', 'pullr.streamboard.donations', 'simpleMarquee']);
+    app.controller('SettingsCtrl', function ($scope,campaigns, stream, donations, $http, $interval, simpleMarqueeHelper){
         $scope.campaignsService = campaigns;
         $scope.streamService = stream;
         $scope.clearButton = function () {
@@ -17,5 +17,20 @@
         		lastSourceHeight = height;
         	}
         }, 3000);
+
+        $scope.toggleSubscriber = function() {
+            stream.toggleSubscriber();
+            simpleMarqueeHelper.recalculateMarquee();
+        }
+
+        $scope.toggleFollower = function() {
+            stream.toggleFollower();
+            simpleMarqueeHelper.recalculateMarquee();
+        }
+
+        $scope.toggleGroupUser = function() {
+            stream.toggleGroupUser();
+            simpleMarqueeHelper.recalculateMarquee();
+        }
     });
 })()

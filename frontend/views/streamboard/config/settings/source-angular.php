@@ -29,7 +29,7 @@ use yii\web\View;
                     
                     <span
                         ng-repeat="follower in donationsService.followers"
-                        class="commaAfter" ng-show='streamService.showFollower'>
+                        class="commaAfter" ng-if='streamService.showFollower'>
                     <span>
                         &nbsp;{{follower.display_name}} (followed)<!--removing space for .commaAfter
                     --></span>
@@ -37,7 +37,7 @@ use yii\web\View;
 
                     <span
                         ng-repeat="subscriber in donationsService.subscribers"
-                        class="commaAfter" ng-show='streamService.showSubscriber'>
+                        class="commaAfter" ng-if='streamService.showSubscriber'>
                     <span>
                         &nbsp;{{subscriber.display_name}} (subscribed)<!--removing space for .commaAfter
                     --></span>
@@ -56,7 +56,7 @@ use yii\web\View;
 
                     <span
                         ng-repeat="subscriber in donationsService.subscribers"
-                        ng-show='streamService.showSubscriber'
+                        ng-if='streamService.showSubscriber'
                         class="commaAfter">
                     
                         &nbsp;{{subscriber.display_name}}<!--removing space for .commaAfter
@@ -66,7 +66,7 @@ use yii\web\View;
 
                     <span
                         ng-repeat="follower in donationsService.followers"
-                        ng-show='streamService.showFollower' class="commaAfter">
+                        ng-if='streamService.showFollower' class="commaAfter">
                         
                             &nbsp;{{follower.display_name}}<!--removing space for .commaAfter
                         -->

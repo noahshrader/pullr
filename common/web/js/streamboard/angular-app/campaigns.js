@@ -30,7 +30,7 @@
 
             $interval(function() {
                 requestCampaigns();
-            }, 1000);
+            }, 5000);
 
             this.campaignChanged = function(campaign){
                 $http.post('app/streamboard/set_campaign_selection', {id: campaign.id, streamboardSelected: campaign.streamboardSelected});
