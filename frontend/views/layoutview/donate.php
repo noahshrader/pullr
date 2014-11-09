@@ -7,7 +7,8 @@ use yii\widgets\MaskedInput;
     h2.main-title,
     h3.charity-name a.approved i,
     span.amountRaised,
-    p.info a {
+    p.info a,
+    a.close {
         color: {{campaign.primaryColor}} !important;
     }
     h3.charity-name a.approved .approved-info:before {
