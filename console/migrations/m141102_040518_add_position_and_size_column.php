@@ -13,6 +13,8 @@ class m141102_040518_add_position_and_size_column extends Migration
     	$this->addColumn(WidgetAlerts::tableName(), 'messagePositionY', Schema::TYPE_INTEGER);
         $this->addColumn(WidgetAlerts::tableName(), 'imageWidth', Schema::TYPE_INTEGER);
         $this->addColumn(WidgetAlerts::tableName(), 'imageHeight', Schema::TYPE_INTEGER);
+        $this->addColumn(WidgetAlerts::tableName(), 'imagePositionX', Schema::TYPE_INTEGER);
+        $this->addColumn(WidgetAlerts::tableName(), 'imagePositionY', Schema::TYPE_INTEGER);
 
         $this->addColumn(WidgetDonationFeed::tableName(), 'width', Schema::TYPE_INTEGER);
         $this->addColumn(WidgetDonationFeed::tableName(), 'height', Schema::TYPE_INTEGER);
