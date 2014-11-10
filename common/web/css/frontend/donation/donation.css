@@ -1455,6 +1455,9 @@ body.campaignflow {
   text-align: center;
   padding-bottom: 30px;
 }
+.manual-donation {
+  margin-left: 20px;
+}
 /* Main Data Containers */
 /* ------------------------------------------------- */
 .stats-overview {
@@ -1854,6 +1857,16 @@ body {
   font-size: 14px;
   height: auto;
   background: #ffffff;
+}
+/* Hide script until load */
+/* ------------------------------------------------- */
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
 }
 /* Forms */
 /* ------------------------------------------------- */

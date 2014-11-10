@@ -649,8 +649,7 @@ small,
 .icon-help:before {
   content: "\e67c";
 }
-/* ------------------------------------------------- */
-/* Hide Angular template until data is loaded */
+/* Hide script until load */
 /* ------------------------------------------------- */
 [ng\:cloak],
 [ng-cloak],
