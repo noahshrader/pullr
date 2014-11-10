@@ -45,7 +45,6 @@
 	position: relative;
 	margin-bottom: @gutter;
 	background: @white;
-	.border-radius;
 	.box-shadow;
 	overflow: hidden;
 	
@@ -295,7 +294,6 @@
 		min-width: 160px;
 		background: @white;
 		.box-shadow;
-		.border-radius;
 		opacity: 0;
 		z-index: 9999;
 		-webkit-transition-delay: 0s,0s,.1s;
@@ -510,7 +508,7 @@ table.dataTable {
 		min-height: 0;
 
 		.select2-choice {
-			height: 36px;
+			height: 34px;
 		}
 		.select2-choices .select2-search-field input,
 		.select2-choice, .select2-choices {
@@ -519,6 +517,7 @@ table.dataTable {
 		.select2-choice > span:first-child,
 		.select2-choices .select2-search-field input {
 			padding: 6px 12px;
+			min-height: 34px;
 		}
 	}
 	label {
@@ -533,6 +532,17 @@ table.dataTable {
 	padding: .6em @gutter;
 	background: @modulegray;
 	border-bottom: solid 1px @gray70;
+
+	.btn {
+		float: left;
+		color: @white;
+		margin: 0;
+		margin-right: .6em;
+		background: @gray60;
+		&:hover {
+			background: @gray50;
+		}
+	}
 }
 .table-footer {
 	text-align: center;
