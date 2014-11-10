@@ -52,7 +52,7 @@ $user = \Yii::$app->user->identity;
             </div>
         </div>
         <div class="theme-color-picker cf">
-            <div class="col-sm-6">
+            <div class="col-md-6">
                 <!-- Primary Color -->
                 <div class="colorpicker">
                     <div class="colorpickerwrap">
@@ -61,7 +61,7 @@ $user = \Yii::$app->user->identity;
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-6">
                 <!-- Secondary Color -->
                 <div class="colorpicker">
                     <div class="colorpickerwrap">

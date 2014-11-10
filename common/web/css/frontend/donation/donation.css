@@ -1451,6 +1451,10 @@ body.campaignflow {
   background: #f7f7f7;
   border-top: solid 1px #efeff0;
 }
+.actions {
+  text-align: center;
+  padding-bottom: 30px;
+}
 /* Main Data Containers */
 /* ------------------------------------------------- */
 .stats-overview {
@@ -2014,6 +2018,7 @@ h3.charity-name a.approved .approved-info:before {
 }
 .form-progress-wrap .progress {
   height: 100%;
+  width: 0;
   max-width: 100%;
   background: #1dbc9c;
   -webkit-animation: animate-bar 1s 1 ease;
