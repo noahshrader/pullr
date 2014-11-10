@@ -39,6 +39,6 @@
         </div>
     </div>
     <!-- Form -->
-    <iframe src="<?= $url; ?>" class="payment" style="height: 720px; min-height: 100px;"></iframe>
+    <iframe src="<?= $url; ?>" class="payment" style="height: 720px;"></iframe>
     <a class="back" href="<?= $back_url; ?>"><i class="icon icon-back"></i>Back</a>
 </section>

@@ -923,7 +923,7 @@ h5 {
   margin: 0;
 }
 h1 {
-  font-size: 3em;
+  font-size: 3.2em;
   font-weight: 300;
   letter-spacing: -2px;
   line-height: 1.4em;
@@ -980,7 +980,7 @@ select.form-control,
   min-height: 45px;
   border: 2px solid #efeff0;
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   box-shadow: none;
 }
@@ -1277,7 +1277,7 @@ input.color-choice {
 /* Combined Forms */
 .combined-form-wrap {
   position: relative;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   overflow: hidden;
 }
@@ -1303,7 +1303,7 @@ input.color-choice {
   font-weight: 600;
   padding: .6em 1.2em;
   z-index: 1000;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
 }
 .email-notifications .help-block {
@@ -1389,7 +1389,7 @@ body.campaignflow {
   outline: 0;
   margin: 0 .1em;
   border: 0;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
@@ -1436,8 +1436,8 @@ body.campaignflow {
 .btn-sm {
   font-size: 0.9em;
   line-height: 33px;
-  padding: 0 1.4em;
-  height: 33px;
+  padding: 0 1.2em;
+  line-height: 34px;
 }
 .btn-sm:focus {
   color: #ffffff;
@@ -1484,7 +1484,7 @@ body.campaignflow {
   color: #127561;
 }
 .stats-overview .stats-box {
-  padding: 1.4em 0;
+  padding: 1.4em 0 2em;
   min-height: 110px;
   border-left: solid 1px #efeff0;
 }
@@ -1686,6 +1686,7 @@ span.list-info {
   font-weight: 400;
   padding: 15px;
   background: #53535a;
+  border-radius: 0;
 }
 .tooltip.top .tooltip-arrow {
   border-top-color: #53535a;
@@ -1770,8 +1771,6 @@ span.list-info {
   margin: 6em auto 3em;
   width: 100%;
   background: #ffffff;
-  border-radius: 6px;
-  background-clip: padding-box;
   z-index: 9999;
 }
 .modal .modal-dialog .modal-content {
@@ -1994,7 +1993,7 @@ h3.charity-name a.approved .approved-info {
   padding: 15px;
   width: 120px;
   background: #1dbc9c;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   z-index: 1000;
 }
@@ -2119,7 +2118,7 @@ footer a.logo:hover:before {
   margin: 0;
   width: 100%;
   background: #efeff0;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
@@ -2147,7 +2146,7 @@ footer a.logo:hover:before {
   left: .5%;
   right: 17%;
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   border: solid 2px #efeff0;
   overflow: hidden;
@@ -2198,6 +2197,9 @@ fieldset {
 #loader {
   display: none;
 }
+form {
+  height: 10000px;
+}
 /* Main Form */
 #form-errors-summary,
 #donation-form {
@@ -2205,6 +2207,7 @@ fieldset {
   max-width: 650px;
 }
 #form-errors-summary {
+  display: none;
   text-align: center;
   padding: 3em 5% 0;
   margin: 0 auto;

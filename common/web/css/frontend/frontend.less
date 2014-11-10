@@ -487,6 +487,7 @@ table.dataTable {
 		}
 		input {
 			max-width: 160px;
+			min-height: 34px;
 		}
 	}
 	.dataTables_paginate {
@@ -517,7 +518,6 @@ table.dataTable {
 		.select2-choice > span:first-child,
 		.select2-choices .select2-search-field input {
 			padding: 6px 12px;
-			min-height: 34px;
 		}
 	}
 	label {
@@ -529,7 +529,7 @@ table.dataTable {
 	}
 }
 .table-header {
-	padding: .6em @gutter;
+	padding: @halfgutter;
 	background: @modulegray;
 	border-bottom: solid 1px @gray70;
 
