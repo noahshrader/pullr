@@ -4,7 +4,7 @@
 
 <section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 'tip-jar' :'events-form' ?>">
     <div class="donation-form-header">
-        <h1 class="campaign-name"><?= $campaign->name ?></h1>
+        <h2 class="main-title"><?= $campaign->name ?></h2>
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
             <?
             $charityName = '';
@@ -19,7 +19,10 @@
             <? if ($charityName):?>
                 <h3 class="charity-name">for <span><?= $charityName ?></span>
                 <? if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES): ?>
-                    <span class="approved icon-check-round-fill"></span>
+                    <a class="approved">
+                        <i class="icon icon-check-round-fill"></i>
+                        <span class="approved-info">This is a validated organization.</span>
+                    </a>
                 </h3>
                 <? endif ?>
             <? endif ?>
@@ -38,5 +41,4 @@
     <!-- Form -->
     <iframe src="<?= $url; ?>" class="payment" style="height: 720px; min-height: 100px;"></iframe>
     <a class="back" href="<?= $back_url; ?>"><i class="icon icon-back"></i>Back</a>
-    <span class="processed">processed by FirstGiving</span>
 </section>

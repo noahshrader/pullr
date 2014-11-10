@@ -1868,7 +1868,7 @@ label {
   margin: 0 auto;
   padding: 3em 7.5% 1em;
   width: 100%;
-  max-width: 640px;
+  max-width: 660px;
 }
 .form-wrapper .form-group {
   margin: 0;
@@ -1904,6 +1904,10 @@ label {
   padding: .4em 2em;
   height: auto;
 }
+.help-block {
+  bottom: -45px;
+  font-size: 1.1em;
+}
 a.close {
   display: block;
   margin-bottom: 2em;
@@ -1936,7 +1940,7 @@ h4 {
 /* Campaign Title */
 h2.main-title {
   color: #53535a;
-  font-size: 2.8em;
+  font-size: 3em;
   font-weight: 400;
   line-height: 1;
   letter-spacing: -1px;
@@ -1945,7 +1949,7 @@ h2.main-title {
 }
 /* Charity Info */
 h3.charity-name {
-  color: #bababf;
+  color: #9f9fa7;
   font-size: 1.15em;
   line-height: 1.2em;
   margin-top: .8em;
@@ -1956,7 +1960,7 @@ h3.charity-name a.approved {
 h3.charity-name a.approved i {
   display: inline-block;
   color: #1dbc9c;
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: 600;
   margin-left: 3px;
   height: 20px;
@@ -2012,7 +2016,7 @@ h3.charity-name a.approved .approved-info:before {
 .form-progress-wrap {
   position: relative;
   text-align: center;
-  height: 6px;
+  height: 8px;
   width: 100%;
   background: #efeff0;
 }
