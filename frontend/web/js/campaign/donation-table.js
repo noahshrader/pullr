@@ -56,7 +56,7 @@ $(function(){
             .addClass("manual-donation")
             .attr('data-target', '#manualDonationModal')
             .attr('data-toggle', 'modal');
-        addDonationButton.prependTo($wrapper.find('.campaign-table .table-footer'));
+        addDonationButton.appendTo($wrapper.find('.campaign-table .table-header .dataTables_filter'));
     }
 
     // Rotate table details area on click
