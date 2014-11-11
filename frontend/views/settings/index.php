@@ -111,10 +111,6 @@ endif;
 	</section> <!-- END main settings -->
 	<?php ActiveForm::end(); ?>
 
-	<?= $this->render('deactivate', ['user' => $user]); ?>
-	<?= $this->render('deactivatepro'); ?>
-	<?= $this->render('gopro'); ?>
-
 	<div id="sidebar" class="plans pane"> <!-- BEGIN plans sidebar -->
 		<?=
 		$this->render('plan', [
@@ -123,3 +119,6 @@ endif;
 		?>
 	</div> <!-- END plans sidebar -->
 </div>
+<?= $this->render('deactivate', ['user' => $user]); ?>
+<?= $this->render('deactivatepro'); ?>
+<?= $this->render('gopro'); ?>
