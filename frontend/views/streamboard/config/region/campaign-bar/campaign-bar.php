@@ -19,7 +19,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
     <div class="form-group">
         <h5>Modules</h5>
         <div class="checkbox">
-            <label ng-class="{on:widget.alertsEnable}">
+            <label ng-class="{on:widget.alertsEnable}" class="on">
                 <input type="checkbox" ng-model="widget.alertsEnable" ng-change="regionChanged(region)">
                 Alerts
             </label>
