@@ -1893,7 +1893,7 @@ label {
 .form-wrapper .field input[type="text"],
 .form-wrapper .field textarea,
 .form-wrapper .field select {
-  font-size: 18px;
+  font-size: 1.4em;
   padding: 15px;
   width: 100%;
   max-width: 100%;
@@ -1946,7 +1946,7 @@ h4 {
 /* ------------------------------------------------- */
 .donation-form-header {
   margin: 0 auto;
-  padding: 4.8em 10% 0;
+  padding: 5.6em 10% 0;
   max-width: 800px;
 }
 /* Campaign Title */
@@ -1962,7 +1962,7 @@ h2.main-title {
 /* Charity Info */
 h3.charity-name {
   color: #9f9fa7;
-  font-size: 1.15em;
+  font-size: 1.2em;
   line-height: 1.2em;
   margin-top: .8em;
 }
@@ -1974,7 +1974,6 @@ h3.charity-name a.approved i {
   color: #1dbc9c;
   font-size: 1.1em;
   font-weight: 600;
-  margin-left: 3px;
   height: 20px;
   width: 20px;
 }
@@ -2111,7 +2110,7 @@ footer a.logo:hover:before {
 }
 .events-form #donation-amount .fieldamount label {
   color: #6b6b75;
-  font-size: 1.6em;
+  font-size: 1.8em;
   font-weight: 600;
   line-height: 90px;
   letter-spacing: -1px;
@@ -2197,9 +2196,6 @@ fieldset {
 #loader {
   display: none;
 }
-form {
-  height: 10000px;
-}
 /* Main Form */
 #form-errors-summary,
 #donation-form {
@@ -2221,6 +2217,10 @@ form {
 }
 #donation-form input {
   width: 100%;
+}
+/* Input Styles */
+body #drcc_option div.input-item-select:nth-of-type(3) {
+  background: #ff0000;
 }
 /* Loader */
 /* ------------------------------------------------- */
