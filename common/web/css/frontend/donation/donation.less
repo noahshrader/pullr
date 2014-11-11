@@ -17,6 +17,13 @@ body {
 }
 
 
+/* Hide script until load */
+/* ------------------------------------------------- */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+
 /* Forms */
 /* ------------------------------------------------- */
 label {
@@ -31,7 +38,7 @@ label {
 	margin: 0 auto;
 	padding: 3em 7.5% 1em;
 	width: 100%;
-	max-width: 640px;
+	max-width: 660px;
 
 	.form-group {
 		margin: 0;
@@ -44,7 +51,7 @@ label {
 		input[type="text"],
 		textarea,
 		select {
-			font-size: 18px;
+			font-size: 1.4em;
 			padding: @halfgutter;
 			width: 100%;
 			max-width: 100%;
@@ -69,6 +76,10 @@ label {
 	margin: .3em auto .6em;
 	padding: .4em 2em;
 	height: auto;
+}
+.help-block {
+	bottom: -45px;
+	font-size: 1.1em;
 }
 a.close {
 	display: block;
@@ -105,14 +116,14 @@ h4 {
 /* ------------------------------------------------- */
 .donation-form-header {
 	margin: 0 auto;
-	padding: 4.8em 10% 0;
+	padding: 5.6em 10% 0;
 	max-width: 800px;
 }
 
 /* Campaign Title */
 h2.main-title {
 	color: @gray20;
-	font-size: 2.8em;
+	font-size: 3em;
 	font-weight: 400;
 	line-height: 1;
 	letter-spacing: -1px;
@@ -122,8 +133,8 @@ h2.main-title {
 
 /* Charity Info */
 h3.charity-name {
-	color: @gray60;
-	font-size: 1.15em;
+	color: @gray50;
+	font-size: 1.2em;
 	line-height: 1.2em;
 	margin-top: .8em;
 
@@ -133,9 +144,8 @@ h3.charity-name {
 		i {
 			display: inline-block;
 			color: @accent;
-			font-size: 1em;
+			font-size: 1.1em;
 			font-weight: 600;
-			margin-left: @iconspace;
 			height: 20px;
 			width: 20px;
 		}
@@ -189,7 +199,7 @@ h3.charity-name {
 .form-progress-wrap {
 	position: relative;
 	text-align: center;
-	height: 6px;
+	height: 8px;
 	width: 100%;
 	background: @gray75;
 
@@ -282,7 +292,7 @@ footer {
 
 			label {
 				color: @gray30;
-				font-size: 1.6em;
+				font-size: 1.8em;
 				font-weight: 600;
 				line-height: 90px;
 				letter-spacing: -1px;
@@ -389,6 +399,7 @@ footer {
 	max-width: 650px;
 }
 #form-errors-summary {
+	display: none;
 	text-align: center;
 	padding: 3em 5% 0;
 	margin: 0 auto;
@@ -405,6 +416,11 @@ footer {
 		width: 100%;
 	}
 }
+
+	/* Input Styles */
+	body #drcc_option div.input-item-select:nth-of-type(3) {
+    	background: #ff0000;
+	}
 
 
 /* Loader */

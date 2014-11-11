@@ -923,7 +923,7 @@ h5 {
   margin: 0;
 }
 h1 {
-  font-size: 3em;
+  font-size: 3.2em;
   font-weight: 300;
   letter-spacing: -2px;
   line-height: 1.4em;
@@ -980,7 +980,7 @@ select.form-control,
   min-height: 45px;
   border: 2px solid #efeff0;
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   box-shadow: none;
 }
@@ -1277,7 +1277,7 @@ input.color-choice {
 /* Combined Forms */
 .combined-form-wrap {
   position: relative;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   overflow: hidden;
 }
@@ -1303,7 +1303,7 @@ input.color-choice {
   font-weight: 600;
   padding: .6em 1.2em;
   z-index: 1000;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
 }
 .email-notifications .help-block {
@@ -1389,7 +1389,7 @@ body.campaignflow {
   outline: 0;
   margin: 0 .1em;
   border: 0;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
@@ -1436,8 +1436,8 @@ body.campaignflow {
 .btn-sm {
   font-size: 0.9em;
   line-height: 33px;
-  padding: 0 1.4em;
-  height: 33px;
+  padding: 0 1.2em;
+  line-height: 34px;
 }
 .btn-sm:focus {
   color: #ffffff;
@@ -1454,6 +1454,9 @@ body.campaignflow {
 .actions {
   text-align: center;
   padding-bottom: 30px;
+}
+.manual-donation {
+  margin-left: 20px;
 }
 /* Main Data Containers */
 /* ------------------------------------------------- */
@@ -1481,7 +1484,7 @@ body.campaignflow {
   color: #127561;
 }
 .stats-overview .stats-box {
-  padding: 1.4em 0;
+  padding: 1.4em 0 2em;
   min-height: 110px;
   border-left: solid 1px #efeff0;
 }
@@ -1683,6 +1686,7 @@ span.list-info {
   font-weight: 400;
   padding: 15px;
   background: #53535a;
+  border-radius: 0;
 }
 .tooltip.top .tooltip-arrow {
   border-top-color: #53535a;
@@ -1767,8 +1771,6 @@ span.list-info {
   margin: 6em auto 3em;
   width: 100%;
   background: #ffffff;
-  border-radius: 6px;
-  background-clip: padding-box;
   z-index: 9999;
 }
 .modal .modal-dialog .modal-content {
@@ -1855,6 +1857,16 @@ body {
   height: auto;
   background: #ffffff;
 }
+/* Hide script until load */
+/* ------------------------------------------------- */
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
 /* Forms */
 /* ------------------------------------------------- */
 label {
@@ -1868,7 +1880,7 @@ label {
   margin: 0 auto;
   padding: 3em 7.5% 1em;
   width: 100%;
-  max-width: 640px;
+  max-width: 660px;
 }
 .form-wrapper .form-group {
   margin: 0;
@@ -1881,7 +1893,7 @@ label {
 .form-wrapper .field input[type="text"],
 .form-wrapper .field textarea,
 .form-wrapper .field select {
-  font-size: 18px;
+  font-size: 1.4em;
   padding: 15px;
   width: 100%;
   max-width: 100%;
@@ -1903,6 +1915,10 @@ label {
   margin: .3em auto .6em;
   padding: .4em 2em;
   height: auto;
+}
+.help-block {
+  bottom: -45px;
+  font-size: 1.1em;
 }
 a.close {
   display: block;
@@ -1930,13 +1946,13 @@ h4 {
 /* ------------------------------------------------- */
 .donation-form-header {
   margin: 0 auto;
-  padding: 4.8em 10% 0;
+  padding: 5.6em 10% 0;
   max-width: 800px;
 }
 /* Campaign Title */
 h2.main-title {
   color: #53535a;
-  font-size: 2.8em;
+  font-size: 3em;
   font-weight: 400;
   line-height: 1;
   letter-spacing: -1px;
@@ -1945,8 +1961,8 @@ h2.main-title {
 }
 /* Charity Info */
 h3.charity-name {
-  color: #bababf;
-  font-size: 1.15em;
+  color: #9f9fa7;
+  font-size: 1.2em;
   line-height: 1.2em;
   margin-top: .8em;
 }
@@ -1956,9 +1972,8 @@ h3.charity-name a.approved {
 h3.charity-name a.approved i {
   display: inline-block;
   color: #1dbc9c;
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: 600;
-  margin-left: 3px;
   height: 20px;
   width: 20px;
 }
@@ -1977,7 +1992,7 @@ h3.charity-name a.approved .approved-info {
   padding: 15px;
   width: 120px;
   background: #1dbc9c;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   z-index: 1000;
 }
@@ -2012,7 +2027,7 @@ h3.charity-name a.approved .approved-info:before {
 .form-progress-wrap {
   position: relative;
   text-align: center;
-  height: 6px;
+  height: 8px;
   width: 100%;
   background: #efeff0;
 }
@@ -2095,14 +2110,14 @@ footer a.logo:hover:before {
 }
 .events-form #donation-amount .fieldamount label {
   color: #6b6b75;
-  font-size: 1.6em;
+  font-size: 1.8em;
   font-weight: 600;
   line-height: 90px;
   letter-spacing: -1px;
   margin: 0;
   width: 100%;
   background: #efeff0;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
@@ -2130,7 +2145,7 @@ footer a.logo:hover:before {
   left: .5%;
   right: 17%;
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: 4px;
   background-clip: padding-box;
   border: solid 2px #efeff0;
   overflow: hidden;
@@ -2188,6 +2203,7 @@ fieldset {
   max-width: 650px;
 }
 #form-errors-summary {
+  display: none;
   text-align: center;
   padding: 3em 5% 0;
   margin: 0 auto;
@@ -2201,6 +2217,10 @@ fieldset {
 }
 #donation-form input {
   width: 100%;
+}
+/* Input Styles */
+body #drcc_option div.input-item-select:nth-of-type(3) {
+  background: #ff0000;
 }
 /* Loader */
 /* ------------------------------------------------- */

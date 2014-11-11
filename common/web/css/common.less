@@ -91,8 +91,8 @@ body {
 .btn-sm {
 	font-size: @smalltext;
 	line-height: 33px;
-	padding: 0 1.4em;
-	height: 33px;
+	padding: 0 1.2em;
+	line-height: 34px;
 	&:focus {
 		color: @white;
 	}
@@ -111,7 +111,9 @@ body {
 	padding-bottom: @gutter;
 }
 
-
+.manual-donation{
+  margin-left: 20px;
+}
 /* Main Data Containers */
 /* ------------------------------------------------- */
 .stats-overview {
@@ -141,7 +143,7 @@ body {
 	}
 
 	.stats-box {
-		padding: 1.4em 0;
+		padding: 1.4em 0 2em;
 		min-height: 110px;
 		border-left: solid 1px @gray75;
 		&:first-child {
@@ -356,6 +358,7 @@ span.list-info {
 		font-weight: 400;
 		padding: @halfgutter;
 		background: @gray20;
+		border-radius: 0;
 	}
 }
 .tooltip.top .tooltip-arrow {

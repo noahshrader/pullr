@@ -3,31 +3,8 @@ use common\models\Campaign;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
 ?>
-<style>
-    h2.main-title,
-    h3.charity-name a.approved i,
-    span.amountRaised,
-    p.info a,
-    a.close {
-        color: {{campaign.primaryColor}} !important;
-    }
-    h3.charity-name a.approved .approved-info:before {
-        border-color: transparent transparent {{campaign.primaryColor}} transparent !important;
-    }
-    .progress,
-    h3.charity-name a.approved .approved-info,
-    .events-form #donation-amount .fieldamount label.active,
-    button.donate {
-        background: {{campaign.primaryColor}} !important;
-    }
-</style>
 
 <!-- BEGIN Donation Form -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="api/script"></script>
-<script type='text/javascript'>
-    Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
-</script>
 <section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 'tip-jar' :'events-form' ?>">
     <div class="donation-form-header">
         <h2 class="main-title" ng-cloak>{{campaign.name}}</h2>
