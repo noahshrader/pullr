@@ -43,30 +43,61 @@
             this.getActivityFeedSetting();
 
 
-            function requestStreamData() {
+            this.requestStreamData = function() {
 
                 $http.get('app/streamboard/get_stream_data').success(function (data) {
                     /*we should get data in "date ASC" order because we first should notifications which occur early*/
                     for (var key in data) {
                         var notification = data[key];
-                        var id = notification.type + '_' + notification.id;
-                        /*check if we already view it*/
-                        if (!(id in Service.alreadyViewed)) {
-                            console.log('[STREAM_LOG]');
-                            console.log(notification);
-                            Service.alreadyViewed[id] = true;
-                            Service.streams[1].push(notification);
-                            if (regions.regions.length > 1) {
-                                /*if we have second region*/
-                                Service.streams[2].push(notification);
-                            }
-                        }
+                        Service.pushNotification(notification);
                     }
                 });
             }
 
+            this.pushNotification = function(notification){
+                var notification = notification;
+                var id = notification.type + '_' + notification.id;
+                /*check if we already view it*/
+                if (!(id in Service.alreadyViewed)) {
+                    console.log('[STREAM_LOG]');
+                    console.log(notification);
+                    Service.alreadyViewed[id] = true;
+                    Service.streams[1].push(notification);
+                    if (regions.regions.length > 1) {
+                        /*if we have second region*/
+                        Service.streams[2].push(notification);
+                    }
+                }
+            }
+
+            this.pushFollowerAlerts = function(list) {
+                angular.forEach(list, function(item) {                       
+                    var notification = {
+                        id: item.user._id,
+                        type:'followers',
+                        message: sprintf('%s just followed your channel!', item.user.name),
+                        follow: item,
+                        date: new Date(item.created_at)
+                    }
+                    Service.pushNotification(notification);
+                });
+            }
+
+            this.pushSubscriberAlerts = function(list) {
+                angular.forEach(list, function(item) {                       
+                    var notification = {
+                        id: item.user._id,
+                        type:'subscribers',
+                        message: sprintf('%s just subscribed your channel!', item.user.name),
+                        follow: item,
+                        date: new Date(item.created_at)
+                    }
+                    Service.pushNotification(notification);
+                });
+            }
+
             $interval(function(){
-                requestStreamData();
+                Service.requestStreamData();
             }, 5000);
             this.testData = function (type, number, regionNumber) {
                 if (!number) {

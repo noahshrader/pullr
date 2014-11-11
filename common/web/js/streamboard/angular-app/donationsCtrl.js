@@ -4,7 +4,7 @@
         $scope.campaignsService = campaigns;
         $scope.donationsService = donations;
         
-        $scope.nameHiddenToggle = function(donation) {
+        $scope.nameHiddenToggle = function(donation) {            
             donation.streamboard.nameHidden = !donation.streamboard.nameHidden;
             donation.displayName = donation.streamboard.nameHidden || !donation.nameFromForm ? Pullr.ANONYMOUS_NAME : donation.nameFromForm;
             $http.post('app/streamboard/set_donation_streamboard', {id: donation.id, property: 'nameHidden', value: donation.streamboard.nameHidden }).success(function(){
@@ -13,7 +13,7 @@
             });
         }
 
-        $scope.markAsRead = function(donation) {
+        $scope.markAsRead = function(donation) {       
             var wasRead = true;
             if ( donation.streamboard.wasRead == true ) {
                 wasRead = false;

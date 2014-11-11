@@ -144,9 +144,7 @@ FollowerHelper.prototype.saveNewFollowers = function(followers) {
 			notificationsData.push(follower.user.display_name);
 			
 			_this.savedFollowers.push(follower.user._id);
-			_this.insertIds.push(follower.user._id);
-			
-			
+			_this.insertIds.push(follower.user._id);						
 		} 
 	}	
 

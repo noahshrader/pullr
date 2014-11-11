@@ -1,8 +1,9 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
-            'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee']).
-        controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig) {
+            'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee',
+            'pullr.streamboard.twitch']).
+        controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
             $scope.donationsService = donations;
@@ -11,6 +12,9 @@
             $scope.duration = 1500;
             $scope.alertMediaManagerService = alertMediaManager;
             $scope.streamboardConfig = streamboardConfig;
+            twitchNotification.requestTwitchData();
+            $interval(twitchNotification.requestTwitchData, 20000);
+
             var $region2 = $(".regionsContainer .region:last-child");
             var animationEndEvent = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
             var isShowingNotification = false;

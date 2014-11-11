@@ -180,7 +180,8 @@ class Donation extends ActiveRecord
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
             $donors[] = [ 'name' => $name, 
                         'amount' => PullrUtils::formatNumber($sumByEmail[$donation->email]), 
-                        'email' => $donation->email];
+                        'email' => $donation->email,
+                        'campaignId' => $donation->campaignId];
         }
         return $donors;
     }

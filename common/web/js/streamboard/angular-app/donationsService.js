@@ -16,7 +16,7 @@
 
             $interval(function () {
                 Service.updateDonations();
-            }, 5000);
+            }, 10000);
 
 
             function updateDonations(forceAll) {
@@ -37,13 +37,13 @@
                         simpleMarqueeHelper.recalculateMarquee();
                     }
                     
-                    if (data.groupDonations) {
-                        if (Service.groupDonations.length == 0 || detectChange(Service.groupDonations, data.groupDonations)) {
-                            Service.groupDonations = data.groupDonations;                                
-                        }                                            
-                    } else if (data.donations && data.donations.length > 0) {
-                        Service.lastDonationId = data.donations[0].id;
-                        sortDonations();
+                    if (data.userDonations) {
+                        Service.userDonations = data.userDonations;
+                    }
+
+                    if (data.donations) {
+                        Service.donations = data.donations;
+                        groupDonations();                       
                         if ( detectChange(data.donations, Service.donations)) {
                             simpleMarqueeHelper.recalculateMarquee();                            
                         }                                                                        
@@ -87,10 +87,9 @@
                 Service.donations = newDonations;                         
             };
 
-            function groupDonations() {
-                console.log(Service.donations);
-                var groupDonations = orderByFilter(Service.donations, 'amount');
-                groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations, 'amount');                
+            function groupDonations() {           
+                var groupDonations = orderByFilter(Service.donations, 'amount');               
+                groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations, 'amount');                               
                 groupDonations = groupByFilter(groupDonations, 'amount');
                 Service.groupDonations = groupDonations;        
             }

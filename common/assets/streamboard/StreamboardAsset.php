@@ -23,7 +23,8 @@ class StreamboardAsset extends AssetBundle
         'bower_components/moment/moment.js',
         'bower_components/angular-moment/angular-moment.min.js',
         'bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
-        'bower_components/zeroclipboard/dist/ZeroClipboard.min.js',                
+        'bower_components/zeroclipboard/dist/ZeroClipboard.min.js',  
+        'bower_components/sprintf/dist/sprintf.min.js',              
         'js/streamboard/angular-app/simple-marquee.js',
 		'js/streamboard/streamboard.js',
         /* angular-app begin */        
@@ -44,6 +45,7 @@ class StreamboardAsset extends AssetBundle
         'js/streamboard/angular-app/app.js',
         'js/streamboard/angular-app/streamboardConfig.js',
         'js/streamboard/angular-app/sideBarCtrl.js',
+        'js/streamboard/angular-app/twitch.js'
         /* angular-app end */
 	];
 	public $depends = [

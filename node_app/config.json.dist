@@ -7,6 +7,8 @@
 	},
 	"twitch" : {
 		"clientId" : "kyg7ej7lb3lnaw36fjgumiyz8z7tyyr",
-    	"secret" : "b1pkfhiu1q1ihxcu9y0l794ewyk8hjt"
-	}
+    	"secret" : "b1pkfhiu1q1ihxcu9y0l794ewyk8hjt",
+    	"apiUrl" : "https://api.twitch.tv/kraken"
+	},
+	"interval": "60000"
 }

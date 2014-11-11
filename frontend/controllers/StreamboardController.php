@@ -95,7 +95,7 @@ class StreamboardController extends FrontendController
             ];
         }
 
-        foreach ($followers as $follow){
+        foreach ($followers as $follow) {
             /**@var $follow TwitchFollow*/
             $notifications[] = [
                 'id' => $follow->twitchUserId,
@@ -106,7 +106,7 @@ class StreamboardController extends FrontendController
             ];
         }
 
-        foreach ($subscriptions as $subscription){
+        foreach ($subscriptions as $subscription) {
             /**@var $subscription TwitchSubscription*/
             $notifications[] = [
                 'id' => $subscription->twitchUserId,
@@ -238,27 +238,41 @@ class StreamboardController extends FrontendController
     public function actionGet_donations_ajax($since_id = null)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $user = Application::getCurrentUser();
-        
-        $sinceDate = $user->streamboardConfig->clearedDate;
-
-        $donors = [];
-        $groupDonors = [];
+        $user = Application::getCurrentUser();        
+        $sinceDate = $user->streamboardConfig->clearedDate;        
         $selectedCampaigns = Streamboard::getSelectedCampaigns($user);        
-        $donors = [];
-        $groupDonors = [];
+        $donations = [];
+      
         $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$user->id])->one();
         if ( $donationFeed && $donationFeed->groupUser == 1 ) {           
             $groupUser = true;
         } else {           
             $groupUser = false;
-        }
-        if ($groupUser) {
-            $groupDonors = Donation::getTopDonorsForCampaignsGroupByAmount($selectedCampaigns, null, true, $sinceDate);
-        } else {
-            $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
-        }
+        }        
       
+        $donations = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);        
+
+        $userDonations = $user->getDonations(['sinceId' => $since_id])
+                            ->andWhere('paymentDate > ' . $sinceDate)
+                            ->with('campaign', 'streamboard')                      
+                            ->limit(100)                            
+                            ->all();
+        $userDonationArray = [];
+        foreach ($userDonations as $donation) {
+            /**@var $donation Donation */
+            $array = $donation->toArray(['id', 'campaignId', 'amount', 'nameFromForm', 'paymentDate', 'comments']);
+            $array['campaignName'] = $donation->campaign->name;
+            $array['streamboard'] = [
+                'nameHidden' => false,
+                'wasRead' => false
+            ];
+            if ($donation->streamboard) {
+                $array['streamboard']['nameHidden'] = $donation->streamboard->nameHidden;
+                $array['streamboard']['wasRead'] = $donation->streamboard->wasRead;
+            }
+            $array['displayName'] = $donation->displayNameForDonation();
+            $userDonationArray[] = $array;
+        }
 
         $subscribers = [];
         if ($user->userFields->twitchPartner) {
@@ -294,11 +308,11 @@ class StreamboardController extends FrontendController
 
 
         $data = [];
-        $data['donations'] = $donors;
-        $data['groupDonations'] = $groupDonors;
+        $data['donations'] = $donations;        
         $data['stats'] = $stats;
         $data['followers'] = $followers;
         $data['subscribers'] = $subscribers;
+        $data['userDonations'] = $userDonationArray;
         return $data;
     }
 
@@ -563,5 +577,42 @@ class StreamboardController extends FrontendController
 
     public function actionAlert_remove_image_ajax(){
         return $this->removeAlert_file_ajax('image');
+    }
+
+    public function actionGet_follower() {
+        $channel = $user->userFields->twitchChannel;
+        
+        if ( ! $channel) {
+            return;
+        }
+
+        /**
+         * @var TwitchSDK $twitchSDK
+         */
+        $twitchSDK = \Yii::$app->twitchSDK;
+        $data = $twitchSDK->channelFollows($channel, 1);
+        $data = json_decode(json_encode($data), true);
+    }
+    public function actionGet_subscribers() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $user = Application::getCurrentUser();
+        $accessToken = $user->userFields->twitchAccessToken;
+        $channel = $user->userFields->twitchChannel;
+        $twitchPartner = $user->userFields->twitchPartner;
+
+        if ( ! $accessToken || ! $channel || ! $twitchPartner) {
+            return;
+        }
+
+
+        /**
+         * @var TwitchSDK $twitchSDK
+         */
+        $twitchSDK = \Yii::$app->twitchSDK;
+        $data = $twitchSDK->authChannelSubscriptions($accessToken, $channel, 100);
+        /*to have array instead of object */
+        $data = json_decode(json_encode($data),true);
+        
+        return $data;
     }
 }
