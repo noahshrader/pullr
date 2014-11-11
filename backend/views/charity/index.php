@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use common\models\Charity;
 use yii\widgets\ActiveForm;
 
-$this->registerJSFile('@web/js/charity/index.js', \common\assets\CommonAsset::className());
+//$this->registerJSFile('@web/js/charity/index.js', \common\assets\CommonAsset::className());
 
 $this->title = 'Charities';
 ?>
