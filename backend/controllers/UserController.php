@@ -50,4 +50,12 @@ class UserController extends BackendController
         $params['user'] = $user;
         return $this->render('view', $params);
     }
+
+    public function actionOnline()
+    {
+        $time = time();
+        $secDiffOnline = \Yii::$app->params['secDiffOnline'];
+        $users = User::find()->where(':now - updated_at <= :secs', [':now' => $time, ':secs' => $secDiffOnline])->all();
+        return $this->render('index', ['users' => $users]);
+    }
 }

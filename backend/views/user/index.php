@@ -8,7 +8,10 @@ $this->title = 'Users';
 ?>
 
 <div class="admin-content-wrap">
+    <a href="/user" class="btn btn-primary">All users</a>
+    <a href="/user/online" class="btn btn-primary">Online users</a>
 
+    <?if(count($users)):?>
     <table id="users-management-table"  class="table dataTable">
         <thead>
             <tr>
@@ -36,12 +39,16 @@ $this->title = 'Users';
                 <th>
                     Total Raised
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
+            <? $time = time();?>
             <? foreach ($users as $user): ?>
                 <tr data-id='<?= $user->id?>'>
-                    <td><a href="user/view?id=<?=$user->id?>"><?= $user->name ?></a></td>
+                    <td>
+                        <a href="user/view?id=<?=$user->id?>"><?= $user->name ?></a>
+                    </td>
                     <td><?= $user->email?> </td>
                     <td><?= $user->getPlan() ?></td>
                     <td><?= ($user->status == User::STATUS_ACTIVE) ? 'Active' : 'Inactive'?> </td>
@@ -49,9 +56,18 @@ $this->title = 'Users';
                     <td><?= date('M j Y h:iA', $user->last_login) ?></td>
                     <td><?= $user->getCampaigns()->count(); ?></td>
                     <td><?= number_format($user->getCampaigns()->sum('amountRaised')) ?></td>
+                    <td>
+                        <? if($time - $user->updated_at <= \Yii::$app->params['secDiffOnline']):?>
+                            <span class="label label-success">Online</span>
+                        <? else:?>
+                            <span class="label label-danger">Offline</span>
+                        <?endif;?>
+                    </td>
                 </tr>
             <? endforeach; ?>
         </tbody>
     </table>
-
+<?else:?>
+    <h3>No users</h3>
+<?endif;?>
 </div>
