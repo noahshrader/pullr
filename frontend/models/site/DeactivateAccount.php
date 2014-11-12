@@ -48,7 +48,7 @@ class DeactivateAccount extends ActiveRecord {
 
     public function attributeLabels() {
         return [
-            'reason' => "We are sorry you want to leave. Let us know why or what we could do better."
+            'reason' => "Let us know why you are leaving"
         ];
     }
 

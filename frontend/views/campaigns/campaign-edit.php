@@ -42,17 +42,21 @@ $user = \Yii::$app->user->identity;
                                 </a>
                             </li>
                             <li class="cf">
-                                <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                                <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
+                                    <i class="icon icon-list"></i>
+                                    Form
+                                </a>
+                            </li>
+                            <li class="cf">
                                 <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
                                     <i class="icon icon-code2"></i>
                                     JSON
                                 </a>
                             </li>
                             <li class="cf">
-                                <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                                <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
-                                    <i class="icon icon-list"></i>
-                                    Form
+                                <a class="disabled">
+                                    <i class="icon icon-monitor"></i>
+                                    Widgets
                                 </a>
                             </li>
                             <? if ($campaign->status != Campaign::STATUS_PENDING): ?>

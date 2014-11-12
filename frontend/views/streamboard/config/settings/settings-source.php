@@ -11,15 +11,10 @@ if ($user->userFields && trim($user->userFields->twitchChannel) != '') {
 
 ?>
 <div class="text-center streamboard-settings-header">
-
-    <button class="btn btn-sm" id='btn-copy-source-link' 
-    	data-clipboard-text='<?= $publicSourceHref?>'>
-        Copy Source URL
- 
-    </button>
-    <div id='copied-clipboard-tooltip' class="tooltip bottom fade in">
-  		<div class="tooltip-arrow"></div>
-  		<div class="tooltip-inner">Copied link to clipboard</div>
+	<button class="btn btn-sm" id='btn-copy-source-link' data-clipboard-text='<?= $publicSourceHref?>'>Copy Source URL</button>
+	<div id='copied-clipboard-tooltip' class="tooltip bottom fade in">
+		<div class="tooltip-arrow"></div>
+		<div class="tooltip-inner">Copied link to clipboard!</div>
 	</div>
 </div>
 <div class="settings pane">

@@ -58,17 +58,21 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                                     </a>
                                 </li>
                                 <li class="cf">
-                                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
+                                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
+                                        <i class="icon icon-list"></i>
+                                        Form
+                                    </a>
+                                </li>
+                                <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
                                         <i class="icon icon-code2"></i>
                                         JSON
                                     </a>
                                 </li>
                                 <li class="cf">
-                                    <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
-                                        <i class="icon icon-list"></i>
-                                        Form
+                                    <a class="disabled">
+                                        <i class="icon icon-monitor"></i>
+                                        Widgets
                                     </a>
                                 </li>
                                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
@@ -185,14 +189,13 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
 
 <!-- Modal -->
 <div class="modal fade" id="manualDonationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog module">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h5 class="module-title">Add a Donation</h5>
         <div class="modal-content">
             <? $form = ActiveForm::begin([
                 'action'=> '/app/campaigns/manualdonation'
             ]) ?>
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
             <div class="modal-body">
                 <?= $form->field($manualDonation, 'name')->input('text');?>
                 <?= $form->field($manualDonation, 'email')->input('text');?>
@@ -218,13 +221,13 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                         ],
                     ]) ?>
                 </div>
-                <?= $form->field($manualDonation, 'dateCreated')->label("Donation datetime")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
+                <?= $form->field($manualDonation, 'dateCreated')->label("Date")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
                 <?= $form->field($manualDonation, 'comments')->textarea();?>
                 <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaign->id])->label(false);?>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer btn-container">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Add Donation</button>
+                <button type="submit" class="btn btn-primary">Add</button>
             </div>
             <? ActiveForm::end() ?>
         </div>

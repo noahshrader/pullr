@@ -35,6 +35,14 @@ $(function(){
         }
     } );
 
+    /* Manual Donations */
+    var addDonationButton = $('<a>').addClass('btn manual-donations btn-sm').html
+    ('<i class="icon icon-plus2"></i> Add')
+        .addClass("manual-donation")
+        .attr('data-target', '#manualDonationModal')
+        .attr('data-toggle', 'modal');
+    addDonationButton.prependTo($wrapper.find('.campaign-table .table-header'));
+
     if ($table.fnSettings().fnRecordsTotal()){
         if ($('.donor-view-wrap').length > 0){
             
@@ -50,13 +58,6 @@ $(function(){
             ('<i class="icon icon-download2"></i> Export All');
         csvButton.prependTo($wrapper.find('.table-footer'));
 
-        /* Manual Donations */
-        var addDonationButton = $('<a>').addClass('btn manual-donations btn-sm').html
-        ('<i class="icon icon-plus2"></i> Add donation')
-            .addClass("manual-donation")
-            .attr('data-target', '#manualDonationModal')
-            .attr('data-toggle', 'modal');
-        addDonationButton.prependTo($wrapper.find('.campaign-table .table-header'));
     }
 
     // Rotate table details area on click
