@@ -37,7 +37,7 @@ $(function(){
 
     /* Manual Donations */
     var addDonationButton = $('<a>').addClass('btn manual-donations btn-sm').html
-    ('<i class="icon icon-plus2"></i> Add donation')
+    ('<i class="icon icon-plus2"></i> Add')
         .addClass("manual-donation")
         .attr('data-target', '#manualDonationModal')
         .attr('data-toggle', 'modal');
