@@ -27,6 +27,7 @@
 		width: 100%;
 		background: @white;
 		z-index: 9999;
+		.box-shadow;
 
 		.modal-content {
 			text-align: left;
@@ -38,10 +39,29 @@
 			.modal-header {
 				border: 0;
 			}
+			.modal-body {
+				padding: @halfgutter @gutter;
+			}
 			.modal-footer {
 				text-align: center;
 				border: 0;
 			}
+		}
+		.module {
+			margin: 0;
+			box-shadow: 0;
+			
+			h5.module-title {
+				text-align: center;
+			}
+		}
+		button.close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			line-height: 58px;
+			text-align: center;
+			width: 58px;
 		}
 	}
 }
