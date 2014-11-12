@@ -24,6 +24,20 @@ use common\models\User;
 class WidgetAlertsPreference extends ActiveRecord {
     const FILE_TYPE_LIBRARY = 'Library';
     const FILE_TYPE_CUSTOM = 'Custom';
+    public static $ANIMATION_STYLE = [
+        'Bounce In'         => ['bounceIn', 'bounceOut'],
+        'Bounce Down'       => ['bounceInUp','bounceOutUp'],
+        'Bounce Up'         => ['bounceInDown','bounceOutDown'],
+        'Bounce Left'       => ['bounceInLeft','bounceOutLeft'],
+        'Bounce Right'      => ['bounceInRight','bounceOutRight'],
+        'Fade'              => ['fadeIn','fadeOut'],
+        'Flip Vertical'     => ['flipInX','flipOutX'],
+        'Flip Horizontal'   => ['flipInY','flipOutY'],
+        'Slide Down'        => ['slideInDown','slideOutUp'],
+        'Slide Up'          => ['slideInUp','slideOutDown'],
+        'Slide Left'        => ['slideInLeft','slideOutLeft'],
+        'Slide Right'       => ['slideInRight', 'slideOutRight']
+    ];
     public static $FILE_TYPES = [self::FILE_TYPE_CUSTOM, self::FILE_TYPE_LIBRARY];
 
     /**
@@ -35,7 +49,7 @@ class WidgetAlertsPreference extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['fontStyle', 'fontSize', 'fontColor', 'animationDuration', 'volume',
+            'default' => ['fontStyle', 'fontSize', 'fontColor', 'animationDuration', 'animationDirection', 'volume',
                 'sound','soundType', 'image', 'imageType', 'hideAlertText', 'hideAlertImage']
         ];
     }

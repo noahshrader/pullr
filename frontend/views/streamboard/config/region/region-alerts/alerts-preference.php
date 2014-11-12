@@ -1,7 +1,9 @@
 <?
 use yii\helpers\Url;
 use yii\web\View;
+use frontend\models\streamboard\WidgetAlertsPreference;
 
+$animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 /**@var $this View */
 ?>
 <div>
@@ -38,6 +40,17 @@ use yii\web\View;
             <h5>Duration <span class="slider-value value">{{preference.animationDuration}} sec</span></h5>
             <slider ng-model="preference.animationDuration" floor="1" ceiling="10" step="1"
                     ng-change="regionChanged(region)"></slider>
+        </div>
+        <div class="panel-group">
+            <h5>Animation style</h5>
+            <select ui-select2="{minimumResultsForSearch: -1}" ng-model="preference.animationDirection" ng-change="regionChanged(region)"
+                 data-placeholder="Select one...">
+                <option value=""></option>
+                <? foreach ($animationStyleList as $animationName => $animationStyle) :?>
+                    <option value='<?=$animationStyle[0]; ?>, <?=$animationStyle[1]; ?>'><?=$animationName; ?></option>
+                <? endforeach; ?>
+                
+            </select>
         </div>
     </div>
 </div>

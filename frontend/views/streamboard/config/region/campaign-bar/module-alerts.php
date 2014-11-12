@@ -1,6 +1,8 @@
 <? 
 use yii\helpers\Url;
 use frontend\models\streamboard\WidgetAlertsPreference;
+
+$animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 ?>
 <div class="module first">
     <div class="panel-group">
@@ -45,23 +47,15 @@ use frontend\models\streamboard\WidgetAlertsPreference;
 </div>
 
 <div class="module">
-    <div class="panel-group" ng-init="ANIMATION_DIRECTIONS=['Fade','Slide in from top','Slide in from bottom']">
+    <div class="panel-group">
         <h5>Animation Style</h5>
         <select ui-select2="{minimumResultsForSearch: -1}" ng-model="module.animationDirection" ng-change="regionChanged(region)"
              data-placeholder="Select one...">
             <option value=""></option>
-            <option value="bounceIn, bounceOut">Bounce In</option>            
-            <option value="bounceInUp, bounceOutUp">Bounce Down</option>
-            <option value="bounceInDown, bounceOutDown">Bounce Up</option>
-            <option value="bounceInLeft, bounceOutLeft">Bounce Left</option>
-            <option value="bounceInRight, bounceOutRight">Bounce Right</option>
-            <option value="fadeIn, fadeOut">Fade</option>                       
-            <option value="flipInX, flipOutX">Flip Vertical</option>
-            <option value="flipInY, flipOutY">Flip Horizontal</option>
-            <option value="slideInDown, slideOutUp">Slide Down</option>
-            <option value="slideInUp, slideOutDown">Slide Up</option>
-            <option value="slideInLeft, slideOutLeft">Slide Left</option>
-            <option value="slideInRight, slideOutRight">Slide Right</option>
+            <? foreach ($animationStyleList as $animationName => $animationStyle) :?>
+                <option value='<?=$animationStyle[0]; ?>, <?=$animationStyle[1]; ?>'><?=$animationName; ?></option>
+            <? endforeach; ?>
+            
         </select>
     </div>
     <div class="panel-group">

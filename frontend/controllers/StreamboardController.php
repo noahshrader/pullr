@@ -296,7 +296,7 @@ class StreamboardController extends FrontendController
         /*We do not include parents campaigns. If we will include it, we should prepare StreamboardCampaigns for such users.*/
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
         $selectedCampaigns = [];
-
+        
         foreach ($campaigns as $campaign) {
             /**@var $campaign Campaign */
             if ($campaign->streamboard->selected) {

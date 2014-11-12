@@ -165,7 +165,7 @@
                 if (notification) {
                     console.log(['WE HAVE NOTIFICATION FOR REGION ' + region.regionNumber]);
                     console.log(notification);
-         //           isShowingNotification = true;
+         
                     var toShow = region.toShow.alert;
                     toShow.animationDirection = '';  
                     toShow.isRunning = true;                  
@@ -175,6 +175,16 @@
                         toShow.preference = region.widgetAlerts[notification.type + 'Preference'];   
                         toShow.notificationType = notification.type;
                         var preference = toShow.preference;
+                        console.log(preference);
+
+                        if (preference.animationDirection) {
+                            toShow.animationDirectionArray = preference.animationDirection.split(',');                        
+                            $('#region-' + region.regionNumber + ' .widget-alerts:eq(0)').off(animationEndEvent);
+                            if (toShow.animationDirectionArray.length > 1) {
+                                toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
+                            }    
+                        }
+                        
                         toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);                        
                         alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
                         $interval(function () {
@@ -183,16 +193,19 @@
                         return;
                     } else {
                         /**so we have campaign bar*/
-                        var alertsModule = region.widgetCampaignBar.alertsModule;
-                        toShow.animationDirectionArray = alertsModule.animationDirection.split(',');
+                        var alertsModule = region.widgetCampaignBar.alertsModule;                        
                         toShow.background = alertsModule.background;
                         toShow.image = '';
                         alertMediaManager.playSound(alertsModule.sound, alertsModule.soundType, alertsModule.volume);
-                        $('#region-' + region.regionNumber + ' .bar-alert:eq(0)').off(animationEndEvent);
-                        if(toShow.animationDirectionArray.length > 1){
-                            toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
+
+                        if (alertsModule.animationDirection) {
+                            toShow.animationDirectionArray = alertsModule.animationDirection.split(',');
+                            $('#region-' + region.regionNumber + ' .bar-alert:eq(0)').off(animationEndEvent);
+                            if(toShow.animationDirectionArray.length > 1){
+                                toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
+                            }    
                         }
-                        
+                                                
                         $interval(function () {
                             hideAlert(region);
                         }, alertsModule.animationDuration * 1000, 1);
@@ -212,17 +225,31 @@
                 } else if (region.widgetType =='widget_campaign_bar' && region.widgetCampaignBar.alertsEnable) {
                     delay = region.widgetCampaignBar.alertsModule.animationDelay;
                 }
+
+                console.log(region.toShow);
+
                 if (region.toShow.alert.animationDirectionArray.length > 1) {
+
                     region.toShow.alert.animationDirection = 'animated ' + region.toShow.alert.animationDirectionArray[1];
-                    $('#region-' + region.regionNumber + ' .bar-alert:eq(0)').one(animationEndEvent, function(){
-                        region.toShow.alert.message = null;    
-                        region.toShow.alert.animationDirectionArray = [];    
-                        region.toShow.alert.background = '';
-                        $interval(function () {
-                            showAlert(region);
-                        }, delay * 1000, 1);       
-                    });
-                    
+                    if (region.widgetType == 'widget_alerts') {
+                        $('#region-' + region.regionNumber + ' .widget-alerts:eq(0)').one(animationEndEvent, function(){
+                            region.toShow.alert.message = null;    
+                            region.toShow.alert.animationDirectionArray = [];    
+                            region.toShow.alert.background = '';
+                            $interval(function () {
+                                showAlert(region);
+                            }, delay * 1000, 1);       
+                        });
+                    } else {
+                        $('#region-' + region.regionNumber + ' .bar-alert:eq(0)').one(animationEndEvent, function(){
+                            region.toShow.alert.message = null;    
+                            region.toShow.alert.animationDirectionArray = [];    
+                            region.toShow.alert.background = '';
+                            $interval(function () {
+                                showAlert(region);
+                            }, delay * 1000, 1);       
+                        });    
+                    }                                                    
                 } else {
                     region.toShow.alert.animationDirection = '';
                     region.toShow.alert.message = null;
