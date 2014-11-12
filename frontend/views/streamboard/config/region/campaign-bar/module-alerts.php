@@ -30,6 +30,12 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 
 <div class="module">
     <div class="panel-group">
+        <h5>Alert Text</h5>
+        <div class="hint--bottom" data-hint="You are available following variables&#10;**TwitchUser**&#10; **Donor**&#10; **Amount**&#10; **CampaignName**">
+            <textarea ng-model="module.alertText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
+        </div>
+    </div>
+    <div class="panel-group">
         <h5>Font style</h5>
         <div font-style ng-model="module.fontStyle"></div>
     </div>
