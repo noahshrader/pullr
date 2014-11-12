@@ -61,7 +61,7 @@ use yii\web\View;
                     
                         &nbsp;{{subscriber.display_name}}<!--removing space for .commaAfter
                     -->
-                        <span class="commaAfter" ng-show='$last'>(subscribed)</span>
+                        <span class="commaAfter" ng-show='$last && donationsService.subscribers.length > 0'>(subscribed)</span>
                     </span> 
 
                     <span
@@ -70,7 +70,7 @@ use yii\web\View;
                         
                             &nbsp;{{follower.display_name}}<!--removing space for .commaAfter
                         -->
-                        <span class="commaAfter" ng-show='$last'>(followed)</span>
+                        <span class="commaAfter" ng-show='$last && donationsService.followers.length > 0'>(followed)</span>
                     </span> 
 
                     

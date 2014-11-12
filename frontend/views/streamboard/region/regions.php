@@ -18,7 +18,9 @@ $class = 'regionsNumber' . $regionsNumber;
          resizable-condition="region.regionNumber == 2"
 
          >
-        <div ng-show="region.toShow.alert.message && (region.widgetType == 'widget_alerts')" class="widget-alerts"                 
+        <div ng-show="region.toShow.alert.message && (region.widgetType == 'widget_alerts')"
+            class='widget-alerts'
+            ng-class='region.toShow.alert.animationDirection'
             interaction
                     draggable
                     draggable-widget="region.widgetAlerts" 
@@ -29,7 +31,8 @@ $class = 'regionsNumber' . $regionsNumber;
                     resizable-config="{containment: getContainmentByRegion(region) }"
                     resizable-callback="onResizeAlertImage"                    
                     resizable-region="region",
-                    resizable-size="{width:region.widgetAlerts.imageWidth, height: region.widgetAlerts.imageHeight}">
+                    resizable-size="{width:region.widgetAlerts.imageWidth, height: region.widgetAlerts.imageHeight}"
+                    >
             <!-- if alert message is shown -->
              
                 <img ng-src="{{region.toShow.alert.image}}" 
@@ -39,7 +42,7 @@ $class = 'regionsNumber' . $regionsNumber;
                     />
           
             <div 
-                    ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle}" 
+                    ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle, 'position':'absolute'}" 
                     ng-hide="region.toShow.alert.preference.hideAlertText"
                     draggable-widget="region.widgetAlerts" 
                     draggable-region="region" 

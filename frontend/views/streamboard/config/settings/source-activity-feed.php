@@ -29,7 +29,7 @@
 
 		<? if (($showSubscriber && count($subscribers) > 0) || ($showFollower && count($followers) >0)) echo ','; ?>
 
-		<? if ($showSubscriber): ?>
+		<? if ($showSubscriber && count($subscribers) > 0): ?>
 		    <? foreach ($subscribers as $index => $subscriber):?>
 		    <?=$subscriber['display_name']; ?> <? if ($index < count($subscribers) - 1 || ($showFollower && count($followers) > 0)):?>,<? endif; ?>
 		    <? endforeach; ?> (Subscribed)
@@ -37,7 +37,7 @@
 
 		<? if ($showFollower && count($followers) > 0) echo ','; ?>
 
-		<? if ($showFollower): ?>
+		<? if ($showFollower && count($followers) > 0): ?>
 		    <? foreach($followers as $index => $follower): ?>
 		    <?=$follower['display_name']; ?> <? if ($index < count($followers) - 1):?>,<? endif; ?>
 		    <? endforeach; ?> (Followed)
