@@ -48,7 +48,7 @@
 	<div class="module">
 		<div class="panel-group">
 			<h5>Number Of Donations</h5>
-			<span class="number_of_donations value large">
+			<span class="number_of_donations value">
 				{{donationsService.stats.number_of_donations}}
 			</span>
 		</div>
@@ -57,7 +57,7 @@
 	<div class="module">
 		<div class="panel-group">
 			<h5>Number Of Donors</h5>
-			<span class="number_of_donors value large">
+			<span class="number_of_donors value">
 				{{donationsService.stats.number_of_donors}}
 			</span>
 		</div>

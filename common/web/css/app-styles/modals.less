@@ -27,7 +27,7 @@
 		width: 100%;
 		background: @white;
 		z-index: 9999;
-		.box-shadow;
+		.big-shadow;
 
 		.modal-content {
 			text-align: left;
@@ -50,7 +50,7 @@
 		.module {
 			margin: 0;
 			box-shadow: 0;
-			
+
 			h5.module-title {
 				text-align: center;
 			}
@@ -68,6 +68,10 @@
 .modal-backdrop {
 	background: @maingray;
 	z-index: 1000;
+	&.in {
+		opacity: .3;
+		filter: alpha(opacity=30);
+	}
 }
 
 /* Themes Modal */

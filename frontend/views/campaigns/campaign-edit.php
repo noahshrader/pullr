@@ -55,7 +55,7 @@ $user = \Yii::$app->user->identity;
                             </li>
                             <li class="cf">
                                 <a class="disabled">
-                                    <i class="icon icon-share"></i>
+                                    <i class="icon icon-monitor"></i>
                                     Widgets
                                 </a>
                             </li>

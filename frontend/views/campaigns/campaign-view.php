@@ -71,7 +71,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                                 </li>
                                 <li class="cf">
                                     <a class="disabled">
-                                        <i class="icon icon-share"></i>
+                                        <i class="icon icon-monitor"></i>
                                         Widgets
                                     </a>
                                 </li>
@@ -221,7 +221,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                         ],
                     ]) ?>
                 </div>
-                <?= $form->field($manualDonation, 'dateCreated')->label("Donation datetime")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
+                <?= $form->field($manualDonation, 'dateCreated')->label("Date")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
                 <?= $form->field($manualDonation, 'comments')->textarea();?>
                 <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaign->id])->label(false);?>
             </div>
