@@ -174,8 +174,7 @@
                     if (region.widgetType == 'widget_alerts') {                        
                         toShow.preference = region.widgetAlerts[notification.type + 'Preference'];   
                         toShow.notificationType = notification.type;
-                        var preference = toShow.preference;
-                        console.log(preference);
+                        var preference = toShow.preference;                      
 
                         if (preference.animationDirection) {
                             toShow.animationDirectionArray = preference.animationDirection.split(',');                        
@@ -224,9 +223,7 @@
                     delay = region.widgetAlerts.animationDelaySeconds;
                 } else if (region.widgetType =='widget_campaign_bar' && region.widgetCampaignBar.alertsEnable) {
                     delay = region.widgetCampaignBar.alertsModule.animationDelay;
-                }
-
-                console.log(region.toShow);
+                }             
 
                 if (region.toShow.alert.animationDirectionArray.length > 1) {
 

@@ -11,6 +11,7 @@ use common\components\Application;
 
 class TwitchHelper 
 {
+
 	public static function updateFollowerNumber($user)
 	{      
 		
@@ -26,7 +27,8 @@ class TwitchHelper
         $twitchSDK = \Yii::$app->twitchSDK;
         $data = $twitchSDK->channelFollows($channel, 1);
        	$data = json_decode(json_encode($data), true);
-        TwitchUser::updateFollowersNumber($user->id, $data['_total']);	 	            	              
+        TwitchUser::updateFollowersNumber($user->id, $data['_total']);	 
+        TwitchFollow::updateFollows($user->id, $data['follows']);	            	              
     }
 
     public static function updateSubscriberNumber($user)
@@ -46,6 +48,7 @@ class TwitchHelper
         $data = $twitchSDK->authChannelSubscriptions($accessToken, $channel, 1);
         /*to have array instead of object */
         $data = json_decode(json_encode($data),true);
-        TwitchUser::updateSubscribersNumber($user->id, $data['_total']);	                      
+        TwitchUser::updateSubscribersNumber($user->id, $data['_total']);	
+        TwitchSubscription::updateSubscriptions($user->id, $data['subscriptions']);                      
     }
 }

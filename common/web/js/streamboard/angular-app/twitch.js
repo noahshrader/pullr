@@ -20,11 +20,12 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 	service.getFollowers = function() {
 		var deferred = $q.defer();
 		var method = 'channels/' + service.channelName + '/follows';
-        Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-            if ( ! error ) {
-            	deferred.resolve(list);
-            }
-        });
+        // Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
+        //     if ( ! error ) {
+        //     	deferred.resolve(list);
+        //     }
+        // });
+		return $http.get('app/streamboard/get_followers');
         return deferred.promise;
 	}
 
@@ -57,18 +58,18 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 
 	service.lastRequestTime = service.getCurrentUTCDate();
 	service.lastMaxCreatedAt = service.getCurrentUTCDate();
-	console.log(service.lastRequestTime);
+	
 	service.filterList = function(list) {		
+
 		var result = [];
 		angular.forEach(list, function(item) {
 			var createdAt = new Date(item.created_at);
+		//	console.log(item.user.name, item.created_at, service.lastRequestTime)
 			if (createdAt >= service.lastRequestTime) {				
 				if (createdAt > service.lastMaxCreatedAt) {
 					service.lastMaxCreatedAt = createdAt;
 				}
 				result.push(item);
-			} else {
-				return false;
 			}
 		});
 		return result;
@@ -76,10 +77,13 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 
 	service.requestTwitchData = function() {
 		twitch.getFollowers().then(function(response) {
-			var follows = service.filterList(response.follows);
+			
+			var follows = service.filterList(response.data.follows);
+			
 			if (follows.length > 0) {
 				stream.pushFollowerAlerts(follows);
 			}
+			
 			twitch.getSubscribers().then(function(response) {				
 				var subscriptions = service.filterList(response.data.subscriptions);				
 				service.lastRequestTime = service.getCurrentUTCDate();
@@ -88,6 +92,10 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 				}
 			});
 		});		
+	}
+
+	service.saveNewFollowers = function(follows) {
+
 	}
 	
 	return service;

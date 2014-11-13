@@ -23,6 +23,7 @@ use common\components\streamboard\alert\AlertMediaManager;
 use common\components\message\ActivityMessage;
 use frontend\models\streamboard\WidgetDonationFeed;
 use yii\filters\AccessControl;
+use common\models\twitch\TwitchUser;
 class StreamboardController extends FrontendController
 {
     public function behaviors()
@@ -611,8 +612,29 @@ class StreamboardController extends FrontendController
         $twitchSDK = \Yii::$app->twitchSDK;
         $data = $twitchSDK->authChannelSubscriptions($accessToken, $channel, 100);
         /*to have array instead of object */
-        $data = json_decode(json_encode($data),true);
+        $data = json_decode(json_encode($data), true);
+        TwitchUser::updateSubscribersNumber($user->id, $data['_total']);   
+        TwitchSubscription::updateSubscriptions($user->id, $data['subscriptions']);
+        return $data;
+    }
+
+    public function actionGet_followers() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $user = Application::getCurrentUser();
+        $channel = $user->userFields->twitchChannel;
         
+        if ( ! $channel) {
+            return;
+        }
+
+        /**
+         * @var TwitchSDK $twitchSDK
+         */
+        $twitchSDK = \Yii::$app->twitchSDK;
+        $data = $twitchSDK->channelFollows($channel, 100);       
+        $data = json_decode(json_encode($data), true);
+        TwitchUser::updateFollowersNumber($user->id, $data['_total']);   
+        TwitchFollow::updateFollows($user->id, $data['follows']);
         return $data;
     }
 }
