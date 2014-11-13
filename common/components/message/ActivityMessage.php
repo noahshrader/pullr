@@ -18,6 +18,7 @@ class ActivityMessage
     const TEMPLATE_GOAL_REACHED = 'Congratulations! You reached your goal of $%s for %s!';
     const TEMPLATE_NEW_TWITCH_FOLLOWER = '[[TwitchUser]] just followed your channel!';
     const TEMPLATE_NEW_TWITCH_SUBSCRIBER = '[[TwitchUser]] just subscribed to your channel!';
+    const EMPTY_ACTIVITY_MESSAGE = 'No activity yet!';
 
     public static function  messageNewCampaign(Campaign $campaign)
     {
