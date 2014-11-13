@@ -13,17 +13,27 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 Followers
             </label>
         </div>
+        <div ng-show="module.includeFollowers" class="hint--bottom" data-hint="You are available following variables&#10;[[CampaignName]]&#10;[[FollowerName]]">
+            <textarea ng-model="module.followerText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
+        </div>
+
         <div class="checkbox">
             <label ng-class="{on:module.includeSubscribers}">
                 <input type="checkbox" ng-model="module.includeSubscribers" ng-change="regionChanged(region)">
                 Subscribers
             </label>
         </div>
+        <div ng-show="module.includeSubscribers" class="hint--top" data-hint="You are available following variables&#10;[[CampaignName]]&#10;[[SubscriberName]]">
+            <textarea ng-model="module.subscriberText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
+        </div>
         <div class="checkbox">
             <label ng-class="{on:module.includeDonations}">
                 <input type="checkbox" ng-model="module.includeDonations" ng-change="regionChanged(region)">
                 Donations
             </label>
+        </div>
+        <div ng-show="module.includeDonations" class="hint--top" data-hint="You are available following variables&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]">
+            <textarea ng-model="module.donationText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
         </div>
     </div>
 </div>
@@ -40,6 +50,14 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         <h5>Font Size <span class="slider-value value">{{module.fontSize}} px</span></h5>
         <slider ng-model="module.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
                 ng-change="regionChanged(region)"></slider>
+    </div>
+    <div class="panel-group">
+        <h5>Font Weight <span class="slider-value value">{{module.fontWeight}}</span></h5>
+        <slider ng-model="module.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
+                ng-change="regionChanged(region)"></slider>
+    </div>
+    <div class="panel-group">
+        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.fontColor}"></h5>
     </div>
 </div>
 <div class="module">

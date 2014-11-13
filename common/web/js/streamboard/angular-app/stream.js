@@ -99,33 +99,48 @@
             $interval(function(){
                 Service.requestStreamData();
             }, 5000);
-            this.testData = function (type, number, regionNumber) {
-                if (!number) {
-                    number = 1;
-                }
+            this.testData = function (type, number, region) {
+                number = number||1;
                 var message;
-
+                var regionNumber = region.regionNumber;
                 switch (type) {
                     case 'donations':
-                        message = 'just donated to ...';
+                        message = region.widgetAlerts.donationsPreference.alertText||'just donated to ...';
                         break;
                     case 'followers':
-                        message = 'just followed your channel';
+                        message = region.widgetAlerts.followersPreference.alertText||'just followed your channel';
                         break;
                     case 'subscribers':
-                        message = 'just subscribed to your channel';
+                        message = region.widgetAlerts.subscribersPreference.alertText||'just subscribed to your channel';
                         break;
-                    case 'all':
-                        this.testData('donations', number, regionNumber);
-                        this.testData('followers', number, regionNumber);
-                        this.testData('subscribers', number, regionNumber);
-                        return;
+                    case 'campaign_donations':
+                        if(region.widgetCampaignBar.alertsModule.includeDonations !== true){
+                            return false;
+                        }
+                        message = region.widgetCampaignBar.alertsModule.donationText||'just donated to ...';
+                        type = 'donations';
+                        break;
+                    case 'campaign_followers':
+                        if(region.widgetCampaignBar.alertsModule.includeFollowers !== true){
+                            return false;
+                        }
+                        message = region.widgetCampaignBar.alertsModule.followerText||'just followed your channel';
+                        type = 'followers';
+                        break;
+                    case 'campaign_subscribers':
+                        if(region.widgetCampaignBar.alertsModule.includeSubscribers !== true){
+                            return false;
+                        }
+                        message = region.widgetCampaignBar.alertsModule.subscriberText||'just subscribed to your channel';
+                        type = 'subscribers';
+                        break;
                     default:
                         throw new Exception('testData wrong type');
                 }
 
+                
                 for (var i = 0; i < number; i++) {
-                    var notification = {"id": -1, "type": "donations", "message": "Testaccount" + (i + 1) + ' ' + message, "date": Math.round(new Date().getTime() / 1000)};
+                    var notification = {"id": -1, "type": "donations", "message": message, "date": Math.round(new Date().getTime() / 1000)};
                     notification.type = type;
                     if (regionNumber) {
                         Service.streams[regionNumber].push(notification);
@@ -140,5 +155,10 @@
                 }
             }
 
+            this.testCampaignAlert = function(region){
+                this.testData('campaign_followers', 1, region);
+                this.testData('campaign_subscribers', 1, region);
+                this.testData('campaign_donations', 1, region);
+            }
         });
 })();

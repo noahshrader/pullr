@@ -1,6 +1,8 @@
 <?php
 namespace common\models;
 
+use common\components\csvimport\CsvReader;
+use common\components\csvimport\CsvReaderFactory;
 use common\models\User;
 use common\components\PullrUtils;
 use yii\db\ActiveQuery;
@@ -29,6 +31,7 @@ class Donation extends ActiveRecord
 {
     public $sum = 0;
     const ANONYMOUS_NAME = 'Anonymous';
+    const DEFAULT_EMAIL = 'no-email@mail.com';
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -55,6 +58,7 @@ class Donation extends ActiveRecord
             ['nameFromForm', 'filter', 'filter' => 'strip_tags'],
             ['nameFromForm', 'default', 'value' => self::ANONYMOUS_NAME],
             ['email', 'filter', 'filter' => 'strip_tags'],
+            ['email', 'default', 'value' => self::DEFAULT_EMAIL],
             ['comments', 'filter', 'filter' => 'strip_tags']
         ];
     }
@@ -231,6 +235,25 @@ class Donation extends ActiveRecord
     public function isPaid()
     {
         return $this->paymentDate > 0;
+    }
+
+    public static function importFromCsv($campaignId, $filename)
+    {
+        $donationsCsv = (new CsvReader)->GetRows($filename);
+
+        foreach($donationsCsv as $csvRow)
+        {
+            $donation = new Donation();
+            $donation->userId = \Yii::$app->user->id;
+            $donation->createdDate = $donation->paymentDate = $csvRow->getTimestamp();
+            $donation->campaignId = intval($campaignId);
+            $donation->amount = $csvRow->getAmount();
+            $donation->nameFromForm = $csvRow->getName();
+            $donation->email = $csvRow->getEmail();
+            $donation->comments = $csvRow->getComment();
+            $donation->isManual = true;
+            $donation->save();
+        }
     }
 }
  

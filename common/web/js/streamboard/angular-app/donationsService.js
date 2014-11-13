@@ -136,7 +136,7 @@
                 groupedList.sort(function(a,b) {
                     return b.amount - a.amount;
                 });                                          
-             
+
                 return groupedList;
             }
             return groupBy;
