@@ -30,22 +30,23 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 
 <div class="module">
     <div class="panel-group">
-        <h5>Font style</h5>
+        <h5>Font Style</h5>
         <div font-style ng-model="module.fontStyle"></div>
-    </div>
-    <div class="panel-group">
-        <h5>Font size <span class="slider-value value">{{module.fontSize}} px</span></h5>
-        <slider ng-model="module.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
-                ng-change="regionChanged(region)"></slider>
     </div>
     <div class="panel-group">
         <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.fontColor}"></h5>
     </div>
     <div class="panel-group">
+        <h5>Font Size <span class="slider-value value">{{module.fontSize}} px</span></h5>
+        <slider ng-model="module.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
+                ng-change="regionChanged(region)"></slider>
+    </div>
+</div>
+<div class="module">
+    <div class="panel-group">
         <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.backgroundColor}"></h5>
     </div>
 </div>
-
 <div class="module">
     <div class="panel-group">
         <h5>Animation Style</h5>
@@ -55,9 +56,10 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <? foreach ($animationStyleList as $animationName => $animationStyle) :?>
                 <option value='<?=$animationStyle[0]; ?>, <?=$animationStyle[1]; ?>'><?=$animationName; ?></option>
             <? endforeach; ?>
-            
         </select>
     </div>
+</div>
+<div class="module">
     <div class="panel-group">
         <h5>Delay <span class="slider-value value">{{module.animationDelay}} sec</span></h5>
         <slider ng-model="module.animationDelay" floor="0" ceiling="30" step="1"
@@ -69,7 +71,6 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 ng-change="regionChanged(region)"></slider>
     </div>
 </div>
-
 <div class="module" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
     <ul class="library-tabs cf">   
         <li class="active">

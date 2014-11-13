@@ -13,14 +13,14 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <div font-style ng-model="preference.fontStyle"></div>
         </div>
         <div class="panel-group">
-            <h5>Font Size <span class="slider-value value">{{preference.fontSize}} px</span></h5>
-            <slider ng-model="preference.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
-                    ng-change="regionChanged(region)"></slider>
-        </div>
-        <div class="panel-group">
             <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true"
                                   ng-model="preference.fontColor" ng-change="regionChanged(region)"
                                   class="color-choice" ng-style="{'background-color':preference.fontColor}"></h5>
+        </div>
+        <div class="panel-group">
+            <h5>Font Size <span class="slider-value value">{{preference.fontSize}} px</span></h5>
+            <slider ng-model="preference.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
+                    ng-change="regionChanged(region)"></slider>
         </div>
     </div>
     <div class="module">
