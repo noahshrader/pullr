@@ -112,19 +112,31 @@
             }
         }).filter('groupBy', function() {
             var groupBy = function(list, groupBy) {
-                var groupedList = {};                
+                var groupedList = [];      
+                var checkList = [];          
                 angular.forEach(list, function(item, index) {
-                    if (! groupedList.hasOwnProperty(item[groupBy])) {                        
+                    if (checkList.indexOf(item[groupBy]) == -1) {                 
                         lastGroupValue = item[groupBy];                        
-                        groupedList[lastGroupValue] = [];
-                        groupedList[lastGroupValue].push(item);                       
+                        checkList.push(lastGroupValue);
+                        var group = {
+                            amount: lastGroupValue,
+                            items: [item]
+                        };
+                                            
                         angular.forEach(list, function(item1, index1) {
                             if ( lastGroupValue == item1[groupBy] && index1 > index) {
-                                groupedList[lastGroupValue].push(item1);                                
+                                group.items.push(item1);
                             }
                         });
+
+                        groupedList.push(group);
                     }                    
-                });             
+                });
+
+                groupedList.sort(function(a,b) {
+                    return b.amount - a.amount;
+                });                                          
+                console.log(groupedList);
                 return groupedList;
             }
             return groupBy;
