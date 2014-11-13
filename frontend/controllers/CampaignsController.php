@@ -377,6 +377,13 @@ class CampaignsController extends FrontendController {
         die;
     }
 
+    public function actionImportdonations()
+    {
+        $campaignId = 1;
+        Donation::importFromCsv($campaignId, 'ImRaising_Report.csv');
+        Donation::importFromCsv($campaignId, 'some_report.csv');
+    }
+
     /**
      * Create manual donation
      */
@@ -387,10 +394,7 @@ class CampaignsController extends FrontendController {
         if($manualDonation->load($_POST) && $manualDonation->validate())
         {
             $donation = new Donation();
-            if (!\Yii::$app->user->isGuest)
-            {
-                $donation->userId = \Yii::$app->user->id;
-            }
+            $donation->userId = \Yii::$app->user->id;
             $donation->createdDate = $donation->paymentDate = (new \DateTime($manualDonation->dateCreated))->getTimestamp();
             $donation->campaignId = $manualDonation->campaignId;
             $donation->amount = $manualDonation->amount;
