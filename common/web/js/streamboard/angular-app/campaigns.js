@@ -28,6 +28,17 @@
             };
             requestCampaigns();
 
+
+            this.getcampaignName = function(id){
+                var name  = "";
+                $.each(Service.campaigns, function(key, campaign){
+                   if(id == campaign.id){
+                        name = campaign.name;
+                   }
+                });
+                return name;
+            }
+
             $interval(function() {
                 requestCampaigns();
             }, 5000);

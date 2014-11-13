@@ -1,6 +1,13 @@
 (function () {
-    var app = angular.module('pullr.streamboard.stream', ['pullr.streamboard.regions']).
-        service('stream', function ($http, regions, $interval) {
+    var app = angular.module('pullr.streamboard.stream', ['pullr.streamboard.regions'])
+
+        .constant('defaultMessage',{
+            donations:'[[DonorName]] donated $[[DonorAmount]] to [[CampaignName]]!',
+            followers:'[[FollowerName]] just followed your channel!',
+            subscribers:'[[SubscriberName]] just subscribed your channel!'
+        })
+
+        .service('stream', function ($http, regions, $interval, $interpolate, defaultMessage, campaigns) {
             var Service = this;
             /*for each of regions we have separate stream*/
             this.streams = [];
@@ -8,7 +15,6 @@
             this.streams[2] = [];
             /*list of events we already have viewed*/
             this.alreadyViewed = [];
-
 
             this.showSubscriber = true;
             this.showFollower = true;
@@ -43,15 +49,88 @@
             this.getActivityFeedSetting();
 
 
-            this.requestStreamData = function() {
+            this.getMessage = function(type, data, region){
+                data = angular.extend({'[[DonorName]]':'', '[[DonorAmount]]':'', '[[CampaignName]]':'', '[[FollowerName]]':'', '[[SubscriberName]]':''}, data);
+                var message = "";
+                if(region.widgetType == "widget_campaign_bar"){
+                    if(type == 'donations'){
+                        message = region.widgetCampaignBar.alertsModule.donationText||defaultMessage.donations;
+                    }
+                    if(type == 'followers'){
+                        message = region.widgetCampaignBar.alertsModule.followerText||defaultMessage.followers;
+                    }
+                    if(type == 'subscribers'){
+                        message = region.widgetCampaignBar.alertsModule.subscriberText||defaultMessage.subscribers;
+                    }
+                }else{
+                    if(type == 'donations'){
+                        message = region.widgetAlerts.donationsPreference.alertText||defaultMessage.donations;
+                    }
+                    if(type == 'followers'){
+                        message = region.widgetAlerts.followersPreference.alertText||defaultMessage.followers;
+                    }
+                    if(type == 'subscribers'){
+                        message = region.widgetAlerts.subscribersPreference.alertText||defaultMessage.subscribers;
+                    }
+                }
+                message = message.replace(/\[\[/gi,'{{').replace(/\]\]/gi,'}}');
+                var values =  {
+                    DonorName:data['[[DonorName]]'],
+                    DonorAmount:data['[[DonorAmount]]'],
+                    CampaignName:data['[[CampaignName]]'],
+                    FollowerName:data['[[FollowerName]]'],
+                    SubscriberName:data['[[SubscriberName]]']
+                };
+                var template = $interpolate(message);
+                message = template(values);
+                return message;
+            }
 
+
+            this.requestStreamData = function() {
                 $http.get('app/streamboard/get_stream_data').success(function (data) {
                     /*we should get data in "date ASC" order because we first should notifications which occur early*/
                     for (var key in data) {
                         var notification = data[key];
-                        Service.pushNotification(notification);
+                        if(notification.type === 'donations'){
+                            var alertdata = {
+                                id: notification.id,
+                                type:'donations',
+                                data:{
+                                        '[[DonorName]]':notification.donation.nameFromForm,
+                                        '[[DonorAmount]]':notification.donation.amount,
+                                        '[[CampaignName]]':campaigns.getcampaignName(notification.donation.campaignId)
+                                   },
+                                date: notification.date
+                            }
+                            Service.pushCustomAlert(alertdata);
+                        }else{
+                            Service.pushNotification(notification);
+                        }
                     }
                 });
+            }
+
+
+            this.pushCustomAlert = function(notification){
+                var id = notification.type + '_' + notification.id;
+                if (!(id in Service.alreadyViewed) === false){
+                    return true;
+                }
+                Service.alreadyViewed[id] = true;
+                var message = Service.getMessage(notification.type, notification.data, regions.regions[0]);
+                notification.message = message;
+                Service.streams[1].push(notification);
+                if (regions.regions.length > 1) {
+                    var notificatin1 = {};
+                    notificatin1.id = notification.id;
+                    notificatin1.type = notification.type;
+                    notificatin1.date = notification.date;
+                    var message1 = Service.getMessage(notificatin1.type, notification.data, regions.regions[1]);
+                    notificatin1.message = message1;
+                    Service.streams[2].push(notificatin1);
+                }
+                return true;
             }
 
             this.pushNotification = function(notification){
@@ -59,8 +138,6 @@
                 var id = notification.type + '_' + notification.id;
                 /*check if we already view it*/
                 if (!(id in Service.alreadyViewed)) {
-                    console.log('[STREAM_LOG]');
-                    console.log(notification);
                     Service.alreadyViewed[id] = true;
                     Service.streams[1].push(notification);
                     if (regions.regions.length > 1) {
@@ -71,15 +148,15 @@
             }
 
             this.pushFollowerAlerts = function(list) {
-                angular.forEach(list, function(item) {                       
+                angular.forEach(list, function(item) {
                     var notification = {
                         id: item.user._id,
                         type:'followers',
-                        message: sprintf('%s just followed your channel!', item.user.name),
+                        data:{'[[FollowerName]]':item.user.name},
                         follow: item,
                         date: new Date(item.created_at)
                     }
-                    Service.pushNotification(notification);
+                    Service.pushCustomAlert(notification);
                 });
             }
 
@@ -88,13 +165,16 @@
                     var notification = {
                         id: item.user._id,
                         type:'subscribers',
-                        message: sprintf('%s just subscribed your channel!', item.user.name),
+                        data:{'[[SubscriberName]]':item.user.name},
                         follow: item,
                         date: new Date(item.created_at)
                     }
-                    Service.pushNotification(notification);
+                    Service.pushCustomAlert(notification);
                 });
             }
+
+
+
 
             $interval(function(){
                 Service.requestStreamData();
@@ -105,33 +185,33 @@
                 var regionNumber = region.regionNumber;
                 switch (type) {
                     case 'donations':
-                        message = region.widgetAlerts.donationsPreference.alertText||'just donated to ...';
+                        message = region.widgetAlerts.donationsPreference.alertText||defaultMessage.donations;
                         break;
                     case 'followers':
-                        message = region.widgetAlerts.followersPreference.alertText||'just followed your channel';
+                        message = region.widgetAlerts.followersPreference.alertText||defaultMessage.followers;
                         break;
                     case 'subscribers':
-                        message = region.widgetAlerts.subscribersPreference.alertText||'just subscribed to your channel';
+                        message = region.widgetAlerts.subscribersPreference.alertText||defaultMessage.subscribers;
                         break;
                     case 'campaign_donations':
                         if(region.widgetCampaignBar.alertsModule.includeDonations !== true){
                             return false;
                         }
-                        message = region.widgetCampaignBar.alertsModule.donationText||'just donated to ...';
+                        message = region.widgetCampaignBar.alertsModule.donationText||defaultMessage.donations;
                         type = 'donations';
                         break;
                     case 'campaign_followers':
                         if(region.widgetCampaignBar.alertsModule.includeFollowers !== true){
                             return false;
                         }
-                        message = region.widgetCampaignBar.alertsModule.followerText||'just followed your channel';
+                        message = region.widgetCampaignBar.alertsModule.followerText||defaultMessage.followers;
                         type = 'followers';
                         break;
                     case 'campaign_subscribers':
                         if(region.widgetCampaignBar.alertsModule.includeSubscribers !== true){
                             return false;
                         }
-                        message = region.widgetCampaignBar.alertsModule.subscriberText||'just subscribed to your channel';
+                        message = region.widgetCampaignBar.alertsModule.subscriberText||defaultMessage.subscribers;
                         type = 'subscribers';
                         break;
                     default:
