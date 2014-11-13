@@ -34,11 +34,11 @@ $campaign = \Yii::$app->controller->campaign;
 			 
 		<!-- Footer -->
 		<footer id="footer">
-				<h5>Powered by</h5>
-				<a class="logo icon-pullr-logo" href="http://www.pullr.io" target="_blank"></a>
+			<h5>Powered by</h5>
+			<a class="logo icon-pullr-logo" href="http://www.pullr.io" target="_blank"></a>
 		</footer>
 		<script type='text/javascript'>
-				Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
+			Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
 		</script>
 	</body>
 </html>
