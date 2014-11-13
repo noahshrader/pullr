@@ -16,8 +16,8 @@ class ActivityMessage
     const TEMPLATE_DONATION_RECEIVED = '[[TwitchUser]] donated $[[Amount]] to [[CampaignName]]!';
     const TEMPLATE_CAMPAIGN_ENDED = 'The campaign %s has ended with a total of $%s';
     const TEMPLATE_GOAL_REACHED = 'Congratulations! You reached your goal of $%s for %s!';
-    const TEMPLATE_NEW_TWITCH_FOLLOWER = '%s just followed your channel %s!';
-    const TEMPLATE_NEW_TWITCH_SUBSCRIBER = '%s just subscribed to your channel %s!';
+    const TEMPLATE_NEW_TWITCH_FOLLOWER = '[[TwitchUser]] just followed your channel!';
+    const TEMPLATE_NEW_TWITCH_SUBSCRIBER = '[[TwitchUser]] just subscribed to your channel!';
 
     public static function  messageNewCampaign(Campaign $campaign)
     {
@@ -57,12 +57,43 @@ class ActivityMessage
     public static function messageNewTwitchFollower($displayName)
     {
         $user = Application::getCurrentUser();
-        return sprintf(self::TEMPLATE_NEW_TWITCH_FOLLOWER, $displayName, $user->userFields->twitchChannel);
+        $userId = $user->id;
+        $row = WidgetAlertsPreference::find()->where(['userId' => $userId, 'preferenceType' => 'followers'])->one();
+        if($row && $row->alertText){
+            $message = $row->alertText;
+        }else{
+            $message = self::TEMPLATE_NEW_TWITCH_FOLLOWER;
+        }
+
+        $patternArray = array(
+            '[[TwitchUser]]' => $displayName,
+            '[[Donor]]' => '',
+            '[[Amount]]' => '',
+            '[[CampaignName]]' => '',
+            "\n" => ''
+        );
+        return str_replace(array_keys($patternArray), array_values($patternArray), $message);
     }
 
     public static function messageNewTwitchSubscriber($displayName)
     {
+
         $user = Application::getCurrentUser();
-        return sprintf(self::TEMPLATE_NEW_TWITCH_SUBSCRIBER, $displayName, $user->userFields->twitchChannel);
+        $userId = $user->id;
+        $row = WidgetAlertsPreference::find()->where(['userId' => $userId, 'preferenceType' => 'followers'])->one();
+        if($row && $row->alertText){
+            $message = $row->alertText;
+        }else{
+            $message = self::TEMPLATE_NEW_TWITCH_SUBSCRIBER;
+        }
+
+        $patternArray = array(
+            '[[TwitchUser]]' => $displayName,
+            '[[Donor]]' => '',
+            '[[Amount]]' => '',
+            '[[CampaignName]]' => '',
+            "\n" => ''
+        );
+        return str_replace(array_keys($patternArray), array_values($patternArray), $message);
     }
 }
