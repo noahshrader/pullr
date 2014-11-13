@@ -7,6 +7,7 @@ use common\models\base\BaseImage;
 use common\models\FirstGiving;
 use common\models\Campaign;
 use frontend\models\site\ManualDonation;
+use frontend\models\UploadCsv;
 use yii\base\Exception;
 use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
@@ -25,6 +26,7 @@ use common\models\CampaignInvite;
 use common\models\mail\Mail;
 use common\models\Donation;
 use common\models\notifications\RecentActivityNotification;
+use yii\web\UploadedFile;
 
 class CampaignsController extends FrontendController {
 
@@ -379,9 +381,26 @@ class CampaignsController extends FrontendController {
 
     public function actionImportdonations()
     {
-        $campaignId = 1;
-        Donation::importFromCsv($campaignId, 'ImRaising_Report.csv');
-        Donation::importFromCsv($campaignId, 'some_report.csv');
+        $model = new UploadCsv();
+
+        if (Yii::$app->request->isPost) 
+        {
+            $model->load($_POST);
+            $model->file = UploadedFile::getInstance($model, 'file');
+
+            if ($model->validate()) 
+            {
+                $fileName = \Yii::getAlias('@frontend') . '/web/usercsv/' . uniqid()  . '.' . $model->file->extension;
+                $model->file->saveAs($fileName);
+                Donation::importFromCsv($model->campaignId, $fileName);
+                Campaign::updateDonationStatistics($model->campaignId);
+                unlink($fileName);
+                
+                $this->redirect(["view", "id" => $model->campaignId]);
+            }
+        }
+        
+        throw new BadRequestHttpException();
     }
 
     /**
