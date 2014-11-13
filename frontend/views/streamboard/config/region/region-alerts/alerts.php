@@ -42,17 +42,17 @@ use yii\web\View;
     <div class="donations_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.donationsPreference">
             <h4 class="panel-title">
-                Donation Alerts 
-                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region.regionNumber)">Test</button>
-            </h4>            
+                Donation Alerts
+                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region)">Test</button>
+            </h4>
             <?= $this->render('alerts-preference') ?>
         </div>
     </div>
     <div class="followers_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.followersPreference">
             <h4 class="panel-title">
-                Follower Alerts 
-                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region.regionNumber)">Test</button>
+                Follower Alerts
+                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region)">Test</button>
             </h4>
             <?= $this->render('alerts-preference') ?>
         </div>
@@ -60,8 +60,8 @@ use yii\web\View;
     <div class="subscribers_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.subscribersPreference">
             <h4 class="panel-title">
-                Subscriber Alerts 
-                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region.regionNumber)">Test</button>
+                Subscriber Alerts
+                <button class="btn btn-sm" ng-click="streamService.testData(preference.preferenceType, 1, region)">Test</button>
             </h4>
             <?= $this->render('alerts-preference') ?>
         </div>

@@ -144,3 +144,35 @@ h5 input.color-choice {
 		left: -9999px;
 	}
 }
+.hint:after,[data-hint]:after {
+	white-space: pre !important;
+	white-space: -moz-collapse-whitespace;
+}
+.hint--bottom:before, .hint--bottom:after {
+	left: 15% !important;
+}
+
+.hint{
+	.tooltip{
+	 	display:"";
+	}
+	//&:hover{
+		.tooltip{
+		 	display:"";
+		 	position: absolute;
+		    -webkit-transform: translate3d(0, 0, 0);
+		    -moz-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+		    visibility: hidden;
+		    opacity: 0;
+		    z-index: 1000000;
+		    pointer-events: none;
+		    -webkit-transition: 0.3s ease;
+		    -moz-transition: 0.3s ease;
+		    transition: 0.3s ease;
+		    -webkit-transition-delay: 0ms;
+		    -moz-transition-delay: 0ms;
+		    transition-delay: 0ms; 
+		}
+	//}
+}
