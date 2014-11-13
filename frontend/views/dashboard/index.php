@@ -137,24 +137,26 @@ $twitchPartner = $user->userFields->twitchPartner;
                         </div>
                     </section>
                     <!-- Twitch Stats -->
+                   
                     <? if ($openIDToUser): ?>
                     <section class="row stats-overview twitch-stats">
                         <span class="stick"></span>
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                                <h2><?= TwitchFollow::getFollowerCountByToday($user->id) ?></h2>
+                                <h2><?= $user->twitchUser->followersNumber; ?></h2>
                                 <span>Followers</span>
                             </div>
                             <? if ($twitchPartner): ?>
                             <div class="col-xs-6 text-center stats-box">
-                                <h2><?= TwitchSubscription::getSubscriberCountByToday($user->id); ?></h2>
+                                <h2><?= $user->twitchUser->subscribersNumber; ?></h2>
                                 <span>Subscribers</span>
                             </div>
                             <? endif ?>
                         </div>
                     </section>
                     <? endif ?>
+               
                 </div>
                 <div class="tab-pane in" id="month">
                     <section class="stats-overview main-totals cf">
@@ -191,24 +193,26 @@ $twitchPartner = $user->userFields->twitchPartner;
                         </div>
                     </section>
                     <!-- Twitch Stats -->
+                 
                     <? if ($openIDToUser): ?>
                     <section class="row stats-overview twitch-stats">
                         <span class="stick"></span>
                         <i class="icon-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
-                                <h2><?= TwitchFollow::getFollowerCountByMonth($user->id); ?></h2>
+                                <h2><?= $user->twitchUser->followersNumber; ?></h2>
                                 <span>Followers</span>
                             </div>
                             <? if ($twitchPartner): ?>
                             <div class="col-xs-6 text-center stats-box">
-                                <h2><?= TwitchSubscription::getSubscriberCountByMonth($user->id) ?></h2>
+                                <h2><?= $user->twitchUser->subscribersNumber; ?></h2>
                                 <span>Subscribers</span>
                             </div>
                             <? endif ?>
                         </div>
                     </section>
                     <? endif ?>
+                    
                 </div>
             </div>
         </div>
