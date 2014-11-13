@@ -391,10 +391,7 @@ class CampaignsController extends FrontendController {
     {
         $manualDonation = new ManualDonation();
 
-        $data = $_POST;
-        $data['ManualDonation']['amount'] = substr($data['ManualDonation']['amount'], 1);
-
-        if($manualDonation->load($data) && $manualDonation->validate())
+        if($manualDonation->load($_POST) && $manualDonation->validate())
         {
             $donation = new Donation();
             $donation->userId = \Yii::$app->user->id;
