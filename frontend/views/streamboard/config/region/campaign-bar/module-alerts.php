@@ -45,6 +45,11 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 ng-change="regionChanged(region)"></slider>
     </div>
     <div class="panel-group">
+        <h5>Font Weight <span class="slider-value value">{{module.fontWeight}}</span></h5>
+        <slider ng-model="module.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
+                ng-change="regionChanged(region)"></slider>
+    </div>
+    <div class="panel-group">
         <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.fontColor}"></h5>
     </div>
     <div class="panel-group">
