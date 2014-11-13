@@ -126,7 +126,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         <div ng-init="module = widget.alertsModule">
             <h4 class="panel-title">
                 Alerts Settings
-                <button class="btn btn-sm" ng-click="streamService.testData('campaign', 1, region)">Test</button>
+                <button class="btn btn-sm" ng-click="streamService.testCampaignAlert(region)">Test</button>
             </h4>
             <?= $this->render('module-alerts') ?>
         </div>

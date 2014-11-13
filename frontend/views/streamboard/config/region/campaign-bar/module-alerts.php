@@ -13,11 +13,18 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 Followers
             </label>
         </div>
+        <div ng-show="module.includeFollowers" class="hint--bottom" data-hint="You are available following variables&#10;[[CampaignName]]&#10;[[FollowerName]]">
+            <textarea ng-model="module.followerText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
+        </div>
+
         <div class="checkbox">
             <label ng-class="{on:module.includeSubscribers}">
                 <input type="checkbox" ng-model="module.includeSubscribers" ng-change="regionChanged(region)">
                 Subscribers
             </label>
+        </div>
+        <div ng-show="module.includeSubscribers" class="hint--top" data-hint="You are available following variables&#10;[[CampaignName]]&#10;[[SubscriberName]]">
+            <textarea ng-model="module.subscriberText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
         </div>
         <div class="checkbox">
             <label ng-class="{on:module.includeDonations}">
@@ -25,16 +32,13 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 Donations
             </label>
         </div>
+        <div ng-show="module.includeDonations" class="hint--top" data-hint="You are available following variables&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]">
+            <textarea ng-model="module.donationText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
+        </div>
     </div>
 </div>
 
 <div class="module">
-    <div class="panel-group">
-        <h5>Alert Text</h5>
-        <div class="hint--bottom" data-hint="You are available following variables&#10;**TwitchUser**&#10; **Donor**&#10; **Amount**&#10; **CampaignName**">
-            <textarea ng-model="module.alertText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
-        </div>
-    </div>
     <div class="panel-group">
         <h5>Font Style</h5>
         <div font-style ng-model="module.fontStyle"></div>
