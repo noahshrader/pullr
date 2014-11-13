@@ -40,6 +40,7 @@ use common\components\PullrUtils;
     <div class="tags module">
         <div class="form-group">
             <h5>Tags</h5>
+            <div>Last Follower: <span id='last_follower'></span></div>
         </div>
     </div>
     <? if (count($campaigns) > 0): ?>
