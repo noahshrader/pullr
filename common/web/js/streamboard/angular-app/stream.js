@@ -99,50 +99,34 @@
             $interval(function(){
                 Service.requestStreamData();
             }, 5000);
-            this.testData = function (type, number, region) {
+            this.testData = function (type, number, regionNumber) {
                 if (!number) {
                     number = 1;
                 }
                 var message;
-                var regionNumber = region.regionNumber;
+
                 switch (type) {
                     case 'donations':
-                        message = region.widgetAlerts.donationsPreference.alertText||'just donated to ...';
+                        message = 'just donated to ...';
                         break;
                     case 'followers':
-                        message = region.widgetAlerts.followersPreference.alertText||'just followed your channel';
+                        message = 'just followed your channel';
                         break;
                     case 'subscribers':
-                        message = region.widgetAlerts.subscribersPreference.alertText||'just subscribed to your channel';
+                        message = 'just subscribed to your channel';
                         break;
-                    case 'campaign':
-                        console.log(region.widgetCampaignBar.alertsModule);
-                        var obj = region.widgetCampaignBar.alertsModule;
-                        message = obj.alertText;
-                        if(obj.includeSubscribers){
-                            type = 'subscribers'; 
-                            message = message||'just subscribed to your channel';
-                        }
-                        if(obj.includeFollowers){
-                            type = 'followers';
-                            message = message||'just followed your channel';
-                        }
-                        if(obj.includeDonations){
-                            type = 'donations';
-                            message = message||'just donated to ...';                         
-                        }                        
-                        break;
+                    case 'all':
+                        this.testData('donations', number, regionNumber);
+                        this.testData('followers', number, regionNumber);
+                        this.testData('subscribers', number, regionNumber);
+                        return;
                     default:
                         throw new Exception('testData wrong type');
                 }
 
-
-
-
                 for (var i = 0; i < number; i++) {
-                    var notification = {"id": -1, "type": "donations", "message": message, "date": Math.round(new Date().getTime() / 1000)};
+                    var notification = {"id": -1, "type": "donations", "message": "Testaccount" + (i + 1) + ' ' + message, "date": Math.round(new Date().getTime() / 1000)};
                     notification.type = type;
-                    console.log(notification, regionNumber);
                     if (regionNumber) {
                         Service.streams[regionNumber].push(notification);
                     } else {

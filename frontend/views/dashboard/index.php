@@ -52,17 +52,17 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <!-- main total -->
                         <div class="raised-total stats-box">
                             <h1>$<?= PullrUtils::formatNumber($dashboard['overall']['totalRaised'], 2) ?></h1>
-                            <h5>Raised Overall</h5>
+                            <span>Raised Overall</span>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= PullrUtils::formatNumber($dashboard['overall']['charityRaised'], 2) ?></h2>
-                                <h5>Charity</h5>
+                                <span>Charity</span>
                             </div>
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= PullrUtils::formatNumber($dashboard['overall']['personalRaised'], 2) ?></h2>
-                                <h5>Personal</h5>
+                                <span>Personal</span>
                             </div>
                         </div>
                     </section>
@@ -70,15 +70,15 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <span class="stick"></span>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalCampaigns'] ?></h2>
-                            <h5>Campaigns</h5>
+                            <span>Campaigns</span>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalDonations'] ?></h2>
-                            <h5>Donations</h5>
+                            <span>Donations</span>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['overall']['totalDonors'] ?></h2>
-                            <h5>Donors</h5>
+                            <span>Donors</span>
                         </div>
                     </section>
                     <!-- Twitch Stats -->
@@ -89,12 +89,12 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= $user->twitchUser->followersNumber; ?></h2>
-                                <h5>Followers</h5>
+                                <span>Followers</span>
                             </div>
                             <? if ($twitchPartner): ?>
                             <div class="col-xs-6 text-center stats-box">
                                 <h2><?= $user->twitchUser->subscribersNumber; ?></h2>
-                                <h5>Subscribers</h5>
+                                <span>Subscribers</span>
                             </div>
                             <? endif ?>
                         </div>
@@ -107,17 +107,17 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= PullrUtils::formatNumber($dashboard['today']['totalRaised'], 2) ?></h1>
-                            <h5>Raised Today</h5>
+                            <span>Raised Today</span>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= PullrUtils::formatNumber($dashboard['today']['charityRaised'], 2) ?></h2>
-                                <h5>Charity</h5>
+                                <span>Charity</span>
                             </div>
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= PullrUtils::formatNumber($dashboard['today']['personalRaised'], 2) ?></h2>
-                                <h5>Personal</h5>
+                                <span>Personal</span>
                             </div>
                         </div>
                     </section>
@@ -125,15 +125,15 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <span class="stick"></span>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['today']['totalCampaigns'] ?></h2>
-                            <h5>Campaigns</h5>
+                            <span>Campaigns</span>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['today']['totalDonations'] ?></h2>
-                            <h5>Donations</h5>
+                            <span>Donations</span>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['today']['totalDonors'] ?></h2>
-                            <h5>Donors</h5>
+                            <span>Donors</span>
                         </div>
                     </section>
                     <!-- Twitch Stats -->
@@ -144,12 +144,12 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= TwitchFollow::getFollowerCountByToday($user->id) ?></h2>
-                                <h5>Followers</h5>
+                                <span>Followers</span>
                             </div>
                             <? if ($twitchPartner): ?>
                             <div class="col-xs-6 text-center stats-box">
                                 <h2><?= TwitchSubscription::getSubscriberCountByToday($user->id); ?></h2>
-                                <h5>Subscribers</h5>
+                                <span>Subscribers</span>
                             </div>
                             <? endif ?>
                         </div>
@@ -161,17 +161,17 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <!-- main total -->
                         <div class="col-xs-12 raised-total stats-box">
                             <h1>$<?= PullrUtils::formatNumber($dashboard['month']['totalRaised'], 2) ?></h1>
-                            <h5>Raised This Month</h5>
+                            <span>Raised This Month</span>
                         </div>
                         <!-- secondary totals -->
                         <div class="raised-group-stats cf">
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= PullrUtils::formatNumber($dashboard['month']['charityRaised'], 2) ?></h2>
-                                <h5>Charity</h5>
+                                <span>Charity</span>
                             </div>
                             <div class="col-xs-6 stats-box">
                                 <h2>$<?= PullrUtils::formatNumber($dashboard['month']['personalRaised'], 2) ?></h2>
-                                <h5>Personal</h5>
+                                <span>Personal</span>
                             </div>
                         </div>
                     </section>
@@ -179,15 +179,15 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <span class="stick"></span>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['month']['totalCampaigns'] ?></h2>
-                            <h5>Campaigns</h5>
+                            <span>Campaigns</span>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['month']['totalDonations'] ?></h2>
-                            <h5>Donations</h5>
+                            <span>Donations</span>
                         </div>
                         <div class="stats-box col-xs-6">
                             <h2><?= $dashboard['month']['totalDonors'] ?></h2>
-                            <h5>Donors</h5>
+                            <span>Donors</span>
                         </div>
                     </section>
                     <!-- Twitch Stats -->
@@ -198,12 +198,12 @@ $twitchPartner = $user->userFields->twitchPartner;
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= TwitchFollow::getFollowerCountByMonth($user->id); ?></h2>
-                                <h5>Followers</h5>
+                                <span>Followers</span>
                             </div>
                             <? if ($twitchPartner): ?>
                             <div class="col-xs-6 text-center stats-box">
                                 <h2><?= TwitchSubscription::getSubscriberCountByMonth($user->id) ?></h2>
-                                <h5>Subscribers</h5>
+                                <span>Subscribers</span>
                             </div>
                             <? endif ?>
                         </div>

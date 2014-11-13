@@ -1,35 +1,51 @@
-/* General */
-/* ------------------------------------------------- */
-#content.error {
-	position: relative;
-	padding: 0 0 0 @primary-nav-width;
-	height: 100%;
-}
-
 /* Background video section */
 /* ------------------------------------------------- */
-.site-error {
-	position: absolute;
-	top: 0;
-	left: @primary-nav-width;
-	right: 0;
-	height: 100%;
-	background: @gray40;
+.video-js {
+	position: fixed;
+	background: @base;
+	z-index: 1002;
 }
-.site-error-msg {
+
+/* Message */
+.video-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #000;
+	z-index: 1001;
+}
+.missing-wrap {
 	position: fixed;
 	bottom: 0;
-	left: @primary-nav-width;
-	right: 0;
-	text-align: center;
-	padding: @halfgutter 0;
-	background: @bgblackfade;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/*background-color: #222325;*/
+	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(rgba(0, 0, 0, 0.70)), to(rgba(34, 35, 37, 0.00)));
+	background-image: -webkit-radial-gradient(50% 50%, rgba(34, 35, 37, 0.00), rgba(0, 0, 0, 0.70));
+	background-image: -moz-radial-gradient(50% 50%, rgba(34, 35, 37, 0.00), rgba(0, 0, 0, 0.70));
+	background-image: -o-radial-gradient(50% 50%, rgba(34, 35, 37, 0.00), rgba(0, 0, 0, 0.70));
+	background-image: -ms-radial-gradient(50% 50%, rgba(34, 35, 37, 0.00), rgba(0, 0, 0, 0.70));
+	background-image: radial-gradient(50% 50%, rgba(34, 35, 37, 0.00), rgba(0, 0, 0, 0.70));
+	z-index: 9999;
 
-	h4 {
-		color: @white;
-		font-weight: 400;
+	.missing {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		text-align: center;
+		padding: 4em 5%;
+		width: 100%;
+
+		h2 {
+			color: @white;
+			letter-spacing: 0;
+			margin-bottom: .2em;
+		}
+		a {
+			font-weight: 600;
+		}
 	}
 }
-/* .mCSB_container {
-	height: 100% !important;
-} */

@@ -30,20 +30,18 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 
 <div class="module">
     <div class="panel-group">
-        <h5>Alert Text</h5>
-        <div class="hint--bottom" data-hint="You are available following variables&#10;**TwitchUser**&#10; **Donor**&#10; **Amount**&#10; **CampaignName**">
-            <textarea ng-model="module.alertText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
-        </div>
-    </div>
-    <div class="panel-group">
-        <h5>Font style</h5>
+        <h5>Font Style</h5>
         <div font-style ng-model="module.fontStyle"></div>
     </div>
     <div class="panel-group">
-        <h5>Font size <span class="slider-value value">{{module.fontSize}} px</span></h5>
+        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.fontColor}"></h5>
+    </div>
+    <div class="panel-group">
+        <h5>Font Size <span class="slider-value value">{{module.fontSize}} px</span></h5>
         <slider ng-model="module.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>
+<<<<<<< HEAD
     <div class="panel-group">
         <h5>Font Weight <span class="slider-value value">{{module.fontWeight}}</span></h5>
         <slider ng-model="module.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
@@ -52,11 +50,14 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     <div class="panel-group">
         <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.fontColor}"></h5>
     </div>
+=======
+</div>
+<div class="module">
+>>>>>>> d09d1a4b7f3517f5278b3cd33e5582b5837f2aad
     <div class="panel-group">
         <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.backgroundColor}"></h5>
     </div>
 </div>
-
 <div class="module">
     <div class="panel-group">
         <h5>Animation Style</h5>
@@ -66,9 +67,10 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <? foreach ($animationStyleList as $animationName => $animationStyle) :?>
                 <option value='<?=$animationStyle[0]; ?>, <?=$animationStyle[1]; ?>'><?=$animationName; ?></option>
             <? endforeach; ?>
-            
         </select>
     </div>
+</div>
+<div class="module">
     <div class="panel-group">
         <h5>Delay <span class="slider-value value">{{module.animationDelay}} sec</span></h5>
         <slider ng-model="module.animationDelay" floor="0" ceiling="30" step="1"
@@ -80,7 +82,6 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 ng-change="regionChanged(region)"></slider>
     </div>
 </div>
-
 <div class="module" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
     <ul class="library-tabs cf">   
         <li class="active">

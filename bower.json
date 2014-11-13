@@ -22,8 +22,7 @@
     "moment": "~2.8.3",
     "angular-bootstrap-datetimepicker": "~0.2.4",
     "zeroclipboard": "2.1.6",
-    "sprintf": "*",
-    "hint.css": "~1.3.3"
+    "sprintf": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.23",

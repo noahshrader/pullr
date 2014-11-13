@@ -179,7 +179,7 @@ class Donation extends ActiveRecord
         foreach ($donations as $donation){
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
             $donors[] = [ 'name' => $name, 
-                        'amount' => PullrUtils::formatNumber($sumByEmail[$donation->email]), 
+                        'amount' => $sumByEmail[$donation->email], 
                         'email' => $donation->email,
                         'campaignId' => $donation->campaignId];
         }
