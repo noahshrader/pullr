@@ -82,10 +82,10 @@ class PullrPayment extends \yii\base\Component
      */
     private function calculatePercent()
     {
-        $percent = 0;
+        $percent = 0.05;
         if (!\Yii::$app->user->isGuest && (\Yii::$app->user->identity->getPlan() == Plan::PLAN_PRO))
         {
-            $percent = 0;
+            $percent = 0.05;
         }
 
         return $percent;
@@ -305,7 +305,7 @@ class PullrPayment extends \yii\base\Component
             }
         }
         $donation = Donation::findOne($donationId);
-        if (!$donation->email && isset($donation) &&  isset($paymentDetailsResponse->senderEmail)){
+        if (isset($donation) && isset($paymentDetailsResponse->senderEmail)){
             $donation->email = $paymentDetailsResponse->senderEmail;
             $donation->save();
         }
