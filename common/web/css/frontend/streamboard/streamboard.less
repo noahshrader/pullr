@@ -241,7 +241,7 @@ span.slider-value {
 .module {
 	margin-bottom: @streamboardgutter;
 	background: @gray10;
-	overflow: hidden;
+	overflow: visible;
 	.slowtrans;
 
 	&.last {
@@ -492,7 +492,9 @@ ul.panel-nav {
 		background-color: green;
 
 		/* Resizable Items */
-		[resizable] {
+		[resizable] img,
+		[resizable].marquee-container,
+		[resizable]#campaign-bar {
 			&:hover,
 			&:active {
 				outline: dashed 1px @gray10;
