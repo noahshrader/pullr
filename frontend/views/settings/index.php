@@ -98,6 +98,12 @@ endif;
 						</div>
 					</div>	
 				</div>
+                <div class="api-key module">
+                    <h5 class="module-title">Developer</h5>
+                    <div class="module-inner">
+                        <?= $form->field($user, 'apiKey')->input('text', ['readonly' => '', 'class' => 'form-control copyable']) ?>
+                    </div>
+                </div>
 			</section>
 			<section class="module">
 				<div class="module-inner">

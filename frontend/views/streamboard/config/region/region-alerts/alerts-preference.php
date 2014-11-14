@@ -10,14 +10,21 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     <div class="module first">
        <div class="panel-group">
             <h5>Alert Text</h5>
-                <div class="hint--bottom" data-hint="You are available following variables&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]&#10;[[FollowerName]]&#10;[[SubscriberName]]">
-                    <textarea ng-model="preference.alertText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
+                <div class="hint--bottom" data-hint="Available tags:&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]&#10;[[FollowerName]]&#10;[[SubscriberName]]">
+                    <textarea ng-model="preference.alertText" ng-change="alertTextChange(region)"></textarea>
                 </div>
 
         </div>
+    </div>
+    <div class="module">
         <div class="panel-group">
             <h5>Font Style</h5>
             <div font-style ng-model="preference.fontStyle"></div>
+        </div>
+        <div class="panel-group">
+            <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true"
+                                  ng-model="preference.fontColor" ng-change="regionChanged(region)"
+                                  class="color-choice" ng-style="{'background-color':preference.fontColor}"></h5>
         </div>
         <div class="panel-group">
             <h5>Font Size <span class="slider-value value">{{preference.fontSize}} px</span></h5>
@@ -28,11 +35,6 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <h5>Font Weight <span class="slider-value value">{{preference.fontWeight}}</span></h5>
             <slider ng-model="preference.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
                     ng-change="regionChanged(region)"></slider>
-        </div>
-        <div class="panel-group">
-            <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true"
-                                  ng-model="preference.fontColor" ng-change="regionChanged(region)"
-                                  class="color-choice" ng-style="{'background-color':preference.fontColor}"></h5>
         </div>
     </div>
     <div class="module">

@@ -70,10 +70,12 @@ span.slider-value {
 .border {
 	border-bottom: solid 1px @maingray;
 }
-
 .commaAfter:not(:last-child):after {
-  content: ',';
+	content: ',';
+	position: relative;
+	margin-left: -1px;
 }
+
 
 /* Sidepanel (Sidebar) */
 /* ------------------------------------------------- */
@@ -241,7 +243,7 @@ span.slider-value {
 .module {
 	margin-bottom: @streamboardgutter;
 	background: @gray10;
-	overflow: hidden;
+	overflow: visible;
 	.slowtrans;
 
 	&.last {

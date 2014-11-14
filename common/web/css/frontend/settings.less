@@ -104,3 +104,19 @@
 		display: none;
 	}
 }
+/* ApiKey */
+.api-key{
+  .module-inner{
+    input.form-control.copyable{
+      cursor: default;
+      &::-moz-selection { /* Code for Firefox */
+        color: white;
+        background: #EA6812;
+      }
+      &::selection {
+        color: white;
+        background: #EA6812;
+      }
+    }
+  }
+}

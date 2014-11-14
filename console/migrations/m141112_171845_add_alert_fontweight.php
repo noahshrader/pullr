@@ -16,6 +16,7 @@ class m141112_171845_add_alert_fontweight extends Migration
 
     public function down()
     {
+        $this->dropColumn(WidgetAlertsPreference::tableName(), self::FIELD);
         echo "m141112_171845_add_alert_fontweight cannot be reverted.\n";
 
         return false;

@@ -17,7 +17,7 @@ $class = 'regionsNumber' . $regionsNumber;
          resizable-config="{animate: false, handles:'n', create: onRegionResizeCreate, stop: onRegionResizeStop}"
          resizable-condition="region.regionNumber == 2"
         >
-        <div ng-show="region.toShow.alert.message && (region.widgetType == 'widget_alerts')"
+        <div ng-show="region.toShow.alert.message && region.widgetType == 'widget_alerts'"
             class='widget-alerts'
             interaction
             draggable
@@ -40,7 +40,8 @@ $class = 'regionsNumber' . $regionsNumber;
             />
         </div>
         <div 
-            ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle, 'position':'absolute'}" 
+            ng-show="region.toShow.alert.message && region.widgetType == 'widget_alerts'"
+            ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle, 'font-weight': region.toShow.alert.preference.fontWeight, 'position':'absolute'}" 
             ng-class='region.toShow.alert.animationDirection' 
             ng-hide="region.toShow.alert.preference.hideAlertText"
             draggable-widget="region.widgetAlerts" 
