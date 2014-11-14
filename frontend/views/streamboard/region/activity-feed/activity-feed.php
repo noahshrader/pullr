@@ -21,7 +21,7 @@ use frontend\models\streamboard\StreamboardRegion;
         marquee-name='region.regionNumber'
         duration="region.widgetDonationFeed.scrollSpeed"
         scroll="region.widgetDonationFeed.scrolling"                        
-        ng-style="{'color': region.widgetDonationFeed.fontColor, 'font-size': region.widgetDonationFeed.fontSize, 'font-family': region.widgetDonationFeed.fontStyle}"
+        ng-style="{'color': region.widgetDonationFeed.fontColor, 'font-size': region.widgetDonationFeed.fontSize, 'font-family': region.widgetDonationFeed.fontStyle, 'font-weight': region.widgetDonationFeed.fontWeight}"
           >
             <span>
                 <span ng-if=' ! streamService.groupUser'>
