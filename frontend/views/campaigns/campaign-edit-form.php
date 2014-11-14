@@ -33,11 +33,9 @@
     </div>
     <div class="module-inner">
         <h5><i class="icon icon-check-round-fill"></i>Thank You Page</h5>
-        <div>
-            <!-- Enable Thank You Page -->
-            <div class="form-group">
-                <?= $form->field($campaign, 'enableThankYouPage', ['autoPlaceholder' => false])->label('Thank You Page <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow users from redirecting to your thank you page after donating."></i>')->checkbox([], false); ?>
-            </div>
+        <!-- Enable Thank You Page -->
+        <div class="form-group">
+            <?= $form->field($campaign, 'enableThankYouPage', ['autoPlaceholder' => false])->label('Thank You Page <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow users from redirecting to your thank you page after donating."></i>')->checkbox([], false); ?>
         </div>
         <!-- Custom Thank You HTML -->
         <div class="form-group">

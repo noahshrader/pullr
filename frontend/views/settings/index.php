@@ -33,7 +33,7 @@ endif;
 			?>
 			<?php if (Yii::$app->session->hasFlash('pro_success')):?>
 			<div class="alert alert-info alert-dismissible systemNotification module">
-			You have successfully purchased Pro account!
+				You have successfully purchased Pro account!
 			</div>
 			<?endif;?>
 
@@ -59,7 +59,9 @@ endif;
 						$timezones = array_values(common\components\PullrUtils::timezone_list());
 						$keyValues = array_combine($timezones, $timezones);
 						?>
-						<label>Timezone: <strong id='timezone'><?= $user->timezone;?></strong></label>
+						<label>Timezone:<br/>
+							<span id="timezone"><?= $user->timezone;?></span>
+						</label>
 						<?= $form->field($user, 'timezone', ['template'=>'{input}'])->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 					</div>
 				</div>
@@ -77,11 +79,9 @@ endif;
 				<div class="email-notifications module">
 					<h5 class="module-title">Email Notifications</h5>
 					<div class="module-inner">
-						<div>
-							<div class="checkbox">
-								<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
-								<? $attributes = $notification->getNotificationsAttributes(); ?>
-							</div>
+						<div class="checkbox">
+							<?= $form->field($notification, Notification::$NOTIFY_NEVER)->checkbox(); ?>
+							<? $attributes = $notification->getNotificationsAttributes(); ?>
 						</div>
 						<label>Email me when:</label>
 						<div class="checkbox">
@@ -99,9 +99,9 @@ endif;
 					</div>	
 				</div>
                 <div class="api-key module">
-                    <h5 class="module-title">Developer</h5>
+                    <h5 class="module-title">Developers</h5>
                     <div class="module-inner">
-                        <?= $form->field($user, 'apiKey')->input('text', ['readonly' => '', 'class' => 'form-control copyable']) ?>
+                        <?= $form->field($user, 'apiKey')->label("API Key")->input('text', ['readonly' => '', 'class' => 'form-control copyable']) ?>
                     </div>
                 </div>
 			</section>

@@ -13,15 +13,17 @@ select.form-control,
 .form-group.has-success textarea.form-control {
 	color: @gray30;
 	font-size: @basefontsize;
+	font-weight: 600;
 	outline: 0;
-	padding: 0 @halfgutter;
-	min-height: 45px;
-	border: 2px solid @gray75;
-	background: @white;
-	.border-radius;
+	padding: 0;
+	min-height: 35px;
+	background: transparent;
+	border: 0;
+	border-bottom: solid 1px @gray72;
+	border-radius: 0;
 	box-shadow: none;
 	&:focus {
-		border: 2px solid @gray60;
+		border-bottom: solid 2px @accent;
 		box-shadow: none;
 	}
 }
@@ -35,11 +37,13 @@ select {
 }
 textarea,
 textarea.form-control {
-	padding: @halfgutter !important;
+	padding-top: .3em !important;
 	max-width: 100%;
+	resize: none;
 }
 label {
 	line-height: 1.4em;
+	margin: 0;
 }
 legend,
 label,
@@ -48,11 +52,14 @@ label,
 	font-weight: 400;
 }
 .form-control[disabled],
-.form-control[readonly],
 fieldset[disabled] .form-control {
 	opacity: .5;
+	background: transparent;
+	border-bottom: dashed 1px @gray72;
 }
-
+.form-control[readonly] {
+	background: transparent;
+}
 .icon-help {
 	color: @gray60;
 	margin-left: @iconspace;
@@ -96,7 +103,7 @@ input.color-choice {
 		span.color-choice {
 			position: absolute;
 			right: @halfgutter;
-			top: 40px;
+			top: 30px;
 			z-index: 900;
 		}
 	}
@@ -124,14 +131,15 @@ input.color-choice {
 .select2-container {
 	position: relative;
 	display: block;
+	margin-top: .4em;
 	&:after {
 		position: absolute;
 		.arrow-down;
 		top: 50%;
 		right: @halfgutter;
-		margin-top: -4px;
+		margin-top: -2px;
 		border-width: 6px 4px 0 4px;
-		border-color: @gray30 transparent transparent transparent;
+		border-color: @gray60 transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
 		background: @gray70;
@@ -143,6 +151,7 @@ input.color-choice {
 		color: @gray30;
 		font-family: @mainfont;
 		font-size: @basefontsize;
+		font-weight: 400;
 		background: @gray72;
 		border: 0;
 		box-shadow: none !important;
@@ -305,20 +314,60 @@ input.color-choice {
 /* Switch Buttons */
 .bootstrap-switch {
 	display: block !important;
-	max-width: 120px;
-	border: solid 2px @gray72 !important;
-
+	padding: 0;
+	margin-top: .4em;
+	max-width: 50px !important;
+	min-width: 50px !important;
+	width: 50px;
+	border: 0 !important;
 	&.bootstrap-switch-on {
-		border: solid 2px @accent !important;
+		.bootstrap-switch-container {
+			margin-left: -20% !important;
+
+			.bootstrap-switch-handle-on,
+			.bootstrap-switch-handle-off {
+				background: @accent !important;
+			}
+			.bootstrap-switch-handle-on {
+				width: 40% !important;
+				margin-left: 10% !important;
+			}
+			.bootstrap-switch-handle-off {
+				width: 50% !important;
+			}
+		}
 	}
-	.bootstrap-switch-handle-on {
-		border-radius: 0 !important;
-	}
-	.bootstrap-switch-handle-on,
-	.bootstrap-switch-handle-off {
-		&.bootstrap-switch-default {
-			color: @gray50 !important;
+	.bootstrap-switch-container {
+		width: 100px !important;
+		margin-left: -80% !important;
+
+		.bootstrap-switch-label {
+			position: absolute;
+			margin-top: 2px !important;
+			margin-left: -10px;
+			height: 20px !important;
+			width: 20px !important;
+			.round-radius !important;
+			.box-shadow;
+		}
+		.bootstrap-switch-handle-on,
+		.bootstrap-switch-handle-off {
+			float: left;
+			line-height: 6px !important;
+			text-indent: -9999px;
+			padding: 0 !important;
+			margin: 10px 0;
 			background: @gray72 !important;
+		}
+		.bootstrap-switch-handle-on {
+			width: 50% !important;
+			border-top-left-radius: 4px !important;
+			border-bottom-left-radius: 4px !important;
+		}
+		.bootstrap-switch-handle-off {
+			width: 40% !important;
+			border-top-right-radius: 4px !important;
+			border-bottom-right-radius: 4px !important;
 		}
 	}
 }
@@ -346,14 +395,9 @@ input.color-choice {
 /* Misc */
 .help-block {
 	display: block;
-	position: absolute;
-	bottom: -55px;
-	left: 0;
 	font-size: .9em;
 	font-weight: 600;
-	padding: .6em 1.2em;
 	z-index: 1000;
-	.border-radius;
 }
 
 .email-notifications .help-block{
@@ -363,7 +407,7 @@ input.color-choice {
 /* Bootstrap Overrides */
 .form-group {
 	position: relative;
-	margin-bottom: @halfgutter;
+	margin-bottom: @gutter;
 
 	/* Colorpicker */
 	&.colorpicker {
@@ -379,16 +423,11 @@ input.color-choice {
 			color: @errorred;
 			border-color: @errorred;
 		}
+		.form-control {
+			box-shadow: none;
+		}
 		.help-block {
-			color: @white;
-			background: @errorred;
-			&:before {
-				.arrow-up;
-				top: -5px;
-				left: 30px;
-				border-width: 0 5px 5px 5px;
-				border-color: transparent transparent @errorred transparent;
-			}
+			color: @errorred;
 		}
 	}
 }

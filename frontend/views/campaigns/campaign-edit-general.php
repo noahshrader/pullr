@@ -31,7 +31,7 @@ $firstGiving = $campaign->getFirstGiving();
 
         <!-- Campaign Description -->
         <div class="form-group">
-            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 3]); ?>
+            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH]); ?>
         </div>
 
         <div class="campaign-type">
