@@ -35,3 +35,8 @@
         <? endforeach; ?>
     </tbody>
 </table>
+
+<form action="/app/campaigns/importdonations" method="post" enctype="multipart/form-data">
+    <input type="file" id="csv-upload" name="UploadCsv[file]" style="display:none" />
+    <input type="hidden" name="UploadCsv[campaignId]" value="<?=$campaignId;?>"/>
+</form>

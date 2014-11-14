@@ -144,10 +144,28 @@ h5 input.color-choice {
 		left: -9999px;
 	}
 }
-.hint:after,[data-hint]:after {
+
+/* Tooltips */
+.hint:after,
+[data-hint]:after {
+	font-size: 14px !important;
+	line-height: 1.4em !important;
+}
+.hint:after,
+[data-hint]:after {
 	white-space: pre !important;
 	white-space: -moz-collapse-whitespace;
 }
-.hint--bottom:before, .hint--bottom:after, .hint--top:before, .hint--top:after {
+.hint--bottom:before,
+.hint--bottom:after,
+.hint--top:before,
+.hint--top:after {
 	left: 5% !important;
+}
+.hint--bottom:before {
+	border-bottom-color: @maingray !important;
+}
+.hint--bottom:after {
+	margin-left: -10px !important;
+	background: @maingray !important;
 }

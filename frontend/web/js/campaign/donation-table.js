@@ -43,6 +43,19 @@ $(function(){
         .attr('data-toggle', 'modal');
     addDonationButton.prependTo($wrapper.find('.campaign-table .table-header'));
 
+    var csvImportButton = $('<a>').addClass('btn btn-secondary btn-sm').html('<i class="icon icon-upload2"></i> Import');
+    csvImportButton.prependTo($wrapper.find('.table-footer'));
+
+    csvImportButton.click(function ()
+    {
+        $("#csv-upload").click();
+    });
+
+    $("#csv-upload").on('change', function ()
+    {
+        $(this).parent("form").submit();
+    });
+
     if ($table.fnSettings().fnRecordsTotal()){
         if ($('.donor-view-wrap').length > 0){
             
@@ -54,10 +67,8 @@ $(function(){
         }
 
         /* CSV Button */
-        var csvButton = $('<a>').addClass('btn btn-secondary btn-sm').attr('href', href).html
-            ('<i class="icon icon-download2"></i> Export All');
+        var csvButton = $('<a>').addClass('btn btn-secondary btn-sm').attr('href', href).html('<i class="icon icon-download2"></i> Export All');
         csvButton.prependTo($wrapper.find('.table-footer'));
-
     }
 
     // Rotate table details area on click
