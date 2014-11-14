@@ -162,7 +162,7 @@
                     $scope.streamService.streams[region.regionNumber] = [];
                 }
 
-                if (notification) {
+                if (notification) {               
                     console.log(['WE HAVE NOTIFICATION FOR REGION ' + region.regionNumber]);
                     console.log(notification);
          
