@@ -40,7 +40,10 @@ use common\components\PullrUtils;
     <div class="tags module">
         <div class="form-group">
             <h5>Tags</h5>
-            <div>Last Follower: <span id='last_follower'></span></div>
+            <div>Last Follower: <span id='last_follower'><?= (!empty($followers)) ? $followers[0]['display_name'] : '' ?></span></div>
+            <div>Last Subscriber: <span id='last_follower'><?= (!empty($subscribers)) ? $subscribers[0]['display_name'] : '' ?></span></div>
+            <div>Last Donor: <span id='last_follower'><?= (!empty($donors)) ? $donors[0]['name'] : '' ?></span></div>
+            <div>Last Donor/Donation: <span id='last_follower'><?= (!empty($donors)) ? $donors[0]['name'] .'/'. $donors[0]['amount'] : '' ?></span></div>
         </div>
     </div>
     <? if (count($campaigns) > 0): ?>
