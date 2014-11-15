@@ -50,6 +50,11 @@ class SettingsController extends FrontendController
             }
         }
 
+        if($user->apiKey == ""){
+            $user->apiKey  = Yii::$app->getSecurity()->generateRandomString().md5($user->name);
+            $user->save();
+        }
+
         return $this->render('index', [
                     'user' => $user,
                     'notification' => $notification,

@@ -69,8 +69,23 @@
 	background: @maingray;
 	z-index: 1000;
 	&.in {
-		opacity: .3;
-		filter: alpha(opacity=30);
+		opacity: .4;
+		filter: alpha(opacity=40);
+	}
+}
+
+/* Charity Modal */
+#modalCharity {
+	.microPhoto {
+		max-width: 150px;
+		max-height: 150px;
+	}
+	.select-charity-container {
+		cursor: pointer;
+		padding: 10px 0px;
+		&:hover {
+			background: @gray75;
+		}
 	}
 }
 

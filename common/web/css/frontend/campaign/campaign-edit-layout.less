@@ -44,10 +44,6 @@
 	.input-group {
 		display: block;
 
-		.form-control {
-			.border-radius;
-		}
-
 		span.kv-caption-icon,
 		.file-caption-name {
 			line-height: 40px;
@@ -72,12 +68,14 @@
 			display: none !important;
 		}
 		.btn.btn-file {
+			color: @gray30;
 			font-size: 12px;
-			line-height: 45px;
+			line-height: 35px;
 			padding: 0;
 			height: 45px;
 			width: 40px;
-			background: @gray60;
+			background: transparent;
+			box-shadow: none;
 		}
 	}
 }
@@ -89,7 +87,6 @@
 	margin-bottom: @halfgutter;
 	background: @gray75;
 	border: 0;
-	.border-radius;
 	&:before {
 		.arrow-down;
 		bottom: -10px;

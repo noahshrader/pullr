@@ -72,10 +72,12 @@ span.slider-value {
 .border {
 	border-bottom: solid 1px @maingray;
 }
-
 .commaAfter:not(:last-child):after {
-  content: ',';
+	content: ',';
+	position: relative;
+	margin-left: -1px;
 }
+
 
 /* Sidepanel (Sidebar) */
 /* ------------------------------------------------- */
@@ -497,9 +499,7 @@ ul.panel-nav {
 		background-color: green;
 
 		/* Resizable Items */
-		[resizable] img,
-		[resizable].marquee-container,
-		[resizable]#campaign-bar {
+		[resizable] {
 			&:hover,
 			&:active {
 				outline: dashed 1px @gray10;
@@ -601,7 +601,7 @@ ul.panel-nav {
 	}
 	.spinner {
 		top: auto;
-		bottom: 30%;
+		bottom: 35%;
 		margin: 0 auto;
 		-webkit-animation-delay: 0.2s;
 		animation-delay: 0.2s;

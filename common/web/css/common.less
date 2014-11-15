@@ -61,7 +61,6 @@ body {
 	&:active,
 	&:active:focus {
 		outline: 0;
-		box-shadow: none;
 	}
 	&:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
 	  font-weight: 600;
@@ -78,15 +77,17 @@ body {
 	}
 }
 .btn-primary {
-	background-color: @accent;
 	color: @white;
+	background-color: @accent;
+	.box-shadow;
 	&:hover {
-		background-color: @accenthover;
+		background-color: @dkaccent;
 	}
 }
 .btn-secondary {
 	color: @gray30;
 	background-color: @gray72;
+	.box-shadow;
 	&:hover {
 		color: @gray30;
 		background-color: @gray70;
@@ -97,6 +98,7 @@ body {
 	line-height: 33px;
 	padding: 0 1.2em;
 	line-height: 34px;
+	.box-shadow;
 	&:focus {
 		color: @white;
 	}
@@ -328,7 +330,7 @@ h3.list-title {
 	color: @gray30;
 	margin-bottom: 2px;
 	font-size: 1.1em;
-	font-weight: 400;
+	font-weight: 600;
 	line-height: 1.1em;
 	.trans;
 }

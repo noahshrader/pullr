@@ -21,7 +21,7 @@ use frontend\models\streamboard\StreamboardRegion;
         marquee-name='region.regionNumber'
         duration="region.widgetDonationFeed.scrollSpeed"
         scroll="region.widgetDonationFeed.scrolling"                        
-        ng-style="{'color': region.widgetDonationFeed.fontColor, 'font-size': region.widgetDonationFeed.fontSize, 'font-family': region.widgetDonationFeed.fontStyle}"
+        ng-style="{'color': region.widgetDonationFeed.fontColor, 'font-size': region.widgetDonationFeed.fontSize, 'font-family': region.widgetDonationFeed.fontStyle, 'font-weight': region.widgetDonationFeed.fontWeight}"
         ng-class='{fontUppercase: region.widgetDonationFeed.fontUppercase}'
           >
             <span>
@@ -57,15 +57,15 @@ use frontend\models\streamboard\StreamboardRegion;
                 </span> 
                 <span ng-if='streamService.groupUser'>
                     <span ng-repeat="groupDonation in donationsService.groupDonations"
-                        class="commaAfter">
-                        <span ng-repeat='donation in groupDonation.items' class="commaAfter" > {{donation.name}}</span> (${{number_format(groupDonation.amount)}})
+                        class="commaAfter grouped">
+                        <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount)}})
                     </span>
 
                     <span
                         ng-repeat="subscriber in donationsService.subscribers"
                         ng-if='streamService.showSubscriber'
                         class="commaAfter">
-                    
+                        
                         &nbsp;{{subscriber.display_name}}<!--removing space for .commaAfter
                     -->
                         <span class="commaAfter" ng-show='$last'>(subscribed)</span>

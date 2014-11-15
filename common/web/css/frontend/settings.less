@@ -4,14 +4,25 @@
 	position: fixed;
 	top: @top-menu-height;
 	right: 0;
-}
-#content.settings {
-	position: static;
-	padding-right: @sidepanelwidth;
 
-	a.account-deactivate {
-		color: @gray60;
-		font-size: @smalltext;
+	#content.settings {
+		position: static;
+		padding-right: @sidepanelwidth;
+
+		a.account-deactivate {
+			color: @gray60;
+			font-size: @smalltext;
+		}
+		span#timezone {
+			color: @gray30;
+			font-weight: 600;
+		}
+		.dashboard-notifications,
+		.email-notifications {
+			.form-group {
+				margin-bottom: @halfgutter;
+			}
+		}
 	}
 }
 
