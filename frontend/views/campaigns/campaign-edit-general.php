@@ -119,7 +119,7 @@ $firstGiving = $campaign->getFirstGiving();
         </div>
     </div>
     <div class="team">
-        <div class="module-inner">
+        <div class="module-inner last">
             <h5><i class="icon mdi-social-group"></i>Team Fundraising</h5>
     	    <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
     	    <div class="form-group" id="teamQuestion">

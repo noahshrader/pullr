@@ -21,7 +21,7 @@
         </div>
         <!-- Donate Button Text -->
         <div class="form-group">
-            <?=$form->field($campaign, 'donationButtonText', ['autoPlaceholder' => false])->label('Donate Button Text <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Have your donate buttons say something else."></i>')->input('text'); ?>
+            <?=$form->field($campaign, 'donationButtonText', ['autoPlaceholder' => false])->label('Donate Button Text <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Have your donate buttons say something else."></i>')->input('text')->textInput(array('placeholder' => 'Donate')); ?>
         </div>
         <!-- Form Visibility -->
         <div class="form-group field-campaign-formvisibility">
@@ -31,7 +31,7 @@
                 <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
         </div>
     </div>
-    <div class="module-inner">
+    <div class="module-inner last">
         <h5><i class="icon mdi-action-done-all"></i>Thank You Page</h5>
         <!-- Enable Thank You Page -->
         <div class="form-group">

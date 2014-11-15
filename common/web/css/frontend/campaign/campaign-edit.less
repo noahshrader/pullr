@@ -8,19 +8,14 @@
 		background: @white;
 
 		.module-inner {
-			padding: @gutter @gutter+@gutter @halfgutter;
-			background: @offwhite;
-			margin: @gutter;
+			padding: @gutter @gutter+@gutter+@gutter @halfgutter;
 
-			&.last {
-				margin-bottom: @halfgutter+@gutter;
-			}
 			h5 {
-				text-align: center;
 
 				i {
-					display: block;
+					display: inline-block;
 					top: 5px;
+					color: @gray70;
 					font-size: 26px;
 					margin: 0 auto .6em;
 					width: 48px;
@@ -32,7 +27,6 @@
 			}
 		}
 		.social {
-			margin-bottom: 1.6em;
 
 			.module-inner {
 				padding: @gutter @gutter 0;
@@ -119,16 +113,16 @@
 	.field-campaign-facebookurl {
 		position: relative;
 		padding: @gutter;
-		background: @gray75;
+		background: @offwhite;
 		&:before {
 			.arrow-up;
 			top: -9px;
 			left: 50px;
-			border-color: transparent transparent @gray75 transparent;
+			border-color: transparent transparent @offwhite transparent;
 		}
 
 		h5 {
-			display: block;
+			display: inline-block;
 			color: @gray60;
 			text-align: center;
 			margin: 0 0 @halfgutter;

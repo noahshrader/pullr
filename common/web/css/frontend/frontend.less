@@ -62,12 +62,12 @@
 			line-height: 58px;
 			padding: 0 @gutter;
 			margin: 0;
-			background: @offwhite;
 			border-bottom: solid 1px @gray75;
 		}
 	}
 	.module-inner {
 		padding: @gutter;
+		border-bottom: solid 1px @gray75;
 	}
 }
 
@@ -482,14 +482,14 @@ table.dataTable {
 			top: 50%;
 			left: 26px;
 			content: '\e65f';
-			color: @gray60;
+			color: @gray70;
 			font-family: 'icons';
 			font-size: 16px;
-			margin-top: -9px;
+			margin-top: -10px;
 		}
 		input {
-			max-width: 160px;
-			min-height: 34px;
+			max-width: 140px;
+			min-height: 28px;
 		}
 	}
 	.dataTables_paginate {
@@ -507,19 +507,19 @@ table.dataTable {
 .table-header,
 .table-footer {
 	.select2-container {
-		margin-right: 6px;
+		margin-right: 0;
 		min-height: 0;
 
 		.select2-choice {
-			height: 34px;
+			height: 28px;
 		}
 		.select2-choices .select2-search-field input,
 		.select2-choice, .select2-choices {
-			background: @white;
+			background: transparent;
 		}
 		.select2-choice > span:first-child,
 		.select2-choices .select2-search-field input {
-			padding: 6px 12px;
+			padding: 3px 6px;
 		}
 	}
 	label {

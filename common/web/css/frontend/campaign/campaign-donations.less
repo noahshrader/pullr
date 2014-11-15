@@ -135,26 +135,28 @@ ul.donation-actions li {
 /* Pagination */
 .pagination>li>a,
 .pagination>li>span {
-	color: @gray50;
-	background: @gray75;
-	border: 0;
+	color: @gray40;
+	font-size: @fineprint;
+	font-weight: 400;
+	background: @offwhite;
+	border-top: solid 1px @gray75;
+	border-bottom: solid 1px @gray75;
 	&:hover {
-		color: @gray50;
-		background: @gray72;
+		color: @gray40;
+		background: @gray75;
+		border: solid 1px @gray75;
 	}
-
-	i {
-		font-size: 12px;
+	&:first-child {
+		border-left: solid 1px @gray75;
+	}
+	&:last-child {
+		border-right: solid 1px @gray75;
 	}
 }
 .pagination>.active>a,
-.pagination>.active>span,
-.pagination>.active>a:hover,
-.pagination>.active>span:hover,
-.pagination>.active>a:focus,
-.pagination>.active>span:focus {
+.pagination>.active>span {
 	color: @white;
-	background: @gray70;
+	border: solid 1px @accent !important;
 }
 .pagination>.disabled>span,
 .pagination>.disabled>span:hover,
@@ -162,8 +164,7 @@ ul.donation-actions li {
 .pagination>.disabled>a,
 .pagination>.disabled>a:hover,
 .pagination>.disabled>a:focus {
-	color: @gray60;
-	background: @gray75;
+	background: @offwhite;
 }
 .campaigns-list input[type='search'],
 .donors-list input[type='search'] {

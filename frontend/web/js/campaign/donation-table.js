@@ -36,14 +36,14 @@ $(function(){
     } );
 
     /* Manual Donations */
-    var addDonationButton = $('<a>').addClass('btn manual-donations btn-sm').html
-    ('<i class="icon mdi-content-add-circle-outline"></i> Add')
+    var addDonationButton = $('<a>').addClass('btn manual-donations btn-add').html
+    ('<i class="mdi-content-add"></i>')
         .addClass("manual-donation")
         .attr('data-target', '#manualDonationModal')
         .attr('data-toggle', 'modal');
     addDonationButton.prependTo($wrapper.find('.campaign-table .table-header'));
 
-    var csvImportButton = $('<a>').addClass('btn btn-secondary btn-sm').html('<i class="icon mdi-file-file-upload"></i> Import');
+    var csvImportButton = $('<a>').addClass('btn btn-default btn-sm').html('<i class="icon mdi-file-file-upload"></i> Import');
     csvImportButton.prependTo($wrapper.find('.table-footer'));
 
     csvImportButton.click(function ()
@@ -67,7 +67,7 @@ $(function(){
         }
 
         /* CSV Button */
-        var csvButton = $('<a>').addClass('btn btn-secondary btn-sm').attr('href', href).html('<i class="icon mdi-file-file-download"></i> Export All');
+        var csvButton = $('<a>').addClass('btn btn-default btn-sm').attr('href', href).html('<i class="icon mdi-file-file-download"></i> Export All');
         csvButton.prependTo($wrapper.find('.table-footer'));
     }
 

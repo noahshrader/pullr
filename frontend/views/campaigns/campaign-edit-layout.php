@@ -39,14 +39,14 @@ $user = \Yii::$app->user->identity;
             <div id="layoutTeams" class="team-list"></div>
         </div>
     </div>
-    <div class="module-inner">
+    <div class="module-inner last">
         <h5><i class="icon mdi-image-palette"></i>Design</h5>
         <!-- Choose a Theme -->
         <div class="hide">
             <?= $form->field($campaign, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
         </div>
         <div class="form-group theme-selection cf">
-            <button type="button" class="btn btn-secondary" onclick="layoutChooseTheme()">Choose a theme</button>
+            <button type="button" class="btn btn-default" onclick="layoutChooseTheme()">Choose a theme</button>
             <div class='selected-theme theme-name <? if (!$campaign->themeId) { echo 'hidden';} ?>'>
                 <span><?= $campaign->theme?$campaign->theme->name:''?></span>
             </div>

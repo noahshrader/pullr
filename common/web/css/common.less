@@ -34,7 +34,7 @@ body {
 	color: @accent !important;
 }
 .last {
-	margin: 0 !important;
+	margin-bottom: 0 !important;
 }
 .disabled {
 	cursor: not-allowed;
@@ -61,19 +61,7 @@ body {
 	&:active,
 	&:active:focus {
 		outline: 0;
-	}
-	&:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
-	  font-weight: 600;
-	  line-height: 42px;
-	  padding: 0 1.4em;
-	  height: 42px;
-	}
-}
-.btn-default {
-	background-color: @accent;
-	color: @white;
-	&:hover {
-		background-color: @accenthover;
+		box-shadow: none;
 	}
 }
 .btn-primary {
@@ -82,6 +70,14 @@ body {
 	.box-shadow;
 	&:hover {
 		background-color: @dkaccent;
+	}
+}
+.btn-default {
+	background-color: @gray72;
+	color: @gray30;
+	&:hover {
+		color: @gray30;
+		background-color: @gray70;
 	}
 }
 .btn-secondary {
@@ -103,7 +99,16 @@ body {
 	}
 }
 .btn-add {
-
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 400;
+	text-align: center;
+	line-height: 28px;
+	padding: 0;
+	height: 28px !important;
+	width: 28px !important;
+	.box-shadow;
+	.round-radius;
 }
 .btn-link {
 	padding: 0;
@@ -116,10 +121,11 @@ body {
 	text-align: center;
 	padding-bottom: @gutter;
 }
-
-.manual-donation{
+.manual-donation {
   margin-left: 20px;
 }
+
+
 /* Main Data Containers */
 /* ------------------------------------------------- */
 .stats-overview {
@@ -230,6 +236,7 @@ body {
 	}
 }
 
+
 /* Progress Bars */
 /* ------------------------------------------------- */
 .progress {
@@ -256,8 +263,7 @@ body {
 /* ------------------------------------------------- */
 ul.content-nav {
 	height: @sidenavheight + 8px;
-	background: @offwhite;
-	border-bottom: solid 1px @gray75;
+	background: @gray72;
 
 	li {
 		position: relative;

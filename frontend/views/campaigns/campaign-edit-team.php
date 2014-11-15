@@ -1,5 +1,5 @@
 <div id="campaign-edit-team">
-    <div class="module-inner">
+    <div class="module-inner last">
         <h5><i class="icon mdi-social-group-add"></i>Team Invites</h5>
         <? if ($campaign->isNewRecord): ?>
             <div class="label label-danger">Save campaign before adding emails</div>
