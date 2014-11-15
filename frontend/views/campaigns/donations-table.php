@@ -25,10 +25,10 @@
                 </td>
                 <td class="details-control" width="10%">
                     <? if ($donation->comments): ?>
-                        <i class="icon-arrow-down"></i>
+                        <i class="mdi-navigation-expand-more"></i>
                     <? endif ?>
                     <? if ($donation->isManual): ?>
-                        <a href="<?=\yii\helpers\Url::to(['campaigns/deletemanualdonation', 'donationId' => $donation->id]);?>"><i class="icon-close" id="delete-manual-donation"></i></a>
+                        <a href="<?=\yii\helpers\Url::to(['campaigns/deletemanualdonation', 'donationId' => $donation->id]);?>"><i class="mdi-navigation-close" id="delete-manual-donation"></i></a>
                     <? endif ?>
                 </td>
             </tr>

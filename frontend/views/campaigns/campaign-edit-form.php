@@ -4,7 +4,7 @@
 ?>
 <div id="campaign-edit-form">
     <div class="module-inner">
-        <h5><i class="icon icon-list"></i>Form</h5>
+        <h5><i class="icon mdi-action-toc"></i>Form</h5>
         <div class="row">
             <div class="col-md-6">
                 <!-- Donor Comments -->
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="module-inner">
-        <h5><i class="icon icon-check-round-fill"></i>Thank You Page</h5>
+        <h5><i class="icon mdi-action-done-all"></i>Thank You Page</h5>
         <!-- Enable Thank You Page -->
         <div class="form-group">
             <?= $form->field($campaign, 'enableThankYouPage', ['autoPlaceholder' => false])->label('Thank You Page <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow users from redirecting to your thank you page after donating."></i>')->checkbox([], false); ?>
