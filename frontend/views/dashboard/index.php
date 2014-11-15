@@ -26,7 +26,7 @@ $twitchPartner = $user->userFields->twitchPartner;
         <div class="content-wrap">
             <? if ($systemNotification): ?> <!-- BEGIN notification -->
                 <div class="alert alert-info alert-dismissible systemNotification module">
-                    <i class="icon-gamepad4"></i>
+                    <i class="mdib-gamepad4"></i>
                     <button type="button" class="close" onclick="dashboardCloseSystemMessage(<?= $systemNotification->id ?>)">
                         <span>&times;</span>
                     </button>
@@ -85,7 +85,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <? if ($openIDToUser): ?>
                     <section class="row stats-overview twitch-stats">
                         <span class="stick"></span>
-                        <i class="icon-twitch2 group-header"></i>
+                        <i class="mdib-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= $user->twitchUser->followersNumber; ?></h2>
@@ -141,7 +141,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <? if ($openIDToUser): ?>
                     <section class="row stats-overview twitch-stats">
                         <span class="stick"></span>
-                        <i class="icon-twitch2 group-header"></i>
+                        <i class="mdib-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= $user->twitchUser->followersNumber; ?></h2>
@@ -197,7 +197,7 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <? if ($openIDToUser): ?>
                     <section class="row stats-overview twitch-stats">
                         <span class="stick"></span>
-                        <i class="icon-twitch2 group-header"></i>
+                        <i class="mdib-twitch2 group-header"></i>
                         <div class="group-stats-wrap">
                             <div class="col-xs-<?= $twitchPartner ? 6 : 12 ?> text-center stats-box">
                                 <h2><?= $user->twitchUser->followersNumber; ?></h2>

@@ -101,7 +101,7 @@ endif;
                 <div class="api-key module">
                     <h5 class="module-title">Developers</h5>
                     <div class="module-inner">
-                        <?= $form->field($user, 'apiKey')->label("API Key")->input('text', ['readonly' => '', 'class' => 'form-control copyable']) ?>
+                        <?= $form->field($user, 'apiKey')->label("API Key")->input('text', ['class' => 'form-control copyable']) ?>
                     </div>
                 </div>
 			</section>

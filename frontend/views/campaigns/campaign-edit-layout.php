@@ -8,7 +8,7 @@ $user = \Yii::$app->user->identity;
 ?>
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
     <div class="module-inner">
-        <h5><i class="icon icon-design3"></i>Layout</h5>
+        <h5><i class="icon mdi-action-view-quilt"></i>Layout</h5>
         <!-- Campaign Page Layout -->
         <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
             <label class="control-label">Layout Type</label>
@@ -40,7 +40,7 @@ $user = \Yii::$app->user->identity;
         </div>
     </div>
     <div class="module-inner">
-        <h5><i class="icon icon-design2"></i>Design</h5>
+        <h5><i class="icon mdi-image-palette"></i>Design</h5>
         <!-- Choose a Theme -->
         <div class="hide">
             <?= $form->field($campaign, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>

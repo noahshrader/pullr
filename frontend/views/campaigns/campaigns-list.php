@@ -22,7 +22,7 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
                 <h5 data-bind="text: type" class="layout-type"></h5>
                 <h3 class="list-title" data-bind="text: name"></h3>
                 <!-- ko if: tiedToParent -->
-                <span class="icon-users team-parent" data-toggle="tooltip" data-placement="right" title="Connected"></span>
+                <span class="mdi-social-group" data-toggle="tooltip" data-placement="right" title="Connected"></span>
                 <!-- /ko -->
                 <p class="list-total" data-bind="text: amountRaised"></p>
             </div>

@@ -35,5 +35,5 @@ use common\models\User;
         ?>
     </script>
     <!-- Load Fonts -->
-    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Varela+Round:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
 </head>
