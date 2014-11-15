@@ -35,9 +35,9 @@ use yii\web\View;
 </div>
 <div class="right-side-footer" ng-show=' ! hideFooter'>
     <ul class="panel-nav paneltoggle">
-        <li ng-if="widget.includeDonations" class="panel-link"><a data-panel="donations"><i class="icon-coin"></i>Donations</a></li>
-        <li ng-if="widget.includeFollowers" class="panel-link"><a data-panel="followers"><i class="icon-heart"></i>Followers</a></li>
-        <li ng-if="widget.includeSubscribers" class="panel-link"><a data-panel="subscribers"><i class="icon-star"></i>Subscribers</a></li>
+        <li ng-if="widget.includeDonations" class="panel-link"><a data-panel="donations"><i class="mdi-action-receipt"></i>Donations</a></li>
+        <li ng-if="widget.includeFollowers" class="panel-link"><a data-panel="followers"><i class="mdi-action-favorite"></i>Followers</a></li>
+        <li ng-if="widget.includeSubscribers" class="panel-link"><a data-panel="subscribers"><i class="mdi-action-grade"></i>Subscribers</a></li>
     </ul>
     <div class="donations_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.donationsPreference">

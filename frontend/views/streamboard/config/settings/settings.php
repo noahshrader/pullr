@@ -21,13 +21,13 @@ $sourceHref = Url::to('', true) . '/source';
     <ul class="panel-nav">
         <li class="active">
             <a href="<?= Url::to() ?>#settings-general" data-toggle="tab">
-                <i class="icon-tools"></i>
+                <i class="mdi-action-settings"></i>
                 General
             </a>
         </li>
         <li>
             <a href="<?= Url::to() ?>#settings-source" data-toggle="tab">
-                <i class="icon-code"></i>
+                <i class="mdi-action-settings-ethernet"></i>
                 Source
             </a>
         </li>

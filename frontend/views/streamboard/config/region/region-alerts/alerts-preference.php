@@ -40,7 +40,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <div class='checkbox'>
                 <label ng-class="{on:preference.fontUppercase}">
                     <input type="checkbox" ng-model="preference.fontUppercase" ng-change="regionChanged(region)">
-                    Font uppercase
+                    Uppercase
                 </label>
             </div>
         </div>
@@ -84,8 +84,8 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 <div class="module">
     <ul class="library-tabs cf">
         <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab"><i
-                    class="icon-volume-more"></i>Sounds</a></li>
-        <li><a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab"><i class="icon-picture"></i>Graphics</a>
+                    class="mdi-av-volume-up"></i>Sounds</a></li>
+        <li><a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab"><i class="mdi-image-panorama"></i>Graphics</a>
         </li>
     </ul>
     <div class="tab-content sounds-graphics-content">

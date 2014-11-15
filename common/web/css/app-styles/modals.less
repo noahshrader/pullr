@@ -22,12 +22,14 @@
 
 	.modal-dialog {
 		position: relative;
+		top: 40px;
 		display: inline-block;
-		margin: 6em auto 3em;
+		margin: 0 auto;
 		width: 100%;
 		background: @white;
+		.border-radius;
+		box-shadow: 0 19px 38px rgba(0,0,0,.3),0 15px 12px rgba(0,0,0,.22);
 		z-index: 9999;
-		.big-shadow;
 
 		.modal-content {
 			text-align: left;
@@ -36,23 +38,12 @@
 			border-radius: 0;
 			box-shadow: none;
 
-			.modal-header {
-				border: 0;
-			}
 			.modal-body {
-				padding: @halfgutter @gutter;
+				padding: @gutter @gutter 0;
 			}
 			.modal-footer {
 				text-align: center;
 				border: 0;
-			}
-		}
-		.module {
-			margin: 0;
-			box-shadow: 0;
-
-			h5.module-title {
-				text-align: center;
 			}
 		}
 		button.close {
@@ -64,13 +55,21 @@
 			width: 58px;
 		}
 	}
+	.module {
+		margin: 0;
+		box-shadow: 0;
+
+		h5.module-title {
+			text-align: left;
+		}
+	}
 }
 .modal-backdrop {
 	background: @maingray;
 	z-index: 1000;
 	&.in {
-		opacity: .4;
-		filter: alpha(opacity=40);
+		opacity: .3;
+		filter: alpha(opacity=30);
 	}
 }
 

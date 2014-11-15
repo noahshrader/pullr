@@ -46,6 +46,7 @@
 	margin-bottom: @gutter;
 	background: @white;
 	.box-shadow;
+	.border-radius;
 	overflow: hidden;
 	
 	&.table {
@@ -292,7 +293,8 @@
 		padding: 10px 0;
 		min-width: 160px;
 		background: @white;
-		.box-shadow;
+		.border-radius;
+		box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
 		opacity: 0;
 		z-index: 9999;
 		-webkit-transition-delay: 0s,0s,.1s;
@@ -309,6 +311,7 @@
 			a {
 				display: block;
 				color: @gray40;
+				font-weight: 500;
 				line-height: 42px;
 				padding: 0 @gutter;
 				width: 100%;

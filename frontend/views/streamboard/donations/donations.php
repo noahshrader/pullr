@@ -14,7 +14,7 @@ use common\models\Donation;
         <div class="donation-wrap">
             <h3 class="list-title">
                 {{donation.displayName}}
-                <a ng-hide="donation.nameFromForm == ''" ng-click="nameHiddenToggle(donation)" class="icon-eye toggleview"
+                <a ng-hide="donation.nameFromForm == ''" ng-click="nameHiddenToggle(donation)" class="mdi-action-visibility toggleview"
                    ng-class="{nameHidden: donation.streamboard.nameHidden}"></a>
             </h3>
             <p class="list-total">${{donation.amount}}</p>
@@ -22,7 +22,7 @@ use common\models\Donation;
             <span class="list-info">{{campaignsService.selectedCampaignsNumber > 1 ? donation.campaignName : ''}}</span>
             <span class="list-info">{{donation.paymentDate*1000 | date: 'MM/dd/yyyy hh:mma'}}</span>
         </div>
-        <a ng-click="markAsRead(donation)" class="markread"><i class="icon-radio-empty"></i></a>
+        <a ng-click="markAsRead(donation)" class="markread"><i class="mdi-toggle-radio-button-off"></i></a>
     </div>
 </div>
 <div class="right-side-footer">

@@ -66,7 +66,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         <div class="checkbox">
             <label ng-class="{on:widget.fontUppercase}">
                 <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
-                Font uppercase
+                Uppercase
             </label>
         </div>
     </div>
@@ -112,19 +112,19 @@ use frontend\models\streamboard\WidgetAlertsPreference;
     <ul class="panel-nav paneltoggle">
         <li ng-if="widget.alertsEnable">
             <a data-panel="alertsModule">
-                <i class="icon-notify"></i>
+                <i class="mdi-av-new-releases"></i>
                 Alerts
             </a>
         </li>
         <li ng-if="widget.messagesEnable">
             <a data-panel="messagesModule">
-                <i class="icon-bubble4"></i>
+                <i class="mdi-communication-message"></i>
                 Messages
             </a>
         </li>
         <li ng-if="widget.timerEnable">
             <a data-panel="timerModule">
-                <i class="icon-timer"></i>
+                <i class="mdi-image-timer"></i>
                 Timer
             </a>
         </li>

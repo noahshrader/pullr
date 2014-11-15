@@ -30,7 +30,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
         <div class='checkbox'>
             <label ng-class="{on:widget.fontUppercase}">
                 <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
-                Font uppercase
+                Uppercase
             </label>
         </div>
     </div>

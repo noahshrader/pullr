@@ -114,6 +114,18 @@ span.slider-value {
 				a {
 					color: @gray30;
 					background: @gray10;
+					&.region1 {
+						&:before {
+							content: '\e830';
+							font-family: 'icons';
+						}
+					}
+					&.region2 {
+						&:before {
+							content: '\e831';
+							font-family: 'icons';
+						}
+					}
 				}
 			}
 		}
@@ -367,6 +379,10 @@ ul.panel-nav {
 				padding: @gutter;
 				background: @gray10;
 			}
+			h3.list-title {
+				font-size: 15px;
+				margin-bottom: .2em;
+			}
 			&.wasRead {
 				.donation-wrap {
 					opacity: .2;
@@ -376,14 +392,16 @@ ul.panel-nav {
 					&:hover {
 						i {
 							&:before {
-								content: '\e683';
+								content: '\e8e4';
+								font-family: 'icons';
 							}
 						}
 					}
 					i {
 						&:before {
-							content: '\e629';
+							content: '\e8e4';
 							color: @gray30;
+							font-family: 'icons';
 						}
 					}
 				}
@@ -409,7 +427,7 @@ ul.panel-nav {
 			}
 			a.toggleview {
 				position: relative;
-				top: 3px;
+				top: 2px;
 				color: @gray30;
 				font-size: 1em;
 				margin-left: .2em;
@@ -430,7 +448,8 @@ ul.panel-nav {
 				&:hover {
 					i {
 						&:before {
-							content: '\e629';
+							content: '\e8e4';
+							font-family: 'icons';
 						}
 					}
 				}

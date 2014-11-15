@@ -23,7 +23,7 @@ $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
     <div class="module-inner">
-        <h5><i class="icon mdi-av-games"></i>Campaign Details</h5>
+        <h5><i class="icon mdi-av-games"></i>Details</h5>
         <!-- Campaign Name -->
         <div class="form-group">
             <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name"); ?>

@@ -86,11 +86,10 @@ body {
 }
 .btn-secondary {
 	color: @gray30;
-	background-color: @gray72;
-	.box-shadow;
+	background-color: transparent;
 	&:hover {
 		color: @gray30;
-		background-color: @gray70;
+		background-color: transparent;
 	}
 }
 .btn-sm {
@@ -103,14 +102,15 @@ body {
 		color: @white;
 	}
 }
+.btn-add {
+
+}
 .btn-link {
 	padding: 0;
 }
 .btn-container {
 	text-align: center;
 	padding: @halfgutter 0;
-	background: @offwhite;
-	border-top: solid 1px @gray75;
 }
 .actions {
 	text-align: center;
@@ -306,9 +306,9 @@ ul.panel-nav {
 
 		&.active a {
 			color: @white;
-			-webkit-box-shadow: inset 0 -4px 0 0 @accent;
-			-moz-box-shadow: inset 0 -4px 0 0 @accent;
-			box-shadow: inset 0 -4px 0 0 @accent;
+			-webkit-box-shadow: inset 0 -3px 0 0 @accent;
+			-moz-box-shadow: inset 0 -3px 0 0 @accent;
+			box-shadow: inset 0 -3px 0 0 @accent;
 		}
 		a {
 			display: block;
@@ -329,7 +329,7 @@ ul.panel-nav {
 /* ------------------------------------------------- */
 h3.list-title {
 	color: @gray30;
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: 500;
 	line-height: 1.1em;
 	margin-bottom: 0;
@@ -338,9 +338,9 @@ h3.list-title {
 p.list-total {
 	display: inline-block;
 	color: @gray30;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: 600;
-	line-height: 1.5em;
+	line-height: 1.6em;
 	margin-top: 6px;
 	margin-bottom: 0;
 	padding: 0 .8em;
@@ -365,7 +365,7 @@ span.list-info {
 		font-weight: 400;
 		padding: @halfgutter;
 		background: @gray20;
-		border-radius: 0;
+		.border-radius;
 	}
 }
 .tooltip.top .tooltip-arrow {
