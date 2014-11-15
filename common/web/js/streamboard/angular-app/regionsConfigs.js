@@ -94,7 +94,7 @@
                 } else {
                     $scope.hideFooter = true;
                 }
-            } else if (region.widgetType = 'widget_campaign_bar') {
+            } else if (region.widgetType == 'widget_campaign_bar') {
                 var widget = region.widgetCampaignBar;
                 if (widget.alertsEnable || widget.messagesEnable || widget.timerEnable) {
                     $scope.hideFooter = false;
