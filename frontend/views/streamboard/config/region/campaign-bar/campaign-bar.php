@@ -20,25 +20,25 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         <h5>Modules</h5>
         <div class="checkbox">
             <label ng-class="{on:widget.alertsEnable}">
-                <input type="checkbox" ng-model="widget.alertsEnable" ng-change="regionChanged(region)">
+                <input type="checkbox" ng-model="widget.alertsEnable" ng-change="toggleModule(region)">
                 Alerts
             </label>
         </div>
         <div class="checkbox">
             <label ng-class="{on:widget.messagesEnable}">
-                <input type="checkbox" ng-model="widget.messagesEnable" ng-change="regionChanged(region)">
+                <input type="checkbox" ng-model="widget.messagesEnable" ng-change="toggleModule(region)">
                 Rotating Messages
             </label>
         </div>
         <div class="checkbox">
             <label ng-class="{on:widget.timerEnable}">
-                <input type="checkbox" ng-model="widget.timerEnable" ng-change="regionChanged(region)">
+                <input type="checkbox" ng-model="widget.timerEnable" ng-change="toggleModule(region)">
                 Timer
             </label>
         </div>
         <div class="checkbox">
             <label ng-class="{on:widget.progressBarEnable}">
-                <input type="checkbox" ng-model="widget.progressBarEnable" ng-change="regionChanged(region)">
+                <input type="checkbox" ng-model="widget.progressBarEnable" ng-change="toggleModule(region)">
                 Progress Bar
             </label>
         </div>
@@ -61,6 +61,14 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         <h5>Font Weight <span class="slider-value value">{{widget.fontWeight}}</span></h5>
         <slider ng-model="widget.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
                 ng-change="regionChanged(region)"></slider>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label ng-class="{on:widget.fontUppercase}">
+                <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
+                Font uppercase
+            </label>
+        </div>
     </div>
 </div>
 <div class="module last">
@@ -100,7 +108,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         </div>
     </div>
 </div>
-<div class="right-side-footer" ng-show='widget.alertsEnable || widget.messagesEnable || widget.timerEnable'>
+<div class="right-side-footer" ng-show=' ! hideFooter'>
     <ul class="panel-nav paneltoggle">
         <li ng-if="widget.alertsEnable">
             <a data-panel="alertsModule">

@@ -20,7 +20,7 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
                     <i class="icon icon-coin"></i></a>
             </li>
             <? for ($regionNumber = 1; $regionNumber <= $regionsNumber; $regionNumber++): ?>
-                <li><a href="<?= Url::to() ?>#region_<?= $regionNumber?>" data-toggle="tab" class="region<?=$regionNumber?>"><?= $regionNumber ?></a></li>
+                <li><a href="<?= Url::to() ?>#region_<?= $regionNumber?>" data-toggle="tab" class="region<?=$regionNumber?>" ng-click='regionTabChanged(regionsService.regions[<?=$regionNumber - 1;?>])'><?= $regionNumber ?></a></li>
             <? endfor ?>
             <li>
                 <a href="<?= Url::to() ?>#tagsTab" data-toggle="tab">

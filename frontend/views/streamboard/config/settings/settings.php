@@ -6,7 +6,7 @@ use yii\helpers\Url;
 $sourceHref = Url::to('', true) . '/source';
 ?>
 <!-- Accordion slide four (Settings) -->
-<div class="tab-content">
+<div class="tab-content paddingBottom">
     <h4 class="panel-head">Settings</h4>
     <!-- General Settings (Campaigns) -->
     <div id="settings-general" class="tab-pane active">

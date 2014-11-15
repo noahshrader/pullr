@@ -39,7 +39,7 @@ class WidgetCampaignBar extends ActiveRecord
     public function scenarios()
     {
         return [
-            'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
+            'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontUppercase', 'fontColor', 'backgroundColor', 'alertsEnable',
                 'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY', 'height', 'width',
                 'background']
         ];
@@ -131,7 +131,7 @@ class WidgetCampaignBar extends ActiveRecord
         $data['messagesEnable'] = $this->messagesEnable == 1;
         $data['timerEnable'] = $this->timerEnable == 1;
         $data['progressBarEnable'] = $this->progressBarEnable == 1;
-        
+        $data['fontUppercase'] = $this->fontUppercase == 1;
         return $data;
     }
 }

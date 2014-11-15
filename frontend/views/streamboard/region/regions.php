@@ -40,9 +40,10 @@ $class = 'regionsNumber' . $regionsNumber;
             />
         </div>
         <div 
+            class="{{region.toShow.alert.animationDirection}}"
             ng-show="region.toShow.alert.message && region.widgetType == 'widget_alerts'"
             ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle, 'font-weight': region.toShow.alert.preference.fontWeight, 'position':'absolute'}" 
-            ng-class='region.toShow.alert.animationDirection' 
+            ng-class='{fontUppercase:region.toShow.alert.preference.fontUppercase}' 
             ng-hide="region.toShow.alert.preference.hideAlertText"
             draggable-widget="region.widgetAlerts" 
             draggable-region="region" 

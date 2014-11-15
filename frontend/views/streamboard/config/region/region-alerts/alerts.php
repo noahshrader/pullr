@@ -8,19 +8,19 @@ use yii\web\View;
         <h5>Alert Types</h5>
         <div class="checkbox">
             <label ng-class="{on:widget.includeDonations}">
-                <input type="checkbox" ng-model="widget.includeDonations" ng-change="regionChanged(region)">
+                <input type="checkbox" ng-model="widget.includeDonations" ng-change="toggleModule(region)">
                 Donations
             </label>
         </div>
         <div class="checkbox">
             <label ng-class="{on:widget.includeFollowers}">
-                <input type="checkbox" ng-model="widget.includeFollowers" ng-change="regionChanged(region)">
+                <input type="checkbox" ng-model="widget.includeFollowers" ng-change="toggleModule(region)">
                 Followers
             </label>
         </div>
         <div class="checkbox">
             <label ng-class="{on:widget.includeSubscribers}">
-                <input type="checkbox" ng-model="widget.includeSubscribers" ng-change="regionChanged(region)">
+                <input type="checkbox" ng-model="widget.includeSubscribers" ng-change="toggleModule(region)">
                 Subscribers
             </label>
         </div>
@@ -33,7 +33,7 @@ use yii\web\View;
                 ng-change="regionChanged(region)"></slider>
     </div>
 </div>
-<div class="right-side-footer" ng-show='widget.includeDonations || widget.includeFollowers || widget.includeSubscribers'>
+<div class="right-side-footer" ng-show=' ! hideFooter'>
     <ul class="panel-nav paneltoggle">
         <li ng-if="widget.includeDonations" class="panel-link"><a data-panel="donations"><i class="icon-coin"></i>Donations</a></li>
         <li ng-if="widget.includeFollowers" class="panel-link"><a data-panel="followers"><i class="icon-heart"></i>Followers</a></li>

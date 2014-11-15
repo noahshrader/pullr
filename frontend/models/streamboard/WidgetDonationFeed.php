@@ -27,7 +27,7 @@ class WidgetDonationFeed extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'scrolling', 'scrollSpeed', 
+            'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'fontUppercase', 'scrolling', 'scrollSpeed', 
             'positionX', 'positionY', 'width', 'height']
         ];
     }
@@ -46,6 +46,7 @@ class WidgetDonationFeed extends ActiveRecord {
         $data['showSubscriber'] = $this->showSubscriber == 1;
         $data['showFollower'] = $this->showFollower == 1;
         $data['groupUser'] = $this->groupUser == 1;
+        $data['fontUppercase'] = $this->fontUppercase == 1;
         return $data;
     }
 

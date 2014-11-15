@@ -56,6 +56,14 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         <slider ng-model="module.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
                 ng-change="regionChanged(region)"></slider>
     </div>
+    <div class="panel-group">
+        <div class='checkbox'>
+            <label ng-class="{on:module.fontUppercase}">
+                <input type="checkbox" ng-model="module.fontUppercase" ng-change="regionChanged(region)">
+                Font uppercase
+            </label>
+        </div>
+    </div>
 </div>
 <div class="module">
     <div class="panel-group">

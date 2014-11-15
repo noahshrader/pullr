@@ -24,7 +24,9 @@ h5 {
 	margin: .2em 0 .4em;
 }
 
-
+.fontUppercase {
+	text-transform: uppercase;
+}
 /* Forms */
 /* ------------------------------------------------- */
 @import "streamboard-forms.less";
@@ -81,8 +83,7 @@ span.slider-value {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	right: 0;
-	padding-bottom: @sidenavheight - 2px;
+	right: 0;	
 	width: @sidepanelwidth;
 	max-width: 50%;
 	min-width: @sidepanelwidth;
@@ -152,6 +153,10 @@ span.slider-value {
 			padding: @streamboardgutter;
 			min-height: 400px;
 		}
+	}
+
+	.paddingBottom {
+		padding-bottom: @sidenavheight - 2px;
 	}
 	.region {
 		&.pane {
