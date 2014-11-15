@@ -264,11 +264,12 @@ ul.content-nav {
 		float: left;
 		display: inline-block;
 		border: 0;
-		border-right: solid 1px @gray75;
 		&.active a,
 		&.active a:hover {
 			color: @gray30;
-			background: @white;
+			-webkit-box-shadow: inset 0 -3px 0 0 @accent;
+			-moz-box-shadow: inset 0 -3px 0 0 @accent;
+			box-shadow: inset 0 -3px 0 0 @accent;
 		}
 		&:last-child {
 			border: 0;

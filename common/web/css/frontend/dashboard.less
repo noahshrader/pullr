@@ -9,16 +9,6 @@
 	position: static;
 	padding-right: @sidepanelwidth;
 
-	ul.content-nav {
-		li {
-			&.active a,
-			&.active a:hover {
-				color: @white;
-				background: @accent;
-			}
-		}
-	}
-
 	.tab-content {
 		padding-bottom: @gutter;
 		overflow: hidden;
@@ -71,6 +61,7 @@
 			padding: 0 15%;
 			width: 100%;
 			background: @dkaccent;
+			.border-radius;
 			&:before {
 				.arrow-up;
 				left: 50%;
@@ -90,6 +81,7 @@
 			margin: @gutter 0 @gutter+@gutter;
 			background: @white;
 			.box-shadow;
+			.border-radius;
 
 			.stats-box {
 				width: 33.33%;
@@ -103,6 +95,7 @@
 		&.twitch-stats {
 			background: @twitchpurple;
 			.box-shadow;
+			.border-radius;
 
 			h2 {
 				color: @white;
@@ -247,7 +240,7 @@
 	margin-bottom: @gutter;
 	background: @offwhite;
 	border: 0;
-	border-radius: 0;
+	.border-radius;
 
 	i {
 		position: absolute;

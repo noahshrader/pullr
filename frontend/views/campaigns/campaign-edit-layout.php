@@ -12,19 +12,19 @@ $user = \Yii::$app->user->identity;
         <!-- Campaign Page Layout -->
         <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
             <label class="control-label">Layout Type</label>
-            <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Select <b>Single Stream</b> for a single channel view. <br /> <b>Team Stream</b> pulls in an entire Twitch team.<br /><b>Multi Stream</b> pulls in your own channels."></i>
+            <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Select <b>Single Stream</b> for a single channel view. <br /> <b>Team Stream</b> pulls in an entire Twitch team.<br /><b>Multi Stream</b> pulls in your own channels."></i>
             <?= Html::error($campaign, 'layoutType', ['class' => 'help-block']) ?>
             <?= Html::activeDropDownList($campaign, 'layoutType', array_combine(Campaign::$LAYOUT_TYPES, Campaign::$LAYOUT_TYPES), ['class' => 'select-block', 'onchange' => 'getDefaultTheme()']) ?>
         </div>
 
         <!-- if Single Channel -->
         <div id="campaign-channelname" class="form-group highlight-wrap">
-            <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->input('text', ['value' => $campaign->isNewRecord ? \Yii::$app->user->identity->uniqueName : $campaign->channelName])->label("Channel Name"); ?>
+            <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->input('text', ['value' => $campaign->isNewRecord ? \Yii::$app->user->identity->uniqueName : $campaign->channelName])->label("Channel Name")->textInput(array('placeholder' => 'Channel Name')); ?>
         </div>
 
         <!-- if Team Channel -->
         <div id="campaign-channelteam" class="form-group highlight-wrap">
-            <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => false])->label("Twitch Team Channel Name"); ?>
+            <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => false])->label("Twitch Team Channel Name")->textInput(array('placeholder' => 'Twitch Team Channel Name')); ?>
         </div>
 
         <!-- if Multichannel -->
@@ -34,7 +34,7 @@ $user = \Yii::$app->user->identity;
             <? endif ?>
             <div class="combined-form-wrap">
                 <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add channel(s)">
-                <a onclick="addNewLayoutTeam()" class="icon icon-plus"></a>
+                <a onclick="addNewLayoutTeam()" class="icon mdi-content-add-circle"></a>
             </div>
             <div id="layoutTeams" class="team-list"></div>
         </div>
@@ -85,7 +85,7 @@ $user = \Yii::$app->user->identity;
                 <?endif;?>
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
                     <label class="control-label">Campaign Image</label>
-                    <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page."></i>
+                    <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page."></i>
                     <?=ImageInput::widget(['name' => 'backgroundImage']);?>
                     <? if ($campaign->hasErrors('backgroundImage')): ?>
                         <?= Html::error($campaign, 'backgroundImage', ['class' => 'help-block']); ?>

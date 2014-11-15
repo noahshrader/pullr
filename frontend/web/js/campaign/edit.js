@@ -26,7 +26,7 @@ function updateLayoutTeams() {
         for (var key in teams) {
             var team = teams[key];
             var $item = $('<li>').append($('<span>').text(team.name));
-            $item.append($('<a href="javascript:void(0)" onclick="layoutTeamRemove(this)" class="icon icon-close"></a>'))
+            $item.append($('<a href="javascript:void(0)" onclick="layoutTeamRemove(this)" class="icon mdi-navigation-close"></a>'))
             $item.append($('<a href="javascript:void(0)" class="'+(team.facebook?'active':'')+''+(team.twitter?'active':'')+''+(team.youtube?'active':'')+' icon-bubble" onclick="layoutTeamLink(this,'+team.id+')"></a> '))
             $list.append($item);
         }
@@ -67,7 +67,7 @@ function updateCampaignInvites(){
             var invite = invites[key];
             var $item = $('<li>').append($('<span>').text(invite.user.name+' ('+invite.user.email+')'));
             $item.attr('data-userid', invite.user.id);
-            $item.append($('<a href="javascript:void(0)" onclick="campaignInviteRemove(this)" class="icon icon-close"></a>'))
+            $item.append($('<a href="javascript:void(0)" onclick="campaignInviteRemove(this)" class="icon mdi-navigation-close"></a>'))
             $list.append($item);
         }
         var $list = $('<div>').append($list);
