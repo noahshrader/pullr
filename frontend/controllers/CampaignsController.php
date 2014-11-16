@@ -444,11 +444,13 @@ class CampaignsController extends FrontendController {
         {
             $donation->paymentDate = 0;
             $donation->save();
+            
+            Campaign::updateDonationStatistics($donation->campaignId);
+
+            $this->redirect(["view", "id" => $donation->campaignId]);
         }
 
-        Campaign::updateDonationStatistics($donation->campaignId);
-
-        $this->redirect("index");
+        throw new BadRequestHttpException();
     }
 
     /**
