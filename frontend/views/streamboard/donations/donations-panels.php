@@ -5,7 +5,7 @@
 <ul class="panel-nav paneltoggle">
 	<li class="stats">
 		<a data-panel="stats">
-			<i class="icon-reports"></i>
+			<i class="mdi-action-trending-up"></i>
 			Stats
 		</a>
 	</li>

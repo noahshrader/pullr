@@ -11,7 +11,7 @@
 	box-shadow: none;
 	.slowtrans;
 	&.shadow {
-		box-shadow: 0 0 3px rgba(0,0,0,.3);
+		box-shadow: 0 0 8px rgba(0,0,0,.2);
 	}
 	&.indent {
 		left: @primary-nav-width + @sidepanelwidth;
@@ -35,19 +35,16 @@
 				float: left;
 				color: @gray30;
 				font-size: 1.1em;
-				font-weight: 600;
+				font-weight: 500;
 				line-height: @top-menu-height;
 			}
 			a {
 				float: left;
-				display: inline-block;
-				color: @gray60;
-				font-size: 20px;
-				text-align: center;
-				margin: 21px 10px;
-
+				color: @white;
+				margin: 16px 12px;
+				background: @accent;
 				&:hover {
-					color: @accent;
+					background: @dkaccent;
 				}
 			}
 		}
@@ -185,14 +182,14 @@
 					.icon {
 						float: left;
 						display: inline-block;
-						font-size: 26px;
+						font-size: 24px;
 						line-height: 58px;
 						vertical-align: middle;
 					}
 
 					.nav-label {
 						position: absolute;
-						left: 62px;
+						left: 60px;
 						display: inline-block;
 						vertical-align: middle;
 						height: 60px;

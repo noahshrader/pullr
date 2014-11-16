@@ -9,10 +9,10 @@ $typesList = [
     ['name' => 'Activity Feed', 'value' => StreamboardRegion::WIDGET_DONATION_FEED],
 ]
 ?>
-<div class="regions-panel pane">
+<div class="regions-panel pane" ng-class='{paddingBottom: ! hideFooter}'>
     <h4 class="panel-head">Region {{ region.regionNumber}}
         <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':region.backgroundColor}">
-        <a class="capture-link disabled icon-code"></a>
+        <a class="capture-link disabled mdi-action-settings-ethernet"></a>
     </h4>
     <div class="settings-wrap">
         <div class="module form-group" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">
@@ -23,13 +23,13 @@ $typesList = [
             </select>
         </div>
         <div class="widgetContainer">
-            <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_ALERTS ?>'" ng-init="widget=region.widgetAlerts; initWidget()">
+            <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_ALERTS ?>'" ng-init="widget=region.widgetAlerts; initWidget();toggleFooter(region)">
                 <?= $this->render('region-alerts/alerts') ?>
             </div>
-            <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'" ng-init="widget=region.widgetCampaignBar; initWidget()">
+            <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'" ng-init="widget=region.widgetCampaignBar; initWidget();toggleFooter(region)">
                 <?= $this->render('campaign-bar/campaign-bar') ?>
             </div>
-            <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_DONATION_FEED ?>'" ng-init="widget=region.widgetDonationFeed; initWidget()">
+            <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_DONATION_FEED ?>'" ng-init="widget=region.widgetDonationFeed; initWidget();toggleFooter(region)">
                 <?= $this->render('region-donation-feed') ?>
             </div>
         </div>

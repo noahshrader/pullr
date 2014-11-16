@@ -1,4 +1,5 @@
-angular.module('streamboardApp').controller('sideBarCtrl', function($scope, $http, streamboardConfig) {
+angular.module('streamboardApp').controller('sideBarCtrl', function($scope, $http, streamboardConfig, regions) {
+    $scope.regionsService = regions;
 	$scope.streamboardConfig = streamboardConfig;
 	//load sidebard witdh
     $scope.$watch('streamboardConfig.config.sidePanelWidth', function(width){                	
@@ -33,5 +34,11 @@ angular.module('streamboardApp').controller('sideBarCtrl', function($scope, $htt
         var sidefooter = width;
         $('.panel-head, .panel-title').width(panelhead);
         $('.right-side-footer, .overlay').width(sidefooter);
+    }
+
+    $scope.regionTabChanged = function(region) {
+        $scope.$broadcast ('regionTabChanged', {
+            region: region
+        });
     }
 });

@@ -34,7 +34,15 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         <div class="panel-group">
             <h5>Font Weight <span class="slider-value value">{{preference.fontWeight}}</span></h5>
             <slider ng-model="preference.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
-                    ng-change="regionChanged(region)"></slider>
+                    ng-change="regionChanged(region)"></slider>                     
+        </div>
+        <div class="panel-group">
+            <div class='checkbox'>
+                <label ng-class="{on:preference.fontUppercase}">
+                    <input type="checkbox" ng-model="preference.fontUppercase" ng-change="regionChanged(region)">
+                    Uppercase
+                </label>
+            </div>
         </div>
     </div>
     <div class="module">
@@ -76,8 +84,8 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 <div class="module">
     <ul class="library-tabs cf">
         <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab"><i
-                    class="icon-volume-more"></i>Sounds</a></li>
-        <li><a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab"><i class="icon-picture"></i>Graphics</a>
+                    class="mdi-av-volume-up"></i>Sounds</a></li>
+        <li><a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab"><i class="mdi-image-panorama"></i>Graphics</a>
         </li>
     </ul>
     <div class="tab-content sounds-graphics-content">

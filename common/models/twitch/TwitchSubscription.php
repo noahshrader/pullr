@@ -19,27 +19,18 @@ class TwitchSubscription extends TwitchFollowBase {
     }
 
     public static function createNotification($userId, $subscriptions) {
-        $subscriptions = array_reverse($subscriptions, true);
-        $ids = [];
-        foreach ($subscriptions as $key => $subscription) {
-           $ids[] = $subscription['user']['_id'];
-        }
 
-        $currentIds = static::find()->where(['userId' => $userId])->select('twitchUserId')->column();
-        $insertIds = array_diff($ids, $currentIds);
-
-        if( count($insertIds) > 0) {
-            foreach ($subscriptions as $key => $subscription) {
-                $id = $subscription['user']['_id'];
-                if (in_array($id, $insertIds)){
-                    RecentActivityNotification::createNotification(
-                        $userId,
-                        ActivityMessage::messageNewTwitchSubscriber($subscription['user']['name'])
-                    );
-                }            
+        $currentIds = static::find()->where(['userId' => $userId])->select('twitchUserId')->orderBy('createdAt desc')->column();        
+        foreach ($subscriptions as $subscription) {
+            $id = $subscription['user']['_id'];
+            if ( ! in_array($id, $currentIds)) {                
+                RecentActivityNotification::createNotification(
+                    $userId,
+                    ActivityMessage::messageNewTwitchSubscriber($subscription['user']['name'])
+                );
             }
         }
-        
+
     }
 
     public static function getSubscriberCountByMonth($userId)

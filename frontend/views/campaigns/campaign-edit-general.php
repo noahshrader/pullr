@@ -22,16 +22,16 @@ $this->registerJsFile('@web/js/campaign/firstgiving.js', [
 $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
-    <div class="module-inner">
-        <h5><i class="icon icon-settings"></i>Campaign Details</h5>
+    <div class="module-inner first">
+        <h5><i class="icon mdi-av-games"></i>Details</h5>
         <!-- Campaign Name -->
-        <div class="form-group">
-            <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name"); ?>
+        <div class="form-group float">
+            <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name")->textInput(array('placeholder' => 'Campaign Name')); ?>
         </div>
 
         <!-- Campaign Description -->
-        <div class="form-group">
-            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 3]); ?>
+        <div class="form-group float">
+            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'placeholder' => 'Describe your campaign']); ?>
         </div>
 
         <div class="campaign-type">
@@ -45,13 +45,13 @@ $firstGiving = $campaign->getFirstGiving();
                 <!-- Personal Fundraiser PayPal -->
                 <div class="form-group pf-paypal">
                     <div class="highlight-wrap">
-                        <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => false])->label("PayPal Address"); ?>
+                        <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => false])->label("PayPal Address")->textInput(array('placeholder' => 'PayPal Address')); ?>
                     </div>
                 </div>
 
                 <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
                 <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
-                    <label> Charity Type <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Raise money for your own cause. Or, search a list of <b>1.6m</b> charities to support."></i>
+                    <label> Charity Type <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Raise money for your own cause. Or, search a list of <b>1.6m</b> charities to support."></i>
                     </label>
                     <div class="form-group field-campaign-donationDestination">
                         <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'select-block']) ?>
@@ -76,10 +76,10 @@ $firstGiving = $campaign->getFirstGiving();
                     </div>
                     <div class="customCharity highlight-wrap">
                         <div class="form-group">
-                            <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name"); ?>
+                            <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name")->textInput(array('placeholder' => 'Charity Name')); ?>
                         </div>
                         <div class="form-group">
-                            <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => false])->label("Charity PayPal Address"); ?>
+                            <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => false])->label("Charity PayPal Address")->textInput(array('placeholder' => 'Charity PayPal Address')); ?>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,8 @@ $firstGiving = $campaign->getFirstGiving();
                 'value' => $campaign->goalAmount ?: 0,
                 'options' => [
                     'class' => 'form-control',
-                    'id' => 'masked-input'
+                    'id' => 'masked-input',
+                    'placeholder' => 'Goal Amount'
                 ],
                 'clientOptions' => [
                     'value' => $campaign->goalAmount,
@@ -118,11 +119,11 @@ $firstGiving = $campaign->getFirstGiving();
         </div>
     </div>
     <div class="team">
-        <div class="module-inner">
-            <h5><i class="icon icon-users"></i>Team Fundraising</h5>
+        <div class="module-inner last">
+            <h5><i class="icon mdi-social-group"></i>Team Fundraising</h5>
     	    <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
     	    <div class="form-group" id="teamQuestion">
-    	        <label>Enable Team Fundraising <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Turn on to allow other Pullr users to join and contribute to this campaign."></i></label>
+    	        <label>Enable Team Fundraising <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Turn on to allow other Pullr users to join and contribute to this campaign."></i></label>
     	        <?= $form->field($campaign, 'teamEnable')->label(false)->checkbox([], false); ?>
     	    </div>
     	    <? endif; ?>
@@ -136,10 +137,10 @@ $firstGiving = $campaign->getFirstGiving();
                 }
             ?>
     	    <div id="tieCampaignContainer">
-    	        <label>Connect to Another Campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Turn on if you want this campaign to contribute to another campaign."></i></label>
+    	        <label>Connect to Another Campaign <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Turn on if you want this campaign to contribute to another campaign."></i></label>
     	        <?= $form->field($campaign, 'tiedToParent')->label(false)->checkbox([], false); ?>
     	        <div class="form-group field-campaign-parentcampaignid highlight-wrap">
-    	            <label>Fundraiser Campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Select the campaign to which you want to contribute."></i></label>
+    	            <label>Fundraiser Campaign <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Select the campaign to which you want to contribute."></i></label>
     	            <?= Html::activeDropDownList($campaign, 'parentCampaignId', $keyValues, ['class' => 'select-block']) ?>
     	        </div>
     	    </div>

@@ -38,7 +38,7 @@ use common\models\User;
     <script src="api/script"></script>
 
     <!-- Load Fonts -->
-    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Varela+Round:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700|Varela+Round' rel='stylesheet' type='text/css'>
 
     <!-- CSS -->
     <style>

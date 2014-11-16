@@ -165,7 +165,7 @@ h4 {
   font-size: 1.4em;
 }
 h5 {
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 1.2em;
 }
 p,
@@ -184,12 +184,12 @@ p,
 ol,
 ul,
 blockquote {
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 /* Main */
 /* ------------------------------------------------- */
 body {
-  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   background-repeat: no-repeat;
   background-size: 100%;
 }

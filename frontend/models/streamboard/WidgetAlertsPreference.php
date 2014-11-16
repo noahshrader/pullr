@@ -50,7 +50,7 @@ class WidgetAlertsPreference extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['alertText', 'fontStyle', 'fontSize', 'fontWeight', 'fontColor', 'animationDuration', 'animationDirection', 'volume',
-                'sound','soundType', 'image', 'imageType', 'hideAlertText', 'hideAlertImage']
+                'sound','soundType', 'image', 'imageType', 'hideAlertText', 'hideAlertImage', 'fontUppercase']
         ];
     }
 
@@ -66,6 +66,7 @@ class WidgetAlertsPreference extends ActiveRecord {
         /*as 1 and true in angular are not equal for checkbox, so let's pass true/false values*/
         $data['hideAlertText'] = $this->hideAlertText == 1;
         $data['hideAlertImage'] = $this->hideAlertImage == 1;
+        $data['fontUppercase'] = $this->fontUppercase == 1;
         return $data;
     }
 }

@@ -18,7 +18,7 @@ $this->title = 'Streamboard';
     <body>
 	<div class="spinner-wrap">
 		<div class="sb-logo">
-			<i class="icon-pullr-logo"></i>
+			<i class="mdib-pullr-logo"></i>
 		</div>
 		<div class="spinner">
 			<div class="rect1"></div>

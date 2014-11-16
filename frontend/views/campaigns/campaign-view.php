@@ -41,44 +41,44 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                     <? if (!$campaign->isParentForCurrentUser()): ?>
                     <ul class="campaign-quick-links dropdown">
                         <li>
-                            <a class="actions-toggle icon-menu"></a>
+                            <a class="actions-toggle mdi-navigation-menu"></a>
                             <ul>
                                 <li class="active cf">
                                     <a href="app/campaigns/view?id=<?= $campaign->id ?>">
-                                        <i class="icon icon-piechart2"></i>
+                                        <i class="icon mdi-av-equalizer"></i>
                                         <!-- Overview -->
                                         Overview
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a href="app/campaigns/edit?id=<?= $campaign->id ?>">
-                                        <i class="icon icon-pencil"></i>
+                                        <i class="icon mdi-content-create"></i>
                                         <!-- Edit -->
                                         Edit
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
-                                        <i class="icon icon-list"></i>
+                                        <i class="icon mdi-action-toc"></i>
                                         Form
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                                        <i class="icon icon-code2"></i>
+                                        <i class="icon mdi-action-settings-ethernet"></i>
                                         JSON
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a class="disabled">
-                                        <i class="icon icon-monitor"></i>
+                                        <i class="icon mdi-device-now-widgets"></i>
                                         Widgets
                                     </a>
                                 </li>
                                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                                        <i class="icon icon-archiveit"></i>
+                                        <i class="icon mdi-content-inbox"></i>
                                         <!-- Archive -->
                                         Archive
                                     </a>
@@ -87,7 +87,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                                        <i class="icon icon-recover"></i>
+                                        <i class="icon mdi-content-undo"></i>
                                         <!-- Restore -->
                                         Restore
                                     </a>
@@ -96,7 +96,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                                 <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                                        <i class="icon icon-trash"></i>
+                                        <i class="icon mdi-action-delete"></i>
                                         <!-- Remove -->
                                         Delete
                                     </a>
@@ -117,7 +117,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                     </span>
                 </h4>
                 <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                <a class="view-campaign" href='<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon icon-eye" title="View campaign page"></i></a>
+                <a class="view-campaign" href='<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon mdi-action-visibility" title="View campaign page"></i></a>
             </div>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER && $campaign->startDate && $campaign->endDate): ?>
             <? endif ?>
@@ -191,14 +191,14 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
 <div class="modal fade" id="manualDonationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog module">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h5 class="module-title">Add a Donation</h5>
+        <h5 class="module-title">Add Donation</h5>
         <div class="modal-content">
             <? $form = ActiveForm::begin([
                 'action'=> '/app/campaigns/manualdonation'
             ]) ?>
             <div class="modal-body">
-                <?= $form->field($manualDonation, 'name')->input('text');?>
-                <?= $form->field($manualDonation, 'email')->input('text');?>
+                <?= $form->field($manualDonation, 'name')->input('text')->textInput(array('placeholder' => 'Donor Name'));?>
+                <?= $form->field($manualDonation, 'email')->input('text')->textInput(array('placeholder' => 'Email Address'));?>
                 <div class="manualdonation-amount form-group required">
                     <label for="masked-amount" class="control-label">Amount</label>
                     <?= MaskedInput::widget([
@@ -206,7 +206,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                         'value' => 1,
                         'options' => [
                             'class' => 'form-control',
-                            'id' => 'masked-amount'
+                            'id' => 'masked-amount',
+                            'placeholder' => 'Donation Amount'
                         ],
                         'clientOptions' => [
                             'value' => 1,
@@ -222,7 +223,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                     ]) ?>
                 </div>
                 <?= $form->field($manualDonation, 'dateCreated')->label("Date")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
-                <?= $form->field($manualDonation, 'comments')->textarea();?>
+                <?= $form->field($manualDonation, 'comments')->textarea(['placeholder' => 'Donor Comments']);?>
                 <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaign->id])->label(false);?>
             </div>
             <div class="modal-footer btn-container">

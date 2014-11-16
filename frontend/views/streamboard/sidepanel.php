@@ -17,19 +17,21 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
         <ul class="<?= $tabsClass ?> panel-nav cf">
             <li class="active">
                 <a href="<?= Url::to() ?>#donations" data-toggle="tab" class="donations">
-                    <i class="icon icon-coin"></i></a>
+                    <i class="icon mdi-action-loyalty"></i></a>
             </li>
             <? for ($regionNumber = 1; $regionNumber <= $regionsNumber; $regionNumber++): ?>
-                <li><a href="<?= Url::to() ?>#region_<?= $regionNumber?>" data-toggle="tab" class="region<?=$regionNumber?>"><?= $regionNumber ?></a></li>
+                <li>
+                    <a href="<?= Url::to() ?>#region_<?= $regionNumber?>" data-toggle="tab" class="region<?=$regionNumber?>" ng-click='regionTabChanged(regionsService.regions[<?=$regionNumber - 1;?>])'></a>
+                </li>
             <? endfor ?>
             <li>
                 <a href="<?= Url::to() ?>#tagsTab" data-toggle="tab">
-                    <i class="icon icon-list"></i>
+                    <i class="icon mdi-image-style"></i>
                 </a>
             </li>
             <li>
                 <a href="<?= Url::to() ?>#settingsTab" data-toggle="tab">
-                    <i class="icon icon-settings"></i>
+                    <i class="icon mdi-action-settings"></i>
                 </a>
             </li>
         </ul>
@@ -50,5 +52,5 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
             <?= $this->render('config/settings/settings') ?>
         </div>
     </div>
-    <a class="sidetoggle icon-menu"></a>
+    <a class="sidetoggle mdi-navigation-menu"></a>
 </section>

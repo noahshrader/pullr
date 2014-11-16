@@ -46,8 +46,8 @@ $.extend( $.fn.dataTableExt.oPagination, {
 			// pagination with prev, next link icons
 			$(nPaging).append(
 				'<ul class="pagination">'+
-					'<li class="prev disabled"><a href="#" title="'+oLang.sPrevious+'"><i class="icon-arrow-left"></i></a></li>'+
-					'<li class="next disabled"><a href="#" title="'+oLang.sNext+'"><i class="icon-arrow-right"></i></a></li>'+
+					'<li class="prev disabled"><a href="#" title="'+oLang.sPrevious+'"><i class="mdi-navigation-chevron-left"></i></a></li>'+
+					'<li class="next disabled"><a href="#" title="'+oLang.sNext+'"><i class="mdi-navigation-chevron-right"></i></a></li>'+
 				'</ul>'
 			);
 

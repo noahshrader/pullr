@@ -23,6 +23,9 @@ h5 {
 	line-height: 1.4em;
 	margin: .2em 0 .4em;
 }
+.fontUppercase {
+	text-transform: uppercase;
+}
 
 
 /* Forms */
@@ -53,6 +56,11 @@ slider {
 		background: @gray20;
 		cursor: pointer;
 		.box-shadow;
+		&.active {
+			-webkit-transform: scale(1.6);
+			-ms-transform: scale(1.6);
+			transform: scale(1.6);
+		}
 	}
 }
 span.slider-value {
@@ -83,8 +91,7 @@ span.slider-value {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	right: 0;
-	padding-bottom: @sidenavheight - 2px;
+	right: 0;	
 	width: @sidepanelwidth;
 	max-width: 50%;
 	min-width: @sidepanelwidth;
@@ -109,10 +116,29 @@ span.slider-value {
 				a:hover {
 					color: @white;
 				}
+				&.active a {
+					-webkit-box-shadow: inset 0 -4px 0 0 @accent;
+					-moz-box-shadow: inset 0 -4px 0 0 @accent;
+					box-shadow: inset 0 -4px 0 0 @accent;
+				}
 
 				a {
 					color: @gray30;
+					line-height: @sidenavheight;
+					height: @sidenavheight;
 					background: @gray10;
+					&.region1 {
+						&:before {
+							content: '\e830';
+							font-family: 'icons';
+						}
+					}
+					&.region2 {
+						&:before {
+							content: '\e831';
+							font-family: 'icons';
+						}
+					}
 				}
 			}
 		}
@@ -154,6 +180,10 @@ span.slider-value {
 			padding: @streamboardgutter;
 			min-height: 400px;
 		}
+	}
+
+	.paddingBottom {
+		padding-bottom: @sidenavheight - 2px;
 	}
 	.region {
 		&.pane {
@@ -362,6 +392,10 @@ ul.panel-nav {
 				padding: @gutter;
 				background: @gray10;
 			}
+			h3.list-title {
+				font-size: 15px;
+				margin-bottom: .2em;
+			}
 			&.wasRead {
 				.donation-wrap {
 					opacity: .2;
@@ -371,14 +405,16 @@ ul.panel-nav {
 					&:hover {
 						i {
 							&:before {
-								content: '\e683';
+								content: '\e8e4';
+								font-family: 'icons';
 							}
 						}
 					}
 					i {
 						&:before {
-							content: '\e629';
+							content: '\e8e4';
 							color: @gray30;
+							font-family: 'icons';
 						}
 					}
 				}
@@ -404,7 +440,7 @@ ul.panel-nav {
 			}
 			a.toggleview {
 				position: relative;
-				top: 3px;
+				top: 2px;
 				color: @gray30;
 				font-size: 1em;
 				margin-left: .2em;
@@ -425,7 +461,8 @@ ul.panel-nav {
 				&:hover {
 					i {
 						&:before {
-							content: '\e629';
+							content: '\e8e4';
+							font-family: 'icons';
 						}
 					}
 				}
@@ -596,7 +633,7 @@ ul.panel-nav {
 	}
 	.spinner {
 		top: auto;
-		bottom: 30%;
+		bottom: 35%;
 		margin: 0 auto;
 		-webkit-animation-delay: 0.2s;
 		animation-delay: 0.2s;

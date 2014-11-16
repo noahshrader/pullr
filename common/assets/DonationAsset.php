@@ -13,10 +13,10 @@ class DonationAsset extends AssetBundle
 	public $css = [
             'css/frontend/donation/donation.less',
 	];
-        
 	public $js = [
             'js/common.js',
             'js/donation/donation.js',
+            'js/plugins-config.js'
 	];
 	public $depends = [
 		'yii\web\YiiAsset',

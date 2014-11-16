@@ -19,10 +19,20 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
         <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
                 ng-change="fontSizeChange(region)"></slider>
     </div>
-    <div class="panel-group">
+
+    <div class="form-group">
         <h5>Font Weight <span class="slider-value value">{{widget.fontWeight}}</span></h5>
         <slider ng-model="widget.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
                 ng-change="regionChanged(region)"></slider>
+
+    </div>
+    <div class="form-group">
+        <div class='checkbox'>
+            <label ng-class="{on:widget.fontUppercase}">
+                <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
+                Uppercase
+            </label>
+        </div>
     </div>
 </div>
 <div class="module scrolling">
