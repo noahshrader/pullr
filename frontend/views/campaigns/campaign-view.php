@@ -197,9 +197,13 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                 'action'=> '/app/campaigns/manualdonation'
             ]) ?>
             <div class="modal-body">
-                <?= $form->field($manualDonation, 'name')->input('text')->textInput(array('placeholder' => 'Donor Name'));?>
-                <?= $form->field($manualDonation, 'email')->input('text')->textInput(array('placeholder' => 'Email Address'));?>
-                <div class="manualdonation-amount form-group required">
+                <div class="float">
+                    <?= $form->field($manualDonation, 'name')->input('text')->label('Donor Name')->textInput(array('placeholder' => 'Donor Name'));?>
+                </div>
+                <div class="float">
+                    <?= $form->field($manualDonation, 'email')->input('text')->label('Email')->textInput(array('placeholder' => 'Email Address'));?>
+                </div>
+                <div class="manualdonation-amount form-group required float">
                     <label for="masked-amount" class="control-label">Amount</label>
                     <?= MaskedInput::widget([
                         'name' => 'ManualDonation[amount]',
@@ -223,7 +227,9 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                     ]) ?>
                 </div>
                 <?= $form->field($manualDonation, 'dateCreated')->label("Date")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
-                <?= $form->field($manualDonation, 'comments')->textarea(['placeholder' => 'Donor Comments']);?>
+                <div class="float">
+                    <?= $form->field($manualDonation, 'comments')->label('Comments')->textarea(['placeholder' => 'Donor Comments']);?>
+                </div>
                 <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaign->id])->label(false);?>
             </div>
             <div class="modal-footer btn-container">

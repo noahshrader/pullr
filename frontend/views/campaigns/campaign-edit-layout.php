@@ -7,7 +7,7 @@ $user = \Yii::$app->user->identity;
 
 ?>
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
-    <div class="module-inner first">
+    <div class="module-inner">
         <h5><i class="icon mdi-action-view-quilt"></i>Layout</h5>
         <!-- Campaign Page Layout -->
         <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
@@ -18,13 +18,13 @@ $user = \Yii::$app->user->identity;
         </div>
 
         <!-- if Single Channel -->
-        <div id="campaign-channelname" class="form-group highlight-wrap">
-            <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->input('text', ['value' => $campaign->isNewRecord ? \Yii::$app->user->identity->uniqueName : $campaign->channelName])->label("Channel Name")->textInput(array('placeholder' => 'Channel Name')); ?>
+        <div id="campaign-channelname" class="form-group highlight-wrap float">
+            <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->input('text', ['value' => $campaign->isNewRecord ? \Yii::$app->user->identity->uniqueName : $campaign->channelName])->label("Channel Name")->textInput(array('placeholder' => 'Enter a channel name')); ?>
         </div>
 
         <!-- if Team Channel -->
         <div id="campaign-channelteam" class="form-group highlight-wrap">
-            <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => false])->label("Twitch Team Channel Name")->textInput(array('placeholder' => 'Twitch Team Channel Name')); ?>
+            <?= $form->field($campaign, 'channelTeam', ['autoPlaceholder' => false])->label("Twitch Team Channel Name")->textInput(array('placeholder' => 'Enter a Twitch team channel')); ?>
         </div>
 
         <!-- if Multichannel -->
@@ -33,13 +33,13 @@ $user = \Yii::$app->user->identity;
                 <div class="label label-danger">Save campaign before adding channels</div>
             <? endif ?>
             <div class="combined-form-wrap">
-                <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add channel">
+                <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add a channel">
                 <a onclick="addNewLayoutTeam()" class="icon mdi-content-add-circle"></a>
             </div>
             <div id="layoutTeams" class="team-list"></div>
         </div>
     </div>
-    <div class="module-inner last">
+    <div class="module-inner">
         <h5><i class="icon mdi-image-palette"></i>Design</h5>
         <!-- Choose a Theme -->
         <div class="hide">
@@ -51,13 +51,13 @@ $user = \Yii::$app->user->identity;
                 <span><?= $campaign->theme?$campaign->theme->name:''?></span>
             </div>
         </div>
-        <div class="theme-color-picker cf">
+        <div class="theme-color-picker form-group cf">
             <div class="col-md-6">
                 <!-- Primary Color -->
                 <div class="colorpicker">
                     <div class="colorpickerwrap">
                         <span class="color-choice"></span>
-                        <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
+                        <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text')->textInput(array('value' => '#449ce7')); ?>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@ $user = \Yii::$app->user->identity;
                 <div class="colorpicker">
                     <div class="colorpickerwrap">
                         <span class="color-choice"></span>
-                        <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
+                        <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text')->textInput(array('value' => '#449ce7')); ?>
                     </div>
                 </div>
             </div>

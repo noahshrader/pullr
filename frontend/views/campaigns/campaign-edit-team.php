@@ -22,7 +22,7 @@ $this->registerJsFile('@web/js/campaign/firstgiving.js', [
 $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="campaign-edit-team">
-    <div class="module-inner first">
+    <div class="team module-inner">
         <h5><i class="icon mdi-social-group"></i>Team Fundraising</h5>
         <p class="team-notice">Team fundraising is only available for charity fundraisers.</p>
         <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
@@ -56,7 +56,7 @@ $firstGiving = $campaign->getFirstGiving();
         <? if ($campaign->isNewRecord): ?>
             <div class="label label-danger">Save campaign before adding emails</div>
         <? else: ?>
-        <div id="campaign-invites">
+        <div id="campaign-invites" class="form-group">
             <div id="addCampaingInviteInfo" class="label label-danger"></div>
             <label>Invite Pullr users to your team <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Type in your Pullr invitee's email address they used to connect with Twitch. Support for channel names coming soon."></i></label>
             <div class="combined-form-wrap">

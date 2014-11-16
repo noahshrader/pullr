@@ -22,11 +22,11 @@ $this->registerJsFile('@web/js/campaign/firstgiving.js', [
 $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
-    <div class="module-inner first">
+    <div class="module-inner">
         <h5><i class="icon mdi-av-games"></i>Details</h5>
         <!-- Campaign Name -->
         <div class="form-group float">
-            <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name")->textInput(array('placeholder' => 'Campaign Name')); ?>
+            <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name")->textInput(array('placeholder' => 'Give your campaign a name')); ?>
         </div>
 
         <!-- Campaign Description -->
@@ -37,7 +37,7 @@ $firstGiving = $campaign->getFirstGiving();
         <div class="campaign-type">
             <!-- Campaign Type -->
             <div class="form-group field-campaign-type">
-                <label>Campaign Type <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Raise money for your own cause. Or, search a list of <b>1.6m</b> charities to support."></i></label>
+                <label>Campaign Type <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Go <b>Personal</b> to create a simple tipjar. Or, go <b>Charity</b> to start fundraising for charity."></i></label>
                 <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
             </div>
 
@@ -45,7 +45,7 @@ $firstGiving = $campaign->getFirstGiving();
                 <!-- Personal Fundraiser PayPal -->
                 <div class="form-group pf-paypal float">
                     <div class="highlight-wrap">
-                        <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => false])->label("PayPal Address")->textInput(array('placeholder' => 'PayPal Address')); ?>
+                        <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => false])->label("PayPal Address")->textInput(array('placeholder' => 'Enter a valid PayPal address')); ?>
                     </div>
                 </div>
 
@@ -75,11 +75,11 @@ $firstGiving = $campaign->getFirstGiving();
                         <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving', 'class' => 'select-block']); ?>
                     </div>
                     <div class="customCharity highlight-wrap">
-                        <div class="form-group">
-                            <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name")->textInput(array('placeholder' => 'Charity Name')); ?>
+                        <div class="form-group float">
+                            <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name")->textInput(array('placeholder' => 'What is the name of the charity/organization?')); ?>
                         </div>
-                        <div class="form-group">
-                            <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => false])->label("Charity PayPal Address")->textInput(array('placeholder' => 'Charity PayPal Address')); ?>
+                        <div class="form-group float">
+                            <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => false])->label("Charity PayPal Address")->textInput(array('placeholder' => 'Enter a valid PayPal address')); ?>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@ $firstGiving = $campaign->getFirstGiving();
                 'options' => [
                     'class' => 'form-control',
                     'id' => 'masked-input',
-                    'placeholder' => 'Goal Amount'
+                    'placeholder' => 'Do you have a goal amount for this campaign?'
                 ],
                 'clientOptions' => [
                     'value' => $campaign->goalAmount,

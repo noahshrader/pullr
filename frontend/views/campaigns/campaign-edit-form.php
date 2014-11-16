@@ -3,7 +3,7 @@
     use dosamigos\ckeditor\CKEditor;
 ?>
 <div id="campaign-edit-form">
-    <div class="module-inner first">
+    <div class="module-inner">
         <h5><i class="icon mdi-action-toc"></i>Form</h5>
         <div class="row">
             <div class="col-md-6">
@@ -20,8 +20,8 @@
             </div>
         </div>
         <!-- Donate Button Text -->
-        <div class="form-group">
-            <?=$form->field($campaign, 'donationButtonText', ['autoPlaceholder' => false])->label('Donate Button Text <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Have your donate buttons say something else."></i>')->input('text')->textInput(array('placeholder' => 'Donate')); ?>
+        <div class="form-group float">
+            <?=$form->field($campaign, 'donationButtonText', ['autoPlaceholder' => false])->label('Donate Button Text')->input('text')->textInput(array('placeholder' => 'What text do you want on your donate button?')); ?>
         </div>
         <!-- Form Visibility -->
         <div class="form-group field-campaign-formvisibility">
@@ -31,7 +31,7 @@
                 <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
         </div>
     </div>
-    <div class="module-inner last">
+    <div class="module-inner">
         <h5><i class="icon mdi-action-done-all"></i>Thank You Page</h5>
         <!-- Enable Thank You Page -->
         <div class="form-group">

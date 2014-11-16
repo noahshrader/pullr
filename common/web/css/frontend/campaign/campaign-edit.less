@@ -8,11 +8,7 @@
 		background: @white;
 
 		.module-inner {
-			padding: @halfgutter @gutter+@gutter;
-			
-			&.first {
-				margin-top: @gutter;
-			}
+			padding: 0;
 
 			h5 {
 				font-size: 1.3em;
@@ -35,17 +31,24 @@
 		.social {
 
 			.module-inner {
-				padding: @halfgutter @gutter 0;
 
 				h5 {
 					margin-bottom: @halfgutter;
 				}
-			}
-			.form-group {
-				text-align: center;
-			}
-			.bootstrap-switch {
-				display: inline-block !important;
+				.form-group {
+					text-align: center;
+				}
+				.bootstrap-switch {
+					display: inline-block !important;
+				}
+				.network {
+					padding: @gutter+10px @gutter @gutter;
+					background: @gray75;
+
+					.form-group {
+						margin: 0;
+					}
+				}
 			}
 		}
 	}
@@ -53,7 +56,10 @@
 		position: relative;
 		margin: 0 auto @gutter;
 		max-width: 800px;
-
+		
+		.tab-pane {
+			padding: @gutter+@gutter @gutter+@gutter+@gutter @gutter;
+		}
 		h3 {
 			text-align: center;
 			color: @gray60;
@@ -98,7 +104,7 @@
 
 /* Team */
 #campaign-edit-team {
-	.first {
+	.team {
 		text-align: center;
 		.bootstrap-switch {
 			display: inline-block !important;
@@ -124,10 +130,7 @@ p.team-notice {
 /* ------------------------------------------------- */
 #campaignEdit {
 
-	.highlight-wrap,
-	.field-campaign-twittername,
-	.field-campaign-youtubeurl,
-	.field-campaign-facebookurl {
+	.highlight-wrap {
 		position: relative;
 		padding: @gutter+10px @gutter @gutter;
 		background: @offwhite;
@@ -135,7 +138,8 @@ p.team-notice {
 		&:before {
 			.arrow-up;
 			top: -9px;
-			left: 50px;
+			left: 50%;
+			margin-left: -10px;
 			border-color: transparent transparent @offwhite transparent;
 		}
 		input[type="text"],
@@ -181,22 +185,24 @@ p.team-notice {
 		}
 	}
 	#collapseFour {
-		.field-campaign-twittername, .field-campaign-youtubeurl, .field-campaign-facebookurl{
+		.field-campaign-twittername,
+		.field-campaign-youtubeurl,
+		.field-campaign-facebookurl {
 			display: none;
 		}
 	}
 	#collapseFour.twitterEnable {
-		.field-campaign-twittername{
+		.field-campaign-twittername {
 			display: block;
 		}
 	}
 	#collapseFour.youtubeEnable {
-		.field-campaign-youtubeurl{
+		.field-campaign-youtubeurl {
 			display: block;
 		}
 	}
 	#collapseFour.facebookEnable {
-		.field-campaign-facebookurl{
+		.field-campaign-facebookurl {
 			display: block;
 		}
 	}
