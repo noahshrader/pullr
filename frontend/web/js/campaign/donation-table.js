@@ -36,8 +36,8 @@ $(function(){
     } );
 
     /* Manual Donations */
-    var addDonationButton = $('<a>').addClass('btn manual-donations btn-add').html
-    ('<i class="mdi-content-add"></i>')
+    var addDonationButton = $('<a>').addClass('btn manual-donations btn-sm').html
+    ('<i class="icon mdi-content-add"></i> Add Donation')
         .addClass("manual-donation")
         .attr('data-target', '#manualDonationModal')
         .attr('data-toggle', 'modal');

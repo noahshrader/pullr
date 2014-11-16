@@ -149,7 +149,7 @@
 		.none {
 			color: @gray40;
 			font-size: @smalltext;
-			padding: @halfgutter 0;
+			padding: @gutter 0;
 		}
 	}
 
@@ -488,8 +488,8 @@ table.dataTable {
 			margin-top: -10px;
 		}
 		input {
-			max-width: 140px;
-			min-height: 28px;
+			max-width: 160px;
+			min-height: 34px;
 		}
 	}
 	.dataTables_paginate {
@@ -508,10 +508,21 @@ table.dataTable {
 .table-footer {
 	.select2-container {
 		margin-right: 0;
+		margin-right: 4px;
 		min-height: 0;
+		&:after {
+			right: 8px;
+		}
 
+		&.select2-dropdown-open a.select2-choice {
+			background: transparent;
+		}
 		.select2-choice {
-			height: 28px;
+			line-height: 34px;
+			height: 34px;
+			> .select2-chosen {
+				margin-right: 20px;
+			}
 		}
 		.select2-choices .select2-search-field input,
 		.select2-choice, .select2-choices {
@@ -519,13 +530,12 @@ table.dataTable {
 		}
 		.select2-choice > span:first-child,
 		.select2-choices .select2-search-field input {
-			padding: 3px 6px;
+			padding: 0 6px;
 		}
 	}
 	label {
-		color: @gray40;
+		color: @gray50;
 	}
-
 	.pagination {
 		margin: 0;
 	}

@@ -191,7 +191,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
 <div class="modal fade" id="manualDonationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog module">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h5 class="module-title">Add a Donation</h5>
+        <h5 class="module-title">Add Donation</h5>
         <div class="modal-content">
             <? $form = ActiveForm::begin([
                 'action'=> '/app/campaigns/manualdonation'
