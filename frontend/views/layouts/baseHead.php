@@ -35,5 +35,5 @@ use common\models\User;
         ?>
     </script>
     <!-- Load Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
 </head>

@@ -84,6 +84,9 @@ $('.checkbox label input:checkbox').each(function(){
     }
 });
 
+// enable tooltips
+$("[data-toggle='tooltip']").tooltip({html:true});
+
 // toggle sidebar
 $(".primary-nav-toggle").click(function(){
     $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");

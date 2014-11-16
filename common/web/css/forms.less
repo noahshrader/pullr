@@ -17,9 +17,10 @@ select.form-control,
 	outline: 0;
 	padding: 0;
 	min-height: 35px;
+	width: 100%;
 	background: transparent;
 	border: 0;
-	border-bottom: solid 1px @gray75;
+	border-bottom: solid 1px @gray72;
 	border-radius: 0;
 	box-shadow: none;
 	&:focus {
@@ -37,7 +38,7 @@ select {
 }
 textarea,
 textarea.form-control {
-	padding-top: 10px;
+	padding-top: 6px;
 	max-width: 100%;
 	resize: none;
 }
@@ -62,6 +63,19 @@ fieldset[disabled] .form-control {
 .icon-help {
 	color: @gray60;
 	margin-left: @iconspace;
+}
+
+/* Float Label */
+.float label {
+	position: absolute;
+	top: -13px;
+	left: 0;
+	.trans;
+	opacity: 0;
+	&.show {
+		top: -15px;
+		opacity: 1;
+	}
 }
 
 /* Search Field Styling */
@@ -411,6 +425,8 @@ input.color-choice {
 	display: block;
 	font-size: .9em;
 	font-weight: 600;
+	text-align: left;
+	padding: .2em 0;
 	z-index: 1000;
 }
 

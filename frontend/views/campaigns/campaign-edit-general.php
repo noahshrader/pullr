@@ -25,12 +25,12 @@ $firstGiving = $campaign->getFirstGiving();
     <div class="module-inner first">
         <h5><i class="icon mdi-av-games"></i>Details</h5>
         <!-- Campaign Name -->
-        <div class="form-group">
+        <div class="form-group float">
             <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name")->textInput(array('placeholder' => 'Campaign Name')); ?>
         </div>
 
         <!-- Campaign Description -->
-        <div class="form-group">
+        <div class="form-group float">
             <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'placeholder' => 'Describe your campaign']); ?>
         </div>
 
