@@ -19,6 +19,11 @@ class Sample_dataController extends Controller
 {
     public function actionIndex()
     {
+        echo "Disabling MySQL strict mode\n";
+        $connection=Yii::$app->db;
+        $command=$connection->createCommand("SET sql_mode=''");
+        $command->execute();
+        
         echo "\nStarting to load sample data\n";
         echo "Starting to load sample users\n";
         $this->sampleUsers();
