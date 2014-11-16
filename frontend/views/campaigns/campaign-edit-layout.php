@@ -7,7 +7,7 @@ $user = \Yii::$app->user->identity;
 
 ?>
 <div id="collapseTwo" data-campaign-layoutType="<?= str_replace(' ', '', $campaign->layoutType) ?>">
-    <div class="module-inner">
+    <div class="module-inner first">
         <h5><i class="icon mdi-action-view-quilt"></i>Layout</h5>
         <!-- Campaign Page Layout -->
         <div class="form-group field-campaign-layoutType <?= ($campaign->hasErrors('type')) ? 'has-error' : '' ?>">
@@ -33,7 +33,7 @@ $user = \Yii::$app->user->identity;
                 <div class="label label-danger">Save campaign before adding channels</div>
             <? endif ?>
             <div class="combined-form-wrap">
-                <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add channel(s)">
+                <input type="text" class="form-control" id="addLayoutTeam" placeholder="Add channel">
                 <a onclick="addNewLayoutTeam()" class="icon mdi-content-add-circle"></a>
             </div>
             <div id="layoutTeams" class="team-list"></div>

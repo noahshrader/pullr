@@ -12,7 +12,7 @@ select.form-control,
 .form-group.has-success input.form-control,
 .form-group.has-success textarea.form-control {
 	color: @gray30;
-	font-size: 17px;
+	font-size: @inputtextsize;
 	font-weight: 500;
 	outline: 0;
 	padding: 0;
@@ -37,6 +37,7 @@ select {
 }
 textarea,
 textarea.form-control {
+	padding-top: 10px;
 	max-width: 100%;
 	resize: none;
 }
@@ -130,6 +131,8 @@ input.color-choice {
 	position: relative;
 	display: block;
 	margin-top: .4em;
+	.border-radius;
+	overflow: hidden;
 	&:after {
 		position: absolute;
 		.arrow-down;
@@ -157,11 +160,12 @@ input.color-choice {
 			outline: 0 !important;
 		}
 		&:hover {
-			background: @gray70;
+			background: @gray72;
 		}
 	}
 	.select2-choice {
 		height: 45px;
+		.border-radius !important;
 
 		> span:first-child,
 		.select2-search-field input {
@@ -186,17 +190,19 @@ input.color-choice {
 	.select2-choice,
 	.select2-choices {
 		border: 0;
-		background: @gray70;	
+		background: @white;	
 	}
 }
 .select2-drop {
-	box-shadow: none;
+	margin-top: 10px;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2) !important;
 
 	&.select2-drop-active,
 	&.select2-drop-above.select2-drop-active {
-		background: @gray72;
+		background: @white;
 		border: 0;
-		box-shadow: none;
+		.border-radius;
+		overflow: hidden;
 	}
 }
 
@@ -209,9 +215,9 @@ input.color-choice {
 	&:before {
 		position: absolute;
 		top: 50%;
-		content: '\e68a';
+		content: '\e65f';
 		color: @gray70;
-		font-family: 'icomoon';
+		font-family: 'icons';
 		font-size: 14px;
 		font-weight: 600;
 		text-align: center;
@@ -234,7 +240,7 @@ input.color-choice {
 	margin: 0;
 	
 	.select2-highlighted {
-		background: @gray70;
+		background: @gray75;
 	}
 	.select2-result-label {
 		color: @gray30;
@@ -243,7 +249,6 @@ input.color-choice {
 		&:hover {
 			background: @gray70;
 		}
-
 		span {
 			color: @gray20 !important;
 		}
@@ -372,6 +377,7 @@ input.color-choice {
 /* Combined Forms */
 .combined-form-wrap {
 	position: relative;
+	margin-bottom: @gutter;
 	.border-radius;
 	overflow: hidden;
 
@@ -380,7 +386,7 @@ input.color-choice {
 		top: 0;
 		right: 0;
 		color: @accent;
-		font-size: 1.2em;
+		font-size: 1.4em;
 		text-align: center;
 		line-height: 35px;
 		margin: 0;

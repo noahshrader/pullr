@@ -1,7 +1,7 @@
 <div id="collapseFour" class="<?= ($campaign->twitterEnable? 'twitterEnable ': '').($campaign->youtubeEnable? 'youtubeEnable ': '').($campaign->facebookEnable? 'facebookEnable ': '') ?> socialenable">
     <div class="social">
         <!-- Twitter -->
-        <div class="module-inner cf">
+        <div class="module-inner first cf">
             <h5><i class="icon mdib-twitter2"></i></h5>
             <?= $form->field($campaign, 'twitterEnable')->label(false)->checkbox([], false); ?>
             <?= $form->field($campaign, 'twitterName', ['autoPlaceholder' => false])->label("<b>Twitter Username</b> (e.g. getpullr)")->textInput(array('placeholder' => 'Twitter Username')); ?>

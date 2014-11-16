@@ -22,7 +22,7 @@ $this->registerJsFile('@web/js/campaign/firstgiving.js', [
 $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
-    <div class="module-inner">
+    <div class="module-inner first">
         <h5><i class="icon mdi-av-games"></i>Details</h5>
         <!-- Campaign Name -->
         <div class="form-group">
@@ -31,7 +31,7 @@ $firstGiving = $campaign->getFirstGiving();
 
         <!-- Campaign Description -->
         <div class="form-group">
-            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH])->textInput(array('placeholder' => 'Describe your campaign')); ?>
+            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'placeholder' => 'Describe your campaign']); ?>
         </div>
 
         <div class="campaign-type">
@@ -140,7 +140,7 @@ $firstGiving = $campaign->getFirstGiving();
     	        <label>Connect to Another Campaign <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Turn on if you want this campaign to contribute to another campaign."></i></label>
     	        <?= $form->field($campaign, 'tiedToParent')->label(false)->checkbox([], false); ?>
     	        <div class="form-group field-campaign-parentcampaignid highlight-wrap">
-    	            <label>Fundraiser Campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Select the campaign to which you want to contribute."></i></label>
+    	            <label>Fundraiser Campaign <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Select the campaign to which you want to contribute."></i></label>
     	            <?= Html::activeDropDownList($campaign, 'parentCampaignId', $keyValues, ['class' => 'select-block']) ?>
     	        </div>
     	    </div>

@@ -197,8 +197,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                 'action'=> '/app/campaigns/manualdonation'
             ]) ?>
             <div class="modal-body">
-                <?= $form->field($manualDonation, 'name')->input('text');?>
-                <?= $form->field($manualDonation, 'email')->input('text');?>
+                <?= $form->field($manualDonation, 'name')->input('text')->textInput(array('placeholder' => 'Donor Name'));?>
+                <?= $form->field($manualDonation, 'email')->input('text')->textInput(array('placeholder' => 'Email Address'));?>
                 <div class="manualdonation-amount form-group required">
                     <label for="masked-amount" class="control-label">Amount</label>
                     <?= MaskedInput::widget([
@@ -206,7 +206,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                         'value' => 1,
                         'options' => [
                             'class' => 'form-control',
-                            'id' => 'masked-amount'
+                            'id' => 'masked-amount',
+                            'placeholder' => 'Donation Amount'
                         ],
                         'clientOptions' => [
                             'value' => 1,
@@ -222,7 +223,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                     ]) ?>
                 </div>
                 <?= $form->field($manualDonation, 'dateCreated')->label("Date")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
-                <?= $form->field($manualDonation, 'comments')->textarea();?>
+                <?= $form->field($manualDonation, 'comments')->textarea(['placeholder' => 'Donor Comments']);?>
                 <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaign->id])->label(false);?>
             </div>
             <div class="modal-footer btn-container">

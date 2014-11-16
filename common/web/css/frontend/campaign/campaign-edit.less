@@ -8,20 +8,26 @@
 		background: @white;
 
 		.module-inner {
-			padding: @gutter @gutter+@gutter+@gutter @halfgutter;
+			padding: @halfgutter @gutter+@gutter+@gutter;
+			
+			&.first {
+				margin-top: @gutter;
+			}
 
 			h5 {
+				font-size: 1.3em;
+				text-align: center;
 
 				i {
-					display: inline-block;
+					display: block;
 					top: 5px;
-					color: @gray70;
-					font-size: 26px;
+					color: @gray72;
+					font-size: 30px;
 					margin: 0 auto .6em;
 					width: 48px;
 					height: 48px;
 					line-height: 48px;
-					background: @white;
+					border: solid 2px @gray72;
 					border-radius: 50%;
 				}
 			}
@@ -29,7 +35,7 @@
 		.social {
 
 			.module-inner {
-				padding: @gutter @gutter 0;
+				padding: @halfgutter @gutter 0;
 
 				h5 {
 					margin-bottom: @halfgutter;
@@ -120,14 +126,22 @@
 			left: 50px;
 			border-color: transparent transparent @offwhite transparent;
 		}
-
+		input[type="text"],
+		input.form-control {
+			border-bottom: solid 1px @gray72;
+			&:focus {
+				border-bottom: solid 2px @accent;
+			}
+		}
 		h5 {
 			display: inline-block;
 			color: @gray60;
+			font-size: 1.1em;
 			text-align: center;
 			margin: 0 0 @halfgutter;
 			background: transparent;
 		}
+
 		.form-group:last-child {
 			margin: 0;
 		}
@@ -188,11 +202,11 @@
 
 		ul {
 			li {
+				color: @gray30;
+				font-size: @inputtextsize;
+				font-weight: 500;
 				line-height: 40px;
 				border-bottom: 1px dashed @gray72;
-				&:first-of-type {
-					margin-top: @halfgutter;
-				}
 
 				a {
 					display: inline-block;
@@ -211,11 +225,6 @@
 					}
 				}
 			}
-		}
-	}
-	&.team-enabled {
-		.team-list {
-			padding-bottom: @gutter;
 		}
 	}
 
@@ -240,14 +249,14 @@
 .select2-drop.charitydrop {
 	&.select2-drop-active {
 		margin-top: 20px;
-		background: @gray72;
+		background: @white;
 
 		&:before {
 			.arrow-up;
 			left: 50%;
 			top: -10px;
 			margin-left: -10px;
-			border-color: transparent transparent @gray72 transparent;
+			border-color: transparent transparent @white transparent;
 		}
 	}
 	&.select2-drop-active,
@@ -271,17 +280,17 @@
 	.select2-search {
 		input {
 			color: @gray40;
-			background: @white;
+			background: @gray75;
 		}
 	}
 	.select2-results {
 		.select2-no-results,
 		.select2-searching,
 		.select2-selection-limit {
-			color: @gray40;
+			color: @gray60;
 		}
 		.select2-highlighted {
-			background: @gray70;
+			background: @gray75;
 		}
 		.select2-result-label {
 			&:hover {

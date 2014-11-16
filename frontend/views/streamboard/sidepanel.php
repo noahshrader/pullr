@@ -17,7 +17,7 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
         <ul class="<?= $tabsClass ?> panel-nav cf">
             <li class="active">
                 <a href="<?= Url::to() ?>#donations" data-toggle="tab" class="donations">
-                    <i class="icon mdi-action-receipt"></i></a>
+                    <i class="icon mdi-action-loyalty"></i></a>
             </li>
             <? for ($regionNumber = 1; $regionNumber <= $regionsNumber; $regionNumber++): ?>
                 <li>

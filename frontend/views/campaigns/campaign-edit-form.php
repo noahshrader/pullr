@@ -3,7 +3,7 @@
     use dosamigos\ckeditor\CKEditor;
 ?>
 <div id="campaign-edit-form">
-    <div class="module-inner">
+    <div class="module-inner first">
         <h5><i class="icon mdi-action-toc"></i>Form</h5>
         <div class="row">
             <div class="col-md-6">

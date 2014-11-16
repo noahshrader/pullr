@@ -46,9 +46,12 @@ body {
 /* ------------------------------------------------- */
 .btn {
 	font-family: @mainfont;
-	font-size: 1em;
+	font-size: 1.1em;
+	font-weight: 500;
 	outline: 0;
+	padding: .4em 1.2em;
 	margin: 0 .1em;
+	min-width: 80px;
 	border: 0;
 	.border-radius();
 	.slowtrans();
@@ -105,8 +108,9 @@ body {
 	text-align: center;
 	line-height: 28px;
 	padding: 0;
-	height: 28px !important;
-	width: 28px !important;
+	height: 28px;
+	width: 28px;
+	min-width: 0;
 	.box-shadow;
 	.round-radius;
 }
@@ -115,7 +119,7 @@ body {
 }
 .btn-container {
 	text-align: center;
-	padding: @halfgutter 0;
+	padding: @halfgutter 0 @gutter;
 }
 .actions {
 	text-align: center;
@@ -282,7 +286,7 @@ ul.content-nav {
 		}
 		a {
 			display: inline-block;
-			color: @gray60;
+			color: @gray50;
 			font-weight: 500;
 			line-height: @sidenavheight + 8px;
 			padding: 0 20px;
@@ -336,7 +340,7 @@ ul.panel-nav {
 /* ------------------------------------------------- */
 h3.list-title {
 	color: @gray30;
-	font-size: 17px;
+	font-size: @inputtextsize;
 	font-weight: 500;
 	line-height: 1.1em;
 	margin-bottom: 0;
@@ -346,7 +350,7 @@ p.list-total {
 	display: inline-block;
 	color: @gray30;
 	font-size: 13px;
-	font-weight: 600;
+	font-weight: 500;
 	line-height: 1.6em;
 	margin-top: 6px;
 	margin-bottom: 0;
