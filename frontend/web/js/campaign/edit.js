@@ -95,23 +95,6 @@ function addNewCampaignInvite() {
         });
     }
 }
-function rememberAccordionState() {
-    var last = localStorage.getItem('activeAccordionGroup');
-    if (last != null && $('#' + last).length != 0) {
-        //remove default collapse settings
-        $("#accordion .collapse").removeClass('in');
-        //show the last visible group
-//        log(123);
-//        log($("#"+last));
-        $("#" + last).collapse("show");
-    }
-
-    //when a group is shown, save it as the active accordion group
-    $("#accordion").bind('shown.bs.collapse', function() {
-        var active = $("#accordion .in").attr('id');
-        localStorage.setItem('activeAccordionGroup', active)
-    });
-}
 
 function initBootstrapSwitch() {
     $("#campaignEdit input[type='checkbox']").bootstrapSwitch();
