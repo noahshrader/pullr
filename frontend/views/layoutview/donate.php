@@ -100,7 +100,7 @@ use yii\widgets\MaskedInput;
                 <? endif;?>
             <span class="hide"><?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?></span>
             <div class="form-group float">
-                <label>Welcome</label>
+                <label>Name</label>
                 <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
             </div>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>

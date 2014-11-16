@@ -91,21 +91,32 @@
     #teamQuestion {
       display: block;
     }
+    p.team-notice {
+    	display: none;
+    }
 }
 
 /* Team */
-#campaign-edit-team,
-#campaign-edit-team-li,
+#campaign-edit-team {
+	.first {
+		text-align: center;
+		.bootstrap-switch {
+			display: inline-block !important;
+		}
+	}
+}
+#teamInvites,
 #teamQuestion {
 	display: none;
 }
 #campaignEdit[data-campaigntype="Charity Fundraiser"].team-enabled{
-	#campaign-edit-team-li {
-		display: inline-block;
-	}
-	#campaign-edit-team {
+	#teamInvites,
+	#teamQuestion {
 		display: block;
 	}
+}
+p.team-notice {
+	text-align: center;
 }
 
 
@@ -118,8 +129,9 @@
 	.field-campaign-youtubeurl,
 	.field-campaign-facebookurl {
 		position: relative;
-		padding: @gutter;
+		padding: @gutter+10px @gutter @gutter;
 		background: @offwhite;
+		.border-radius;
 		&:before {
 			.arrow-up;
 			top: -9px;
@@ -189,7 +201,7 @@
 		}
 	}
 	.campaign-type {
-		margin-bottom: @halfgutter;
+		margin-bottom: @gutter;
 	}
 	.theme-color-picker {
 		.col-md-6 {
