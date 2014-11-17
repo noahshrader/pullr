@@ -39,8 +39,8 @@ class Notification extends ActiveRecord {
             self::$NOTIFY_NEW_FEATURE_ADDED => 'When new features are added',
             self::$NOTIFY_NEW_THEME_AVAILABLE => 'When new themes are available',
             self::$NOTIFY_SYSTEM_UPDATE => 'System updates',
-            self::$NOTIFY_NEW_SUBSCRIBER => 'Show Twitch followers',
-            self::$NOTIFY_NEW_FOLLOWER => 'Show Twitch subscribers'
+            self::$NOTIFY_NEW_SUBSCRIBER => 'Show Twitch subscribers',
+            self::$NOTIFY_NEW_FOLLOWER => 'Show Twitch followers'
         ];
     }
 

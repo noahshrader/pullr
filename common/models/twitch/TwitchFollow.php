@@ -14,18 +14,21 @@ class TwitchFollow extends TwitchFollowBase {
         return 'tbl_twitch_follow';
     }
 
-    public static function updateFollows($userId, $follows) {
-        self::createNotification($userId, $follows);
-        self::updateFollowsBase($userId, $follows);
+    public static function updateFollows($user, $follows) {
+        //create notification on dashboard
+        if ($user->notification->newFollower) {            
+            self::createNotification($user, $follows);    
+        }        
+        self::updateFollowsBase($user, $follows);
     }
 
-    public static function createNotification($userId, $follows) {        
-        $currentIds = static::find()->where(['userId' => $userId])->select('twitchUserId')->orderBy('createdAt desc')->column();        
+    public static function createNotification($user, $follows) {        
+        $currentIds = static::find()->where(['userId' => $user->id])->select('twitchUserId')->orderBy('createdAt desc')->column();        
         foreach ($follows as $follow) {
             $id = $follow['user']['_id'];
             if ( ! in_array($id, $currentIds, true)) {                
                 RecentActivityNotification::createNotification(
-                    $userId,
+                    $user->id,
                     ActivityMessage::messageNewTwitchFollower($follow['user']['name'])
                 );
             }

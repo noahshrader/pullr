@@ -13,19 +13,22 @@ class TwitchSubscription extends TwitchFollowBase {
         return 'tbl_twitch_subscriptions';
     }
 
-    public static function updateSubscriptions($userId, $subscriptions) {
-        self::createNotification($userId, $subscriptions);
-        self::updateFollowsBase($userId, $subscriptions);        
+    public static function updateSubscriptions($user, $subscriptions) {
+        //create notification on dashboard
+        if ($user->notification->newSubscriber) {
+            self::createNotification($user, $subscriptions);    
+        }        
+        self::updateFollowsBase($user, $subscriptions);        
     }
 
-    public static function createNotification($userId, $subscriptions) {
+    public static function createNotification($user, $subscriptions) {
 
-        $currentIds = static::find()->where(['userId' => $userId])->select('twitchUserId')->orderBy('createdAt desc')->column();        
+        $currentIds = static::find()->where(['userId' => $user->id])->select('twitchUserId')->orderBy('createdAt desc')->column();        
         foreach ($subscriptions as $subscription) {
             $id = $subscription['user']['_id'];
             if ( ! in_array($id, $currentIds)) {                
                 RecentActivityNotification::createNotification(
-                    $userId,
+                    $user->id,
                     ActivityMessage::messageNewTwitchSubscriber($subscription['user']['name'])
                 );
             }

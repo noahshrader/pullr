@@ -19,7 +19,8 @@ use yii\db\QueryBuilder;
  * @description That class is used to store twitch followers for user
  */
 abstract class TwitchFollowBase extends ActiveRecord {
-    protected static function updateFollowsBase($userId, $follows){
+    protected static function updateFollowsBase($user, $follows){
+        $userId = $user->id;
         $ids = [];
         foreach ($follows as $key => $follow){
            $ids[] = $follow['user']['_id'];

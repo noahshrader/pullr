@@ -612,8 +612,8 @@ class StreamboardController extends FrontendController
         $data = $twitchSDK->authChannelSubscriptions($accessToken, $channel, 100);
         /*to have array instead of object */
         $data = json_decode(json_encode($data), true);
-        TwitchUser::updateSubscribersNumber($user->id, $data['_total']);   
-        TwitchSubscription::updateSubscriptions($user->id, $data['subscriptions']);
+        TwitchUser::updateSubscribersNumber($user, $data['_total']);   
+        TwitchSubscription::updateSubscriptions($user, $data['subscriptions']);
         return $data;
     }
 
@@ -632,8 +632,8 @@ class StreamboardController extends FrontendController
         $twitchSDK = \Yii::$app->twitchSDK;
         $data = $twitchSDK->channelFollows($channel, 100);               
         $data = json_decode(json_encode($data), true);
-        TwitchUser::updateFollowersNumber($user->id, $data['_total']);   
-        TwitchFollow::updateFollows($user->id, $data['follows']);
+        TwitchUser::updateFollowersNumber($user, $data['_total']);   
+        TwitchFollow::updateFollows($user, $data['follows']);
         return $data;
     }
 }

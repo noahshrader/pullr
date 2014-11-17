@@ -32,11 +32,11 @@ class TwitchUser extends ActiveRecord {
         $twitchUser->save();      
     }
 
-    public static function updateFollowersNumber($userId, $followersNumber){
-        self::updateField($userId,'followersNumber', $followersNumber);
+    public static function updateFollowersNumber($user, $followersNumber){
+        self::updateField($user->id,'followersNumber', $followersNumber);
     }
 
-    public static function updateSubscribersNumber($userId, $subscribersNumber){
-        self::updateField($userId,'subscribersNumber', $subscribersNumber);
+    public static function updateSubscribersNumber($user, $subscribersNumber){
+        self::updateField($user->id,'subscribersNumber', $subscribersNumber);
     }
 }

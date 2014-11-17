@@ -28,7 +28,7 @@ class TwitchHelper
         $data = $twitchSDK->channelFollows($channel, 1);
        	$data = json_decode(json_encode($data), true);
         TwitchUser::updateFollowersNumber($user->id, $data['_total']);	 
-        TwitchFollow::updateFollows($user->id, $data['follows']);	            	              
+        TwitchFollow::updateFollows($user, $data['follows']);	            	              
     }
 
     public static function updateSubscriberNumber($user)
@@ -49,6 +49,6 @@ class TwitchHelper
         /*to have array instead of object */
         $data = json_decode(json_encode($data),true);
         TwitchUser::updateSubscribersNumber($user->id, $data['_total']);	
-        TwitchSubscription::updateSubscriptions($user->id, $data['subscriptions']);                      
+        TwitchSubscription::updateSubscriptions($user, $data['subscriptions']);                      
     }
 }
