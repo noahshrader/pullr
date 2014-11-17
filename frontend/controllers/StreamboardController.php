@@ -440,8 +440,14 @@ class StreamboardController extends FrontendController
         $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->all();
         
         $stats = Streamboard::getStats($campaigns);
+        
         $stats['total_amountRaised'] = PullrUtils::formatNumber($stats['total_amountRaised'], 2);
         $stats['total_goalAmount'] = PullrUtils::formatNumber($stats['total_goalAmount'], 2);
+        
+        $user = Application::getCurrentUser();
+        $most_donor = Donation::getTopDonorForUser($user->id);
+        $most_donor['amount'] = PullrUtils::formatNumber($most_donor['amount'], 2);
+        $stats['most_donor'] = $most_donor;
         
         $twitchUser = $user->twitchUser;
         $twitchUserArray = $twitchUser ? $twitchUser->toArray(['followersNumber', 'subscribersNumber']) : null;
