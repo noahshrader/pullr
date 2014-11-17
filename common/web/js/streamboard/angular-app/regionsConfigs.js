@@ -78,8 +78,37 @@
         $scope.MIN_FONT_SIZE = 10;
         $scope.MIN_FONT_WEIGHT = 300;
         $scope.MAX_FONT_WEIGHT = 900;
-
+        $scope.hideFooter = false;
         $scope.regionChanged = regions.regionChanged;
+        $scope.toggleModule = function(region) {    
+            $scope.toggleFooter(region);              
+            regions.regionChanged(region);
+        }
+
+        $scope.toggleFooter = function(region) {
+            
+            if (region.widgetType == 'widget_alerts') {
+                var widget = region.widgetAlerts;
+                if (widget.includeDonations || widget.includeFollowers || widget.includeSubscribers) {
+                    $scope.hideFooter = false;
+                } else {
+                    $scope.hideFooter = true;
+                }
+            } else if (region.widgetType == 'widget_campaign_bar') {
+                var widget = region.widgetCampaignBar;
+                if (widget.alertsEnable || widget.messagesEnable || widget.timerEnable) {
+                    $scope.hideFooter = false;
+                } else {
+                    $scope.hideFooter = true;
+                }
+            } else {
+                $scope.hideFooter = true;
+            }                    
+        }
+
+        $scope.$on('regionTabChanged', function(e, data) {
+            $scope.toggleFooter(data.region);
+        })
         
         var timmer = null;
         $scope.alertTextChange = function(region){

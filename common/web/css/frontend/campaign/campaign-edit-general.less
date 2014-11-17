@@ -1,11 +1,8 @@
-#campaignEdit{
+#campaignEdit {
 	.pf-paypal {
 		display: none;
 	}
 	#tieCampaignContainer {
-		display: none;
-	}
-	.team {
 		display: none;
 	}
 }
@@ -26,6 +23,13 @@
 #campaignEdit[data-campaigntype="Charity Fundraiser"] {
 	.field-campaign-parentcampaignid {
 		display: none;
+
+		&.highlight-wrap {
+			&:before {
+				left: 50%;
+				margin-left: -10px;
+			}
+		}
 	}
 	.team {
 		display: block;
@@ -44,19 +48,4 @@
 	.preapprovedCharity{
 		display: none;
 	}
-}
-
-#modalCharity .microPhoto {
-	max-width: 150px;
-	max-height: 150px;
-}
-#modalCharity .select-charity-container {
-	cursor: pointer;
-	padding: 10px 0px 10px 0px;
-}
-#modalCharity .select-charity-container:hover {
-	background-color: #ccc;
-}
-#campaign-edit-team, #campaign-edit-team-li, #teamQuestion {
-	display: none;
 }

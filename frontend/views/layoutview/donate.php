@@ -22,7 +22,7 @@ use yii\widgets\MaskedInput;
                 <h3 class="charity-name">for <span><?= $charityName ?></span>
                 <? if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES): ?>
                     <a class="approved">
-                        <i class="icon icon-check-round-fill"></i>
+                        <i class="icon mdi-toggle-check-box"></i>
                         <span class="approved-info">This is a validated organization.</span>
                     </a>
                 </h3>
@@ -99,16 +99,18 @@ use yii\widgets\MaskedInput;
                 </div>
                 <? endif;?>
             <span class="hide"><?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?></span>
-            <div class="field">
+            <div class="form-group float">
+                <label>Name</label>
                 <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
             </div>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
-            <div class="field">
-                <?= $form->field($donation, 'email', ['inputOptions' => ['placeholder' => 'Email']])->label(false); ?>
+            <div class="form-group float">
+                <?= $form->field($donation, 'email', ['inputOptions' => ['placeholder' => 'Email']])->label('Email'); ?>
             </div>
             <? endif ?>
             <? if ($campaign->enableDonorComments): ?>
-            <div class="field comments">
+            <div class="form-group comments float">
+                <label>Comments</label>
                 <textarea type="text" id='donation-comments' name="Donation[comments]" placeholder="Comments"><?=htmlspecialchars($donation->comments) ?></textarea>
                 <span class="counter"></span>
             </div>

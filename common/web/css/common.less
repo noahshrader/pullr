@@ -25,7 +25,7 @@ body {
 	.slowtrans;
 }
 .hide {
-	display: none;
+	display: none !important;
 }
 .large {
 	font-size: 2em;
@@ -34,7 +34,7 @@ body {
 	color: @accent !important;
 }
 .last {
-	margin: 0 !important;
+	margin-bottom: 0 !important;
 }
 .disabled {
 	cursor: not-allowed;
@@ -47,8 +47,11 @@ body {
 .btn {
 	font-family: @mainfont;
 	font-size: 1em;
+	font-weight: 500;
 	outline: 0;
+	padding: .6em 1.2em;
 	margin: 0 .1em;
+	min-width: 80px;
 	border: 0;
 	.border-radius();
 	.slowtrans();
@@ -63,33 +66,29 @@ body {
 		outline: 0;
 		box-shadow: none;
 	}
-	&:not(.btn-xs):not(.btn-sm):not(.bnt-lg){
-	  font-weight: 600;
-	  line-height: 46px;
-	  padding: 0 1.4em;
-	  height: 46px;
+}
+.btn-primary {
+	color: @white;
+	background-color: @accent;
+	.box-shadow;
+	&:hover {
+		background-color: @dkaccent;
 	}
 }
 .btn-default {
-	background-color: @accent;
-	color: @white;
+	background-color: @gray72;
+	color: @gray40;
 	&:hover {
-		background-color: @accenthover;
-	}
-}
-.btn-primary {
-	background-color: @accent;
-	color: @white;
-	&:hover {
-		background-color: @accenthover;
+		color: @gray40;
+		background-color: @gray70;
 	}
 }
 .btn-secondary {
 	color: @gray30;
-	background-color: @gray72;
+	background-color: transparent;
 	&:hover {
 		color: @gray30;
-		background-color: @gray70;
+		background-color: transparent;
 	}
 }
 .btn-sm {
@@ -97,9 +96,23 @@ body {
 	line-height: 33px;
 	padding: 0 1.2em;
 	line-height: 34px;
+	.box-shadow;
 	&:focus {
 		color: @white;
 	}
+}
+.btn-add {
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 400;
+	text-align: center;
+	line-height: 28px;
+	padding: 0;
+	height: 28px;
+	width: 28px;
+	min-width: 0;
+	.box-shadow;
+	.round-radius;
 }
 .btn-link {
 	padding: 0;
@@ -114,10 +127,11 @@ body {
 	text-align: center;
 	padding-bottom: @gutter;
 }
-
-.manual-donation{
+.manual-donation {
   margin-left: 20px;
 }
+
+
 /* Main Data Containers */
 /* ------------------------------------------------- */
 .stats-overview {
@@ -125,6 +139,7 @@ body {
 
 	span {
 		color: @gray60;
+		font-size: @smalltext;
 		margin-top: .2em;
 	}
 
@@ -227,6 +242,7 @@ body {
 	}
 }
 
+
 /* Progress Bars */
 /* ------------------------------------------------- */
 .progress {
@@ -261,11 +277,12 @@ ul.content-nav {
 		float: left;
 		display: inline-block;
 		border: 0;
-		border-right: solid 1px @gray75;
 		&.active a,
 		&.active a:hover {
 			color: @gray30;
-			background: @white;
+			-webkit-box-shadow: inset 0 -3px 0 0 @accent;
+			-moz-box-shadow: inset 0 -3px 0 0 @accent;
+			box-shadow: inset 0 -3px 0 0 @accent;
 		}
 		&:last-child {
 			border: 0;
@@ -273,7 +290,7 @@ ul.content-nav {
 		a {
 			display: inline-block;
 			color: @gray60;
-			font-weight: 600;
+			font-weight: 500;
 			line-height: @sidenavheight + 8px;
 			padding: 0 20px;
 			width: 100%;
@@ -303,9 +320,9 @@ ul.panel-nav {
 
 		&.active a {
 			color: @white;
-			-webkit-box-shadow: inset 0 -4px 0 0 @accent;
-			-moz-box-shadow: inset 0 -4px 0 0 @accent;
-			box-shadow: inset 0 -4px 0 0 @accent;
+			-webkit-box-shadow: inset 0 -3px 0 0 @accent;
+			-moz-box-shadow: inset 0 -3px 0 0 @accent;
+			box-shadow: inset 0 -3px 0 0 @accent;
 		}
 		a {
 			display: block;
@@ -326,18 +343,18 @@ ul.panel-nav {
 /* ------------------------------------------------- */
 h3.list-title {
 	color: @gray30;
-	margin-bottom: 2px;
-	font-size: 1.1em;
-	font-weight: 400;
+	font-size: @inputtextsize;
+	font-weight: 500;
 	line-height: 1.1em;
+	margin-bottom: 0;
 	.trans;
 }
 p.list-total {
 	display: inline-block;
 	color: @gray30;
-	font-size: 15px;
-	font-weight: 600;
-	line-height: 1.5em;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.6em;
 	margin-top: 6px;
 	margin-bottom: 0;
 	padding: 0 .8em;
@@ -362,7 +379,7 @@ span.list-info {
 		font-weight: 400;
 		padding: @halfgutter;
 		background: @gray20;
-		border-radius: 0;
+		.border-radius;
 	}
 }
 .tooltip.top .tooltip-arrow {

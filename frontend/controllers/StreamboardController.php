@@ -611,7 +611,6 @@ class StreamboardController extends FrontendController
             return;
         }
 
-
         /**
          * @var TwitchSDK $twitchSDK
          */
@@ -637,7 +636,7 @@ class StreamboardController extends FrontendController
          * @var TwitchSDK $twitchSDK
          */
         $twitchSDK = \Yii::$app->twitchSDK;
-        $data = $twitchSDK->channelFollows($channel, 100);       
+        $data = $twitchSDK->channelFollows($channel, 100);               
         $data = json_decode(json_encode($data), true);
         TwitchUser::updateFollowersNumber($user->id, $data['_total']);   
         TwitchFollow::updateFollows($user->id, $data['follows']);

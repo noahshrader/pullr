@@ -17,9 +17,9 @@ class TwitchLogin extends Widget {
         $loginURL = $twitchSDK->authLoginURL('user_read channel_subscriptions');
         
         $this->options['href'] = $loginURL;
-        $this->options['class'] = 'btn btn-default twitchLogin';
+        $this->options['class'] = 'btn btn-primary twitchLogin';
         
-        $twitchTitle = '<i class="icon icon-twitch2"></i> Connect With Twitch';
+        $twitchTitle = '<i class="icon mdib-twitch2"></i> Connect With Twitch';
         $a = Html::tag('a', $twitchTitle, $this->options);
         
         return $a;

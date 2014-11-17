@@ -427,9 +427,11 @@ class CampaignsController extends FrontendController {
 
             // Dashboard "Donation received" notification
             RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageDonationReceived($donation));
+            
+            $this->redirect(["view", "id" => $donation->campaignId]);
         }
-
-        $this->redirect("index");
+        
+        throw new BadRequestHttpException();
     }
 
     /**
@@ -442,11 +444,13 @@ class CampaignsController extends FrontendController {
         {
             $donation->paymentDate = 0;
             $donation->save();
+            
+            Campaign::updateDonationStatistics($donation->campaignId);
+
+            $this->redirect(["view", "id" => $donation->campaignId]);
         }
 
-        Campaign::updateDonationStatistics($donation->campaignId);
-
-        $this->redirect("index");
+        throw new BadRequestHttpException();
     }
 
     /**

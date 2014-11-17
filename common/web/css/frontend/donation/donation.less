@@ -26,13 +26,6 @@ body {
 
 /* Forms */
 /* ------------------------------------------------- */
-label {
-	display: block;
-	color: @gray70;
-	font-size: 0.9em;
-	font-weight: 600;
-	margin-bottom: .4em;
-}
 
 .form-wrapper {
 	margin: 0 auto;
@@ -41,23 +34,13 @@ label {
 	max-width: 660px;
 
 	.form-group {
-		margin: 0;
-	}
-	.field {
-		position: relative;
-		margin-bottom: .6em;
-		width: 100%;
 
 		input[type="text"],
 		textarea,
 		select {
-			font-size: 1.4em;
-			padding: @halfgutter;
+			font-size: @inputtextsize;
 			width: 100%;
 			max-width: 100%;
-		}
-		textarea {
-			min-height: 140px;
 		}
 		&.comments {
 			margin-bottom: 2em;
@@ -74,12 +57,8 @@ label {
 	font-size: 1.4em;
 	font-weight: 700;
 	margin: .3em auto .6em;
-	padding: .4em 2em;
+	padding: .6em 2em;
 	height: auto;
-}
-.help-block {
-	bottom: -45px;
-	font-size: 1.1em;
 }
 a.close {
 	display: block;
@@ -90,13 +69,26 @@ a.close {
 
 /* Icon Fonts */
 /* ------------------------------------------------- */
+/* Brand Library */
 @font-face {
-	font-family: 'icomoon';
-	src:url('../../../fonts/icomoon.eot?u7owa9');
-	src:url('../../../fonts/icomoon.eot?#iefixu7owa9') format('embedded-opentype'),
-	url('../../../fonts/icomoon.woff?u7owa9') format('woff'),
-	url('../../../fonts/icomoon.ttf?u7owa9') format('truetype'),
-	url('../../../fonts/icomoon.svg?u7owa9#icomoon') format('svg');
+	font-family: 'brand';
+	src:url('../../../fonts/brand.eot?u7owa9');
+	src:url('../../../fonts/brand.eot?#iefixu7owa9') format('embedded-opentype'),
+		url('../../../fonts/brand.woff?u7owa9') format('woff'),
+		url('../../../fonts/brand.ttf?u7owa9') format('truetype'),
+		url('../../../fonts/brand.svg?u7owa9#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Main Library */
+@font-face {
+	font-family: 'icons';
+	src:url('../../../fonts/icons.eot?u7owa9');
+	src:url('../../../fonts/icons.eot?#iefixu7owa9') format('embedded-opentype'),
+		url('../../../fonts/icons.woff?u7owa9') format('woff'),
+		url('../../../fonts/icons.ttf?u7owa9') format('truetype'),
+		url('../../../fonts/icons.svg?u7owa9#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -274,7 +266,7 @@ footer {
 	/* Amount Selections */
 	#donation-amount {
 		position: relative;
-		margin-bottom: 2em;
+		margin-bottom: @gutter+@halfgutter;
 		min-height: 90px;
 
 		.fieldamount {
@@ -291,9 +283,10 @@ footer {
 			transition: linear .1s;
 
 			label {
+				display: block;
 				color: @gray30;
 				font-size: 1.8em;
-				font-weight: 600;
+				font-weight: 500;
 				line-height: 90px;
 				letter-spacing: -1px;
 				margin: 0;
@@ -340,10 +333,10 @@ footer {
 			a.closethis {
 				position: absolute;
 				top: 0;
-				right: 32px;
+				right: 20px;
 				color: #d4d5d8;
 				font-size: 1.8em;
-				line-height: 90px;
+				line-height: 86px;
 				z-index: 100;
 				&:hover {
 					color: #53555a;
@@ -356,17 +349,17 @@ footer {
 				color: #53555a;
 				z-index: 900;
 				font-size: 2em;
-				line-height: 90px;
+				line-height: 86px;
 			}
 
 			.field {
 				position: relative;
 				margin: 0;
-				padding: .4em 10%;
+				padding: 1.65em 12%;
 
 				input {
 					font-size: 2em;
-					line-height: 46px;
+					line-height: 40px;
 					width: 100%;
 					border: 0;
 					text-indent: 5px;

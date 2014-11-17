@@ -23,7 +23,7 @@ ul.campaign-quicknav {
 /* Campaign Listings */
 .campaign-item,
 .donor-item {
-	padding: 24px 0;
+	padding: 22px 0;
 	margin: 0px;
 	position: relative;
 	display: block;
@@ -35,7 +35,7 @@ ul.campaign-quicknav {
 	}
 	&.active p {
 		color: @white;
-		background: @gray10;
+		background: @accent;
 	}
 	&.active {
 		background: @gray12;
@@ -60,7 +60,7 @@ ul.campaign-quicknav {
 	}
 	
 	/* Team campaign designation */
-	span.team-parent {
+	span.mdi-social-group {
 		display: inline-block;
 		float: left;
 		color: @gray30;
@@ -125,6 +125,7 @@ body.trash .campaigns-list {
 	width: 100%;
 	background: @gray72;
 	.box-shadow;
+	.border-radius;
 	z-index: 900;
 
 	.campaign-nav {
@@ -160,7 +161,7 @@ body.trash .campaigns-list {
 			display: inline-block;
 			position: relative;
 			color: @gray60;
-			font-size: 18px;
+			font-size: 20px;
 			line-height: @campain-name-height;
 			padding: 0 @gutter;
 			width: auto;
@@ -169,7 +170,7 @@ body.trash .campaigns-list {
 				.arrow-down;
 				top: 50%;
 				right: 18px;
-				margin-top: -1px;
+				margin-top: -2px;
 				border-width: 4px 4px 0 4px;
 				border-color: @gray60 transparent transparent transparent;
 			}
@@ -184,7 +185,7 @@ body.trash .campaigns-list {
 	}
 	h4 {
 		font-size: 1.3em;
-		font-weight: 600;
+		font-weight: 500;
 		line-height: @campain-name-height;
 		text-align: center;
 
@@ -205,7 +206,7 @@ body.trash .campaigns-list {
 		right: 0;
 		display: block;
 		color: @white;
-		font-size: 22px;
+		font-size: 20px;
 		font-weight: 400;
 		padding-right: @halfgutter;
 		padding-left: 6px;
@@ -213,8 +214,8 @@ body.trash .campaigns-list {
 		line-height: @campain-name-height;
 		width: auto;
 		background: @gray60;
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
+		border-top-right-radius: 2px;
+		border-bottom-right-radius: 2px;
 		&:hover {
 			color: @white;
 			background: @accent;

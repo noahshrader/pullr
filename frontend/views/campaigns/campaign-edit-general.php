@@ -23,35 +23,35 @@ $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="collapseOne" class="panel-collapse collapse in <?= $isTied ? 'isTied' : '' ?>">
     <div class="module-inner">
-        <h5><i class="icon icon-settings"></i>Campaign Details</h5>
+        <h5><i class="icon mdi-av-games"></i>Details</h5>
         <!-- Campaign Name -->
-        <div class="form-group">
-            <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name"); ?>
+        <div class="form-group float">
+            <?= $form->field($campaign, 'name', ['autoPlaceholder' => false])->label("Campaign Name")->textInput(array('placeholder' => 'Give your campaign a name')); ?>
         </div>
 
         <!-- Campaign Description -->
-        <div class="form-group">
-            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'rows' => 3]); ?>
+        <div class="form-group float">
+            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'placeholder' => 'Describe your campaign']); ?>
         </div>
 
         <div class="campaign-type">
             <!-- Campaign Type -->
             <div class="form-group field-campaign-type">
-                <label>Campaign Type</label>
+                <label>Campaign Type <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Go <b>Personal</b> to create a simple tipjar. Or, go <b>Charity</b> to start fundraising for charity."></i></label>
                 <?= Html::activeDropDownList($campaign, 'type', array_combine(Campaign::$TYPES, Campaign::$TYPES), ['class' => 'select-block']) ?>
             </div>
 
             <div id="notTiedCampaignContainer">
                 <!-- Personal Fundraiser PayPal -->
-                <div class="form-group pf-paypal">
+                <div class="form-group pf-paypal float">
                     <div class="highlight-wrap">
-                        <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => false])->label("PayPal Address"); ?>
+                        <?= $form->field($campaign, 'paypalAddress', ['autoPlaceholder' => false])->label("PayPal Address")->textInput(array('placeholder' => 'Enter a valid PayPal address')); ?>
                     </div>
                 </div>
 
                 <!-- Donation Destination (Charity Dropdown / Custom Charity) -->
                 <div id="donationDestination" data-donationDestination="<?= $campaign->donationDestination?>">
-                    <label> Charity Type <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Raise money for your own cause. Or, search a list of <b>1.6m</b> charities to support."></i>
+                    <label> Charity Type <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Raise money for your own cause. Or, search a list of <b>1.6m</b> charities to support."></i>
                     </label>
                     <div class="form-group field-campaign-donationDestination">
                         <?= Html::activeDropDownList($campaign, 'donationDestination', array_combine(Campaign::$DONATION_DESTINATIONS, Campaign::$DONATION_DESTINATIONS), ['class' => 'select-block']) ?>
@@ -75,11 +75,11 @@ $firstGiving = $campaign->getFirstGiving();
                         <?= Html::input('hidden', 'firstgiving', $firstGiving ? $firstGiving->organization_uuid : null, ['id' => 'firstgiving', 'class' => 'select-block']); ?>
                     </div>
                     <div class="customCharity highlight-wrap">
-                        <div class="form-group">
-                            <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name"); ?>
+                        <div class="form-group float">
+                            <?= $form->field($campaign, 'customCharity', ['autoPlaceholder' => false])->label("Charity Name")->textInput(array('placeholder' => 'What is the name of the charity/organization?')); ?>
                         </div>
-                        <div class="form-group">
-                            <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => false])->label("Charity PayPal Address"); ?>
+                        <div class="form-group float">
+                            <?= $form->field($campaign, 'customCharityPaypal', ['autoPlaceholder' => false])->label("Charity PayPal Address")->textInput(array('placeholder' => 'Enter a valid PayPal address')); ?>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,8 @@ $firstGiving = $campaign->getFirstGiving();
                 'value' => $campaign->goalAmount ?: 0,
                 'options' => [
                     'class' => 'form-control',
-                    'id' => 'masked-input'
+                    'id' => 'masked-input',
+                    'placeholder' => 'Do you have a goal amount for this campaign?'
                 ],
                 'clientOptions' => [
                     'value' => $campaign->goalAmount,
@@ -115,35 +116,6 @@ $firstGiving = $campaign->getFirstGiving();
         <div id="startEndContainer" class="cf">
             <?= $form->field($campaign, 'startDate')->label("Start Date/Time")->input('datetime-local'); ?>
             <?= $form->field($campaign, 'endDate')->label("End Date/Time")->input('datetime-local'); ?>
-        </div>
-    </div>
-    <div class="team">
-        <div class="module-inner">
-            <h5><i class="icon icon-users"></i>Team Fundraising</h5>
-    	    <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
-    	    <div class="form-group" id="teamQuestion">
-    	        <label>Enable Team Fundraising <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Turn on to allow other Pullr users to join and contribute to this campaign."></i></label>
-    	        <?= $form->field($campaign, 'teamEnable')->label(false)->checkbox([], false); ?>
-    	    </div>
-    	    <? endif; ?>
-
-            <!-- Parent Campaigns -->
-            <? if (sizeof($parentCampaigns) > 0): ?>
-                <? 
-                $keyValues = [ 0 => ''];
-                foreach ($parentCampaigns as $parentCampaign){
-                    $keyValues[$parentCampaign->id] = $parentCampaign->name;
-                }
-            ?>
-    	    <div id="tieCampaignContainer">
-    	        <label>Connect to Another Campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Turn on if you want this campaign to contribute to another campaign."></i></label>
-    	        <?= $form->field($campaign, 'tiedToParent')->label(false)->checkbox([], false); ?>
-    	        <div class="form-group field-campaign-parentcampaignid highlight-wrap">
-    	            <label>Fundraiser Campaign <i class="icon icon-help" data-toggle="tooltip" data-placement="right" title="Select the campaign to which you want to contribute."></i></label>
-    	            <?= Html::activeDropDownList($campaign, 'parentCampaignId', $keyValues, ['class' => 'select-block']) ?>
-    	        </div>
-    	    </div>
-            <? endif; ?>
         </div>
     </div>
 </div>

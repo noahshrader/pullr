@@ -19,7 +19,7 @@ AuthAsset::register($this);
              <div class="intro-content-wrapper">
                     <div class="intro-content">
                         <div class="login-box animated zoomInRight">
-                            <a class="login-logo icon-pullr-logo"></a>
+                            <a class="login-logo mdib-pullr-logo"></a>
                             <?= $content ?>
                         </div>
                     </div>

@@ -10,13 +10,8 @@
 	padding-right: @sidepanelwidth;
 
 	ul.content-nav {
-		li {
-			&.active a,
-			&.active a:hover {
-				color: @white;
-				background: @accent;
-			}
-		}
+		border-top-left-radius: 2px;
+		border-top-right-radius: 2px;
 	}
 
 	.tab-content {
@@ -33,7 +28,7 @@
 			color: @white;
 		}
 		h1 {
-			font-size: 4.8em;
+			font-size: 4.2em;
 			line-height: 1.3em;
 		}
 
@@ -71,6 +66,7 @@
 			padding: 0 15%;
 			width: 100%;
 			background: @dkaccent;
+			.border-radius;
 			&:before {
 				.arrow-up;
 				left: 50%;
@@ -90,6 +86,7 @@
 			margin: @gutter 0 @gutter+@gutter;
 			background: @white;
 			.box-shadow;
+			.border-radius;
 
 			.stats-box {
 				width: 33.33%;
@@ -103,6 +100,7 @@
 		&.twitch-stats {
 			background: @twitchpurple;
 			.box-shadow;
+			.border-radius;
 
 			h2 {
 				color: @white;
@@ -170,7 +168,8 @@
 					padding: 0 @gutter;
 				}
 				p {
-					color: @gray10;
+					color: @gray30;
+					font-weight: 500;
 				}
 				span {
 					color: @gray50;
@@ -246,7 +245,7 @@
 	margin-bottom: @gutter;
 	background: @offwhite;
 	border: 0;
-	border-radius: 0;
+	.border-radius;
 
 	i {
 		position: absolute;

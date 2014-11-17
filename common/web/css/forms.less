@@ -12,16 +12,19 @@ select.form-control,
 .form-group.has-success input.form-control,
 .form-group.has-success textarea.form-control {
 	color: @gray30;
-	font-size: @basefontsize;
+	font-size: @inputtextsize;
+	font-weight: 500;
 	outline: 0;
-	padding: 0 @halfgutter;
-	min-height: 45px;
-	border: 2px solid @gray75;
-	background: @white;
-	.border-radius;
+	padding: 0;
+	min-height: 35px;
+	width: 100%;
+	background: transparent;
+	border: 0;
+	border-bottom: solid 1px @gray72;
+	border-radius: 0;
 	box-shadow: none;
 	&:focus {
-		border: 2px solid @gray60;
+		border-bottom: solid 2px @accent;
 		box-shadow: none;
 	}
 }
@@ -35,27 +38,47 @@ select {
 }
 textarea,
 textarea.form-control {
-	padding: @halfgutter !important;
+	padding-top: 6px;
 	max-width: 100%;
+	resize: none;
 }
-label {
-	line-height: 1.4em;
-}
-legend,
 label,
+legend,
 .form-group.has-success label {
 	color: @gray60;
+	font-size: @smalltext;
 	font-weight: 400;
+	line-height: 1.4em;
+	margin: 0;
 }
 .form-control[disabled],
-.form-control[readonly],
 fieldset[disabled] .form-control {
 	opacity: .5;
+	background: transparent;
+	border-bottom: dashed 1px @gray72;
 }
-
+.form-control[readonly] {
+	background: transparent;
+}
 .icon-help {
 	color: @gray60;
 	margin-left: @iconspace;
+}
+
+/* Float Label */
+.float {
+
+	label {
+		position: absolute;
+		top: -13px;
+		left: 0;
+		.trans;
+		opacity: 0;
+		&.show {
+			top: -15px;
+			opacity: 1;
+		}
+	}
 }
 
 /* Search Field Styling */
@@ -96,7 +119,7 @@ input.color-choice {
 		span.color-choice {
 			position: absolute;
 			right: @halfgutter;
-			top: 40px;
+			top: 30px;
 			z-index: 900;
 		}
 	}
@@ -124,17 +147,20 @@ input.color-choice {
 .select2-container {
 	position: relative;
 	display: block;
+	margin-top: .4em;
+	.border-radius;
+	overflow: hidden;
 	&:after {
 		position: absolute;
 		.arrow-down;
 		top: 50%;
 		right: @halfgutter;
-		margin-top: -4px;
+		margin-top: -2px;
 		border-width: 6px 4px 0 4px;
-		border-color: @gray30 transparent transparent transparent;
+		border-color: @gray60 transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
-		background: @gray70;
+		background: @gray75;
 	}
 
 	.select2-choices .select2-search-field input,
@@ -143,18 +169,20 @@ input.color-choice {
 		color: @gray30;
 		font-family: @mainfont;
 		font-size: @basefontsize;
-		background: @gray72;
+		font-weight: 400;
+		background: @gray75;
 		border: 0;
 		box-shadow: none !important;
 		&:focus {
 			outline: 0 !important;
 		}
 		&:hover {
-			background: @gray70;
+			background: @gray72;
 		}
 	}
 	.select2-choice {
 		height: 45px;
+		.border-radius !important;
 
 		> span:first-child,
 		.select2-search-field input {
@@ -179,17 +207,19 @@ input.color-choice {
 	.select2-choice,
 	.select2-choices {
 		border: 0;
-		background: @gray70;	
+		background: @white;	
 	}
 }
 .select2-drop {
-	box-shadow: none;
+	margin-top: 10px;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2) !important;
 
 	&.select2-drop-active,
 	&.select2-drop-above.select2-drop-active {
-		background: @gray72;
+		background: @white;
 		border: 0;
-		box-shadow: none;
+		.border-radius;
+		overflow: hidden;
 	}
 }
 
@@ -202,9 +232,9 @@ input.color-choice {
 	&:before {
 		position: absolute;
 		top: 50%;
-		content: '\e68a';
+		content: '\e65f';
 		color: @gray70;
-		font-family: 'icomoon';
+		font-family: 'icons';
 		font-size: 14px;
 		font-weight: 600;
 		text-align: center;
@@ -227,7 +257,7 @@ input.color-choice {
 	margin: 0;
 	
 	.select2-highlighted {
-		background: @gray70;
+		background: @gray75;
 	}
 	.select2-result-label {
 		color: @gray30;
@@ -236,7 +266,6 @@ input.color-choice {
 		&:hover {
 			background: @gray70;
 		}
-
 		span {
 			color: @gray20 !important;
 		}
@@ -259,7 +288,6 @@ input.color-choice {
 
 	label {
 		font-size: 1em;
-		font-weight: 400;
 		line-height: 1.2em;
 		text-align: left;
 		cursor: pointer;
@@ -269,14 +297,15 @@ input.color-choice {
 		padding-left: 0;
 		white-space: normal;
 		&:before {
-			content: '\e62a';
+			content: '\e899';
 			float: left;
 			position: relative;
 			top: 2px;
 			display: inline-block;
 			color: @gray75;
-			font-family: 'icomoon';
+			font-family: 'icons';
 			font-size: 12px;
+			font-weight: 900;
 			line-height: 16px;
 			width: 16px;
 			height: 16px;
@@ -284,7 +313,6 @@ input.color-choice {
 			text-align: center;
 			speak: none;
 			font-style: normal;
-			font-weight: normal;
 			font-variant: normal;
 			text-transform: none;
 			-webkit-font-smoothing: antialiased;
@@ -305,20 +333,69 @@ input.color-choice {
 /* Switch Buttons */
 .bootstrap-switch {
 	display: block !important;
-	max-width: 120px;
-	border: solid 2px @gray72 !important;
+	padding: 0;
+	margin-top: .4em;
+	max-width: 60px !important;
+	min-width: 60px !important;
+	width: 60px;
+	border: 0 !important;
 
+	/* Switch On */
 	&.bootstrap-switch-on {
-		border: solid 2px @accent !important;
+		.bootstrap-switch-container {
+
+			.bootstrap-switch-label {
+				left: 40px;
+			}
+			.bootstrap-switch-handle-on,
+			.bootstrap-switch-handle-off {
+				background: @accent !important;
+			}
+			.bootstrap-switch-handle-on {
+				width: 100% !important;
+			}
+			.bootstrap-switch-handle-off {
+				width: 0% !important;
+			}
+		}
 	}
-	.bootstrap-switch-handle-on {
-		border-radius: 0 !important;
-	}
-	.bootstrap-switch-handle-on,
-	.bootstrap-switch-handle-off {
-		&.bootstrap-switch-default {
-			color: @gray50 !important;
+	.bootstrap-switch-container {
+		width: 60px !important;
+		margin: 0 !important;
+
+		.bootstrap-switch-label {
+			position: absolute;
+			left: 0;
+			margin-top: 3px !important;
+			height: 20px !important;
+			width: 20px !important;
+			background: @offwhite;
+			.round-radius !important;
+			.box-shadow;
+			.slowtrans;
+		}
+		.bootstrap-switch-handle-on,
+		.bootstrap-switch-handle-off {
+			float: left;
+			line-height: 8px !important;
+			text-indent: -9999px;
+			padding: 0 !important;
+			margin: 10px 0;
+			width: 50%;
 			background: @gray72 !important;
+			.slowtrans;
+		}
+		.bootstrap-switch-handle-on {
+			width: 0% !important;
+		}
+		.bootstrap-switch-handle-off {
+			width: 100% !important;
+		}
+		input[type="checkbox"] {
+			width: 100%;
+			height: 100%;
+			z-index: 1000;
+			cursor: pointer;
 		}
 	}
 }
@@ -326,6 +403,7 @@ input.color-choice {
 /* Combined Forms */
 .combined-form-wrap {
 	position: relative;
+	margin-bottom: @gutter;
 	.border-radius;
 	overflow: hidden;
 
@@ -333,27 +411,27 @@ input.color-choice {
 		position: absolute;
 		top: 0;
 		right: 0;
-		color: @white;
-		font-size: @fineprint;
+		color: @accent;
+		font-size: 1.4em;
 		text-align: center;
-		line-height: 45px;
+		line-height: 35px;
 		margin: 0;
-		width: 40px;
-		background: @gray60;
+		width: 20px;
+		&:hover {
+			color: @accenthover;
+		}
 	}
 }
 
 /* Misc */
 .help-block {
 	display: block;
-	position: absolute;
-	bottom: -55px;
-	left: 0;
 	font-size: .9em;
-	font-weight: 600;
-	padding: .6em 1.2em;
+	font-weight: 500;
+	text-align: left;
+	margin-top: .1em;
+	margin-bottom: 0;
 	z-index: 1000;
-	.border-radius;
 }
 
 .email-notifications .help-block{
@@ -363,7 +441,7 @@ input.color-choice {
 /* Bootstrap Overrides */
 .form-group {
 	position: relative;
-	margin-bottom: @halfgutter;
+	margin-bottom: @gutter;
 
 	/* Colorpicker */
 	&.colorpicker {
@@ -375,20 +453,16 @@ input.color-choice {
 		label {
 			color: @errorred;
 		}
-		input[type="text"] {
+		input,
+		textarea {
 			color: @errorred;
-			border-color: @errorred;
+			border-bottom: solid 2px @errorred !important;
+		}
+		.form-control {
+			box-shadow: none;
 		}
 		.help-block {
-			color: @white;
-			background: @errorred;
-			&:before {
-				.arrow-up;
-				top: -5px;
-				left: 30px;
-				border-width: 0 5px 5px 5px;
-				border-color: transparent transparent @errorred transparent;
-			}
+			color: @errorred;
 		}
 	}
 }

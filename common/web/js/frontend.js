@@ -84,20 +84,23 @@ $('.checkbox label input:checkbox').each(function(){
     }
 });
 
+// enable tooltips
+$("[data-toggle='tooltip']").tooltip({html:true});
+
 // toggle sidebar
 $(".primary-nav-toggle").click(function(){
     $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");
     localStorage.setItem('menu-collapse', $(".main-wrapper").hasClass("small-menu-toggled"))
-    $(".logo").toggleClass("icon-pullr-logo icon-pullr-logo2");
-    $(this).toggleClass("icon-arrow-left2 icon-arrow-right2");
+    $(".logo").toggleClass("mdib-pullr-logo mdib-pullr-logo2");
+    $(this).toggleClass("mdi-navigation-chevron-left mdi-navigation-chevron-right");
 });
 
 // reduce sidebar if the window shrinks too much
 $(window).resize(function() {  
     if($('.large-menu-toggled').width() < 900) {
         $('.main-wrapper').removeClass('large-menu-toggled').addClass('small-menu-toggled');
-        $('.logo').removeClass('icon-pullr-logo').addClass('icon-pullr-logo2');
-        $('.primary-nav-toggle .icon').removeClass('icon-arrowleft2').addClass('icon-arrowright3');
+        $('.logo').removeClass('mdib-pullr-logo').addClass('mdib-pullr-logo2');
+        $('.primary-nav-toggle .icon').removeClass('mdi-navigation-chevron-left').addClass('mdi-navigation-chevron-right');
     }
 });
 

@@ -6,7 +6,7 @@ use yii\helpers\Url;
 $sourceHref = Url::to('', true) . '/source';
 ?>
 <!-- Accordion slide four (Settings) -->
-<div class="tab-content">
+<div class="tab-content paddingBottom">
     <h4 class="panel-head">Settings</h4>
     <!-- General Settings (Campaigns) -->
     <div id="settings-general" class="tab-pane active">
@@ -21,13 +21,13 @@ $sourceHref = Url::to('', true) . '/source';
     <ul class="panel-nav">
         <li class="active">
             <a href="<?= Url::to() ?>#settings-general" data-toggle="tab">
-                <i class="icon-tools"></i>
+                <i class="mdi-action-settings"></i>
                 General
             </a>
         </li>
         <li>
             <a href="<?= Url::to() ?>#settings-source" data-toggle="tab">
-                <i class="icon-code"></i>
+                <i class="mdi-action-settings-ethernet"></i>
                 Source
             </a>
         </li>

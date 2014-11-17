@@ -27,7 +27,7 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
         return [
             'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'followerText', 'subscriberText', 'donationText', 'fontStyle', 'fontSize',
                 'fontColor', 'backgroundColor', 'animationDirection', 'animationDuration', 'animationDelay', 
-                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume']
+                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume', 'fontUppercase']
         ];
     }
 
@@ -44,6 +44,7 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
         $data['includeFollowers'] = $this->includeFollowers == 1;
         $data['includeSubscribers'] = $this->includeSubscribers == 1;
         $data['includeDonations'] = $this->includeDonations == 1;
+        $data['fontUppercase'] = $this->fontUppercase == 1;
 
         return $data;
     }

@@ -141,15 +141,24 @@ class IpnController extends FrontendController
             {
                 // For donation payment percent received
                 case 'web_accept':
-                    if (($data['payment_status'] === 'Completed') && (!Payment::txnAlreadyProcessed($data['txn_id'])))
+                    if (($data['payment_status'] === 'Completed') )
                     {
                         $payment = Payment::findOne(['payPalTransactionId' => $data['txn_id']]);
-                        if (isset($payment) && ($payment->status === Payment::STATUS_PENDING))
+                        
+                        if (isset($payment) && !empty($payment->relatedId) && isset($data['first_name']) && isset($data['last_name']))
                         {
-                            $payment->status = Payment::STATUS_APPROVED;
-                            $payment->paymentDate = time();
-                            $payment->save();
+                            $donation = \common\models\Donation::findOne(['id' => $payment->relatedId]);   
+                            if (isset($donation))
+                            {
+                                $donation->firstName = $data['first_name'];
+                                $donation->lastName = $data['last_name'];
+                                $donation->save();
+                                
+                                return true;
+                            }
                         }
+                        
+                        throw new \Exception();
                     }
                     break;
 

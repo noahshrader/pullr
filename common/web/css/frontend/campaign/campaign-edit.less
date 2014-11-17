@@ -8,50 +8,58 @@
 		background: @white;
 
 		.module-inner {
-			padding: @gutter @gutter+@gutter;
-			background: @offwhite;
-			margin: @gutter;
+			padding: 0;
 
-			&.last {
-				margin-bottom: @halfgutter+@gutter;
-			}
 			h5 {
+				font-size: 1.3em;
 				text-align: center;
 
 				i {
 					display: block;
 					top: 5px;
-					font-size: 26px;
+					color: @gray72;
+					font-size: 30px;
 					margin: 0 auto .6em;
 					width: 48px;
 					height: 48px;
 					line-height: 48px;
-					background: @white;
+					border: solid 2px @gray72;
 					border-radius: 50%;
 				}
 			}
 		}
 		.social {
-			margin-bottom: 1.6em;
 
 			.module-inner {
-				padding: @halfgutter @gutter;
-			}
-			.form-group {
-				text-align: center;
-			}
-			.bootstrap-switch {
-				display: inline-block !important;
-				text-align: center;
-				min-width: 120px;
+
+				h5 {
+					margin-bottom: @halfgutter;
+				}
+				.form-group {
+					text-align: center;
+				}
+				.bootstrap-switch {
+					display: inline-block !important;
+				}
+				.network {
+					padding: @gutter+10px @gutter @gutter;
+					background: @gray75;
+
+					.form-group {
+						margin: 0;
+					}
+				}
 			}
 		}
 	}
 	.tab-content {
 		position: relative;
 		margin: 0 auto @gutter;
-		max-width: 720px;
-
+		max-width: 800px;
+		
+		.tab-pane {
+			padding: @gutter+@gutter @gutter+@gutter+@gutter @gutter;
+		}
 		h3 {
 			text-align: center;
 			color: @gray60;
@@ -65,6 +73,10 @@
 	.col-sm-4,
 	.col-md-6 {
 		padding: 0;
+
+		.bootstrap-switch {
+			display: block;
+		}
 	}
 }
 
@@ -85,15 +97,32 @@
     #teamQuestion {
       display: block;
     }
+    p.team-notice {
+    	display: none;
+    }
 }
 
+/* Team */
+#campaign-edit-team {
+	.team {
+		text-align: center;
+		.bootstrap-switch {
+			display: inline-block !important;
+		}
+	}
+}
+#teamInvites,
+#teamQuestion {
+	display: none;
+}
 #campaignEdit[data-campaigntype="Charity Fundraiser"].team-enabled{
-  #campaign-edit-team-li {
-    display: inline-block;
-  }
-  #campaign-edit-team{
-    display: block;
-  }
+	#teamInvites,
+	#teamQuestion {
+		display: block;
+	}
+}
+p.team-notice {
+	text-align: center;
 }
 
 
@@ -101,27 +130,34 @@
 /* ------------------------------------------------- */
 #campaignEdit {
 
-	.highlight-wrap,
-	.field-campaign-twittername,
-	.field-campaign-youtubeurl,
-	.field-campaign-facebookurl {
+	.highlight-wrap {
 		position: relative;
-		padding: @gutter;
-		background: @gray75;
+		padding: @gutter+10px @gutter @gutter;
+		background: @offwhite;
+		.border-radius;
 		&:before {
 			.arrow-up;
 			top: -9px;
-			left: 50px;
-			border-color: transparent transparent @gray75 transparent;
+			left: 50%;
+			margin-left: -10px;
+			border-color: transparent transparent @offwhite transparent;
 		}
-
+		input[type="text"],
+		input.form-control {
+			border-bottom: solid 1px @gray72;
+			&:focus {
+				border-bottom: solid 2px @accent;
+			}
+		}
 		h5 {
-			display: block;
+			display: inline-block;
 			color: @gray60;
+			font-size: 1.1em;
 			text-align: center;
 			margin: 0 0 @halfgutter;
 			background: transparent;
 		}
+
 		.form-group:last-child {
 			margin: 0;
 		}
@@ -149,27 +185,29 @@
 		}
 	}
 	#collapseFour {
-		.field-campaign-twittername, .field-campaign-youtubeurl, .field-campaign-facebookurl{
+		.field-campaign-twittername,
+		.field-campaign-youtubeurl,
+		.field-campaign-facebookurl {
 			display: none;
 		}
 	}
 	#collapseFour.twitterEnable {
-		.field-campaign-twittername{
+		.field-campaign-twittername {
 			display: block;
 		}
 	}
 	#collapseFour.youtubeEnable {
-		.field-campaign-youtubeurl{
+		.field-campaign-youtubeurl {
 			display: block;
 		}
 	}
 	#collapseFour.facebookEnable {
-		.field-campaign-facebookurl{
+		.field-campaign-facebookurl {
 			display: block;
 		}
 	}
 	.campaign-type {
-		margin-bottom: @halfgutter;
+		margin-bottom: @gutter;
 	}
 	.theme-color-picker {
 		.col-md-6 {
@@ -182,11 +220,11 @@
 
 		ul {
 			li {
+				color: @gray30;
+				font-size: @inputtextsize;
+				font-weight: 500;
 				line-height: 40px;
-				border-bottom: 1px solid @gray72;
-				&:first-of-type {
-					margin-top: @halfgutter;
-				}
+				border-bottom: 1px dashed @gray72;
 
 				a {
 					display: inline-block;
@@ -205,11 +243,6 @@
 					}
 				}
 			}
-		}
-	}
-	&.team-enabled {
-		.team-list {
-			padding-bottom: @gutter;
 		}
 	}
 
@@ -234,14 +267,14 @@
 .select2-drop.charitydrop {
 	&.select2-drop-active {
 		margin-top: 20px;
-		background: @gray72;
+		background: @white;
 
 		&:before {
 			.arrow-up;
 			left: 50%;
 			top: -10px;
 			margin-left: -10px;
-			border-color: transparent transparent @gray72 transparent;
+			border-color: transparent transparent @white transparent;
 		}
 	}
 	&.select2-drop-active,
@@ -265,17 +298,17 @@
 	.select2-search {
 		input {
 			color: @gray40;
-			background: @white;
+			background: @gray75;
 		}
 	}
 	.select2-results {
 		.select2-no-results,
 		.select2-searching,
 		.select2-selection-limit {
-			color: @gray40;
+			color: @gray60;
 		}
 		.select2-highlighted {
-			background: @gray70;
+			background: @gray75;
 		}
 		.select2-result-label {
 			&:hover {

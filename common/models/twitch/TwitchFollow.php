@@ -19,29 +19,17 @@ class TwitchFollow extends TwitchFollowBase {
         self::updateFollowsBase($userId, $follows);
     }
 
-    public static function createNotification($userId, $follows) {
-        $follows = array_reverse($follows, true);
-        $ids = [];
-        foreach ($follows as $key => $follow){
-           $ids[] = $follow['user']['_id'];
-        }
-        
-        $currentIds = static::find()->where(['userId' => $userId])->select('twitchUserId')->column();
-        $insertIds = array_diff($ids, $currentIds);
-        
-        if( count($insertIds) > 0) {
-            foreach ($follows as $key => $follow) {
-                $id = $follow['user']['_id'];
-                if (in_array($id, $insertIds)){
-                    RecentActivityNotification::createNotification(
-                        $userId,
-                        ActivityMessage::messageNewTwitchFollower($follow['user']['name'])
-                    );
-                }            
+    public static function createNotification($userId, $follows) {        
+        $currentIds = static::find()->where(['userId' => $userId])->select('twitchUserId')->orderBy('createdAt desc')->column();        
+        foreach ($follows as $follow) {
+            $id = $follow['user']['_id'];
+            if ( ! in_array($id, $currentIds, true)) {                
+                RecentActivityNotification::createNotification(
+                    $userId,
+                    ActivityMessage::messageNewTwitchFollower($follow['user']['name'])
+                );
             }
-
-        }
-        
+        }        
     }
 
     public static function getFollowerCountByMonth($userId)
