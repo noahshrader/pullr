@@ -208,7 +208,26 @@ class Donation extends ActiveRecord
         
         return $groupResult;
     }
+    
+    /**
+     * get last donor for user campaigns
+     * @param array $campaigns
+     * @return array
+     */
+    public static function getLastDonorForCampaigns($campaigns) {
+        $donor = self::getDonationsForCampaigns($campaigns)
+                    ->orderBy('paymentDate DESC, id DESC')
+                    ->select('id, amount, nameFromForm')
+                    ->one();
 
+        return [
+            'id' => $donor->id,
+            'name' => $donor->displayNameForDonation(),
+            'amount' => $donor->amount
+        ];
+    }
+    
+    
     /**
      * @param $campaigns Campaign[]
      * @return Donation|null
