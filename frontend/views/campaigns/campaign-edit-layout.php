@@ -84,7 +84,7 @@ $user = \Yii::$app->user->identity;
                 </div>
                 <?endif;?>
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
-                    <label class="control-label">Campaign Image</label>
+                    <label class="control-label">Campaign Background Image</label>
                     <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page."></i>
                     <?=ImageInput::widget(['name' => 'backgroundImage']);?>
                     <? if ($campaign->hasErrors('backgroundImage')): ?>
