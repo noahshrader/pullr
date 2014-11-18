@@ -85,6 +85,10 @@
             regions.regionChanged(region);
         }
 
+        $scope.changeAlertTextAlignment = function(region){
+            console.log(region);
+        }
+
         $scope.toggleFooter = function(region) {
             
             if (region.widgetType == 'widget_alerts') {
@@ -117,42 +121,42 @@
             }
             timmer = $timeout(function() {
                         console.log(region);
-                        $scope.regionChanged(region);
+                        regions.regionChanged(region);
                     }, 300);
             
         }
 
         $scope.fontSizeChange = function(region) {
             simpleMarqueeHelper.recalculateMarquee();
-            $scope.regionChanged(region);
+            regions.regionChanged(region);
         }
         $scope.fontWeightChange = function(region) {
             simpleMarqueeHelper.recalculateMarquee();
-            $scope.regionChanged(region);
+            regions.regionChanged(region);
         }
         $scope.donationMessageChanged = function(region){
             simpleMarqueeHelper.recalculateMarquee();
-            $scope.regionChanged(region);   
+            regions.regionChanged(region);   
         }
 
         $scope.selectSound = function (preference, sound, soundType, region) {
             preference.sound = sound;
             preference.soundType = soundType;
-            $scope.regionChanged(region);
+            regions.regionChanged(region);
         };
         $scope.selectImage = function (preference, image, imageType, region) {
             preference.image = image;
             preference.imageType = imageType;
-            $scope.regionChanged(region);
+            regions.regionChanged(region);
         };
         $scope.selectCampaignAlertBackground = function(preference, image, region) {       
             preference.background = image;            
-            $scope.regionChanged(region);
+            regions.regionChanged(region);
         };
 
         $scope.campaignBackgroundChanged = function(background, region) {            
             region.widgetCampaignBar.background = background;
-            $scope.regionChanged(region);
+            regions.regionChanged(region);
         };
 
         $scope.removeCampaignAlertBackground = function(image, region, event) {
@@ -163,7 +167,7 @@
             console.log(image, region);
             region.widgetCampaignBar.alertsModule.background = '';
             alertMediaManager.removeCampaignAlertBackground(image);
-            $scope.regionChanged(region);
+            regions.regionChanged(region);
         }
         $scope.removeCampaignBackground = function(image, region, event) {
             if (event) {
@@ -172,8 +176,9 @@
             }
             region.widgetCampaignBar.background = '';                                 
             alertMediaManager.removeCampaignBackground(image);
-            $scope.regionChanged(region);
+            regions.regionChanged(region);
         }
+   
         $scope.onSetTimeCountDownFrom = function (newDate, oldDate) {
             var scope = this.$parent;
             /*we need to update value first to sending to server*/

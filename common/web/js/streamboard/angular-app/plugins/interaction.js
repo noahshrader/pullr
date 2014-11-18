@@ -11,7 +11,7 @@ angular.module('pullr.streamboard.interaction', ['pullr.streamboard.regions']).
                         var left = scope.draggableWidget[scope.draggableFields.widgetLeftAttribute];
                         var top = scope.draggableWidget[scope.draggableFields.widgetTopAttribute];
 
-                        if (left != 0 && top != 0) {                        
+                        if (left != 0 || top != 0) {                        
                             $element.css({
                                 left : scope.draggableWidget[scope.draggableFields.widgetLeftAttribute],
                                 top  : scope.draggableWidget[scope.draggableFields.widgetTopAttribute]
@@ -23,16 +23,15 @@ angular.module('pullr.streamboard.interaction', ['pullr.streamboard.regions']).
                         scroll: false,                                     
                         stop: function(event, ui) {
                             if (scope.hasOwnProperty('draggableWidget') 
-                                && scope.hasOwnProperty('draggableRegion')) {
+                                && scope.hasOwnProperty('draggableRegion')) {                                
                                 scope.draggableWidget[scope.draggableFields.widgetLeftAttribute] = ui.position.left;
                                 scope.draggableWidget[scope.draggableFields.widgetTopAttribute] = ui.position.top;
                                 regions.regionChanged(scope.draggableRegion);
                             }                                                                 
                         }
                     };
-                 
-                    var config = jQuery.extend({}, defaultConfig, scope.draggableConfig);
-
+                    
+                    var config = jQuery.extend({}, defaultConfig, scope.draggableConfig);                    
                     $element.draggable(config);
                 }
 

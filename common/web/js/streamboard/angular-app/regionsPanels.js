@@ -3,7 +3,7 @@
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
             'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee',
             'pullr.streamboard.twitch']).
-        controller('RegionsCtrl', function ($scope, stream, regions, $interval, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
+        controller('RegionsCtrl', function ($scope, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
             $scope.donationsService = donations;
@@ -18,6 +18,7 @@
             var $region2 = $(".regionsContainer .region:last-child");
             var animationEndEvent = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
             var isShowingNotification = false;
+      
             $scope.getCampaignBackgroundStyle = function(image) {                
                 var url =  'url(' + alertMediaManager.getCampaignBackgroundUrl(image) + ')';                
                 return url;
@@ -45,6 +46,7 @@
                 $(divOne).height(divOneHeight);            
             }
 
+            
             $scope.onRegionResizeCreate = function() {
                 $(".regionsContainer .region:last-child").resize(function() {                
                     recalculateRegionSize();          
@@ -61,6 +63,12 @@
                 region.widgetAlerts.imageHeight = ui.size.height;
                 region.widgetAlerts.positionX = ui.position.left;
                 region.widgetAlerts.positionY = ui.position.top;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeAlertMessage = function(region, event, ui) {
+                region.widgetAlerts.messageWidth = ui.size.width;
+                region.widgetAlerts.messageHeight = ui.size.height;
                 regions.regionChanged(region);
             }
 
@@ -171,11 +179,12 @@
                     toShow.isRunning = true;                  
                     toShow.message = notification.message;
 
-                    if (region.widgetType == 'widget_alerts') {                        
+                    if (region.widgetType == 'widget_alerts') {      
+
                         toShow.preference = region.widgetAlerts[notification.type + 'Preference'];   
                         toShow.notificationType = notification.type;
                         var preference = toShow.preference;                      
-
+                        
                         if (preference.animationDirection) {
                             toShow.animationDirectionArray = preference.animationDirection.split(',');                        
                             $('#region-' + region.regionNumber + ' .widget-alerts:eq(0)').off(animationEndEvent);
@@ -257,6 +266,7 @@
                     }, delay * 1000, 1);    
                 }                            
             }
+
         });
            
 

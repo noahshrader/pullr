@@ -35,7 +35,7 @@ class WidgetAlerts extends ActiveRecord {
         return [
             'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'animationDelaySeconds', 
             'positionX', 'positionY','imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY',
-            'imageWidth', 'imageHeight']
+            'imageWidth', 'imageHeight', 'messageHeight', 'messageWidth']
         ];
     }
 
@@ -43,7 +43,7 @@ class WidgetAlerts extends ActiveRecord {
         return ['userId', 'regionNumber', 'includeFollowers', 'includeSubscribers', 'includeDonations',
             'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference', 
             'positionX', 'positionY', 'imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY',
-            'imageWidth', 'imageHeight'
+            'imageWidth', 'imageHeight','messageHeight', 'messageWidth'
         ];
     }
 
