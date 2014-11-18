@@ -13,8 +13,17 @@
 
 <div class="slidepanel pane stats_panel">
 	<h4 class="panel-title">Stats</h4>
-	<!-- Top 3 Donors -->
+	<!-- Total Donation Amount -->
 	<div class="module first">
+		<div class="panel-group">
+			<h5>Total Donation Amount</h5>
+			<span class="total_amountRaised value highlight large">
+				${{donationsService.stats.total_amountRaised}}
+			</span>
+		</div>
+	</div>
+	<!-- Top 3 Donors -->
+	<div class="module">
 		<div class="panel-group">
 			<h5>Top 3 Donors</h5>
 			<ul class="top_donors">
@@ -22,15 +31,6 @@
 					{{donor.name ? donor.name : '<?= Donation::ANONYMOUS_NAME ?>'}} (${{donor.amount}})
 				</li>
 			</ul>
-		</div>
-	</div>
-	<!-- Total Donation Amount -->
-	<div class="module">
-		<div class="panel-group">
-			<h5>Total Donation Amount</h5>
-			<span class="total_amountRaised value highlight large">
-				${{donationsService.stats.total_amountRaised}}
-			</span>
 		</div>
 	</div>
 	<!-- Top Donation Amount -->
@@ -65,7 +65,7 @@
 	<!-- Last Follower -->
 	<div class="module">
 		<div class="panel-group">
-			<h5>Last Follower</h5>
+			<h5>Latest Follower</h5>
 			<span class="number_of_donors value">
 				{{donationsService.followers[0].display_name}}
 			</span>
@@ -74,7 +74,7 @@
 	<!-- Last Subscriber -->
 	<div class="module">
 		<div class="panel-group">
-			<h5>Last Subscriber</h5>
+			<h5>Latest Subscriber</h5>
 			<span class="number_of_donors value">
 				{{donationsService.subscribers[0].display_name}}
 			</span>

@@ -75,30 +75,28 @@ use frontend\models\streamboard\WidgetAlertsPreference;
     <div class="form-group">
         <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
     </div>
-    <div class="module-title">
-        <h5>Background Image</h5>
-    </div>
     <div class="tab-content sounds-graphics-content">        
         <div id="region-1-preference-donations-images" class="tab-pane active">
             <div child-scope="" ng-init="fileType = 'campaignBackground';uploadError = null;" class="ng-scope">
             <!--main variable - preference -->
                 <div class="tab-content sounds-graphics-content">
                     <div id="region-1-preference-donations-images-custom" class="tab-pane active">
-                        <div class="error">
-                            {{error}}
-                        </div>
-                        <div class="panel-group">
+                        <div class="form-group">
+                            <h5>Background Image</h5>
+                            <div class="error">
+                                {{error}}
+                            </div>
                             <div class="uploader" ng-file-drop="onFileUpload($files, fileType, this)" ng-file-drag-over-class="uploader-drag-over">
                                 <span>Drops Files Here</span>
                             </div>
                         </div>
-                        <div class="files-container">
-                            <div ng-repeat="file in (alertMediaManagerService.customCampaignBackgrounds)">
-                                <div class="panel-group media-item images cf" ng-class="{selected: file==widget.background}" ng-click="campaignBackgroundChanged(file, region)">
-                                    <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
-                                    <div class='mediaActions'>
-                                        <i class="icon-close" ng-click="removeCampaignBackground(file, region, $event)"></i>
-                                    </div>
+                    </div>
+                    <div class="files-container">
+                        <div ng-repeat="file in (alertMediaManagerService.customCampaignBackgrounds)">
+                            <div class="form-group media-item images cf" ng-class="{selected: file==widget.background}" ng-click="campaignBackgroundChanged(file, region)">
+                                <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
+                                <div class='mediaActions'>
+                                    <i class="mdi-navigation-close" ng-click="removeCampaignBackground(file, region, $event)"></i>
                                 </div>
                             </div>
                         </div>

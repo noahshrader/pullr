@@ -10,7 +10,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     <div class="module first">
        <div class="panel-group">
             <h5>Alert Text</h5>
-                <div class="hint--bottom" data-hint="Available tags:&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]&#10;[[FollowerName]]&#10;[[SubscriberName]]">
+                <div class="hint--bottom" data-hint="Custom Tags:&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]&#10;[[FollowerName]]&#10;[[SubscriberName]]">
                     <textarea ng-model="preference.alertText" ng-change="alertTextChange(region)"></textarea>
                 </div>
 
@@ -91,9 +91,17 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 <span ng-init="baseLink='region-'+region.regionNumber+'-preference-'+preference.preferenceType"></span>
 <div class="module">
     <ul class="library-tabs cf">
-        <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab"><i
-                    class="mdi-av-volume-up"></i>Sounds</a></li>
-        <li><a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab"><i class="mdi-image-panorama"></i>Graphics</a>
+        <li class="active">
+            <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">
+                <i class="mdi-av-volume-up"></i>
+                Sounds
+            </a>
+        </li>
+        <li>
+            <a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab">
+                <i class="mdi-image-panorama"></i>
+                Graphics
+            </a>
         </li>
     </ul>
     <div class="tab-content sounds-graphics-content">

@@ -9,6 +9,7 @@ use common\components\PullrUtils;
     <? if ($twitchUser != null): ?>
     <div class="twitchStats module">
         <div class="form-group">
+            <h5>Twitch</h5>
             <div>Followers: <span id="followers_number" class="amount accent"><?= $followersNumber;?></span>
             </div>
             <? if ( ! empty($twitchPartner)): ?>
