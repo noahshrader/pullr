@@ -49,6 +49,9 @@
 						margin: 0;
 					}
 				}
+				label {
+					text-align: center;
+				}
 			}
 		}
 	}
@@ -93,6 +96,8 @@
 .field-campaign-startdate {
 	padding-right: 2%;
 }
+
+/* Team */
 #campaignEdit[data-campaigntype="Charity Fundraiser"]{
     #teamQuestion {
       display: block;
@@ -101,8 +106,6 @@
     	display: none;
     }
 }
-
-/* Team */
 #campaign-edit-team {
 	.team {
 		text-align: center;
@@ -124,6 +127,29 @@
 p.team-notice {
 	text-align: center;
 }
+.team {
+	label {
+		text-align: center;
+	}
+}
+
+/* Hide Toggle Switch Checkboxes */
+.field-campaign-enabledonorcomments,
+.field-campaign-enabledonationprogressbar,
+.field-campaign-enablethankyoupage,
+.field-campaign-teamenable,
+.field-campaign-tiedtoparent,
+.field-campaign-twitterenable,
+.field-campaign-youtubeenable,
+.field-campaign-facebookenable {
+	.checkbox {
+		label {
+			&:before {
+				display: none;
+			}
+		}
+	}
+}
 
 
 /* General Campaign Edit */
@@ -144,10 +170,7 @@ p.team-notice {
 		}
 		input[type="text"],
 		input.form-control {
-			border-bottom: solid 1px @gray72;
-			&:focus {
-				border-bottom: solid 2px @accent;
-			}
+			border: solid 1px @gray70;
 		}
 		h5 {
 			display: inline-block;
