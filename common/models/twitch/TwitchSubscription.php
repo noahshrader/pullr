@@ -22,8 +22,8 @@ class TwitchSubscription extends TwitchFollowBase {
     }
 
     public static function createNotification($user, $subscriptions) {
-
-        $currentIds = static::find()->where(['userId' => $user->id])->select('twitchUserId')->orderBy('createdAt desc')->column();        
+        $subscriptions = array_reverse($subscriptions);
+        $currentIds = static::find()->where(['userId' => $user->id])->select('twitchUserId')->orderBy('createdAt asc')->column();        
         foreach ($subscriptions as $subscription) {
             $id = $subscription['user']['_id'];
             if ( ! in_array($id, $currentIds)) {                

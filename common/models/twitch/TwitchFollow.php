@@ -23,7 +23,8 @@ class TwitchFollow extends TwitchFollowBase {
     }
 
     public static function createNotification($user, $follows) {        
-        $currentIds = static::find()->where(['userId' => $user->id])->select('twitchUserId')->orderBy('createdAt desc')->column();        
+        $follows = array_reverse($follows);
+        $currentIds = static::find()->where(['userId' => $user->id])->select('twitchUserId')->orderBy('createdAt asc')->column();        
         foreach ($follows as $follow) {
             $id = $follow['user']['_id'];
             if ( ! in_array($id, $currentIds, true)) {                
