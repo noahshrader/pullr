@@ -62,4 +62,22 @@
 			</span>
 		</div>
 	</div>
+	<!-- Last Follower -->
+	<div class="module">
+		<div class="panel-group">
+			<h5>Last Follower</h5>
+			<span class="number_of_donors value">
+				{{donationsService.followers[0].display_name}}
+			</span>
+		</div>
+	</div>
+	<!-- Last Subscriber -->
+	<div class="module">
+		<div class="panel-group">
+			<h5>Last Subscriber</h5>
+			<span class="number_of_donors value">
+				{{donationsService.subscribers[0].display_name}}
+			</span>
+		</div>
+	</div>
 </div>
