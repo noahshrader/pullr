@@ -7,6 +7,7 @@ use yii\web\View;
 <div class="source-wrap" id='source-wrap-angular' ng-cloak style='display:none;'>    
     <div class="twitchStats module" ng-show="twitchUser">
         <div class="form-group">
+            <h5>Twitch</h5>
             <div>Followers: <span id="followers_number" class="amount accent">{{followersNumber}}</span>
             </div>
             <div ng-show="Pullr.user.userFields.twitchPartner">Subscribers:

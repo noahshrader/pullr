@@ -26,7 +26,7 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
             <? endfor ?>
             <li>
                 <a href="<?= Url::to() ?>#tagsTab" data-toggle="tab">
-                    <i class="icon mdi-action-label"></i>
+                    <i class="icon mdi-image-style"></i>
                 </a>
             </li>
             <li>

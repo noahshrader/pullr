@@ -25,16 +25,23 @@ ul.library-tabs {
 	}
 	&.library {
 		padding: @streamboardgutter 0;
+		border: 0;
 	}
 }
 
 /* Media List */
 .media-item {
+	position: relative;
 	color: @gray30;
 	font-size: @smalltext;
 	padding: @streamboardgutter @halfgutter;
 	cursor: pointer;
-
+	&.form-group {
+		border-top: solid 1px @maingray;
+	}
+	&.panel-group {
+		border-top: solid 1px @gray10;
+	}
 	&.selected {
 		color: @white;
 		background: @gray20;
@@ -51,7 +58,7 @@ ul.library-tabs {
 		float: right;
 
 		i {
-			font-size: 1.2em;
+			font-size: 1em;
 
 			&:hover {
 				color: @white;
@@ -64,6 +71,7 @@ ul.library-tabs {
 .uploader {
 	text-align: center;
 	padding: @gutter @halfgutter;
+	margin: @streamboardgutter 0;
 	border: dashed 1px @gray20;
 
 	&.uploader-drag-over {

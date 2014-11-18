@@ -15,12 +15,14 @@ $typesList = [
         <a class="capture-link disabled mdi-action-settings-ethernet"></a>
     </h4>
     <div class="settings-wrap">
-        <div class="module form-group" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">
-            <h5>Widget</h5>
-            <select ui-select2="{minimumResultsForSearch: -1}" ng-model="region.widgetType" ng-change="regionChanged(region)" data-placeholder="Select one..." class="widget-select">
-                <option value=""></option>
-                <option ng-repeat="type in WIDGET_TYPES" value="{{type.value}}">{{type.name}}</option>
-            </select>
+        <div class="module" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">
+            <div class="form-group">
+                <h5>Widget</h5>
+                <select ui-select2="{minimumResultsForSearch: -1}" ng-model="region.widgetType" ng-change="regionChanged(region)" data-placeholder="Select one..." class="widget-select">
+                    <option value=""></option>
+                    <option ng-repeat="type in WIDGET_TYPES" value="{{type.value}}">{{type.name}}</option>
+                </select>
+            </div>
         </div>
         <div class="widgetContainer">
             <div ng-if="region.widgetType == '<?= StreamboardRegion::WIDGET_ALERTS ?>'" ng-init="widget=region.widgetAlerts; initWidget();toggleFooter(region)">

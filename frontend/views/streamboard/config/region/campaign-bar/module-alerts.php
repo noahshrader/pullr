@@ -13,7 +13,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 Followers
             </label>
         </div>
-        <div ng-show="module.includeFollowers" class="hint--bottom" data-hint="You are available following variables&#10;[[CampaignName]]&#10;[[FollowerName]]">
+        <div ng-show="module.includeFollowers" class="hint--bottom" data-hint="Custom Tags:&#10;[[FollowerName]]&#10;[[CampaignName]]">
             <textarea ng-model="module.followerText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
         </div>
 
@@ -23,7 +23,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 Subscribers
             </label>
         </div>
-        <div ng-show="module.includeSubscribers" class="hint--top" data-hint="You are available following variables&#10;[[CampaignName]]&#10;[[SubscriberName]]">
+        <div ng-show="module.includeSubscribers" class="hint--top" data-hint="Custom Tags:&#10;[[SubscriberName]]&#10;[[CampaignName]]">
             <textarea ng-model="module.subscriberText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
         </div>
         <div class="checkbox">
@@ -32,7 +32,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 Donations
             </label>
         </div>
-        <div ng-show="module.includeDonations" class="hint--top" data-hint="You are available following variables&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]">
+        <div ng-show="module.includeDonations" class="hint--top" data-hint="Custom Tags:&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]">
             <textarea ng-model="module.donationText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
         </div>
     </div>
@@ -98,13 +98,13 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     <ul class="library-tabs cf">   
         <li class="active">
             <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">
-                <i class="icon-volume-more"></i>
+                <i class="mdi-av-volume-up"></i>
                 Sounds
             </a>
         </li>     
         <li>
             <a href='<?= Url::to() ?>#{{baseLink}}-images' data-toggle="tab">
-                <i class="icon-picture"></i>
+                <i class="mdi-image-panorama"></i>
                 Background
             </a>
         </li>
@@ -138,7 +138,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                                 <div class="panel-group media-item images cf" ng-class="{selected: file==module.background}" ng-click="selectCampaignAlertBackground(module, file, region)">
                                     <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
                                     <div class='mediaActions'>
-                                        <i class="icon icon-close" ng-click="removeCampaignBackground(file, region, $event)"></i>
+                                        <i class="mdi-navigation-close" ng-click="removeCampaignBackground(file, region, $event)"></i>
                                     </div>
                                 </div>
                             </div>

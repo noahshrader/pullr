@@ -27,7 +27,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 
     </div>
     <div class="form-group">
-        <div class='checkbox'>
+        <div class="checkbox">
             <label ng-class="{on:widget.fontUppercase}">
                 <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
                 Uppercase
@@ -36,17 +36,19 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
     </div>
 </div>
 <div class="module scrolling">
-    <div class="form-group checkbox cf">
-        <label ng-class="{on:widget.scrolling}">
-            <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
-            Scrolling
-        </label>
-        <div ng-show="widget.scrolling" class="scroll-options">
-            <h5>Speed</h5>
-            <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.scrollSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"
-                    ng-options="speed.value as speed.name for speed in WIDGET_SPEEDS" data-placeholder="Select one...">
-                <option value=""></option>
-            </select>
+    <div class="form-group">
+        <div class="checkbox">
+            <label ng-class="{on:widget.scrolling}">
+                <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
+                Scrolling
+            </label>
+            <div ng-show="widget.scrolling" class="scroll-options">
+                <h5>Speed</h5>
+                <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.scrollSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"
+                        ng-options="speed.value as speed.name for speed in WIDGET_SPEEDS" data-placeholder="Select one...">
+                    <option value=""></option>
+                </select>
+            </div>
         </div>
     </div>
 </div>

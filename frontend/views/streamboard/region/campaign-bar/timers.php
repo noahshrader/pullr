@@ -29,9 +29,6 @@ use frontend\models\streamboard\WidgetCampaignBarTimer;
             </div>
             <div ng-if="!module.countUpStatus">
                 <div count-up-timer>
-                    <!--really that html generated inside of 'count-up-timer'. So code below is unused.-->
-                    <!--                    <timer autostart="false" countdown="time">-->
-                    <!--                    </timer>-->
                 </div>
             </div>
         </div>
