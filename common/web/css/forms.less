@@ -328,74 +328,77 @@ input.color-choice {
         position: absolute;
         left: -9999px;
 	}
-}
 
-/* Switch Buttons */
-.bootstrap-switch {
-	display: block !important;
-	padding: 0;
-	margin-top: .4em;
-	max-width: 60px !important;
-	min-width: 60px !important;
-	width: 60px;
-	border: 0 !important;
+	/* Switches */
+	label:before {
+		display: none;
+	}
+	.bootstrap-switch {
+		display: block !important;
+		padding: 0;
+		margin-top: .4em;
+		max-width: 60px !important;
+		min-width: 60px !important;
+		width: 60px;
+		border: 0 !important;
 
-	/* Switch On */
-	&.bootstrap-switch-on {
+		/* Switch On */
+		&.bootstrap-switch-on {
+			.bootstrap-switch-container {
+
+				.bootstrap-switch-label {
+					left: 40px;
+				}
+				.bootstrap-switch-handle-on,
+				.bootstrap-switch-handle-off {
+					background: @accent !important;
+				}
+				.bootstrap-switch-handle-on {
+					width: 100% !important;
+				}
+				.bootstrap-switch-handle-off {
+					width: 0% !important;
+				}
+			}
+		}
 		.bootstrap-switch-container {
+			width: 60px !important;
+			margin: 0 !important;
 
 			.bootstrap-switch-label {
-				left: 40px;
+				position: absolute;
+				left: 0;
+				margin-top: 3px !important;
+				height: 20px !important;
+				width: 20px !important;
+				background: @offwhite;
+				.round-radius !important;
+				.box-shadow;
+				.slowtrans;
 			}
 			.bootstrap-switch-handle-on,
 			.bootstrap-switch-handle-off {
-				background: @accent !important;
+				float: left;
+				line-height: 8px !important;
+				text-indent: -9999px;
+				padding: 0 !important;
+				margin: 10px 0;
+				width: 50%;
+				background: @gray72 !important;
+				.slowtrans;
 			}
 			.bootstrap-switch-handle-on {
-				width: 100% !important;
-			}
-			.bootstrap-switch-handle-off {
 				width: 0% !important;
 			}
-		}
-	}
-	.bootstrap-switch-container {
-		width: 60px !important;
-		margin: 0 !important;
-
-		.bootstrap-switch-label {
-			position: absolute;
-			left: 0;
-			margin-top: 3px !important;
-			height: 20px !important;
-			width: 20px !important;
-			background: @offwhite;
-			.round-radius !important;
-			.box-shadow;
-			.slowtrans;
-		}
-		.bootstrap-switch-handle-on,
-		.bootstrap-switch-handle-off {
-			float: left;
-			line-height: 8px !important;
-			text-indent: -9999px;
-			padding: 0 !important;
-			margin: 10px 0;
-			width: 50%;
-			background: @gray72 !important;
-			.slowtrans;
-		}
-		.bootstrap-switch-handle-on {
-			width: 0% !important;
-		}
-		.bootstrap-switch-handle-off {
-			width: 100% !important;
-		}
-		input[type="checkbox"] {
-			width: 100%;
-			height: 100%;
-			z-index: 1000;
-			cursor: pointer;
+			.bootstrap-switch-handle-off {
+				width: 100% !important;
+			}
+			input[type="checkbox"] {
+				width: 100%;
+				height: 100%;
+				z-index: 1000;
+				cursor: pointer;
+			}
 		}
 	}
 }
