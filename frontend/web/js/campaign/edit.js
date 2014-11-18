@@ -88,10 +88,22 @@ function addNewCampaignInvite() {
     var $el = $('#addCampaignInvite');
     var email = $el.val();
     if (email) {
-        $.post('app/campaigns/campaigninvite', {id: id, email: email}, function(data) {
-            log(data);
-            $el.val('');
-            updateCampaignInvites();
+        $.post('app/campaigns/campaigninvite', { id: id, email: email }, function (data)
+        {
+            var wrap = $(".combined-form-wrap");
+            var wrapHelp = $(".combined-form-wrap  .help-block")
+            if (data == 0)
+            {
+                wrap.addClass("has-error");
+                wrapHelp.removeClass("hide");
+            }
+            else
+            {
+                wrap.removeClass("has-error");
+                wrapHelp.addClass("hide");
+                $el.val('');
+                updateCampaignInvites();
+            }
         });
     }
 }
