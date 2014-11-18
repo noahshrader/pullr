@@ -14,11 +14,14 @@ class TwitchSubscription extends TwitchFollowBase {
     }
 
     public static function updateSubscriptions($user, $subscriptions) {
-        //create notification on dashboard
-        if ($user->notification->newSubscriber) {
-            self::createNotification($user, $subscriptions);    
-        }        
-        self::updateFollowsBase($user, $subscriptions);        
+        if (is_array($subscriptions) && count($subscriptions) > 0) {
+            //create notification on dashboard
+            if ($user->notification->newSubscriber) {
+                self::createNotification($user, $subscriptions);    
+            }        
+            self::updateFollowsBase($user, $subscriptions);            
+        }    
+        
     }
 
     public static function createNotification($user, $subscriptions) {
