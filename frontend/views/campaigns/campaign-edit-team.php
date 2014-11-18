@@ -9,10 +9,10 @@ use yii\widgets\MaskedInput;
 
 $parentCampaigns = \Yii::$app->user->identity
     ->getCampaigns()
-    ->where('id <> :campaignId')
-    ->addParams([':campaignId' => $campaign->id])
+    ->andWhere('id <> :campaignId')
     ->andWhere(['type' => Campaign::TYPE_CHARITY_FUNDRAISER])
     ->andWhere(['tiedToParent' => 0])
+    ->addParams([':campaignId' => $campaign->id])
     ->all();
 
 $isTied = $campaign->tiedToParent && (sizeof($parentCampaigns) > 0);
