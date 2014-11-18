@@ -1,7 +1,8 @@
+<? use common\components\PullrUtils; ?>
 <? if ( count($groupDonors) > 0 || count($donors) > 0  || ($showSubscriber && count($subscribers) > 0 ) || ($showFollower && count($followers) > 0)): ?>
 	<? if ( ! $groupUser): ?>
 		<? foreach($donors as $index => $donor): ?>                    
-		     <?=$donor['name']; ?> ($<?= number_format($donor['amount']);?>)<? if ($index < count($donors) - 1 || ($showSubscriber && count($subscribers) > 0) || ($showFollower && count($followers) > 0)):?>,<? endif; ?>
+		     <?=$donor['name']; ?> ($<?= PullrUtils::formatNumber($donor['amount']);?>)<? if ($index < count($donors) - 1 || ($showSubscriber && count($subscribers) > 0) || ($showFollower && count($followers) > 0)):?>,<? endif; ?>
 		<? endforeach; ?>
 
 		<? if ($showSubscriber): ?>
@@ -20,7 +21,7 @@
 		<? foreach ($groupDonors as $amount => $donors): ?>
 			<? foreach($donors as $index => $donor): ?>                    
 			    <?=$donor['name']; ?> <? if ($index < count($donors) - 1) :?>,<? endif; ?>
-			<? endforeach; ?> ($<?= number_format($donor['amount']);?>)
+			<? endforeach; ?> ($<?= PullrUtils::formatNumber($donor['amount']);?>)
 			<? 
 			$groupIndex++;
 			if ($groupIndex < count($groupDonors)) echo ',';
