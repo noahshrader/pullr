@@ -55,7 +55,8 @@ class DashboardController extends FrontendController
             $invite->status = CampaignInvite::STATUS_DELETED;
             $invite->save();
         }
-        $this->redirect('app');
+
+        return $this->goHome();
     }
     
     public function actionInviteapprove($id)
@@ -66,7 +67,8 @@ class DashboardController extends FrontendController
         if ($invite){
             $invite->approve();
         }
-        $this->redirect('app');
+        
+        return $this->goHome();
     }
 
     private function calculateDashboardStats($period = 'overall')
