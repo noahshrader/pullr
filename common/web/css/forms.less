@@ -147,20 +147,19 @@ input.color-choice {
 .select2-container {
 	position: relative;
 	display: block;
-	margin-top: .4em;
-	.border-radius;
+	border-bottom: solid 1px @gray72;
 	overflow: hidden;
 	&:after {
 		position: absolute;
 		.arrow-down;
 		top: 50%;
-		right: @halfgutter;
+		right: 0;
 		margin-top: -2px;
 		border-width: 6px 4px 0 4px;
 		border-color: @gray60 transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
-		background: @gray75;
+		background: transparent;
 	}
 
 	.select2-choices .select2-search-field input,
@@ -168,25 +167,23 @@ input.color-choice {
 	.select2-choices {
 		color: @gray30;
 		font-family: @mainfont;
-		font-size: @basefontsize;
-		font-weight: 400;
-		background: @gray75;
+		font-size: @inputtextsize;
+		font-weight: 500;
 		border: 0;
 		box-shadow: none !important;
 		&:focus {
 			outline: 0 !important;
 		}
 		&:hover {
-			background: @gray72;
+			background: transparent;
 		}
 	}
 	.select2-choice {
-		height: 45px;
-		.border-radius !important;
+		height: 35px;
 
 		> span:first-child,
 		.select2-search-field input {
-			padding: 11px @halfgutter;
+			padding: 6px 0;
 		}
 		.select2-arrow, .select2-choice div {
 			border: 0;
