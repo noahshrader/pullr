@@ -15,7 +15,7 @@ select.form-control,
 	font-size: @inputtextsize;
 	font-weight: 500;
 	outline: 0;
-	padding: .5em 1em;
+	padding: .8em 1em;
 	min-height: 35px;
 	width: 100%;
 	background: transparent;
@@ -39,6 +39,7 @@ select {
 textarea,
 textarea.form-control {
 	max-width: 100%;
+	min-height: 100px;
 	resize: none;
 }
 label,
@@ -323,7 +324,7 @@ input.color-choice {
 	span {
 		font-size: @fineprint !important;
 		font-weight: 500;
-		line-height: 20px !important;
+		line-height: 25px !important;
 		padding: 0 !important;
 	}
 	label {
@@ -345,9 +346,9 @@ input.color-choice {
 		color: @accent;
 		font-size: 1.4em;
 		text-align: center;
-		line-height: 40px;
+		line-height: 50px;
 		margin: 0;
-		width: 40px;
+		width: 50px;
 		&:hover {
 			color: @accenthover;
 		}
@@ -370,15 +371,21 @@ input.color-choice {
 }
 
 /* Bootstrap Overrides */
+.form-control {
+	height: auto;
+}
 .form-group {
 	position: relative;
-	margin-bottom: 20px;
+	margin-bottom: 18px;
 
 	/* Colorpicker */
 	&.colorpicker {
 		margin: 0;
 	}
-
+	.form-group {
+		padding: 0;
+		margin: 0;
+	}
 	/* Errors */
 	&.has-error {
 		label {
@@ -387,7 +394,7 @@ input.color-choice {
 		input,
 		textarea {
 			color: @errorred;
-			border-bottom: solid 2px @errorred !important;
+			border: solid 2px @errorred !important;
 		}
 		.form-control {
 			box-shadow: none;
@@ -396,17 +403,4 @@ input.color-choice {
 			color: @errorred;
 		}
 	}
-}
-.form-group {
-	.form-group {
-		padding: 0;
-		margin: 0;
-	}
-}
-.form-control {
-	height: auto;
-}
-
-#campaign-invites .form-group{
-    margin-bottom: 30px;
 }

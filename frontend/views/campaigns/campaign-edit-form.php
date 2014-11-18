@@ -9,13 +9,15 @@
             <div class="col-md-6">
                 <!-- Donor Comments -->
                 <div class="form-group">
-                    <?= $form->field($campaign, 'enableDonorComments', ['autoPlaceholder' => false])->label('Donor Comments <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow donor comments on your donation form."></i>')->checkbox([], false); ?>
+                    <label>Donor Comments <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow donor comments on your donation form."></i></label>
+                    <?= $form->field($campaign, 'enableDonorComments', ['autoPlaceholder' => false])->checkbox([], false); ?>
                 </div>
             </div>
             <div class="col-md-6">
                 <!-- Enable\disable donation form progress bar -->
                 <div class="form-group">
-                    <?= $form->field($campaign, 'enableDonationProgressBar', ['autoPlaceholder' => false])->label('Progress Bar <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to hide the progress bar on your donation form."></i>')->checkbox([], false); ?>
+                    <label>Progress Bar <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to hide the progress bar on your donation form."></i></label>
+                    <?= $form->field($campaign, 'enableDonationProgressBar', ['autoPlaceholder' => false])->checkbox([], false); ?>
                 </div>
             </div>
         </div>
@@ -35,7 +37,8 @@
         <h5><i class="icon mdi-action-done-all"></i>Thank You Page</h5>
         <!-- Enable Thank You Page -->
         <div class="form-group">
-            <?= $form->field($campaign, 'enableThankYouPage', ['autoPlaceholder' => false])->label('Thank You Page <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow users from redirecting to your thank you page after donating."></i>')->checkbox([], false); ?>
+            <label>Thank You Page <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow users from redirecting to your thank you page after donating."></i></label>
+            <?= $form->field($campaign, 'enableThankYouPage', ['autoPlaceholder' => false])->checkbox([], false); ?>
         </div>
         <!-- Custom Thank You HTML -->
         <div class="form-group">
