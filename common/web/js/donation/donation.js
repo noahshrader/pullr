@@ -90,7 +90,7 @@ function amountChangedEvent() {
         btnDonate.text('Continue');
     }
     else{
-        if(btnDonate.data('dtext').length > 0)
+        if((typeof btnDonate.data('dtext') != 'undefined') && (btnDonate.data('dtext').length > 0))
         {
             btnDonate.text(btnDonate.data('dtext') + ' $' + number_format(value));
         }
