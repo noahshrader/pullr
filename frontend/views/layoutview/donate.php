@@ -70,7 +70,8 @@ use yii\widgets\MaskedInput;
                                             'autoUnmask' => true,
                                             'rightAlign' => false,
                                             'allowMinus' => false,
-                                            'allowPlus' => false
+                                            'allowPlus' => false,
+                                            'removeMaskOnSubmit' => true
                                         ],
                                     ]) ?>
                                 </div>
@@ -91,7 +92,8 @@ use yii\widgets\MaskedInput;
                             'autoUnmask' => true,
                             'rightAlign' => false,
                             'allowMinus' => false,
-                            'allowPlus' => false
+                            'allowPlus' => false,
+                            'removeMaskOnSubmit' => true
                         ],
                     ]) ?>
                     <span class="preamt">$</span>

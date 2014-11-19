@@ -107,7 +107,8 @@ $firstGiving = $campaign->getFirstGiving();
                     'autoUnmask' => true,
                     'rightAlign' => false,
                     'allowMinus' => false,
-                    'allowPlus' => false
+                    'allowPlus' => false,
+                    'removeMaskOnSubmit' => true
                 ],
             ]) ?>
         </div>
