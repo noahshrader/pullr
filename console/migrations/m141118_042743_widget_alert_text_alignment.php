@@ -15,8 +15,8 @@ class m141118_042743_widget_alert_text_alignment extends Migration
 
     public function down()
     {
-        echo "m141118_042743_widget_alert_text_alignment cannot be reverted.\n";
-
-        return false;
+        $this->dropColumn(WidgetAlerts::tableName(), 'messageWidth');
+        $this->dropColumn(WidgetAlerts::tableName(), 'messageHeight');
+        $this->dropColumn(WidgetAlertsPreference::tableName(), 'textAlignment');   
     }
 }
