@@ -222,7 +222,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                             'autoUnmask' => true,
                             'rightAlign' => false,
                             'allowMinus' => false,
-                            'allowPlus' => false
+                            'allowPlus' => false,
+                            'removeMaskOnSubmit' => true
                         ],
                     ]) ?>
                 </div>
