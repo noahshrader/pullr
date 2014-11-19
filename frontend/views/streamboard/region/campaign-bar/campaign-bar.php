@@ -6,7 +6,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
 <div id="campaign-bar" class="resize drag" ng-show="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'"
      region="region"
      background='{{region.widgetCampaignBar.background}}'
-     ng-style="{'color': region.widgetCampaignBar.fontColor, 'font-size': region.widgetCampaignBar.fontSize, 'font-family': region.widgetCampaignBar.fontStyle, 'font-weight': region.toShow.alert.preference.fontWeight, 'background-color': region.widgetCampaignBar.backgroundColor,'background-image': getCampaignBackgroundStyle(region.widgetCampaignBar.background)}"
+     ng-style="{'color': region.widgetCampaignBar.fontColor, 'font-size': region.widgetCampaignBar.fontSize, 'font-family': region.widgetCampaignBar.fontStyle, 'font-weight': region.widgetCampaignBar.fontWeight, 'background-color': region.widgetCampaignBar.backgroundColor,'background-image': getCampaignBackgroundStyle(region.widgetCampaignBar.background)}"
      interaction
      draggable
      draggable-widget="region.widgetCampaignBar" 
@@ -38,7 +38,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
          ng-style='{"background-image":getCampaignBackgroundStyle(region.toShow.alert.background),"background-size":"cover","text-align":"center","height":"100%","width":"100%"}'         
          >
 
-        <div ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'font-weight': region.toShow.alert.preference.fontWeight, 'background-color': alertsModule.backgroundColor}" class="bar-alert-wrap">
+        <div ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'font-weight': alertsModule.fontWeight, 'background-color': alertsModule.backgroundColor}" class="bar-alert-wrap">
                 <span draggable-widget="region.widgetCampaignBar.alertsModule" 
                  interaction
                  draggable-region="region" 
