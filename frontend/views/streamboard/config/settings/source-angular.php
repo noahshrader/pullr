@@ -85,15 +85,10 @@ use yii\web\View;
             <div>Last Follower: <span id='last_follower' ng-show="donationsService.followers.length > 0">{{donationsService.followers[0].display_name}}</span></div>
             <div>Last Subscriber: <span id='last_subscriber' ng-show="donationsService.subscribers.length > 0">{{donationsService.subscribers[0].display_name}}</span></div>
             <div>Last Donor: <span id='last_donor'>{{stats.last_donor.name}}</span></div>
-            <div>Last Donor/Donation: <span id='last_donor_donation'>{{stats.last_donor.name}} (${{stats.last_donor.amount}})</span></div>
+            <div>Last Donor/Amount: <span id='last_donor_donation'>{{stats.last_donor.name}} (${{stats.last_donor.amount}})</span></div>
             <div>Largest Donation: <span id='largest_donation'>${{stats.top_donation.amount}} ({{stats.top_donation.displayName}})</span></div>
-            <div>Top Donor: <span id='top_donor'>{{stats.top_donors[0].name}} (${{stats.top_donors[0].amount}})</span></div>
-        </div>
-    </div>
-    <div class="tags module">
-        <div class="form-group">
-            <h5>New Tags</h5>
             <div>Top Donor: <span>{{stats.top_donors[0].name}}</span></div>
+            <div>Top Donor/Amount: <span id='top_donor'>{{stats.top_donors[0].name}} (${{stats.top_donors[0].amount}})</span></div>
             <div>Top 3 Donors:<br>
                 <span ng-repeat="donor in stats.top_donors">{{donor.name}} (${{number_format(donor.amount)}})<br></span>
             </div>
