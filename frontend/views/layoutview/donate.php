@@ -77,7 +77,7 @@ use yii\widgets\MaskedInput;
                         </div>
                 </div>
                 <? else: ?>
-                <div class="field donation-amount">
+                <div class="field form-group donation-amount">
                     <?= MaskedInput::widget([
                         'name' => 'other-amount',
                         'value' => 1,
