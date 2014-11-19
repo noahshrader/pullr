@@ -37,19 +37,19 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                     ng-change="regionChanged(region)"></slider>                     
         </div>
         <div class="panel-group">
+            <h5>Text Alignment</h5>
+            <div class="btn-group align">
+                <label ng-model="preference.textAlignment" btn-radio="'left'" ng-click="regionChanged(region)"><i class="mdi-editor-format-align-left"></i></label>
+                <label ng-model="preference.textAlignment" btn-radio="'center'" ng-click="regionChanged(region)"><i class="mdi-editor-format-align-center"></i></label>
+                <label ng-model="preference.textAlignment" btn-radio="'right'" ng-click="regionChanged(region)"><i class="mdi-editor-format-align-right"></i></label>
+            </div>
+        </div>
+        <div class="panel-group">
             <div class='checkbox'>
                 <label ng-class="{on:preference.fontUppercase}">
                     <input type="checkbox" ng-model="preference.fontUppercase" ng-change="regionChanged(region)">
                     Uppercase
                 </label>
-            </div>
-        </div>
-        <div class='panel-group'>
-            <h5>Text alignment</h5>
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="preference.textAlignment" btn-radio="'left'" ng-click="changeTextAlignment(preference, region)">Left</label>
-                <label class="btn btn-primary" ng-model="preference.textAlignment" btn-radio="'center'" ng-click="changeTextAlignment(preference, region)">Center</label>
-                <label class="btn btn-primary" ng-model="preference.textAlignment" btn-radio="'right'" ng-click="changeTextAlignment(preference, region)">Right</label>
             </div>
         </div>
     </div>

@@ -100,17 +100,15 @@ use yii\widgets\MaskedInput;
                 <? endif;?>
             <span class="hide"><?= $form->field($donation, 'amount',['labelOptions' => ['class' => 'hidden']])->hiddenInput() ?></span>
             <div class="form-group float">
-                <label>Name</label>
                 <input type="text" id="donation-name" name="Donation[nameFromForm]" value='<?= htmlspecialchars($donation->nameFromForm) ?>' placeholder="Name">
             </div>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
             <div class="form-group float">
-                <?= $form->field($donation, 'email', ['inputOptions' => ['placeholder' => 'Email']])->label('Email'); ?>
+                <?= $form->field($donation, 'email', ['inputOptions' => ['placeholder' => 'Email']])->label(''); ?>
             </div>
             <? endif ?>
             <? if ($campaign->enableDonorComments): ?>
             <div class="form-group comments float">
-                <label>Comments</label>
                 <textarea type="text" id='donation-comments' name="Donation[comments]" placeholder="Comments"><?=htmlspecialchars($donation->comments) ?></textarea>
                 <span class="counter"></span>
             </div>

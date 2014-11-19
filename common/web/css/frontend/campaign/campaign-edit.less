@@ -19,7 +19,7 @@
 					top: 5px;
 					color: @gray72;
 					font-size: 30px;
-					margin: 0 auto .6em;
+					margin: @gutter auto @halfgutter;
 					width: 48px;
 					height: 48px;
 					line-height: 48px;
@@ -38,9 +38,6 @@
 				.form-group {
 					text-align: center;
 				}
-				.bootstrap-switch {
-					display: inline-block !important;
-				}
 				.network {
 					padding: @gutter+10px @gutter @gutter;
 					background: @gray75;
@@ -48,6 +45,9 @@
 					.form-group {
 						margin: 0;
 					}
+				}
+				label {
+					text-align: center;
 				}
 			}
 		}
@@ -58,7 +58,7 @@
 		max-width: 800px;
 		
 		.tab-pane {
-			padding: @gutter+@gutter @gutter+@gutter+@gutter @gutter;
+			padding: @gutter @gutter+@gutter+@gutter @gutter+@halfgutter;
 		}
 		h3 {
 			text-align: center;
@@ -73,10 +73,6 @@
 	.col-sm-4,
 	.col-md-6 {
 		padding: 0;
-
-		.bootstrap-switch {
-			display: block;
-		}
 	}
 }
 
@@ -93,6 +89,8 @@
 .field-campaign-startdate {
 	padding-right: 2%;
 }
+
+/* Team */
 #campaignEdit[data-campaigntype="Charity Fundraiser"]{
     #teamQuestion {
       display: block;
@@ -101,14 +99,9 @@
     	display: none;
     }
 }
-
-/* Team */
 #campaign-edit-team {
 	.team {
 		text-align: center;
-		.bootstrap-switch {
-			display: inline-block !important;
-		}
 	}
 }
 #teamInvites,
@@ -124,6 +117,48 @@
 p.team-notice {
 	text-align: center;
 }
+.team {
+	label {
+		text-align: center;
+	}
+}
+
+/* Hide Toggle Switch Checkboxes */
+.field-campaign-enabledonorcomments,
+.field-campaign-enabledonationprogressbar,
+.field-campaign-enablethankyoupage,
+.field-campaign-teamenable,
+.field-campaign-tiedtoparent,
+.field-campaign-twitterenable,
+.field-campaign-youtubeenable,
+.field-campaign-facebookenable {
+	.checkbox {
+		> label {
+			height: 35px !important;
+			overflow: hidden;
+		}
+		label {
+
+			&:before {
+				display: none;
+			}
+			.bootstrap-switch {
+				display: block !important;
+				margin: 0 auto;
+			}
+		}
+	}
+}
+.field-campaign-enabledonorcomments,
+.field-campaign-enabledonationprogressbar {
+	.checkbox {
+		label {
+			.bootstrap-switch {
+				margin: 0;
+			}
+		}
+	}
+}
 
 
 /* General Campaign Edit */
@@ -132,7 +167,8 @@ p.team-notice {
 
 	.highlight-wrap {
 		position: relative;
-		padding: @gutter+10px @gutter @gutter;
+		padding: @gutter;
+		margin-bottom: @halfgutter;
 		background: @offwhite;
 		.border-radius;
 		&:before {
@@ -144,10 +180,7 @@ p.team-notice {
 		}
 		input[type="text"],
 		input.form-control {
-			border-bottom: solid 1px @gray72;
-			&:focus {
-				border-bottom: solid 2px @accent;
-			}
+			border: solid 1px @gray70;
 		}
 		h5 {
 			display: inline-block;

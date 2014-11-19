@@ -90,6 +90,15 @@ use yii\web\View;
             <div>Top Donor: <span id='top_donor'>{{stats.top_donors[0].name}} (${{stats.top_donors[0].amount}})</span></div>
         </div>
     </div>
+    <div class="tags module">
+        <div class="form-group">
+            <h5>New Tags</h5>
+            <div>Top Donor: <span>{{stats.top_donors[0].name}}</span></div>
+            <div>Top 3 Donors:<br>
+                <span ng-repeat="donor in stats.top_donors">{{donor.name}} (${{number_format(donor.amount)}})<br></span>
+            </div>
+        </div>
+    </div>
     <div class="overall module" ng-show="length(campaignsService.campaigns) > 1">
         <div class="form-group">
             <h5>Overall</h5>

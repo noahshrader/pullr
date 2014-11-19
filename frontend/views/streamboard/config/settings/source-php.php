@@ -51,6 +51,19 @@ use common\components\PullrUtils;
             <div>Top Donor: <span id='top_donor'><?= $stats['top_donors'][0]['name'] .' ($'. $stats['top_donors'][0]['amount']  .')' ?></span></div>
         </div>
     </div>
+    
+    <div class="tags module">
+        <div class="form-group">
+            <h5>New Tags</h5>
+            <div>Top Donor: <span><?= $stats['top_donors'][0]['name'] ?></span></div>
+            <div>
+                Top 3 Donors:<br>
+                <?php foreach($stats['top_donors'] as $donor):?>
+                <span><?= $donor['name'] .' ($'. PullrUtils::formatNumber($donor['amount'], 2)  .')' ?></span><br>
+                <?php endforeach;?>
+            </div>
+        </div>
+    </div>
     <?php endif; ?>
     
     <? if (count($campaigns) > 0): ?>
