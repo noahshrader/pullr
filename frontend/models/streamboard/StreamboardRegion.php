@@ -15,6 +15,7 @@ use common\models\User;
  * @property WidgetAlerts $widgetAlerts
  * @property WidgetDonationFeed $widgetDonationFeed
  * @property WidgetCampaignBar $widgetCampaignBar
+ * @property widgetTags widgetTags
  */
 class StreamboardRegion extends ActiveRecord {
     const REGION_NUMBER_1 = 1;
@@ -42,7 +43,7 @@ class StreamboardRegion extends ActiveRecord {
     }
 
     public function fields(){
-        return ['userId', 'regionNumber', 'backgroundColor', 'widgetType', 'widgetAlerts', 'widgetCampaignBar', 'widgetDonationFeed'];
+        return ['userId', 'regionNumber', 'backgroundColor', 'widgetType', 'widgetAlerts', 'widgetCampaignBar', 'widgetDonationFeed', 'widgetTags'];
     }
 
     public function beforeValidate() {
@@ -74,6 +75,17 @@ class StreamboardRegion extends ActiveRecord {
             $widgetCampaignBar->userId = $this->userId;
             $widgetCampaignBar->regionNumber = $this->regionNumber;
             $widgetCampaignBar->save();
+
+            $widgetTag = new WidgetTags();
+            $widgetTag->userId = $this->userId;
+            $widgetTag->regionNumber = $this->regionNumber;
+            $widgetTag->lastFollower = 1;
+            $widgetTag->lastSubscriber = 1;
+            $widgetTag->lastDonor = 1;
+            $widgetTag->largestDonation = 1;
+            $widgetTag->lastDonorAndDonation = 1;
+            $widgetTag->topDonor = 1;
+            $widgetTag->save();
         }
     }
 
@@ -89,12 +101,16 @@ class StreamboardRegion extends ActiveRecord {
         return $this->hasOne(WidgetDonationFeed::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber']);
     }
 
+    public function getWidgetTags(){
+        return   $this->hasOne(WidgetTags::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber']);
+    }
     public function updateFromArray($data){
         return $this->load($data, '') && $this->save() &&
             $this->widgetAlerts->updateFromArray($data['widgetAlerts']) &&
             $this->widgetCampaignBar->updateFromArray($data['widgetCampaignBar']) &&
             $this->widgetDonationFeed->load($data,'widgetDonationFeed') &&
-            $this->widgetDonationFeed->save();
+            $this->widgetDonationFeed->save()&&
+            $this->widgetTags->updateFromArray($data['widgetTags']);
     }
 
     /**

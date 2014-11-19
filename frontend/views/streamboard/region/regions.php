@@ -58,6 +58,32 @@ $class = 'regionsNumber' . $regionsNumber;
             resizable-size="{width:region.widgetAlerts.messageWidth, height: region.widgetAlerts.messageHeight}">
             {{region.toShow.alert.message}}
         </div>
+        <!----Show Tags-------->
+        <div
+            class="widget-tags-message"
+            ng-show="true"
+            ng-style="{'color': region.widgetTags.widgetTagStyle.fontColor, 'font-size': region.widgetTags.widgetTagStyle.fontSize, 'font-family': region.widgetTags.widgetTagStyle.fontStyle, 'font-weight': region.widgetTags.widgetTagStyle.fontWeight, 'position':'absolute'}"
+            ng-class='{fontUppercase:region.widgetTags.widgetTagStyle.fontUppercase}'
+            ng-hide="false"
+            interaction
+            draggable
+            draggable-widget="region.widgetTags.widgetTagStyle"
+            draggable-region="region"
+            draggable-config="{containment:getContainmentByRegion(region)}"
+            draggable-fields="{widgetLeftAttribute:'messagePositionX', widgetTopAttribute:'messagePositionY'}"
+            resizable
+            resizable-config="{containment: getContainmentByRegion(region)}"
+            resizable-region="region"
+            resizable-callback="onResizeTagBox"
+            resizable-size="{width:region.widgetTags.widgetTagStyle.width, height: region.widgetTags.widgetTagStyle.height}">
+            <span class="tag" ng-show="region.widgetTags.lastFollower">Last Follower&nbsp;:&nbsp;<span id='last_follower' ng-show="donationsService.followers.length > 0">{{donationsService.followers[0].display_name}}</span><br/></span>
+            <span class="tag" ng-show="region.widgetTags.lastSubscriber">Last Subscriber&nbsp;:&nbsp; <span id='last_subscriber' ng-show="donationsService.subscribers.length > 0">{{donationsService.subscribers[0].display_name}}</span><br/></span>
+            <span class="tag" ng-show="region.widgetTags.lastDonor">Last Donor&nbsp;:&nbsp;<span id='last_donor'>{{donationsService.stats.last_donor.name}}</span><br/></span>
+            <span class="tag" ng-show="region.widgetTags.lastDonorAndDonation">Last Donor/Donation&nbsp;:&nbsp;<span id='last_donor_donation'>{{donationsService.stats.last_donor.name}} (${{donationsService.stats.last_donor.amount}})</span><br/></span>
+            <span class="tag" ng-show="region.widgetTags.largestDonation">Largest Donation&nbsp;:&nbsp;<span id='largest_donation'>${{donationsService.stats.top_donation.amount}} ({{donationsService.stats.top_donation.displayName}})</span><br/></span>
+            <span class="tag" ng-show="region.widgetTags.topDonor">Top Donor&nbsp;:&nbsp;<span id='top_donor'>{{donationsService.stats.top_donors[0].name}} (${{donationsService.stats.top_donors[0].amount}})</span><br/></span>
+
+        </div>
         <?= $this->render('activity-feed/activity-feed') ?>
         <?= $this->render('campaign-bar/campaign-bar') ?>
     </div>

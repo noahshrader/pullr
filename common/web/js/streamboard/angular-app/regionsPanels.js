@@ -3,7 +3,8 @@
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
             'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee',
             'pullr.streamboard.twitch']).
-        controller('RegionsCtrl', function ($scope, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
+        controller('RegionsCtrl', function ($scope, stream, regions, $interval, $timeout, alertMediaManager, donations,
+                                            campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
             $scope.donationsService = donations;
@@ -12,6 +13,11 @@
             $scope.duration = 1500;
             $scope.alertMediaManagerService = alertMediaManager;
             $scope.streamboardConfig = streamboardConfig;
+
+
+            $scope.campaignsService = campaigns;
+            $scope.donationsService = donations;
+
             twitchNotification.requestTwitchData();
             $interval(twitchNotification.requestTwitchData, 20000);
 
@@ -69,6 +75,13 @@
             $scope.onResizeAlertMessage = function(region, event, ui) {
                 region.widgetAlerts.messageWidth = ui.size.width;
                 region.widgetAlerts.messageHeight = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+
+            $scope.onResizeTagBox = function(region, event, ui) {
+                region.widgetTags.widgetTagStyle.width = ui.size.width;
+                region.widgetTags.widgetTagStyle.height = ui.size.height;
                 regions.regionChanged(region);
             }
 
