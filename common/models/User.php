@@ -431,24 +431,24 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * return ActiveQuery object for parent campaigns for current user
      */
-    public function getParentCampaigns($status = Campaign::STATUS_ACTIVE)
+    public function getCampaignsImInvitedTo($status = Campaign::STATUS_ACTIVE)
     {        
-        $parentIds = CampaignInvite::find()->where(['userId' => $this->id, 'status' => CampaignInvite::STATUS_ACTIVE])->select(['campaignId'])->column();
-        return Campaign::find()->where(['in', 'id', $parentIds])->andWhere(['status' => $status]);
+        $ids = CampaignInvite::find()->where(['userId' => $this->id, 'status' => CampaignInvite::STATUS_ACTIVE])->select(['campaignId'])->column();
+        return Campaign::find()->where(['in', 'id', $ids])->andWhere(['status' => $status]);
     }
 
     /**
      *
      * @param string $status
-     * @param boolean $withParentCampaigns - should campaigns for which user was invited been included
+     * @param boolean $withInviteCampaigns - should campaigns for which user was invited been included
      * @return ActiveQuery user's campaigns + parent's campaigns
      */
-    public function getCampaigns($status = Campaign::STATUS_ACTIVE, $withParentCampaigns = true)
+    public function getCampaigns($status = Campaign::STATUS_ACTIVE, $withInviteCampaigns = true)
     {        
         $query = Campaign::find()->where(['userId' => $this->id, 'status' => $status]);
 
-        if ($withParentCampaigns) {
-            $query = $query->union($this->getParentCampaigns($status));
+        if ($withInviteCampaigns) {
+            $query = $query->union($this->getCampaignsImInvitedTo($status));
         }
         return $query;
     }

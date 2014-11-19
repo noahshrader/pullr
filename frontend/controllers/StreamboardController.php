@@ -210,7 +210,7 @@ class StreamboardController extends FrontendController
 
     public function getUserCampaigns(User $user)
     {        
-        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, false)->orderBy('amountRaised DESC, id DESC')->all();
+        $campaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, true)->orderBy('amountRaised DESC, id DESC')->all();
         $campaignsArray = [];
 
         foreach ($campaigns as $campaign) {            
