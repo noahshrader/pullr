@@ -121,8 +121,9 @@
             }, 300);           
         }
 
-        $scope.changeTextAlignment = function(preference, region) {            
-            $scope.regionChanged(region);
+        $scope.changeAlertTextAlignment = function(alignment, preference, region) {        
+            preference.textAlignment = alignment;
+            regions.regionChanged(region);
         }
 
         $scope.fontSizeChange = function(region) {

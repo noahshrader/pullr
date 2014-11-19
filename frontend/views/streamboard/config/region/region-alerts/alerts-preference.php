@@ -39,9 +39,9 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         <div class="panel-group">
             <h5>Text Alignment</h5>
             <div class="btn-group align">
-                <label ng-model="preference.textAlignment" btn-radio="'left'" ng-click="regionChanged(region)"><i class="mdi-editor-format-align-left"></i></label>
-                <label ng-model="preference.textAlignment" btn-radio="'center'" ng-click="regionChanged(region)"><i class="mdi-editor-format-align-center"></i></label>
-                <label ng-model="preference.textAlignment" btn-radio="'right'" ng-click="regionChanged(region)"><i class="mdi-editor-format-align-right"></i></label>
+                <label ng-model="preference.textAlignment" btn-radio="'left'" ng-click="changeAlertTextAlignment('left', preference, region)"><i class="mdi-editor-format-align-left"></i></label>
+                <label ng-model="preference.textAlignment" btn-radio="'center'" ng-click="changeAlertTextAlignment('center', preference, region)"><i class="mdi-editor-format-align-center"></i></label>
+                <label ng-model="preference.textAlignment" btn-radio="'right'" ng-click="changeAlertTextAlignment('right', preference, region)"><i class="mdi-editor-format-align-right"></i></label>
             </div>
         </div>
         <div class="panel-group">
