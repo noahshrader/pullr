@@ -183,8 +183,7 @@
 
                         toShow.preference = region.widgetAlerts[notification.type + 'Preference'];   
                         toShow.notificationType = notification.type;
-                        var preference = toShow.preference;                      
-                        
+                        var preference = toShow.preference;                                              
                         if (preference.animationDirection) {
                             toShow.animationDirectionArray = preference.animationDirection.split(',');                        
                             $('#region-' + region.regionNumber + ' .widget-alerts:eq(0)').off(animationEndEvent);
