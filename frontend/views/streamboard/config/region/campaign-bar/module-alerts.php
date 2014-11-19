@@ -8,6 +8,15 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     <div class="panel-group">
         <h5>Alerts</h5>
         <div class="checkbox">
+            <label ng-class="{on:module.includeDonations}">
+                <input type="checkbox" ng-model="module.includeDonations" ng-change="regionChanged(region)">
+                Donations
+            </label>
+        </div>
+        <div ng-show="module.includeDonations" class="hint--bottom" data-hint="Custom Tags:&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]">
+            <textarea ng-model="module.donationText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
+        </div>
+        <div class="checkbox">
             <label ng-class="{on:module.includeFollowers}">
                 <input type="checkbox" ng-model="module.includeFollowers" ng-change="regionChanged(region)">
                 Followers
@@ -16,24 +25,14 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         <div ng-show="module.includeFollowers" class="hint--bottom" data-hint="Custom Tags:&#10;[[FollowerName]]&#10;[[CampaignName]]">
             <textarea ng-model="module.followerText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
         </div>
-
         <div class="checkbox">
             <label ng-class="{on:module.includeSubscribers}">
                 <input type="checkbox" ng-model="module.includeSubscribers" ng-change="regionChanged(region)">
                 Subscribers
             </label>
         </div>
-        <div ng-show="module.includeSubscribers" class="hint--top" data-hint="Custom Tags:&#10;[[SubscriberName]]&#10;[[CampaignName]]">
+        <div ng-show="module.includeSubscribers" class="hint--bottom" data-hint="Custom Tags:&#10;[[SubscriberName]]&#10;[[CampaignName]]">
             <textarea ng-model="module.subscriberText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
-        </div>
-        <div class="checkbox">
-            <label ng-class="{on:module.includeDonations}">
-                <input type="checkbox" ng-model="module.includeDonations" ng-change="regionChanged(region)">
-                Donations
-            </label>
-        </div>
-        <div ng-show="module.includeDonations" class="hint--top" data-hint="Custom Tags:&#10;[[DonorName]]&#10;[[DonorAmount]]&#10;[[CampaignName]]">
-            <textarea ng-model="module.donationText"  maxlength="200" placeholder="Alert Text" ng-change="alertTextChange(region)"></textarea>
         </div>
     </div>
 </div>
