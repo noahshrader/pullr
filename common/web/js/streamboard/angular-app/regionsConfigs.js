@@ -84,11 +84,7 @@
             $scope.toggleFooter(region);              
             regions.regionChanged(region);
         }
-
-        $scope.changeAlertTextAlignment = function(region){
-            console.log(region);
-        }
-
+    
         $scope.toggleFooter = function(region) {
             
             if (region.widgetType == 'widget_alerts') {
@@ -115,15 +111,18 @@
         })
         
         var timmer = null;
-        $scope.alertTextChange = function(region){
+        $scope.alertTextChange = function(region) {
             if(timmer !== null){
                 $timeout.cancel(timmer);
             }
             timmer = $timeout(function() {
-                        console.log(region);
-                        regions.regionChanged(region);
-                    }, 300);
-            
+                console.log(region);
+                regions.regionChanged(region);
+            }, 300);           
+        }
+
+        $scope.changeTextAlignment = function(preference, region) {            
+            $scope.regionChanged(region);
         }
 
         $scope.fontSizeChange = function(region) {

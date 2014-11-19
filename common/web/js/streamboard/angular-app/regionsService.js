@@ -21,7 +21,7 @@
                 }
             }
 
-            this.regionChanged = function (region) {
+            this.regionChanged = function (region) {                
                 $http.post('app/streamboard/update_region_ajax', region);
             };
 

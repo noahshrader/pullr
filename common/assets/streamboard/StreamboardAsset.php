@@ -11,7 +11,7 @@ class StreamboardAsset extends AssetBundle
         'bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
         'css/animate.css',
         'css/slide-animate.css',
-	'bower_components/hint.css/hint.css'
+	    'bower_components/hint.css/hint.css'
 	];
 	public $js = [
         '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js',
