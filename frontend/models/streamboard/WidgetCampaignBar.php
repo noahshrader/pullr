@@ -39,7 +39,7 @@ class WidgetCampaignBar extends ActiveRecord
     public function scenarios()
     {
         return [
-            'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontUppercase', 'fontColor', 'backgroundColor', 'alertsEnable',
+            'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontWeight', 'fontUppercase', 'fontColor', 'backgroundColor', 'alertsEnable',
                 'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY', 'height', 'width',
                 'background']
         ];
