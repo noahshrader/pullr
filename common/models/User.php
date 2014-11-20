@@ -464,18 +464,18 @@ class User extends ActiveRecord implements IdentityInterface
     public function getDonations($params = null)
     {
         $inviteCampaignIds = $this->getInvitatedCampaignIds();
-        $inviteCampaignIdString = '(' . implode($inviteCampaignIds, ',') . ')';
+        $inviteCampaignIdString = implode(',', $inviteCampaignIds);
         /**@var $query ActiveQuery */
-        $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId', 'campaignId in ' . $inviteCampaignIdString])           
+        $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId', !empty($inviteCampaignIdString) ? ('campaignId in (' . $inviteCampaignIdString .')') : ''])           
             ->andWhere('paymentDate > 0')
-            ->addParams(['userId' => $this->id])
+            ->addParams([':userId' => $this->id])
             ->orderBy('paymentDate DESC, id DESC');
         if ($params) {
             if (isset($params['sinceId'])) {
-                $query->andWhere('id > :sinceId')->addParams(['sinceId' => $params['sinceId']]);
+                $query->andWhere('id > :sinceId')->addParams([':sinceId' => $params['sinceId']]);
             }
             if (isset($params['sincePaymentDate'])) {
-                $query->andWhere('paymentDate > :sincePaymentDate')->addParams(['sincePaymentDate' => $params['sincePaymentDate']]);
+                $query->andWhere('paymentDate > :sincePaymentDate')->addParams([':sincePaymentDate' => $params['sincePaymentDate']]);
             }
         }
         return $query;
