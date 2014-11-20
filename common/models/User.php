@@ -428,12 +428,16 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasOne(StreamboardConfig::className(), ['userId' => 'id']);
     }
 
+    public function getInvitatedCampaignIds() {
+        return CampaignInvite::find()->where(['userId' => $this->id, 'status' => CampaignInvite::STATUS_ACTIVE])->select(['campaignId'])->column();        
+    }
+
     /**
      * return ActiveQuery object for parent campaigns for current user
      */
     public function getCampaignsImInvitedTo($status = Campaign::STATUS_ACTIVE)
     {        
-        $ids = CampaignInvite::find()->where(['userId' => $this->id, 'status' => CampaignInvite::STATUS_ACTIVE])->select(['campaignId'])->column();
+        $ids = $this->getInvitatedCampaignIds();
         return Campaign::find()->where(['in', 'id', $ids])->andWhere(['status' => $status]);
     }
 
@@ -459,9 +463,13 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getDonations($params = null)
     {
+        $inviteCampaignIds = $this->getInvitatedCampaignIds();
+        $inviteCampaignIdString = '(' . implode($inviteCampaignIds, ',') . ')';
         /**@var $query ActiveQuery */
-        $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId'])
-            ->andWhere('paymentDate > 0')->addParams(['userId' => $this->id])->orderBy('paymentDate DESC, id DESC');
+        $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId', 'campaignId in ' . $inviteCampaignIdString])           
+            ->andWhere('paymentDate > 0')
+            ->addParams(['userId' => $this->id])
+            ->orderBy('paymentDate DESC, id DESC');
         if ($params) {
             if (isset($params['sinceId'])) {
                 $query->andWhere('id > :sinceId')->addParams(['sinceId' => $params['sinceId']]);
