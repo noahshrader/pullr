@@ -23,10 +23,10 @@ $class = 'regionsNumber' . $regionsNumber;
             draggable
             draggable-widget="region.widgetAlerts" 
             draggable-region="region" 
-            draggable-config="{containment:getContainmentByRegion(region) }"
+            draggable-config="{containment:getRegionSelector(region) }"
             draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
             resizable
-            resizable-config="{containment: getContainmentByRegion(region), aspectRatio: true}"
+            resizable-config="{containment: getRegionSelector(region), aspectRatio: true}"
             resizable-callback="onResizeAlertImage"     
             resizable-region="region" 
             resizable-size="{width:region.widgetAlerts.imageWidth, height: region.widgetAlerts.imageHeight}"
@@ -49,10 +49,10 @@ $class = 'regionsNumber' . $regionsNumber;
             draggable
             draggable-widget="region.widgetAlerts" 
             draggable-region="region" 
-            draggable-config="{containment:getContainmentByRegion(region)}"
+            draggable-config="{containment:getRegionSelector(region)}"
             draggable-fields="{widgetLeftAttribute:'messagePositionX', widgetTopAttribute:'messagePositionY'}"             
             resizable
-            resizable-config="{containment: getContainmentByRegion(region)}"            
+            resizable-config="{containment: getRegionSelector(region)}"            
             resizable-region="region" 
             resizable-callback="onResizeAlertMessage"    
             resizable-size="{width:region.widgetAlerts.messageWidth, height: region.widgetAlerts.messageHeight}">
