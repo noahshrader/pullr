@@ -72,8 +72,12 @@
                 regions.regionChanged(region);
             }
 
-            $scope.getContainmentByRegion = function(region) {
+            $scope.getRegionSelector = function(region) {
                 return '#region-' + region.regionNumber;
+            }
+
+            $scope.getCampaignBarSelector = function(region) {
+                return '#region-' + region.regionNumber + ' #campaign-bar';
             }
             
 
