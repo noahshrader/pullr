@@ -98,6 +98,7 @@ class ApiController extends \yii\web\Controller {
             $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
         }
 
+        $campaignArray['donationButtonText'] = !empty($campaign->donationButtonText) ? htmlspecialchars(strip_tags(trim($campaign->donationButtonText)), ENT_QUOTES, 'UTF-8') : "Donate";
         $campaignArray['backgroundImg'] = BaseImage::getOriginalUrlById($campaign->backgroundImageId);
         $campaignArray['goalAmountFormatted'] = '$'.\common\components\PullrUtils::formatNumber($campaign['goalAmount'], 2);
         $campaignArray['amountRaisedFormatted'] = '$'.\common\components\PullrUtils::formatNumber($campaign['amountRaised'], 2);

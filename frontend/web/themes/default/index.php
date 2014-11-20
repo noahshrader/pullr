@@ -18,8 +18,8 @@
     <!-- Theme Specific -->
     <link rel="stylesheet" href="/themes/bdsingle/css/master.css" />
     <!-- Scripts -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
     <script src="api/script"></script>
     <script src="/global/themes/global.js"></script>
     <!-- Fonts -->
@@ -107,7 +107,7 @@
         <div class="info-wrap cf">
             <div class="right donate-wrap">
                 <div class="donate-button">
-                    <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">Donate</button>
+                    <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">{{campaign.donationButtonText}}</button>
                     <div class="slant"></div>
                 </div>
             </div>
