@@ -136,7 +136,7 @@ class CampaignapiController extends \yii\web\Controller
     /**
      * Action for get Campaing
      *
-     * @param  string campaingAlias
+     * @param  string campaignAlias
      */
     public function actionCampaign()
     {
