@@ -35,9 +35,6 @@
 				h5 {
 					margin-bottom: @halfgutter;
 				}
-				.form-group {
-					text-align: center;
-				}
 				.network {
 					padding: @gutter+10px @gutter @gutter;
 					background: @gray75;
@@ -58,7 +55,7 @@
 		max-width: 800px;
 		
 		.tab-pane {
-			padding: @gutter @gutter+@gutter+@gutter @gutter+@halfgutter;
+			padding: @gutter @gutter+@gutter @gutter+@halfgutter;
 		}
 		h3 {
 			text-align: center;
@@ -98,11 +95,6 @@
     p.team-notice {
     	display: none;
     }
-}
-#campaign-edit-team {
-	.team {
-		text-align: center;
-	}
 }
 #teamInvites,
 #teamQuestion {
@@ -150,8 +142,7 @@ p.team-notice {
 	}
 }
 .field-campaign-enabledonorcomments,
-.field-campaign-enabledonationprogressbar,
-.field-campaign-enablethankyoupage {
+.field-campaign-enabledonationprogressbar {
 	.checkbox {
 		label {
 			.bootstrap-switch {
@@ -208,6 +199,9 @@ p.team-notice {
 		max-width: 100px;
 		max-height: 100px;
 		margin: 10px;
+	}
+	.form-group.thankyoutext {
+		display: none;
 	}
 	#collapseThree {
 		input[type=color]{
