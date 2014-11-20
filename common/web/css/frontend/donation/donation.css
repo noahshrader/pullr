@@ -178,7 +178,7 @@ ul {
 /* ------------------------------------------------- */
 .smallcaps {
   font-size: 0.8em;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
 }
 /* Icons */
@@ -2775,13 +2775,13 @@ select.form-control,
   font-size: 16px;
   font-weight: 500;
   outline: 0;
-  padding: .8em 1em;
+  padding: .7em 1em;
   min-height: 35px;
   width: 100%;
   background: transparent;
   border: 0;
   border: solid 1px #dfdfe2;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   box-shadow: none;
 }
@@ -2870,7 +2870,7 @@ input.color-choice {
 .colorpicker .colorpickerwrap span.color-choice {
   position: absolute;
   right: 15px;
-  top: 35px;
+  top: 40px;
   z-index: 900;
 }
 .colorpicker .form-group {
@@ -2890,7 +2890,7 @@ input.color-choice {
   position: relative;
   display: block;
   margin-top: .4em;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   overflow: hidden;
 }
@@ -2934,7 +2934,7 @@ input.color-choice {
 }
 .select2-container .select2-choice {
   height: 45px;
-  border-radius: 2px !important;
+  border-radius: 3px !important;
   background-clip: padding-box !important;
 }
 .select2-container .select2-choice > span:first-child,
@@ -2967,7 +2967,7 @@ input.color-choice {
 .select2-drop.select2-drop-above.select2-drop-active {
   background: #ffffff;
   border: 0;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   overflow: hidden;
 }
@@ -3083,7 +3083,7 @@ input.color-choice {
 .bootstrap-switch span {
   font-size: 0.8em !important;
   font-weight: 500;
-  line-height: 20px !important;
+  line-height: 25px !important;
   padding: 0 !important;
 }
 .bootstrap-switch label {
@@ -3093,7 +3093,7 @@ input.color-choice {
 .combined-form-wrap {
   position: relative;
   margin-bottom: 30px;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   overflow: hidden;
 }
@@ -3104,9 +3104,9 @@ input.color-choice {
   color: #1dbc9c;
   font-size: 1.4em;
   text-align: center;
-  line-height: 40px;
+  line-height: 50px;
   margin: 0;
-  width: 40px;
+  width: 50px;
 }
 .combined-form-wrap .icon:hover {
   color: #20d2ae;
@@ -3130,7 +3130,7 @@ input.color-choice {
 }
 .form-group {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   /* Colorpicker */
   /* Errors */
 }
@@ -3201,7 +3201,7 @@ body.campaignflow {
   margin: 0 .1em;
   min-width: 80px;
   border: 0;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
@@ -3397,7 +3397,7 @@ body.campaignflow {
   height: 20px;
   max-width: 100%;
   font-size: 0.8em;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
   background: #127561;
   -webkit-animation: animate-bar 1s 1 ease;
@@ -3508,7 +3508,7 @@ span.list-info {
   font-weight: 400;
   padding: 15px;
   background: #53535a;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
 }
 .tooltip.top .tooltip-arrow {
@@ -3592,13 +3592,14 @@ span.list-info {
   position: relative;
   top: 40px;
   display: inline-block;
-  margin: 0 auto;
+  margin: 0 auto 2em;
   width: 100%;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   z-index: 9999;
+  overflow: hidden;
 }
 .modal .modal-dialog .modal-content {
   text-align: left;
@@ -3624,7 +3625,6 @@ span.list-info {
 }
 .modal .module {
   margin: 0;
-  box-shadow: 0;
 }
 .modal .module h5.module-title {
   text-align: left;
@@ -3758,6 +3758,7 @@ body {
 }
 a.close {
   display: block;
+  font-weight: 500;
   margin-bottom: 2em;
   line-height: 45px;
 }
@@ -3837,7 +3838,7 @@ h3.charity-name a.approved .approved-info {
   padding: 15px;
   width: 120px;
   background: #1dbc9c;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   z-index: 1000;
 }
@@ -3963,7 +3964,7 @@ footer a.logo:hover:before {
   margin: 0;
   width: 100%;
   background: #efeff0;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
@@ -3991,7 +3992,7 @@ footer a.logo:hover:before {
   left: .5%;
   right: 17%;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 3px;
   background-clip: padding-box;
   border: solid 1px #dfdfe2;
   overflow: hidden;
@@ -4045,6 +4046,17 @@ footer a.logo:hover:before {
 .thankyou {
   text-align: center;
   padding-top: 9em;
+}
+.thankyou .custom-message-wrap {
+  padding: 15px;
+  margin-bottom: 2em;
+  background: #efeff0;
+  border-radius: 3px;
+  background-clip: padding-box;
+}
+.thankyou .custom-message-wrap p {
+  color: #6b6b75;
+  font-weight: 400;
 }
 /* Responsive */
 /* ------------------------------------------------- */
