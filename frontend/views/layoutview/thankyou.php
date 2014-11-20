@@ -8,30 +8,38 @@ ThankYouAsset::register($this);
 <!DOCTYPE html>
 <html>
 	<head>
-        <? $this->head();?>
-        <title>Thank You! - Pullr</title>
+		<? $this->head();?>
+		<title>Thank You! - Pullr</title>
 	</head>
 
 	<body>
-        <?php $this->beginBody() ?>
-            <? 
-               $charityName = '';
-               if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
-                   $charityName = $campaign->customCharity;
-               } 
-               if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && $campaign->charityId){
-                   $charityName = $campaign->charity->name;
-               } 
-            ?>
-        <?= $charityName ?>
-            <div class="form-wrapper thankyou">
-                <h1 class="main-title">Thanks!</h1>
-                <? if ($campaign->enableThankYouPage): ?>
-                    <?= $campaign->thankYouPageText ?>
-                <? else: ?>
-                <? endif ?>
-            </div>
-        <?php $this->endBody() ?>
+		<?php $this->beginBody() ?>
+		<? 
+			$charityName = '';
+			if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
+				 $charityName = $campaign->customCharity;
+			} 
+			if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && $campaign->charityId){
+				 $charityName = $campaign->charity->name;
+			} 
+		?>
+		<?= $charityName ?>
+			<div class="form-wrapper thankyou">
+				<h1 class="main-title">Thank You!</h1>
+				<div class="custom-message-wrap">
+				<? if ($campaign->enableThankYouPage): ?>
+					<?= $campaign->thankYouPageText ?>
+				<? else: ?>
+					<p>Your donation is appreciated! ^_^</p>
+				<? endif ?>
+			</div>
+		<?php $this->endBody() ?>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<h5>Powered by</h5>
+			<a class="logo mdib-pullr-logo" href="http://www.pullr.io" target="_blank"></a>
+		</footer>
 	</body>
 
 </html>

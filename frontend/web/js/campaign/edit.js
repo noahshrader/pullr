@@ -108,6 +108,7 @@ function addNewCampaignInvite() {
     }
 }
 
+/* Toggles */
 function initBootstrapSwitch() {
     $("#campaignEdit input[type='checkbox']").bootstrapSwitch();
     $("#campaign-enabledonations").on('switchChange.bootstrapSwitch', function() {
@@ -118,7 +119,6 @@ function initBootstrapSwitch() {
             $('.field-campaign-eventid').hide('slow');
         }
     });
-    
     $("#campaign-twitterenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-twitterenable').bootstrapSwitch('state');
         if (value){
@@ -127,7 +127,6 @@ function initBootstrapSwitch() {
             $('.field-campaign-twittername').fadeOut(300);
         }
     });
-    
     $("#campaign-youtubeenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-youtubeenable').bootstrapSwitch('state');
         if (value){
@@ -136,7 +135,6 @@ function initBootstrapSwitch() {
             $('.field-campaign-youtubeurl').fadeOut(300);
         }
     });
-    
     $("#campaign-facebookenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-facebookenable').bootstrapSwitch('state');
         if (value){
@@ -145,7 +143,6 @@ function initBootstrapSwitch() {
             $('.field-campaign-facebookurl').fadeOut(300);
         }
     });
-
     $("#campaign-teamenable").on('switchChange.bootstrapSwitch', function() {
         var value = $("#campaign-teamenable").bootstrapSwitch('state');
         if (value){
@@ -154,13 +151,20 @@ function initBootstrapSwitch() {
             $('#campaignEdit').removeClass('team-enabled');
         }
     });
-    
     $("#campaign-tiedtoparent").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-tiedtoparent').bootstrapSwitch('state');
         if (value){
             $('.field-campaign-parentcampaignid').fadeIn(300);
         } else {
             $('.field-campaign-parentcampaignid').fadeOut(300);
+        }
+    });
+    $("#campaign-enablethankyoupage").on('switchChange.bootstrapSwitch', function() {
+        var value = $('#campaign-enablethankyoupage').bootstrapSwitch('state');
+        if (value){
+            $('.form-group.thankyoutext').fadeIn(300);
+        } else {
+            $('.form-group.thankyoutext').fadeOut(300);
         }
     });
 }
