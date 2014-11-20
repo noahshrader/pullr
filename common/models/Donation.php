@@ -219,12 +219,15 @@ class Donation extends ActiveRecord
                     ->orderBy('paymentDate DESC, id DESC')
                     ->select('id, amount, nameFromForm')
                     ->one();
-
-        return [
-            'id' => $donor->id,
-            'name' => $donor->displayNameForDonation(),
-            'amount' => $donor->amount
-        ];
+        if ($donor) {
+            return [
+                'id' => $donor->id,
+                'name' => $donor->displayNameForDonation(),
+                'amount' => $donor->amount
+            ];    
+        }       
+        return null;     
+        
     }
     
     
