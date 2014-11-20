@@ -279,7 +279,7 @@ class CampaignsController extends FrontendController {
     }
 
     /**
-     * Find user by @email and invite him, if he is not still invited
+     * Find user by @uniqueName and invite him, if he is not still invited
      */
     public function actionCampaigninvite() {
         $campaign = $this->getCampaign();
