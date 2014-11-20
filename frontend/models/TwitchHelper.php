@@ -27,7 +27,7 @@ class TwitchHelper
         $twitchSDK = \Yii::$app->twitchSDK;
         $data = $twitchSDK->channelFollows($channel, 1);
        	$data = json_decode(json_encode($data), true);
-        TwitchUser::updateFollowersNumber($user->id, $data['_total']);	 
+        TwitchUser::updateFollowersNumber($user, $data['_total']);	 
         TwitchFollow::updateFollows($user, $data['follows']);	            	              
     }
 
@@ -48,7 +48,7 @@ class TwitchHelper
         $data = $twitchSDK->authChannelSubscriptions($accessToken, $channel, 1);
         /*to have array instead of object */
         $data = json_decode(json_encode($data),true);
-        TwitchUser::updateSubscribersNumber($user->id, $data['_total']);	
+        TwitchUser::updateSubscribersNumber($user, $data['_total']);	
         TwitchSubscription::updateSubscriptions($user, $data['subscriptions']);                      
     }
 }
