@@ -283,32 +283,28 @@ class CampaignsController extends FrontendController {
      */
     public function actionCampaigninvite() {
         $campaign = $this->getCampaign();
-        $id = $campaign->id;
 
-        $email = $_POST['email'];
+        $uniqueName = $_POST['uniqueName'];
 
+        $user = User::find()->where(['uniqueName' => $uniqueName])->andWhere(['not in', 'id', [\Yii::$app->user->id]])->one();
 
-        $userId = \Yii::$app->user->id;
+        if(isset($user))
+        {
+            CampaignInvite::addInvite($user->id, $campaign->id);
 
-        $users = User::find()->where(['email' => $email])->andWhere(['not in', 'id', [$userId]])->all();
+            if(!empty($user->email))
+            {
+                $content = $this->renderPartial('@console/views/mail/campaignInvite', [
+                    'campaign' => $campaign,
+                ]);
 
-        $changesCounter = 0;
-
-        foreach ($users as $user) {
-            if (CampaignInvite::addInvite($user->id, $id)){
-                $changesCounter++;
+                Mail::sendMail($user->email, 'You was invited to fundraiser "'.$campaign->name.'"', $content, 'fundraiserInvite');
             }
+
+            return 1;
         }
 
-        if ($changesCounter > 0) {
-            $content = $this->renderPartial('@console/views/mail/campaignInvite', [
-                'campaign' => $campaign,
-            ]);
-
-            Mail::sendMail($email, 'You was invited to fundraiser "'.$campaign->name.'"', $content, 'fundraiserInvite');
-        }
-
-        echo number_format($changesCounter);
+        return 0;
     }
 
     public function actionDefaulttheme()
