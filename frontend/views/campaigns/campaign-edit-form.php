@@ -9,14 +9,14 @@
             <div class="col-md-6">
                 <!-- Donor Comments -->
                 <div class="form-group">
-                    <label>Donor Comments <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow donor comments on your donation form."></i></label>
+                    <label>Donor Comments <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle OFF to disallow donor comments on your donation form."></i></label>
                     <?= $form->field($campaign, 'enableDonorComments', ['autoPlaceholder' => false])->checkbox([], false); ?>
                 </div>
             </div>
             <div class="col-md-6">
                 <!-- Enable\disable donation form progress bar -->
                 <div class="form-group">
-                    <label>Progress Bar <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to hide the progress bar on your donation form."></i></label>
+                    <label>Progress Bar <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle OFF to hide the progress bar on your donation form."></i></label>
                     <?= $form->field($campaign, 'enableDonationProgressBar', ['autoPlaceholder' => false])->checkbox([], false); ?>
                 </div>
             </div>
@@ -27,22 +27,22 @@
         </div>
         <!-- Form Visibility -->
         <div class="form-group field-campaign-formvisibility">
-                <label>Form Visibility</label><i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Select 'Visible' if you want to show your form. Select 'Hidden' to hide your form."></i>
-                
-                <? $keyValues = [ true => 'Visible', false => 'Hidden']; ?>
-                <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
+            <label>Form Visibility <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Select 'Visible' if you want to show your form. Select 'Hidden' to hide your form."></i></label>
+            
+            <? $keyValues = [ true => 'Visible', false => 'Hidden']; ?>
+            <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
         </div>
     </div>
-    <div class="module-inner">
+    <div class="module-inner center">
         <h5><i class="icon mdi-action-done-all"></i>Thank You Page</h5>
         <!-- Enable Thank You Page -->
         <div class="form-group">
-            <label>Thank You Page <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle to off to disallow users from redirecting to your thank you page after donating."></i></label>
+            <label>Custom Message <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Toggle ON to add your own custom message on your thank you page."></i></label>
             <?= $form->field($campaign, 'enableThankYouPage', ['autoPlaceholder' => false])->checkbox([], false); ?>
         </div>
         <!-- Custom Thank You HTML -->
-        <div class="form-group">
-        <?= $form->field($campaign, 'thankYouPageText')->widget(CKEditor::className(), [
+        <div class="form-group highlight-wrap thankyoutext">
+        <?= $form->field($campaign, 'thankYouPageText')->label(false)->widget(CKEditor::className(), [
                 'options' => ['rows' => 6],
                 'preset' => 'basic'
             ]) ?>

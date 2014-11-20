@@ -11,7 +11,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
      draggable
      draggable-widget="region.widgetCampaignBar" 
      draggable-region="region" 
-     draggable-config="{containment:getContainmentByRegion(region)}"
+     draggable-config="{containment:getRegionSelector(region)}"
      draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"           
      resizable
      resizable-config="{minWidth:60, minHeight:60, containment:'.region'}"
@@ -43,7 +43,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
                  interaction
                  draggable-region="region" 
                  draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
-                 draggable-config="{containment:'#campaign-bar'}"
+                 draggable-config="{containment: getCampaignBarSelector(region)}"
                  ng-class="{fontUppercase: region.widgetCampaignBar.alertsModule.fontUppercase}"
                  draggable>{{region.toShow.alert.message}}</span>
         </div>

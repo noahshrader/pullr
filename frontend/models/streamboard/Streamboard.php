@@ -44,8 +44,10 @@ class Streamboard extends Model {
         $stats['number_of_donors']  = Donation::getDonationsForCampaigns($selectedCampaigns)->count('DISTINCT email');
         
         $last_donor = Donation::getLastDonorForCampaigns($selectedCampaigns);
-        $last_donor['amount'] = PullrUtils::formatNumber($last_donor['amount'], 2);
-        $stats['last_donor'] = $last_donor;
+        if ($last_donor) {
+            $last_donor['amount'] = PullrUtils::formatNumber($last_donor['amount'], 2);    
+            $stats['last_donor'] = $last_donor;
+        }
         
         return $stats;
     }

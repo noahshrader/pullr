@@ -16,9 +16,9 @@ $this->registerJsFile('@web/js/site/error.js', [
 ]);
 ?>
 <div class="missing-wrap">
-	<div class="missing animated slideInUp">
-		<h2>Oops! That doesn't exist here.</h2>
-		<a href="/">Back to Dashboard</a>
+	<div class="missing">
+		<h2>Oops! We can't find that.</h2>
+		<a class="btn btn-default" href="/">Go to Dashboard</a>
 	</div>
 </div>
 <div class="video-overlay"></div>

@@ -45,17 +45,21 @@ use common\components\PullrUtils;
             <h5>Tags</h5>
             <div>Last Follower: <span id='last_follower'><?= (!empty($followers)) ? $followers[0]['display_name'] : '' ?></span></div>
             <div>Last Subscriber: <span id='last_subscriber'><?= (!empty($subscribers)) ? $subscribers[0]['display_name'] : '' ?></span></div>
-            <div>Last Donor: <span id='last_donor'><?= $stats['last_donor']['name'] ?></span></div>
-            <div>Last Donor/Amount: <span id='last_donor_donation'><?= $stats['last_donor']['name']. ' ($'. $stats['last_donor']['amount'].')' ?></span></div>
+            
+            <div>Last Donor: <span id='last_donor'><?= isset($stats['last_donor']) ? $stats['last_donor']['name']:'' ?></span></div>
+            <div>Last Donor/Amount: <span id='last_donor_donation'><?= isset($stats['last_donor']) ? $stats['last_donor']['name']. ' ($'. $stats['last_donor']['amount'].')': '' ?></span></div>
+            
             <div>Largest Donation: <span id='largest_donation'><?= (!empty($stats['top_donation'])) ? '$'. $stats['top_donation']['amount'] .' ('.  $stats['top_donation']['displayName'] .')' : ''  ?></span></div>
-            <div>Top Donor: <span><?= $stats['top_donors'][0]['name'] ?></span></div>
-            <div>Top Donor/Amount: <span id='top_donor'><?= $stats['top_donors'][0]['name'] .' ($'. $stats['top_donors'][0]['amount']  .')' ?></span></div>
+            
+            <div>Top Donor: <span><?= isset($stats['top_donors'][0]) ? $stats['top_donors'][0]['name'] : '' ?></span></div>
+            <div>Top Donor/Amount: <span id='top_donor'><?= isset($stats['top_donors'][0]) ? $stats['top_donors'][0]['name'] .' ($'. $stats['top_donors'][0]['amount']  .')' : '' ?></span></div>
             <div>
                 Top 3 Donors:<br>
                 <?php foreach($stats['top_donors'] as $donor):?>
                 <span><?= $donor['name'] .' ($'. PullrUtils::formatNumber($donor['amount'], 2)  .')' ?></span><br>
                 <?php endforeach;?>
             </div>
+            
         </div>
     </div>
     <?php endif; ?>

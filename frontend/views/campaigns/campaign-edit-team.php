@@ -22,7 +22,7 @@ $this->registerJsFile('@web/js/campaign/firstgiving.js', [
 $firstGiving = $campaign->getFirstGiving();
 ?>
 <div id="campaign-edit-team">
-    <div class="team module-inner">
+    <div class="center module-inner">
         <h5><i class="icon mdi-social-group"></i>Team Fundraising</h5>
         <p class="team-notice">Team fundraising is only available for charity fundraisers.</p>
         <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
