@@ -18,7 +18,7 @@ class BaseCommonAsset extends AssetBundle {
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'kartik\widgets\Select2Asset',
+        'kartik\select2\Select2Asset',
         'yii\bootstrap\BootstrapAsset'
     ];
     public $publishOptions = [
