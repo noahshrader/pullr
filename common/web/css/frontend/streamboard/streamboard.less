@@ -58,9 +58,9 @@ slider {
 		cursor: pointer;
 		.box-shadow;
 		&.active {
-			-webkit-transform: scale(1.6);
-			-ms-transform: scale(1.6);
-			transform: scale(1.6);
+			-webkit-transform: scale(1.4);
+			-ms-transform: scale(1.4);
+			transform: scale(1.4);
 		}
 	}
 }
@@ -185,6 +185,13 @@ span.slider-value {
 			padding: @streamboardgutter;
 			min-height: 400px;
 		}
+		.module {
+			&.show {
+				.module-settings {
+					border-top: solid 1px @maingray;
+				}
+			}
+		}
 	}
 	.paddingBottom {
 		padding-bottom: @sidenavheight - 2px;
@@ -265,6 +272,13 @@ span.slider-value {
 		}
 		h5 {
 			margin-bottom: 4px;
+		}
+		.module {
+			&.show {
+				.module-settings {
+					border-top: solid 1px @gray10;
+				}
+			}
 		}
 		slider span.bar {
 			background: @maingray;
