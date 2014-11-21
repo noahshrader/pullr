@@ -17,7 +17,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         </div>
     </div>
     <div class="module">
-        <a class="settingtoggle">Font Settings</a>
+        <a class="settingtoggle">Font Settings<i class="mdi-navigation-arrow-drop-down"></i></a>
         <div class="module-settings">
             <div class="panel-group">
                 <h5>Font Style</h5>
@@ -57,7 +57,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         </div>
     </div>
     <div class="module">
-        <a class="settingtoggle">General Settings</a>
+        <a class="settingtoggle">General Settings<i class="mdi-navigation-arrow-drop-down"></i></a>
         <div class="module-settings">
             <div class="panel-group">
                 <h5>Animation style</h5>
@@ -92,7 +92,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 </div>
 <span ng-init="baseLink='region-'+region.regionNumber+'-preference-'+preference.preferenceType"></span>
 <div class="module">
-    <a class="settingtoggle">Media Settings</a>
+    <a class="settingtoggle">Media Settings<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <ul class="library-tabs cf">
             <li class="active">

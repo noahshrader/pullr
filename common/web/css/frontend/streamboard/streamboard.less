@@ -295,7 +295,32 @@ span.slider-value {
 	}
 	.module-settings {
 		display: none;
-		&.show {
+	}
+	a.settingtoggle {
+		display: block;
+		color: @gray30;
+		.smallcaps;
+		padding: @streamboardgutter @halfgutter;
+
+		i {
+			display: block;
+			float: right;
+			font-size: 1.2em;
+			font-weight: 700;
+			line-height: 16px;
+		}
+	}
+	&.show {
+		a.settingtoggle {
+			color: @white;
+
+			i {
+				transform:rotate(180deg);
+				-ms-transform:rotate(180deg);
+				-webkit-transform:rotate(180deg);
+			}
+		}
+		.module-settings {
 			display: block;
 		}
 	}
