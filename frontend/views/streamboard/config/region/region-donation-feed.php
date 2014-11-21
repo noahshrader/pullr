@@ -7,31 +7,34 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 }
 ?>
 <div class="module">
-    <div class="form-group">
-        <h5>Font Style</h5>
-        <div font-style ng-model="widget.fontStyle"></div>
-    </div>
-    <div class="form-group">
-        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
-    </div>
-    <div class="form-group">
-        <h5>Font Size <span class="slider-value value">{{widget.fontSize}} px</span></h5>
-        <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
-                ng-change="fontSizeChange(region)"></slider>
-    </div>
+    <a class="settingtoggle">Font Settings</a>
+    <div class="module-settings">
+        <div class="form-group">
+            <h5>Font Style</h5>
+            <div font-style ng-model="widget.fontStyle"></div>
+        </div>
+        <div class="form-group">
+            <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
+        </div>
+        <div class="form-group">
+            <h5>Font Size <span class="slider-value value">{{widget.fontSize}} px</span></h5>
+            <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
+                    ng-change="fontSizeChange(region)"></slider>
+        </div>
 
-    <div class="form-group">
-        <h5>Font Weight <span class="slider-value value">{{widget.fontWeight}}</span></h5>
-        <slider ng-model="widget.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
-                ng-change="regionChanged(region)"></slider>
+        <div class="form-group">
+            <h5>Font Weight <span class="slider-value value">{{widget.fontWeight}}</span></h5>
+            <slider ng-model="widget.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
+                    ng-change="regionChanged(region)"></slider>
 
-    </div>
-    <div class="form-group">
-        <div class="checkbox">
-            <label ng-class="{on:widget.fontUppercase}">
-                <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
-                Uppercase
-            </label>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label ng-class="{on:widget.fontUppercase}">
+                    <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
+                    Uppercase
+                </label>
+            </div>
         </div>
     </div>
 </div>

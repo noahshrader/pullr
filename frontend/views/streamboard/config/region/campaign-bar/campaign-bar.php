@@ -16,87 +16,95 @@ use frontend\models\streamboard\WidgetAlertsPreference;
     </div>
 </div>
 <div class="module">
-    <div class="form-group">
-        <h5>Modules</h5>
-        <div class="checkbox">
-            <label ng-class="{on:widget.alertsEnable}">
-                <input type="checkbox" ng-model="widget.alertsEnable" ng-change="toggleModule(region)">
-                Alerts
-            </label>
-        </div>
-        <div class="checkbox">
-            <label ng-class="{on:widget.messagesEnable}">
-                <input type="checkbox" ng-model="widget.messagesEnable" ng-change="toggleModule(region)">
-                Rotating Messages
-            </label>
-        </div>
-        <div class="checkbox">
-            <label ng-class="{on:widget.timerEnable}">
-                <input type="checkbox" ng-model="widget.timerEnable" ng-change="toggleModule(region)">
-                Timer
-            </label>
-        </div>
-        <div class="checkbox">
-            <label ng-class="{on:widget.progressBarEnable}">
-                <input type="checkbox" ng-model="widget.progressBarEnable" ng-change="toggleModule(region)">
-                Progress Bar
-            </label>
+    <a class="settingtoggle">Modules</a>
+    <div class="module-settings">
+        <div class="form-group">
+            <div class="checkbox">
+                <label ng-class="{on:widget.alertsEnable}">
+                    <input type="checkbox" ng-model="widget.alertsEnable" ng-change="toggleModule(region)">
+                    Alerts
+                </label>
+            </div>
+            <div class="checkbox">
+                <label ng-class="{on:widget.messagesEnable}">
+                    <input type="checkbox" ng-model="widget.messagesEnable" ng-change="toggleModule(region)">
+                    Rotating Messages
+                </label>
+            </div>
+            <div class="checkbox">
+                <label ng-class="{on:widget.timerEnable}">
+                    <input type="checkbox" ng-model="widget.timerEnable" ng-change="toggleModule(region)">
+                    Timer
+                </label>
+            </div>
+            <div class="checkbox">
+                <label ng-class="{on:widget.progressBarEnable}">
+                    <input type="checkbox" ng-model="widget.progressBarEnable" ng-change="toggleModule(region)">
+                    Progress Bar
+                </label>
+            </div>
         </div>
     </div>
 </div>
 <div class="module">
-    <div class="form-group">
-        <h5>Font Style</h5>
-        <div font-style ng-model="widget.fontStyle"></div>
-    </div>
-    <div class="form-group">
-        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
-    </div>
-    <div class="form-group">
-        <h5>Font Size <span class="slider-value value">{{widget.fontSize}} px</span></h5>
-        <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
-                ng-change="regionChanged(region)"></slider>
-    </div>
-    <div class="form-group">
-        <h5>Font Weight <span class="slider-value value">{{widget.fontWeight}}</span></h5>
-        <slider ng-model="widget.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
-                ng-change="regionChanged(region)"></slider>
-    </div>
-    <div class="form-group">
-        <div class="checkbox">
-            <label ng-class="{on:widget.fontUppercase}">
-                <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
-                Uppercase
-            </label>
+    <a class="settingtoggle">Font Settings</a>
+    <div class="module-settings">
+        <div class="form-group">
+            <h5>Font Style</h5>
+            <div font-style ng-model="widget.fontStyle"></div>
+        </div>
+        <div class="form-group">
+            <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.fontColor}"></h5>
+        </div>
+        <div class="form-group">
+            <h5>Font Size <span class="slider-value value">{{widget.fontSize}} px</span></h5>
+            <slider ng-model="widget.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
+                    ng-change="regionChanged(region)"></slider>
+        </div>
+        <div class="form-group">
+            <h5>Font Weight <span class="slider-value value">{{widget.fontWeight}}</span></h5>
+            <slider ng-model="widget.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
+                    ng-change="regionChanged(region)"></slider>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label ng-class="{on:widget.fontUppercase}">
+                    <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
+                    Uppercase
+                </label>
+            </div>
         </div>
     </div>
 </div>
 <div class="module last">
-    <div class="form-group">
-        <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
-    </div>
-    <div class="tab-content sounds-graphics-content">        
-        <div id="region-1-preference-donations-images" class="tab-pane active">
-            <div child-scope="" ng-init="fileType = 'campaignBackground';uploadError = null;" class="ng-scope">
-            <!--main variable - preference -->
-                <div class="tab-content sounds-graphics-content">
-                    <div id="region-1-preference-donations-images-custom" class="tab-pane active">
-                        <div class="form-group">
-                            <h5>Background Image</h5>
-                            <div class="error">
-                                {{error}}
-                            </div>
-                            <div class="uploader" ng-file-drop="onFileUpload($files, fileType, this)" ng-file-drag-over-class="uploader-drag-over">
-                                <span>Drops Files Here</span>
+    <a class="settingtoggle">Background Settings</a>
+    <div class="module-settings">
+        <div class="form-group">
+            <h5>Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
+        </div>
+        <div class="tab-content sounds-graphics-content">        
+            <div id="region-1-preference-donations-images" class="tab-pane active">
+                <div child-scope="" ng-init="fileType = 'campaignBackground';uploadError = null;" class="ng-scope">
+                <!--main variable - preference -->
+                    <div class="tab-content sounds-graphics-content">
+                        <div id="region-1-preference-donations-images-custom" class="tab-pane active">
+                            <div class="form-group">
+                                <h5>Graphic</h5>
+                                <div class="error">
+                                    {{error}}
+                                </div>
+                                <div class="uploader" ng-file-drop="onFileUpload($files, fileType, this)" ng-file-drag-over-class="uploader-drag-over">
+                                    <span>Drops Files Here</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="files-container">
-                        <div ng-repeat="file in (alertMediaManagerService.customCampaignBackgrounds)">
-                            <div class="form-group media-item images cf" ng-class="{selected: file==widget.background}" ng-click="campaignBackgroundChanged(file, region)">
-                                <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
-                                <div class='mediaActions'>
-                                    <i class="mdi-navigation-close" ng-click="removeCampaignBackground(file, region, $event)"></i>
+                        <div class="files-container">
+                            <div ng-repeat="file in (alertMediaManagerService.customCampaignBackgrounds)">
+                                <div class="form-group media-item images cf" ng-class="{selected: file==widget.background}" ng-click="campaignBackgroundChanged(file, region)">
+                                    <img class='alert-image-preview' ng-src='{{alertMediaManagerService.getCampaignBackgroundUrl(file,<?=json_encode(WidgetAlertsPreference::FILE_TYPE_CUSTOM) ?>)}}'>
+                                    <div class='mediaActions'>
+                                        <i class="mdi-navigation-close" ng-click="removeCampaignBackground(file, region, $event)"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
