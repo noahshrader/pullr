@@ -453,8 +453,8 @@ header .container {
   position: relative;
   float: left;
   display: inline-block;
-  width: 16.66%;
-  width: calc(14.28571429%);
+  width: 12.5%;
+  width: calc(12.5%);
   padding: .5%;
 }
 .team-content .team-wrap .team-members img {
@@ -489,7 +489,7 @@ header .container {
   padding: 15px;
   margin-left: -100px;
   width: 200px;
-  background: #2e2e32;
+  background: #222225;
   border-radius: 6px;
   background-clip: padding-box;
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
@@ -506,10 +506,15 @@ header .container {
   bottom: -10px;
   left: 50%;
   margin-left: -10px;
-  border-color: #2e2e32 transparent transparent transparent;
+  border-color: #222225 transparent transparent transparent;
 }
 .team-content .team-wrap .team-members .team-member .team-member-stats h4 {
+  font-size: 1.1em;
   font-weight: 600;
+  margin-bottom: .3em;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats h5 {
+  font-size: 1em;
 }
 .team-content .team-wrap .team-members .team-member .team-member-stats .game {
   display: block;
@@ -520,10 +525,15 @@ header .container {
 .team-content .team-wrap .team-members .team-member .team-member-stats .viewers {
   margin-right: 5px;
 }
+.team-content .team-wrap .team-members .team-member .team-member-stats .viewers,
+.team-content .team-wrap .team-members .team-member .team-member-stats .followers {
+  font-size: 0.9em;
+}
 .team-content .team-wrap .team-members .team-member .team-member-stats .viewers i,
 .team-content .team-wrap .team-members .team-member .team-member-stats .followers i {
   color: #6b6b75;
   font-size: 12px;
+  margin-top: .3em;
 }
 .team-content .team-wrap .team-members .team-member:hover .team-member-stats {
   display: block;
