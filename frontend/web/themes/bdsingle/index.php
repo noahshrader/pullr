@@ -34,8 +34,9 @@
 	<!-- Slidestats -->
 	<div class="slidestats">
 		<div class="container">
+			<img src="{{channel.logo}}" ng-cloak/>
 			<h5 class="campaign">{{campaign.name}}</h5>
-			<h5 class="amount-raised" style="color:{{campaign.primaryColor}};"><i class="icon icon-coin"></i>{{campaign.amountRaisedFormatted}}</h5>
+			<h5 class="amount-raised" style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h5>
 		</div>
 	</div>
 	<!-- Header -->
@@ -89,8 +90,8 @@
 					<a href="http://www.twitch.tv/{{channel.display_name}}" ng-cloak>{{channel.display_name}}</a>
 				</div>
 				<div class="user-details">
-					<span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'><i class="icon icon-user" ng-cloak></i>{{selectedChannel.followers}}</span>
-					<span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'><i class="icon icon-view" ng-cloak></i>{{selectedChannel.views}}</span>
+					<span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE' ng-cloak><i class="icon icon-user"></i>{{selectedChannel.followers}}</span>
+					<span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE' ng-cloak><i class="icon icon-view"></i>{{selectedChannel.views}}</span>
 				</div>
 			</div>
 			<div class="user-details-social">
@@ -108,7 +109,6 @@
 			<div class="right donate-wrap">
 				<div class="donate-button">
 					<button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">{{campaign.donationButtonText}}</button>
-					<div class="slant"></div>
 				</div>
 			</div>
 			<div class="feed-details">
@@ -123,7 +123,7 @@
 
 	<!-- Description -->
 	<section class="campaign-description container">
-		<p>{{campaign.description}}</p>
+		<p ng-cloak>{{campaign.description}}</p>
 	</section>
 
 	<!-- Footer -->

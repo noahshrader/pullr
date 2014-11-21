@@ -87,7 +87,6 @@
             <div class="right donate-wrap">
                 <div class="donate-button">
                     <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">{{campaign.donationButtonText}}</button>
-                    <div class="slant"></div>
                 </div>
             </div>
             <div class="feed-details">
