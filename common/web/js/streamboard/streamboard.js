@@ -101,7 +101,7 @@ $(window).load(function() {
 
     // enable collapsable containers
     $(".module a.settingtoggle").click(function(){
-        $(this).next(".module-settings").toggleClass("show");
+        $(this).parent().toggleClass("show");
     });
 });
 // google fonts
