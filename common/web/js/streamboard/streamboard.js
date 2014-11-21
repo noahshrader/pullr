@@ -98,6 +98,11 @@ $(window).load(function() {
         },
         live: true
     });
+
+    // enable collapsable containers
+    $(".module a.settingtoggle").click(function(){
+        $(this).next(".module-settings").toggleClass("show");
+    });
 });
 // google fonts
 function requireGoogleFont(fontFamily){
