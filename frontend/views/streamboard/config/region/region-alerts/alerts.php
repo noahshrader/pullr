@@ -5,7 +5,7 @@ use yii\web\View;
 ?>
 <div class="module">
     <div class="form-group">
-        <h5>Alert Types</h5>
+        <h5>Alert Type</h5>
         <div class="checkbox">
             <label ng-class="{on:widget.includeDonations}">
                 <input type="checkbox" ng-model="widget.includeDonations" ng-change="toggleModule(region)">
