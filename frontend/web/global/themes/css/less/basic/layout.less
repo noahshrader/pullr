@@ -10,9 +10,9 @@
 			position: relative;
 			float: left;
 			display: inline-block;
-			width: 16.66%;
-			width: -webkit-calc(100% / 7);
-			width: calc(100% / 7);
+			width: 12.5%;
+			width: -webkit-calc(100% / 8);
+			width: calc(100% / 8);
 			padding: .5%;
 
 			img {
@@ -45,7 +45,7 @@
 					padding: @halfgutter;
 					margin-left: -100px;
 					width: 200px;
-					background: @maingray;
+					background: @base;
 					.border-radius;
 					.box-shadow;
 					z-index: 1001;
@@ -54,10 +54,15 @@
 						bottom: -10px;
 						left: 50%;
 						margin-left: -10px;
-						border-color: @maingray transparent transparent transparent;
+						border-color: @base transparent transparent transparent;
 					}
 					h4 {
+						font-size: 1.1em;
 						font-weight: 600;
+						margin-bottom: .3em;
+					}
+					h5 {
+						font-size: 1em;
 					}
 					.game {
 						display: block;
@@ -70,9 +75,11 @@
 					}
 					.viewers,
 					.followers {
+						font-size: @smalltext;
 						i {
 							color: @gray30;
 							font-size: 12px;
+							margin-top: .3em;
 						}
 					}
 				}
