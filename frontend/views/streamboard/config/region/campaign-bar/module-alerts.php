@@ -6,7 +6,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 ?>
 <div class="module first">
     <div class="panel-group">
-        <h5>Alerts</h5>
+        <h5>Alert Type</h5>
         <div class="checkbox">
             <label ng-class="{on:module.includeDonations}">
                 <input type="checkbox" ng-model="module.includeDonations" ng-change="regionChanged(region)">
