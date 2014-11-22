@@ -20,7 +20,7 @@ use yii\helpers\Url;
         </div>
 
         <div class="campaigns_list module">
-            <a class="settingtoggle">Feed Settings<i class="mdi-navigation-arrow-drop-down"></i></a>
+            <a class="settingtoggle">Feeds<i class="mdi-navigation-arrow-drop-down"></i></a>
             <div class="module-settings">
                 <div class="form-group">
                     <div class="checkbox cf">

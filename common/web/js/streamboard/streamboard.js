@@ -78,6 +78,7 @@ $(function () {
     })
 
 });
+
 $(window).load(function() {
 
     // streamboard loader
@@ -99,11 +100,18 @@ $(window).load(function() {
         live: true
     });
 
-    // enable collapsable containers
-    $(".module a.settingtoggle").click(function(){
-        $(this).parent().toggleClass("show");
+    // collapsable containers
+    function toggleadd(){
+        $(".module a.settingtoggle").click(function(){
+            $(this).parent().toggleClass("show");
+        });
+    }
+    $(".widget-select").change(function(event) {
+       toggleadd();
     });
+    $(toggleadd);
 });
+
 // google fonts
 function requireGoogleFont(fontFamily){
    if (!fontFamily){
