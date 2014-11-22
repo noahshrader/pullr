@@ -1,10 +1,10 @@
 /* Buttons */
 .btn-sm {
 	color: @white;
-	background: @gray15;
+	background: @gray20;
 	&:hover {
 		color: @white;
-		background: @gray20;
+		background: @gray15;
 	}
 }
 
@@ -93,6 +93,10 @@ h5 input.color-choice {
 			background: @gray20;
 		}
 	}
+	.select2-choice {
+		line-height: 40px;
+		height: 40px;
+	}
 }
 .select2-dropdown-open.select2-drop-above .select2-choice,
 .select2-dropdown-open.select2-drop-above .select2-choices {
@@ -123,13 +127,25 @@ h5 input.color-choice {
 	}
 }
 
+/* Slide Up Selects */
+.slidepanel {
+	.select2-container {
+
+		.select2-choices .select2-search-field input,
+		.select2-choice,
+		.select2-choices {
+			background: @gray20;
+		}
+	}
+}
+
 /* Checkboxes */
 .checkbox {
 	margin-top: 0;
 	margin-bottom: 6px;
 
 	label {
-		color: @gray40;
+		color: @gray50;
 		font-size: .9em;
 
 		&:before {
@@ -138,7 +154,7 @@ h5 input.color-choice {
 			background: @gray20;
 		}
     	&.on:before {
-			color: @gray40 !important;
+			color: @gray50 !important;
     	}
     	span {
     		display: inline-block;
@@ -168,10 +184,10 @@ h5 input.color-choice {
 	}
 }
 .hint--bottom:before {
-	border-bottom-color: @maingray !important;
+	border-bottom-color: @gray10 !important;
 }
 .hint--bottom:after {
 	padding: @streamboardgutter;
 	margin-left: -10px !important;
-	background: @maingray !important;
+	background: @gray10 !important;
 }

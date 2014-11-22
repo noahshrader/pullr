@@ -12,7 +12,7 @@ $typesList = [
 <div class="regions-panel pane" ng-class='{paddingBottom: ! hideFooter}'>
     <h4 class="panel-head">Region {{ region.regionNumber}}
         <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="region.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':region.backgroundColor}">
-        <a class="capture-link disabled mdi-action-settings-ethernet"></a>
+        <a class="capture-link mdi-action-settings-ethernet"></a>
     </h4>
     <div class="settings-wrap">
         <div class="module" ng-init="WIDGET_TYPES=<?= htmlspecialchars(json_encode($typesList)) ?>">

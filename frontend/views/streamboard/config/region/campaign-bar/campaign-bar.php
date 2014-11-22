@@ -5,7 +5,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
 ?>
 <div class="module">
     <div class="form-group">
-        <h5>Campaign to Track</h5>
+        <h5>Campaign</h5>
         <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.campaignId" ng-change="regionChanged(region)"
                 data-placeholder="Select a campaign...">
             <option value=""></option>
@@ -47,7 +47,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
     </div>
 </div>
 <div class="module">
-    <a class="settingtoggle">Font Settings<i class="mdi-navigation-arrow-drop-down"></i></a>
+    <a class="settingtoggle">Font<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <div class="form-group">
             <h5>Font Style</h5>
@@ -77,7 +77,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
     </div>
 </div>
 <div class="module last">
-    <a class="settingtoggle">Background Settings<i class="mdi-navigation-arrow-drop-down"></i></a>
+    <a class="settingtoggle">Background<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <div class="form-group">
             <h5>Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="widget.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':widget.backgroundColor}"></h5>
