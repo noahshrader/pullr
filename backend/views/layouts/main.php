@@ -89,7 +89,7 @@ $this->registerJs($js);
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="notifications" href="charity">
+                                    <a class="notifications" href="notification">
                                         <i class="icon-notifcation"></i>
                                         <span class="nav-label">Notifications</span>
                                     </a>
