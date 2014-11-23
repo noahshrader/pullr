@@ -16,7 +16,6 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
     <? if (sizeof($campaigns) > 0) { ?>
     <div data-bind="template: {name:'campaign', foreach:campaigns}"></div>
     <script type="text/html" id="campaign">
-        <?/*real attributes set in php code just few lines below, that is just mapping*/ ?>
         <a data-bind="attr: { href: href}, css: { active: isActive == true }" class='row campaign-item' >
             <div class="main-info">
                 <h5 data-bind="text: type" class="layout-type"></h5>
