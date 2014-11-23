@@ -65,7 +65,7 @@ function updateCampaignInvites(){
         var $list = $('<ul>');
         for (var key in invites) {
             var invite = invites[key];
-            var $item = $('<li>').append($('<span>').text(invite.user.name+' ('+invite.user.email+')'));
+            var $item = $('<li>').append($('<span>').text(invite.user.name));
             $item.attr('data-userid', invite.user.id);
             $item.append($('<a href="javascript:void(0)" onclick="campaignInviteRemove(this)" class="icon mdi-navigation-close"></a>'))
             $list.append($item);
@@ -88,17 +88,14 @@ function addNewCampaignInvite() {
     var $el = $('#addCampaignInvite');
     var uniqueName = $el.val();
     if (uniqueName) {
-        $.post('app/campaigns/campaigninvite', { id: id, uniqueName: uniqueName }, function (data)
-        {
+        $.post('app/campaigns/campaigninvite', { id: id, uniqueName: uniqueName }, function (data) {
             var wrap = $(".combined-form-wrap");
             var wrapHelp = $(".combined-form-wrap  .help-block")
             if (data == 0)
             {
                 wrap.addClass("has-error");
                 wrapHelp.removeClass("hide");
-            }
-            else
-            {
+            } else {
                 wrap.removeClass("has-error");
                 wrapHelp.addClass("hide");
                 $el.val('');
