@@ -3,7 +3,11 @@ $(function () {
     $(document).on('click', '.paneltoggle li a', function() {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
         $('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
-        $('.veil').fadeToggle(200);
+        if($(this).parent('li').hasClass('active')) {
+            $('.veil').fadeIn(200);
+        } else {
+            $('.veil').fadeOut(200);
+        }
    	});
     $('.sidepanel-head').click(function(){ 
         $('.paneltoggle li').removeClass('active');
