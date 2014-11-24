@@ -12,6 +12,11 @@
             $scope.duration = 1500;
             $scope.alertMediaManagerService = alertMediaManager;
             $scope.streamboardConfig = streamboardConfig;
+
+
+            $scope.campaignsService = campaigns;
+            $scope.donationsService = donations;
+
             twitchNotification.requestTwitchData();
             $interval(twitchNotification.requestTwitchData, 20000);
 
@@ -72,12 +77,59 @@
                 regions.regionChanged(region);
             }
 
-            $scope.getRegionSelector = function(region) {
+
+            $scope.onResizeLastSubscriberWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.lastSubscriberWidget.width = ui.size.width;
+                region.widgetTags.lastSubscriberWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeLargestDonationWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.largestDonationWidget.width = ui.size.width;
+                region.widgetTags.largestDonationWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeLastDonorAndDonationWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.lastDonorAndDonationWidget.width = ui.size.width;
+                region.widgetTags.lastDonorAndDonationWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeLastFollowerWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.lastFollowerWidget.width = ui.size.width;
+                region.widgetTags.lastFollowerWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeTopDonorWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.topDonorWidget.width = ui.size.width;
+                region.widgetTags.topDonorWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeLastDonorWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.lastDonorWidget.width = ui.size.width;
+                region.widgetTags.lastDonorWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+	   $scope.getRegionSelector = function(region) {
                 return '#region-' + region.regionNumber;
             }
 
             $scope.getCampaignBarSelector = function(region) {
                 return '#region-' + region.regionNumber + ' #campaign-bar';
+            }
+
+            $scope.getContainmentByRegion = function(region) {
+                return '#region-' + region.regionNumber;
             }
             
 
@@ -182,6 +234,7 @@
                     toShow.animationDirection = '';  
                     toShow.isRunning = true;                  
                     toShow.message = notification.message;
+                    toShow.soundFile = notification.soundFile;
 
                     if (region.widgetType == 'widget_alerts') {      
 
@@ -194,10 +247,18 @@
                             if (toShow.animationDirectionArray.length > 1) {
                                 toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
                             }    
+                        }                        
+                        toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);
+                        if(toShow.soundFile){
+                            var sound = toShow.soundFile;
+                            var type = null;
+                        }else{
+                            var sound = preference.sound;
+                            var type = preference.soundType;
                         }
-                        
-                        toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);                        
-                        alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
+                        // alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
+                        alertMediaManager.playSound(sound, type, preference.volume);
+
                         $interval(function () {
                             hideAlert(region);
                         }, preference.animationDuration * 1000, 1);

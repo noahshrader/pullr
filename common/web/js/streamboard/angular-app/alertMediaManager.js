@@ -11,14 +11,14 @@
      *  @param customSounds - list of custom sounds
      *  @param customImages - list of custom images
      */
-        service('alertMediaManager', function ($http) {
+        service('alertMediaManager', function ($http, $filter) {
             function addUserToPath(path){
                 return path + Pullr.user.id + '/';
             }
             var Service = this;
             $.extend(this, Pullr.Streamboard.AlertMediaManager);
             this.playSound = function (sound,soundType, volume) {
-                if (!sound || !soundType){
+                if (!sound){
                     return;
                 }
                 var path;
@@ -30,7 +30,15 @@
                         path = addUserToPath(Service.PATH_TO_CUSTOM_SOUNDS)+sound;
                         break;
                     default:
-                        throw new Exception('Wrong type for playSound method');
+                        var a = $filter('filter')(Service.customSounds, sound, true);                        
+                        if(a.length > 0){
+                            Service.playSound(a[0], 'Custom', volume);
+                        }
+                        var a = $filter('filter')(Service.librarySounds, sound, true);
+                        if(a.length > 0){
+                            Service.playSound(a[0], 'Library', volume);
+                        }
+                        return true;
                 }
                 /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
                 if (this.audio){
