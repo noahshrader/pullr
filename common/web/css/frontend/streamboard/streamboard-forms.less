@@ -170,6 +170,8 @@ h5 input.color-choice {
 
 /* Custom Sound Input Box */
 span.custom-alert-sound {
+	display: inline-block;
+
 	input.money-input {
 		width: 60px;
 		height: 15px;
@@ -178,15 +180,19 @@ span.custom-alert-sound {
 		padding-right: 0px;
 		color: @white;
 	}
-	.mdi-editor-attach-money:before {
-		content:"";
+	i.mdi-editor-attach-money {
+		top: 1px;
+
+		&:before {
+			content:"\e769";
+			position: relative;
+			top: 1px;
+			left: 2px;
+		}
+		&:after {
+			content:"";
+		}
 	}
-	.mdi-editor-attach-money:after {
-		content:"\e769";
-	}
-}
-.tab3{
-	width:33% !important;
 }
 .donation-custom-sound {
 	min-height: 260px;	

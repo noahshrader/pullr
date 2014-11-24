@@ -1,13 +1,14 @@
 <div class="tab-content tags-panel pane tags-tabcontent">
     <h4 class="panel-head" ng-init="selobj={}; selobj.selectedRegion=1">
-        Tags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="javascript:(function(){})()"
-           ng-class="{actived:selobj.selectedRegion==region.regionNumber}"
-           class="tagstabset region{{region.regionNumber}}"
-           ng-click="selobj.selectedRegion=region.regionNumber"
-           ng-repeat="region in regionsService.regions">
-            &nbsp;
-        </a>
+        Tags
+        <span>
+            <a href="javascript:(function(){})()"
+               ng-class="{active:selobj.selectedRegion==region.regionNumber}"
+               class="tagstabset region{{region.regionNumber}}"
+               ng-click="selobj.selectedRegion=region.regionNumber"
+               ng-repeat="region in regionsService.regions">
+            </a>
+        </span>
     </h4>
 
     <div class="settings-wrap" ng-show="selobj.selectedRegion==region.regionNumber"
@@ -65,40 +66,42 @@
             </div>
 
             <div class="module">
-                <div class="panel-group">
-                    <h5>Font Style</h5>
-
-                    <div font-style ng-model="region.widgetTags.fontStyle"></div>
-                </div>
-                <div class="panel-group">
-                    <h5>Font Color <input colorpicker="hex" colorpicker-position="left"
-                                          colorpicker-with-input="true"
-                                          ng-model="region.widgetTags.fontColor"
-                                          ng-change="regionChanged(region)"
-                                          class="color-choice"
-                                          ng-style="{'background-color':region.widgetTags.fontColor}">
-                    </h5>
-                </div>
-                <div class="panel-group">
-                    <h5>Font Size <span class="slider-value value">{{preference.fontSize}} px</span></h5>
-                    <slider ng-model="region.widgetTags.fontSize" floor="{{MIN_FONT_SIZE}}"
-                            ceiling="{{MAX_FONT_SIZE}}" step="1"
-                            ng-change="regionChanged(region)"></slider>
-                </div>
-                <div class="panel-group">
-                    <h5>Font Weight <span class="slider-value value">{{preference.fontWeight}}</span></h5>
-                    <slider ng-model="region.widgetTags.fontWeight" floor="{{MIN_FONT_WEIGHT}}"
-                            ceiling="{{MAX_FONT_WEIGHT}}"
-                            step="100"
-                            ng-change="regionChanged(region)"></slider>
-                </div>
-                <div class="panel-group">
-                    <div class='checkbox'>
-                        <label ng-class="{on:region.widgetTags.fontUppercase}">
-                            <input type="checkbox" ng-model="region.widgetTags.fontUppercase"
-                                   ng-change="regionChanged(region)">
-                            Uppercase
-                        </label>
+                <a class="settingtoggle">Font<i class="mdi-navigation-arrow-drop-down"></i></a>
+                <div class="module-settings">
+                    <div class="panel-group">
+                        <h5>Font Style</h5>
+                        <div font-style ng-model="region.widgetTags.fontStyle"></div>
+                    </div>
+                    <div class="panel-group">
+                        <h5>Font Color <input colorpicker="hex" colorpicker-position="left"
+                                              colorpicker-with-input="true"
+                                              ng-model="region.widgetTags.fontColor"
+                                              ng-change="regionChanged(region)"
+                                              class="color-choice"
+                                              ng-style="{'background-color':region.widgetTags.fontColor}">
+                        </h5>
+                    </div>
+                    <div class="panel-group">
+                        <h5>Font Size <span class="slider-value value">{{region.widgetTags.fontSize}} px</span></h5>
+                        <slider ng-model="region.widgetTags.fontSize" floor="{{MIN_FONT_SIZE}}"
+                                ceiling="{{MAX_FONT_SIZE}}" step="1"
+                                ng-change="regionChanged(region)"></slider>
+                    </div>
+                    <div class="panel-group">
+                        <h5>Font Weight <span class="slider-value value">{{region.widgetTags.fontWeight}}</span></h5>
+                        <slider ng-model="region.widgetTags.fontWeight" floor="{{MIN_FONT_WEIGHT}}"
+                                ceiling="{{MAX_FONT_WEIGHT}}"
+                                step="100"
+                                ng-change="regionChanged(region)"></slider>
+                    </div>
+                    <div class="panel-group">
+                        <div class='checkbox'>
+                            <label ng-class="{on:region.widgetTags.fontUppercase}">
+                                <input type="checkbox" ng-model="region.widgetTags.fontUppercase"
+                                       ng-change="regionChanged(region)">
+                                Uppercase
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

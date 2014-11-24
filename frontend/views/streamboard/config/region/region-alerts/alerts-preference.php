@@ -76,7 +76,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     </div>
 </div>
 <span ng-init="baseLink='region-'+region.regionNumber+'-preference-'+preference.preferenceType"></span>
-<div class="module">
+<div class="module media-manager">
     <a class="settingtoggle">Sounds &amp; Images<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <ul class="library-tabs cf">
@@ -94,8 +94,8 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             </li>
             <li>
                 <a href="<?= Url::to() ?>#{{baseLink}}-ranges" data-toggle="tab" ng-show="customDonationSound.showRangeTab[region.regionNumber]" ng-class="{tab3:customDonationSound.showRangeTab[region.regionNumber]}">
-                    <i class="mdi-action-bug-report"></i>
-                    Ranges
+                    <i class="mdi-av-queue-music"></i>
+                    Custom
                 </a>
             </li>
         </ul>
