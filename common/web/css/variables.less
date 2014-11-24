@@ -33,8 +33,8 @@
 @hitboxhover: lighten(@hitboxgreen, 5%); /* Hitbox hover state */
 
 /* Gray Sets */
-@maingray: lighten(@base, 5%);
 @dkgray: lighten(@base, 3%); /* 3% darker than background */
+@maingray: lighten(@base, 5%);
 @gray10: lighten(@base, 10%); /* 10% gray background */
 @gray12: lighten(@base, 13%); /* 12% gray background */
 @gray15: lighten(@base, 15%); /* 15% gray background */
@@ -112,12 +112,18 @@
 @gutter: 30px; /* Default spacing between main elements */
 @halfgutter: 15px; /* Half the gutter spacing */
 
-/* Streamboard */
-@streamboardgutter: 10px;
-
 .nowrap{
   white-space: nowrap;
 }
+
+
+/* Streamboard */
+/* ------------------------------------------------- */
+@streamboardgutter: 20px;
+@streamboardgray: @gray10;
+@streamboardactive: @gray12;
+@streamboardlgray: @gray15;
+@streamboardshadow: lighten(@base, 7%);
 
 
 /* Lists */

@@ -21,7 +21,6 @@ angular.module('streamboardApp').controller('sideBarCtrl', function($scope, $htt
         });
     }
 
-
     $('#sidepanel').resize(function() {
     	$("#sidepanel").css('left', 'auto');
         var width = $('#sidepanel').width();
@@ -30,10 +29,10 @@ angular.module('streamboardApp').controller('sideBarCtrl', function($scope, $htt
 
     function setSideBarWidth(width) {
     	$("#sidepanel").css('left', 'auto');
-        var panelhead = width - 30;
+        var panelhead = width - 40;
         var sidefooter = width;
         $('.panel-head, .panel-title').width(panelhead);
-        $('.right-side-footer, .overlay').width(sidefooter);
+        $('.right-side-footer, .overlay, .veil').width(sidefooter);
     }
 
     $scope.regionTabChanged = function(region) {

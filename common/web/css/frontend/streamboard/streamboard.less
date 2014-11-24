@@ -4,6 +4,7 @@
 /* Base */
 /* ------------------------------------------------- */
 body, html {
+	font-weight: 400;
 	background: @base;
 }
 label {
@@ -48,7 +49,7 @@ slider {
 		top: 50%;
 		height: 2px;
 		margin: 0;
-		background: @maingray;
+		background: @streamboardshadow;
 	}
 	span.pointer {
 		top: 3px;
@@ -58,34 +59,14 @@ slider {
 		cursor: pointer;
 		.box-shadow;
 		&.active {
-			-webkit-transform: scale(1.6);
-			-ms-transform: scale(1.6);
-			transform: scale(1.6);
+			-webkit-transform: scale(1.2);
+			-ms-transform: scale(1.2);
+			transform: scale(1.2);
 		}
 	}
 }
 span.slider-value {
 	float: right;
-}
-
-.value {
-	color: @white;
-}
-
-/* Miscellaneous Classes */
-.dim {
-	opacity: .1;
-}
-.border {
-	border-bottom: solid 1px @maingray;
-}
-.commaAfter:not(:last-child):after {
-	content: ',';
-	position: relative;
-	margin-left: -2px;
-}
-.hint, [data-hint] {
-	width: 100%;
 }
 
 
@@ -99,7 +80,7 @@ span.slider-value {
 	width: @sidepanelwidth;
 	max-width: 50%;
 	min-width: @sidepanelwidth;
-	background: @maingray;
+	background: @streamboardgray;
 	z-index: 900;
 
 	.sidepanel-head {
@@ -113,7 +94,7 @@ span.slider-value {
 		ul.panel-nav {
 			top: 0;
 			border-top: 0;
-			border-bottom: solid 1px @maingray;
+			border-bottom: solid 1px @streamboardshadow;
 
 			li {
 				&.active a,
@@ -128,21 +109,10 @@ span.slider-value {
 
 				a {
 					color: @gray30;
+					font-weight: 700;
 					line-height: @sidenavheight;
 					height: @sidenavheight;
-					background: @gray10;
-					&.region1 {
-						&:before {
-							content: '\e830';
-							font-family: 'icons';
-						}
-					}
-					&.region2 {
-						&:before {
-							content: '\e831';
-							font-family: 'icons';
-						}
-					}
+					background: @streamboardgray;
 				}
 			}
 		}
@@ -182,8 +152,10 @@ span.slider-value {
 			top: @sidenavheight;
 		}
 		.settings-wrap {
-			padding: @streamboardgutter;
 			min-height: 400px;
+		}
+		.module {
+			border-bottom: solid 1px @streamboardshadow;
 		}
 	}
 	.paddingBottom {
@@ -203,9 +175,9 @@ span.slider-value {
 		max-width: 50%;
 		min-width: @sidepanelwidth;
 		color: @white;
-		padding: 0 @halfgutter;
+		padding: 0 @streamboardgutter;
 		background: @gray10;
-		border-bottom: solid 1px @maingray;
+		border-bottom: solid 1px @streamboardshadow;
 		z-index: 1001;
 	}
 	.overlay {
@@ -220,27 +192,49 @@ span.slider-value {
 	/* Slideup Panel */
 	.slidepanel.pane {
 		position: absolute;
-		bottom: -480px;
+		bottom: -440px;
 		right: 0;
 		width: 100%;
-		height: 480px;
-		background: @gray10;
+		height: 440px;
+		background: @streamboardgray;
 		z-index: 1001;
 		.slowtrans;
 		&.selected {
 			bottom: @sidenavheight;
 		}
-		.mCustomScrollBox {
-			padding: 0 @halfgutter;
-		}
 		.module {
 			display: inline-block;
 			width: 100%;
-			background: @gray12;
+			background: @streamboardgray;
+			border-bottom: solid 1px @streamboardshadow;
 			opacity: 1 !important;
+			&.show {
+				a.settingtoggle {
+					background: @streamboardactive;
+				}
+			}
 
-			&.first {
-				margin-top: @halfgutter;
+			.module-settings {
+				background: @streamboardactive;
+
+				.form-group {
+					border-bottom: solid 1px @streamboardgray;
+					&:first-child {
+						padding-top: 2px;
+					}
+					&:last-child {
+						border: 0;
+					}
+				}
+			}
+			h5 {
+				margin-bottom: 4px;
+			}
+			slider span.bar {
+				background: @maingray;
+			}
+			span.total_amountRaised {
+				font-weight: 400;
 			}
 		}
 		h4.panel-title {
@@ -249,13 +243,13 @@ span.slider-value {
 			color: @white;
 			font-size: 1em;
 			line-height: @sidenavheight;
-			padding: 0 @halfgutter;
+			padding: 0 @streamboardgutter;
 			margin-top: -@sidenavheight;
 			width: @sidepanelwidth;
 			max-width: 50%;
 			min-width: @sidepanelwidth;
-			background: @gray10;
-			border-bottom: solid 1px @maingray;
+			background: @streamboardgray;
+			border-bottom: solid 1px @streamboardshadow;
 			z-index: 1001;
 
 			button {
@@ -263,27 +257,29 @@ span.slider-value {
 				margin: .6em 0;
 			}
 		}
-		h5 {
-			margin-bottom: 4px;
-		}
-		slider span.bar {
-			background: @maingray;
-		}
-		span.total_amountRaised {
-			font-weight: 400;
-		}
 		&.timerModule_panel {
 			.mCSB_container {
 				overflow: visible;
 			}
 		}
 	}
+	.streamboard-settings-header {
+		padding: 8px @streamboardgutter;
+		height: @sidenavheight;
+		background: @gray10;
+		border-bottom: solid 1px @streamboardshadow;
+		postion: relative;
+
+		button {
+			margin: 0;
+			width: 100%;
+		}
+	}
 }
 
 /* General Module Styles */
 .module {
-	margin-bottom: @streamboardgutter;
-	background: @gray10;
+	border-radius: 0;
 	overflow: visible;
 	.slowtrans;
 
@@ -293,31 +289,91 @@ span.slider-value {
 	.module-title {
 		padding: @halfgutter @halfgutter 0;
 	}
+	.module-settings {
+		display: none;
+		background: @streamboardactive;
+
+		.form-group {
+			border-bottom: solid 1px @streamboardgray;
+			&:first-child {
+				padding-top: 2px;
+			}
+			&:last-child {
+				border: 0;
+			}
+		}
+	}
+	a.settingtoggle {
+		display: block;
+		color: @gray30;
+		.smallcaps;
+		padding: @halfgutter;
+		transition: none;
+
+		i {
+			display: block;
+			float: right;
+			font-size: 1.2em;
+			font-weight: 700;
+			line-height: 16px;
+		}
+	}
+	&.show {
+		a.settingtoggle {
+			color: @white;
+			background: @streamboardactive;
+
+			i {
+				transform:rotate(180deg);
+				-ms-transform:rotate(180deg);
+				-webkit-transform:rotate(180deg);
+			}
+		}
+		.module-settings {
+			display: block;
+		}
+	}
 }
 
+
+/* Other */
 .sidetoggle {
 	position: absolute;
 	bottom: 0;
 	left: -46px;
 	color: @white;
 	padding: @halfgutter;
-	opacity: .5;
+	opacity: .6;
 	&:hover {
 		color: @white;
 		opacity: 1;
 	}
 }
-
-.streamboard-settings-header {
-	padding: 8px @streamboardgutter;
-	height: @sidenavheight;
-	background: @gray10;
+.veil {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+	min-width: @sidepanelwidth;
+	max-width: 50%;
+	background: @maingray;
+	z-index: 900;
+	opacity: .95;
+}
+.value {
+	color: @white;
+}
+.border {
 	border-bottom: solid 1px @maingray;
-	postion: relative;
-	button {
-		margin: 0;
-		width: 100%;
-	}
+}
+.commaAfter:not(:last-child):after {
+	content: ',';
+	position: relative;
+	margin-left: -2px;
+}
+.hint, [data-hint] {
+	width: 100%;
 }
 
 
@@ -328,7 +384,6 @@ ul.panel-nav {
 	line-height: @sidenavheight;
 	height: @sidenavheight;
 	background: @gray10;
-	border-top: solid 1px #2e2e32;
 
 	li {
 		&:last-child {
@@ -386,6 +441,7 @@ ul.panel-nav {
 	position: relative;
 
 	.donations-list {
+		background: @maingray;
 		.slowtrans;
 
 		span {
@@ -396,12 +452,11 @@ ul.panel-nav {
 			display: block;
 			color: @gray30;
 			margin: 0;
-			background: @maingray;
-			border-bottom: solid 1px @maingray;
+			border-bottom: solid 1px @streamboardshadow;
 
 			.donation-wrap {
-				padding: 24px @gutter;
-				background: @gray10;
+				padding: @gutter @streamboardgutter;
+				background: @streamboardgray;
 			}
 			h3.list-title {
 				font-size: 15px;
@@ -409,7 +464,7 @@ ul.panel-nav {
 			}
 			&.wasRead {
 				.donation-wrap {
-					opacity: .2;
+					opacity: .15;
 				}
 				a.markread {
 					background: transparent !important;
@@ -468,7 +523,7 @@ ul.panel-nav {
 				text-align: center;
 				line-height: @gutter + 20px;
 				height: @gutter + 20px;
-				width: @gutter + @gutter;
+				width: @gutter + 20px;
 				&:hover {
 					i {
 						&:before {
@@ -497,12 +552,15 @@ ul.panel-nav {
 	height: @sidenavheight;
 	max-width: 50%;
 	min-width: @sidepanelwidth;
-	background: @gray10;
 	z-index: 9999;
 
 	ul.panel-nav {
+		background: @streamboardgray;
+		border: 0;
 
 		li {
+			border-top: solid 1px @streamboardshadow;
+
 			&.active a {
 				box-shadow: none;
 			}
@@ -580,7 +638,7 @@ ul.panel-nav {
 	height: 20px;
 	width: 20px;
 	margin-right: 5px;
-	background: @gray15;
+	background: @streamboardlgray;
 	.round-radius;
 	&:hover {
 		color: @white;
@@ -619,7 +677,7 @@ ul.panel-nav {
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background: @base;
+	background: @maingray;
 
 	.sb-logo,
 	.spinner {
@@ -637,8 +695,8 @@ ul.panel-nav {
 	.sb-logo {
 		top: 0;
 		height: 100%;
-		-webkit-transform: translate3d(0,35%,0);
-		transform: translate3d(0,35%,0);
+		-webkit-transform: translate3d(0,40%,0);
+		transform: translate3d(0,40%,0);
 
 		i {
 			color: @white;

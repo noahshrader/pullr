@@ -35,7 +35,7 @@
     <div class="slidestats">
         <div class="container">
             <h5 class="campaign">{{campaign.name}}</h5>
-            <h5 class="amount-raised" style="color:{{campaign.primaryColor}};"><i class="icon icon-coin"></i>{{campaign.amountRaisedFormatted}}</h5>
+            <h5 class="amount-raised" style="color:{{campaign.primaryColor}};">{{campaign.amountRaisedFormatted}}</h5>
         </div>
     </div>
     <!-- Header -->
@@ -86,8 +86,7 @@
         <div class="info-wrap cf">
             <div class="right donate-wrap">
                 <div class="donate-button">
-                    <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">Donate</button>
-                    <div class="slant"></div>
+                    <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">{{campaign.donationButtonText}}</button>
                 </div>
             </div>
             <div class="feed-details">

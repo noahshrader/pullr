@@ -3,27 +3,19 @@ $(function () {
     $(document).on('click', '.paneltoggle li a', function() {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
         $('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
+        $('.veil').fadeToggle(200);
    	});
     $('.sidepanel-head').click(function(){ 
         $('.paneltoggle li').removeClass('active');
         $('.slidepanel').removeClass('selected');
-    });
-    
-    // if panel is exposed, blur items in back
-    $(document).on('click', function() {
-        var dimmed = $('.settings-wrap .module, .donations-list');
-        if ($(".slidepanel").hasClass("selected")) {
-            $(dimmed).addClass('dim');
-        } else {
-            $(dimmed).removeClass('dim');
-        }
+        $('.veil').hide();
     });
 
     // toggle close right sidebar
     $("a.sidetoggle").click(function(){
         var l = $(this).data('l');
         var width = $('#sidepanel').width();
-        $("#sidepanel, .right-side-footer, .panel-head, .panel-title").animate({right: (l ?  0 : -width)}, 200);
+        $("#sidepanel, .right-side-footer, .panel-head, .panel-title, .veil").animate({right: (l ?  0 : -width)}, 200);
         $(this).data('l', !l);
     });
 
@@ -78,6 +70,7 @@ $(function () {
     })
 
 });
+
 $(window).load(function() {
 
     // streamboard loader
@@ -98,7 +91,19 @@ $(window).load(function() {
         },
         live: true
     });
+
+    // collapsable containers
+    function toggleadd(){
+        $(".module a.settingtoggle").click(function(){
+            $(this).parent().toggleClass("show");
+        });
+    }
+    $(".widget-select").change(function(event) {
+       toggleadd();
+    });
+    $(toggleadd);
 });
+
 // google fonts
 function requireGoogleFont(fontFamily){
    if (!fontFamily){

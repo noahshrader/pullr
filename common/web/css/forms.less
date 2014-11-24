@@ -39,7 +39,7 @@ select {
 textarea,
 textarea.form-control {
 	max-width: 100%;
-	min-height: 100px;
+	min-height: 80px;
 	resize: none;
 }
 label,
@@ -152,7 +152,6 @@ input.color-choice {
 	.select2-choices {
 		color: @gray30;
 		font-family: @mainfont;
-		font-size: @inputtextsize;
 		font-weight: 500;
 		background: @gray75;
 		border: 0;
@@ -165,12 +164,13 @@ input.color-choice {
 		}
 	}
 	.select2-choice {
+		line-height: 45px;
 		height: 45px;
 		.border-radius !important;
 
 		> span:first-child,
 		.select2-search-field input {
-			padding: 11px @halfgutter;
+			padding: 0 @halfgutter;
 		}
 		.select2-arrow, .select2-choice div {
 			border: 0;
@@ -220,7 +220,7 @@ input.color-choice {
 		color: @gray70;
 		font-family: 'icons';
 		font-size: 14px;
-		font-weight: 600;
+		font-weight: 500;
 		text-align: center;
 		margin-top: -7px;
 		width: 40px;
@@ -385,6 +385,9 @@ input.color-choice {
 	.form-group {
 		padding: 0;
 		margin: 0;
+	}
+	i.mdi-action-help {
+		color: @gray60;
 	}
 	/* Errors */
 	&.has-error {

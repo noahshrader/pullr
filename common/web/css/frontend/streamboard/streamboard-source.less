@@ -1,23 +1,27 @@
 @import "../../variables.less";
 
 body {
-  background: @maingray;
+  background: @streamboardgray;
   height: auto;
   overflow: visible;
 }
 
 .source-wrap {
-	padding: @streamboardgutter;
 
 	.module {
 		font-size: @smalltext;
+		border-bottom: solid 1px @streamboardshadow;
 
+		h5 {
+			font-size: @smalltext;
+		}
 		span {
-			color: @white !important;
+			color: @gray50 !important;
 		}
 
 		&:last-child {
 			margin: 0;
+			border: 0;
 		}
 	}
 

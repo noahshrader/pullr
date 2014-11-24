@@ -54,7 +54,7 @@
                         <h4 style="color:{{campaign.secondaryColor}};" ng-cloak>{{campaign.charity.name}}{{campaign.customCharity}}</h4>
                         <h5 ng-cloak>{{campaign.startDateFormatted}} - {{campaign.endDateFormatted}}</h5>
                         <div class="donate-button">
-                            <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">Donate</button>
+                            <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">{{campaign.donationButtonText}}</button>
                         </div>
                     </div>
                 </div>
