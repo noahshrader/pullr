@@ -10,6 +10,11 @@ $(function () {
         $('.slidepanel').removeClass('selected');
         $('.veil').hide();
     });
+    
+    // collapsable containers
+    $(document).on('click', '.module a.settingtoggle', function() {
+        $(this).parent().toggleClass("show");
+    });
 
     // toggle close right sidebar
     $("a.sidetoggle").click(function(){
@@ -91,17 +96,6 @@ $(window).load(function() {
         },
         live: true
     });
-
-    // collapsable containers
-    function toggleadd(){
-        $(".module a.settingtoggle").click(function(){
-            $(this).parent().toggleClass("show");
-        });
-    }
-    $(".widget-select").change(function(event) {
-       toggleadd();
-    });
-    $(toggleadd);
 });
 
 // google fonts
