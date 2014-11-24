@@ -17,6 +17,7 @@ use common\components\streamboard\alert\AlertMediaManager;
  * @property WidgetAlertsPreference $followersPreference
  * @property WidgetAlertsPreference $subscribersPreference
  * @property WidgetAlertsPreference $donationsPreference
+ * @property WidgetAlertsCustomsound $donationCustomsound
  */
 class WidgetAlerts extends ActiveRecord {
     const PREFERENCE_FOLLOWERS = 'followers';
@@ -41,7 +42,7 @@ class WidgetAlerts extends ActiveRecord {
 
     public function fields(){
         return ['userId', 'regionNumber', 'includeFollowers', 'includeSubscribers', 'includeDonations',
-            'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference', 
+            'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference','donationCustomsound',
             'positionX', 'positionY', 'imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY',
             'imageWidth', 'imageHeight','messageHeight', 'messageWidth'
         ];
@@ -85,6 +86,10 @@ class WidgetAlerts extends ActiveRecord {
         return $this->hasOne(WidgetAlertsPreference::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber'])->andWhere(['preferenceType' => self::PREFERENCE_DONATIONS]);
     }
 
+    public function getDonationCustomsound(){
+        return $this->hasMany(WidgetAlertsCustomsound::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber']);
+    }
+
     public function getCustomImages(){
         return AlertMediaManager::getCustomImages();
     }
@@ -108,7 +113,8 @@ class WidgetAlerts extends ActiveRecord {
         $this->subscribersPreference->load($data,'subscribersPreference') &&
         $this->subscribersPreference->save() &&
         $this->donationsPreference->load($data,'donationsPreference') &&
-        $this->donationsPreference->save();
+        $this->donationsPreference->save()&&
+        WidgetAlertsCustomsound::updateFromArray($data);
     }
 
     public function toArray(array $fields = [], array $expand = [], $recursive = true){

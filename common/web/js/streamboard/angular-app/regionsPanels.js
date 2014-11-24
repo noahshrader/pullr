@@ -72,7 +72,53 @@
                 regions.regionChanged(region);
             }
 
+            $scope.onResizeLastSubscriberWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.lastSubscriberWidget.width = ui.size.width;
+                region.widgetTags.lastSubscriberWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeLargestDonationWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.largestDonationWidget.width = ui.size.width;
+                region.widgetTags.largestDonationWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeLastDonorAndDonationWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.lastDonorAndDonationWidget.width = ui.size.width;
+                region.widgetTags.lastDonorAndDonationWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeLastFollowerWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.lastFollowerWidget.width = ui.size.width;
+                region.widgetTags.lastFollowerWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeTopDonorWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.topDonorWidget.width = ui.size.width;
+                region.widgetTags.topDonorWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
+            $scope.onResizeLastDonorWidget = function(region, event, ui) {
+                console.log(arguments);
+                region.widgetTags.lastDonorWidget.width = ui.size.width;
+                region.widgetTags.lastDonorWidget.height = ui.size.height;
+                regions.regionChanged(region);
+            }
+
             $scope.getRegionSelector = function(region) {
+                return '#region-' + region.regionNumber;
+            }
+
+            $scope.getContainmentByRegion = function(region) {
                 return '#region-' + region.regionNumber;
             }
 
@@ -80,7 +126,6 @@
                 return '#region-' + region.regionNumber + ' #campaign-bar';
             }
             
-
             $scope.onResizeCampaignBar = function(region, event, ui) {                
                 if (region != null) {
                     region.widgetCampaignBar.positionX = ui.position.left;

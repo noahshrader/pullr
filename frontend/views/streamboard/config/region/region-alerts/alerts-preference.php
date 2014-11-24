@@ -81,15 +81,21 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     <div class="module-settings">
         <ul class="library-tabs cf">
             <li class="active">
-                <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">
+                <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab" ng-class="{tab3:customDonationSound.showRangeTab[region.regionNumber]}">
                     <i class="mdi-av-volume-up"></i>
                     Sounds
                 </a>
             </li>
             <li>
-                <a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab">
+                <a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab" ng-class="{tab3:customDonationSound.showRangeTab[region.regionNumber]}">
                     <i class="mdi-image-panorama"></i>
                     Images
+                </a>
+            </li>
+            <li>
+                <a href="<?= Url::to() ?>#{{baseLink}}-ranges" data-toggle="tab" ng-show="customDonationSound.showRangeTab[region.regionNumber]" ng-class="{tab3:customDonationSound.showRangeTab[region.regionNumber]}">
+                    <i class="mdi-action-bug-report"></i>
+                    Ranges
                 </a>
             </li>
         </ul>
@@ -110,6 +116,12 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 $this->render('alerts-files-gallery', [
                     'fileType' => 'image'
                 ]) ?>
+            </div>
+            <div id="{{baseLink}}-ranges" class="tab-pane">
+                <div ng-init="customDonationSound.init(region.widgetAlerts.donationCustomsound, region.regionNumber)"></div>
+                <div ng-init="sounds=customDonationSound.customsounds[region.regionNumber]"></div>
+                <?=
+                $this->render('alerts-donation-coustomsound') ?>
             </div>
         </div>
     </div>

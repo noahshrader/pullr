@@ -140,7 +140,7 @@ class CampaignapiController extends \yii\web\Controller
      */
     public function actionCampaign()
     {
-        $campaignAlias = \Yii::$app->request->getQueryParam('campaingAlias');
+        $campaignAlias = \Yii::$app->request->getQueryParam('campaignAlias');
         $user = $this->getUser();
         $campaign = Campaign::findOne(['userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE, 'alias' => $campaignAlias]);
         $response = array();
@@ -168,9 +168,9 @@ class CampaignapiController extends \yii\web\Controller
      */
     public function actionDonationlist()
     {
-        $campaignAlias = \Yii::$app->request->getQueryParam('campaingAlias');
+        $campaignAlias = \Yii::$app->request->getQueryParam('campaignAlias');
         if(!$campaignAlias){
-            $this->throwError("407", "campaingAlias param is wrong");
+            $this->throwError("407", "campaignAlias param is wrong");
         }
         $defaultParams = array(
             'offset' => 0,

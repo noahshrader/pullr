@@ -21,6 +21,24 @@
             scope: true
         }
     });
+
+    /*
+     * directive to focus on show
+     */
+    app.directive('focusOn',function($timeout) {
+        return {
+            restrict : 'A',
+            link : function($scope,$element,$attr) {
+                $scope.$watch($attr.focusOn,function(_focusVal) {
+                    $timeout(function() {
+                        _focusVal ? $element.focus() :
+                            $element.blur();
+                    });
+                });
+            }
+        }
+    })
+
     app.run(function ($rootScope) {
         $rootScope.number_format = number_format;
         $rootScope.length = function (obj) {
