@@ -80,20 +80,20 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     <a class="settingtoggle">Sounds &amp; Images<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <ul class="library-tabs cf">
-            <li class="active">
-                <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab" ng-class="{tab3:customDonationSound.showRangeTab[region.regionNumber]}">
+            <li class="active" ng-class="{span2:!customDonationSound.showRangeTab[region.regionNumber] || preference.preferenceType !='donations'}">
+                <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">
                     <i class="mdi-av-volume-up"></i>
                     Sounds
                 </a>
             </li>
-            <li>
-                <a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab" ng-class="{tab3:customDonationSound.showRangeTab[region.regionNumber]}">
+            <li ng-class="{span2:!customDonationSound.showRangeTab[region.regionNumber] || preference.preferenceType !='donations'}">
+                <a href="<?= Url::to() ?>#{{baseLink}}-images" data-toggle="tab">
                     <i class="mdi-image-panorama"></i>
                     Images
                 </a>
             </li>
-            <li>
-                <a href="<?= Url::to() ?>#{{baseLink}}-ranges" data-toggle="tab" ng-show="customDonationSound.showRangeTab[region.regionNumber]" ng-class="{tab3:customDonationSound.showRangeTab[region.regionNumber]}">
+            <li ng-show="customDonationSound.showRangeTab[region.regionNumber] && preference.preferenceType =='donations'">
+                <a href="<?= Url::to() ?>#{{baseLink}}-ranges" data-toggle="tab">
                     <i class="mdi-av-queue-music"></i>
                     Custom
                 </a>

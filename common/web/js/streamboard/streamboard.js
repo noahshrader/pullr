@@ -18,6 +18,7 @@ $(function () {
     // collapsable containers
     $(document).on('click', '.module a.settingtoggle', function() {
         $(this).parent().toggleClass("show");
+        angular.element(".tab-content").scope().$broadcast('refreshSlider');
     });
 
     // toggle close right sidebar

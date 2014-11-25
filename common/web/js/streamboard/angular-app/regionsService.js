@@ -70,6 +70,7 @@
             }
 
             this.getSoundFileByValue = function(amount, regionNumber){
+                amount = isNaN(amount)?0:parseFloat(amount);
                 var soundFile = null;
                 var minvalue  = 0;
                 var maxvalue = 0;
@@ -90,6 +91,7 @@
                         maxvalue = fromValue;
                     }
                 }
+
                 return soundFile;
             }
         });

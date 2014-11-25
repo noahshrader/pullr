@@ -242,7 +242,17 @@
                         }
                         
                         toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);                        
-                        alertMediaManager.playSound(preference.sound, preference.soundType, preference.volume);
+
+                        
+                        if(notification.soundFile){
+                            var soundFile = notification.soundFile;
+                            var fileType = null;
+                        }else{
+                            var soundFile = preference.sound;
+                            var fileType = preference.soundType;
+                        }                        
+                        alertMediaManager.playSound(soundFile, fileType, preference.volume);
+
                         $interval(function () {
                             hideAlert(region);
                         }, preference.animationDuration * 1000, 1);
