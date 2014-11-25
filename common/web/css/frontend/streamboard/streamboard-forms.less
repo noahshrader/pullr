@@ -168,6 +168,36 @@ h5 input.color-choice {
 	}
 }
 
+/* Custom Sound Input Box */
+span.custom-alert-sound {
+	display: inline-block;
+
+	input.money-input {
+		width: 60px;
+		height: 15px;
+		min-height: 3px;
+		padding-left: 4px;
+		padding-right: 0px;
+		color: @white;
+	}
+	i.mdi-editor-attach-money {
+		top: 1px;
+
+		&:before {
+			content:"\e769";
+			position: relative;
+			top: 1px;
+			left: 2px;
+		}
+		&:after {
+			content:"";
+		}
+	}
+}
+.donation-custom-sound {
+	min-height: 260px;	
+}
+
 /* Tooltips */
 .hint:after,
 [data-hint]:after {

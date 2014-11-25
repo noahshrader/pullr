@@ -91,7 +91,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         </div>
     </div>
 </div>
-<div class="module" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
+<div class="module media-manager" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
     <a class="settingtoggle">Sounds &amp; Images<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <ul class="library-tabs cf">   

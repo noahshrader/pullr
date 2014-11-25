@@ -10,7 +10,6 @@ body, html {
 label {
 	color: @gray70;
 }
-
 [draggable] {
 	cursor: move !important;
 }
@@ -26,6 +25,16 @@ h5 {
 }
 .fontUppercase {
 	text-transform: uppercase;
+}
+
+/* Region Numbers */
+&.region1:before {
+	content: "\e804";
+	font-family: 'icons';
+}
+&.region2:before {
+	content: "\e805";
+	font-family: 'icons';
 }
 
 
@@ -109,7 +118,6 @@ span.slider-value {
 
 				a {
 					color: @gray30;
-					font-weight: 700;
 					line-height: @sidenavheight;
 					height: @sidenavheight;
 					background: @streamboardgray;
@@ -179,6 +187,20 @@ span.slider-value {
 		background: @gray10;
 		border-bottom: solid 1px @streamboardshadow;
 		z-index: 1001;
+
+		span {
+			float: right;
+
+			a {
+				display: inline-block;
+				color: @gray30;
+				margin-left: 5px;
+
+				&.active {
+					color: @white;
+				}
+			}
+		}
 	}
 	.overlay {
 		position: fixed;
@@ -208,12 +230,22 @@ span.slider-value {
 			background: @streamboardgray;
 			border-bottom: solid 1px @streamboardshadow;
 			opacity: 1 !important;
+			&:last-child {
+				border: 0;
+			}
 			&.show {
 				a.settingtoggle {
+					padding-bottom: 2px;
 					background: @streamboardactive;
 				}
 			}
-
+			&.media-manager {
+				&.show {
+					a.settingtoggle {
+						background: @streamboardlgray;
+					}
+				}			
+			}
 			.module-settings {
 				background: @streamboardactive;
 
@@ -231,7 +263,7 @@ span.slider-value {
 				margin-bottom: 4px;
 			}
 			slider span.bar {
-				background: @maingray;
+				background: @streamboardgray;
 			}
 			span.total_amountRaised {
 				font-weight: 400;
@@ -255,6 +287,7 @@ span.slider-value {
 			button {
 				float: right;
 				margin: .6em 0;
+				min-width: 60px;
 			}
 		}
 		&.timerModule_panel {
@@ -307,7 +340,7 @@ span.slider-value {
 		display: block;
 		color: @gray30;
 		.smallcaps;
-		padding: @halfgutter;
+		padding: @halfgutter @streamboardgutter;
 		transition: none;
 
 		i {
