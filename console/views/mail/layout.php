@@ -162,7 +162,7 @@ use common\components\Application;
             <table>
                 <tr>
                     <td class="content footer" align="center">
-                    	<?= $footer ?>
+                    	<!--<?= $footer ?>-->
                         <p>&copy; <a href="http://www.pullr.io">Pullr</a>, LLC. All Rights Reserved.</p>
                     </td>
                 </tr>
