@@ -39,32 +39,6 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 
 <div class="module">
 
-    <div class="panel-group">
-        <h5>Font Style</h5>
-        <div font-style ng-model="module.fontStyle"></div>
-    </div>
-    <div class="panel-group">
-        <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.fontColor}"></h5>
-    </div>
-    <div class="panel-group">
-        <h5>Highlight Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.highlightColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.highlightColor}"></h5>
-    </div>
-    <div class="panel-group">
-        <h5>Font Size <span class="slider-value value">{{module.fontSize}} px</span></h5>
-        <slider ng-model="module.fontSize" floor="{{MIN_FONT_SIZE}}" ceiling="{{MAX_FONT_SIZE}}" step="1"
-                ng-change="regionChanged(region)"></slider>
-    </div>
-    <div class="panel-group">
-        <h5>Font Weight <span class="slider-value value">{{module.fontWeight}}</span></h5>
-        <slider ng-model="module.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
-                ng-change="regionChanged(region)"></slider>
-    </div>
-    <div class="panel-group">
-        <div class='checkbox'>
-            <label ng-class="{on:module.fontUppercase}">
-                <input type="checkbox" ng-model="module.fontUppercase" ng-change="regionChanged(region)">
-                Font uppercase
-            </label>
     <a class="settingtoggle">Font<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <div class="panel-group">
@@ -73,6 +47,9 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         </div>
         <div class="panel-group">
             <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.fontColor}"></h5>
+        </div>
+        <div class="panel-group">
+            <h5>Highlight Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.highlightColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.highlightColor}"></h5>
         </div>
         <div class="panel-group">
             <h5>Font Size <span class="slider-value value">{{module.fontSize}} px</span></h5>
