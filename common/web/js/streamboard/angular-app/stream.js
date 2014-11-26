@@ -180,6 +180,7 @@
                 Service.requestStreamData();
             }, 5000);
             this.testData = function (type, number, region) {
+
                 number = number||1;
                 var message;
                 var regionNumber = region.regionNumber;
@@ -231,7 +232,7 @@
                             /*if we have second region*/
                             Service.streams[2].push(notification);
                         }
-                    }
+                    }                    
                 }
             }
 

@@ -1,4 +1,5 @@
 $(function () {
+    
     // panel toggles
     $(document).on('click', '.paneltoggle li a', function() {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
@@ -79,11 +80,7 @@ $(function () {
 
 });
 $(window).load(function() {
-
-    // streamboard loader
     $(".spinner-wrap").addClass('powered').fadeOut();
-
-    // custom scrollbars
     $(".pane").mCustomScrollbar({
         theme:"minimal",
         mouseWheel:{

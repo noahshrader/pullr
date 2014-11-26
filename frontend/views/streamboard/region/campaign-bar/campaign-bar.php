@@ -25,6 +25,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
          interaction
          draggable-widget="region.widgetCampaignBar.currentTotalModule" 
          draggable-region="region" 
+         draggable-config="{containment: getCampaignBarSelector(region)}"
          draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"          
          draggable>
         Raised<span>${{campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised}}</span>

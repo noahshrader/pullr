@@ -65,4 +65,35 @@ class Streamboard extends Model {
             ->andWhere('streamboard.selected = true')->orderBy('campaign.id DESC')->all();
     }
 
+    public static function getCurrentUser() {
+        
+                    
+        $user = null;        
+        $headers = \Yii::$app->request->getHeaders();
+      
+        $token = null;
+        if (isset($_GET['streamboardToken'])) {
+            $token = $_GET['streamboardToken'];
+        } else if (isset($headers['streamboardToken'])) {
+            $token = $headers['streamboardToken'];
+        }
+        
+        if ($token != null) {                    
+            $userId = \Yii::$app->db->createCommand('select userId from ' . StreamboardConfig::tableName() . ' where streamboardToken=:streamboardToken')
+                        ->bindValues(['streamboardToken' => $token])
+                        ->queryScalar();
+            if ($userId) {
+                $user = User::find($userId)->one();                    
+                if ($user == null) {
+                    throw new ForbiddenHttpException();
+                }
+            }                               
+        } else {
+            $user = Application::getCurrentUser();
+        }
+
+        return $user;
+        
+    }
+
 }

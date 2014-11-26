@@ -7,6 +7,7 @@ use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
 use common\components\Application;
 use yii\base\ErrorException;
+use frontend\models\streamboard\Streamboard;
 
 /**
  * AlertMediaManager manages sounds/images for streamboard->alerts.
@@ -103,8 +104,11 @@ class AlertMediaManager extends Model
      */
     private static function addUserToPath($path)
     {
-        $user = Application::getCurrentUser();
-        return $path . $user->id . '/';
+        $user = Streamboard::getCurrentUser();
+        if ($user) {
+            return $path . $user->id . '/';    
+        }
+        
     }
 
     public function getCustomSounds()

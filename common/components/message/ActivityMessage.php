@@ -31,13 +31,11 @@ class ActivityMessage
         return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, PullrUtils::formatNumber($campaign->amountRaised, 2), $campaign->name);
     }
 
-    public static function messageNewTwitchFollower($displayName){
-        $user = Application::getCurrentUser();
+    public static function messageNewTwitchFollower($user, $displayName){        
         return sprintf(self::TEMPLATE_NEW_TWITCH_FOLLOWER, $displayName,$user->userFields->twitchChannel);
     }
 
-    public static function messageNewTwitchSubscriber($displayName){
-        $user = Application::getCurrentUser();
+    public static function messageNewTwitchSubscriber($user, $displayName){        
         return sprintf(self::TEMPLATE_NEW_TWITCH_SUBSCRIBER, $displayName,$user->userFields->twitchChannel);
     }
 }

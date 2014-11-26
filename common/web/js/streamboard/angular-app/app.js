@@ -5,5 +5,8 @@
         'pullr.streamboard.settings', 'pullr.streamboard.stream', 'colorpicker.module',
         'pullr.streamboard.rotatingMessages', 'pullr.currentTime','pullr.countUpTimer','simpleMarquee',
         'pullr.streamboard.twitch']);
+    app.run(function(){
+    	
+    });
 
 })();

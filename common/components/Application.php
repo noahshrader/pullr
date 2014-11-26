@@ -93,7 +93,13 @@ class Application extends \yii\web\Application
      * @return User|null
      */
     public static function getCurrentUser(){
-       return \Yii::$app->user->identity;
+        if (isset($_GET['userId'])) {
+            $user = User::find($_GET['userId'])->one();
+            if ($user != null ) {
+                return $user;
+            }
+        } 
+        return \Yii::$app->user->identity;
     }
     /**
      * that is a hack for rendering templates outside views

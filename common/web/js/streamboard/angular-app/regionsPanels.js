@@ -3,7 +3,7 @@
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
             'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee',
             'pullr.streamboard.twitch']).
-        controller('RegionsCtrl', function ($scope, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
+        controller('RegionsCtrl', function ($http, $scope, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
             $scope.donationsService = donations;
@@ -12,13 +12,38 @@
             $scope.duration = 1500;
             $scope.alertMediaManagerService = alertMediaManager;
             $scope.streamboardConfig = streamboardConfig;
+            
+            if (Pullr.Streamboard.region) {
+                $scope.region = Pullr.Streamboard.region;     
+                $interval(function(){                    
+                    
+                    $http.get('app/streamboard/get_regions_ajax').success(function (data) {                                                
+                        var newRegion = null;
+                        if (data[$scope.region.regionNumber - 1]) {
+                            var newRegion = data[$scope.region.regionNumber - 1];    
+                            //keep alert when update region
+                            if ($scope.region.toShow) {
+                                var toShow = $.extend({}, $scope.region.toShow);
+                                newRegion['toShow'] = $scope.region.toShow;
+                            }
+                            $scope.region = newRegion;
+                        }                        
+
+                    });
+                }, 5000);             
+            }
+
             twitchNotification.requestTwitchData();
             $interval(twitchNotification.requestTwitchData, 20000);
 
+            $interval(function(){
+                stream.requestStreamData();
+            }, 5000);
+            
             var $region2 = $(".regionsContainer .region:last-child");
             var animationEndEvent = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
             var isShowingNotification = false;
-      
+                        
             $scope.getCampaignBackgroundStyle = function(image) {                
                 var url =  'url(' + alertMediaManager.getCampaignBackgroundUrl(image) + ')';                
                 return url;
@@ -28,13 +53,16 @@
                 return url;
             }
 
-            $scope.$watch('streamboardConfig.config.region2HeightPercent', function(height) {            
-                if (height > 0) {
-                    var $region2 = $(".regionsContainer .region:last-child");
-                    $region2.height((height) + '%');
-                    recalculateRegionSize();
-                }
-            });            
+            if ( typeof(Pullr.Streamboard.regionNumber) == 'undefined') {
+                $scope.$watch('streamboardConfig.config.region2HeightPercent', function(height) {            
+                    if (height > 0) {
+                        var $region2 = $(".regionsContainer .region:last-child");
+                        $region2.height((height) + '%');
+                        recalculateRegionSize();
+                    }
+                });                
+            }
+            
 
             var recalculateRegionSize = function() {     
                 var $region2 = $(".regionsContainer .region:last-child");           
@@ -45,7 +73,6 @@
                 $region2.height(divTwoHeight);
                 $(divOne).height(divOneHeight);            
             }
-
             
             $scope.onRegionResizeCreate = function() {
                 $(".regionsContainer .region:last-child").resize(function() {                
@@ -73,7 +100,10 @@
             }
 
             $scope.getRegionSelector = function(region) {
-                return '#region-' + region.regionNumber;
+               
+                return '#region-' + region.regionNumber;    
+                
+                
             }
 
             $scope.getCampaignBarSelector = function(region) {
@@ -99,25 +129,42 @@
                 region.widgetDonationFeed.height = ui.size.height;
                 regions.regionChanged(region);
             }
+                     
             $scope.regionsService.ready(function () {
+
                 requireAllFonts();
                 /*whenever regions are changes we are checking that we have right fonts*/
                 $scope.$watch('regionsService.regions', requireAllFonts, true);
                 $scope.$watch('regionsService.regions', updateTimestamps, true);
 
                 /*we make a delay as streamboard may still be loading, even if regions are ready*/
-                $interval(function () {
-                    $.each($scope.regionsService.regions, function (index, region) {                    
-                        /*creating namespace for showing data*/
-                        region.toShow = {alert: {
+                if ($scope.region) {
+                    $interval(function() {
+                        $scope.region.toShow = {alert: {
                             animationDirectionArray:[],
                             isRunning: false
                         }};
-                        $interval(function () {
-                            showAlert(region)
+                        $interval(function() {
+                            showAlert($scope.region);
                         }, 1, 1);
-                    });
-                }, 4000, 1);
+                    }, 4000, 1);
+                    
+                } else {
+                    $interval(function () {
+                        $.each($scope.regionsService.regions, function (index, region) {                    
+                            /*creating namespace for showing data*/
+                            region.toShow = {alert: {
+                                animationDirectionArray:[],
+                                isRunning: false
+                            }};
+                            $interval(function () {
+                                showAlert(region)
+                            }, 1, 1);
+                        });
+                    }, 4000, 1);    
+                }
+
+                
             });
 
             $interval(function () {
@@ -152,9 +199,15 @@
 
 
             function showAlert(region) {           
-                var stream = $scope.streamService.streams[region.regionNumber];
-                var notification = false;
+                var stream = null;
+                if (Pullr.Streamboard.region) {
+                    stream = $scope.streamService.streams[1];    
+                } else {
+                    stream = $scope.streamService.streams[region.regionNumber];   
+                }
                 
+                var notification = false;
+               
                 if (region.widgetType == 'widget_alerts' || (region.widgetType == 'widget_campaign_bar' && region.widgetCampaignBar.alertsEnable)) {
                     while (stream.length > 0 && notification == false) {
                         notification = stream.shift();
@@ -171,13 +224,14 @@
                         }
                     }
                 } else {
-                    $scope.streamService.streams[region.regionNumber] = [];
+                    stream = [];
                 }
 
                 if (notification) {               
+
                     console.log(['WE HAVE NOTIFICATION FOR REGION ' + region.regionNumber]);
                     console.log(notification);
-         
+                    
                     var toShow = region.toShow.alert;
                     toShow.animationDirection = '';  
                     toShow.isRunning = true;                  

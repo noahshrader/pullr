@@ -3,8 +3,9 @@
         service('regions', function ($http) {
             var Service = this;
             this.regions = {};
+    
             $http.get('app/streamboard/get_regions_ajax').success(function (data) {
-                Service.regions = data;
+                Service.regions = data;    
                 while (Service.__readyQueue.length > 0) {
                     var callback = Service.__readyQueue.shift();
                     callback();

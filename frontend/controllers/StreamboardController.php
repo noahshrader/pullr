@@ -26,6 +26,8 @@ use yii\filters\AccessControl;
 use common\models\twitch\TwitchUser;
 class StreamboardController extends FrontendController
 {
+    protected $user;
+
     public function behaviors()
     {
         return [
@@ -33,7 +35,9 @@ class StreamboardController extends FrontendController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['source'],
+                        'actions' => ['source', 'region', 'get_followers', 'get_regions_ajax', 'get_stream_data', 
+                                    'get_donations_ajax', 'get_subscribers', 'get_streamboard_config', 'get_activity_feed_setting',
+                                    'get_source_data', 'get_campaigns_ajax', 'test_ajax', 'update_region_ajax'],
                         'allow' => true
                     ],
                     [
@@ -45,10 +49,29 @@ class StreamboardController extends FrontendController
         ];
     }
 
+    public function init() {                        
+        \Yii::$app->response->headers->set('Access-Control-Allow-Origin', '*');
+        \Yii::$app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+        \Yii::$app->response->headers->set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, streamboardToken');
+
+        if (\Yii::$app->request->isOptions)
+        {
+            echo 'Invalid request';
+            \Yii::$app->end();
+        }
+
+        return parent::init();
+    }
+
+    public function actionTest_ajax(){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return [1,2,3];
+    }
+
     public function actionIndex()
     {
         $this->layout = 'streamboard';
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
 
         /*to get 'donations/followers/subscribers/" only since opening of streamboard*/
         $user->streamboardConfig->streamRequestLastDate = time();
@@ -56,17 +79,37 @@ class StreamboardController extends FrontendController
 
         $regionsNumber = $user->getPlan() == Plan::PLAN_PRO ? 2 : 1;
         return $this->render('index', [
-            'regionsNumber' => $regionsNumber
+            'regionsNumber' => $regionsNumber,
         ]);
     }
 
+    public function actionRegion($streamboardToken, $regionNumber, $bg = false) {    
+        $headers = \Yii::$app->request->getHeaders()->toArray();        
+        $this->layout = 'streamboard/region'; 
+        
+        $user = Streamboard::getCurrentUser();
+        if (!$user) {
+            throw new ForbiddenHttpException();
+        }
+        $regions = StreamboardRegion::GetRegions($user);
+        $region = isset($regions[$regionNumber - 1]) ? $regions[$regionNumber - 1] : [];
+        $region = $region->toArray();
+        
+        return $this->render('region', [
+            'regionNumber' => $regionNumber,
+            'streamboardToken' => $streamboardToken,
+            'region' => $region,
+            'showBackground' => $bg           
+        ]);
+    }
+  
     /**return new events (donations/followers/subscribers)
      * sorting is "date ASC" for array
     */
     public function actionGet_stream_data(){
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         $streamboardConfig = $user->streamboardConfig;
         $time = time();
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
@@ -101,7 +144,7 @@ class StreamboardController extends FrontendController
             $notifications[] = [
                 'id' => $follow->twitchUserId,
                 'type' => 'followers',
-                'message' => ActivityMessage::messageNewTwitchFollower($follow->display_name),
+                'message' => ActivityMessage::messageNewTwitchFollower($user, $follow->display_name),
                 'follow' => $follow,
                 'date' => $follow->createdAt
             ];
@@ -112,7 +155,7 @@ class StreamboardController extends FrontendController
             $notifications[] = [
                 'id' => $subscription->twitchUserId,
                 'type' => 'subscribers',
-                'message' => ActivityMessage::messageNewTwitchSubscriber($subscription->display_name),
+                'message' => ActivityMessage::messageNewTwitchSubscriber($user, $subscription->display_name),
                 'subscription' => $subscription,
                 'date' => $subscription->createdAt
             ];
@@ -139,7 +182,7 @@ class StreamboardController extends FrontendController
         } else if ($userId != null) {
             $user = User::find($userId)->one();     
         } else {
-            $user = Application::getCurrentUser();
+            $user = Streamboard::getCurrentUser();
         }
         
         $this->layout = 'streamboard/source';
@@ -204,7 +247,7 @@ class StreamboardController extends FrontendController
     public function actionGet_campaigns_ajax()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         return $this->getUserCampaigns($user);
     }
 
@@ -231,7 +274,7 @@ class StreamboardController extends FrontendController
     public function actionGet_streamboard_config()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         $streamboardConfig = $user->streamboardConfig;
         return $streamboardConfig->toArray();
     }   
@@ -239,7 +282,7 @@ class StreamboardController extends FrontendController
     public function actionGet_donations_ajax($since_id = null)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $user = Application::getCurrentUser();        
+        $user = Streamboard::getCurrentUser();        
         $sinceDate = $user->streamboardConfig->clearedDate;        
         $selectedCampaigns = Streamboard::getSelectedCampaigns($user);        
         $donations = [];
@@ -381,8 +424,8 @@ class StreamboardController extends FrontendController
     public function actionGet_activity_feed_setting() 
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $userId = \Yii::$app->user->id;
-        $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$userId])->one();
+        $user = Streamboard::getCurrentUser();
+        $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$user->id])->one();
         if ( ! $donationFeed ) {
             throw new ForbiddenHttpException();
         }
@@ -429,7 +472,7 @@ class StreamboardController extends FrontendController
      */
     public function actionGet_source_data()
     {
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         $data = $this->getSourceData($user);
         echo json_encode($data);
     }
@@ -469,29 +512,27 @@ class StreamboardController extends FrontendController
             return;
         }
 
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         $user->streamboardConfig->clearedDate = time();
         $user->streamboardConfig->save();
     }
 
     public function actionGet_regions_ajax()
-    {
-        $user = Application::getCurrentUser();
-
+    {        
+        Yii::$app->response->format = Response::FORMAT_JSON;        
+        $user = Streamboard::getCurrentUser();        
         $regions = StreamboardRegion::GetRegions($user);
-
         $data = [];
         foreach ($regions as $region) {
             $data[] = $region->toArray();
-        }
-
-        echo json_encode($data);
+        }        
+        return $data;
     }
 
     public function actionUpdate_region_ajax()
     {
         $data = json_decode(file_get_contents("php://input"), true);
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         if ($user->id != $data['userId']) {
             throw new ForbiddenHttpException();
         }
@@ -511,7 +552,7 @@ class StreamboardController extends FrontendController
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $type = Yii::$app->request->post('type');
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         if (!$user) {
             throw new ForbiddenHttpException();
         }
@@ -544,7 +585,7 @@ class StreamboardController extends FrontendController
 
     private function removeAlert_file_ajax($type){
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         if (!$user) {
             throw new ForbiddenHttpException();
         }
@@ -585,23 +626,9 @@ class StreamboardController extends FrontendController
         return $this->removeAlert_file_ajax('image');
     }
 
-    public function actionGet_follower() {
-        $channel = $user->userFields->twitchChannel;
-        
-        if ( ! $channel) {
-            return;
-        }
-
-        /**
-         * @var TwitchSDK $twitchSDK
-         */
-        $twitchSDK = \Yii::$app->twitchSDK;
-        $data = $twitchSDK->channelFollows($channel, 1);
-        $data = json_decode(json_encode($data), true);
-    }
     public function actionGet_subscribers() {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         $accessToken = $user->userFields->twitchAccessToken;
         $channel = $user->userFields->twitchChannel;
         $twitchPartner = $user->userFields->twitchPartner;
@@ -624,7 +651,7 @@ class StreamboardController extends FrontendController
 
     public function actionGet_followers() {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $user = Application::getCurrentUser();
+        $user = Streamboard::getCurrentUser();
         $channel = $user->userFields->twitchChannel;
         
         if ( ! $channel) {
