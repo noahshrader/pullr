@@ -75,7 +75,7 @@
                 }
                 message = message.replace(/\[\[/gi,'{{').replace(/\]\]/gi,'}}');
                 var values =  {
-                    DonorName:data['[[DonorName]]'],
+                    DonorName: data['[[DonorName]]'],
                     DonorAmount:data['[[DonorAmount]]'],
                     CampaignName:data['[[CampaignName]]'],
                     FollowerName:data['[[FollowerName]]'],
@@ -230,10 +230,12 @@
                     default:
                         throw new Exception('testData wrong type');
                 }
-
+                
+                message = message.replace(/\[\[/gi,'<span style="color: #F00">[[').replace(/\]\]/gi,']]</span>');
                 
                 for (var i = 0; i < number; i++) {
                     var notification = {"id": -1, "type": "donations", "message": message, "date": Math.round(new Date().getTime() / 1000)};
+                    
                     notification.type = type;
                     if (regionNumber) {
                         Service.streams[regionNumber].push(notification);

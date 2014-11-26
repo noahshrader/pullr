@@ -3,7 +3,7 @@
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
             'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee',
             'pullr.streamboard.twitch']).
-        controller('RegionsCtrl', function ($scope, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
+        controller('RegionsCtrl', function ($scope, $sce, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
             $scope.donationsService = donations;
@@ -226,7 +226,7 @@
                     var toShow = region.toShow.alert;
                     toShow.animationDirection = '';  
                     toShow.isRunning = true;                  
-                    toShow.message = notification.message;
+                    toShow.message = $sce.trustAsHtml( notification.message );
 
                     if (region.widgetType == 'widget_alerts') {      
 
