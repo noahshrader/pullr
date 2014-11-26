@@ -3,8 +3,9 @@
         service('regions', function ($http) {
             var Service = this;
             this.regions = {};
+    
             $http.get('app/streamboard/get_regions_ajax').success(function (data) {
-                Service.regions = data;
+                Service.regions = data;    
                 while (Service.__readyQueue.length > 0) {
                     var callback = Service.__readyQueue.shift();
                     callback();
@@ -70,6 +71,7 @@
             }
 
             this.getSoundFileByValue = function(amount, regionNumber){
+                amount = isNaN(amount)?0:parseFloat(amount);
                 var soundFile = null;
                 var minvalue  = 0;
                 var maxvalue = 0;
@@ -90,6 +92,7 @@
                         maxvalue = fromValue;
                     }
                 }
+
                 return soundFile;
             }
         });

@@ -52,6 +52,7 @@
             this.getMessage = function(type, data, region){
                 data = angular.extend({'[[DonorName]]':'', '[[DonorAmount]]':'', '[[CampaignName]]':'', '[[FollowerName]]':'', '[[SubscriberName]]':''}, data);
                 var message = "";
+                var highlightColor = '';
                 if(region.widgetType == "widget_campaign_bar"){
                     if(type == 'donations'){
                         message = region.widgetCampaignBar.alertsModule.donationText||defaultMessage.donations;
@@ -62,18 +63,28 @@
                     if(type == 'subscribers'){
                         message = region.widgetCampaignBar.alertsModule.subscriberText||defaultMessage.subscribers;
                     }
+                    
+                    highlightColor = region.widgetCampaignBar.alertsModule.highlightColor;
                 }else{
                     if(type == 'donations'){
                         message = region.widgetAlerts.donationsPreference.alertText||defaultMessage.donations;
+                        highlightColor = region.widgetAlerts.donationsPreference.highlightColor;
                     }
                     if(type == 'followers'){
                         message = region.widgetAlerts.followersPreference.alertText||defaultMessage.followers;
+                        highlightColor = region.widgetAlerts.followersPreference.highlightColor;
                     }
                     if(type == 'subscribers'){
                         message = region.widgetAlerts.subscribersPreference.alertText||defaultMessage.subscribers;
+                        highlightColor = region.widgetAlerts.subscribersPreference.highlightColor;
                     }
                 }
+                
+                if(highlightColor !== '') {
+                    message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
+                }
                 message = message.replace(/\[\[/gi,'{{').replace(/\]\]/gi,'}}');
+                
                 var values =  {
                     DonorName: data['[[DonorName]]'],
                     DonorAmount:data['[[DonorAmount]]'],
@@ -193,18 +204,23 @@
                 Service.requestStreamData();
             }, 5000);
             this.testData = function (type, number, region) {
+
                 number = number||1;
                 var message;
+                var highlightColor;
                 var regionNumber = region.regionNumber;
                 switch (type) {
                     case 'donations':
                         message = region.widgetAlerts.donationsPreference.alertText||defaultMessage.donations;
+                        highlightColor = region.widgetAlerts.donationsPreference.highlightColor;
                         break;
                     case 'followers':
                         message = region.widgetAlerts.followersPreference.alertText||defaultMessage.followers;
+                        highlightColor = region.widgetAlerts.followersPreference.highlightColor;
                         break;
                     case 'subscribers':
                         message = region.widgetAlerts.subscribersPreference.alertText||defaultMessage.subscribers;
+                        highlightColor = region.widgetAlerts.subscribersPreference.highlightColor;
                         break;
                     case 'campaign_donations':
                         if(region.widgetCampaignBar.alertsModule.includeDonations !== true){
@@ -212,6 +228,7 @@
                         }
                         message = region.widgetCampaignBar.alertsModule.donationText||defaultMessage.donations;
                         type = 'donations';
+                        highlightColor = region.widgetCampaignBar.alertsModule.highlightColor;
                         break;
                     case 'campaign_followers':
                         if(region.widgetCampaignBar.alertsModule.includeFollowers !== true){
@@ -219,6 +236,7 @@
                         }
                         message = region.widgetCampaignBar.alertsModule.followerText||defaultMessage.followers;
                         type = 'followers';
+                        highlightColor = region.widgetCampaignBar.alertsModule.highlightColor;
                         break;
                     case 'campaign_subscribers':
                         if(region.widgetCampaignBar.alertsModule.includeSubscribers !== true){
@@ -226,12 +244,15 @@
                         }
                         message = region.widgetCampaignBar.alertsModule.subscriberText||defaultMessage.subscribers;
                         type = 'subscribers';
+                        highlightColor = region.widgetCampaignBar.alertsModule.highlightColor;
                         break;
                     default:
                         throw new Exception('testData wrong type');
                 }
                 
-                message = message.replace(/\[\[/gi,'<span style="color: #F00">[[').replace(/\]\]/gi,']]</span>');
+                if(highlightColor !== '') {
+                    message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
+                }
                 
                 for (var i = 0; i < number; i++) {
                     var notification = {"id": -1, "type": "donations", "message": message, "date": Math.round(new Date().getTime() / 1000)};
@@ -246,7 +267,7 @@
                             /*if we have second region*/
                             Service.streams[2].push(notification);
                         }
-                    }
+                    }                    
                 }
             }
 

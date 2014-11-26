@@ -25,6 +25,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
          interaction
          draggable-widget="region.widgetCampaignBar.currentTotalModule" 
          draggable-region="region" 
+         draggable-config="{containment: getCampaignBarSelector(region)}"
          draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"          
          draggable>
         Raised<span>${{campaignsService.campaigns[region.widgetCampaignBar.campaignId].amountRaised}}</span>
@@ -44,8 +45,9 @@ use frontend\models\streamboard\WidgetCampaignBar;
                  draggable-region="region" 
                  draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
                  draggable-config="{containment: getCampaignBarSelector(region)}"
+                 draggable
                  ng-class="{fontUppercase: region.widgetCampaignBar.alertsModule.fontUppercase}"
-                 draggable>{{region.toShow.alert.message}}</span>
+                 ng-bind-html="formatMsgHtml(region.toShow.alert.message)"></span>
         </div>
 
     </div>

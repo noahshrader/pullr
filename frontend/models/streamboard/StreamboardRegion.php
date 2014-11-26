@@ -111,7 +111,7 @@ class StreamboardRegion extends ActiveRecord {
      * @param $user User
      * @return StreamboardRegion[]
      */
-    public static function GetRegions(User $user){
+    public static function GetRegions(User $user, $number = null){
         $regionsNumbers = [1];
         if ($user->getPlan() == Plan::PLAN_PRO) {
             $regionsNumbers[] = 2;

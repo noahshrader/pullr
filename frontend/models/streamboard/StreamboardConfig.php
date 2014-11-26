@@ -26,6 +26,7 @@ class StreamboardConfig extends ActiveRecord {
         $this->streamboardHeight = self::DEFAULT_HEIGHT;
         $this->streamboardLeft = 0;
         $this->streamboardTop = 0;
+        $this->createRegionToken();   
     }
 
     /**
@@ -44,5 +45,9 @@ class StreamboardConfig extends ActiveRecord {
          */
         $user = \Yii::$app->user->identity;
         return $user->streamboardConfig;
+    }
+
+    public function createRegionToken() {
+        $this->streamboardToken = \Yii::$app->getSecurity()->generateRandomString(12);        
     }
 }

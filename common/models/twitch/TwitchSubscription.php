@@ -32,7 +32,7 @@ class TwitchSubscription extends TwitchFollowBase {
             if ( ! in_array($id, $currentIds)) {                
                 RecentActivityNotification::createNotification(
                     $user->id,
-                    ActivityMessage::messageNewTwitchSubscriber($subscription['user']['name'])
+                    ActivityMessage::messageNewTwitchSubscriber($user, $subscription['user']['name'])
                 );
             }
         }

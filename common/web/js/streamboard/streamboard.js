@@ -1,4 +1,5 @@
 $(function () {
+    
     // panel toggles
     $(document).on('click', '.paneltoggle li a', function() {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
@@ -18,6 +19,7 @@ $(function () {
     // collapsable containers
     $(document).on('click', '.module a.settingtoggle', function() {
         $(this).parent().toggleClass("show");
+        angular.element(".tab-content").scope().$broadcast('refreshSlider');
     });
 
     // toggle close right sidebar
@@ -81,11 +83,7 @@ $(function () {
 });
 
 $(window).load(function() {
-
-    // streamboard loader
     $(".spinner-wrap").addClass('powered').fadeOut();
-
-    // custom scrollbars
     $(".pane").mCustomScrollbar({
         theme:"minimal",
         mouseWheel:{

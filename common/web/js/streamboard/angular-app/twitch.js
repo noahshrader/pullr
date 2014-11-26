@@ -17,27 +17,16 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 		}
 	}
 
-	service.getFollowers = function() {
-		var deferred = $q.defer();
-		var method = 'channels/' + service.channelName + '/follows';
-        // Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-        //     if ( ! error ) {
-        //     	deferred.resolve(list);
-        //     }
-        // });
+	service.getFollowers = function() {		
 		return $http.get('app/streamboard/get_followers');
-        return deferred.promise;
+        
 	}
 
-	service.getSubscribers = function() {
-		var deferred = $q.defer();
+	service.getSubscribers = function() {	
 		if (Pullr.user.userFields.twitchPartner == 1) {
 			return $http.get('app/streamboard/get_subscribers');
-		}
-       	return deferred.promise;
+		}       	
 	}
-
-	
 
 	service.init();
 	return service;
@@ -63,8 +52,7 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 
 		var result = [];
 		angular.forEach(list, function(item) {
-			var createdAt = new Date(item.created_at);
-		//	console.log(item.user.name, item.created_at, service.lastRequestTime)
+			var createdAt = new Date(item.created_at);		
 			if (createdAt >= service.lastRequestTime) {				
 				if (createdAt > service.lastMaxCreatedAt) {
 					service.lastMaxCreatedAt = createdAt;
