@@ -286,7 +286,7 @@ class Campaign extends ActiveRecord {
     public function afterFind() {
         parent::afterFind();
 
-        if(($this->type == Campaign::TYPE_CHARITY_FUNDRAISER) && ($this->tiedToParent) && !empty($this->parentCampaignId)){
+        if(($this->type == Campaign::TYPE_CHARITY_FUNDRAISER) && ($this->tiedToParent) && !empty($this->parentCampaignId) && ($this->parentCampaignId !== $this->id)){
             $parentCampaign = Campaign::findOne($this->parentCampaignId);
             $this->charityId = $parentCampaign->charityId;
             $this->donationDestination = $parentCampaign->donationDestination;
