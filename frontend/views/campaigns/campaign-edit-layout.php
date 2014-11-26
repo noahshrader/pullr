@@ -46,9 +46,10 @@ $user = \Yii::$app->user->identity;
             <?= $form->field($campaign, 'themeId')->hiddenInput()->label(null, ['style' => 'display:none'])?>
         </div>
         <div class="form-group theme-selection cf">
-            <button type="button" class="btn btn-default" onclick="layoutChooseTheme()">Choose a theme</button>
+            <button type="button" class="btn btn-default" onclick="layoutChooseTheme()">Select a theme</button>
             <div class='selected-theme theme-name <? if (!$campaign->themeId) { echo 'hidden';} ?>'>
-                Selected theme:<span><?= $campaign->theme?$campaign->theme->name:''?></span>
+                <label>Current Theme:</label>
+                <span><?= $campaign->theme?$campaign->theme->name:''?></span>
             </div>
         </div>
         <div class="theme-color-picker form-group cf">

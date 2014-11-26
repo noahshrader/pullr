@@ -1,8 +1,6 @@
 <?php
 use common\models\notifications\SystemNotification;
 
-$this->registerJSFile('@web/js/notification/index.js',  \common\assets\CommonAsset::className());
-
 $this->title = 'Notifications';
 ?>
 

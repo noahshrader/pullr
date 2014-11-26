@@ -5,7 +5,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
 ?>
 <div child-scope ng-init="fileType = '<?= $fileType ?>';uploadError = null;">
     <!--main variable - preference -->
-    <ul class="library-tabs library cf">
+    <ul class="library-tabs library-switch cf">
         <li><a href="<?= Url::to() ?>#{{baseLink}}-{{fileType}}s-custom" data-toggle="tab">Uploads</a></li>
         <li class="active"><a href="<?= Url::to() ?>#{{baseLink}}-{{fileType}}s-library" data-toggle="tab">Library</a>
         </li>

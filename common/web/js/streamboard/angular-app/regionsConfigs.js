@@ -69,11 +69,13 @@
             templateUrl: 'angular/views/streamboard/region/fontStyle.html'
         }
     });
-    app.controller('RegionConfigCtrl', function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager, regions, stream, simpleMarqueeHelper, $timeout) {
+
+    app.controller('RegionConfigCtrl', function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager, regions, stream, simpleMarqueeHelper, $timeout, customDonationSound) {
         $scope.alertMediaManagerService = alertMediaManager;
         $scope.campaignsService = campaigns;
         $scope.streamService = stream;
         $scope.regionsService = regions;
+        $scope.customDonationSound = customDonationSound;        
         $scope.MAX_FONT_SIZE = 72;
         $scope.MIN_FONT_SIZE = 10;
         $scope.MIN_FONT_WEIGHT = 300;
@@ -255,5 +257,48 @@
             module.countUpPauseTime = new Date();
             $scope.regionChanged(region);
         }
+        // var conatinerId = 'region_' + $scope.region
+        // var $donationChildScope = angular.element(".donations_panel").scope();
+        // console.log($donationChildScope.customsounds);
+
+
+        function donationSoundChange(newValue, oldValue, regionNumber){
+            var rangeData = customDonationSound.customsounds[regionNumber];
+            var flage = false;
+            for(var i in rangeData){
+                if(rangeData[i] == ""){
+                    delete rangeData[i];
+                    flage = true;
+                }
+            }
+            if(flage == true){
+                customDonationSound.customsounds[regionNumber] = rangeData;
+            }
+            customDonationSound.rangeData[regionNumber] = customDonationSound.getRange(regionNumber);
+
+            customDonationSound.showRangeTab[regionNumber] = (customDonationSound.rangeData[regionNumber].length>0);
+
+            if(customDonationSound.isInit[regionNumber]){
+                var rangeData = customDonationSound.customsounds[regionNumber];
+                var list = [];
+                var region = regions.regions[regionNumber-1];
+                for(var i in rangeData){
+                    if(rangeData[i] != ""){
+                        list.push({userId:region.userId, regionNumber:region.regionNumber, fileName:i, donationAmount:rangeData[i]});
+                    }
+                }
+                region.widgetAlerts.donationCustomsound = list;
+                regions.regionChanged(region);
+            }
+        }
+
+
+        $scope.$watchCollection("customDonationSound.customsounds[1]",function(newValue, oldValue){
+            donationSoundChange(newValue, oldValue,1)
+        })
+        $scope.$watchCollection("customDonationSound.customsounds[2]",function(newValue, oldValue){
+            donationSoundChange(newValue, oldValue,2)
+        })
+        
     });
 })()

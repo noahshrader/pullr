@@ -38,6 +38,7 @@ $tabsClass = $regionsNumber == 2 ? 'four-tabs' : 'three-tabs';
     </div>
     <!-- We are using RegionCtrl here to be able to use ng-repeat in tab-regions -->
     <div class="tab-content" ng-controller="RegionConfigCtrl">
+        <div class="veil"></div>
         <div id="donations" class="tab-pane active" ng-controller="DonationsCtrl">
             <?= $this->render('donations/donations') ?>
         </div>

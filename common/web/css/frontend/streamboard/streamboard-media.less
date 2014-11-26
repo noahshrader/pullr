@@ -1,21 +1,37 @@
 /* Sounds/Graphics Tabs */
 ul.library-tabs {
 	padding: @halfgutter;
-	background: @gray15;
+	background: @streamboardlgray;
 	border-bottom: solid 1px @gray10;
 
 	li {
+		float: left;
 		text-align: center;
+
+		&:first-child:nth-last-child(1) {
+			width: 100%;
+		}
+		&:first-child:nth-last-child(2),
+		&:first-child:nth-last-child(2) ~ li {
+			width: 50%;
+		}
+		&:first-child:nth-last-child(3),
+		&:first-child:nth-last-child(3) ~ li {
+			width: 33.3333%;
+		}
 		&.active a {
 			color: @white;
 		}
 
+		&.span2{
+			width: 50% !important;	
+		}
 		a {
 			display: block;
 			float: left;
 			color: @gray30;
 			font-size: @smalltext;
-			width: 50%;
+			width: 100%;
 
 			i {
 				display: block;
@@ -23,45 +39,49 @@ ul.library-tabs {
 			}
 		}
 	}
-	&.library {
-		padding: @streamboardgutter 0;
+	&.library-switch {
+		padding: 10px 0;
 		border: 0;
+		border-bottom: solid 1px @gray10;
 	}
 }
 
 /* Media List */
-.media-item {
-	position: relative;
-	color: @gray30;
-	font-size: @smalltext;
-	padding: @streamboardgutter @halfgutter;
-	cursor: pointer;
-	&.form-group {
-		border-top: solid 1px @maingray;
-	}
-	&.panel-group {
-		border-top: solid 1px @gray10;
-	}
-	&.selected {
-		color: @white;
-		background: @gray20;
-
-		i {
-			color: @white;
-			cursor: pointer;
+.files-container {
+	> div {
+		border-bottom: solid 1px @gray10;
+		&:last-child {
+			border: 0;
 		}
 	}
-	&.images {
-		text-align: center;
-	}
-	.mediaActions {
-		float: right;
+	.media-item {
+		position: relative;
+		color: @gray30;
+		font-size: @smalltext;
+		padding: @halfgutter;
+		cursor: pointer;
 
-		i {
-			font-size: 1em;
+		&.selected {
+			color: @white;
+			background: @gray20;
 
-			&:hover {
+			i {
 				color: @white;
+				cursor: pointer;
+			}
+		}
+		&.images {
+			text-align: center;
+		}
+		.mediaActions {
+			float: right;
+
+			i {
+				font-size: 1.1em;
+
+				&:hover {
+					color: @white;
+				}
 			}
 		}
 	}

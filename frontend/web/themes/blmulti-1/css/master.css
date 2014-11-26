@@ -304,6 +304,7 @@ header .container {
 .user-bar .user .avatar a {
   float: left;
   display: inline-block;
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
   font-size: 1.3em;
   font-weight: 700;
   line-height: 54px;
@@ -367,6 +368,7 @@ header .container {
 }
 .info .info-wrap h4 {
   color: #ffffff;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 .info .info-wrap .feed-details {
   float: left;
@@ -385,17 +387,6 @@ header .container {
   font-size: 1.4em;
   width: 100%;
   z-index: 2;
-}
-.info .info-wrap .donate-wrap .donate-button .slant {
-  position: absolute;
-  top: -100px;
-  left: -60px;
-  height: 400px;
-  width: 60px;
-  z-index: 1;
-  -webkit-transform: rotate(20deg);
-      -ms-transform: rotate(20deg);
-          transform: rotate(20deg);
 }
 /* Layout */
 /* ------------------------------------------------- */
@@ -462,8 +453,8 @@ header .container {
   position: relative;
   float: left;
   display: inline-block;
-  width: 16.66%;
-  width: calc(14.28571429%);
+  width: 12.5%;
+  width: calc(12.5%);
   padding: .5%;
 }
 .team-content .team-wrap .team-members img {
@@ -498,7 +489,7 @@ header .container {
   padding: 15px;
   margin-left: -100px;
   width: 200px;
-  background: #2e2e32;
+  background: #222225;
   border-radius: 6px;
   background-clip: padding-box;
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
@@ -515,10 +506,15 @@ header .container {
   bottom: -10px;
   left: 50%;
   margin-left: -10px;
-  border-color: #2e2e32 transparent transparent transparent;
+  border-color: #222225 transparent transparent transparent;
 }
 .team-content .team-wrap .team-members .team-member .team-member-stats h4 {
+  font-size: 1.1em;
   font-weight: 600;
+  margin-bottom: .3em;
+}
+.team-content .team-wrap .team-members .team-member .team-member-stats h5 {
+  font-size: 1em;
 }
 .team-content .team-wrap .team-members .team-member .team-member-stats .game {
   display: block;
@@ -529,10 +525,15 @@ header .container {
 .team-content .team-wrap .team-members .team-member .team-member-stats .viewers {
   margin-right: 5px;
 }
+.team-content .team-wrap .team-members .team-member .team-member-stats .viewers,
+.team-content .team-wrap .team-members .team-member .team-member-stats .followers {
+  font-size: 0.9em;
+}
 .team-content .team-wrap .team-members .team-member .team-member-stats .viewers i,
 .team-content .team-wrap .team-members .team-member .team-member-stats .followers i {
   color: #6b6b75;
   font-size: 12px;
+  margin-top: .3em;
 }
 .team-content .team-wrap .team-members .team-member:hover .team-member-stats {
   display: block;
@@ -638,7 +639,7 @@ header .container {
 .slidestats {
   position: fixed;
   top: -48px;
-  height: 35px;
+  padding: 5px 0;
   width: 100%;
   z-index: 9999;
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
@@ -648,8 +649,18 @@ header .container {
 .slidestats.show {
   top: 0;
 }
+.slidestats img {
+  float: left;
+  display: inline-block;
+  margin-right: 10px;
+  height: 25px;
+  width: auto;
+  border-radius: 30px;
+  background-clip: padding-box;
+}
 .slidestats h5 {
-  line-height: 35px;
+  font-size: 1.1em;
+  line-height: 25px;
 }
 .slidestats h5.campaign {
   float: left;
@@ -711,7 +722,7 @@ header .menu-actions a:before {
   color: #ffffff;
 }
 .stats .stats-wrap .project-progress {
-  background: rgba(14, 15, 17, 0.3);
+  background: rgba(14, 15, 17, 0.4);
 }
 /* User Bar */
 .user-bar {
@@ -750,12 +761,6 @@ header .menu-actions a:before {
 }
 .info .info-wrap span {
   color: #9f9fa7;
-}
-.info .info-wrap .donate-wrap {
-  background: #f7f7f7;
-}
-.info .info-wrap .donate-wrap .donate-button .slant {
-  background: #f7f7f7;
 }
 /* Stream */
 .stream-wrap #stream {

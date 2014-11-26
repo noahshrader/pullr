@@ -6,7 +6,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 ?>
 <div class="module first">
     <div class="panel-group">
-        <h5>Alerts</h5>
+        <h5>Alert Type</h5>
         <div class="checkbox">
             <label ng-class="{on:module.includeDonations}">
                 <input type="checkbox" ng-model="module.includeDonations" ng-change="regionChanged(region)">
@@ -38,7 +38,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 </div>
 
 <div class="module">
-    <a class="settingtoggle">Font Settings</a>
+    <a class="settingtoggle">Font<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <div class="panel-group">
             <h5>Font Style</h5>
@@ -68,11 +68,8 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     </div>
 </div>
 <div class="module">
-    <a class="settingtoggle">General Settings</a>
+    <a class="settingtoggle">Animation<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
-        <div class="panel-group">
-            <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.backgroundColor}"></h5>
-        </div>
         <div class="panel-group">
             <h5>Animation Style</h5>
             <select ui-select2="{minimumResultsForSearch: -1}" ng-model="module.animationDirection" ng-change="regionChanged(region)"
@@ -88,15 +85,10 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <slider ng-model="module.animationDelay" floor="0" ceiling="30" step="1"
                     ng-change="regionChanged(region)"></slider>
         </div>
-        <div class="panel-group">
-            <h5>Duration <span class="slider-value value">{{module.animationDuration}} sec</span></h5>
-            <slider ng-model="module.animationDuration" floor="1" ceiling="10" step="1"
-                    ng-change="regionChanged(region)"></slider>
-        </div>
     </div>
 </div>
-<div class="module" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
-    <a class="settingtoggle">Media Settings</a>
+<div class="module media-manager" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
+    <a class="settingtoggle">Sounds &amp; Images<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <ul class="library-tabs cf">   
             <li class="active">
@@ -108,7 +100,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <li>
                 <a href='<?= Url::to() ?>#{{baseLink}}-images' data-toggle="tab">
                     <i class="mdi-image-panorama"></i>
-                    Background
+                    Images
                 </a>
             </li>
         </ul>
@@ -151,6 +143,19 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="module">
+    <a class="settingtoggle">General<i class="mdi-navigation-arrow-drop-down"></i></a>
+    <div class="module-settings">
+        <div class="panel-group">
+            <h5>Duration <span class="slider-value value">{{module.animationDuration}} sec</span></h5>
+            <slider ng-model="module.animationDuration" floor="1" ceiling="10" step="1"
+                    ng-change="regionChanged(region)"></slider>
+        </div>
+        <div class="panel-group">
+            <h5>Background Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.backgroundColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.backgroundColor}"></h5>
         </div>
     </div>
 </div>

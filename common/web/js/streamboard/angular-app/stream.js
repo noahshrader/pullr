@@ -7,7 +7,7 @@
             subscribers:'[[SubscriberName]] just subscribed your channel!'
         })
 
-        .service('stream', function ($http, regions, $interval, $interpolate, defaultMessage, campaigns) {
+        .service('stream', function ($http, regions, $interval, $interpolate, defaultMessage, campaigns, customDonationSound) {
             var Service = this;
             /*for each of regions we have separate stream*/
             this.streams = [];
@@ -120,14 +120,27 @@
                 Service.alreadyViewed[id] = true;
                 var message = Service.getMessage(notification.type, notification.data, regions.regions[0]);
                 notification.message = message;
+                if(notification.type === 'donations'){
+                    var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 1);
+                    notification.soundFile = soundFile;
+                    notification.soundType = null;                    
+                }                
+
                 Service.streams[1].push(notification);
                 if (regions.regions.length > 1) {
                     var notificatin1 = {};
                     notificatin1.id = notification.id;
                     notificatin1.type = notification.type;
                     notificatin1.date = notification.date;
+                    notificatin1.soundFile = notification.soundFile;
+                    notificatin1.soundType = notification.soundType;
                     var message1 = Service.getMessage(notificatin1.type, notification.data, regions.regions[1]);
                     notificatin1.message = message1;
+                    if(notificatin1.type === 'donations'){
+                        var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 2);
+                        notificatin1.soundFile = soundFile;
+                        notificatin1.soundType = null;                    
+                    }
                     Service.streams[2].push(notificatin1);
                 }
                 return true;

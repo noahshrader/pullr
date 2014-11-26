@@ -5,7 +5,7 @@ use yii\web\View;
 ?>
 <div class="module">
     <div class="form-group">
-        <h5>Alert Types</h5>
+        <h5>Alert Type</h5>
         <div class="checkbox">
             <label ng-class="{on:widget.includeDonations}">
                 <input type="checkbox" ng-model="widget.includeDonations" ng-change="toggleModule(region)">
@@ -28,7 +28,7 @@ use yii\web\View;
 </div>
 <div class="module">
     <div class="form-group">
-        <h5>Delay <span class="slider-value value">{{widget.animationDelaySeconds}} sec</span></h5>
+        <h5>Alert Delay <span class="slider-value value">{{widget.animationDelaySeconds}} sec</span></h5>
         <slider ng-model="widget.animationDelaySeconds" floor="0" ceiling="30" step="1"
                 ng-change="regionChanged(region)"></slider>
     </div>

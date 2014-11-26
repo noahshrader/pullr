@@ -4,27 +4,29 @@ $(function () {
     $(document).on('click', '.paneltoggle li a', function() {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
         $('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
+        if($(this).parent('li').hasClass('active')) {
+            $('.veil').fadeIn(200);
+        } else {
+            $('.veil').fadeOut(200);
+        }
    	});
     $('.sidepanel-head').click(function(){ 
         $('.paneltoggle li').removeClass('active');
         $('.slidepanel').removeClass('selected');
+        $('.veil').hide();
     });
     
-    // if panel is exposed, blur items in back
-    $(document).on('click', function() {
-        var dimmed = $('.settings-wrap .module, .donations-list');
-        if ($(".slidepanel").hasClass("selected")) {
-            $(dimmed).addClass('dim');
-        } else {
-            $(dimmed).removeClass('dim');
-        }
+    // collapsable containers
+    $(document).on('click', '.module a.settingtoggle', function() {
+        $(this).parent().toggleClass("show");
+        angular.element(".tab-content").scope().$broadcast('refreshSlider');
     });
 
     // toggle close right sidebar
     $("a.sidetoggle").click(function(){
         var l = $(this).data('l');
         var width = $('#sidepanel').width();
-        $("#sidepanel, .right-side-footer, .panel-head, .panel-title").animate({right: (l ?  0 : -width)}, 200);
+        $("#sidepanel, .right-side-footer, .panel-head, .panel-title, .veil").animate({right: (l ?  0 : -width)}, 200);
         $(this).data('l', !l);
     });
 
@@ -79,6 +81,7 @@ $(function () {
     })
 
 });
+
 $(window).load(function() {
     $(".spinner-wrap").addClass('powered').fadeOut();
     $(".pane").mCustomScrollbar({
@@ -95,12 +98,8 @@ $(window).load(function() {
         },
         live: true
     });
-
-    // enable collapsable containers
-    $(".module a.settingtoggle").click(function(){
-        $(this).next(".module-settings").toggleClass("show");
-    });
 });
+
 // google fonts
 function requireGoogleFont(fontFamily){
    if (!fontFamily){

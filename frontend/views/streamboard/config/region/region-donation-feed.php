@@ -7,7 +7,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 }
 ?>
 <div class="module">
-    <a class="settingtoggle">Font Settings</a>
+    <a class="settingtoggle">Font Settings<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <div class="form-group">
             <h5>Font Style</h5>
