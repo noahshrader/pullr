@@ -15,6 +15,7 @@
 		}
 		span#timezone {
 			color: @gray30;
+			font-size: 1.1em;
 			font-weight: 500;
 		}
 		.dashboard-notifications,
@@ -59,11 +60,42 @@
 	.payment {
 		display: none;
 	}
+	.plan-panel {
+
+		i {
+			font-size: 72px;
+		}
+		h3 {
+			color: @gray20;
+			font-weight: 500;
+			line-height: 1.2em;
+		}
+	}
 }
 
 /* Basic */
 .plan-show-Basic {
-
+	.plan-panel {
+		i {
+			color: @accent;
+			width: 160px;
+			height: 160px;
+			background: url(/images/gopro.jpg);
+		}
+		h3 {
+			margin: 1em 0;
+		}
+		ul {
+			li {
+				color: @gray20;
+				font-size: @smalltext;
+				font-weight: 500;
+				text-align: left;
+				margin-bottom: .6em;
+				padding-left: .3em;
+			}
+		}
+	}
 }
 
 /* Pro */
@@ -82,11 +114,6 @@
 
 		i {
 			color: @gray20;
-			font-size: 72px;
-		}
-		h4 {
-			color: @gray60;
-			line-height: 1.2em;
 		}
 	}
 	.account-action {
