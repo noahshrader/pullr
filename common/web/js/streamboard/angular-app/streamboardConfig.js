@@ -1,4 +1,4 @@
-angular.module('streamboardApp').factory('streamboardConfig', function($http){
+angular.module('streamboardApp').factory('streamboardConfig', ['$http', function($http){
 	var service = {};
 	service.config = {};
 	service.init = function() {
@@ -25,4 +25,4 @@ angular.module('streamboardApp').factory('streamboardConfig', function($http){
 	}
 	service.init();
 	return service;
-});
+}]);

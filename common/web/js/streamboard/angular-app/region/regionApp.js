@@ -1,5 +1,5 @@
 var app = angular.module('regionApp',['pullr.streamboard.regionsPanels','streamboardApp']);
-app.factory('streamboardTokenInterceptor', function() {
+app.factory('streamboardTokenInterceptor', [function() {
 	var streamboardTokenInterceptor = {
 		request: function(config) {			
 			if (Pullr.Streamboard.streamboardToken) {
@@ -9,12 +9,12 @@ app.factory('streamboardTokenInterceptor', function() {
 		}
 	}
 	return streamboardTokenInterceptor;
-});
+}]);
 
-app.config(function($httpProvider) {
+app.config(['$httpProvider', function($httpProvider) {
 	$httpProvider.interceptors.push('streamboardTokenInterceptor');
-});
+}]);
 
-app.run(function(){
+app.run([function(){
 	$(".spinner-wrap").addClass('powered').fadeOut();
-});
+}]);

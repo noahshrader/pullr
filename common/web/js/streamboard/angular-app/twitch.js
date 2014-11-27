@@ -1,4 +1,5 @@
-angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http, $interval, $q, stream){
+angular.module('pullr.streamboard.twitch', []).factory('twitch', ['$http', '$interval', '$q', 'stream',
+	function($http, $interval, $q, stream){
 	var service = {};
 	service.isReady = false;
 	service.channelName = null;
@@ -32,8 +33,8 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 	return service;
 
 
-})
-.factory('twitchNotification', function(twitch, $interval, stream, $timeout) {
+}])
+.factory('twitchNotification', ['twitch', '$interval', 'stream', '$timeout', function(twitch, $interval, stream, $timeout) {
 	var service = {};
 	service.interval = 10000;
 	service.lastRequestTime = null;
@@ -97,4 +98,4 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 
 	service.init();
 	return service;
-});
+}]);

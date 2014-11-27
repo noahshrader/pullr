@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('pullr.streamboard.rotatingMessages', [])
-        .directive('rotatingMessages', function ($interval) {
+        .directive('rotatingMessages', ['$interval', function ($interval) {
             function link(scope, element, attrs) {
              
                 var $messageContainer = $('#rotating-message-container');
@@ -104,5 +104,5 @@
                     }
                 }                
             }
-        });
+        }]);
 })();

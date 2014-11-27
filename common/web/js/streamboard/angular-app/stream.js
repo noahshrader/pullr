@@ -7,7 +7,8 @@
             subscribers:'[[SubscriberName]] just subscribed your channel!'
         })
 
-        .service('stream', function ($http, regions, $interval, $timeout, $interpolate, defaultMessage, campaigns, customDonationSound) {
+        .service('stream', ['$http', 'regions', '$interval', '$timeout', '$interpolate', 'defaultMessage', 'campaigns', 'customDonationSound',
+            function ($http, regions, $interval, $timeout, $interpolate, defaultMessage, campaigns, customDonationSound) {
             var Service = this;
             /*for each of regions we have separate stream*/
             this.streams = [];
@@ -285,5 +286,5 @@
                 this.testData('campaign_subscribers', 1, region);
                 this.testData('campaign_donations', 1, region);
             }
-        });
+        }]);
 })();

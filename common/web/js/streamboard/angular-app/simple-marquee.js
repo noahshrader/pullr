@@ -5,7 +5,7 @@
  * @description
  * simepleMarquee module provides jquery-marquee functionality for angular.js apps.
  */
-angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeout, simpleMarqueeHelper) {
+angular.module('simpleMarquee', []).directive('simpleMarquee', ['$timeout', 'simpleMarqueeHelper',function ($timeout, simpleMarqueeHelper) {
 	return {
 		restrict:'A',
 		scope:true,
@@ -205,10 +205,10 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', function ($timeou
 		}
 	};
 	return marquee;
-}).factory('simpleMarqueeHelper', function ($rootScope) {
+}]).factory('simpleMarqueeHelper', ['$rootScope', function ($rootScope) {
 	return {
 		recalculateMarquee: function() {
 			$rootScope.$broadcast('recalculateMarquee');
 		}
 	}
-});
+}]);

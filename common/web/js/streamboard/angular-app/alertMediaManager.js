@@ -11,7 +11,7 @@
      *  @param customSounds - list of custom sounds
      *  @param customImages - list of custom images
      */
-        service('alertMediaManager', function ($http, $filter) {
+        service('alertMediaManager', ['$http', '$filter', function ($http, $filter) {
             function addUserToPath(path){
                 return path + Pullr.user.id + '/';
             }
@@ -89,5 +89,5 @@
                     Service.customImages = data;
                 });
             }
-        });
+        }]);
 })();
