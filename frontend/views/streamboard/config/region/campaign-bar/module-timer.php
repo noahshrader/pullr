@@ -13,31 +13,25 @@ use frontend\models\streamboard\WidgetCampaignBarTimer;
             </option>
         </select>
         <div ng-show="module.timerType == '<?= WidgetCampaignBarTimer::TIMER_TYPE_COUNTDOWN ?>'">
-             <div>
-                <!--countDownFrom begin-->
-                <div class="dropdown module">
-                    <h5>From</h5>
-                    <a class="dropdown-toggle" id="dateTimeDropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
-                        <input type="text" class="form-control" ng-model="module.countDownFrom">
-                        <i class="glyphicon glyphicon-calendar"></i>
-                     </a>
-                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel1">
-                         <datetimepicker data-ng-model="module.countDownFrom" data-datetimepicker-config="{ dropdownSelector: '#dateTimeDropdown1' }" on-set-time="onSetTimeCountDownFrom"/>
-                     </ul>
-                </div>
-                <!--countDownFrom end-->
-                <!--countDownTo begin-->
-                <div class="dropdown module">
-                    <h5>To</h5>
-                    <a class="dropdown-toggle" id="dateTimeDropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
-                         <input type="text" class="form-control" ng-model="module.countDownTo">
-                         <i class="glyphicon glyphicon-calendar"></i>
-                     </a>
-                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
-                         <datetimepicker data-ng-model="module.countDownTo" data-datetimepicker-config="{ dropdownSelector: '#dateTimeDropdown2' }" on-set-time="onSetTimeCountDownTo"/>
-                     </ul>
-                 </div>
-                 <!--countDownTo end-->
+            <div class="dropdown module">
+                <h5>From</h5>
+                <a class="dropdown-toggle" id="dateTimeDropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <input type="text" class="form-control" ng-model="module.countDownFrom">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                 </a>
+                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel1">
+                     <datetimepicker data-ng-model="module.countDownFrom" data-datetimepicker-config="{ dropdownSelector: '#dateTimeDropdown1' }" on-set-time="onSetTimeCountDownFrom"/>
+                 </ul>
+            </div>
+            <div class="dropdown module">
+                <h5>To</h5>
+                <a class="dropdown-toggle" id="dateTimeDropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                     <input type="text" class="form-control" ng-model="module.countDownTo">
+                     <i class="glyphicon glyphicon-calendar"></i>
+                 </a>
+                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
+                     <datetimepicker data-ng-model="module.countDownTo" data-datetimepicker-config="{ dropdownSelector: '#dateTimeDropdown2' }" on-set-time="onSetTimeCountDownTo"/>
+                 </ul>
              </div>
         </div>
         <div class="timer-controls" ng-show="module.timerType == '<?= WidgetCampaignBarTimer::TIMER_TYPE_COUNT_UP ?>'">
