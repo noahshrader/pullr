@@ -2,9 +2,14 @@ angular.module('streamboardApp').factory('streamboardConfig', function($http){
 	var service = {};
 	service.config = {};
 	service.init = function() {
-		$http.get('app/streamboard/get_streamboard_config').success(function(data){
-			service.config = data;			
-		});
+		if (Pullr.Streamboard.streamboardConfig) {
+			service.config = Pullr.Streamboard.streamboardConfig;
+		} else {
+			$http.get('app/streamboard/get_streamboard_config').success(function(data){
+				service.config = data;			
+			});	
+		}
+		
 	}
 
 	service.setSidebarWidth = function(width) {

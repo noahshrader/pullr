@@ -78,8 +78,15 @@ class StreamboardController extends FrontendController
         $user->streamboardConfig->save();
 
         $regionsNumber = $user->getPlan() == Plan::PLAN_PRO ? 2 : 1;
+        $regionsData = $this->getRegionsData($user);
+        $donationsData = $this->getDonationsData($user);
+        $campaignsData = $this->getUserCampaigns($user);
         return $this->render('index', [
             'regionsNumber' => $regionsNumber,
+            'regionsData' => $regionsData,
+            'donationsData' => $donationsData,
+            'campaignsData' => $campaignsData,
+            'streamboardConfig' => $user->streamboardConfig->toArray()
         ]);
     }
 
@@ -94,12 +101,18 @@ class StreamboardController extends FrontendController
         $regions = StreamboardRegion::GetRegions($user);
         $region = isset($regions[$regionNumber - 1]) ? $regions[$regionNumber - 1] : [];
         $region = $region->toArray();
-        
+        $regionsData = $this->getRegionsData($user);
+        $donationsData = $this->getDonationsData($user);
+        $campaignsData = $this->getUserCampaigns($user);
         return $this->render('region', [
             'regionNumber' => $regionNumber,
             'streamboardToken' => $streamboardToken,
             'region' => $region,
-            'showBackground' => $bg           
+            'showBackground' => $bg,
+            'regionsData' => $regionsData,
+            'donationsData' => $donationsData,
+            'campaignsData' => $campaignsData,
+            'streamboardConfig' => $user->streamboardConfig->toArray()  
         ]);
     }
   
@@ -283,6 +296,11 @@ class StreamboardController extends FrontendController
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $user = Streamboard::getCurrentUser();        
+        $data = $this->getDonationsData($user, $since_id);
+        return $data;
+    }
+
+    public function getDonationsData($user, $since_id = null) {
         $sinceDate = $user->streamboardConfig->clearedDate;        
         $selectedCampaigns = Streamboard::getSelectedCampaigns($user);        
         $donations = [];
@@ -521,11 +539,17 @@ class StreamboardController extends FrontendController
     {        
         Yii::$app->response->format = Response::FORMAT_JSON;        
         $user = Streamboard::getCurrentUser();        
+        $data = $this->getRegionsData($user);        
+        return $data;
+    }
+
+    public function getRegionsData($user)
+    {
         $regions = StreamboardRegion::GetRegions($user);
         $data = [];
         foreach ($regions as $region) {
             $data[] = $region->toArray();
-        }        
+        }
         return $data;
     }
 

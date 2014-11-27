@@ -13,7 +13,7 @@
             $scope.alertMediaManagerService = alertMediaManager;
             $scope.streamboardConfig = streamboardConfig;
             
-            if (Pullr.Streamboard.region) {
+            if (Pullr.Streamboard != undefined && Pullr.Streamboard.region != undefined) {
                 $scope.region = Pullr.Streamboard.region;     
                 $interval(function(){                    
                     

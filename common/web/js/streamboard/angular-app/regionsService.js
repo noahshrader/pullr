@@ -3,16 +3,24 @@
         service('regions', function ($http) {
             var Service = this;
             this.regions = {};
-    
-            $http.get('app/streamboard/get_regions_ajax').success(function (data) {
-                Service.regions = data;    
+            this.__readyQueue = [];
+
+            if (Pullr.Streamboard != undefined && Pullr.Streamboard.regionsData != undefined) {
+                Service.regions = Pullr.Streamboard.regionsData;
                 while (Service.__readyQueue.length > 0) {
                     var callback = Service.__readyQueue.shift();
                     callback();
                 }
-            });
-
-            this.__readyQueue = [];
+            } else {
+                $http.get('app/streamboard/get_regions_ajax').success(function (data) {
+                    Service.regions = data;    
+                    while (Service.__readyQueue.length > 0) {
+                        var callback = Service.__readyQueue.shift();
+                        callback();
+                    }
+                });    
+            }        
+            
             /*you can subscribe to be sure when regions are ready*/
             this.ready = function (callback) {
                 if (this.regions.length > 0) {

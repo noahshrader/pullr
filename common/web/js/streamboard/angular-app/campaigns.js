@@ -4,29 +4,42 @@
             var Service = this;
             this.selectedCampaignsNumber = 0;
             this.campaigns = {};
+
+            if (typeof(Pullr.Streamboard) != 'undefined' && typeof(Pullr.Streamboard.campaignsData) != 'undefined') {                
+                var campaigns = $.extend({}, Pullr.Streamboard.campaignsData);
+                updateCampaigns(campaigns);
+            } else {
+                requestCampaigns();
+            }
+
             function requestCampaigns() {
                 $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
-                    var oldCampaigns = Service.campaigns;
-                    /*We have asynchronous conflict between campaigns enabling/disabling and requestCampaigns request.
-                     So first we prefer streamboardSelected value at client compared to server.
-                     */
-                    for (var id in campaigns){
-                        if (oldCampaigns[id]){
-                            campaigns[id].streamboardSelected = oldCampaigns[id].streamboardSelected;
-                        }
-                    }
-                    Service.campaigns = campaigns;
-                    calcSelectedCampaignsNumber();
+                    updateCampaigns(campaigns);
                 });
             };
-            function calcSelectedCampaignsNumber(){
+
+            function updateCampaigns(campaigns) {
+                var oldCampaigns = Service.campaigns;
+                /*We have asynchronous conflict between campaigns enabling/disabling and requestCampaigns request.
+                 So first we prefer streamboardSelected value at client compared to server.
+                 */
+                for (var id in campaigns){
+                    if (oldCampaigns[id]){
+                        campaigns[id].streamboardSelected = oldCampaigns[id].streamboardSelected;
+                    }
+                }
+                Service.campaigns = campaigns;
+                calcSelectedCampaignsNumber();
+            }
+
+            function calcSelectedCampaignsNumber() {
                 var number = 0;
                 $.each(Service.campaigns, function(key, campaign){
                     campaign.streamboardSelected ? number++: null;
                 });
                 Service.selectedCampaignsNumber = number;
             };
-            requestCampaigns();
+            
 
 
             this.getcampaignName = function(id){
@@ -44,7 +57,10 @@
             }, 5000);
 
             this.campaignChanged = function(campaign){
-                $http.post('app/streamboard/set_campaign_selection', {id: campaign.id, streamboardSelected: campaign.streamboardSelected});
+                $http.post('app/streamboard/set_campaign_selection', {
+                    id: campaign.id, 
+                    streamboardSelected: campaign.streamboardSelected
+                });
                 calcSelectedCampaignsNumber();
             };
         });

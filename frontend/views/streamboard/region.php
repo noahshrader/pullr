@@ -20,7 +20,12 @@ $user = Streamboard::getCurrentUser();
 	</div>
 </div>
 
-<?= $this->render('streamboard-js-variables') ?>
+<?= $this->render('streamboard-js-variables', [
+    'regionsData' => $regionsData,
+    'donationsData' => $donationsData,
+    'campaignsData' => $campaignsData,
+    'streamboardConfig' => $streamboardConfig
+]) ?>
 
 <script type="text/javascript">
     <?

@@ -12,7 +12,18 @@
             this.updateDonations = updateDonations;
             this.clear = clear;
 
-            this.updateDonations();
+            if (Pullr.Streamboard != undefined && Pullr.Streamboard.donationsData != undefined) {
+                var donationsData = Pullr.Streamboard.donationsData;
+                this.donations = donationsData.donations;
+                this.stats = donationsData.stats;
+                this.followers = donationsData.followers;
+                this.subscribers = donationsData.subscribers;
+                this.userDonations = donationsData.userDonations;
+            } else {
+                this.updateDonations();    
+            }
+
+            
 
             $interval(function () {
                 Service.updateDonations();

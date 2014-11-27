@@ -16,7 +16,7 @@
         		frame.height(height);
         		lastSourceHeight = height;
         	}
-        }, 3000);
+        }, 3000, 5);
 
         $scope.toggleSubscriber = function() {
             stream.toggleSubscriber();
