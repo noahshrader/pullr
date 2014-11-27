@@ -70,11 +70,7 @@ $showBackground = isset($_GET['bg']) && $_GET['bg'] == 1 ? true : false ;
 	</div>
 	<?php $this->beginBody() ?>
 	<?= $content ?>
-	<?php $this->endBody() ?>
-	<script type="text/javascript">
-		document.write('<script type="text/javascript" src="' + ('https:'==document.location.protocol?'https://':'http://c.') + 'jslogger.com/jslogger.js"><\/script>');
-		</script>
-		<script type="text/javascript">window.jslogger = new JSLogger();</script>
+	<?php $this->endBody() ?>	
     </body>
 </html>
 <?php $this->endPage() ?>
