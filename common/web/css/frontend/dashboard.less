@@ -4,271 +4,273 @@
 	position: fixed;
 	top: @top-menu-height;
 	right: 0;
-}
-#content.dashboard {
-	position: static;
-	padding-right: @sidepanelwidth;
 
-	ul.content-nav {
-		border-top-left-radius: 2px;
-		border-top-right-radius: 2px;
-	}
+	#content.dashboard {
+		position: static;
+		padding-right: @sidepanelwidth;
 
-	.tab-content {
-		padding-bottom: @gutter;
-		overflow: hidden;
-	}
-	.stats-overview {
-		position: relative;
-		padding: 0;
-		.box-shadow;
-
-		h1,
-		h2 {
-			color: @white;
-		}
-		h1 {
-			font-size: 4.2em;
-			line-height: 1.3em;
+		ul.content-nav {
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
 		}
 
-		&.main-totals {
-			border-top-left-radius: 0;
-			border-top-right-radius: 0;
+		.tab-content {
+			padding-bottom: @gutter;
 			overflow: hidden;
-
-			span {
-				color: @dkraccent;
-			}
 		}
-		.stats-box {
-			border: 0;
-		}
-
-		/* Main Total Section */
-		.raised-total.stats-box {
+		.stats-overview {
 			position: relative;
-			float: left;
-			width: 100%;
-			padding: @gutter+@halfgutter 0;
-			background: @accent;
+			padding: 0;
+			.box-shadow;
 
-			h1 {
+			h1,
+			h2 {
 				color: @white;
-				margin: 0;
 			}
-		}
-
-		/* Secondary Totals */
-		.raised-group-stats {
-			position: relative;
-			float: left;
-			padding: 0 15%;
-			width: 100%;
-			background: @dkaccent;
-			.border-radius;
-			&:before {
-				.arrow-up;
-				left: 50%;
-				top: -10px;
-				margin-left: -10px;
-				border-color: transparent transparent @dkaccent transparent;
+			h1 {
+				font-size: 4.2em;
+				line-height: 1.3em;
 			}
 
+			&.main-totals {
+				.border-radius;
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+				overflow: hidden;
+
+				span {
+					color: @dkraccent;
+				}
+			}
 			.stats-box {
-				padding: 1.2em 0;
 				border: 0;
 			}
-		}
 
-		/* Other Totals Section */
-		&.other-raised-totals {
-			margin: @gutter 0 @gutter+@gutter;
-			background: @white;
-			.box-shadow;
-			.border-radius;
+			/* Main Total Section */
+			.raised-total.stats-box {
+				position: relative;
+				float: left;
+				width: 100%;
+				padding: @gutter+@halfgutter 0;
+				background: @accent;
 
-			.stats-box {
-				width: 33.33%;
-			}
-			h2 {
-				color: @gray10;
-			}
-		}
-
-		/* Twitch Bar */
-		&.twitch-stats {
-			background: @twitchpurple;
-			.box-shadow;
-			.border-radius;
-
-			h2 {
-				color: @white;
-			}
-			span {
-				color: @twitchlight;
-			}
-			i.group-header {
-				position: absolute;
-				top: -46px;
-				left: 50%;
-				color: @offwhite;
-				font-size: 18px;
-				line-height: 34px;
-				text-align: center;
-				margin-left: -16px;
-				height: 34px;
-				width: 34px;
-				.round-radius;
-				background: @gray72;
-			}
-			span.stick {
-				top: -@gutter + -@gutter;
-				height: @gutter+@gutter;
-			}
-		}
-	}
-	span.stick {
-		position: absolute;
-		left: 50%;
-		top: -@gutter;
-		display: block;
-		margin: 0;
-		height: @gutter;
-		width: 2px;
-		background: @gray72;
-	}
-}
-
-
-/* Activity Sidebar */
-/* ------------------------------------------------- */
-#sidebar.dashboard {
-	position: fixed;
-	top: @top-menu-height;
-	right: 0;
-	padding-right: @gutter;
-	background: @gray75;
-
-	.invites-wrap {
-		padding-bottom: 0px;
-
-		ul {
-			li {
-				color: @gray30;
-				margin: 0px;
-				padding-top: @halfgutter;
-				&:last-child .invite-actions {
-					border-bottom: 0;
-				}
-				p,
-				span {
+				h1 {
+					color: @white;
 					margin: 0;
-					padding: 0 @gutter;
 				}
-				p {
-					color: @gray30;
-					font-weight: 500;
+			}
+
+			/* Secondary Totals */
+			.raised-group-stats {
+				position: relative;
+				float: left;
+				padding: 0 15%;
+				width: 100%;
+				background: @dkaccent;
+				border-radius: 0;
+				&:before {
+					.arrow-up;
+					left: 50%;
+					top: -10px;
+					margin-left: -10px;
+					border-color: transparent transparent @dkaccent transparent;
+				}
+
+				.stats-box {
+					padding: 1.4em 0;
+					border: 0;
+				}
+			}
+
+			/* Other Totals Section */
+			&.other-raised-totals {
+				margin: @gutter 0 @gutter+@gutter;
+				background: @white;
+				.box-shadow;
+				.border-radius;
+
+				.stats-box {
+					width: 33.33%;
+				}
+				h2 {
+					color: @gray10;
+				}
+			}
+
+			/* Twitch Bar */
+			&.twitch-stats {
+				background: @twitchpurple;
+				.box-shadow;
+				.border-radius;
+
+				h2 {
+					color: @white;
 				}
 				span {
-					color: @gray50;
-					font-size: @smalltext;
+					color: @twitchlight;
 				}
+				i.group-header {
+					position: absolute;
+					top: -46px;
+					left: 50%;
+					color: @offwhite;
+					font-size: 18px;
+					line-height: 34px;
+					text-align: center;
+					margin-left: -16px;
+					height: 34px;
+					width: 34px;
+					.round-radius;
+					background: @gray72;
+				}
+				span.stick {
+					top: -@gutter + -@gutter;
+					height: @gutter+@gutter;
+				}
+			}
+		}
+		span.stick {
+			position: absolute;
+			left: 50%;
+			top: -@gutter;
+			display: block;
+			margin: 0;
+			height: @gutter;
+			width: 2px;
+			background: @gray72;
+		}
+	}
 
-				.invite-actions {
-					margin-top: @halfgutter;
-					border-top: solid 1px @gray75;
-					border-bottom: solid 1px @gray75;
 
-					a {
-						float: left;
-						display: inline-block;
+	/* Activity Sidebar */
+	/* ------------------------------------------------- */
+	#sidebar.dashboard {
+		position: fixed;
+		top: @top-menu-height;
+		right: 0;
+		padding-right: @gutter;
+		background: @gray75;
+
+		.invites-wrap {
+			padding-bottom: 0px;
+
+			ul {
+				li {
+					color: @gray30;
+					margin: 0px;
+					padding-top: @halfgutter;
+					&:last-child .invite-actions {
+						border-bottom: 0;
+					}
+					p,
+					span {
+						margin: 0;
+						padding: 0 @gutter;
+					}
+					p {
+						color: @gray30;
+						font-weight: 500;
+					}
+					span {
 						color: @gray50;
 						font-size: @smalltext;
-						text-align: center;
-						padding: .6em 0;
-						width: 50%;
-						&:hover {
-							color: @gray10;
-						}
-						&:first-child {
-							border-right: solid 1px @gray75;
-						}
-						i {
-							margin-right: @iconspace;
+					}
+
+					.invite-actions {
+						margin-top: @halfgutter;
+						border-top: solid 1px @gray75;
+						border-bottom: solid 1px @gray75;
+
+						a {
+							float: left;
+							display: inline-block;
+							color: @gray50;
+							font-size: @smalltext;
+							text-align: center;
+							padding: .6em 0;
+							width: 50%;
+							&:hover {
+								color: @gray10;
+							}
+							&:first-child {
+								border-right: solid 1px @gray75;
+							}
+							i {
+								margin-right: @iconspace;
+							}
 						}
 					}
 				}
-			}
 
-			&:last-child {
-				border-bottom: none;
+				&:last-child {
+					border-bottom: none;
+				}
 			}
 		}
-	}
 
-	/* Activity Feed */
-	ul.activity-feed {
-		li {
-			color: @gray50;
+		/* Activity Feed */
+		ul.activity-feed {
+			li {
+				color: @gray50;
+				font-size: @smalltext;
+				padding: @halfgutter @gutter;
+				margin: 0;
+				background: @offwhite;
+				border-bottom: solid 1px @gray75;
+				&:first-child {
+					color: @gray20;
+					background: @white;
+				}
+				&:last-child {
+					border: 0;
+				}
+			}
+		}
+		span.empty {
+			display: block;
+			color: @gray60;
 			font-size: @smalltext;
-			padding: @halfgutter @gutter;
-			margin: 0;
-			background: @offwhite;
-			border-bottom: solid 1px @gray75;
-			&:first-child {
-				color: @gray20;
-				background: @white;
-			}
-			&:last-child {
-				border: 0;
-			}
+			text-align: center;
+			padding: @halfgutter;
 		}
 	}
-	span.empty {
-		display: block;
-		color: @gray60;
-		font-size: @smalltext;
-		text-align: center;
-		padding: @halfgutter;
-	}
-}
 
 
-/* Alerts */
-/* ------------------------------------------------- */
-.alert-info {
-	color: @gray50;
-	font-weight: 400;
-	padding: @gutter 50px @gutter 80px;
-	margin-bottom: @gutter;
-	background: @white;
-	border: 0;
-	.border-radius;
+	/* Alerts */
+	/* ------------------------------------------------- */
+	.alert-info {
+		color: @gray50;
+		font-weight: 400;
+		padding: @gutter 50px @gutter 80px;
+		margin-bottom: @gutter;
+		background: @white;
+		border: 0;
+		.border-radius;
 
-	i {
-		position: absolute;
-		top: 50%;
-		left: 0;
-		color: @gray60;
-		font-size: 34px;
-		text-align: center;
-		margin-top: -18px;
-		width: 80px;
-	}
+		i {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			color: @gray60;
+			font-size: 34px;
+			text-align: center;
+			margin-top: -18px;
+			width: 80px;
+		}
 
-	button.close {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		width: 50px;
-		color: @gray60 !important;
-		font-weight: 600;
-		text-shadow: none;
-		opacity: 1;
-		&:hover {
-			color: @gray30 !important;
+		button.close {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: 50px;
+			color: @gray60 !important;
+			font-weight: 600;
+			text-shadow: none;
+			opacity: 1;
+			&:hover {
+				color: @gray30 !important;
+			}
 		}
 	}
 }

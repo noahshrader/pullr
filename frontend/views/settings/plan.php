@@ -10,7 +10,7 @@ use common\models\Plan;
 
     <!-- Pullr Basic -->
     <div class="plan-pro-advertisement plan-panel">
-        <i class="mdib-gamepad"></i>
+        <i class="mdib-gamepad3"></i>
         <h3>Go Pro!</h3>
         <ul>
             <li>Team Fundraising</li>

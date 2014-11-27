@@ -88,7 +88,7 @@
 }
 
 /* Team */
-#campaignEdit[data-campaigntype="Charity Fundraiser"]{
+#campaignEdit[data-campaigntype="Charity Fundraiser"] {
     #teamQuestion {
       display: block;
     }
@@ -97,12 +97,14 @@
     }
 }
 #teamInvites,
-#teamQuestion {
+#teamQuestion,
+#tieCampaignContainer {
 	display: none;
 }
-#campaignEdit[data-campaigntype="Charity Fundraiser"].team-enabled{
+#campaignEdit[data-campaigntype="Charity Fundraiser"].team-enabled {
 	#teamInvites,
-	#teamQuestion {
+	#teamQuestion,
+	#tieCampaignContainer {
 		display: block;
 	}
 }
@@ -353,6 +355,11 @@ p.team-notice {
 	}
 }
 
+.social {
+	.module-inner {
+		margin: 0;
+	}
+}
 
 /* CKE Editor */
 /* ------------------------------------------------- */
