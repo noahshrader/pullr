@@ -16,7 +16,5 @@ class m141124_103953_alert_highlightcolor extends Migration
     {
         $this->dropColumn(\frontend\models\streamboard\WidgetAlertsPreference::tableName(), self::FIELD);
         echo "Drop column ". self::FIELD ." success.\n";
-
-        return false;
     }
 }

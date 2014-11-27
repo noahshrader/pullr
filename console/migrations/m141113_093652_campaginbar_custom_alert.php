@@ -21,6 +21,5 @@ class m141113_093652_campaginbar_custom_alert extends Migration
         $this->dropColumn(frontend\models\streamboard\WidgetCampaignBarAlerts::tableName(), 'followerText');
         $this->dropColumn(frontend\models\streamboard\WidgetCampaignBarAlerts::tableName(), 'subscriberText');
         $this->dropColumn(frontend\models\streamboard\WidgetCampaignBarAlerts::tableName(), 'donationText');      
-        return false;
     }
 }

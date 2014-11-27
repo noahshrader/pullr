@@ -47,6 +47,5 @@ class m141119_065538_add_position_and_size_column extends Migration
         $this->dropColumn(\frontend\models\streamboard\WidgetTagStyle::tableName(), 'width');
         $this->dropColumn(\frontend\models\streamboard\WidgetTagStyle::tableName(), 'messagePositionX');
         $this->dropColumn(\frontend\models\streamboard\WidgetTagStyle::tableName(), 'messagePositionY');
-        return false;
     }
 }

@@ -16,7 +16,5 @@ class m141114_050533_add_donationfeed_fontweight extends Migration
     {
         $this->dropColumn(\frontend\models\streamboard\WidgetDonationFeed::tableName(), self::FIELD);
         echo "Drop column ". self::FIELD ." success.\n";
-
-        return false;
     }
 }

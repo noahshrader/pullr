@@ -31,6 +31,5 @@ class m141126_020901_add_alert_position extends Migration
         $this->dropColumn(WidgetAlertsPreference::tableName(), 'imageHeight');
         $this->dropColumn(WidgetAlertsPreference::tableName(), 'imagePositionX');
         $this->dropColumn(WidgetAlertsPreference::tableName(), 'imagePositionY');
-        return false;
     }
 }

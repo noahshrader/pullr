@@ -15,7 +15,5 @@ class m141119_042818_campaignbar_fontweight extends Migration
     {
         $this->dropColumn(\frontend\models\streamboard\WidgetCampaignBar::tableName(), self::FIELD);
         echo "Drop column ". self::FIELD ." success.\n";
-
-        return false;
     }
 }

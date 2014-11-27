@@ -30,6 +30,5 @@ class m141126_022410_remove_position_field extends Migration
         $this->addColumn(WidgetAlerts::tableName(), 'imageHeight', Schema::TYPE_INTEGER . ' NOT NULL');
         $this->addColumn(WidgetAlerts::tableName(), 'imagePositionX', Schema::TYPE_INTEGER . ' NOT NULL');
         $this->addColumn(WidgetAlerts::tableName(), 'imagePositionY', Schema::TYPE_INTEGER . ' NOT NULL');
-        return false;
     }
 }

@@ -26,6 +26,5 @@ class m141118_034930_add_streamboard_widget_tag_style_table extends Migration
     public function down()
     {
         $this->dropTable(WidgetTagStyle::tableName());
-        return false;
     }
 }

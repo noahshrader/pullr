@@ -16,6 +16,5 @@ class m141114_020914_add_apikey_field extends Migration
     {
         $this->dropColumn(common\models\User::tableName(), self::FIELD);
         echo "m141114_020914_add_apikey_field cannot be reverted.\n";
-        return false;
     }
 }

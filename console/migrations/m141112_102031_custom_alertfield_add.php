@@ -19,6 +19,5 @@ class m141112_102031_custom_alertfield_add extends Migration
         $this->dropColumn(frontend\models\streamboard\WidgetAlertsPreference::tableName(), self::FIELD);
         $this->dropColumn(frontend\models\streamboard\WidgetCampaignBarAlerts::tableName(), self::FIELD);
         echo "m141112_102031_custom_alertfield_add cannot be reverted.\n";
-        return false;
     }
 }

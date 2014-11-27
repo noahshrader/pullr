@@ -26,6 +26,5 @@ class m141122_021210_add_custom_sound_table extends Migration
     public function down()
     {
        $this->dropTable(WidgetAlertsCustomsound::tableName());
-       return false;
     }
 }

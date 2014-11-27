@@ -28,6 +28,5 @@ class m141114_165054_add_all_cap_checkbox extends Migration
         $this->dropColumn(WidgetCampaignBar::tableName(), 'fontUppercase');
         $this->dropColumn(WidgetCampaignBarAlerts::tableName(), 'fontUppercase');
         $this->dropColumn(WidgetDonationFeed::tableName(), 'fontUppercase');
-        return false;
     }
 }

@@ -18,7 +18,5 @@ class m141112_171845_add_alert_fontweight extends Migration
     {
         $this->dropColumn(WidgetAlertsPreference::tableName(), self::FIELD);
         echo "Drop column ". self::FIELD ." success.\n";
-
-        return false;
     }
 }

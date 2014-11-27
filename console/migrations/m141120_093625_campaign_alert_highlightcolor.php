@@ -15,7 +15,5 @@ class m141120_093625_campaign_alert_highlightcolor extends Migration
     {
         $this->dropColumn(\frontend\models\streamboard\WidgetCampaignBarAlerts::tableName(), self::FIELD);
         echo "Drop column ". self::FIELD ." success.\n";
-
-        return false;
     }
 }
