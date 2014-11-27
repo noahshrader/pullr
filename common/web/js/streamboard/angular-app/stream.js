@@ -86,6 +86,10 @@
                 
                 if(highlightColor !== '') {
                     message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
+                    //private change for "$" amount
+                    if(type === 'donations') {
+                        message = message.replace('$', '').replace('[[DonorAmount]]', '$[[DonorAmount]]');
+                    }
                 }
                 message = message.replace(/\[\[/gi,'{{').replace(/\]\]/gi,'}}');
                 
@@ -252,6 +256,11 @@
                 
                 if(highlightColor !== '') {
                     message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
+                    
+                    //private change for "$" amount
+                    if(type === 'donations') {
+                        message = message.replace('$', '').replace('[[DonorAmount]]', '$[[DonorAmount]]');
+                    }
                 }
                 
                 for (var i = 0; i < number; i++) {
