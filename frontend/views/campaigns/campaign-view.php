@@ -23,7 +23,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
 
 <script type="text/javascript">
     function campaignChangeStatus(id, status){
-        if (status!= '<?= Campaign::STATUS_DELETED ?>' || confirm('Are you sure to remove campaign?')){
+        if (status!= '<?= Campaign::STATUS_DELETED ?>' || confirm('Are you sure to remove your campaign?')){
             $.get('app/campaigns/status', {id: id, status: status}, function(){
                     location.href='app/campaigns';    
                 }

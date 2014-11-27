@@ -7,7 +7,7 @@ use common\assets\streamboard\StreamboardCommonAsset;
 CommonAsset::register($this);
 StreamboardCommonAsset::register($this);
 StreamboardAsset::register($this);
-$this->title = 'Streamboard';
+$this->title = 'Streamboard - Pullr';
 ?>
 
 <?php $this->beginPage() ?>
