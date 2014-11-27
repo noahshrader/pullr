@@ -87,7 +87,7 @@
                 if(highlightColor !== '') {
                     message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
                     //private change for "$" amount
-                    if(type === 'donations'  && region.widgetAlerts.donationsPreference.alertText != '') {
+                    if(type === 'donations'  && region.widgetAlerts.donationsPreference.alertText == '') {
                         message = message.replace('$', '').replace('[[DonorAmount]]', '$[[DonorAmount]]');
                     }
                 }
@@ -257,8 +257,8 @@
                 if(highlightColor !== '') {
                     message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
                     
-                    //private change for "$" amount
-                    if(type === 'donations' && region.widgetAlerts.donationsPreference.alertText != '') {
+                    //private change for "$" amount 
+                    if(type === 'donations' && region.widgetAlerts.donationsPreference.alertText == '') {
                         message = message.replace('$', '').replace('[[DonorAmount]]', '$[[DonorAmount]]');
                     }
                 }
