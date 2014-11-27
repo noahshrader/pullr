@@ -18,7 +18,4 @@ class CommonAsset extends AssetBundle {
     public $depends = [
         'common\assets\BaseCommonAsset'
     ];
-    public $publishOptions = [
-        'forceCopy' => true
-    ];
 }

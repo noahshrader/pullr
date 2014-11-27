@@ -21,7 +21,4 @@ class BaseCommonAsset extends AssetBundle {
         'kartik\select2\Select2Asset',
         'yii\bootstrap\BootstrapAsset'
     ];
-    public $publishOptions = [
-        'forceCopy' => true
-    ];
 }
