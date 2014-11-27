@@ -42,10 +42,10 @@ use frontend\models\streamboard\WidgetCampaignBar;
         <div ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'font-weight': alertsModule.fontWeight, 'background-color': alertsModule.backgroundColor}" class="bar-alert-wrap">
                 <span draggable-widget="region.widgetCampaignBar.alertsModule" 
                  interaction
+                 draggable
                  draggable-region="region" 
                  draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
                  draggable-config="{containment: getCampaignBarSelector(region)}"
-                 draggable
                  ng-class="{fontUppercase: region.widgetCampaignBar.alertsModule.fontUppercase}"
                  ng-bind-html="formatMsgHtml(region.toShow.alert.message)"></span>
         </div>

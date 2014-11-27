@@ -44,8 +44,8 @@ use frontend\models\streamboard\StreamboardRegion;
     resizable-config="{containment: getRegionSelector(region)}"            
     resizable-region="region" 
     resizable-callback="onResizeAlertMessage"    
-    resizable-size="{width:region.widgetAlerts.messageWidth, height: region.widgetAlerts.messageHeight}"
-    ng-bind-html="formatMsgHtml(region.toShow.alert.message)">
+    resizable-size="{width:region.widgetAlerts.messageWidth, height: region.widgetAlerts.messageHeight}">
+    <span ng-bind-html="formatMsgHtml(region.toShow.alert.message)"></span>
 </div>
 <!----Show Tags-------->
 
