@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.donations', []).
-        service('donations',function ($http, $interval, $compile, stream, simpleMarqueeHelper, donationsFilterToSelectedCampaignsFilter, groupByFilter, orderByFilter, limitToFilter) {
+        service('donations',function ($http, $interval, $timeout, $compile, stream, simpleMarqueeHelper, donationsFilterToSelectedCampaignsFilter, groupByFilter, orderByFilter, limitToFilter) {
             var Service = this;
             this.donations = [];
             this.followers = [];
@@ -19,18 +19,20 @@
                 this.followers = donationsData.followers;
                 this.subscribers = donationsData.subscribers;
                 this.userDonations = donationsData.userDonations;
-            } else {
-                this.updateDonations();    
             }
 
-            
+            autoUpdateDonation();   
 
-            $interval(function () {
-                Service.updateDonations();
-            }, 10000);
+            function autoUpdateDonation() {
+                updateDonations(false, function(){
+                    $timeout(function() {
+                        autoUpdateDonation();
+                    }, 5000);
+                });
+            }
 
-
-            function updateDonations(forceAll) {
+            function updateDonations(forceAll, callback) {
+                callback = callback || function(){};
                 var params = {since_id: forceAll ? 0 : Service.lastDonationId };
                 $http.get('app/streamboard/get_donations_ajax', {params: params }).success(function (data) {
                     Service.stats = data.stats;
@@ -60,7 +62,9 @@
                         }                                                                        
                     }
 
-                     
+                    callback();
+
+                    
                 });                
             };
 

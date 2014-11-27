@@ -33,16 +33,21 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 
 
 })
-.factory('twitchNotification', function(twitch, $interval, stream) {
+.factory('twitchNotification', function(twitch, $interval, stream, $timeout) {
 	var service = {};
-	service.interval = 30000;
-	
-	service.getCurrentUTCDate = function() {
-		var now = new Date();
-		//we really want to decrease time by 15 secs, 
-		//because there are some delay from the time user click on follow/subscribe button and the time twitch record their action.		
-		var t = now.getTime() - 15000;
-		return new Date(t)
+	service.interval = 10000;
+	service.lastRequestTime = null;
+	service.getCurrentUTCDate = function(offset) {		
+		offset = offset || null;
+		var now = new Date();				
+		var result = new Date();
+		if (offset != null) {
+			elapse = now.getTime() - offset.getTime();
+
+			result = new Date(now.getTime() - elapse);
+		} 
+		console.log(result);
+		return result;
 	}
 
 	service.lastRequestTime = service.getCurrentUTCDate();
@@ -53,10 +58,7 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 		var result = [];
 		angular.forEach(list, function(item) {
 			var createdAt = new Date(item.created_at);		
-			if (createdAt >= service.lastRequestTime) {				
-				if (createdAt > service.lastMaxCreatedAt) {
-					service.lastMaxCreatedAt = createdAt;
-				}
+			if (createdAt >= service.lastRequestTime) {								
 				result.push(item);
 			}
 		});
@@ -64,27 +66,37 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 	}
 
 	service.requestTwitchData = function() {
-		twitch.getFollowers().then(function(response) {
-			
-			var follows = service.filterList(response.data.follows);
-			
+		var offset = new Date();
+		twitch.getFollowers().then(function(response) {			
+			var follows = service.filterList(response.data.follows);			
 			if (follows.length > 0) {
 				stream.pushFollowerAlerts(follows);
+			}			
+			var promise = twitch.getSubscribers();
+			if (promise) {
+				promise.then(function(response) {				
+					var subscriptions = service.filterList(response.data.subscriptions);				
+					service.lastRequestTime = service.getCurrentUTCDate(offset);
+					if (subscriptions.length > 0) {
+						stream.pushSubscriberAlerts(subscriptions);
+					}					
+					$timeout(function() {
+						service.requestTwitchData();
+					}, service.interval);
+				});
+			} else {
+				service.lastRequestTime = service.getCurrentUTCDate(offset);
+				$timeout(function() {
+					service.requestTwitchData();
+				}, service.interval);
 			}
-			
-			twitch.getSubscribers().then(function(response) {				
-				var subscriptions = service.filterList(response.data.subscriptions);				
-				service.lastRequestTime = service.getCurrentUTCDate();
-				if (subscriptions.length > 0) {
-					stream.pushSubscriberAlerts(subscriptions);
-				}
-			});
 		});		
 	}
 
-	service.saveNewFollowers = function(follows) {
+	service.init = function(){
+		service.requestTwitchData();
+	}	
 
-	}
-	
+	service.init();
 	return service;
 });

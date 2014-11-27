@@ -7,7 +7,7 @@
             subscribers:'[[SubscriberName]] just subscribed your channel!'
         })
 
-        .service('stream', function ($http, regions, $interval, $interpolate, defaultMessage, campaigns, customDonationSound) {
+        .service('stream', function ($http, regions, $interval, $timeout, $interpolate, defaultMessage, campaigns, customDonationSound) {
             var Service = this;
             /*for each of regions we have separate stream*/
             this.streams = [];
@@ -25,6 +25,10 @@
                     Service.showSubscriber = data.showSubscriber;
                     Service.showFollower = data.showFollower;
                     Service.groupUser = data.groupUser;
+
+                    $timeout(function(){
+                        Service.getActivityFeedSetting();
+                    }, 10000);
                 });
             }
 
@@ -119,6 +123,9 @@
                             Service.pushNotification(notification);
                         }
                     }
+                    $timeout(function(){
+                        Service.requestStreamData();
+                    }, 3000);
                 });
             }
 
@@ -197,14 +204,7 @@
                 });
             }
 
-
-
-
-            $interval(function(){
-                Service.requestStreamData();
-            }, 5000);
             this.testData = function (type, number, region) {
-
                 number = number||1;
                 var message;
                 var highlightColor;

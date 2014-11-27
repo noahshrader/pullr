@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.campaigns', []).
-        service('campaigns', function ($http, $interval) {
+        service('campaigns', ['$http', '$interval', '$timeout', function ($http, $interval, $timeout) {
             var Service = this;
             this.selectedCampaignsNumber = 0;
             this.campaigns = {};
@@ -15,6 +15,9 @@
             function requestCampaigns() {
                 $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
                     updateCampaigns(campaigns);
+                    $timeout(function(){
+                        requestCampaigns();
+                    }, 5000)
                 });
             };
 
@@ -51,11 +54,7 @@
                 });
                 return name;
             }
-
-            $interval(function() {
-                requestCampaigns();
-            }, 5000);
-
+          
             this.campaignChanged = function(campaign){
                 $http.post('app/streamboard/set_campaign_selection', {
                     id: campaign.id, 
@@ -63,5 +62,5 @@
                 });
                 calcSelectedCampaignsNumber();
             };
-        });
+        }]);
 })();

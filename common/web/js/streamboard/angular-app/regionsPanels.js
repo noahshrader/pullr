@@ -15,9 +15,11 @@
             
             if (Pullr.Streamboard != undefined && Pullr.Streamboard.region != undefined) {
                 $scope.region = Pullr.Streamboard.region;     
-                $interval(function(){                    
-                    
+                
+                function requestRegion(){
+                                                
                     $http.get('app/streamboard/get_regions_ajax').success(function (data) {                                                
+
                         var newRegion = null;
                         if (data[$scope.region.regionNumber - 1]) {
                             var newRegion = data[$scope.region.regionNumber - 1];    
@@ -27,19 +29,17 @@
                                 newRegion['toShow'] = $scope.region.toShow;
                             }
                             $scope.region = newRegion;
-                        }                        
+                        }                   
+
+                        $timeout(function(){
+                            requestRegion();
+                        }, 5000)
 
                     });
-                }, 5000);             
+                 
+                }
             }
 
-            twitchNotification.requestTwitchData();
-            $interval(twitchNotification.requestTwitchData, 20000);
-
-            $interval(function(){
-                stream.requestStreamData();
-            }, 5000);
-            
             var $region2 = $(".regionsContainer .region:last-child");
             var animationEndEvent = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
             var isShowingNotification = false;
