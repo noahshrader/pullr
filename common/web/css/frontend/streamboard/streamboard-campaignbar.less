@@ -18,6 +18,7 @@
 
 	/* Current Total */
 	.current-total {
+		position: absolute !important;
 		text-align: center;
 
 		span {
@@ -41,16 +42,71 @@
 		height: 6px;
 		background: @gray20;
 	}
-
-	/* Timer Module */
-	.campaign-timers{
-		display: inline-block;
-	}
-	
-	.timer-module{
-		min-height: 450px;
-	}
-	.timerType{
-		margin-bottom: 10px;
-	}
 }
+
+/* Settings */
+
+	/* Timers */
+	.campaign-timers {
+		.timerType {
+			margin-bottom: @halfgutter;
+		}
+
+		/* Countdown */
+		a.dropdown-toggle {
+			position: relative;
+			display: block;
+
+			input[type="text"] {
+				padding-right: @gutter;
+			}
+			i {
+				position: absolute;
+				top: 14px;
+				right: 8px;
+			}
+		}
+		ul.dropdown-menu {
+			position: relative !important;
+			background: @maingray;
+			border: 0;
+			.border-radius;
+			.box-shadow;
+
+			.datetimepicker table tr td.past,
+			.datetimepicker table tr td.future {
+				color: @gray20;
+			}
+			.datetimepicker td,
+			.datetimepicker th {
+				color: @gray30;
+			}
+			.datetimepicker table tr td.active.active,
+			.datetimepicker table tr td.day:hover,
+			.datetimepicker thead tr:first-child th:hover,
+			.datetimepicker tfoot tr:first-child th:hover,
+			.datetimepicker table tr td span:hover {
+				color: @white;
+				background: transparent;
+			}
+		}
+
+		/* Countup */
+		.timer-controls {
+			.btn {
+				float: left;
+				margin: 0;
+
+				&.start,
+				&.pause {
+					margin-right: 2%;
+					width: 48%;
+					background: @accent;
+				}
+				&.reset {
+					margin-left: 2%;
+					width: 48%;
+				}
+			}
+		}
+	}
