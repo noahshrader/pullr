@@ -43,10 +43,8 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', function($http,
 		var result = new Date();
 		if (offset != null) {
 			elapse = now.getTime() - offset.getTime();
-
 			result = new Date(now.getTime() - elapse);
-		} 
-		console.log(result);
+		} 		
 		return result;
 	}
 
