@@ -9,12 +9,17 @@ class m141120_071417_add_region_token extends Migration
 {
     public function up()
     {
-    	$this->addColumn(StreamboardConfig::tableName(), 'streamboardToken', Schema::TYPE_STRING . ' NOT NULL');    	
+    	$this->addColumn(StreamboardConfig::tableName(), 'streamboardToken', Schema::TYPE_STRING . ' NOT NULL');
+
+        $this->db->schema->refresh();
 
         $users = User::find()->all();
         foreach ($users as $user) {
-            $user->streamboardConfig->createRegionToken();            
-            $user->streamboardConfig->save();
+            if(isset($user->streamboardConfig))
+            {
+                $user->streamboardConfig->createRegionToken();
+                $user->streamboardConfig->save();
+            }
         }
 
     }
