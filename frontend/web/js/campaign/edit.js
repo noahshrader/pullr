@@ -111,9 +111,9 @@ function initBootstrapSwitch() {
     $("#campaign-enabledonations").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-enabledonations').bootstrapSwitch('state');
         if (value){
-            $('.field-campaign-eventid').show('slow');
+            $('.field-campaign-eventid').fadeIn(300);
         } else {
-            $('.field-campaign-eventid').hide('slow');
+            $('.field-campaign-eventid').fadeOut(300);
         }
     });
     $("#campaign-twitterenable").on('switchChange.bootstrapSwitch', function() {
