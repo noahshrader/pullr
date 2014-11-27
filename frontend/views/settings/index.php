@@ -59,9 +59,7 @@ endif;
 						$timezones = array_values(common\components\PullrUtils::timezone_list());
 						$keyValues = array_combine($timezones, $timezones);
 						?>
-						<label>Timezone:<br/>
-							<span id="timezone"><?= $user->timezone;?></span>
-						</label>
+						<label>Timezone: <span id="timezone"><?= $user->timezone;?></span></label>
 						<?= $form->field($user, 'timezone', ['template'=>'{input}'])->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
 					</div>
 				</div>

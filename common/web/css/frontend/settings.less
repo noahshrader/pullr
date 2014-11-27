@@ -15,7 +15,6 @@
 		}
 		span#timezone {
 			color: @gray30;
-			font-size: 1.1em;
 			font-weight: 500;
 		}
 		.dashboard-notifications,
@@ -53,92 +52,110 @@
 		right: 0;
 		padding: @gutter;
 	}
-}
 
-.plan-show-Basic,
-.plan-show-Pro {
-	.payment {
-		display: none;
-	}
-	.plan-panel {
+	/* General Plan */
+	.plan-show-Basic,
+	.plan-show-Pro {
+		.payment {
+			display: none;
+		}
+		.plan-panel {
 
-		i {
-			font-size: 72px;
-		}
-		h3 {
-			color: @gray20;
-			font-weight: 500;
-			line-height: 1.2em;
-		}
-	}
-}
-
-/* Basic */
-.plan-show-Basic {
-	.plan-panel {
-		i {
-			color: @accent;
-			width: 160px;
-			height: 160px;
-			background: url(/images/gopro.jpg);
-		}
-		h3 {
-			margin: 1em 0;
-		}
-		ul {
-			li {
-				color: @gray20;
-				font-size: @smalltext;
-				font-weight: 500;
-				text-align: left;
-				margin-bottom: .6em;
-				padding-left: .3em;
+			i {
+				font-size: 72px;
+			}
+			h3 {
+				line-height: 1.2em;
 			}
 		}
 	}
-}
 
-/* Pro */
-.plan-show-Pro {
+	/* Basic */
+	.plan-show-Basic {
+		.plan-panel {
+			padding: @gutter @halfgutter;
+			height: 100%;
+			background-image: url(/images/gopro.jpg);
+			background-position: center;
+			background-size: cover;
+			.border-radius;
+			overflow: hidden;
 
-	.plan-pro-advertisement {
-		display: none;
-	}
-	.account-confirmation {
-		position: absolute;
-		top: 50%;
-		left: 0;
-		right: 0;
-		padding: 0 @gutter+@halfgutter;
-		margin-top: -120px;
+			i {
+				display: block;
+				color: @white;
+			}
+			h3 {
+				color: @white;
+				font-weight: 700;
+			}
+			ul {
+				padding: 3em 0;
 
-		i {
-			color: @gray20;
+				li {
+					color: @white;
+					font-size: @smalltext;
+					line-height: 1.2em;
+					margin-bottom: .6em;
+					padding-bottom: .6em;
+					border-bottom: solid 1px rgba(255,255,255,.1);
+					&:last-child {
+						border: 0;
+					}
+				}
+			}
+			.account-action {
+				bottom: 30px;
+			}
 		}
 	}
-	.account-action {
-		color: @gray30;
-		font-size: @fineprint;
 
-		a {
-			display: block;
-			color: @gray60;
+	/* Pro */
+	.plan-show-Pro {
+
+		.plan-pro-advertisement {
+			display: none;
+		}
+		.plan-panel {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			padding: 0 @gutter+@halfgutter;
+			margin-top: -120px;
+
+			i {
+				color: @gray20;
+			}
+			h3 {
+				color: @gray20;
+				font-weight: 500;
+			}
+		}
+		.account-action {
+			color: @gray30;
+			font-size: @fineprint;
+
+			a {
+				display: block;
+				color: @gray60;
+			}
 		}
 	}
-}
 
-/* Payment */
-.plan-show-payment {
-	.plan-pro-advertisement {
-		display: none;
-	}
-
-	.payment {
-		select{
-			color: #000;
+	/* Payment */
+	.plan-show-payment {
+		.plan-pro-advertisement {
+			display: none;
 		}
-	}
-	.plan-pro {
-		display: none;
+
+		.payment {
+			select{
+				color: #000;
+			}
+		}
+		.plan-pro {
+			display: none;
+		}
 	}
 }

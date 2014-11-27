@@ -4,7 +4,6 @@ use common\models\Plan;
 
 ?>
 
-
 <div class="plan-show-<?= $user->plan ?> plan">
 
     <?php if($user->plan === Plan::PLAN_BASE):?>
@@ -13,7 +12,6 @@ use common\models\Plan;
     <div class="plan-pro-advertisement plan-panel">
         <i class="mdib-gamepad"></i>
         <h3>Go Pro!</h3>
-        <p>Up your game with features only available to pro users:</p>
         <ul>
             <li>Team Fundraising</li>
             <li>2 Region Streamboard</li>
