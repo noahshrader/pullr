@@ -194,7 +194,7 @@ span.slider-value {
 			a {
 				display: inline-block;
 				color: @gray30;
-				margin-left: 5px;
+				margin-left: @halfgutter;
 
 				&.active {
 					color: @white;
@@ -681,8 +681,6 @@ ul.panel-nav {
 
 /* Widgets */
 /* ------------------------------------------------- */
-@import "streamboard-campaignbar.less";
-@import "streamboard-activityfeed.less";
 
 /* Alerts */
 .widget-alerts {
@@ -695,11 +693,14 @@ ul.panel-nav {
 	}
 }
 
-.widget-alerts-message {
-	width: 100%;
+.widget-alerts-message,
+.widget-tags-message {
 	height: auto !important;
 	word-wrap: break-word;
 }
+
+@import "streamboard-campaignbar.less";
+@import "streamboard-activityfeed.less";
 
 
 /* Loader */
