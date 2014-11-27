@@ -4,16 +4,21 @@ use common\models\Plan;
 
 ?>
 
-
 <div class="plan-show-<?= $user->plan ?> plan">
 
     <?php if($user->plan === Plan::PLAN_BASE):?>
 
     <!-- Pullr Basic -->
-    <div class="plan-pro-advertisement">
-        <div>
-            <p>Some advertising text here - you can use pro-plan with more features</p>
-        </div>
+    <div class="plan-pro-advertisement plan-panel">
+        <i class="mdib-gamepad"></i>
+        <h3>Go Pro!</h3>
+        <ul>
+            <li>Team Fundraising</li>
+            <li>2 Region Streamboard</li>
+            <li>Up to 8 Active Campaigns</li>
+            <li>0.5% Transaction Fee</li>
+            <li>and more!</li>
+        </ul>
         <div class="account-action">
             <button class="btn btn-primary" data-target="#goproModal" data-toggle="modal">Go Pro</button>
         </div>
@@ -22,9 +27,9 @@ use common\models\Plan;
     <?php else:?>
 
     <!-- Pullr Pro -->
-    <div class="account-confirmation">
-        <i class="mdib-gamepad"></i>
-        <h4>You are currently on Pullr Pro!</h4>
+    <div class="account-confirmation plan-panel">
+        <i class="mdib-gamepad3"></i>
+        <h3>You are currently on Pullr Pro!</h3>
         <?
             $plan = Plan::findOne($user->id);
         ?>

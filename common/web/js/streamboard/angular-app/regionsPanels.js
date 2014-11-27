@@ -3,7 +3,7 @@
             'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
             'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee',
             'pullr.streamboard.twitch']).
-        controller('RegionsCtrl', function ($http, $scope, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
+        controller('RegionsCtrl', function ($sce, $http, $scope, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
             $scope.streamService = stream;
             $scope.regionsService = regions;
             $scope.donationsService = donations;
@@ -146,6 +146,10 @@
                 return '#region-' + region.regionNumber;    
                 
                 
+            }
+            
+            $scope.formatMsgHtml = function(content) {
+                return $sce.trustAsHtml(content);
             }
 
             $scope.getContainmentByRegion = function(region) {

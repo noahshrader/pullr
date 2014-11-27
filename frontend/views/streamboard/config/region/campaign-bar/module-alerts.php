@@ -38,6 +38,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 </div>
 
 <div class="module">
+
     <a class="settingtoggle">Font<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <div class="panel-group">
@@ -46,6 +47,9 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
         </div>
         <div class="panel-group">
             <h5>Font Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.fontColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.fontColor}"></h5>
+        </div>
+        <div class="panel-group">
+            <h5>Highlight Color <input colorpicker="hex" colorpicker-position="left" colorpicker-with-input="true" ng-model="module.highlightColor" ng-change="regionChanged(region)" class="color-choice" ng-style="{'background-color':module.highlightColor}"></h5>
         </div>
         <div class="panel-group">
             <h5>Font Size <span class="slider-value value">{{module.fontSize}} px</span></h5>

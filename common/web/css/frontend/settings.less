@@ -52,66 +52,110 @@
 		right: 0;
 		padding: @gutter;
 	}
-}
 
-.plan-show-Basic,
-.plan-show-Pro {
-	.payment {
-		display: none;
-	}
-}
-
-/* Basic */
-.plan-show-Basic {
-
-}
-
-/* Pro */
-.plan-show-Pro {
-
-	.plan-pro-advertisement {
-		display: none;
-	}
-	.account-confirmation {
-		position: absolute;
-		top: 50%;
-		left: 0;
-		right: 0;
-		padding: 0 @gutter+@halfgutter;
-		margin-top: -120px;
-
-		i {
-			color: @gray20;
-			font-size: 72px;
+	/* General Plan */
+	.plan-show-Basic,
+	.plan-show-Pro {
+		.payment {
+			display: none;
 		}
-		h4 {
-			color: @gray60;
-			line-height: 1.2em;
+		.plan-panel {
+
+			i {
+				font-size: 72px;
+			}
+			h3 {
+				line-height: 1.2em;
+			}
 		}
 	}
-	.account-action {
-		color: @gray30;
-		font-size: @fineprint;
 
-		a {
-			display: block;
-			color: @gray60;
+	/* Basic */
+	.plan-show-Basic {
+		.plan-panel {
+			padding: @gutter @halfgutter;
+			height: 100%;
+			background-image: url(/images/gopro.jpg);
+			background-position: center;
+			background-size: cover;
+			.border-radius;
+			overflow: hidden;
+
+			i {
+				display: block;
+				color: @white;
+			}
+			h3 {
+				color: @white;
+				font-weight: 700;
+			}
+			ul {
+				padding: 3em 0;
+
+				li {
+					color: @white;
+					font-size: @smalltext;
+					line-height: 1.2em;
+					margin-bottom: .6em;
+					padding-bottom: .6em;
+					border-bottom: solid 1px rgba(255,255,255,.1);
+					&:last-child {
+						border: 0;
+					}
+				}
+			}
+			.account-action {
+				bottom: 30px;
+			}
 		}
 	}
-}
 
-/* Payment */
-.plan-show-payment {
-	.plan-pro-advertisement {
-		display: none;
-	}
+	/* Pro */
+	.plan-show-Pro {
 
-	.payment {
-		select{
-			color: #000;
+		.plan-pro-advertisement {
+			display: none;
+		}
+		.plan-panel {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			padding: 0 @gutter+@halfgutter;
+			margin-top: -120px;
+
+			i {
+				color: @gray20;
+			}
+			h3 {
+				color: @gray20;
+				font-weight: 500;
+			}
+		}
+		.account-action {
+			color: @gray30;
+			font-size: @fineprint;
+
+			a {
+				display: block;
+				color: @gray60;
+			}
 		}
 	}
-	.plan-pro {
-		display: none;
+
+	/* Payment */
+	.plan-show-payment {
+		.plan-pro-advertisement {
+			display: none;
+		}
+
+		.payment {
+			select{
+				color: #000;
+			}
+		}
+		.plan-pro {
+			display: none;
+		}
 	}
 }
