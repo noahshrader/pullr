@@ -86,60 +86,80 @@
             }
 
             $scope.onResizeAlertImage = function(region, event, ui) {
-                region.widgetAlerts.imageWidth = ui.size.width;
-                region.widgetAlerts.imageHeight = ui.size.height;
-                region.widgetAlerts.positionX = ui.position.left;
-                region.widgetAlerts.positionY = ui.position.top;
+                var alertType = $(ui.element).attr("alert-type");
+                var preferenceName = '';
+                switch(alertType){
+                    case 'donations':
+                        preferenceName = 'donationsPreference';
+                        break;
+                    case 'followers':
+                        preferenceName =  'followersPreference';
+                        break;
+                    case 'subscribers':
+                        preferenceName =  'subscribersPreference';
+                        break;
+                    default:
+                        break
+                }
+                region.widgetAlerts[preferenceName].imageWidth = ui.size.width;
+                region.widgetAlerts[preferenceName].imageHeight = ui.size.height;
+                region.widgetAlerts[preferenceName].imagePositionX = ui.position.left;
+                region.widgetAlerts[preferenceName].imagePositionY = ui.position.top;
                 regions.regionChanged(region);
             }
 
             $scope.onResizeAlertMessage = function(region, event, ui) {
-                region.widgetAlerts.messageWidth = ui.size.width;
-                region.widgetAlerts.messageHeight = ui.size.height;
+                var alertType = $(ui.element).attr("alert-type");
+                var preferenceName = '';
+                switch(alertType){
+                    case 'donations':
+                        preferenceName = 'donationsPreference';
+                        break;
+                    case 'followers':
+                        preferenceName =  'followersPreference';
+                        break;
+                    case 'subscribers':
+                        preferenceName =  'subscribersPreference';
+                        break;
+                    default:
+                        break
+                }
+                region.widgetAlerts[preferenceName].messageWidth = ui.size.width;
+                region.widgetAlerts[preferenceName].messageHeight = ui.size.height;
+                region.widgetAlerts[preferenceName].messagePositionX = ui.position.left;
+                region.widgetAlerts[preferenceName].messagePositionY = ui.position.top;
                 regions.regionChanged(region);
             }
-
-            $scope.onResizeLastSubscriberWidget = function(region, event, ui) {
-                console.log(arguments);
-                region.widgetTags.lastSubscriberWidget.width = ui.size.width;
-                region.widgetTags.lastSubscriberWidget.height = ui.size.height;
+	    
+	    $scope.onResizeTag = function(region, event, ui){
+                var tagType = $(ui.element).attr("tag-type");
+                var tagPreferenceName = '';
+                switch(tagType){
+                    case 'largestdonation':
+                        tagPreferenceName = 'largestDonationWidget';
+                        break;
+                    case 'lastdonoranddonation':
+                        tagPreferenceName =  'lastDonorAndDonationWidget';
+                        break;
+                    case 'lastdonor':
+                        tagPreferenceName =  'lastDonorWidget';
+                        break;
+                    case 'lastfollower':
+                        tagPreferenceName = 'lastFollowerWidget';
+                        break;
+                    case 'lastsubscriber':
+                        tagPreferenceName =  'lastSubscriberWidget';
+                        break;
+                    case 'topdonor':
+                        tagPreferenceName =  'topDonorWidget';
+                        break;
+                    default:
+                        break
+                }
+                region.widgetTags[tagPreferenceName].width = ui.size.width;
+                region.widgetTags[tagPreferenceName].height = ui.size.height;
                 regions.regionChanged(region);
-            }
-
-            $scope.onResizeLargestDonationWidget = function(region, event, ui) {
-                console.log(arguments);
-                region.widgetTags.largestDonationWidget.width = ui.size.width;
-                region.widgetTags.largestDonationWidget.height = ui.size.height;
-                regions.regionChanged(region);
-            }
-
-            $scope.onResizeLastDonorAndDonationWidget = function(region, event, ui) {
-                console.log(arguments);
-                region.widgetTags.lastDonorAndDonationWidget.width = ui.size.width;
-                region.widgetTags.lastDonorAndDonationWidget.height = ui.size.height;
-                regions.regionChanged(region);
-            }
-
-            $scope.onResizeLastFollowerWidget = function(region, event, ui) {
-                console.log(arguments);
-                region.widgetTags.lastFollowerWidget.width = ui.size.width;
-                region.widgetTags.lastFollowerWidget.height = ui.size.height;
-                regions.regionChanged(region);
-            }
-
-            $scope.onResizeTopDonorWidget = function(region, event, ui) {
-                console.log(arguments);
-                region.widgetTags.topDonorWidget.width = ui.size.width;
-                region.widgetTags.topDonorWidget.height = ui.size.height;
-                regions.regionChanged(region);
-            }
-
-            $scope.onResizeLastDonorWidget = function(region, event, ui) {
-                console.log(arguments);
-                region.widgetTags.lastDonorWidget.width = ui.size.width;
-                region.widgetTags.lastDonorWidget.height = ui.size.height;
-                regions.regionChanged(region);
-            }
+            }          
 
             $scope.getRegionSelector = function(region) {
                
@@ -285,6 +305,7 @@
                     toShow.animationDirection = '';  
                     toShow.isRunning = true;                  
                     toShow.message = notification.message;
+                    toShow.type = notification.type;
 
                     if (region.widgetType == 'widget_alerts') {      
 

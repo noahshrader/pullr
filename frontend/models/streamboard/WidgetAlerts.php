@@ -34,18 +34,13 @@ class WidgetAlerts extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'animationDelaySeconds', 
-            'positionX', 'positionY','imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY',
-            'imageWidth', 'imageHeight', 'messageHeight', 'messageWidth']
+            'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'animationDelaySeconds']
         ];
     }
 
     public function fields(){
         return ['userId', 'regionNumber', 'includeFollowers', 'includeSubscribers', 'includeDonations',
-            'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference','donationCustomsound',
-            'positionX', 'positionY', 'imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY',
-            'imageWidth', 'imageHeight','messageHeight', 'messageWidth'
-        ];
+                'animationDelaySeconds', 'followersPreference', 'subscribersPreference', 'donationsPreference','donationCustomsound',];
     }
 
     public function afterSave($insert, $params = array())

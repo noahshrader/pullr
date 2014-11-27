@@ -49,8 +49,9 @@ class WidgetAlertsPreference extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['alertText', 'fontStyle', 'fontSize', 'fontWeight', 'fontColor', 'highlightColor', 'animationDuration', 'animationDirection', 'volume',
-                'sound','soundType', 'image', 'imageType', 'hideAlertText', 'hideAlertImage', 'fontUppercase', 'textAlignment']
+            'default' => ['alertText', 'fontStyle', 'fontSize', 'fontWeight', 'fontColor', 'animationDuration','highlightColor', 'animationDirection', 'volume',
+                'sound','soundType', 'image', 'imageType', 'hideAlertText', 'hideAlertImage', 'fontUppercase', 'textAlignment',
+                'imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY', 'imageWidth', 'imageHeight','messageHeight', 'messageWidth']
         ];
     }
 
