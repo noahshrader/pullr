@@ -40,5 +40,7 @@ function($scope, $http, streamboardConfig, regions) {
         $scope.$broadcast ('regionTabChanged', {
             region: region
         });
+        $('.panel-head, .panel-title').width(panelhead);
+        $('.right-side-footer, .overlay, .veil').width(sidefooter);
     }
 }]);

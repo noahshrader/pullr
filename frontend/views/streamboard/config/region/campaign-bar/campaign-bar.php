@@ -74,6 +74,14 @@ use frontend\models\streamboard\WidgetAlertsPreference;
                 </label>
             </div>
         </div>
+        <div class="panel-group">
+            <span class='checkbox'>
+                <label ng-class="{on:widget.textShadow}">
+                    <input type="checkbox" ng-model="widget.textShadow" ng-change="regionChanged(region)">
+                    TextShadow
+                </label>
+            </span>
+        </div>
     </div>
 </div>
 <div class="module last">
@@ -116,19 +124,19 @@ use frontend\models\streamboard\WidgetAlertsPreference;
 </div>
 <div class="right-side-footer" ng-show=' ! hideFooter'>
     <ul class="panel-nav paneltoggle">
-        <li ng-if="widget.alertsEnable">
+        <li ng-show="widget.alertsEnable">
             <a data-panel="alertsModule">
                 <i class="mdi-av-new-releases"></i>
                 Alerts
             </a>
         </li>
-        <li ng-if="widget.messagesEnable">
+        <li ng-show="widget.messagesEnable">
             <a data-panel="messagesModule">
                 <i class="mdi-communication-message"></i>
                 Messages
             </a>
         </li>
-        <li ng-if="widget.timerEnable">
+        <li ng-show="widget.timerEnable">
             <a data-panel="timerModule">
                 <i class="mdi-image-timer"></i>
                 Timer
