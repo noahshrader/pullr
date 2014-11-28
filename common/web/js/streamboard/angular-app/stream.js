@@ -21,7 +21,7 @@
             this.showFollower = true;
             this.groupUser = false;
 
-            this.getActivityFeedSetting = function () {
+            this.getActivityFeedSetting = function () {                       
                 $http.get('app/streamboard/get_activity_feed_setting').success(function (data) {
                     Service.showSubscriber = data.showSubscriber;
                     Service.showFollower = data.showFollower;
@@ -106,8 +106,9 @@
                 return message;
             }
 
+            
 
-            this.requestStreamData = function() {
+            this.requestStreamData = function() {              
                 $http.get('app/streamboard/get_stream_data').success(function (data) {
                     /*we should get data in "date ASC" order because we first should notifications which occur early*/
                     for (var key in data) {
@@ -134,6 +135,7 @@
                 });
             }
 
+            Service.requestStreamData();         
 
             this.pushCustomAlert = function(notification){
                 var id = notification.type + '_' + notification.id;
@@ -176,6 +178,7 @@
                 }
                 return true;
             }
+
 
             this.pushNotification = function(notification){
                 var notification = notification;

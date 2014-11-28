@@ -17,7 +17,7 @@
                 if (Pullr.Streamboard != undefined && Pullr.Streamboard.region != undefined) {
                     $scope.region = Pullr.Streamboard.region;     
                     
-                    function requestRegion(){
+                    function requestRegion() {
                                                     
                         $http.get('app/streamboard/get_regions_ajax').success(function (data) {                                                
     
@@ -39,6 +39,7 @@
                         });
                      
                     }
+                    requestRegion();
                 }
     
                 var $region2 = $(".regionsContainer .region:last-child");

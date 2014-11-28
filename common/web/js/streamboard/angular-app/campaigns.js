@@ -8,10 +8,10 @@
             if (typeof(Pullr.Streamboard) != 'undefined' && typeof(Pullr.Streamboard.campaignsData) != 'undefined') {                
                 var campaigns = $.extend({}, Pullr.Streamboard.campaignsData);
                 updateCampaigns(campaigns);
-            } else {
-                requestCampaigns();
             }
 
+            requestCampaigns();
+            
             function requestCampaigns() {
                 $http.get('app/streamboard/get_campaigns_ajax').success(function(campaigns){
                     updateCampaigns(campaigns);
