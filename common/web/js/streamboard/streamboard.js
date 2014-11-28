@@ -15,6 +15,22 @@ $(function () {
         $('.slidepanel').removeClass('selected');
         $('.veil').hide();
     });
+
+    // custom scrollbars
+    $(".pane").mCustomScrollbar({
+        theme:"minimal",
+        mouseWheel:{
+            preventDefault: true,
+            scrollAmount: 20
+        },
+        scrollInertia: 30,
+        callbacks:{
+            whileScrolling: function(){
+                $('.colorpicker').removeClass('colorpicker-visible');
+            }
+        },
+        live: true
+    });
     
     // collapsable containers
     $(document).on('click', '.module a.settingtoggle', function() {
