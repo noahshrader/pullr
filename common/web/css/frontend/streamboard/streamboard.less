@@ -581,30 +581,10 @@ ul.panel-nav {
 
 	ul.panel-nav {
 		background: @streamboardgray;
-		border: 0;
+		border-top: solid 1px @streamboardshadow;
 
 		li {
-			border-top: solid 1px @streamboardshadow;
 
-		&.ng-hide:first-child:nth-last-child(1) {
-			width: 100%;
-		}
-		&.ng-hide:first-child:nth-last-child(2),
-		&.ng-hide:first-child:nth-last-child(2) ~ li {
-			width: 50%;
-		}
-		&.ng-hide:first-child:nth-last-child(3),
-		&.ng-hide:first-child:nth-last-child(3) ~ li {
-			width: 33.3333%;
-		}
-		&.ng-hide:first-child:nth-last-child(4),
-		&.ng-hide.ng-hide:first-child:nth-last-child(4) ~ li {
-			width: 25%;
-		}
-		&.ng-hide:first-child:nth-last-child(5),
-		&.ng-hide:first-child:nth-last-child(5) ~ li {
-			width: 20%;
-		}
 			&.active a {
 				box-shadow: none;
 			}
