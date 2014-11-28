@@ -43,7 +43,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
         <div class="checkbox">
             <label ng-class="{on:widget.scrolling}">
                 <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
-                <h5>Scrolling</h5>
+                Scrolling
             </label>
             <div ng-show="widget.scrolling" class="scroll-options">
                 <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.scrollSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"

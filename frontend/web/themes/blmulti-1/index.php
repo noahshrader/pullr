@@ -90,6 +90,7 @@
                 </div>
             </div>
             <div class="feed-details">
+                <h5 class='meta-username' style="color:{{campaign.secondaryColor}}" ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_TEAM'>{{selectedChannel.name}}</h5>
                 <h4 ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.status}}</h4>
                 <span ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.game}}</span>
             </div>

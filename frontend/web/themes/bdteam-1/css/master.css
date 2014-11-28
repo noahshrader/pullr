@@ -361,18 +361,16 @@ header .container {
   margin: 45px auto 15px;
 }
 .info .info-wrap {
+  padding: 1%;
   /* Donate Button */
 }
-.info .info-wrap div {
-  padding: 15px;
-}
-.info .info-wrap h4 {
-  color: #ffffff;
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+.info .info-wrap h5 {
+  font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+  margin-bottom: .3em;
 }
 .info .info-wrap .feed-details {
   float: left;
-  padding: 20px 60px 15px 30px;
+  margin-bottom: 15px;
   width: 70%;
 }
 .info .info-wrap .donate-wrap {
@@ -440,6 +438,7 @@ header .container {
 .stream-wrap .user-details {
   padding: 1em 15px;
 }
+/* Team Stream Layout */
 .team-content {
   padding: 0 15px;
 }
@@ -750,9 +749,6 @@ header .menu-actions a:before {
 }
 /* Campaign Info */
 .info .info-wrap {
-  background: #29292d;
-  border-radius: 6px;
-  background-clip: padding-box;
   overflow: hidden;
 }
 .info .info-wrap span {

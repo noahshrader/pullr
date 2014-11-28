@@ -20,7 +20,7 @@
                 <div class='team-member' data-name="{{channel.name}}" ng-class='{online : channel.status == "live", offline: channel.status =="offline"}'>
                     <img src='{{channel.image.size300}}' alt='{{channel.display_name}}' />
                     <div class="team-member-stats">
-                        <h4 class="membername" style="color:{{campaign.primaryColor}};">{{channel.display_name}}</h4>
+                        <h4 class="membername" style="color:{{campaign.secondaryColor}};">{{channel.display_name}}</h4>
                         <h5 class="streamtitle">{{channel.title}}</h5>
                         <span class="game">{{channel.meta_game}}</span>
                         <span class="viewers"><i class="icon icon-view"></i>{{channel.total_views}}</span>
