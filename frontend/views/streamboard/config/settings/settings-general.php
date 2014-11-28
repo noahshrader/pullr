@@ -26,21 +26,21 @@ use yii\helpers\Url;
                     <div class="checkbox cf">
                         <label ng-class="{on:streamService.showSubscriber}">
                             <input type="checkbox" ng-model="streamService.showSubscriber" ng-change="toggleSubscriber()">
-                            <span>Show subscribers</span>
+                            <span>Show Subscribers</span>
                         </label>
                     </div>
                     <div class="checkbox cf">
                         <label ng-class="{on:streamService.showFollower}">
                             <input type="checkbox" ng-model="streamService.showFollower" ng-change="toggleFollower()">
-                            <span>Show followers</span>
+                            <span>Show Followers</span>
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group red">
                     <div class="checkbox cf">
                         <label ng-class="{on:streamService.groupUser}">
                             <input type="checkbox" ng-model="streamService.groupUser" ng-change="toggleGroupUser()">
-                            <span>Enable grouping</span>
+                            <span>Enable Grouping</span>
                         </label>
                     </div>
                 </div>
