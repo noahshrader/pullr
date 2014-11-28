@@ -40,5 +40,8 @@ function($scope, $http, streamboardConfig, regions) {
         $scope.$broadcast ('regionTabChanged', {
             region: region
         });
+        if ($scope.streamboardConfig.config.sidePanelWidth > 0) {
+            setSideBarWidth($scope.streamboardConfig.config.sidePanelWidth);
+        }
     }
 }]);
