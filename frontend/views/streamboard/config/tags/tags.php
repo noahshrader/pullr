@@ -103,6 +103,14 @@
                             </label>
                         </div>
                     </div>
+                    <div class="panel-group">
+                        <span class='checkbox'>
+                            <label ng-class="{on:region.widgetTags.textShadow}">
+                                <input type="checkbox" ng-model="region.widgetTags.textShadow" ng-change="regionChanged(region)">
+                                TextShadow
+                            </label>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

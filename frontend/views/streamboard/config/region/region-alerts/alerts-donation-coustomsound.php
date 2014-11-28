@@ -7,7 +7,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
 <div class="tab-content sounds-graphics-content donation-custom-sound">
     <div id="{{baseLink}}-donation-soutomsoudc" class="tab-pane active">
         <div class="files-container">
-            <div ng-repeat="item in (customDonationSound.rangeData[region.regionNumber])">                           
+            <div ng-repeat="item in (customDonationSound.rangeData[key])">
                 <div class="panel-group media-item cf">
                     <div class="mediaActions">
                         <span>{{item.name | fileName | replace: '-' : ' '}}</span>    

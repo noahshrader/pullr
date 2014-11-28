@@ -39,7 +39,7 @@ class WidgetCampaignBar extends ActiveRecord
     public function scenarios()
     {
         return [
-            'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontWeight', 'fontUppercase', 'fontColor', 'backgroundColor', 'alertsEnable',
+            'default' => ['campaignId', 'fontStyle', 'fontSize', 'fontWeight', 'fontUppercase', 'textShadow', 'fontColor', 'backgroundColor', 'alertsEnable',
                 'messagesEnable', 'timerEnable', 'progressBarEnable', 'positionX', 'positionY', 'height', 'width',
                 'background']
         ];
@@ -47,7 +47,7 @@ class WidgetCampaignBar extends ActiveRecord
 
     public function fields()
     {
-        return ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'alertsEnable',
+        return ['campaignId', 'fontStyle', 'fontSize', 'fontColor', 'backgroundColor', 'textShadow', 'alertsEnable',
             'messagesEnable', 'timerEnable', 'progressBarEnable', 'alertsModule', 'messagesModule', 'timerModule', 
             'currentTotalModule', 'positionX', 'positionY', 'height', 'width',
             'background'];
@@ -113,8 +113,7 @@ class WidgetCampaignBar extends ActiveRecord
     public function updateFromArray($data)
     {
         return $this->load($data, '') && $this->save() &&
-        $this->alertsModule->load($data, 'alertsModule') &&
-        $this->alertsModule->save() &&
+        $this->alertsModule->updateFromArray($data['alertsModule']);
         $this->messagesModule->load($data, 'messagesModule') &&
         $this->messagesModule->save() &&
         $this->timerModule->load($data, 'timerModule') &&
@@ -132,6 +131,7 @@ class WidgetCampaignBar extends ActiveRecord
         $data['timerEnable'] = $this->timerEnable == 1;
         $data['progressBarEnable'] = $this->progressBarEnable == 1;
         $data['fontUppercase'] = $this->fontUppercase == 1;
+        $data['textShadow'] = $this->textShadow == 1;
         return $data;
     }
 }

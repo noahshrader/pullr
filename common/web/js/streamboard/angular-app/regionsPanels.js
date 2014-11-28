@@ -342,7 +342,15 @@
                             var alertsModule = region.widgetCampaignBar.alertsModule;                        
                             toShow.background = alertsModule.background;
                             toShow.image = '';
-                            alertMediaManager.playSound(alertsModule.sound, alertsModule.soundType, alertsModule.volume);
+
+                            if(notification.soundFile){
+                                var soundFile = notification.soundFile;
+                                var fileType = null;
+                            }else{
+                                var soundFile = alertsModule.sound;
+                                var fileType = alertsModule.soundType;
+                            }                        
+                            alertMediaManager.playSound(soundFile, fileType, preference.volume);                            
     
                             if (alertsModule.animationDirection) {
                                 toShow.animationDirectionArray = alertsModule.animationDirection.split(',');

@@ -46,7 +46,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
                  draggable-region="region" 
                  draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
                  draggable-config="{containment: getCampaignBarSelector(region)}"
-                 ng-class="{fontUppercase: region.widgetCampaignBar.alertsModule.fontUppercase}"
+                 ng-class="{fontUppercase: region.widgetCampaignBar.alertsModule.fontUppercase, textShadow: region.widgetCampaignBar.alertsModule.textShadow}"
                  ng-bind-html="formatMsgHtml(region.toShow.alert.message)"></span>
         </div>
 
@@ -64,7 +64,7 @@ use frontend\models\streamboard\WidgetCampaignBar;
         <div rotating-messages 
              messages-module="region.widgetCampaignBar.messagesModule"
              rotation-speed="region.widgetCampaignBar.messagesModule.rotationSpeed"
-             ng-class='{fontUppercase: region.widgetCampaignBar.fontUppercase}'
+             ng-class='{fontUppercase: region.widgetCampaignBar.fontUppercase, textShadow: region.widgetCampaignBar.textShadow}'
              ></div>
     </div>
     <!-- Timers -->

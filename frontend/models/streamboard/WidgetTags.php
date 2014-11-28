@@ -38,12 +38,12 @@ class WidgetTags extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['userId', 'regionNumber','fontStyle', 'fontSize', 'fontWeight', 'fontColor','fontUppercase','lastFollower','lastSubscriber','lastDonor','largestDonation','lastDonorAndDonation','topDonor']
+            'default' => ['userId', 'regionNumber','fontStyle', 'fontSize', 'fontWeight', 'fontColor','fontUppercase','textShadow','lastFollower','lastSubscriber','lastDonor','largestDonation','lastDonorAndDonation','topDonor']
         ];
     }
 
     public function fields(){
-        return ['userId', 'regionNumber','fontStyle', 'fontSize', 'fontWeight', 'fontColor','fontUppercase','lastFollower','lastSubscriber','lastDonor','largestDonation','lastDonorAndDonation','topDonor',
+        return ['userId', 'regionNumber','fontStyle', 'fontSize', 'fontWeight', 'fontColor','fontUppercase','textShadow','lastFollower','lastSubscriber','lastDonor','largestDonation','lastDonorAndDonation','topDonor',
                     'lastFollowerWidget','lastSubscriberWidget','lastDonorWidget','largestDonationWidget','lastDonorAndDonationWidget','topDonorWidget'];
     }
 
@@ -145,6 +145,7 @@ class WidgetTags extends ActiveRecord {
         $data['lastDonorAndDonation'] = $this->lastDonorAndDonation == 1;
         $data['topDonor'] = $this->topDonor == 1;
         $data['fontUppercase'] = $this->fontUppercase == 1;
+        $data['textShadow'] = $this->textShadow == 1;
         return $data;
     }
 }

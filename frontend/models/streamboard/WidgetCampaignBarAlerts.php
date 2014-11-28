@@ -27,10 +27,26 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
         return [
             'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'followerText', 'subscriberText', 'donationText', 'fontStyle', 'fontSize',
                 'fontColor', 'highlightColor', 'backgroundColor', 'animationDirection', 'animationDuration', 'animationDelay', 
-                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume', 'fontUppercase']
+                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume', 'fontUppercase', 'textShadow']
         ];
     }
 
+    public function fields()
+    {
+        return ['userId','regionNumber','preferenceType','includeFollowers', 'includeSubscribers', 'includeDonations', 'followerText', 'subscriberText', 'donationText', 'fontStyle', 'fontSize',
+                'fontColor', 'highlightColor','backgroundColor','textShadow',  'animationDirection', 'animationDuration', 'animationDelay',
+                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume', 'fontUppercase','donationCustomsound'];
+    }
+
+    public function getDonationCustomsound(){
+        return $this->hasMany(WidgetCampaignBarAlertsCustomsound::className(), ['userId' => 'userId', 'regionNumber' => 'regionNumber']);
+    }
+
+
+    public function updateFromArray($data){
+        return $this->load($data, '') && $this->save() &&        
+        WidgetCampaignBarAlertsCustomsound::updateFromArray($data);
+    } 
     public function beforeValidate() {
         if ($this->isNewRecord) {
             $this->fontColor = '#FFFFFF';
@@ -45,6 +61,9 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
         $data['includeSubscribers'] = $this->includeSubscribers == 1;
         $data['includeDonations'] = $this->includeDonations == 1;
         $data['fontUppercase'] = $this->fontUppercase == 1;
+        $data['textShadow'] = $this->textShadow == 1;
+
+        $data['preferenceType'] = 'campaigns';
 
         return $data;
     }

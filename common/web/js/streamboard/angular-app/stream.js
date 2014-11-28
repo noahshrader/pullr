@@ -144,9 +144,13 @@
                 var message = Service.getMessage(notification.type, notification.data, regions.regions[0]);
                 notification.message = message;
                 if(notification.type === 'donations'){
-                    var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 1);
+                    if(regions.regions[0].widgetCampaignBar.alertsEnable==true){
+                        var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'campaigns_1');
+                    }else{
+                        var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_1');
+                    }                    
                     notification.soundFile = soundFile;
-                    notification.soundType = null;                    
+                    notification.soundType = null;
                 }                
 
                 Service.streams[1].push(notification);
@@ -160,7 +164,11 @@
                     var message1 = Service.getMessage(notificatin1.type, notification.data, regions.regions[1]);
                     notificatin1.message = message1;
                     if(notificatin1.type === 'donations'){
-                        var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 2);
+                        if(regions.regions[0].widgetCampaignBar.alertsEnable==true){
+                            var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'campaigns_2');
+                        }else{
+                            var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_2');
+                        }                        
                         notificatin1.soundFile = soundFile;
                         notificatin1.soundType = null;                    
                     }

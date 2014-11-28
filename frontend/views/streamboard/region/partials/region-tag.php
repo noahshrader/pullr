@@ -1,7 +1,7 @@
 <div
     class="widget-tags-message"            
     ng-style="{'color': region.widgetTags.fontColor, 'font-size': region.widgetTags.fontSize, 'font-family': region.widgetTags.fontStyle, 'font-weight': region.widgetTags.fontWeight, 'position':'absolute'}"
-    ng-class='{fontUppercase:region.widgetTags.fontUppercase}'            
+    ng-class='{fontUppercase:region.widgetTags.fontUppercase, textShadow:region.widgetTags.textShadow}'
     interaction
     draggable
     draggable-widget="tagPreference"

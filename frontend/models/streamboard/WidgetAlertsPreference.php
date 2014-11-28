@@ -50,7 +50,7 @@ class WidgetAlertsPreference extends ActiveRecord {
     public function scenarios() {
         return [
             'default' => ['alertText', 'fontStyle', 'fontSize', 'fontWeight', 'fontColor', 'animationDuration','highlightColor', 'animationDirection', 'volume',
-                'sound','soundType', 'image', 'imageType', 'hideAlertText', 'hideAlertImage', 'fontUppercase', 'textAlignment',
+                'sound','soundType', 'image', 'imageType', 'hideAlertText', 'hideAlertImage', 'fontUppercase','textShadow', 'textAlignment',
                 'imagePositionX', 'imagePositionY', 'messagePositionX', 'messagePositionY', 'imageWidth', 'imageHeight','messageHeight', 'messageWidth']
         ];
     }
@@ -68,6 +68,7 @@ class WidgetAlertsPreference extends ActiveRecord {
         $data['hideAlertText'] = $this->hideAlertText == 1;
         $data['hideAlertImage'] = $this->hideAlertImage == 1;
         $data['fontUppercase'] = $this->fontUppercase == 1;
+        $data['textShadow'] = $this->fontUppercase == 1;
         return $data;
     }
 }

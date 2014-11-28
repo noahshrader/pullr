@@ -42,7 +42,7 @@
         this.rangeData={};
         this.isInit = {};
         this.showRangeTab = {};
-        this.init = function(value, regionNumber){              
+        this.init = function(value, key){              
             var obj = {};
             for(var i in value){
                 var item = value[i];
@@ -50,18 +50,18 @@
                     obj[item.fileName] = item.donationAmount;    
                 }
             }
-            Service.customsounds[regionNumber] = obj;
-            Service.isInit[regionNumber] = true;
+            Service.customsounds[key] = obj;
+            Service.isInit[key] = true;
         };
-        this.getRange = function(regionNumber){
+        this.getRange = function(key){
             var rangedata = [];
             // var sounddata = {};
-            for(var i in Service.customsounds[regionNumber]){
-                if(Service.customsounds[regionNumber][i] ==  ""){
+            for(var i in Service.customsounds[key]){
+                if(Service.customsounds[key][i] ==  ""){
                     continue;
                 }                
                 // sounddata['i'] = Service.customsounds.i;
-                var amounts = Service.customsounds[regionNumber][i].toString().split('-');
+                var amounts = Service.customsounds[key][i].toString().split('-');
                 rangedata.push({name:i, fromValue:(isNaN(amounts[0])?0:parseFloat(amounts[0])), endValue:(isNaN(amounts[1])?0:parseFloat(amounts[1]))});                
             }
             rangedata = $filter('orderBy')(rangedata,["fromValue","endValue"], false);
@@ -79,16 +79,16 @@
             return list;
         }
 
-        this.getSoundFileByValue = function(amount, regionNumber){
+        this.getSoundFileByValue = function(amount, key){
             amount = isNaN(amount)?0:parseFloat(amount);
             var soundFile = null;
             var minvalue  = 0;
             var maxvalue = 0;
-            for(var i in Service.customsounds[regionNumber]){
-                if(Service.customsounds[regionNumber][i] ==  ""){
+            for(var i in Service.customsounds[key]){
+                if(Service.customsounds[key][i] ==  ""){
                     continue;
                 }
-                var amounts = Service.customsounds[regionNumber][i].toString().split('-');
+                var amounts = Service.customsounds[key][i].toString().split('-');
                 var fromValue = isNaN(amounts[0])?0:parseFloat(amounts[0]);
                 var endValue = isNaN(amounts[1])?0:parseFloat(amounts[1]);
 

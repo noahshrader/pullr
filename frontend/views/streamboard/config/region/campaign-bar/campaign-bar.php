@@ -74,6 +74,14 @@ use frontend\models\streamboard\WidgetAlertsPreference;
                 </label>
             </div>
         </div>
+        <div class="panel-group">
+            <span class='checkbox'>
+                <label ng-class="{on:widget.textShadow}">
+                    <input type="checkbox" ng-model="widget.textShadow" ng-change="regionChanged(region)">
+                    TextShadow
+                </label>
+            </span>
+        </div>
     </div>
 </div>
 <div class="module last">

@@ -69,6 +69,14 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 </label>
             </div>
         </div>
+        <div class="panel-group">
+            <span class='checkbox'>
+                <label ng-class="{on:preference.textShadow}">
+                    <input type="checkbox" ng-model="preference.textShadow" ng-change="regionChanged(region)">
+                    TextShadow
+                </label>
+            </span>
+        </div>
     </div>
 </div>
 <div class="module">
@@ -93,18 +101,27 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 </div>
 <div class="module media-manager" ng-init="baseLink='region-'+region.regionNumber+'-preference-campaign-alert'; preference=module">
     <a class="settingtoggle">Sounds &amp; Images<i class="mdi-navigation-arrow-drop-down"></i></a>
-    <div class="module-settings">
-        <ul class="library-tabs cf">   
-            <li class="active">
+    <div ng-init="key=preference.preferenceType +'_'+ region.regionNumber"></div>
+    <div ng-init="customDonationSound.init(region.widgetCampaignBar.alertsModule.donationCustomsound, key)"></div>
+    <div class="module-settings" child-scope="" ng-init="customsounds=customDonationSound.customsounds[key]">
+        <ul class="library-tabs cf">
+            <li class="active" ng-class="{span2:(!customDonationSound.showRangeTab[key] || preference.includeDonations == false)}">
                 <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">
                     <i class="mdi-av-volume-up"></i>
                     Sounds
                 </a>
             </li>     
-            <li>
+            <li ng-class="{span2:(!customDonationSound.showRangeTab[key] || preference.includeDonations == false)}">
                 <a href='<?= Url::to() ?>#{{baseLink}}-images' data-toggle="tab">
                     <i class="mdi-image-panorama"></i>
                     Images
+                </a>
+            </li>
+<!--<!--            <li ng-show="customDonationSound.showRangeTab[key] && preference.preferenceType =='donations'">-->
+            <li ng-show="customDonationSound.showRangeTab[key] &&  preference.includeDonations == true">
+                <a href="<?= Url::to() ?>#{{baseLink}}-ranges" data-toggle="tab">
+                    <i class="mdi-av-queue-music"></i>
+                    Custom
                 </a>
             </li>
         </ul>
@@ -143,9 +160,12 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
+            </div>
+            <div id="{{baseLink}}-ranges" class="tab-pane">
+                <?=
+                $this->render('../region-alerts/alerts-donation-coustomsound') ?>
             </div>
         </div>
     </div>
