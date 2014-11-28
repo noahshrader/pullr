@@ -65,7 +65,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <div class="checkbox">
                 <label ng-class="{on:module.fontUppercase}">
                     <input type="checkbox" ng-model="module.fontUppercase" ng-change="regionChanged(region)">
-                    <h5>Uppercase</h5>
+                    Uppercase
                 </label>
             </div>
         </div>
@@ -73,7 +73,7 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <span class="checkbox">
                 <label ng-class="{on:preference.textShadow}">
                     <input type="checkbox" ng-model="preference.textShadow" ng-change="regionChanged(region)">
-                    <h5>Text Shadow</h5>
+                    Text Shadow
                 </label>
             </span>
         </div>

@@ -70,7 +70,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
             <div class="checkbox">
                 <label ng-class="{on:widget.fontUppercase}">
                     <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
-                    <h5>Uppercase</h5>
+                    Uppercase
                 </label>
             </div>
         </div>
@@ -78,7 +78,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
             <span class='checkbox'>
                 <label ng-class="{on:widget.textShadow}">
                     <input type="checkbox" ng-model="widget.textShadow" ng-change="regionChanged(region)">
-                    <h5>Text Shadow</h5>
+                    Text Shadow
                 </label>
             </span>
         </div>
