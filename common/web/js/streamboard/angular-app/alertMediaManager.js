@@ -17,11 +17,75 @@
             }
             var Service = this;
             $.extend(this, Pullr.Streamboard.AlertMediaManager);
-            this.playSound = function (sound,soundType, volume) {
+            var soundCache = {};
+            this.init = function() {
+                Service.preloadSound();
+                Service.preloadImage();
+            }
+
+            this.preloadImage = function() {
+                for (var i  =0, il = Service.customImages.length; i < il; i++) {
+                    var url = Service.getImageUrl(Service.customImages[i], 'Custom');
+                    var img = new Image();
+                    img.src = url;
+                }
+
+                for (var i = 0, il = Service.libraryImages.length; i < il; i++) {
+                    var url = Service.getImageUrl(Service.libraryImages[i], 'Library');
+                    var img = new Image();
+                    img.src = url;
+                }
+
+                for (var i =0, il = Service.customCampaignBackgrounds.length; i < il; i++) {
+                    var url = Service.getCampaignBackgroundUrl(Service.customCampaignBackgrounds[i]);
+                    var img = new Image();
+                    img.src = url;
+                }                
+            }
+
+            this.preloadSound = function() {
+                for (var i = 0, il = Service.customSounds.length; i < il; i++) {
+                    var sound = Service.customSounds[i];
+                    var path = this.getSoundPath(sound, 'Custom');
+                    soundCache[path] = new Audio(path);
+                }
+
+                for (var i = 0, il = Service.librarySounds.length; i < il; i++) {
+                    var sound = Service.librarySounds[i];
+                    var path = this.getSoundPath(sound, 'Library');
+                    soundCache[path] = new Audio(path);
+                }
+
+            }
+
+            this.getSoundPath = function(sound, soundType) {
                 if (!sound){
                     return;
                 }
                 var path;
+                switch (soundType){
+                    case 'Library':
+                        path = Service.PATH_TO_LIBRARY_SOUNDS+sound;
+                        break;
+                    case 'Custom':
+                        path = addUserToPath(Service.PATH_TO_CUSTOM_SOUNDS)+sound;
+                        break;                                        
+                }
+                return path;
+            }
+
+            this.getSound = function(path) {
+                if ( ! soundCache.hasOwnProperty(path)) {
+                    soundCache[path] = new Audio(path);
+                }
+                return soundCache[path];
+            }
+
+            this.playSound = function (sound,soundType, volume) {
+                if (!sound){
+                    return;
+                }
+                // var path;
                 switch (soundType){
                     case 'Library':
                         path = Service.PATH_TO_LIBRARY_SOUNDS+sound;
@@ -40,14 +104,17 @@
                         }
                         return true;
                 }
-                /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
-                if (this.audio){
-                    this.audio.pause();
-                }
+                var path = this.getSoundPath(sound, soundType);
+                sound = this.getSound(path);
 
-                this.audio = new Audio(path);
-                this.audio.volume = volume / 100;
-                this.audio.play();
+                /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
+                if (this.sound) {
+                    this.sound.pause();
+                    this.sound.currentTime = 0;
+                }
+                this.sound = sound;
+                this.sound.volume = volume / 100;
+                this.sound.play();
             };
             this.getImageUrl = function(image, imageType){
                 if (!image || !imageType){
@@ -89,5 +156,6 @@
                     Service.customImages = data;
                 });
             }
+            this.init();
         }]);
 })();
