@@ -66,19 +66,19 @@ use frontend\models\streamboard\WidgetAlertsPreference;
             <slider ng-model="widget.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
                     ng-change="regionChanged(region)"></slider>
         </div>
-        <div class="form-group">
+        <div class="form-group red">
             <div class="checkbox">
                 <label ng-class="{on:widget.fontUppercase}">
                     <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
-                    Uppercase
+                    <h5>Uppercase</h5>
                 </label>
             </div>
         </div>
-        <div class="panel-group">
+        <div class="form-group red">
             <span class='checkbox'>
                 <label ng-class="{on:widget.textShadow}">
                     <input type="checkbox" ng-model="widget.textShadow" ng-change="regionChanged(region)">
-                    TextShadow
+                    <h5>Text Shadow</h5>
                 </label>
             </span>
         </div>

@@ -7,7 +7,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
 }
 ?>
 <div class="module">
-    <a class="settingtoggle">Font Settings<i class="mdi-navigation-arrow-drop-down"></i></a>
+    <a class="settingtoggle">Font <i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings">
         <div class="form-group">
             <h5>Font Style</h5>
@@ -28,27 +28,26 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
                     ng-change="regionChanged(region)"></slider>
 
         </div>
-        <div class="form-group">
+        <div class="form-group red">
             <div class="checkbox">
                 <label ng-class="{on:widget.fontUppercase}">
                     <input type="checkbox" ng-model="widget.fontUppercase" ng-change="regionChanged(region)">
-                    Uppercase
+                    <h5>Uppercase</h5>
                 </label>
             </div>
         </div>
     </div>
 </div>
 <div class="module scrolling">
-    <div class="form-group">
+    <div class="form-group red">
         <div class="checkbox">
             <label ng-class="{on:widget.scrolling}">
                 <input type="checkbox" ng-model="widget.scrolling" ng-change="regionChanged(region)">
-                Scrolling
+                <h5>Scrolling</h5>
             </label>
             <div ng-show="widget.scrolling" class="scroll-options">
-                <h5>Speed</h5>
                 <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.scrollSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"
-                        ng-options="speed.value as speed.name for speed in WIDGET_SPEEDS" data-placeholder="Select one...">
+                        ng-options="speed.value as speed.name for speed in WIDGET_SPEEDS" data-placeholder="Select speed...">
                     <option value=""></option>
                 </select>
             </div>

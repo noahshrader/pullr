@@ -22,25 +22,25 @@ use yii\helpers\Url;
         <div class="campaigns_list module">
             <a class="settingtoggle">Feeds<i class="mdi-navigation-arrow-drop-down"></i></a>
             <div class="module-settings">
-                <div class="form-group">
+                <div class="form-group red">
                     <div class="checkbox cf">
                         <label ng-class="{on:streamService.showSubscriber}">
                             <input type="checkbox" ng-model="streamService.showSubscriber" ng-change="toggleSubscriber()">
-                            <span>Show subscribers</span>
+                            <h5>Show Subscribers</h5>
                         </label>
                     </div>
                     <div class="checkbox cf">
                         <label ng-class="{on:streamService.showFollower}">
                             <input type="checkbox" ng-model="streamService.showFollower" ng-change="toggleFollower()">
-                            <span>Show followers</span>
+                            <h5>Show Followers</h5>
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group red">
                     <div class="checkbox cf">
                         <label ng-class="{on:streamService.groupUser}">
                             <input type="checkbox" ng-model="streamService.groupUser" ng-change="toggleGroupUser()">
-                            <span>Enable grouping</span>
+                            <h5>Enable Grouping</h5>
                         </label>
                     </div>
                 </div>

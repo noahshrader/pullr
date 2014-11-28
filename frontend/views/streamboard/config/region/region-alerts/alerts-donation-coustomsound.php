@@ -9,11 +9,11 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         <div class="files-container">
             <div ng-repeat="item in (customDonationSound.rangeData[key])">
                 <div class="panel-group media-item cf">
+                    <span>{{item.name | fileName | replace: '-' : ' '}}</span>
                     <div class="mediaActions">
-                        <span>{{item.name | fileName | replace: '-' : ' '}}</span>    
+                        <span>${{item.amount}}</span>
                         <i class="icon mdi-av-play-circle-fill" ng-click="alertMediaManagerService.playSound(item.name, null, preference.volume)"></i>
                     </div>
-                    <span>${{item.amount}}</span>
                 </div>
             </div>
         </div>
