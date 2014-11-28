@@ -103,7 +103,9 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
     <a class="settingtoggle">Sounds &amp; Images<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div ng-init="key=preference.preferenceType +'_'+ region.regionNumber"></div>
     <div ng-init="customDonationSound.init(region.widgetCampaignBar.alertsModule.donationCustomsound, key)"></div>
+
     <div class="module-settings" child-scope="" ng-init="customsounds=customDonationSound.customsounds[key]">
+        <div ng-init="changeCustomSound(customsounds, key, preference, region)"></div>
         <ul class="library-tabs cf">
             <li class="active" ng-class="{span2:(!customDonationSound.showRangeTab[key] || preference.includeDonations == false)}">
                 <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">
@@ -117,7 +119,6 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                     Images
                 </a>
             </li>
-<!--<!--            <li ng-show="customDonationSound.showRangeTab[key] && preference.preferenceType =='donations'">-->
             <li ng-show="customDonationSound.showRangeTab[key] &&  preference.includeDonations == true">
                 <a href="<?= Url::to() ?>#{{baseLink}}-ranges" data-toggle="tab">
                     <i class="mdi-av-queue-music"></i>

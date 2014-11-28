@@ -350,8 +350,9 @@
                             }else{
                                 var soundFile = alertsModule.sound;
                                 var fileType = alertsModule.soundType;
-                            }                        
-                            alertMediaManager.playSound(soundFile, fileType, preference.volume);                            
+                            }
+                            console.log(soundFile, fileType, alertsModule.volume);
+                            alertMediaManager.playSound(soundFile, fileType, alertsModule.volume);
     
                             if (alertsModule.animationDirection) {
                                 toShow.animationDirectionArray = alertsModule.animationDirection.split(',');

@@ -143,13 +143,16 @@
                     return true;
                 }
                 Service.alreadyViewed[id] = true;
+                if(!regions.regions[0]){
+                    return true;
+                }
                 var message = Service.getMessage(notification.type, notification.data, regions.regions[0]);
                 notification.message = message;
                 if(notification.type === 'donations'){
-                    if(regions.regions[0].widgetCampaignBar.alertsEnable==true){
+                    if(regions.regions[0].widgetType ==  "widget_campaign_bar"){
                         var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'campaigns_1');
-                    }else{
-                        var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_1');
+                    }else{                        
+                        var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_1');                        
                     }                    
                     notification.soundFile = soundFile;
                     notification.soundType = null;
@@ -166,10 +169,10 @@
                     var message1 = Service.getMessage(notificatin1.type, notification.data, regions.regions[1]);
                     notificatin1.message = message1;
                     if(notificatin1.type === 'donations'){
-                        if(regions.regions[0].widgetCampaignBar.alertsEnable==true){
+                        if(regions.regions[1].widgetType ==  "widget_campaign_bar"){
                             var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'campaigns_2');
-                        }else{
-                            var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_2');
+                        }else{                            
+                            var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_2');                            
                         }                        
                         notificatin1.soundFile = soundFile;
                         notificatin1.soundType = null;                    

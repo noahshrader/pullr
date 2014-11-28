@@ -92,9 +92,11 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
 <div class="module media-manager">
     <div ng-init="key=preference.preferenceType +'_'+ region.regionNumber"></div>
     <div ng-init="customDonationSound.init(region.widgetAlerts.donationCustomsound, key)"></div>
-
     <a class="settingtoggle">Sounds &amp; Images<i class="mdi-navigation-arrow-drop-down"></i></a>
     <div class="module-settings" child-scope="" ng-init="customsounds=customDonationSound.customsounds[key]">
+
+        <div ng-init="changeCustomSound(customsounds, key, preference, region)"></div>
+
         <ul class="library-tabs cf">
             <li class="active" ng-class="{span2:!customDonationSound.showRangeTab[key] || preference.preferenceType !='donations'}">
                 <a href="<?= Url::to() ?>#{{baseLink}}-sounds" data-toggle="tab">

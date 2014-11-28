@@ -128,6 +128,22 @@ class StreamboardController extends FrontendController
         /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
         $sinceTime = $streamboardConfig->streamRequestLastDate - 5;
 
+
+
+        // die('[{"id":98,
+        // "type":"donations",
+        // "message":"George  donated $524 to Fun For Freedom!",
+        // "donation":{"id":13,
+        //             "campaignId":1,
+        //             "campaignUserId":1,
+        //             "parentCampaignId":1,
+        //             "parentCampaignUserId":1,
+        //             "amount":"1.10"
+        //             ,"nameFromForm":"George","firstName":"","lastName":"George","email":"george@gmail.com","comments":"","userId":null,"isManual":0,
+        //             "createdDate":1417148238,"paymentDate":1417148238
+        //             },
+        // "date":1417148239}]');
+
         $donations = $user->getDonations(['sincePaymentDate' => $sinceTime])->orderBy('paymentDate ASC, id ASC')->all();
 
         /*created date at Twitch is less for 1 hour then $sinceTime, as it possible we will have enough rare request to Twitch API,

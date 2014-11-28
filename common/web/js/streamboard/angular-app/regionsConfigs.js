@@ -261,8 +261,7 @@
             // var conatinerId = 'region_' + $scope.region
             // var $donationChildScope = angular.element(".donations_panel").scope();
             // console.log($donationChildScope.customsounds);
-            $scope.changeCustomSound = function(rangeData, key, module, region){
-                console.log(arguments);
+            $scope.changeCustomSound = function(rangeData, key, module, region){                
                 for(var i in rangeData){
                     if(rangeData[i] == ""){
                         delete rangeData[i];
@@ -271,14 +270,18 @@
                 customDonationSound.customsounds[key] = rangeData;
                 customDonationSound.rangeData[key] = customDonationSound.getRange(key);
                 customDonationSound.showRangeTab[key] = (customDonationSound.rangeData[key].length>0);                
-                
                 var list = [];
                 for(var i in rangeData){
                     if(rangeData[i] != ""){
                         list.push({userId:region.userId, regionNumber:region.regionNumber, fileName:i, donationAmount:rangeData[i]});
                     }
                 }
-                module.donationCustomsound = list;
+                
+                if(module.preferenceType == "donations"){
+                    region.widgetAlerts.donationCustomsound = list;
+                }else if(module.preferenceType == "campaigns"){
+                    module.donationCustomsound = list;
+                }
                 $scope.regionChanged(region);
                 return true;
             }
