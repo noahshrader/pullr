@@ -50,19 +50,19 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
                 <label ng-model="preference.textAlignment" btn-radio="'right'" ng-click="changeAlertTextAlignment('right', preference, region)"><i class="mdi-editor-format-align-right"></i></label>
             </div>
         </div>
-        <div class="panel-group">
-            <span class='checkbox'>
+        <div class="panel-group red">
+            <span class="checkbox">
                 <label ng-class="{on:preference.fontUppercase}">
                     <input type="checkbox" ng-model="preference.fontUppercase" ng-change="regionChanged(region)">
-                    Font uppercase
+                    <h5>Uppercase</h5>
                 </label>
             </span>
         </div>
-        <div class="panel-group">
-            <span class='checkbox'>
+        <div class="panel-group red">
+            <span class="checkbox">
                 <label ng-class="{on:preference.textShadow}">
                     <input type="checkbox" ng-model="preference.textShadow" ng-change="regionChanged(region)">
-                    TextShadow
+                    <h5>Text Shadow</h5>
                 </label>
             </span>
         </div>

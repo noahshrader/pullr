@@ -94,20 +94,20 @@
                                 step="100"
                                 ng-change="regionChanged(region)"></slider>
                     </div>
-                    <div class="panel-group">
-                        <div class='checkbox'>
+                    <div class="panel-group red">
+                        <div class="checkbox">
                             <label ng-class="{on:region.widgetTags.fontUppercase}">
                                 <input type="checkbox" ng-model="region.widgetTags.fontUppercase"
                                        ng-change="regionChanged(region)">
-                                Uppercase
+                                <h5>Uppercase</h5>
                             </label>
                         </div>
                     </div>
-                    <div class="panel-group">
-                        <span class='checkbox'>
+                    <div class="panel-group red">
+                        <span class="checkbox">
                             <label ng-class="{on:region.widgetTags.textShadow}">
                                 <input type="checkbox" ng-model="region.widgetTags.textShadow" ng-change="regionChanged(region)">
-                                TextShadow
+                                <h5>Text Shadow</h5>
                             </label>
                         </span>
                     </div>

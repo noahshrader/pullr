@@ -39,7 +39,7 @@ use common\models\Plan;
         <?= (new DateTime())
             ->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone()))
             ->setTimestamp($plan->expire)
-            ->format('M j Y');
+            ->format('M j, Y');
         ?>
         <a data-toggle="modal" data-target="#deactivateproModal">Downgrade my plan</a>
     </div>
