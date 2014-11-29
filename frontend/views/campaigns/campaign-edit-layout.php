@@ -58,7 +58,7 @@ $user = \Yii::$app->user->identity;
                 <div class="colorpicker">
                     <div class="colorpickerwrap">
                         <span class="color-choice"></span>
-                        <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text')->textInput(array('value' => '#449ce7')); ?>
+                        <?= $form->field($campaign, 'primaryColor')->label('Primary Color')->input('text'); ?>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@ $user = \Yii::$app->user->identity;
                 <div class="colorpicker">
                     <div class="colorpickerwrap">
                         <span class="color-choice"></span>
-                        <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text')->textInput(array('value' => '#449ce7')); ?>
+                        <?= $form->field($campaign, 'secondaryColor')->label('Secondary Color')->input('text'); ?>
                     </div>
                 </div>
             </div>
