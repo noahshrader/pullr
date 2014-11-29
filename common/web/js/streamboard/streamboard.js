@@ -15,7 +15,7 @@ $(function () {
    	});
     $('.sidepanel-head').click(function(){ 
         $('.paneltoggle li').removeClass('active');
-        $('.slidepanel').removeClass('selected');
+        $('.slidepanel, .slidepanel h4').removeClass('selected');
         $('.veil').hide();
     });
 
