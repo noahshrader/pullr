@@ -22,7 +22,6 @@ h5 {
 	color: @gray30;
 	.smallcaps;
 	line-height: 1.4em;
-	margin: 0;
 }
 
 /* Region Numbers */
@@ -269,6 +268,7 @@ span.slider-value {
 		}
 		h4.panel-title {
 			position: fixed;
+			bottom: -440px;
 			right: 0;
 			color: @white;
 			font-size: 1em;
@@ -281,7 +281,10 @@ span.slider-value {
 			background: @streamboardgray;
 			border-bottom: solid 1px @streamboardshadow;
 			z-index: 1001;
-
+			.slowtrans;
+			&.selected {
+				bottom: 450px;
+			}
 			button {
 				float: right;
 				margin: .6em 0;
@@ -582,6 +585,7 @@ ul.panel-nav {
 	ul.panel-nav {
 		background: @streamboardgray;
 		border-top: solid 1px @streamboardshadow;
+		z-index: 9999;
 
 		li {
 
