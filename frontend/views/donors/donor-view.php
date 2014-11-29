@@ -6,15 +6,16 @@ $this->registerJSFile('@web/js/campaign/donation-table.js', [
 ]);
 
 $user = \Yii::$app->user->identity;
-
 ?>
 
 <section class="donor-view-wrap">
     <div id="content" class="adv red pane" data-email="<?= htmlspecialchars($email) ?>" >
         <div class="content-wrap">
-            <h1 class="donor-name"> <?= htmlspecialchars($name) ?>
-                <span class="donor-email"><?= htmlspecialchars($email) ?></span>
-            </h1>
+            <div class="view-actions donor">
+                <h4 class="donor-name"> <?= htmlspecialchars($name) ?>
+                    <span class="donor-email"><?= htmlspecialchars($email) ?></span>
+                </h4>
+            </div>
             <section class="stats-overview module">
                 <div class='stats-box col-xs-4'>
                     <h2>$<?= PullrUtils::formatNumber($totalDonated, 2) ?></h2>

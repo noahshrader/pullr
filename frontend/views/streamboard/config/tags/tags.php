@@ -99,7 +99,7 @@
                             <label ng-class="{on:region.widgetTags.fontUppercase}">
                                 <input type="checkbox" ng-model="region.widgetTags.fontUppercase"
                                        ng-change="regionChanged(region)">
-                                <h5>Uppercase</h5>
+                                Uppercase
                             </label>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                         <span class="checkbox">
                             <label ng-class="{on:region.widgetTags.textShadow}">
                                 <input type="checkbox" ng-model="region.widgetTags.textShadow" ng-change="regionChanged(region)">
-                                <h5>Text Shadow</h5>
+                                Text Shadow
                             </label>
                         </span>
                     </div>

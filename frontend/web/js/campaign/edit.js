@@ -228,16 +228,14 @@ $(function() {
     initBootstrapSwitch();
 });
 /*We use js as Yii Js add text-aling right on load event*/
-$( window ).load(function() {
+$(window).load(function() {
     $('#masked-input').on('change', function(){
        $('#campaign-goalamount').val($(this).val());
     });
-
     $("#image-uploaded").click(function(){
         $.post('app/campaigns/bgdelete', {campaignId: $(this).data('campaignid')}, function(data) {
             $(".image-upload-preview").hide();
         });
     });
-
     $('.field-campaign-goalamount .help-block').insertAfter('.field-campaign-goalamount #masked-input');
 });

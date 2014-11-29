@@ -10,7 +10,7 @@ use common\models\Plan;
 
     <!-- Pullr Basic -->
     <div class="plan-pro-advertisement plan-panel">
-        <i class="mdib-gamepad3"></i>
+        <i class="mdib-gamepad4"></i>
         <h3>Go Pro!</h3>
         <ul>
             <li>Team Fundraising</li>
@@ -28,7 +28,7 @@ use common\models\Plan;
 
     <!-- Pullr Pro -->
     <div class="account-confirmation plan-panel">
-        <i class="mdib-gamepad3"></i>
+        <i class="mdib-gamepad4"></i>
         <h3>You are currently on Pullr Pro!</h3>
         <?
             $plan = Plan::findOne($user->id);
