@@ -4,6 +4,7 @@ $(function () {
     $(document).on('click', '.paneltoggle li a', function() {
         $(this).parent('li').toggleClass('active').siblings().removeClass('active');
         $('.'+$(this).data('panel')+'_panel').toggleClass('selected').siblings().removeClass('selected');
+        $('.'+$(this).data('panel')+'_panel h4').toggleClass('selected');
         if($(this).parent('li').hasClass('active')) {
             $('.veil').fadeIn(200);
         } else {

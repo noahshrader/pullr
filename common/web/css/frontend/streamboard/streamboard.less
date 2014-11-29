@@ -269,6 +269,7 @@ span.slider-value {
 		}
 		h4.panel-title {
 			position: fixed;
+			bottom: -440px;
 			right: 0;
 			color: @white;
 			font-size: 1em;
@@ -281,6 +282,10 @@ span.slider-value {
 			background: @streamboardgray;
 			border-bottom: solid 1px @streamboardshadow;
 			z-index: 1001;
+			.slowtrans;
+			&.selected {
+				bottom: 450px;
+			}
 
 			button {
 				float: right;
@@ -582,6 +587,7 @@ ul.panel-nav {
 	ul.panel-nav {
 		background: @streamboardgray;
 		border-top: solid 1px @streamboardshadow;
+		z-index: 9999;
 
 		li {
 
