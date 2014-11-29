@@ -111,8 +111,9 @@
 .campaign-date,
 .donor-email {
 	display: block;
-	color: @gray40;
-	font-size: 20px;
+	color: @gray50;
+	font-size: @basefontsize;
+	font-weight: 400;
 	line-height: 1.6em;
 	letter-spacing: 0;
 }
@@ -518,6 +519,8 @@ table.dataTable {
 			background: transparent;
 		}
 		.select2-choice {
+			font-size: @basefontsize;
+			font-weight: 400;
 			line-height: 34px;
 			height: 34px;
 			> .select2-chosen {
@@ -541,7 +544,7 @@ table.dataTable {
 	}
 }
 .table-header {
-	padding: @halfgutter;
+	padding: 10px @halfgutter;
 	background: @modulegray;
 	border-bottom: solid 1px @gray70;
 

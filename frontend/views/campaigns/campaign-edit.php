@@ -20,7 +20,7 @@ $user = \Yii::$app->user->identity;
         'enctype' => 'multipart/form-data', 'method' => 'POST']]) ?>
     <section id="content" class="campaign-edit-wrap pane adv">
         <? if (!$campaign->isNewRecord): ?>
-        <div class="campaign-actions">
+        <div class="view-actions">
             <div class="campaign-nav">
                 <? if (!$campaign->isParentForCurrentUser()): ?>
                 <ul class="campaign-quick-links dropdown">

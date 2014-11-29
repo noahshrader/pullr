@@ -36,7 +36,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
 <section class="campaigns-view-wrap">
     <div id="content" class="adv pane" data-id="<?= $campaign->id ?>">
         <div class="content-wrap">
-            <div class="campaign-actions">
+            <div class="view-actions">
                 <div class="campaign-nav">
                     <? if (!$campaign->isParentForCurrentUser()): ?>
                     <ul class="campaign-quick-links dropdown">
