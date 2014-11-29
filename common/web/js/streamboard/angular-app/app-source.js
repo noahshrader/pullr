@@ -24,6 +24,8 @@
                 }, 5000)    
             });
         }
+
+        requestSourceStats();
                 
     }]);
 })();

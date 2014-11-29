@@ -11,13 +11,14 @@
 
             var lastSourceHeight = 0;
             var frame = angular.element('#frame');
+            
             $interval(function(){
                 var height = angular.element('body', frame.contents()).height();
-                if (height != 0 && lastSourceHeight != height) {
+                if (height > 0) {
                     frame.height(height);
                     lastSourceHeight = height;
                 }
-            }, 3000, 5);
+            }, 1000, 60);
 
             $scope.toggleSubscriber = function() {
                 stream.toggleSubscriber();
