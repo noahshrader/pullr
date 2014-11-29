@@ -56,15 +56,15 @@ $firstGiving = $campaign->getFirstGiving();
         <? if ($campaign->isNewRecord): ?>
             <div class="label label-danger">Save campaign before adding emails</div>
         <? else: ?>
-        <div id="campaign-invites">
+        <div id="campaign-invites" class="highlight-wrap">
             <div id="addCampaingInviteInfo" class="label label-danger"></div>
             <label>Invite Pullr users to your team <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Allow other Pullr users to connect their campaign to yours. Enter the user's Twitch name to send an invite."></i></label>
-            <div class="combined-form-wrap form-group">
+            <div class="combined-form-wrap">
                 <input type="text" id="addCampaignInvite" placeholder="Add a Twitch Channel Name" class="form-control">
                 <div class="help-block hide">The invitee needs to be a member of Pullr</div>
                 <a onclick="addNewCampaignInvite()" class="icon mdi-content-add-circle"></a>
             </div>
-            <div id="campaignInvitesUsers" class="team-list highlight-wrap"></div>
+            <div id="campaignInvitesUsers" class="team-list"></div>
         </div>
         <? endif ?>
     </div>
