@@ -49,7 +49,7 @@ $showBackground = isset($_GET['bg']) && $_GET['bg'] == 1 ? true : false ;
 		    <style type="text/css">
 			    ::-webkit-scrollbar { visibility: hidden; }
 				body, html, .region, .streamboardContainer, .regionsContainer, .regionsContainer .region { 
-					background-color: rgba(0, 255, 0, 0.02);				
+					background-color: rgba(0, 255, 0, 0.01);				
 				}
 
 		    </style>

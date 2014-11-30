@@ -16,26 +16,26 @@
                 
                 if (Pullr.Streamboard != undefined && Pullr.Streamboard.region != undefined) {
                     $scope.region = Pullr.Streamboard.region;                         
-                    // function requestRegion() {                                                    
-                    //     $http.get('app/streamboard/get_regions_ajax').success(function (data) {                                                
-                    //         var newRegion = null;
-                    //         if (data[$scope.region.regionNumber - 1]) {
-                    //             var newRegion = data[$scope.region.regionNumber - 1];    
-                    //             //keep alert when update region
-                    //             if ($scope.region.toShow) {
-                    //                 var toShow = $.extend({}, $scope.region.toShow);
-                    //                 newRegion['toShow'] = $scope.region.toShow;
-                    //             }
-                    //             $scope.region = newRegion;
-                    //         }                   
+                    function requestRegion() {                                                    
+                        $http.get('app/streamboard/get_regions_ajax').success(function (data) {                                                
+                            var newRegion = null;
+                            if (data[$scope.region.regionNumber - 1]) {
+                                var newRegion = data[$scope.region.regionNumber - 1];    
+                                //keep alert when update region
+                                if ($scope.region.toShow) {
+                                    var toShow = $.extend({}, $scope.region.toShow);
+                                    newRegion['toShow'] = $scope.region.toShow;
+                                }
+                                $scope.region = newRegion;
+                            }                   
     
-                    //         $timeout(function() {
-                    //             requestRegion();
-                    //         }, 10000)
+                            $timeout(function() {
+                                requestRegion();
+                            }, 10000)
     
-                    //     });                     
-                    // }
-                   // requestRegion();
+                        });                     
+                    }
+                   requestRegion();
                 }
     
                 var $region2 = $(".regionsContainer .region:last-child");

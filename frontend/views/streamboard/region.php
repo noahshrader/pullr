@@ -11,7 +11,7 @@ $user = Streamboard::getCurrentUser();
             <? if ( $showBackground): ?>
 	    	    ng-style="{'background-color': region.backgroundColor}"
             <? else :?>
-                ng-style="{'background-color': rgba(0, 255, 0, 0.02)}"                            
+                ng-style="{'background-color': rgba(0, 255, 0, 0.01)}"                            
             <? endif; ?>
          	id='region-{{region.regionNumber}}'
             >
