@@ -1,4 +1,4 @@
-<div class="tab-content tags-panel pane tags-tabcontent">
+<div class="tags-panel pane">
     <h4 class="panel-head" ng-init="selobj={}; selobj.selectedRegion=1">
         Tags
         <span>
