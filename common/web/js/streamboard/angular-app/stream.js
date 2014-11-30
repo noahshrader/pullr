@@ -125,6 +125,23 @@
                                 date: notification.date
                             }
                             Service.pushCustomAlert(alertdata);
+                        }else if(notification.type === 'followers'){
+                            var alertdata = {
+                                id: notification.id,
+                                type:'followers',
+                                data:{'[[FollowerName]]':notification.follow.display_name},
+                                date: notification.date
+                            }
+                            Service.pushCustomAlert(alertdata);
+
+                        } else if(notification.type === 'subscribers'){
+                            var alertdata = {
+                                id: notification.id,
+                                type:'followers',
+                                data:{'[[SubscriberName]]':notification.subscription.display_name},
+                                date: notification.date
+                            }
+                            Service.pushCustomAlert(alertdata);
                         }else{
                             Service.pushNotification(notification);
                         }
@@ -138,6 +155,9 @@
             Service.requestStreamData();         
 
             this.pushCustomAlert = function(notification){
+                if(!notification.type){
+                    return  false;
+                }
                 var id = notification.type + '_' + notification.id;
                 if (!(id in Service.alreadyViewed) === false){
                     return true;
@@ -184,6 +204,9 @@
 
 
             this.pushNotification = function(notification){
+                if(!notification.type){
+                    return  false;
+                }
                 var notification = notification;
                 var id = notification.type + '_' + notification.id;
                 /*check if we already view it*/

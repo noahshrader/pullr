@@ -410,7 +410,8 @@ class CampaignsController extends FrontendController {
         {
             $donation = new Donation();
             $donation->userId = \Yii::$app->user->id;
-            $donation->createdDate = $donation->paymentDate = (new \DateTime($manualDonation->dateCreated))->getTimestamp();
+            $donation->paymentDate = (new \DateTime($manualDonation->dateCreated))->getTimestamp();
+            $donation->createdDate = time();
             $donation->campaignId = $manualDonation->campaignId;
             $donation->amount = $manualDonation->amount;
             $donation->nameFromForm = $manualDonation->name;

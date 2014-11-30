@@ -477,7 +477,11 @@ class User extends ActiveRecord implements IdentityInterface
             if (isset($params['sincePaymentDate'])) {
                 $query->andWhere('paymentDate > :sincePaymentDate')->addParams([':sincePaymentDate' => $params['sincePaymentDate']]);
             }
+            if (isset($params['sinceCreateDate'])) {
+                $query->andWhere('createdDate > :sinceCreateDate')->addParams([':sinceCreateDate' => $params['sinceCreateDate']]);
+            }
         }
+//        die($params['sincePaymentDate']);
         return $query;
     }
 

@@ -21,7 +21,7 @@
 </div>
 <div
     class="widget-alerts-message {{region.toShow.alert.animationDirection}}"
-    ng-show="region.toShow.alert.message && region.widgetType == 'widget_alerts' && region.toShow.alert.type == preference.preferenceType"
+    ng-show="region.toShow.alert.message && region.widgetType == 'widget_alerts' && region.toShow.alert.type == preference.preferenceType && region.toShow.alert.preference.hideAlertText==false"
     ng-style="{'color': region.toShow.alert.preference.fontColor, 'font-size': region.toShow.alert.preference.fontSize, 'font-family': region.toShow.alert.preference.fontStyle, 'font-weight': region.toShow.alert.preference.fontWeight, 'position':'absolute', 'text-align':region.toShow.alert.preference.textAlignment}" 
     ng-class='{fontUppercase:region.toShow.alert.preference.fontUppercase, textShadow:region.toShow.alert.preference.textShadow}'
     interaction

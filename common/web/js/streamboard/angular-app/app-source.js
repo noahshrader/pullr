@@ -18,7 +18,7 @@
                     angular.element('#source-wrap-angular').show();
                     angular.element('#source-wrap-php').hide();
                     isDataReady = true;
-                }            
+                }
                 $timeout(function(){
                     requestSourceStats();
                 }, 5000)    
