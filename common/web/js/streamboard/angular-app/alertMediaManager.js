@@ -116,11 +116,11 @@
                 this.sound.volume = volume / 100;
                 this.sound.play();
             };
-            this.getImageUrl = function(image, imageType){
-                if (!image || !imageType){
+            this.getImageUrl = function(image, imageType) {
+                if ( ! image || ! imageType) {
                     return null;
                 }
-                switch (imageType){
+                switch (imageType) {
                     case 'Library':
                         path = Service.PATH_TO_LIBRARY_IMAGES+image;
                         break;

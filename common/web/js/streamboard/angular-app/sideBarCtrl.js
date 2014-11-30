@@ -16,19 +16,19 @@ function($scope, $http, streamboardConfig, regions) {
     });
     
     $scope.onResizeSidebarStop = function(event, ui) {
-        $("#sidepanel").css('left', 'auto');
+        
+    }
+
+    $('#sidepanel').resize(function(event,ui) {
+        $("#sidepanel").css('left', 'auto');        
+        setSideBarWidth(ui.size.width);
         $http.post('app/streamboard/set_streamboard_sidepanel_width', {
             width: ui.size.width
         });
-    }
-
-    $('#sidepanel').resize(function() {
-        $("#sidepanel").css('left', 'auto');
-        var width = $('#sidepanel').width();
-        setSideBarWidth(width);
     });
 
     function setSideBarWidth(width) {
+        $scope.streamboardConfig.config.sidePanelWidth = width;
         $("#sidepanel").css('left', 'auto');
         var panelhead = width - 40;
         var sidefooter = width;

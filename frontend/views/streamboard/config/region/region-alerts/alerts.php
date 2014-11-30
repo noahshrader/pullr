@@ -33,7 +33,7 @@ use yii\web\View;
                 ng-change="regionChanged(region)"></slider>
     </div>
 </div>
-<div class="right-side-footer" ng-show=' ! hideFooter'>
+<div class="right-side-footer" ng-show=' ! hideFooter' ng-style="{width: streamboardConfig.config.sideBarWidth}">
     <ul class="panel-nav paneltoggle">
         <li ng-show="widget.includeDonations" class="panel-link"><a data-panel="donations"><i class="mdi-action-loyalty"></i>Donations</a></li>
         <li ng-show="widget.includeFollowers" class="panel-link"><a data-panel="followers"><i class="mdi-action-favorite"></i>Followers</a></li>

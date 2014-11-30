@@ -15,31 +15,27 @@
                 $scope.streamboardConfig = streamboardConfig;
                 
                 if (Pullr.Streamboard != undefined && Pullr.Streamboard.region != undefined) {
-                    $scope.region = Pullr.Streamboard.region;     
-                    
-                    function requestRegion() {
-                                                    
-                        $http.get('app/streamboard/get_regions_ajax').success(function (data) {                                                
+                    $scope.region = Pullr.Streamboard.region;                         
+                    // function requestRegion() {                                                    
+                    //     $http.get('app/streamboard/get_regions_ajax').success(function (data) {                                                
+                    //         var newRegion = null;
+                    //         if (data[$scope.region.regionNumber - 1]) {
+                    //             var newRegion = data[$scope.region.regionNumber - 1];    
+                    //             //keep alert when update region
+                    //             if ($scope.region.toShow) {
+                    //                 var toShow = $.extend({}, $scope.region.toShow);
+                    //                 newRegion['toShow'] = $scope.region.toShow;
+                    //             }
+                    //             $scope.region = newRegion;
+                    //         }                   
     
-                            var newRegion = null;
-                            if (data[$scope.region.regionNumber - 1]) {
-                                var newRegion = data[$scope.region.regionNumber - 1];    
-                                //keep alert when update region
-                                if ($scope.region.toShow) {
-                                    var toShow = $.extend({}, $scope.region.toShow);
-                                    newRegion['toShow'] = $scope.region.toShow;
-                                }
-                                $scope.region = newRegion;
-                            }                   
+                    //         $timeout(function() {
+                    //             requestRegion();
+                    //         }, 10000)
     
-                            $timeout(function(){
-                                requestRegion();
-                            }, 5000)
-    
-                        });
-                     
-                    }
-                    requestRegion();
+                    //     });                     
+                    // }
+                   // requestRegion();
                 }
     
                 var $region2 = $(".regionsContainer .region:last-child");
@@ -163,11 +159,8 @@
                     regions.regionChanged(region);
                 }          
     
-                $scope.getRegionSelector = function(region) {
-                   
-                    return '#region-' + region.regionNumber;    
-                    
-                    
+                $scope.getRegionSelector = function(region) {                   
+                    return '#region-' + region.regionNumber;                                            
                 }
                 
                 $scope.formatMsgHtml = function(content) {
@@ -243,11 +236,20 @@
                 }, 1000);
     
                 function updateTimestamps() {
-                    for (var key in regions.regions) {
-                        var region = regions.regions[key];
-                        var module = region.widgetCampaignBar.timerModule;
-                        module.countDownFromTimestamp = new Date(module.countDownFrom).getTime();
-                    }
+                    if (Pullr.Streamboard.region) {
+                        updateRegionTimestamps(Pullr.Streamboard.region);
+                    } else {
+                        for (var key in regions.regions) {
+                            var region = regions.regions[key];
+                            updateRegionTimestamps(region);    
+                        }
+                    }                 
+                    
+                }
+
+                function updateRegionTimestamps(region){
+                    var module = region.widgetCampaignBar.timerModule;
+                    module.countDownFromTimestamp = new Date(module.countDownFrom).getTime();
                 }
     
     
@@ -314,17 +316,7 @@
                             toShow.preference = region.widgetAlerts[notification.type + 'Preference'];   
                             toShow.notificationType = notification.type;
                             var preference = toShow.preference;                                              
-                            if (preference.animationDirection) {
-                                toShow.animationDirectionArray = preference.animationDirection.split(',');                        
-                                $('#region-' + region.regionNumber + ' .widget-alerts:eq(0)').off(animationEndEvent);
-                                if (toShow.animationDirectionArray.length > 1) {
-                                    toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
-                                }    
-                            }
-                            
-                            toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);                        
-    
-                            
+                            toShow.image = alertMediaManager.getImageUrl(preference.image, preference.imageType);                                                    
                             if(notification.soundFile){
                                 var soundFile = notification.soundFile;
                                 var fileType = null;
@@ -333,10 +325,28 @@
                                 var fileType = preference.soundType;
                             }                        
                             alertMediaManager.playSound(soundFile, fileType, preference.volume);
+                            if (preference.animationDirection) {
+                                toShow.animationDirectionArray = preference.animationDirection.split(',');                        
+                                var widget = $('#region-' + region.regionNumber + ' .widget-alerts:eq(0)');
+                                widget.off(animationEndEvent);                                
+                                if (toShow.animationDirectionArray.length > 1) {
+                                    toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
+
+                                }     
+                                widget.one(animationEndEvent, function(){
+                                    $interval(function () {
+                                        hideAlert(region);
+                                    }, preference.animationDuration * 1000, 1);    
+                                });
+                            } else {
+                                $interval(function () {
+                                    hideAlert(region);
+                                }, preference.animationDuration * 1000, 1);
+                            }
+                            
+                            
     
-                            $interval(function () {
-                                hideAlert(region);
-                            }, preference.animationDuration * 1000, 1);
+                            
                             return;
                         } else {
                             /**so we have campaign bar*/
@@ -351,20 +361,28 @@
                                 var soundFile = alertsModule.sound;
                                 var fileType = alertsModule.soundType;
                             }
-                            console.log(soundFile, fileType, alertsModule.volume);
+                          
                             alertMediaManager.playSound(soundFile, fileType, alertsModule.volume);
     
                             if (alertsModule.animationDirection) {
                                 toShow.animationDirectionArray = alertsModule.animationDirection.split(',');
-                                $('#region-' + region.regionNumber + ' .bar-alert:eq(0)').off(animationEndEvent);
+                                var widget = $('#region-' + region.regionNumber + ' .bar-alert:eq(0)');
+                                widget.off(animationEndEvent);
                                 if(toShow.animationDirectionArray.length > 1){
                                     toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
                                 }    
+                                widget.one(animationEndEvent, function(){
+                                    $interval(function () {
+                                        hideAlert(region);
+                                    }, alertsModule.animationDuration * 1000, 1);
+                                });
+                            } else {
+                                $interval(function () {
+                                    hideAlert(region);
+                                }, alertsModule.animationDuration * 1000, 1);    
                             }
                                                     
-                            $interval(function () {
-                                hideAlert(region);
-                            }, alertsModule.animationDuration * 1000, 1);
+                            
                             return;
                         }
                     } else {
@@ -396,6 +414,7 @@
                             });
                         } else {
                             $('#region-' + region.regionNumber + ' .bar-alert:eq(0)').one(animationEndEvent, function(){
+                                console.log('hide alert');
                                 region.toShow.alert.message = null;    
                                 region.toShow.alert.animationDirectionArray = [];    
                                 region.toShow.alert.background = '';

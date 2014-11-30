@@ -13,7 +13,7 @@ $user = Streamboard::getCurrentUser();
             <? else :?>
                 ng-style="{'background-color': rgba(0, 255, 0, 0.02)}"                            
             <? endif; ?>
-         	id='region-{{region.regionNumber}}' ng-click='testClick()'
+         	id='region-{{region.regionNumber}}'
             >
 		<?= $this->render('region/single-region') ?>	
 		</div>

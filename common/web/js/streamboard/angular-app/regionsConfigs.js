@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsConfigs', ['pullr.common', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.campaigns',
-        'pullr.streamboard.regions', 'angularFileUpload', 'pullr.streamboard.stream', 'ui.bootstrap.datetimepicker']);
+        'pullr.streamboard.regions', 'angularFileUpload', 'pullr.streamboard.stream', 'ui.bootstrap.datetimepicker', 'streamboardApp']);
     app.run(['$rootScope', '$http', function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];
 
@@ -70,8 +70,8 @@
         }
     }]);
 
-    app.controller('RegionConfigCtrl', ['$rootScope', '$scope', '$http', '$upload', 'campaigns', 'alertMediaManager', 'regions', 'stream', 'simpleMarqueeHelper', '$timeout', 'customDonationSound',
-        function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager, regions, stream, simpleMarqueeHelper, $timeout, customDonationSound) {
+    app.controller('RegionConfigCtrl', ['$rootScope', '$scope', '$http', '$upload', 'campaigns', 'alertMediaManager', 'regions', 'stream', 'simpleMarqueeHelper', '$timeout', 'customDonationSound', 'streamboardConfig',
+        function ($rootScope, $scope, $http, $upload, campaigns, alertMediaManager, regions, stream, simpleMarqueeHelper, $timeout, customDonationSound, streamboardConfig) {
             $scope.alertMediaManagerService = alertMediaManager;
             $scope.campaignsService = campaigns;
             $scope.streamService = stream;
@@ -83,6 +83,7 @@
             $scope.MAX_FONT_WEIGHT = 900;
             $scope.hideFooter = false;
             $scope.regionChanged = regions.regionChanged;
+            $scope.streamboardConfig = streamboardConfig;
             $scope.toggleModule = function(region) {    
                 $scope.toggleFooter(region);              
                 regions.regionChanged(region);

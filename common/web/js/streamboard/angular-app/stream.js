@@ -282,16 +282,22 @@
                     var notification = {"id": -1, "type": "donations", "message": message, "date": Math.round(new Date().getTime() / 1000)};
                     
                     notification.type = type;
-                    if (regionNumber) {
-                        Service.streams[regionNumber].push(notification);
-                    } else {
-                        /**in other case let's push notification for both if region*/
+
+                    if (Pullr.Streamboard.region) { //for single region page, we always put notification to region 1
                         Service.streams[1].push(notification);
-                        if (regions.regions.length > 1) {
-                            /*if we have second region*/
-                            Service.streams[2].push(notification);
-                        }
-                    }                    
+                    } else {
+                        if (regionNumber) {
+                            Service.streams[regionNumber].push(notification);
+                        } else {
+                            /**in other case let's push notification for both if region*/
+                            Service.streams[1].push(notification);
+                            if (regions.regions.length > 1) {
+                                /*if we have second region*/
+                                Service.streams[2].push(notification);
+                            }
+                        }                        
+                    }
+                    
                 }
             }
 

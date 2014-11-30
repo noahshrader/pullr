@@ -1,4 +1,4 @@
-angular.module('streamboardApp').factory('streamboardConfig', ['$http', function($http){
+angular.module('streamboardApp').service('streamboardConfig', ['$http', function($http){
 	var service = {};
 	service.config = {};
 	service.init = function() {
@@ -13,12 +13,14 @@ angular.module('streamboardApp').factory('streamboardConfig', ['$http', function
 	}
 
 	service.setSidebarWidth = function(width) {
+		service.config.sidePanelWidth = width;
 		$http.post('app/streamboard/set_streamboard_sidepanel_width', {
         	width: width
-     	});
+     	});     	
 	}
 
 	service.setRegion2Height = function(height) {
+		service.config.region2Height = height;
 		$http.post('app/streamboard/set_streamboard_region2_height', {
 			height: height
 		});

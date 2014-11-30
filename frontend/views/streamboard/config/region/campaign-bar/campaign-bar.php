@@ -122,7 +122,7 @@ use frontend\models\streamboard\WidgetAlertsPreference;
         </div>
     </div>
 </div>
-<div class="right-side-footer" ng-show=' ! hideFooter'>
+<div class="right-side-footer" ng-show=' ! hideFooter' ng-style="{width: streamboardConfig.config.sideBarWidth}">
     <ul class="panel-nav paneltoggle">
         <li ng-show="widget.alertsEnable">
             <a data-panel="alertsModule">

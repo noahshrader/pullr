@@ -111,9 +111,9 @@ class WidgetCampaignBar extends ActiveRecord
     }
 
     public function updateFromArray($data)
-    {
+    {                
         return $this->load($data, '') && $this->save() &&
-        $this->alertsModule->updateFromArray($data['alertsModule']);
+        $this->alertsModule->updateFromArray($data['alertsModule']) &&
         $this->messagesModule->load($data, 'messagesModule') &&
         $this->messagesModule->save() &&
         $this->timerModule->load($data, 'timerModule') &&

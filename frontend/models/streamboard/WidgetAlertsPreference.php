@@ -68,7 +68,7 @@ class WidgetAlertsPreference extends ActiveRecord {
         $data['hideAlertText'] = $this->hideAlertText == 1;
         $data['hideAlertImage'] = $this->hideAlertImage == 1;
         $data['fontUppercase'] = $this->fontUppercase == 1;
-        $data['textShadow'] = $this->fontUppercase == 1;
+        $data['textShadow'] = $this->fontUppercase == 1;        
         return $data;
     }
 }
