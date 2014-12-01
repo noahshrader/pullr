@@ -119,7 +119,7 @@ class Campaign extends ActiveRecord {
         $this->formVisibility = true;
         $this->enableDonorComments = true;
         $this->enableThankYouPage = false;
-        $this->enableDonationProgressBar = true;
+        $this->enableDonationProgressBar = true;        
         $this->donationDestination = self::DONATION_PARTNERED_CHARITIES;
     }
     
@@ -165,8 +165,8 @@ class Campaign extends ActiveRecord {
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
 
-        if ($insert){
-            if (!$this->parentCampaignId){
+        if ($insert) {
+            if (!$this->parentCampaignId) {
                 $this->parentCampaignId = $this->id;
                 $this->save();
             }
