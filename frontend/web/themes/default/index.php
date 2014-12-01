@@ -110,7 +110,6 @@
                     <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">{{campaign.donationButtonText}}</button>
                     <div class="slant"></div>
                 </div>
-                <div pullr-donor-list></div>
             </div>
             <div class="feed-details">
                 <h4 ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.status}}</h4>
@@ -123,9 +122,15 @@
     <div pullr-campaign-layout></div>
 
     <!-- Description -->
-    <section class="container">
-        <p class="description" ng-cloak>{{campaign.description}}</p>
-        <div class="donor-wall" pullr-donor-list ng-cloak></div>
+    <section class="campaign-info container">
+        <div class="description holder pad">
+            <h4>Campaign Info</h4>
+            <p ng-cloak>{{campaign.description}}</p>
+        </div>
+        <div class="donor-wall holder pad">
+            <h4>Donors</h4>
+            <div pullr-donor-list ng-cloak></div>
+        </div>
     </section>
 
     <!-- Footer -->

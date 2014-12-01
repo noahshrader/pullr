@@ -550,7 +550,7 @@ header .container {
 /* Description/Donors */
 /* ------------------------------------------------- */
 .campaign-info {
-  padding: 2em 0;
+  padding: 2em 15px;
 }
 .campaign-info .description {
   float: left;
