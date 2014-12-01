@@ -122,8 +122,9 @@
 	<div pullr-campaign-layout></div>
 
 	<!-- Description -->
-	<section class="campaign-description container">
-		<p ng-cloak>{{campaign.description}}</p>
+	<section class="container">
+		<p class="description" ng-cloak>{{campaign.description}}</p>
+		<div class="donor-wall" pullr-donor-list ng-cloak></div>
 	</section>
 
 	<!-- Footer -->

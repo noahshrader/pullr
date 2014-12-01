@@ -11,7 +11,7 @@ Pullr.ANGULAR_APP_URL = Pullr.MAIN_URL + "public/api-widget.js";
 
 Pullr.MAGNIFIC_POPUP_JS = Pullr.MAIN_URL + "js/lib/magnificpopup.js";
 Pullr.MAGNIFIC_POPUP_CSS = Pullr.MAIN_URL + "js/lib/magnificpopup.css";
-Pullr.POPUP_CSS = Pullr.MAIN_URL + 'css/popup.css';
+Pullr.POPUP_CSS = Pullr.MAIN_URL + 'global/themes/css/popup.css';
 
 Pullr.LAYOUT_TYPE_SINGLE = "<? echo common\models\Campaign::LAYOUT_TYPE_SINGLE; ?>";
 Pullr.LAYOUT_TYPE_TEAM = "<? echo common\models\Campaign::LAYOUT_TYPE_TEAM; ?>";

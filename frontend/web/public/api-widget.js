@@ -171,7 +171,8 @@ app.directive('pullrDonorList', function(CampaignDataService) {
 			$('#btnShowDonorList').magnificPopup({
 				type: 'inline',
 				preloader: false,				
-				modal: false
+				modal: false,
+				mainClass: 'mfp-fade'
 			});
 			scope.closeDonorModal = function() {
 				$.magnificPopup.close();

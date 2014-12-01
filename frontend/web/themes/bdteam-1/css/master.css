@@ -321,7 +321,8 @@ header .container {
 }
 .user-bar .user-details-social {
   float: right;
-  margin: 12px 4px;
+  margin: 12px 0;
+  padding: 0 .6em;
   border-radius: 30px;
   background-clip: padding-box;
   overflow: hidden;
@@ -332,28 +333,13 @@ header .container {
   font-size: 15px;
   line-height: 30px;
   text-align: center;
-  padding: 0 .3em;
-  width: 30px;
+  width: 20px;
 }
 .user-bar .user-details-social a:hover {
   color: #ffffff;
 }
 .user-bar .user-details-social a.icon-twitch2 {
   font-size: 13px;
-}
-.user-bar .user-details-social a.icon-twitter:after,
-.user-bar .user-details-social a.icon-youtube:after,
-.user-bar .user-details-social a.icon-facebook:after {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  top: -4px;
-  bottom: -4px;
-  left: -2px;
-  width: 2px;
-  transform: rotate(15deg);
-  -ms-transform: rotate(15deg);
-  -webkit-transform: rotate(15deg);
 }
 /* Campaign Info & Actions */
 .info {
@@ -553,6 +539,25 @@ header .container {
   padding: 0 15px;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
+}
+/* Description/Donors */
+/* ------------------------------------------------- */
+p.description {
+  float: left;
+  width: 60%;
+}
+.donor-wall {
+  float: right;
+  width: 30%;
+}
+.donor-wall .dw-donor {
+  padding: .4em 0;
+}
+.donor-wall .dw-donor h5.dw-name {
+  float: left;
+}
+.donor-wall .dw-donor span.dw-amount {
+  float: right;
 }
 /* Responsive */
 /* ------------------------------------------------- */

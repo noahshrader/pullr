@@ -1,32 +1,55 @@
 /* ------------------------------------------------- */
 /* Modals */
 /* ------------------------------------------------- */
+
+/* Donor Wall */
+#donorModal {
+	position: relative;
+	color: @gray30;
+	text-align: left;
+	margin: @gutter+@gutter auto;
+	padding: 20px @gutter;
+	max-width: 400px;
+	background: @white;
+	.border-radius;
+
+	h4 {
+		color: @gray30;
+		margin-bottom: 1.4em;
+	}
+	.dw-donor {
+		padding: .4em 0;
+		border-top: solid 1px @gray75;
+
+		h5.dw-name {
+			float: left;
+		}
+		span.dw-amount {
+			float: right;
+		}
+	}
+}
+
+/* Fades */
 .mfp-fade.mfp-bg {
 	background: @base;
 	opacity: 0;
-	-webkit-transition: all 0.15s ease-out;
-	transition: all 0.15s ease-out;
+	.slowtrans;
 }
-/* overlay animate in */
 .mfp-fade.mfp-bg.mfp-ready {
 	opacity: 0.8;
 }
-/* overlay animate out */
 .mfp-fade.mfp-bg.mfp-removing {
 	opacity: 0;
 }
-/* content at start */
 .mfp-fade.mfp-wrap .mfp-content {
 	opacity: 0;
-	-webkit-transition: all 0.15s ease-out;
-	transition: all 0.15s ease-out;
+	.slowtrans;
 }
-/* content animate it */
 .mfp-fade.mfp-wrap.mfp-ready .mfp-content {
 	margin-bottom: 100px;
 	opacity: 1;
 }
-/* content animate out */
 .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
 	opacity: 0;
 }

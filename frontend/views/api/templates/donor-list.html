@@ -1,16 +1,15 @@
 <div class="dw-widget">
 	<div class="dw-widget-inner">
-		<div ng-repeat="donor in campaign.donors | limitTo: 10">
+		<div ng-repeat="donor in campaign.donors | limitTo: 10" class="dw-donor cf">
 			<h5 class="dw-name">{{donor.name}}</h5>
-			<span class="dw-amount">{{donor.amount}}</span>
+			<span class="dw-amount">${{donor.amount}}</span>
 		</div>
-	<a href="#donorModal" id="btnShowDonorList" class="dw-more">View All</a>
+	<a href="#donorModal" id="btnShowDonorList" class="dw-more">View All Donors</a>
 </div>
-<div id="donorModal" class="white-popup-block mfp-hide">
-	<h1>Donor list</h1>
-	<div ng-repeat="donor in campaign.donors" >
+<div id="donorModal" class="mfp-hide">
+	<h4>Donors</h4>
+	<div ng-repeat="donor in campaign.donors" class="dw-donor cf">
 		<h5 class="dw-name">{{donor.name}}</h5>
-		<span class="dw-amount">{{donor.amount}}</span>
+		<span class="dw-amount">${{donor.amount}}</span>
 	</div>
-	<a class="popup-modal-dismiss" ng-click="closeDonorModal()">Dismiss</a>
 </div>

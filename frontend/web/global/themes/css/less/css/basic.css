@@ -80,6 +80,11 @@
     width: 0%;
   }
 }
+@-moz-keyframes animate-bar {
+  0% {
+    width: 0%;
+  }
+}
 @-webkit-keyframes animate-bar {
   0% {
     width: 0%;
@@ -92,6 +97,14 @@
 }
 /* Fade In */
 @keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
   from {
     opacity: 0;
   }
@@ -276,6 +289,8 @@ header .container {
 }
 /* User */
 .user-bar {
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   /* Social Links */
 }
@@ -376,6 +391,8 @@ header .container {
 /* ------------------------------------------------- */
 .stream-wrap {
   -webkit-transition: linear 0.08s;
+  -moz-transition: linear 0.08s;
+  -ms-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .stream-wrap #stream {
@@ -393,6 +410,8 @@ header .container {
   width: 65%;
   z-index: 10;
   -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -ms-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream #featured .featuredchat {
@@ -412,6 +431,8 @@ header .container {
 .stream-wrap #stream #featured .biggerFeaturedStream {
   width: 100%;
   -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -ms-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream a.togglechat {
@@ -439,6 +460,7 @@ header .container {
   float: left;
   display: inline-block;
   width: 12.5%;
+  width: -webkit-calc(12.5%);
   width: calc(12.5%);
   padding: .5%;
 }
@@ -454,9 +476,10 @@ header .container {
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   filter: gray;
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  filter: grayscale(100%);
   -webkit-transition: linear 0.08s;
+  -moz-transition: linear 0.08s;
+  -ms-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .team-content .team-wrap .team-members .team-member.offline img:hover {
@@ -477,6 +500,8 @@ header .container {
   background: #222225;
   border-radius: 6px;
   background-clip: padding-box;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   z-index: 1001;
 }
@@ -545,6 +570,7 @@ header .container {
 p.description {
   float: left;
   width: 60%;
+  margin: 0;
 }
 .donor-wall {
   float: right;
@@ -646,8 +672,12 @@ p.description {
   padding: 5px 0;
   width: 100%;
   z-index: 9999;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -ms-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
 .slidestats.show {
@@ -678,128 +708,4 @@ p.description {
   top: auto;
   bottom: 0;
   left: 0;
-}
-/* Main */
-body {
-  background-color: #2e2e32;
-}
-/* Header */
-header {
-  background: #222225;
-}
-header .logo a {
-  color: #ffffff;
-}
-header .menu-actions a {
-  color: #ffffff;
-  background: #29292d;
-}
-header .menu-actions a:hover {
-  background: #3a3a40;
-}
-header .menu-actions a:hover:before {
-  border-bottom-color: #3a3a40;
-}
-header .menu-actions a:before {
-  border-bottom-color: #29292d;
-}
-/* Main Stats */
-.stats {
-  background-color: #222225;
-}
-.stats .stats-wrap {
-  /* Campaign Info */
-  /* Numbers */
-  /* Progress Bar */
-}
-.stats .stats-wrap .campaign-info h5 {
-  color: #ffffff;
-}
-.stats .stats-wrap .numbers {
-  background: rgba(14, 15, 17, 0.4);
-}
-.stats .stats-wrap .numbers:before {
-  border-color: transparent transparent rgba(14, 15, 17, 0.4) transparent;
-}
-.stats .stats-wrap .numbers h1,
-.stats .stats-wrap .numbers span {
-  color: #ffffff;
-}
-.stats .stats-wrap .project-progress {
-  background: rgba(14, 15, 17, 0.4);
-}
-/* User Bar */
-.user-bar {
-  background: #222225;
-  /* User Stats */
-  /* Social Links */
-}
-.user-bar .avatar img {
-  background: #222225;
-  border: solid 4px #222225;
-}
-.user-bar .avatar a {
-  color: #ffffff;
-}
-.user-bar .user-details span {
-  color: #53535a;
-}
-.user-bar .user-details-social {
-  background: #29292d;
-}
-.user-bar .user-details-social a.icon-twitter:after,
-.user-bar .user-details-social a.icon-youtube:after,
-.user-bar .user-details-social a.icon-facebook:after {
-  background: #29292d;
-}
-/* Campaign Info */
-.info .info-wrap {
-  overflow: hidden;
-}
-.info .info-wrap span {
-  color: #6b6b75;
-}
-/* Stream */
-.stream-wrap #stream {
-  background: #29292d;
-}
-.stream-wrap #stream a.togglechat {
-  color: #ffffff;
-  background: #29292d;
-}
-.stream-wrap #stream a.togglechat:hover {
-  color: #ffffff;
-}
-.stream-wrap #stream a.togglechat.chatoff {
-  color: #6b6b75;
-}
-/* Multichannel */
-.team-content .team-wrap {
-  background: #29292d;
-}
-/* Footer */
-footer h5 {
-  color: #53535a;
-}
-footer a.logo {
-  color: #53535a;
-}
-footer a.logo:hover {
-  color: #ffffff;
-}
-footer span.copy {
-  color: #47474d;
-}
-footer span.copy a {
-  color: #47474d;
-}
-footer span.copy a:hover {
-  color: #ffffff;
-}
-/* Slide Bar */
-.slidestats {
-  background: #222225;
-}
-.slidestats h5 {
-  color: #ffffff;
 }
