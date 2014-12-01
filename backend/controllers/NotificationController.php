@@ -38,8 +38,11 @@ class NotificationController extends BackendController{
                 $notice->date = (new \DateTime($notice->date))->getTimestamp();
             }
 
-            if ($notice->save()) {
-                $this->redirect('notification/edit?id=' . $notice->id);
+            if ($notice->save())
+            {
+                SystemNotification::updateAll(['status' => 'deleted'], 'id != '.$notice->id);
+
+                $this->redirect('index');
             }
         }
 
