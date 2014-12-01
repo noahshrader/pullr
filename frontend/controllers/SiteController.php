@@ -109,15 +109,7 @@ class SiteController extends FrontendController
         $twitchSDK = \Yii::$app->twitchSDK;
         $token = $twitchSDK->authAccessTokenGet($code);        
         $userInfo = $twitchSDK->authUserGet($token->access_token);
-
-        // <Temp solution for beta test>
-        $whitelist = file('../../whitelist', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        if (isset($userInfo) && !in_array($userInfo->name, array_values($whitelist)))
-        {
-            $this->redirect('site/index');
-            \Yii::$app->end();
-        }
-        // </Temp solution for beta test>
+        
         $isNewUser = false;
 
         if ($userInfo) {
@@ -134,10 +126,6 @@ class SiteController extends FrontendController
                 $user->photo = $userInfo->logo;
                 $user->smallPhoto = $userInfo->logo;
                 $user->save();
-
-                // <Temp solution for beta test>
-                $user->prolong(11.97);
-                // </Temp solution for beta test>
 
                 $user->userFields->twitchChannel = $userInfo->name;
                 $user->userFields->save();
