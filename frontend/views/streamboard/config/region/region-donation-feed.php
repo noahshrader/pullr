@@ -36,6 +36,14 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
                 </label>
             </div>
         </div>
+        <div class="panel-group red">
+            <span class="checkbox">
+                <label ng-class="{on:widget.textShadow}">
+                    <input type="checkbox" ng-model="widget.textShadow" ng-change="regionChanged(region)">
+                    Text Shadow
+                </label>
+            </span>
+        </div>
     </div>
 </div>
 <div class="module scrolling">
