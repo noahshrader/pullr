@@ -44,6 +44,19 @@ header {
 @import "../../../../global/themes/css/less/elements.less";
 @import "elements.less";
 
+/* Common */
+.holder {
+	padding: 1%;
+	.border-radius;
+
+	&.pad {
+		padding: 2.5%;
+	}
+	h4 {
+		margin-bottom: 1em;
+	}
+}
+
 /* Buttons */
 .btn {
 	padding: 0 @halfgutter;
@@ -216,16 +229,60 @@ header {
 		position: absolute;
 		bottom: -26px;
 		right: 0;
+		color: @white;
 		padding: 0 @halfgutter;
 		border-bottom-right-radius: 6px;
 		border-bottom-left-radius: 6px;
+
+		&.chatoff {
+			color: @gray30;
+		}
 	}
 }
 
 
-/* Campaign Description */
-.campaign-description {
-	background: @white;
+/* Description/Donors */
+/* ------------------------------------------------- */
+.campaign-info {
+	padding: 2em 0;
+	
+	.description {
+		float: left;
+		width: 64%;
+
+		p {
+			font-weight: 300;
+			line-height: 1.6em;
+			margin: 0;	
+		}
+	}
+	.donor-wall {
+		float: right;
+		width: 34%;
+
+		.dw-donor {
+			padding: .4em 0;
+			border-bottom: solid 1px @dkgray;
+
+			h5.dw-name {
+				float: left;
+				color: @gray60;
+				font-size: 1.1em;
+				margin: 0;
+			}
+			span.dw-amount {
+				display: inline-block;
+				float: right;
+				color: @gray60;
+			}
+		}
+		a.dw-more {
+			display: inline-block;
+			color: @white;
+			font-size: @smalltext;
+			line-height: 2.8em;
+		}
+	}
 }
 
 

@@ -563,7 +563,7 @@ h3 {
   font-size: 1.8em;
 }
 h4 {
-  font-size: 1.3em;
+  font-size: 1.4em;
 }
 small,
 .font_small {
@@ -575,8 +575,8 @@ ul,
 blockquote,
 pre,
 code {
-  color: #ffffff;
-  font-size: 1em;
+  color: #bababf;
+  font-size: 1.1em;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   line-height: 1.5em;
@@ -701,6 +701,18 @@ a.icon-facebook:hover {
   bottom: 0;
   background: rgba(14, 15, 17, 0.4);
   z-index: 0;
+}
+/* Common */
+.holder {
+  padding: 1%;
+  border-radius: 6px;
+  background-clip: padding-box;
+}
+.holder.pad {
+  padding: 2.5%;
+}
+.holder h4 {
+  margin-bottom: 1em;
 }
 /* Buttons */
 .btn {
@@ -902,13 +914,52 @@ a.icon-facebook:hover {
   position: absolute;
   bottom: -26px;
   right: 0;
+  color: #ffffff;
   padding: 0 15px;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
 }
-/* Campaign Description */
-.campaign-description {
-  background: #ffffff;
+.stream-wrap a.togglechat.chatoff {
+  color: #6b6b75;
+}
+/* Description/Donors */
+/* ------------------------------------------------- */
+.campaign-info {
+  padding: 2em 0;
+}
+.campaign-info .description {
+  float: left;
+  width: 64%;
+}
+.campaign-info .description p {
+  font-weight: 300;
+  line-height: 1.6em;
+  margin: 0;
+}
+.campaign-info .donor-wall {
+  float: right;
+  width: 34%;
+}
+.campaign-info .donor-wall .dw-donor {
+  padding: .4em 0;
+  border-bottom: solid 1px #29292d;
+}
+.campaign-info .donor-wall .dw-donor h5.dw-name {
+  float: left;
+  color: #bababf;
+  font-size: 1.1em;
+  margin: 0;
+}
+.campaign-info .donor-wall .dw-donor span.dw-amount {
+  display: inline-block;
+  float: right;
+  color: #bababf;
+}
+.campaign-info .donor-wall a.dw-more {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 0.9em;
+  line-height: 2.8em;
 }
 /* Footer */
 /* ------------------------------------------------- */

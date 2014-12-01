@@ -175,7 +175,7 @@ blockquote,
 pre,
 code {
   color: #ffffff;
-  font-size: 1em;
+  font-size: 1.1em;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   line-height: 1.5em;
@@ -192,6 +192,18 @@ body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   background-repeat: no-repeat;
   background-size: 100%;
+}
+/* Common */
+.holder {
+  padding: 1%;
+  border-radius: 6px;
+  background-clip: padding-box;
+}
+.holder.pad {
+  padding: 2.5%;
+}
+.holder h4 {
+  margin-bottom: 1em;
 }
 /* Buttons */
 .btn:hover {
@@ -527,11 +539,6 @@ header .container {
   padding: 0 15px;
   margin-bottom: 30px;
 }
-.stream-wrap #stream {
-  padding: 1%;
-  border-radius: 6px;
-  background-clip: padding-box;
-}
 .stream-wrap a.togglechat {
   position: absolute;
   bottom: -26px;
@@ -542,25 +549,37 @@ header .container {
 }
 /* Description/Donors */
 /* ------------------------------------------------- */
-p.description {
+.campaign-info {
+  padding: 2em 0;
+}
+.campaign-info .description {
   float: left;
+  width: 64%;
+}
+.campaign-info .description p {
+  font-weight: 300;
   line-height: 1.6em;
-  width: 60%;
   margin: 0;
 }
-.donor-wall {
+.campaign-info .donor-wall {
   float: right;
-  width: 30%;
+  width: 34%;
 }
-.donor-wall .dw-donor {
+.campaign-info .donor-wall .dw-donor {
   padding: .4em 0;
 }
-.donor-wall .dw-donor h5.dw-name {
+.campaign-info .donor-wall .dw-donor h5.dw-name {
   float: left;
   font-size: 1.1em;
+  margin: 0;
 }
-.donor-wall .dw-donor span.dw-amount {
+.campaign-info .donor-wall .dw-donor span.dw-amount {
   float: right;
+}
+.campaign-info .donor-wall a.dw-more {
+  display: inline-block;
+  font-size: 0.9em;
+  line-height: 2.4em;
 }
 /* Responsive */
 /* ------------------------------------------------- */
@@ -686,6 +705,10 @@ p.description {
 body {
   background-color: #2e2e32;
 }
+/* Common */
+.holder {
+  background: #29292d;
+}
 /* Header */
 header {
   background: #222225;
@@ -763,9 +786,6 @@ header .menu-actions a:before {
   color: #6b6b75;
 }
 /* Stream */
-.stream-wrap #stream {
-  background: #29292d;
-}
 .stream-wrap #stream a.togglechat {
   color: #ffffff;
   background: #29292d;
@@ -776,12 +796,8 @@ header .menu-actions a:before {
 .stream-wrap #stream a.togglechat.chatoff {
   color: #6b6b75;
 }
-/* Multichannel */
-.team-content .team-wrap {
-  background: #29292d;
-}
 /* Description/Donors */
-p.description {
+.description p {
   color: #bababf;
 }
 .donor-wall .dw-donor {

@@ -1,6 +1,6 @@
 <div ng-show='isDataReady'>
     <div class="stream-wrap container" ng-show='isDataReady'>
-        <div id="stream">
+        <div id="stream" class="holder">
             <a class="togglechat icon-chatbubble"></a>
             <div id="featured">
                 <div class="featuredstreamcontainer">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="team-content container">
-        <div class="team-wrap cf">
+        <div class="team-wrap holder cf">
             <div class="team-members" ng-repeat='channel in channels' ng-click='setChannel(channel)'>
                 <div class='team-member' data-name="{{channel.name}}" ng-class='{online : channel.status == "live", offline: channel.status =="offline"}'>
                     <img src='{{channel.image.size300}}' alt='{{channel.display_name}}' />

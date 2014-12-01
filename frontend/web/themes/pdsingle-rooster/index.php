@@ -98,9 +98,15 @@
     <div pullr-campaign-layout></div>
 
     <!-- Description -->
-    <section class="container">
-        <p class="description" ng-cloak>{{campaign.description}}</p>
-        <div class="donor-wall" pullr-donor-list ng-cloak></div>
+    <section class="campaign-info container">
+        <div class="description holder pad">
+            <h4>Campaign Info</h4>
+            <p ng-cloak>{{campaign.description}}</p>
+        </div>
+        <div class="donor-wall holder pad">
+            <h4>Donors</h4>
+            <div pullr-donor-list ng-cloak></div>
+        </div>
     </section>
 
     <!-- Footer -->

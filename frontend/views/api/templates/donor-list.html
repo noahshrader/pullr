@@ -1,6 +1,6 @@
 <div class="dw-widget">
 	<div class="dw-widget-inner">
-		<div ng-repeat="donor in campaign.donors | limitTo: 10" class="dw-donor cf">
+		<div ng-repeat="donor in campaign.donors | limitTo: 6" class="dw-donor cf">
 			<h5 class="dw-name">{{donor.name}}</h5>
 			<span class="dw-amount">${{donor.amount}}</span>
 		</div>

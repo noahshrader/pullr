@@ -3,6 +3,16 @@ body {
 	background-color: @gray75;
 }
 
+/* Common */
+.holder {
+	background: @white;
+	.box-shadow;
+
+	h4 {
+		color: @gray15;
+	}
+}
+
 /* Header */
 header {
 	background: @white;
@@ -119,8 +129,6 @@ header {
 .stream-wrap {
 
 	#stream {
-		background: @white;
-		.box-shadow;
 
 		a.togglechat {
 			color: @gray15;
@@ -136,11 +144,26 @@ header {
 	}
 }
 
-/* Multichannel */
-.team-content {
-	.team-wrap {
-		background: @white;
-		.box-shadow;
+/* Description/Donors */
+.description {
+
+	p {
+		color: @gray30;
+	}
+}
+.donor-wall {
+	.dw-donor {
+		border-bottom: solid 1px @gray75;
+
+		h5.dw-name {
+			color: @gray30;
+		}
+		span.dw-amount {
+			color: @gray30;
+		}
+	}
+	a.dw-more {
+		color: @gray15;
 	}
 }
 

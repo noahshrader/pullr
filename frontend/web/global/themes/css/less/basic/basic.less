@@ -14,6 +14,19 @@ body {
 	background-size: 100%;
 }
 
+/* Common */
+.holder {
+	padding: 1%;
+	.border-radius;
+
+	&.pad {
+		padding: 2.5%;
+	}
+	h4 {
+		margin-bottom: 1em;
+	}
+}
+
 /* Buttons */
 .btn {
 
@@ -230,10 +243,6 @@ header {
 	padding: 0 @halfgutter;
 	margin-bottom: @gutter;
 
-	#stream {
-		padding: 1%;
-		.border-radius;
-	}
 	a.togglechat {
 		position: absolute;
 		bottom: -26px;
@@ -247,29 +256,42 @@ header {
 
 /* Description/Donors */
 /* ------------------------------------------------- */
-p.description {
-	float: left;
-	line-height: 1.6em;
-	width: 60%;
-	margin: 0;
-}
-.donor-wall {
-	float: right;
-	width: 30%;
+.campaign-info {
+	padding: 2em 0;
+	
+	.description {
+		float: left;
+		width: 64%;
 
-	.dw-donor {
-		padding: .4em 0;
-
-		h5.dw-name {
-			float: left;
-			font-size: 1.1em;
+		p {
+			font-weight: 300;
+			line-height: 1.6em;
+			margin: 0;	
 		}
-		span.dw-amount {
-			float: right;
+	}
+	.donor-wall {
+		float: right;
+		width: 34%;
+
+		.dw-donor {
+			padding: .4em 0;
+
+			h5.dw-name {
+				float: left;
+				font-size: 1.1em;
+				margin: 0;
+			}
+			span.dw-amount {
+				float: right;
+			}
+		}
+		a.dw-more {
+			display: inline-block;
+			font-size: @smalltext;
+			line-height: 2.4em;
 		}
 	}
 }
-
 
 /* Responsive */
 /* ------------------------------------------------- */
