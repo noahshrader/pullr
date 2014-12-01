@@ -174,7 +174,6 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', ['$timeout', 'sim
 						
 					});
 
-
 					$timeout(function(){
 						recalculateMarquee();
 					}, 2000);
@@ -182,13 +181,13 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', ['$timeout', 'sim
 					scope.$watch(attrs.duration, function(durationText) {
 						switch (durationText) {
 							case 'Slow':
-								duration = 16000;
+								duration = 32000;
 								break;
 							case 'Normal':
-								duration = 8000;
+								duration = 18000;
 								break;
 							case 'Fast':
-								duration = 1500;
+								duration = 8000;
 								break;
 							default:
 								duration = 16000;

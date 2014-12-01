@@ -78,7 +78,7 @@
             $scope.regionsService = regions;
             $scope.customDonationSound = customDonationSound;        
             $scope.MAX_FONT_SIZE = 72;
-            $scope.MIN_FONT_SIZE = 10;
+            $scope.MIN_FONT_SIZE = 14;
             $scope.MIN_FONT_WEIGHT = 300;
             $scope.MAX_FONT_WEIGHT = 900;
             $scope.hideFooter = false;

@@ -8,13 +8,15 @@ use yii\helpers\Url;
 <div class="settings pane">
     <div class="settings-wrap">
         <div class="campaigns_list module">
-            <div class="form-group">
-                <h5>Campaigns</h5>
-                <div class="checkbox cf" ng-repeat="campaign in campaignsService.campaigns">
-                    <label ng-class="{on:campaign.streamboardSelected}">
-                        <input type="checkbox" ng-model="campaign.streamboardSelected" ng-change="campaignsService.campaignChanged(campaign)">
-                        <span>{{campaign.name}}</span>
-                    </label>
+            <a class="settingtoggle">Campaigns<i class="mdi-navigation-arrow-drop-down"></i></a>
+            <div class="module-settings">
+                <div class="form-group">
+                    <div class="checkbox cf" ng-repeat="campaign in campaignsService.campaigns">
+                        <label ng-class="{on:campaign.streamboardSelected}">
+                            <input type="checkbox" ng-model="campaign.streamboardSelected" ng-change="campaignsService.campaignChanged(campaign)">
+                            <span>{{campaign.name}}</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
