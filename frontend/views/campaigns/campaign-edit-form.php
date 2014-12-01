@@ -25,13 +25,16 @@
         <div class="form-group float">
             <?=$form->field($campaign, 'donationButtonText', ['autoPlaceholder' => false])->label('Donate Button Text')->input('text')->textInput(array('placeholder' => 'What text do you want on your donate button?')); ?>
         </div>
-        <!-- Form Visibility -->
-        <div class="form-group field-campaign-formvisibility">
-            <label>Form Visibility <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Select 'Visible' if you want to show your form. Select 'Hidden' to hide your form."></i></label>
-            
-            <? $keyValues = [ true => 'Visible', false => 'Hidden']; ?>
-            <?= Html::activeDropDownList($campaign, 'formVisibility', $keyValues, ['class' => 'select-block']) ?>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Form Visibility -->
+                <div class="form-group field-campaign-formvisibility">
+                    <label>Form Visibility <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Select 'Visible' if you want to show your form. Select 'Hidden' to hide your form."></i></label>
+                    <?= $form->field($campaign, 'formVisibility', ['autoPlaceholder' => false])->checkbox([], false); ?> 
+                </div>        
+            </div>
         </div>
+        
     </div>
     <div class="module-inner center">
         <h5><i class="icon mdi-action-done-all"></i>Thank You Page</h5>

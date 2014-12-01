@@ -83,7 +83,7 @@ class Streamboard extends Model {
                         ->bindValues(['streamboardToken' => $token])
                         ->queryScalar();
             if ($userId) {
-                $user = User::find($userId)->one();                    
+                $user = User::find()->where(['id' => $userId])->one();                    
                 if ($user == null) {
                     throw new ForbiddenHttpException();
                 }
