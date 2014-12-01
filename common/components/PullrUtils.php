@@ -21,15 +21,25 @@ class PullrUtils extends \yii\base\Component
     }
 
     /**
-     * 
      * @param float $number
      * @param int $decimal
+     * @return string
      */
     public static function formatNumber($number, $decimal=2)
     {
+        if(self::numberAlreadyFormatted($number))
+        {
+            return $number;
+        }
+
         $number = number_format($number, $decimal);
         
-        return ( substr($number, -3)=== '.00') ? substr($number, 0, -3) : $number;
+        return (substr($number, -3) === '.00') ? substr($number, 0, -3) : $number;
+    }
+
+    public static function numberAlreadyFormatted($number)
+    {
+        return strpos($number, ',');
     }
     
     public static function get_timezone_data($timezone_id)
