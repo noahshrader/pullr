@@ -1,11 +1,12 @@
 #modalThemes {
 
 	.select-theme-container {
-		background: @gray75;
+		background-color: @gray75;
+		.background;
 		overflow: hidden;
 		.trans;
 		&:hover {
-			background: @gray72;
+			background-color: @gray72;
 		}
 		a {
 			display: block;
@@ -24,13 +25,37 @@
 	/* Basic */
 	/* ------------------------------------------------- */
 
-	/* Default Theme */
-	[data-id=2] {
-		background-color: @gray10;
-		background-image: url(/images/themes/test.jpg);
+	/* Dark Single Theme */
+	[data-id='2'] {
+		background-image: url(/images/themes/b-dark.jpg);
+	}
+	/* Light Single Theme */
+	[data-id='5'] {
+		background-image: url(/images/themes/b-light.jpg);
+	}
+	/* Dark Team Theme */
+	[data-id='3'] {
+		background-image: url(/images/themes/b-dark.jpg);
+	}
+	/* Light Team Theme */
+	[data-id='6'] {
+		background-image: url(/images/themes/b-light.jpg);
+	}
+	/* Dark Multi Theme */
+	[data-id='1'] {
+		background-image: url(/images/themes/b-dark.jpg);
+	}
+	/* Light Multi Theme */
+	[data-id='4'] {
+		background-image: url(/images/themes/b-light.jpg);
 	}
 
 	/* Pro */
 	/* ------------------------------------------------- */
+
+	/* Rooster Theme */
+	[data-id='8'] {
+		background-image: url(/images/themes/p-rooster.jpg);
+	}
 
 }
