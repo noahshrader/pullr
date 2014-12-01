@@ -238,4 +238,8 @@ $(window).load(function() {
         });
     });
     $('.field-campaign-goalamount .help-block').insertAfter('.field-campaign-goalamount #masked-input');
+
+    $("#w2").on("change", function(){
+        $("a#image-uploaded").click();
+    });
 });
