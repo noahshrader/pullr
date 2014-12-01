@@ -81,7 +81,7 @@ $user = \Yii::$app->user->identity;
                     <div class="close fileinput-remove">
                         <a id="image-uploaded" data-campaignid="<?=$campaign->id;?>"></a>
                     </div>
-                    <img src="<?= $campaign->backgroundImageSmallUrl ?>">
+                    <img src="<?= $campaign->backgroundImageUrl ?>">
                 </div>
                 <?endif;?>
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
