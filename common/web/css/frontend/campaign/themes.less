@@ -1,6 +1,9 @@
 #modalThemes {
 
 	.select-theme-container {
+		position: relative;
+		margin: @halfgutter;
+		height: 260px;
 		background-color: @gray75;
 		.background;
 		overflow: hidden;
@@ -10,8 +13,28 @@
 		}
 		a {
 			display: block;
+			position: absolute;
 			width: 100%;
-			height: 260px;
+			height: 100%;
+
+			span {
+				display: block;
+				position: absolute;
+				top: 260px;
+				color: @white;
+				line-height: 60px;
+				padding: 0 2em;
+				width: 100%;
+				background: @base;
+				.trans;
+			}
+
+			&:hover {
+
+				span {
+					top: 200px;
+				}
+			}
 		}
 		h5 {
 			color: @gray30;
