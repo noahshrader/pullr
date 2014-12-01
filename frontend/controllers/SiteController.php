@@ -109,7 +109,7 @@ class SiteController extends FrontendController
         $twitchSDK = \Yii::$app->twitchSDK;
         $token = $twitchSDK->authAccessTokenGet($code);        
         $userInfo = $twitchSDK->authUserGet($token->access_token);
-        
+
         $isNewUser = false;
 
         if ($userInfo) {
