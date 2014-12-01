@@ -79,14 +79,14 @@ $user = \Yii::$app->user->identity;
                 <? if (!empty($campaign->backgroundImageSmallUrl)):?>
                 <div class="image-upload-preview">
                     <div class="close fileinput-remove">
-                        <a id="image-uploaded" data-campaignid="<?=$campaign->id;?>">×</a>
+                        <a id="image-uploaded" data-campaignid="<?=$campaign->id;?>"></a>
                     </div>
                     <img src="<?= $campaign->backgroundImageSmallUrl ?>">
                 </div>
                 <?endif;?>
                 <div class="form-group user-images <?= $campaign->hasErrors('backgroundImage') ? 'has-error' : '' ?>">
                     <label class="control-label">Campaign Background Image</label>
-                    <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page."></i>
+                    <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Add a background image to your campaign page.<br/><strong>Max file size is 1MB.</strong>"></i>
                     <?=ImageInput::widget(['name' => 'backgroundImage']);?>
                     <? if ($campaign->hasErrors('backgroundImage')): ?>
                         <?= Html::error($campaign, 'backgroundImage', ['class' => 'help-block']); ?>

@@ -47,9 +47,17 @@
 	.input-group {
 		display: block;
 
+		.form-control {
+			height: 46px;
+
+			&:first-child {
+				.border-radius;
+			}
+		}
 		span.kv-caption-icon,
 		.file-caption-name {
-			line-height: 40px;
+			display: block;
+			line-height: 20px;
 			margin: 0;
 		}
 	}
@@ -113,7 +121,8 @@
 		border: 0;
 		box-shadow: none;
 	}
-	.fileinput-remove {
+	.fileinput-remove,
+	.fileinput-remove a {
 		position: absolute;
 		top: @halfgutter;
 		left: @halfgutter;
@@ -125,7 +134,11 @@
 		.trans-opacity;
 		opacity: 0;
 
-		a {
+		&:before,
+		a:before {
+			content: '×';
+		}
+		&:before {
 			position: absolute;
 			top: 50%;
 			color: @white;
