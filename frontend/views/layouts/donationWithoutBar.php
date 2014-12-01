@@ -23,7 +23,7 @@ $campaign = \Yii::$app->controller->campaign;
        <!-- Footer -->
         <footer id="footer">
             <h5>Powered by</h5>
-            <a class="logo icon-pullr" href="http://www.pullr.io" target="_blank"></a>
+            <a class="logo mdib-pullr-logo" href="http://www.pullr.io" target="_blank"></a>
         </footer>
     </body>
 </html>

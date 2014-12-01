@@ -28,7 +28,7 @@ body {
   color: #9f9fa7;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 100%;
-  font-weight: 300;
+  font-weight: 400;
   overflow: hidden;
   -webkit-animation: fadein 0.3s;
   -ms-animation: fadein 0.3s;
@@ -200,10 +200,11 @@ ul {
 /* Padding */
 /* Default spacing between main elements */
 /* Half the gutter spacing */
-/* Streamboard */
 .nowrap {
   white-space: nowrap;
 }
+/* Streamboard */
+/* ------------------------------------------------- */
 /* Lists */
 /* ------------------------------------------------- */
 .ulist {
@@ -2808,7 +2809,7 @@ select {
 textarea,
 textarea.form-control {
   max-width: 100%;
-  min-height: 100px;
+  min-height: 120px;
   resize: none;
 }
 label,
@@ -2916,7 +2917,6 @@ input.color-choice {
 .select2-container .select2-choices {
   color: #6b6b75;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
-  font-size: 16px;
   font-weight: 500;
   background: #efeff0;
   border: 0;
@@ -2933,13 +2933,14 @@ input.color-choice {
   background: #dfdfe2;
 }
 .select2-container .select2-choice {
+  line-height: 45px;
   height: 45px;
   border-radius: 3px !important;
   background-clip: padding-box !important;
 }
 .select2-container .select2-choice > span:first-child,
 .select2-container .select2-choice .select2-search-field input {
-  padding: 11px 15px;
+  padding: 0 15px;
 }
 .select2-container .select2-choice .select2-arrow,
 .select2-container .select2-choice .select2-choice div {
@@ -2984,7 +2985,7 @@ input.color-choice {
   color: #d4d4d8;
   font-family: 'icons';
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
   margin-top: -7px;
   width: 40px;
@@ -3036,7 +3037,7 @@ input.color-choice {
   cursor: pointer;
   width: auto;
   display: block;
-  padding-top: 6px;
+  padding-top: 2px;
   padding-left: 0;
   white-space: normal;
 }
@@ -3080,6 +3081,10 @@ input.color-choice {
 .bootstrap-switch.bootstrap-switch-on {
   border: solid 1px #1dbc9c !important;
 }
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
+  color: #bababf !important;
+}
 .bootstrap-switch span {
   font-size: 0.8em !important;
   font-weight: 500;
@@ -3092,7 +3097,6 @@ input.color-choice {
 /* Combined Forms */
 .combined-form-wrap {
   position: relative;
-  margin-bottom: 30px;
   border-radius: 3px;
   background-clip: padding-box;
   overflow: hidden;
@@ -3130,7 +3134,7 @@ input.color-choice {
 }
 .form-group {
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
   /* Colorpicker */
   /* Errors */
 }
@@ -3140,6 +3144,9 @@ input.color-choice {
 .form-group .form-group {
   padding: 0;
   margin: 0;
+}
+.form-group i.mdi-action-help {
+  color: #bababf;
 }
 .form-group.has-error label {
   color: #e74c3c;
@@ -3190,6 +3197,9 @@ body.campaignflow {
   cursor: not-allowed;
   opacity: .3;
 }
+.center {
+  text-align: center;
+}
 /* Buttons */
 /* ------------------------------------------------- */
 .btn {
@@ -3197,7 +3207,7 @@ body.campaignflow {
   font-size: 1em;
   font-weight: 500;
   outline: 0;
-  padding: .6em 1.2em;
+  padding: .7em 1.4em;
   margin: 0 .1em;
   min-width: 80px;
   border: 0;
@@ -3444,7 +3454,7 @@ ul.panel-nav {
   width: 100%;
   text-align: center;
   background: #2e2e32;
-  z-index: 9999;
+  z-index: 1001;
   overflow: hidden;
 }
 ul.panel-nav li {
@@ -3471,9 +3481,9 @@ ul.panel-nav li a:hover {
 /* ------------------------------------------------- */
 h3.list-title {
   color: #6b6b75;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
-  line-height: 1.1em;
+  line-height: 1.2em;
   margin-bottom: 0;
   -webkit-transition: linear 0.08s;
   transition: linear 0.08s;
@@ -3483,10 +3493,10 @@ p.list-total {
   color: #6b6b75;
   font-size: 13px;
   font-weight: 500;
-  line-height: 1.6em;
+  line-height: 1.5em;
   margin-top: 6px;
   margin-bottom: 0;
-  padding: 0 .8em;
+  padding: 0 .6em;
   background: #424248;
   border-radius: 30px;
   background-clip: padding-box;
@@ -3599,7 +3609,6 @@ span.list-info {
   background-clip: padding-box;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   z-index: 9999;
-  overflow: hidden;
 }
 .modal .modal-dialog .modal-content {
   text-align: left;
@@ -3609,7 +3618,7 @@ span.list-info {
   box-shadow: none;
 }
 .modal .modal-dialog .modal-content .modal-body {
-  padding: 30px 30px 0;
+  padding: 30px 30px 15px;
 }
 .modal .modal-dialog .modal-content .modal-footer {
   text-align: center;
@@ -3652,9 +3661,10 @@ span.list-info {
 /* Themes Modal */
 #modalThemes .modal-dialog {
   text-align: center;
-  max-width: 660px;
+  max-width: 740px;
 }
 #modalThemes .modal-body {
+  padding: 0;
   min-height: 300px;
 }
 /* No Themes */
@@ -4040,6 +4050,11 @@ footer a.logo:hover:before {
 /* ------------------------------------------------- */
 .spinner {
   margin: 30% auto;
+}
+/* Donations Disabled */
+/* ------------------------------------------------- */
+h4.donations-disabled {
+  padding: 4em 0;
 }
 /* Thank You Page */
 /* ------------------------------------------------- */

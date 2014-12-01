@@ -1,8 +1,11 @@
-<!-- BEGIN Donation Form -->
+<?
+use common\models\Campaign;
+?>
 
+<!-- BEGIN Donation Form -->
 <section class="tip-jar">
     <div class="form-wrapper">
-        <p class="info">Donations are currently disabled at this time</a>.</p>
+        <h4 class="info donations-disabled">Donations are currently disabled at this time.</h4>
     </div>
 </section>
 <!-- END Donation Form -->
