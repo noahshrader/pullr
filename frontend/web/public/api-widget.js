@@ -163,6 +163,24 @@ app.directive('pullrCampaignLayout', function($interval, $timeout, CampaignDataS
 	}
 });
 
+app.directive('pullrDonorList', function(CampaignDataService) {
+	return {
+		restrict : 'A',
+		scope : '@',
+		link : function(scope, element, attr) {
+			$('#btnShowDonorList').magnificPopup({
+				type: 'inline',
+				preloader: false,				
+				modal: false
+			});
+			scope.closeDonorModal = function() {
+				$.magnificPopup.close();
+			}
+		},
+		templateUrl: Pullr.API_URL + 'donorlist'
+	}
+});
+
 app.filter('trusted', ['$sce', function ($sce) {
     return function(url) {
         return $sce.trustAsResourceUrl(url);

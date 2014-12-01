@@ -109,6 +109,14 @@ class ApiController extends \yii\web\Controller {
             $campaignArray['charity'] = null;
         }
 
+        $donors = $campaign->getDonations()->all();
+        $campaignArray['donors'] = [];
+        foreach ($donors as $donor) {            
+            $campaignArray['donors'][] = [
+                'name' => $donor->getName(),
+                'amount' => $donor->amount
+            ];
+        }
         return $campaignArray;
     }
 
@@ -215,6 +223,10 @@ class ApiController extends \yii\web\Controller {
 
     public function actionCampaignteamstreamlayout() {
         echo $this->renderFile('@frontend/views/api/templates/campaign/campaignTeamStreamLayout.html');
+    }
+
+    public function actionDonorlist() {
+        echo $this->renderFile('@frontend/views/api/templates/donor-list.html');    
     }
 
     protected function enableCORS(){

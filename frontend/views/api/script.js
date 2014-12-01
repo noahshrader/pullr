@@ -9,6 +9,10 @@ Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.
 Pullr.ANGULAR_LIB_URL = '//code.angularjs.org/snapshot/angular.js';
 Pullr.ANGULAR_APP_URL = Pullr.MAIN_URL + "public/api-widget.js";
 
+Pullr.MAGNIFIC_POPUP_JS = Pullr.MAIN_URL + "js/lib/magnificpopup.js";
+Pullr.MAGNIFIC_POPUP_CSS = Pullr.MAIN_URL + "js/lib/magnificpopup.css";
+Pullr.POPUP_CSS = Pullr.MAIN_URL + 'css/popup.css';
+
 Pullr.LAYOUT_TYPE_SINGLE = "<? echo common\models\Campaign::LAYOUT_TYPE_SINGLE; ?>";
 Pullr.LAYOUT_TYPE_TEAM = "<? echo common\models\Campaign::LAYOUT_TYPE_TEAM; ?>";
 Pullr.LAYOUT_TYPE_MULTI = "<? echo common\models\Campaign::LAYOUT_TYPE_MULTI; ?>";
@@ -21,8 +25,18 @@ Pullr.Init = function (requestParams){
     Pullr.requestParams = requestParams;
     Pullr.__ready = [];
     Pullr.LoadAngularLib();
+    Pullr.LoadMagnificPopup();
     Pullr.Run();
 };
+
+Pullr.LoadMagnificPopup = function() {
+    var script = document.createElement("script");
+    script.type = 'text/javascript';
+    script.src = Pullr.MAGNIFIC_POPUP_JS;
+    document.getElementsByTagName('head')[0].appendChild(script);
+    Pullr.appendCssFile('magnificpopupCss', Pullr.MAGNIFIC_POPUP_CSS);
+    Pullr.appendCssFile('popupCss', Pullr.POPUP_CSS);
+}
 
 
 Pullr.LoadAngularLib = function(){
@@ -65,4 +79,20 @@ Pullr.Run = function(){
 
 function resizeIframe(obj) {
     obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+}
+
+Pullr.appendCssFile = function(id, url) {
+    var $ = document; 
+    var cssId = id; 
+    if (!$.getElementById(cssId))
+    {
+        var head  = $.getElementsByTagName('head')[0];
+        var link  = $.createElement('link');
+        link.id   = cssId;
+        link.rel  = 'stylesheet';
+        link.type = 'text/css';
+        link.href = url;
+        link.media = 'all';
+        head.appendChild(link);
+    }
 }

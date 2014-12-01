@@ -110,6 +110,7 @@
                     <button class="btn btn-primary donate" style="background:{{campaign.primaryColor}}">{{campaign.donationButtonText}}</button>
                     <div class="slant"></div>
                 </div>
+                <div pullr-donor-list></div>
             </div>
             <div class="feed-details">
                 <h4 ng-show='campaign.layoutType == LAYOUT_TYPE_MULTI || campaign.layoutType == LAYOUT_TYPE_SINGLE'>{{selectedChannel.status}}</h4>
@@ -120,6 +121,8 @@
 
     <!-- Layout -->
     <div pullr-campaign-layout></div>
+
+    
 
     <!-- Description -->
     <section class="campaign-description container">
