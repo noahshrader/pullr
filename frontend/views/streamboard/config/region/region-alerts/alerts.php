@@ -35,9 +35,9 @@ use yii\web\View;
 </div>
 <div class="right-side-footer" ng-show=' ! hideFooter' ng-style="{width: streamboardConfig.config.sideBarWidth}">
     <ul class="panel-nav paneltoggle">
-        <li ng-show="widget.includeDonations" class="panel-link"><a data-panel="donations"><i class="mdi-action-loyalty"></i>Donations</a></li>
-        <li ng-show="widget.includeFollowers" class="panel-link"><a data-panel="followers"><i class="mdi-action-favorite"></i>Followers</a></li>
-        <li ng-show="widget.includeSubscribers" class="panel-link"><a data-panel="subscribers"><i class="mdi-action-grade"></i>Subscribers</a></li>
+        <li ng-if="widget.includeDonations" class="panel-link"><a data-panel="donations"><i class="mdi-action-loyalty"></i>Donations</a></li>
+        <li ng-if="widget.includeFollowers" class="panel-link"><a data-panel="followers"><i class="mdi-action-favorite"></i>Followers</a></li>
+        <li ng-if="widget.includeSubscribers" class="panel-link"><a data-panel="subscribers"><i class="mdi-action-grade"></i>Subscribers</a></li>
     </ul>
     <div class="donations_panel slidepanel pane" child-scope>
         <div ng-init="preference = widget.donationsPreference">
