@@ -26,6 +26,5 @@ class m141128_040335_add_textshadow_filed extends Migration
         $this->dropColumn(WidgetCampaignBar::tableName(), self::FIELD);
         $this->dropColumn(WidgetCampaignBarAlerts::tableName(), self::FIELD);
         $this->dropColumn(WidgetTags::tableName(), self::FIELD);
-        return false;
     }
 }

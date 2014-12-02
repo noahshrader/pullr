@@ -15,6 +15,5 @@ class m141201_034549_add_textshadowfield_donationfeedtable extends Migration
     public function down()
     {
         $this->dropColumn(WidgetDonationFeed::tableName(), self::FIELD);
-        return false;
     }
 }

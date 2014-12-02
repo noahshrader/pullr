@@ -26,6 +26,5 @@ class m141126_064024_campaign_custom_sound_table extends Migration
     public function down()
     {
         $this->dropTable(WidgetCampaignBarAlertsCustomsound::tableName());
-        return false;
     }
 }
