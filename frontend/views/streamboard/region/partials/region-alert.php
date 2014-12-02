@@ -1,5 +1,5 @@
 <div ng-show="region.toShow.alert.message && region.toShow.alert.type == preference.preferenceType  && region.widgetType == 'widget_alerts'"
-    class='widget-alerts'
+    class='widget-alerts {{preference.preferenceType}}'
     interaction
     draggable
     draggable-widget="preference" 

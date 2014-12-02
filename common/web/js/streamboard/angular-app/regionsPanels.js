@@ -329,17 +329,19 @@
                             alertMediaManager.playSound(soundFile, fileType, preference.volume);
                             if (preference.animationDirection) {
                                 toShow.animationDirectionArray = preference.animationDirection.split(',');                        
-                                var widget = $('#region-' + region.regionNumber + ' .widget-alerts:eq(0)');
+                                var widget = $('#region-' + region.regionNumber + ' .widget-alerts.' + preference.preferenceType);
                                 widget.off(animationEndEvent);                                
                                 if (toShow.animationDirectionArray.length > 1) {
                                     toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
-
                                 }     
+                                
                                 widget.one(animationEndEvent, function(){
+                                
                                     $interval(function () {
                                         hideAlert(region);
                                     }, preference.animationDuration * 1000, 1);    
                                 });
+                                
                             } else {
                                 $interval(function () {
                                     hideAlert(region);
@@ -373,11 +375,14 @@
                                 if(toShow.animationDirectionArray.length > 1){
                                     toShow.animationDirection = 'animated ' + toShow.animationDirectionArray[0];                            
                                 }    
+                           
                                 widget.one(animationEndEvent, function(){
                                     $interval(function () {
                                         hideAlert(region);
                                     }, alertsModule.animationDuration * 1000, 1);
-                                });
+                                });    
+                           
+                                
                             } else {
                                 $interval(function () {
                                     hideAlert(region);
@@ -406,7 +411,7 @@
     
                         region.toShow.alert.animationDirection = 'animated ' + region.toShow.alert.animationDirectionArray[1];
                         if (region.widgetType == 'widget_alerts') {
-                            $('#region-' + region.regionNumber + ' .widget-alerts:eq(0)').one(animationEndEvent, function(){
+                            $('#region-' + region.regionNumber + ' .widget-alerts.' + region.toShow.alert.preference.preferenceType).one(animationEndEvent, function(){
                                 region.toShow.alert.message = null;    
                                 region.toShow.alert.animationDirectionArray = [];    
                                 region.toShow.alert.background = '';
@@ -420,7 +425,7 @@
                                 region.toShow.alert.message = null;    
                                 region.toShow.alert.animationDirectionArray = [];    
                                 region.toShow.alert.background = '';
-                                $interval(function () {
+                                $interval(function () {                                    
                                     showAlert(region);
                                 }, delay * 1000, 1);       
                             });    
