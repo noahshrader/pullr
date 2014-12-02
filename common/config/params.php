@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'adminEmails' => ['s.klyukin@yandex.ru', 'noahshrader@gmail.com', 'pullr@yandex.com'],
+    'adminEmails' => ['noahshrader@gmail.com', 'mail@orderbynull.me'],
     'mailFrom' => 'noreply@flaper.info',
     'baseUrl' => 'http://pullr.io',
     'user.passwordResetTokenExpire' => 3600,
@@ -10,7 +10,7 @@ return [
     'monthSubscription' => 3.99,
     'yearSubscription' => 48,
     'maxCampaignsBasic' => 2,
-    'maxCampaignsPro' => 6,
+    'maxCampaignsPro' => 9999,
     /*use that link to add/change your application
     * "http://www.twitch.tv/settings/connections"
      */
