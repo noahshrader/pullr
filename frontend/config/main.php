@@ -25,6 +25,12 @@ return [
                 'api/<action>' => 'api/<action>',
                 'donationapi/<action>' => 'campaignapi/<action>',
                 'DonationApi/<action>' => 'campaignapi/<action>',
+
+                'u/<userAlias>/<campaignAlias>' => 'layoutview/view',
+                'u/<userAlias>/<campaignAlias>/donate' => 'layoutview/donate',
+                'u/<userAlias>/<campaignAlias>/json' => 'layoutview/json',
+                'u/<userAlias>/<campaignAlias>/thankyou' => 'layoutview/thankyou',
+
                 '<userAlias>/<campaignAlias>' => 'layoutview/view',
                 '<userAlias>/<campaignAlias>/donate' => 'layoutview/donate',
                 '<userAlias>/<campaignAlias>/json' => 'layoutview/json',
