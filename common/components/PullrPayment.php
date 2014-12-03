@@ -73,10 +73,9 @@ class PullrPayment extends \yii\base\Component
         }
         return $params;
     }
-    
+
     /**
-     * Returns donation percent depending on user plan
-     * The same percent used for guest and Basic plan users
+     * Returns donation percent depending on campaign owner plan
      *
      * @param Donation $donation
      * @return float
