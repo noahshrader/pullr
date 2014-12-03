@@ -119,24 +119,12 @@ class StreamboardController extends FrontendController
     /**return new events (donations/followers/subscribers)
      * sorting is "date ASC" for array
     */
-    public function actionGet_stream_data(){
+    public function actionGet_stream_data() {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $user = Streamboard::getCurrentUser();
         $streamboardConfig = $user->streamboardConfig;
-        $time = time();
-        /*we really query additional 5 seconds in case you open two streamboards or some other reason*/
-
-//
-//        die('[{"id":976,
-//         "type":"subscribers",
-//         "message":"George  donated $524 to Fun For Freedom!",
-//         "subscription":{"id":13,
-//                     "campaignId":1,
-//                     "display_name":"asd"
-//                     },
-//         "date":1417148239}]');
-//        die();
+        $time = $streamboardConfig->streamRequestLastDate;
 
         $sinceTime = $time - 60;
 
