@@ -61,6 +61,12 @@ endif;
 						?>
 						<label>Timezone: <span id="timezone"><?= $user->timezone;?></span></label>
 						<?= $form->field($user, 'timezone', ['template'=>'{input}'])->dropDownList($keyValues, ['class' => 'select-block', 'data-size' => '10']); ?>
+
+                        <?php
+                            $thems = array('light' => 'Light', 'dark' => 'Dark');
+                        ?>
+                        <label>Theme</label>
+                        <?= $form->field($user, 'colorTheme', ['template'=>'{input}'])->dropDownList($thems, ['class' => 'select-block', 'data-size' => '10']); ?>
 					</div>
 				</div>
 				<div class="dashboard-notifications module">

@@ -16,13 +16,17 @@ $js = 'Pullr.baseUrl = "'.Url::to('app').'";';
 $js .= 'Pullr.setCurrentMenuActive();';
 $js .= 'Pullr.Streamboard = '.json_encode($streamboardConfig->toArray(['streamboardWidth', 'streamboardHeight', 'streamboardLeft', 'streamboardTop'])).';';
 $this->registerJs($js);
+
+$user = Yii::$app->user->identity;
+$user->setScenario('settings');
+$colorTheme = $user->colorTheme == ""?"light":$user->colorTheme;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <?= $this->render('baseHead') ?>
     <!-- BEGIN body -->
-    <body>
+    <body class="<?php echo $colorTheme; ?>">
         <?php $this->beginBody() ?>
         
         <div class="main-wrapper large-menu-toggled">
