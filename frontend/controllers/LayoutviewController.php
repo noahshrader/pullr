@@ -9,7 +9,6 @@ use common\models\Donation;
 use common\components\PullrPayment;
 use common\components\FirstGivingPayment;
 use common\components\PullrUtils;
-use yii\web\Request;
 use yii\helpers\Url;
 
 /**
@@ -112,9 +111,8 @@ class LayoutviewController extends \yii\web\Controller {
 
         if ($donation->load($_REQUEST) && $donation->save())
         {
-            if ($firstGiving = $campaign->firstGiving) 
+            if ($campaign->isFirstGiving())
             {
-                
                 $_SESSION['Donation'] = [
                         'nameFromForm' => $donation->nameFromForm == Donation::ANONYMOUS_NAME ? '' : $donation->nameFromForm,
                         'email' => $donation->email,
@@ -126,7 +124,7 @@ class LayoutviewController extends \yii\web\Controller {
                 $thankYouPage = \Yii::$app->request->hostInfo . '/' .  $userAlias.'/'.$campaignAlias.'/thankyou';
                 $firstGivingPayment->setConfig(array_merge(\Yii::$app->params['firstGiving'], ['pb_success' => $thankYouPage, 'buttonText' => 'Donate']));
                 $firstGivingPayment->setDonation($donation);
-                $firstGivingPayment->setFirstGiving($firstGiving);
+                $firstGivingPayment->setFirstGiving($campaign->firstGiving);
 
                 $formUrl = $firstGivingPayment->donationPayment();
 
@@ -147,7 +145,8 @@ class LayoutviewController extends \yii\web\Controller {
             }
         }
 
-        if ($campaign->firstGiving) {
+        if ($campaign->isFirstGiving())
+        {
             if (isset($_SESSION['Donation']))
             {
                 $donation->load($_SESSION);

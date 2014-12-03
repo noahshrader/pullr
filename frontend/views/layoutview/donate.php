@@ -30,8 +30,10 @@ use yii\widgets\MaskedInput;
             <? endif ?>
         <? endif; ?>
     </div>
-    <?php $form = ActiveForm::begin($campaign->firstGiving ? [] : ['options' => ['target' => '_blank']]) ?>
+
+    <?php $form = ActiveForm::begin($campaign->isFirstGiving() ? [] : ['options' => ['target' => '_blank']]) ?>
         <div class="form-wrapper">
+
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
                 <!-- Amount Selections -->
                 <div id="donation-amount" class="cf">
@@ -115,7 +117,7 @@ use yii\widgets\MaskedInput;
                 <span class="counter"></span>
             </div>
             <? endif;?>
-            <button type="submit" class="btn-primary btn donate <? if($campaign->firstGiving):?>continue<? endif;?>" data-dtext="<?=htmlspecialchars(strip_tags(trim($campaign->donationButtonText)), ENT_QUOTES, 'UTF-8');?>">
+            <button type="submit" class="btn-primary btn donate <? if($campaign->isFirstGiving()):?>continue<? endif;?>" data-dtext="<?=htmlspecialchars(strip_tags(trim($campaign->donationButtonText)), ENT_QUOTES, 'UTF-8');?>">
                 Donate $<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 1 : 5 ?>
             </button>
             <p class="info">By submitting, I acknowledge that I have read the <a href="http://pullr.io/privacy" target="_blank">Privacy Policy</a> and <a href="http://pullr.io/terms-of-service" target="_blank">Terms of Service</a>.</p>

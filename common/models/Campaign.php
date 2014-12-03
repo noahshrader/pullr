@@ -423,4 +423,14 @@ class Campaign extends ActiveRecord {
         }
         return false;
     }
+
+    /**
+     * Checks if campaign is FirstGiving
+     *
+     * @return bool
+     */
+    public function isFirstGiving()
+    {
+        return ($this->donationDestination == self::DONATION_PARTNERED_CHARITIES) && ($this->type == self::TYPE_CHARITY_FUNDRAISER);
+    }
 }
