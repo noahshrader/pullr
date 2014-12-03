@@ -98,6 +98,10 @@ class StreamboardController extends FrontendController
         if (!$user) {
             throw new ForbiddenHttpException();
         }
+        
+        $user->streamboardConfig->streamRequestLastDate = time();
+        $user->streamboardConfig->save();
+
         $regions = StreamboardRegion::GetRegions($user);
         $region = isset($regions[$regionNumber - 1]) ? $regions[$regionNumber - 1] : [];
         $region = $region->toArray();
