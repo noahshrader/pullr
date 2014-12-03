@@ -47,7 +47,7 @@ $user = \Yii::$app->user->identity;
         </div>
         <div class="form-group theme-selection cf">
             <button type="button" class="btn btn-default" onclick="layoutChooseTheme()">Select a theme</button>
-            <div class='selected-theme theme-name <? if (!$campaign->themeId) { echo 'hidden';} ?>'>
+            <div class='selected-theme theme-name'>
                 <label>Current Theme:</label>
                 <span><?= $campaign->theme?$campaign->theme->name:''?></span>
             </div>

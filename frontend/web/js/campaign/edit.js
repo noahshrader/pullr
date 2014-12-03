@@ -242,4 +242,5 @@ $(window).load(function() {
     $("#w2").on("change", function(){
         $("a#image-uploaded").click();
     });
+    getDefaultTheme();
 });
