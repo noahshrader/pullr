@@ -24,7 +24,7 @@ use yii\web\View;
                         ng-repeat="donation in donationsService.donations | orderBy: amount | donationsFilterToSelectedCampaigns "
                         class="commaAfter">
                     <span>
-                        &nbsp;{{donation.name}} (${{number_format(donation.amount)}})<!--removing space for .commaAfter
+                        &nbsp;{{donation.name}} (${{number_format(donation.amount,2)}})<!--removing space for .commaAfter
                     --></span>
                     </span>
                     
@@ -52,7 +52,7 @@ use yii\web\View;
                 <span ng-if='streamService.groupUser'>
                     <span ng-repeat="groupDonation in donationsService.groupDonations"
                         class="commaAfter">
-                        <span ng-repeat='donation in groupDonation.items' class="commaAfter" > {{donation.name}}</span> (${{number_format(groupDonation.amount)}})
+                        <span ng-repeat='donation in groupDonation.items' class="commaAfter" > {{donation.name}}</span> (${{number_format(groupDonation.amount,2)}})
                     </span>
 
                     <span
@@ -90,7 +90,7 @@ use yii\web\View;
             <div>Top Donor: <span>{{stats.top_donors[0].name}}</span></div>
             <div>Top Donor/Amount: <span id='top_donor'>{{stats.top_donors[0].name}} (${{stats.top_donors[0].amount}})</span></div>
             <div>Top 3 Donors:<br>
-                <span ng-repeat="donor in stats.top_donors">{{donor.name}} (${{number_format(donor.amount)}})<br></span>
+                <span ng-repeat="donor in stats.top_donors">{{donor.name}} (${{number_format(donor.amount,2)}})<br></span>
             </div>
         </div>
     </div>

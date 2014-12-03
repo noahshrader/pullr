@@ -92,11 +92,11 @@ function amountChangedEvent() {
     else{
         if((typeof btnDonate.data('dtext') != 'undefined') && (btnDonate.data('dtext').length > 0))
         {
-            btnDonate.text(btnDonate.data('dtext') + ' $' + number_format(value));
+            btnDonate.text(btnDonate.data('dtext') + ' $' + number_format(value,2));
         }
         else
         {
-            btnDonate.text('Donate $' + number_format(value));
+            btnDonate.text('Donate $' + number_format(value,2));
         }
     }
 
@@ -107,7 +107,7 @@ function amountChangedEvent() {
         var amountRaised = parseInt($progressContainer.data('amountraised'));
         var goalAmount = parseInt($progressContainer.data('goalamount'));
         amountRaised += value;
-        $progressContainer.find('.amountRaised').text('$' + number_format(amountRaised));
+        $progressContainer.find('.amountRaised').text('$' + number_format(amountRaised,2));
         /*preventing division by zero*/
         goalAmount = Math.max(1, goalAmount);
         var percent = 100 * amountRaised / goalAmount;

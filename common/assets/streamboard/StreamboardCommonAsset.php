@@ -20,7 +20,7 @@ class StreamboardCommonAsset extends AssetBundle
     public $js = [
         '//code.jquery.com/ui/1.10.4/jquery-ui.js',
         'bower_components/angular/angular.js',
-        'bower_components/angular-touch/angular-touch.min.js',
+        'bower_components/angular-touch/angular-touch.min.js'
     ];
     public $depends = [
     ];

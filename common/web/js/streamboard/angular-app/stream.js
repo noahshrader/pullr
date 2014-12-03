@@ -96,7 +96,7 @@
                 
                 var values =  {
                     DonorName: data['[[DonorName]]'],
-                    DonorAmount: number_format(data['[[DonorAmount]]']),
+                    DonorAmount: number_format(data['[[DonorAmount]]'],2),
                     CampaignName:data['[[CampaignName]]'],
                     FollowerName:data['[[FollowerName]]'],
                     SubscriberName:data['[[SubscriberName]]']

@@ -30,7 +30,7 @@ use frontend\models\streamboard\StreamboardRegion;
                         ng-repeat="donation in donationsService.donations | orderBy: amount | donationsFilterToSelectedCampaigns "
                         class="commaAfter">
                     <span>
-                        &nbsp;{{donation.name}} (${{number_format(donation.amount)}})<!--removing space for .commaAfter
+                        &nbsp;{{donation.name}} (${{number_format(donation.amount,2)}})<!--removing space for .commaAfter
                     --></span>
                     </span>
                     
@@ -58,7 +58,7 @@ use frontend\models\streamboard\StreamboardRegion;
                 <span ng-if='streamService.groupUser'>
                     <span ng-repeat="groupDonation in donationsService.groupDonations"
                         class="commaAfter grouped">
-                        <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount)}})
+                        <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount,2)}})
                     </span>
 
                     <span
