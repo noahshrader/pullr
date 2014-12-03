@@ -73,17 +73,18 @@ class PullrPayment extends \yii\base\Component
         }
         return $params;
     }
-
+    
     /**
      * Returns donation percent depending on user plan
      * The same percent used for guest and Basic plan users
      *
+     * @param Donation $donation
      * @return float
      */
-    private function calculatePercent()
+    private function calculatePercent(Donation $donation)
     {
         $percent = 0.02;
-        if (!\Yii::$app->user->isGuest && (\Yii::$app->user->identity->getPlan() == Plan::PLAN_PRO))
+        if ($donation->campaign->user->getPlan() == Plan::PLAN_PRO)
         {
             $percent = 0.01;
         }
@@ -99,7 +100,7 @@ class PullrPayment extends \yii\base\Component
      */
     private function prepareFeeReceiver(Donation $donation)
     {
-        $feeReceiver = new \Receiver(round($donation->amount * $this->calculatePercent(), 2));
+        $feeReceiver = new \Receiver(round($donation->amount * $this->calculatePercent($donation), 2));
         $feeReceiver->email = \Yii::$app->params['payPalDonationFeeReceiver'];
 
         return $feeReceiver;
