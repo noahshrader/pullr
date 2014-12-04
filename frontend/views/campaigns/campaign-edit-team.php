@@ -24,7 +24,7 @@ $firstGiving = $campaign->getFirstGiving();
 <div id="campaign-edit-team">
     <div class="center module-inner">
         <h5><i class="icon mdi-social-group"></i>Team Fundraising</h5>
-        <p class="team-notice">Team fundraising is only available for charity fundraisers.</p>
+        <p class="team-notice">Team fundraising is currently only available for charity fundraisers.</p>
         <? if (\Yii::$app->user->identity->getPlan()==Plan::PLAN_PRO): ?>
         <div class="form-group" id="teamQuestion">
             <label>Enable Team Fundraising <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Turn on to allow other Pullr users to join and contribute to this campaign."></i></label>

@@ -47,13 +47,15 @@ button {
 	cursor: pointer;
 }
 
-a, a:hover {
-	text-decoration: none;
+a,
+a:hover,
+a:active,
+a:visited {
+	text-decoration: none !important;
 }
 
 a {
 	color: @accent;
-	text-decoration: none;
 	&:hover {
 		color: @accenthover;
 	}

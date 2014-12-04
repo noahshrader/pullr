@@ -15,8 +15,8 @@ use common\models\Plan;
         <ul>
             <li>Team Fundraising</li>
             <li>2 Region Streamboard</li>
-            <li>Up to 8 Active Campaigns</li>
-            <li>0.5% Transaction Fee</li>
+            <li>Unlimited Campaigns</li>
+            <li>1% Transaction Fee</li>
             <li>and more!</li>
         </ul>
         <div class="account-action">

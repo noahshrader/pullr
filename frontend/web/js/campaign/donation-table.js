@@ -44,15 +44,13 @@ $(function(){
     addDonationButton.prependTo($wrapper.find('.campaign-table .table-header'));
 
     var csvImportButton = $('<a>').addClass('btn btn-default btn-sm').html('<i class="icon mdi-file-file-upload"></i> Import');
-    csvImportButton.prependTo($wrapper.find('.table-footer'));
+    csvImportButton.prependTo($wrapper.find('.campaign-table .table-footer'));
 
-    csvImportButton.click(function ()
-    {
+    csvImportButton.click(function () {
         $("#csv-upload").click();
     });
 
-    $("#csv-upload").on('change', function ()
-    {
+    $("#csv-upload").on('change', function () {
         $(this).parent("form").submit();
     });
 

@@ -3236,7 +3236,6 @@ body.campaignflow {
 .btn-primary {
   color: #ffffff;
   background-color: #1dbc9c;
-  box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.2);
 }
 .btn-primary:hover {
   background-color: #1aaa8d;
@@ -3262,7 +3261,6 @@ body.campaignflow {
   line-height: 33px;
   padding: 0 1.2em;
   line-height: 34px;
-  box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.2);
 }
 .btn-sm:focus {
   color: #ffffff;
@@ -3277,7 +3275,6 @@ body.campaignflow {
   height: 28px;
   width: 28px;
   min-width: 0;
-  box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.2);
   border-radius: 30px;
   background-clip: padding-box;
 }
