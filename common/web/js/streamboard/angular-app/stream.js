@@ -54,43 +54,44 @@
             this.getActivityFeedSetting();
 
 
-            this.getMessage = function(type, data, region){
+            this.getMessage = function(type, data, region) {
                 data = angular.extend({'[[DonorName]]':'', '[[DonorAmount]]':'', '[[CampaignName]]':'', '[[FollowerName]]':'', '[[SubscriberName]]':''}, data);
                 var message = "";
                 var highlightColor = '';
-                if(region.widgetType == "widget_campaign_bar"){
-                    if(type == 'donations'){
+                if (region.widgetType == "widget_campaign_bar") {
+                    if (type == 'donations') {
                         message = region.widgetCampaignBar.alertsModule.donationText||defaultMessage.donations;
                     }
-                    if(type == 'followers'){
+                    if (type == 'followers') {
                         message = region.widgetCampaignBar.alertsModule.followerText||defaultMessage.followers;
                     }
-                    if(type == 'subscribers'){
+                    if (type == 'subscribers') {
                         message = region.widgetCampaignBar.alertsModule.subscriberText||defaultMessage.subscribers;
                     }
                     
                     highlightColor = region.widgetCampaignBar.alertsModule.highlightColor;
-                }else{
-                    if(type == 'donations'){
+                } else {
+                    if (type == 'donations') {
                         message = region.widgetAlerts.donationsPreference.alertText||defaultMessage.donations;
                         highlightColor = region.widgetAlerts.donationsPreference.highlightColor;
                     }
-                    if(type == 'followers'){
+                    if (type == 'followers') {
                         message = region.widgetAlerts.followersPreference.alertText||defaultMessage.followers;
                         highlightColor = region.widgetAlerts.followersPreference.highlightColor;
                     }
-                    if(type == 'subscribers'){
+                    if (type == 'subscribers') {
                         message = region.widgetAlerts.subscribersPreference.alertText||defaultMessage.subscribers;
                         highlightColor = region.widgetAlerts.subscribersPreference.highlightColor;
                     }
                 }
                 
-                if(highlightColor !== '') {
-                    message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
-                    //private change for "$" amount
-                    if(type === 'donations'  && region.widgetAlerts.donationsPreference.alertText == '') {
-                        message = message.replace('$', '').replace('[[DonorAmount]]', '$[[DonorAmount]]');
-                    }
+                if (highlightColor !== '') {
+                    message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');                                    
+                }
+
+                //private change for "$" amount
+                if (type === 'donations') {
+                    message = message.replace('$', '').replace('[[DonorAmount]]', '$[[DonorAmount]]');
                 }
                 message = message.replace(/\[\[/gi,'{{').replace(/\]\]/gi,'}}');
                 
