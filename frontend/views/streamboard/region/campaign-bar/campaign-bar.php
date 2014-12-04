@@ -3,7 +3,7 @@ use frontend\models\streamboard\StreamboardRegion;
 use frontend\models\streamboard\WidgetCampaignBar;
 ?>
 
-<div id="campaign-bar" class="resize drag" ng-show="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'"
+<div id="campaign-bar" class="resize drag campaign-conatiner" ng-show="region.widgetType == '<?= StreamboardRegion::WIDGET_CAMPAIGN_BAR ?>'"
      region="region"
      background='{{region.widgetCampaignBar.background}}'
      ng-style="{'color': region.widgetCampaignBar.fontColor, 'font-size': region.widgetCampaignBar.fontSize, 'font-family': region.widgetCampaignBar.fontStyle, 'font-weight': region.widgetCampaignBar.fontWeight, 'background-color': region.widgetCampaignBar.backgroundColor,'background-image': getCampaignBackgroundStyle(region.widgetCampaignBar.background)}"
@@ -36,35 +36,53 @@ use frontend\models\streamboard\WidgetCampaignBar;
          ng-init="alertsModule = region.widgetCampaignBar.alertsModule"         
          class="bar-alert"          
          ng-class='region.toShow.alert.animationDirection'
-         ng-style='{"background-image":getCampaignBackgroundStyle(region.toShow.alert.background),"background-size":"cover","text-align":"center","height":"100%","width":"100%"}'         
+         ng-style='{"background-image":getCampaignBackgroundStyle(region.toShow.alert.background),"background-size":"cover","text-align":"center","height":"100%","width":"100%"}'
          >
 
-        <div ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'font-weight': alertsModule.fontWeight, 'background-color': alertsModule.backgroundColor}" class="bar-alert-wrap">
-                <span draggable-widget="region.widgetCampaignBar.alertsModule" 
+<!--        <div  class="bar-alert-wrap">-->
+                <div draggable-widget="region.widgetCampaignBar.alertsModule"
                  interaction
                  draggable
-                 draggable-region="region" 
-                 draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
+                 draggable-region="region"
+                 draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"
                  draggable-config="{containment: getCampaignBarSelector(region)}"
                  ng-class="{fontUppercase: region.widgetCampaignBar.alertsModule.fontUppercase, textShadow: region.widgetCampaignBar.alertsModule.textShadow}"
-                 ng-bind-html="formatMsgHtml(region.toShow.alert.message)"></span>
-        </div>
+                 ng-style="{'color': alertsModule.fontColor, 'font-size': alertsModule.fontSize, 'font-family': alertsModule.fontStyle, 'font-weight': alertsModule.fontWeight, 'background-color': alertsModule.backgroundColor, 'text-align': alertsModule.textAlignment}"
+                 class="resize"
+                 resizable
+                 resizable-config="{minWidth:60, minHeight:60, containment:'.bar-alert'}"
+                 resizable-callback="onResizeCampaignBarAlert"
+                 resizable-region="region"
+                 resizable-size="{width:region.widgetCampaignBar.alertsModule.messageWidth, height: region.widgetCampaignBar.alertsModule.messageHeight}"
+                 >
+                    <span ng-bind-html="formatMsgHtml(region.toShow.alert.message)">
+                    </span>
+                 </div>
+<!--        </div>-->
 
     </div>
     <!-- Messages -->
     <div ng-if="region.widgetCampaignBar.messagesEnable" 
-         class='campaign-rotating-message'
+         class='campaign-rotating-message resize'
          ng-show='region.toShow.alert.message == null'
          interaction
          draggable-widget="region.widgetCampaignBar.messagesModule" 
          draggable-region="region" 
          draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
          draggable-config="{containment:'parent'}"
-         draggable>
-        <div rotating-messages 
+         draggable
+         resizable
+         resizable-config="{minWidth:60, minHeight:60, containment:'.campaign-conatiner'}"
+         resizable-callback="onResizeCampaignBarMessage"
+         resizable-region="region"
+         resizable-size="{width:region.widgetCampaignBar.messagesModule.messageWidth, height: region.widgetCampaignBar.messagesModule.messageHeight}"
+
+        >
+        <div rotating-messages
              messages-module="region.widgetCampaignBar.messagesModule"
              rotation-speed="region.widgetCampaignBar.messagesModule.rotationSpeed"
              ng-class='{fontUppercase: region.widgetCampaignBar.fontUppercase, textShadow: region.widgetCampaignBar.textShadow}'
+             style="width:100%;"
              ></div>
     </div>
     <!-- Timers -->

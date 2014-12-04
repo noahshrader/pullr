@@ -61,6 +61,14 @@ $animationStyleList = WidgetAlertsPreference::$ANIMATION_STYLE;
             <slider ng-model="module.fontWeight" floor="{{MIN_FONT_WEIGHT}}" ceiling="{{MAX_FONT_WEIGHT}}" step="100"
                     ng-change="regionChanged(region)"></slider>
         </div>
+        <div class="panel-group">
+            <h5>Text Alignment</h5>
+            <div class="btn-group align">
+                <label ng-model="module.textAlignment" btn-radio="'left'" ng-click="changeAlertTextAlignment('left', module, region)"><i class="mdi-editor-format-align-left"></i></label>
+                <label ng-model="module.textAlignment" btn-radio="'center'" ng-click="changeAlertTextAlignment('center', module, region)"><i class="mdi-editor-format-align-center"></i></label>
+                <label ng-model="module.textAlignment" btn-radio="'right'" ng-click="changeAlertTextAlignment('right', module, region)"><i class="mdi-editor-format-align-right"></i></label>
+            </div>
+        </div>
         <div class="panel-group red">
             <div class="checkbox">
                 <label ng-class="{on:module.fontUppercase}">

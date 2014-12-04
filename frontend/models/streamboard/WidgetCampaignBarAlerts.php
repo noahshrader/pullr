@@ -27,7 +27,7 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
         return [
             'default' => ['includeFollowers', 'includeSubscribers', 'includeDonations', 'followerText', 'subscriberText', 'donationText', 'fontStyle', 'fontSize',
                 'fontColor', 'highlightColor', 'backgroundColor', 'animationDirection', 'animationDuration', 'animationDelay', 
-                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume', 'fontUppercase', 'textShadow']
+                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume', 'fontUppercase', 'textShadow','messageWidth','messageHeight','textAlignment']
         ];
     }
 
@@ -35,7 +35,7 @@ class WidgetCampaignBarAlerts extends ActiveRecord {
     {
         return ['userId','regionNumber','preferenceType','includeFollowers', 'includeSubscribers', 'includeDonations', 'followerText', 'subscriberText', 'donationText', 'fontStyle', 'fontSize',
                 'fontColor', 'highlightColor','backgroundColor','textShadow',  'animationDirection', 'animationDuration', 'animationDelay',
-                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume', 'fontUppercase','donationCustomsound'];
+                'positionX', 'positionY', 'background', 'sound', 'soundType', 'volume', 'fontUppercase','messageWidth','messageHeight','textAlignment','donationCustomsound'];
     }
 
     public function getDonationCustomsound(){
