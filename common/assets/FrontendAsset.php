@@ -13,7 +13,6 @@ class FrontendAsset extends AssetBundle {
 	];
 	public $js = [
 		'plugins/bootstrapSwitch/js/bootstrap-switch.min.js',
-		'plugins/pace/pace.min.js',
 		'plugins/datatables/jquery.dataTables.js',
 		'plugins/datatables/DT_bootstrap.js',
 		'plugins/bootstrapExtend/js/bootstrap-colorpicker.js',
