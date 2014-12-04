@@ -298,7 +298,7 @@ class CampaignsController extends FrontendController {
                     'campaign' => $campaign,
                 ]);
 
-                Mail::sendMail($user->email, 'You was invited to fundraiser "'.$campaign->name.'"', $content, 'fundraiserInvite');
+                Mail::sendMail($user->email, 'You were invited to a fundraiser: "'.$campaign->name.'"', $content, 'fundraiserInvite');
             }
 
             return 1;
