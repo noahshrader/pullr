@@ -31,14 +31,13 @@ body {
 	margin: 0 auto;
 	padding: 3em 7.5% 1em;
 	width: 100%;
-	max-width: 660px;
 
 	.form-group {
 
 		input[type="text"],
-		textarea,
-		select {
+		textarea {
 			font-size: @inputtextsize;
+			padding: 1em;
 			width: 100%;
 			max-width: 100%;
 		}
@@ -57,7 +56,7 @@ body {
 	font-size: 1.4em;
 	font-weight: 700;
 	margin: .3em auto .6em;
-	padding: .6em 2em;
+	padding: .8em 2em;
 	height: auto;
 }
 a.close {
@@ -207,42 +206,19 @@ h3.charity-name {
 }
 
 
-/* Footer */
-/* ------------------------------------------------- */
-footer {
-	text-align: center;
-	padding-bottom: 3em;
-
-	h5 {
-		color: @gray70;
-		font-size: .6em;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		margin-bottom: .2em;
-	}
-	a.logo {
-		&:before {
-			color: @gray70;
-			font-size: 2em;
-		}
-		&:hover:before {
-			color: @gray20;
-		}
-	}
-}
-
-
 /* Personal Donation Form */
 /* ------------------------------------------------- */
 .tip-jar {
 	text-align: center;
 
+	.form-wrapper {
+		max-width: 580px;
+	}
+
 	/* Donation Input */
 	.donation-amount {
-		input {
+		input[type="text"] {
 			padding: 1em 3.2em 1em 2em;
-			text-indent: 25px;
 		}
 		span {
 			position: absolute;
@@ -263,6 +239,10 @@ footer {
 /* ------------------------------------------------- */
 .events-form {
 	text-align: center;
+
+	.form-wrapper {
+		max-width: 640px;
+	}
 
 	/* Amount Selections */
 	#donation-amount {
@@ -377,6 +357,32 @@ footer {
 /* ------------------------------------------------- */
 #fg-form {
 	height: 1000px;
+}
+
+
+/* Footer */
+/* ------------------------------------------------- */
+footer {
+	text-align: center;
+	padding-bottom: 3em;
+
+	h5 {
+		color: @gray70;
+		font-size: .6em;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		margin-bottom: .2em;
+	}
+	a.logo {
+		&:before {
+			color: @gray70;
+			font-size: 2em;
+		}
+		&:hover:before {
+			color: @gray20;
+		}
+	}
 }
 
 
