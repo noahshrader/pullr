@@ -109,7 +109,7 @@ class Donation extends ActiveRecord
      */
     public function getName($realNames = true){
         if ($this->firstName || $this->lastName){
-            return $this->lastName.' '.$this->firstName;
+            return $this->firstName.' '.$this->lastName;
         } else {
             return $this->nameFromForm ? $this->nameFromForm : self::ANONYMOUS_NAME;
         }
