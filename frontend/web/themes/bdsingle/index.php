@@ -125,7 +125,7 @@
 	<section class="campaign-info container">
 		<div class="description holder pad">
 			<h4>Campaign Info</h4>
-			<p ng-cloak>{{campaign.description}}</p>
+			<p ng-cloak ng-bind-html="to_trusted(campaign.description)"></p>
 		</div>
 		<div class="donor-wall holder pad">
 			<h4>Donors</h4>
@@ -140,9 +140,11 @@
 		<span class="copy"> &copy; <? print(Date("Y")); ?> Pullr, LLC. All Rights Reserved. <a href="http://www.pullr.io/terms">Terms &amp; Conditions</a> &bull; <a href="http://www.pullr.io/privacy">Privacy Policy</a></span>
 	</footer>
 </div>
+
 <script type='text/javascript'>
 	Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
 </script>
+
 <script src="/global/themes/js/stream.js"></script>
 </body>
 </html>

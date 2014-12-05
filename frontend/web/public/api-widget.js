@@ -6,16 +6,16 @@ body.dataset.ngController = 'PullrCtrl';
 
 var head = document.getElementsByTagName('head')[0];
 head.dataset.ngController = 'PullrCtrl';
-var app = angular.module('PullrApp', []);
+var app = angular.module('PullrApp', ['ngSanitize']);
 
-app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
+app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService, $sce) {
 	$scope.isDataReady = false;
 	$scope.LAYOUT_TYPE_SINGLE = Pullr.LAYOUT_TYPE_SINGLE;
 	$scope.LAYOUT_TYPE_MULTI = Pullr.LAYOUT_TYPE_MULTI;
 	$scope.LAYOUT_TYPE_TEAM = Pullr.LAYOUT_TYPE_TEAM;
 	CampaignDataService.loadCampaign(function(data) {
 		$scope.campaign = data;	
-		
+		// $scope.campaign.description = $sce.get
 		CampaignDataService.loadChannels(function(data) {
 			if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
 				$scope.channel = data;
@@ -54,6 +54,10 @@ app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService) {
 			$scope.campaign = data;
 		});
 	}, 20000);
+
+    $scope.to_trusted = function(html_code) {
+        return $sce.trustAsHtml(html_code);
+    }
 });
 
 app.factory('CampaignDataService', function($http) {

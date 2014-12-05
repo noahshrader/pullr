@@ -46,7 +46,15 @@
             $form->field($campaign, 'thankYouPageText')->widget(Widget::className(), [
                 'settings' => [
                     'fullscreenable' => false,
-                    'resetCss' => true
+                    'resetCss' => true,
+                    'btns' => ['viewHTML',
+                        '|', 'formatting',
+                        '|', ['bold', 'italic', 'underline'],
+                        '|', 'link',
+                        '|', 'insertImage',
+                        '|', ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                        '|', ['unorderedList', 'orderedList'],
+                        '|', 'insertHorizontalRule']
                 ]]);
         ?>
         <?php

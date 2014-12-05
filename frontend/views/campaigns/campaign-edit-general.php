@@ -39,7 +39,15 @@ $firstGiving = $campaign->getFirstGiving();
                 echo $form->field($campaign, 'description')->widget(Widget::className(), [
                     'settings' => [
                         'fullscreenable' => false,
-                        'resetCss' => true
+                        'resetCss' => true,
+                        'btns' => ['viewHTML',
+                                '|', 'formatting',
+                                '|', ['bold', 'italic', 'underline'],
+                                '|', 'link',
+                                '|', 'insertImage',
+                                '|', ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                                '|', ['unorderedList', 'orderedList'],
+                                '|', 'insertHorizontalRule']
                     ]]);
             ?>
             <?php
