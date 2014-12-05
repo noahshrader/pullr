@@ -195,8 +195,7 @@ class Campaign extends ActiveRecord {
             ['name', 'filter', 'filter' => 'strip_tags'],
             ['name', 'nameFilter'],
             ['parentCampaignId', 'parentCampaignIdFilter'],
-            ['description', 'filter', 'filter' => 'strip_tags'],
-            ['description', 'string', 'length' => [0, self::DESCRIPTION_MAX_LENGTH]],
+            ['description', 'descriptionPurifier'],
             ['goalAmount', 'required',
                 'when' => function($model){return $model->type !== self::TYPE_PERSONAL_FUNDRAISER;},
                 'whenClient' => "function (attribute, value) {return $('#campaign-type option:selected').text() !== '".self::TYPE_PERSONAL_FUNDRAISER."';}"],
@@ -268,6 +267,13 @@ class Campaign extends ActiveRecord {
         /*so there are no such campaign*/
         if ($countInvite === 0 && $countOwnCampaigns === 0){
             $this->parentCampaignId = $this->id;
+        }
+    }
+
+
+    public function descriptionPurifier(){
+        if ($this->description){
+            $this->description = HtmlPurifier::process($this->description);
         }
     }
     

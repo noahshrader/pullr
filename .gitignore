@@ -3,6 +3,7 @@
 /ssh.sh
 /composer.lock
 composer.lock
+composer.phar
 /.idea
 *.codekit
 node_modules

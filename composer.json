@@ -22,7 +22,8 @@
         "paypal/merchant-sdk-php":"2.*",
 		"paypal/adaptivepayments-sdk-php":"v2.5.106",
         "ritero/twitch-sdk": "dev-master",
-        "2amigos/yii2-ckeditor-widget": "*"
+        "2amigos/yii2-ckeditor-widget": "*",
+        "artkost/yii2-trumbowyg": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

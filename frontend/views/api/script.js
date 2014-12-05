@@ -7,6 +7,7 @@ Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
 Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.min.js";
 
 Pullr.ANGULAR_LIB_URL = 'public/angular-1.3.4.min.js';
+Pullr.ANGULAR_SANITIZE_URL = 'public/angular-sanitize.min.js';
 Pullr.ANGULAR_APP_URL = Pullr.MAIN_URL + "public/api-widget.js";
 
 Pullr.MAGNIFIC_POPUP_JS = Pullr.MAIN_URL + "js/lib/magnificpopup.js";
@@ -43,6 +44,17 @@ Pullr.LoadAngularLib = function(){
     var script = document.createElement("script");
     script.type = 'text/javascript';
     script.src = Pullr.ANGULAR_LIB_URL;
+    script.async = true;
+    script.onload = function(){
+        Pullr.LoadAngularSanitize();
+    }
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+Pullr.LoadAngularSanitize = function(){
+    var script = document.createElement("script");
+    script.type = 'text/javascript';
+    script.src = Pullr.ANGULAR_SANITIZE_URL;
     script.async = true;
     script.onload = function(){
         Pullr.LoadAngularDirective();
