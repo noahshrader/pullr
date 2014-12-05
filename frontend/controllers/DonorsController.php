@@ -42,7 +42,7 @@ class DonorsController extends FrontendController {
             $lastName = $donor['lastName'];
             $firstName = $donor['firstName'];
             if ($lastName && $firstName){
-                $donor['name'] = $lastName.', '.$firstName;
+                $donor['name'] = $firstName.' '.$lastName;
             } else if ($lastName){
                 $donor['name'] = $lastName;
             } else if ($firstName){
