@@ -58,13 +58,13 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                                     </a>
                                 </li>
                                 <li class="cf">
-                                    <a href='u/<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
+                                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
                                         <i class="icon mdi-action-toc"></i>
                                         Form
                                     </a>
                                 </li>
                                 <li class="cf">
-                                    <a href='u/<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
+                                    <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
                                         <i class="icon mdi-action-settings-ethernet"></i>
                                         JSON
                                     </a>
@@ -117,7 +117,7 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                     </span>
                 </h4>
                 <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
-                <a class="view-campaign" href='u/<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon mdi-action-visibility" title="View campaign page"></i></a>
+                <a class="view-campaign" href='<?= $campaign->user->getUrl() . urlencode($campaign->alias); ?>' target="_blank"><i class="icon mdi-action-visibility" title="View campaign page"></i></a>
             </div>
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER && $campaign->startDate && $campaign->endDate): ?>
             <? endif ?>
