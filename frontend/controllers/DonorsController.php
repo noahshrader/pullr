@@ -28,7 +28,7 @@ class DonorsController extends FrontendController {
         $selectedEmail = $viewDonorParams ? $viewDonorParams['email'] : null;
         $user = \Yii::$app->user->identity;
         $connection = \Yii::$app->db;
-        $sql = 'SELECT email, SUM(amount) sum, GROUP_CONCAT(DISTINCT nameFromForm SEPARATOR " ") nameFromForm, firstName, lastName FROM '.Donation::tableName().
+        $sql = 'SELECT email, SUM(amount) sum, nameFromForm, firstName, lastName FROM '.Donation::tableName().
                 ' WHERE (campaignUserId = '.$user->id.' or parentCampaignUserId = '. $user->id.')'.
                 ' AND paymentDate > 0 AND email<>"" GROUP BY email ORDER BY sum DESC, lastName ASC, firstName ASC';
         $command = $connection->createCommand($sql);
@@ -50,7 +50,6 @@ class DonorsController extends FrontendController {
             } else {
                 $donor['name'] = $donor['nameFromForm'] ? $donor['nameFromForm'] : Donation::ANONYMOUS_NAME;
             }
-            
             $donor['sum'] = '$'.PullrUtils::formatNumber($donor['sum'], 2);
             $donor['href'] = 'app/donors/view?email='.urlencode($donor['email']);
             $donor['isActive'] = $selectedEmail && ($donor['email'] == $selectedEmail);
