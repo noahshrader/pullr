@@ -1,0 +1,266 @@
+body.dark {
+
+/* Common */
+/* ------------------------------------------------- */
+.top-menu,
+.site-content,
+#content {
+	background: @gray10;
+}
+
+/* Components */
+#sidebar {
+	background: @gray10;
+}
+.module {
+	background: @gray12;
+	box-shadow: none;
+
+	h5.module-title {
+		color: @white;
+		background: @gray20;
+		border: 0;
+	}
+}
+
+ul.content-nav {
+	background: @gray12;
+	border-bottom-color: @gray10;
+
+	li {
+		&.active a {
+			color: @white;
+		}
+		a {
+			color: @gray30;
+		}
+	}
+}
+
+/* Tables */
+.table-header {
+	background: @gray20;
+	border-bottom-color: @gray12;
+}
+.dataTables_wrapper .dataTables_filter input {
+	background: @gray12;
+}
+table.dataTable {
+	th,
+	thead th {
+		background: @gray20;
+		border: 0;
+	}
+	tbody tr:hover,
+	&.hover tbody tr:hover,
+	&.hover tbody tr.odd:hover,
+	&.hover tbody tr.even:hover,
+	&.display tbody tr:hover,
+	&.display tbody tr.odd:hover,
+	&.display tbody tr.even:hover {
+		background: @gray15 !important;
+	}
+	&.row-border tbody th,
+	&.row-border tbody td,
+	&.display tbody th,
+	&.display tbody td,
+	thead td {
+		border-top-color: @gray12;
+	}
+	td.raised span {
+		background: @gray10;
+	}
+	tbody tr.donation-entry.drop,
+	tbody tr.donation-entry+tr td[colspan~="4"],
+	tbody tr.donation-entry+tr td[colspan~="5"] {
+		background: @gray15 !important;
+	}
+}
+.table-footer {
+	border-top-color: @gray10;
+}
+
+
+/* Forms */
+/* ------------------------------------------------- */
+
+
+
+/* Navigation */
+/* ------------------------------------------------- */
+.primary-navigation {
+	background: @maingray;
+	border-right: solid 1px @maingray;
+
+	.branding a {
+		background: @maingray;
+	}
+}
+.top-menu .avatar-container .avatar .user-photo-menu {
+
+	img {
+		border-color: @gray10;
+	}
+	&:after {
+		border-color: @gray20 transparent transparent transparent;
+	}
+}
+
+
+/* Dashboard */
+/* ------------------------------------------------- */
+.dashboard-wrap {
+
+	#content.dashboard {
+		.stats-overview.other-raised-totals {
+			background: @gray12;
+
+			h2 {
+				color: @white;
+			}
+		}
+		.stats-overview.twitch-stats {
+
+			i.group-header {
+				color: @gray10;
+				background: @gray12;
+			}
+		}
+		span.stick {
+			background: @gray12;
+		}
+	}
+	#sidebar.dashboard {
+		background: @gray10;
+
+		.invites-wrap ul li .invite-actions {
+			border-top-color: @gray10;
+
+			a:first-child {
+				border-right-color: @gray10;
+			}
+		}
+		ul.activity-feed li {
+			background: @gray12;
+			border-bottom-color: @gray10;
+
+			&:first-child {
+				color: @white;
+				background: @gray15;
+			}
+		}
+	}
+	.alert-info {
+		background: @gray20;
+	}
+}
+
+
+/* Campaign */
+/* ------------------------------------------------- */
+.list-wrap {
+	background: @maingray;
+
+	.campaign-item,
+	.donor-item {
+		border: 0;
+
+		h3.list-title,
+		h5 {
+			color: @gray20;
+		}
+		p.list-total {
+			background: @gray10;
+		}
+
+		&.active,
+		&:hover {
+
+			h3.list-title {
+				color: @white;
+			}
+
+			&:after {
+				border-color: transparent @gray10 transparent transparent;
+			}
+		}
+		&.active {
+			p.list-total {
+				background: @accent;
+			}
+		}
+	}
+}
+ul.campaign-quicknav {
+	padding-left: @gutter;
+	border-bottom-color: @base;
+
+	li {
+		a {
+			background: @maingray;
+		}
+	}
+}
+.view-actions {
+	background: @gray12;
+	box-shadow: none;
+
+	h4 a {
+		color: @white;
+	}
+	a.view-campaign {
+		background: @gray20;
+		&:before {
+			border-bottom-color: @gray20;
+		}
+		&:hover, {
+			background: @accent;
+		}
+		&:hover:before {
+			border-bottom-color: @accent;
+		}
+	}
+	a.actions-toggle {
+		color: @white;
+
+		&:after {
+			border-color: @white transparent transparent transparent;
+		}
+	}
+}
+.stats-overview {
+
+	&.main-values {
+		background: @accent;
+
+		.stats-box {
+			border-left-color: @dkaccent;
+		}
+	}
+	span {
+		color: @gray30 !important;
+	}
+	.stats-box {
+		border-left-color: @gray10;
+
+		h2,
+		h3 {
+			color: @white;
+
+			span {
+				color: @gray50;
+				background: @gray10;
+			}
+		}
+		&.top-donor,
+		&.top-donation {
+			border-top-color: @gray10;
+		}
+	}
+}
+
+
+
+
+
+}
