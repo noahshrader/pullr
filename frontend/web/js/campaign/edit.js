@@ -243,4 +243,10 @@ $(window).load(function() {
         $("a#image-uploaded").click();
     });
     getDefaultTheme();
+    var value = $('#campaign-enablethankyoupage').bootstrapSwitch('state');
+    if (value){
+        $('.form-group.thankyoutext').show();
+    } else {
+        $('.form-group.thankyoutext').hide();
+    }
 });

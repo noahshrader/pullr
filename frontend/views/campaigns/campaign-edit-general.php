@@ -4,6 +4,7 @@ use common\models\Plan;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
+use artkost\trumbowyg\Widget;
 
 /* @var $form ActiveForm */
 
@@ -31,7 +32,19 @@ $firstGiving = $campaign->getFirstGiving();
 
         <!-- Campaign Description -->
         <div class="form-group float">
-            <?= $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'placeholder' => 'Describe your campaign']); ?>
+            <?php
+
+//            echo \artkost\trumbowyg\Widget::widget([]);
+
+                echo $form->field($campaign, 'description')->widget(Widget::className(), [
+                    'settings' => [
+                        'fullscreenable' => false,
+                        'resetCss' => true
+                    ]]);
+            ?>
+            <?php
+//                echo $form->field($campaign, 'description', ['autoPlaceholder' => false])->textarea(['maxlength' => Campaign::DESCRIPTION_MAX_LENGTH, 'placeholder' => 'Describe your campaign']);
+            ?>
         </div>
 
         <div class="campaign-type">
