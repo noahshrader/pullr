@@ -113,7 +113,7 @@ class ApiController extends \yii\web\Controller {
         $campaignArray['donors'] = [];
         foreach ($donors as $donor) {            
             $campaignArray['donors'][] = [
-                'name' => $donor->getName(),
+                'name' => $donor->nameFromForm,
                 'amount' => $donor->amount
             ];
         }
