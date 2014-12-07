@@ -19,6 +19,13 @@ $topDonors = Donation::getTopDonorsForCampaigns([$campaign], 1, false);
 $topDonorText = sizeof($topDonors) > 0 ? $topDonors[0]['name'] . '<span>$' . \common\components\PullrUtils::formatNumber($topDonors[0]['amount'], 2) . '</span>': '';
 $topDonation = Donation::getTopDonation([$campaign]);
 $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \common\components\PullrUtils::formatNumber($topDonation->amount, 2) . '' . '</span>': '';
+$charityName = '';
+if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
+     $charityName = $campaign->customCharity;
+} 
+if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && $campaign->charityId){
+     $charityName = $campaign->charity->name;
+} 
 ?>
 
 <script type="text/javascript">
@@ -45,40 +52,34 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                             <ul>
                                 <li class="active cf">
                                     <a href="app/campaigns/view?id=<?= $campaign->id ?>">
-                                        <i class="icon mdi-av-equalizer"></i>
                                         <!-- Overview -->
                                         Overview
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a href="app/campaigns/edit?id=<?= $campaign->id ?>">
-                                        <i class="icon mdi-content-create"></i>
                                         <!-- Edit -->
                                         Edit
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
-                                        <i class="icon mdi-action-toc"></i>
                                         Form
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                                        <i class="icon mdi-action-settings-ethernet"></i>
                                         JSON
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a class="disabled">
-                                        <i class="icon mdi-device-now-widgets"></i>
                                         Widgets
                                     </a>
                                 </li>
                                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                                        <i class="icon mdi-content-inbox"></i>
                                         <!-- Archive -->
                                         Archive
                                     </a>
@@ -87,7 +88,6 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                                        <i class="icon mdi-content-undo"></i>
                                         <!-- Restore -->
                                         Restore
                                     </a>
@@ -96,7 +96,6 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                                 <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                                        <i class="icon mdi-action-delete"></i>
                                         <!-- Remove -->
                                         Delete
                                     </a>
@@ -109,7 +108,8 @@ $topDonationText = ($topDonation) ? $topDonation->name . '<span>' . '$' . \commo
                 </div>
                 <h4>
                     <a href="app/campaigns/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
-                    <span class="campaign-date">
+                    <span class="top-info">
+                        <span class="charity-name"><?= $charityName ?></span>
                         <? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
                         <?= $date->setTimestamp($campaign->startDate)->format('M j, Y'); ?>
                         -

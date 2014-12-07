@@ -18,7 +18,7 @@ $this->registerJsFile('@web/js/campaign/campaigns-filter.js',  [
     <script type="text/html" id="campaign">
         <a data-bind="attr: { href: href}, css: { active: isActive == true }" class='row campaign-item' >
             <div class="main-info">
-                <h5 data-bind="text: type" class="layout-type"></h5>
+                <!--<h5 data-bind="text: type" class="layout-type"></h5>-->
                 <h3 class="list-title" data-bind="text: name"></h3>
                 <!-- ko if: tiedToParent -->
                 <span class="mdi-social-group" data-toggle="tooltip" data-placement="right" title="Connected"></span>
