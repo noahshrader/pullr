@@ -23,16 +23,16 @@ ThankYouAsset::register($this);
 				 $charityName = $campaign->charity->name;
 			} 
 		?>
-		<?= $charityName ?>
-			<div class="form-wrapper thankyou">
-				<h1 class="main-title">Thank You!</h1>
-				<div class="custom-message-wrap">
-				<? if ($campaign->enableThankYouPage): ?>
-					<?= $campaign->thankYouPageText ?>
-				<? else: ?>
-					<p>Your donation is appreciated! ^_^</p>
-				<? endif ?>
-			</div>
+		<div class="form-wrapper thankyou">
+			<h1 class="main-title">Thank You!</h1>
+			<!--<?= $charityName ?>-->
+			<div class="custom-message-wrap">
+			<? if ($campaign->enableThankYouPage): ?>
+				<?= $campaign->thankYouPageText ?>
+			<? else: ?>
+				<p>Your donation is appreciated! ^_^</p>
+			<? endif ?>
+		</div>
 		<?php $this->endBody() ?>
 
 		<!-- Footer -->
