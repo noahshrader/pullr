@@ -109,13 +109,13 @@ if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && 
                 <h4>
                     <a href="app/campaigns/view?id=<?= $campaign->id ?>"><?= ($campaign->name)?$campaign->name:'New Campaign' ?></a>
                     <span class="top-info">
-                        <span class="charity-name">
+                        <!--<span class="charity-name">
                             <?= $charityName ?>
-                        </span>
-                        <? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
+                        </span>-->
+                        <!--<? $date = (new DateTime())->setTimezone(new DateTimeZone(Yii::$app->user->identity->getTimezone())); ?>
                         <?= $date->setTimestamp($campaign->startDate)->format('M j, Y'); ?>
                         -
-                        <?= $date->setTimestamp($campaign->endDate)->format('M j, Y'); ?>
+                        <?= $date->setTimestamp($campaign->endDate)->format('M j, Y'); ?>-->
                     </span>
                 </h4>
                 <? /* $campaign->user and $user can be different because of concept of parent campaigns*/ ?>
