@@ -41,6 +41,13 @@ ul.content-nav {
 .table-header {
 	background: @gray20;
 	border-bottom-color: @gray12;
+
+	.btn {
+		background: @gray30;
+		&:hover {
+			background: @gray40;
+		}
+	}
 }
 .dataTables_wrapper .dataTables_filter input {
 	background: @gray12;
@@ -84,6 +91,17 @@ table.dataTable {
 /* Forms */
 /* ------------------------------------------------- */
 
+
+/* Buttons */
+/* ------------------------------------------------- */
+.btn-default {
+	color: @white;
+	background-color: @gray30;
+	&:hover {
+		color: @white;
+		background-color: @gray40;
+	}
+}
 
 
 /* Navigation */
@@ -159,7 +177,7 @@ table.dataTable {
 /* Campaign */
 /* ------------------------------------------------- */
 .list-wrap {
-	background: @maingray;
+	background: @shadowgray;
 
 	.campaign-item,
 	.donor-item {
@@ -192,26 +210,26 @@ table.dataTable {
 	}
 }
 ul.campaign-quicknav {
-	padding-left: @gutter;
-	border-bottom-color: @base;
+	border-bottom-color: @maingray;
 
 	li {
 		a {
-			background: @maingray;
+			background: @shadowgray;
 		}
 	}
 }
 .view-actions {
-	background: @gray12;
+	background: @gray20;
 	box-shadow: none;
 
+	h4,
 	h4 a {
 		color: @white;
 	}
 	a.view-campaign {
-		background: @gray20;
+		background: @gray30;
 		&:before {
-			border-bottom-color: @gray20;
+			border-bottom-color: @gray30;
 		}
 		&:hover, {
 			background: @accent;
@@ -259,6 +277,18 @@ ul.campaign-quicknav {
 	}
 }
 
+
+/* Content Loader */
+/* ------------------------------------------------- */
+.spinner-wrap {
+	background: @gray10;
+}
+.spinner {
+
+	div {
+		background: @gray30;
+	}
+}
 
 
 

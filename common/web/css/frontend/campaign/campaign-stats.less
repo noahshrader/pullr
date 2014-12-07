@@ -23,7 +23,7 @@ ul.campaign-quicknav {
 /* Campaign Listings */
 .campaign-item,
 .donor-item {
-	padding: 24px 0;
+	padding: 26px 0;
 	margin: 0px;
 	position: relative;
 	display: block;
@@ -121,21 +121,9 @@ body.trash .campaigns-list {
 	position: relative;
 	display: block;
 	margin-bottom: @gutter;
-	padding: 0px;
-	height: @campain-name-height;
+	padding: 0;
 	width: 100%;
-	background: @gray72;
-	.box-shadow;
-	.border-radius;
 	z-index: 900;
-
-	&.donor {
-		height: auto;
-		h4 {
-			line-height: 1;
-			padding: @halfgutter 0;
-		}
-	}
 
 	.campaign-nav {
 		position: absolute;
@@ -146,8 +134,8 @@ body.trash .campaigns-list {
 		.dropdown {
 			&.drop {
 				ul {
-					top: 55px;
-					left: @halfgutter;
+					top: 45px;
+					left: 0;
 				}
 				a.actions-toggle {
 					color: @gray40;
@@ -157,10 +145,10 @@ body.trash .campaigns-list {
 				}
 			}
 			ul {
-				top: 45px;
+				top: 35px;
 				left: -5000px;
 				&:before {
-					left: @halfgutter;
+					left: 10px;
 				}
 			}
 		}
@@ -171,8 +159,8 @@ body.trash .campaigns-list {
 			position: relative;
 			color: @gray60;
 			font-size: 22px;
-			line-height: @campain-name-height;
-			padding: 0 @gutter;
+			line-height: 1.6em;
+			padding-right: @gutter;
 			width: auto;
 			transition: none;
 			&:after {
@@ -194,9 +182,9 @@ body.trash .campaigns-list {
 	}
 	h4 {
 		color: @gray30;
-		font-size: 1.3em;
-		font-weight: 500;
-		line-height: @campain-name-height;
+		font-size: 1.6em;
+		font-weight: 400;
+		line-height: 1;
 		text-align: center;
 
 		a {
@@ -215,32 +203,14 @@ body.trash .campaigns-list {
 		top: 0;
 		right: 0;
 		display: block;
-		color: @white;
+		color: @accent;
 		font-size: 20px;
 		font-weight: 400;
-		padding-right: @halfgutter;
-		padding-left: 6px;
 		text-align: center;
-		line-height: @campain-name-height;
+		line-height: 1.6em;
 		width: auto;
-		background: @gray60;
-		border-top-right-radius: 2px;
-		border-bottom-right-radius: 2px;
 		&:hover {
-			color: @white;
-			background: @accent;
-			&:before {
-				border-bottom: @campain-name-height solid @accent;
-			}
-		}
-		&:before {
-			height: 0px;
-			width: 0px;
-			content: "";
-			position: absolute;
-			border-bottom: @campain-name-height solid @gray60;
-			border-left: 30px solid transparent;
-			left: -30px;
+			color: @accenthover;
 		}
 	}
 }

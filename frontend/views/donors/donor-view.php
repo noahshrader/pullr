@@ -13,7 +13,7 @@ $user = \Yii::$app->user->identity;
         <div class="content-wrap">
             <div class="view-actions donor">
                 <h4 class="donor-name"> <?= htmlspecialchars($name) ?>
-                    <span class="donor-email"><?= htmlspecialchars($email) ?></span>
+                    <span class="top-info"><?= htmlspecialchars($email) ?></span>
                 </h4>
             </div>
             <section class="stats-overview module">
