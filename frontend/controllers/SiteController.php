@@ -31,7 +31,7 @@ class SiteController extends FrontendController
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'signup', 'login', 'twitch', 'termsofservice', 'privacy', 'logout', 'fgcallback'],
+                        'actions' => ['error','index', 'signup', 'login', 'twitch', 'termsofservice', 'privacy', 'logout', 'fgcallback'],
                         'allow' => true,
                     ],
                     [
