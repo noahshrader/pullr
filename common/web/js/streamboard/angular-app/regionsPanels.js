@@ -276,14 +276,14 @@
                         window.requireGoogleFont(region.widgetDonationFeed.fontStyle);
                         window.requireGoogleFont(region.widgetCampaignBar.fontStyle);
                         window.requireGoogleFont(region.widgetCampaignBar.alertsModule.fontStyle);
+                        window.requireGoogleFont(region.widgetTags.fontStyle);
+
                     }
                 }
     
                 function capitaliseFirstLetter(string) {
                     return string.charAt(0).toUpperCase() + string.slice(1);
                 }
-    
-    
     
                 function showAlert(region) {           
                     var stream = null;
