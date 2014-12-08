@@ -1,5 +1,23 @@
 body.dark {
 
+/* Base */
+/* ------------------------------------------------- */
+
+/* Placeholder styling */
+::-webkit-input-placeholder {
+   color: @gray30 !important;
+}
+:-moz-placeholder {
+   color: @gray30 !important; 
+}
+::-moz-placeholder {
+   color: @gray30 !important;  
+}
+:-ms-input-placeholder {  
+   color: @gray30 !important;  
+}
+
+
 /* Common */
 /* ------------------------------------------------- */
 .top-menu,
@@ -49,8 +67,14 @@ ul.content-nav {
 		}
 	}
 }
-.dataTables_wrapper .dataTables_filter input {
-	background: @gray12;
+.dataTables_wrapper .dataTables_filter {
+
+	&:before {
+		color: @gray30;
+	}
+	input {
+		background: @gray12;
+	}
 }
 table.dataTable {
 	th,
@@ -88,9 +112,54 @@ table.dataTable {
 	border-top-color: @gray10;
 }
 
+/* Lists */
+.list-search {
+	border: 0;
+
+	span {
+		background: transparent;
+	}
+}
+
 
 /* Forms */
 /* ------------------------------------------------- */
+
+/* Input */
+input[type="text"],
+input.form-control,
+div.form-control,
+textarea,
+textarea.form-control,
+select,
+select.form-control,
+.form-group.has-success input.form-control,
+.form-group.has-success textarea.form-control {
+	color: @white;
+	border: solid 1px @gray30;
+}
+label,
+legend,
+.form-group.has-success label {
+	color: @gray40;
+}
+
+/* Checboxes */
+.checkbox {
+
+	label {
+
+		&:before {
+			color: @gray75;
+			background: @gray30;
+	    }
+    	&.on:before {
+	        color: @gray30;
+    	}
+    }
+}
+
+/* Selects */
 
 
 /* Buttons */
@@ -102,6 +171,10 @@ table.dataTable {
 		color: @white;
 		background-color: @gray40;
 	}
+}
+.btn-container {
+	background: @gray15;
+	border-top-color: @gray10;
 }
 
 
@@ -183,6 +256,8 @@ table.dataTable {
 
 /* Campaign */
 /* ------------------------------------------------- */
+
+/* Main */
 .list-wrap {
 	background: @shadowgray;
 
@@ -281,6 +356,33 @@ ul.campaign-quicknav {
 		&.top-donor,
 		&.top-donation {
 			border-top-color: @gray10;
+		}
+	}
+}
+
+/* Campaign Edit */
+#campaignEdit {
+	.campaign-edit-wrap {
+		.module {
+			.module-inner {
+				h5 {
+					i {
+						color: @gray30;
+						border-color: @gray30;
+					}
+				}
+			}
+		}
+	}
+	.highlight-wrap {
+		background: @gray20;
+
+		&:before {
+			border-color: transparent transparent @gray20 transparent;
+		}
+		input[type="text"],
+		input.form-control {
+			border-color: @gray30;
 		}
 	}
 }
