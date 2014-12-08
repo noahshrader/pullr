@@ -14,33 +14,33 @@ class TwitchSubscription extends TwitchFollowBase {
     }
 
     public static function updateSubscriptions($user, $subscriptions) {
+        $newSubscribers = [];
         if (is_array($subscriptions) && count($subscriptions) > 0) {
-            //create notification on dashboard
-            if ($user->notification->newSubscriber) {
-                self::createNotification($user, $subscriptions);    
-            }        
-            self::updateFollowsBase($user, $subscriptions);            
-        }    
-        
-    }
 
-    public static function createNotification($user, $subscriptions) {
-        $subscriptions = array_reverse($subscriptions);
-        $currentIds = static::find()->where(['userId' => $user->id])->select('twitchUserId')->orderBy('createdAt asc')->column();        
-        foreach ($subscriptions as $subscription) {
-            $id = $subscription['user']['_id'];
-            if ( ! in_array($id, $currentIds)) {                
-                RecentActivityNotification::createNotification(
-                    $user->id,
-                    ActivityMessage::messageNewTwitchSubscriber($user, $subscription['user']['name'])
-                );
+            $newSubscribers = self::updateFollowsBase($user, $subscriptions);
+            //create notification on dashboard
+            if ($user->notification->newSubscriber && count($newSubscribers) > 0) {
+                self::createNotification($user, $newSubscribers);
             }
         }
 
     }
 
+    public static function createNotification($user, $subscriptions) {
+        $subscriptions = array_reverse($subscriptions);
+
+        foreach ($subscriptions as $subscription) {
+            RecentActivityNotification::createNotification(
+                $user->id,
+                ActivityMessage::messageNewTwitchSubscriber($user, $subscription['user']['name'])
+            );
+
+        }
+
+    }
+
     public static function getSubscriberCountByMonth($userId)
-    {               
+    {
         return static::getFollowCountByMonth($userId);
     }
 
@@ -59,6 +59,6 @@ class TwitchSubscription extends TwitchFollowBase {
         if ( ! is_numeric($count)) {
             $count = 0;
         }
-        return $count;       
+        return $count;
     }
 }

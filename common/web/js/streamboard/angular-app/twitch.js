@@ -18,15 +18,15 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', ['$http', '$int
 		}
 	}
 
-	service.getFollowers = function() {		
+	service.getFollowers = function() {
 		return $http.get('app/streamboard/get_followers');
-        
+
 	}
 
-	service.getSubscribers = function() {	
+	service.getSubscribers = function() {
 		if (Pullr.user.userFields.twitchPartner == 1) {
 			return $http.get('app/streamboard/get_subscribers');
-		}       	
+		}
 	}
 
 	service.init();
@@ -38,63 +38,56 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', ['$http', '$int
 	var service = {};
 	service.interval = 10000;
 	service.lastRequestTime = null;
-	service.getCurrentUTCDate = function(offset) {		
+	service.getCurrentUTCDate = function(offset) {
 		offset = offset || null;
-		var now = new Date();				
+		var now = new Date();
 		var result = new Date();
 		if (offset != null) {
 			elapse = now.getTime() - offset.getTime();
 			result = new Date(now.getTime() - elapse);
-		} 		
+		}
 		return result;
 	}
 
-	service.lastRequestTime = service.getCurrentUTCDate();
-	service.lastMaxCreatedAt = service.getCurrentUTCDate();
-	
-	service.filterList = function(list) {		
+	service.lastRequestTime = new Date();
 
+	service.filterList = function(list) {
 		var result = [];
 		angular.forEach(list, function(item) {
-			var createdAt = new Date(item.created_at);		
-			if (createdAt >= service.lastRequestTime) {								
+			var createdAt = new Date(item.created_at);
+			if (createdAt >= service.lastRequestTime) {
 				result.push(item);
 			}
 		});
+		result.reverse();
 		return result;
 	}
 
 	service.requestTwitchData = function() {
 		var offset = new Date();
-		twitch.getFollowers().then(function(response) {			
-			var follows = service.filterList(response.data.follows);			
+		twitch.getFollowers().then(function(response) {
+			var follows = service.filterList(response.data.follows);
 			if (follows.length > 0) {
 				stream.pushFollowerAlerts(follows);
-			}			
+			}
 			var promise = twitch.getSubscribers();
 			if (promise) {
-				promise.then(function(response) {				
-					var subscriptions = service.filterList(response.data.subscriptions);				
-					service.lastRequestTime = service.getCurrentUTCDate(offset);
+				promise.then(function(response) {
+					var subscriptions = service.filterList(response.data.subscriptions);
 					if (subscriptions.length > 0) {
 						stream.pushSubscriberAlerts(subscriptions);
-					}					
-					$timeout(function() {
-						service.requestTwitchData();
-					}, service.interval);
+					}
 				});
-			} else {
-				service.lastRequestTime = service.getCurrentUTCDate(offset);
-				$timeout(function() {
-					service.requestTwitchData();
-				}, service.interval);
 			}
-		});		
+		});
 	}
 
 	service.init = function(){
-		service.requestTwitchData();
-	}	
+		$interval(function() {
+			service.requestTwitchData();
+		}, service.interval);
+
+	}
 
 	service.init();
 	return service;

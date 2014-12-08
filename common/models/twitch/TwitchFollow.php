@@ -15,33 +15,28 @@ class TwitchFollow extends TwitchFollowBase {
     }
 
     public static function updateFollows($user, $follows) {
+        $newFollows = [];
         if (is_array($follows) && count($follows) > 0) {
             //create notification on dashboard
-            if ($user->notification->newFollower) {            
-                self::createNotification($user, $follows);    
-            }        
-            self::updateFollowsBase($user, $follows);    
+            $newFollows = self::updateFollowsBase($user, $follows);
+            if ($user->notification->newFollower && count($newFollows) > 0) {
+                self::createNotification($user, $newFollows);
+            }
         }
-        
     }
 
-    public static function createNotification($user, $follows) {        
-
-        $follows = array_reverse($follows);
-        $currentIds = static::find()->where(['userId' => $user->id])->select('twitchUserId')->orderBy('createdAt asc')->column();                
+    public static function createNotification($user, $follows) {
         foreach ($follows as $follow) {
-            $id = $follow['user']['_id'];
-            if ( ! in_array($id, $currentIds)) {                                
-                RecentActivityNotification::createNotification(
-                    $user->id,
-                    ActivityMessage::messageNewTwitchFollower($user, $follow['user']['name'])
-                );
-            }
-        }        
+            RecentActivityNotification::createNotification(
+                $user->id,
+                ActivityMessage::messageNewTwitchFollower($user, $follow['user']['name'])
+            );
+
+        }
     }
 
     public static function getFollowerCountByMonth($userId)
-    {               
+    {
         return static::getFollowCountByMonth($userId);
     }
 
@@ -60,6 +55,6 @@ class TwitchFollow extends TwitchFollowBase {
         if ( ! is_numeric($count)) {
             $count = 0;
         }
-        return $count;       
+        return $count;
     }
 }

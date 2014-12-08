@@ -31,7 +31,8 @@ class SiteController extends FrontendController
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'signup', 'login', 'twitch', 'termsofservice', 'privacy', 'logout', 'fgcallback'],
+                        'actions' => ['index', 'signup', 'login', 'twitch', 'termsofservice', 
+                                    'privacy', 'logout', 'fgcallback', 'amountraised'],
                         'allow' => true,
                     ],
                     [
@@ -190,5 +191,13 @@ class SiteController extends FrontendController
                 die();
             }
         }
+    }
+
+    public function actionAmountraised() {        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $charityRaisedSql = "SELECT SUM(d.amount) FROM tbl_donation d JOIN tbl_campaign c ON d.campaignId = c.id WHERE c.type = :type";
+        $charityRaised = \Yii::$app->db->createCommand($charityRaisedSql)->bindValues(['type' => Campaign::TYPE_CHARITY_FUNDRAISER])->queryScalar();
+        $result['charityRaised'] = $charityRaised;
+        return $result;
     }
 }
