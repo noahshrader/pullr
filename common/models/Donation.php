@@ -38,7 +38,7 @@ class Donation extends ActiveRecord
     public static function tableName() {
         return 'tbl_donation';
     }
-    
+
     public function scenarios() {
         return [
             'default' => ['nameFromForm','email','comments','amount','createdDate','sum'],
@@ -62,7 +62,7 @@ class Donation extends ActiveRecord
             ['comments', 'filter', 'filter' => 'strip_tags']
         ];
     }
-    
+
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)){
             if ($insert){
@@ -80,7 +80,7 @@ class Donation extends ActiveRecord
             return false;
         }
     }
-    
+
     /**
      * @return ActiveQuery
      */
@@ -96,7 +96,7 @@ class Donation extends ActiveRecord
         return $this->hasOne(StreamboardDonation::className(), ['donationId' => 'id'])->andWhere(['userId' => $userId]);
     }
     /**
-     * 
+     *
      * @return User
      */
     public function getUser() {
@@ -114,7 +114,7 @@ class Donation extends ActiveRecord
             return $this->nameFromForm ? $this->nameFromForm : self::ANONYMOUS_NAME;
         }
     }
-    
+
     public static function findByEmailAndUserId($email, $userId){
         return Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId'])->
                 andWhere(['email' => $email])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC')
@@ -182,15 +182,16 @@ class Donation extends ActiveRecord
         $donors = [];
         foreach ($donations as $donation){
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
-            $donors[] = [ 'name' => $name, 
-                        'amount' => $sumByEmail[$donation->email], 
+            $donors[] = [ 'name' => $name,
+                        'amount' => $sumByEmail[$donation->email],
                         'email' => $donation->email,
                         'campaignId' => $donation->campaignId];
         }
         return $donors;
     }
-    
-    public static function getTopDonorsForCampaignsGroupByAmount($campaigns, $limit, $nameFromForm = false, $sinceDate = null) {
+
+    public static function getTopDonorsForCampaignsGroupByAmount($campaigns, $limit, $nameFromForm = false, $sinceDate = null)
+    {
         $donors = static::getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm, $sinceDate);
         $groupResult = [];
         foreach ($donors as $index => $donor) {
@@ -203,12 +204,12 @@ class Donation extends ActiveRecord
                         $groupResult[$amount][] = $donor2;
                     }
                 }
-            }            
+            }
         }
-        
+
         return $groupResult;
     }
-    
+
     /**
      * get last donor for user campaigns
      * @param array $campaigns
@@ -224,13 +225,13 @@ class Donation extends ActiveRecord
                 'id' => $donor->id,
                 'name' => $donor->displayNameForDonation(),
                 'amount' => $donor->amount
-            ];    
-        }       
-        return null;     
-        
+            ];
+        }
+        return null;
+
     }
-    
-    
+
+
     /**
      * @param $campaigns Campaign[]
      * @return Donation|null
@@ -277,5 +278,5 @@ class Donation extends ActiveRecord
             $donation->save();
         }
     }
+
 }
- 

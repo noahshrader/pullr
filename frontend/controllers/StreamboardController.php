@@ -63,11 +63,6 @@ class StreamboardController extends FrontendController
         return parent::init();
     }
 
-    public function actionTest_ajax(){
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return [1,2,3];
-    }
-
     public function actionIndex()
     {
         $this->layout = 'streamboard';
@@ -650,6 +645,7 @@ class StreamboardController extends FrontendController
         $data = json_decode(json_encode($data), true);
         TwitchUser::updateSubscribersNumber($user, $data['_total']);
         TwitchSubscription::updateSubscriptions($user, $data['subscriptions']);
+        $data['subscriptions'][0]['created_at'] = date('Y-m-d H:i:s');
         return $data;
     }
 

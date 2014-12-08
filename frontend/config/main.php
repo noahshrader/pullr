@@ -10,9 +10,12 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'cache' => [
+            'class' => 'yii\caching\ApcCache',
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,            
+            'showScriptName' => false,
             'rules' => [
                 'app/<twitchUsername:\w+>/streamboard' => 'streamboard/source',
                 'app/<userId:\d+>/streamboard' => 'streamboard/source',
@@ -20,7 +23,7 @@ return [
                 'app/privacy' => 'site/privacy',
                 'app/termsofservice' => 'site/termsofservice',
                 'app/<controller>/<action>' => '<controller>/<action>',
-                'app/<controller>' => '<controller>',                
+                'app/<controller>' => '<controller>',
                 'app' => 'site',
                 'api/<action>' => 'api/<action>',
                 'donationapi/<action>' => 'campaignapi/<action>',
