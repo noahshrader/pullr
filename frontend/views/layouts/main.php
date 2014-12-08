@@ -15,7 +15,6 @@ $streamboardConfig = StreamboardConfig::get();
 if(isset($streamboardConfig))
 {
     $js = 'Pullr.baseUrl = "'.Url::to('app').'";';
-    $js .= 'Pullr.setCurrentMenuActive();';
     $js .= 'Pullr.Streamboard = '.json_encode($streamboardConfig->toArray(['streamboardWidth', 'streamboardHeight', 'streamboardLeft', 'streamboardTop'])).';';
     $this->registerJs($js);
 }
@@ -68,13 +67,13 @@ if (isset($user))
                 <nav class="sidebar-nav nav-top">
                     <ul> 
                         <li>
-                            <a class="dashboard" title="Dashboard" href="app">
+                            <a class="dashboard <?if(Yii::$app->controller->id == 'site'):?>active<?endif;?>" title="Dashboard" href="app">
                                 <i class="icon mdi-action-dashboard"></i>
                                 <span class="nav-label">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a class="campaign-link" title="Campaigns" href="app/campaigns">
+                            <a class="campaign-link <?if(Yii::$app->controller->id == 'campaigns'):?>active<?endif;?>" title="Campaigns" href="app/campaigns">
                                 <i class="icon mdi-av-equalizer"></i>
                                 <span class="nav-label">Campaigns</span>
                             </a>
@@ -86,13 +85,13 @@ if (isset($user))
                             </a>
                         </li>
                         <li>
-                            <a class="donor-link" title="Donors" href="app/donors">
+                            <a class="donor-link <?if(Yii::$app->controller->id == 'donors'):?>active<?endif;?>" title="Donors" href="app/donors">
                                 <i class="icon mdi-social-person"></i>
                                 <span class="nav-label">Donors</span>
                             </a>
                         </li>
                         <li>
-                            <a class="settings" role="menuitem" tabindex="-1" href="app/settings">
+                            <a class="settings <?if(Yii::$app->controller->id == 'settings'):?>active<?endif;?>" role="menuitem" tabindex="-1" href="app/settings">
                                 <i class="icon mdi-action-settings"></i>
                                 <span class="nav-label">Settings</span>
                             </a>
