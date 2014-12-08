@@ -128,6 +128,9 @@
                     region.widgetAlerts[preferenceName].messagePositionY = ui.position.top;
                     regions.regionChanged(region);
                 }
+
+
+
                 
                 $scope.onResizeTag = function(region, event, ui){
                     var tagType = $(ui.element).attr("tag-type");
@@ -157,8 +160,21 @@
                     region.widgetTags[tagPreferenceName].width = ui.size.width;
                     region.widgetTags[tagPreferenceName].height = ui.size.height;
                     regions.regionChanged(region);
-                }          
-    
+                }
+
+
+                $scope.onResizeCampaignBarMessage = function(region, event, ui) {
+                    region.widgetCampaignBar.messagesModule.messageWidth = ui.size.width;
+                    region.widgetCampaignBar.messagesModule.messageHeight = ui.size.height;
+                    regions.regionChanged(region);
+                }
+
+                $scope.onResizeCampaignBarAlert = function(region, event, ui) {
+                    region.widgetCampaignBar.alertsModule.messageWidth = ui.size.width;
+                    region.widgetCampaignBar.alertsModule.messageHeight = ui.size.height;
+                    regions.regionChanged(region);
+                }
+
                 $scope.getRegionSelector = function(region) {                   
                     return '#region-' + region.regionNumber;                                            
                 }
@@ -227,8 +243,6 @@
                             });
                         }, 4000, 1);    
                     }
-    
-                    
                 });
     
                 $interval(function () {
@@ -262,14 +276,14 @@
                         window.requireGoogleFont(region.widgetDonationFeed.fontStyle);
                         window.requireGoogleFont(region.widgetCampaignBar.fontStyle);
                         window.requireGoogleFont(region.widgetCampaignBar.alertsModule.fontStyle);
+                        window.requireGoogleFont(region.widgetTags.fontStyle);
+
                     }
                 }
     
                 function capitaliseFirstLetter(string) {
                     return string.charAt(0).toUpperCase() + string.slice(1);
                 }
-    
-    
     
                 function showAlert(region) {           
                     var stream = null;

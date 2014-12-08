@@ -1,6 +1,9 @@
+/* Common */
+/* ------------------------------------------------- */
 @import "../variables.less";
 @import "../scrollbars.less";
 @import "navigation.less";
+
 
 /* Main Content */
 /* ------------------------------------------------- */
@@ -108,17 +111,19 @@
 .donor-view-wrap h1 {
 	margin-top: 40px;
 }
-.campaign-date,
-.donor-email {
+.top-info {
 	display: block;
 	color: @gray50;
 	font-size: @basefontsize;
 	font-weight: 400;
 	line-height: 1.6em;
 	letter-spacing: 0;
-}
-.campaign-date {
-	display: none;
+
+	.charity-name {
+		display: block;
+		color: @gray30;
+		font-weight: 500;
+	}
 }
 
 
@@ -292,7 +297,7 @@
 		position: absolute;
 		top: 80px;
 		padding: 10px 0;
-		min-width: 160px;
+		min-width: 150px;
 		background: @white;
 		.border-radius;
 		box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
@@ -313,7 +318,7 @@
 				display: block;
 				color: @gray40;
 				font-weight: 400;
-				line-height: 40px;
+				line-height: 38px;
 				padding: 0 @gutter;
 				width: 100%;
 
@@ -570,7 +575,39 @@ table.dataTable {
 	}
 }
 
+
+
+/*Trumbowyg Editor*/
+.trumbowyg-modal{
+  input[type="text"]{
+    min-height: 25px;
+  }
+  label .trumbowyg-input-infos span{
+    margin-left: 1px;
+  }
+}
+
+
+/* Campaign */
+/* ------------------------------------------------- */
 @import "campaign/campaign.less";
+
+
+/* Dashboard */
+/* ------------------------------------------------- */
 @import "dashboard.less";
+
+
+/* Settings */
+/* ------------------------------------------------- */
 @import "settings.less";
+
+
+/* Error */
+/* ------------------------------------------------- */
 @import "404.less";
+
+
+/* Dark UI */
+/* ------------------------------------------------- */
+@import "dark.less";

@@ -1,7 +1,6 @@
 /* Base Imports */
 /* ------------------------------------------------- */
-/* Resets
-/* ------------------------------------------------- */
+/* Resets */
 *,
 *:after,
 *:before {
@@ -52,12 +51,13 @@ button {
   cursor: pointer;
 }
 a,
-a:hover {
-  text-decoration: none;
+a:hover,
+a:active,
+a:visited {
+  text-decoration: none !important;
 }
 a {
   color: #1dbc9c;
-  text-decoration: none;
 }
 a:hover {
   color: #20d2ae;
@@ -2752,16 +2752,18 @@ h5 {
 p {
   line-height: 1.4em;
   margin-bottom: 1.4em;
+  /* Terms & Conditions */
 }
 p.info {
+  color: #bababf;
   font-size: 0.8em;
+  margin: 1.6em auto;
+  max-width: 280px;
 }
 i.icon {
   position: relative;
   top: 2px;
 }
-/* Forms */
-/* ------------------------------------------------- */
 /* General */
 input[type="text"],
 input.form-control,
@@ -2871,7 +2873,7 @@ input.color-choice {
 .colorpicker .colorpickerwrap span.color-choice {
   position: absolute;
   right: 15px;
-  top: 40px;
+  top: 38px;
   z-index: 900;
 }
 .colorpicker .form-group {
@@ -3147,6 +3149,8 @@ input.color-choice {
 }
 .form-group i.mdi-action-help {
   color: #bababf;
+  margin: 0;
+  margin-left: 2px;
 }
 .form-group.has-error label {
   color: #e74c3c;
@@ -3154,7 +3158,7 @@ input.color-choice {
 .form-group.has-error input,
 .form-group.has-error textarea {
   color: #e74c3c;
-  border: solid 2px #e74c3c !important;
+  border: solid 1px #e74c3c !important;
 }
 .form-group.has-error .form-control {
   box-shadow: none;
@@ -3162,6 +3166,12 @@ input.color-choice {
 .form-group.has-error .help-block {
   color: #e74c3c;
 }
+/* Main */
+/* ------------------------------------------------- */
+/* Typography */
+/* ------------------------------------------------- */
+/* Forms */
+/* ------------------------------------------------- */
 /* Global Styles */
 /* ------------------------------------------------- */
 body {
@@ -3230,7 +3240,6 @@ body.campaignflow {
 .btn-primary {
   color: #ffffff;
   background-color: #1dbc9c;
-  box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.2);
 }
 .btn-primary:hover {
   background-color: #1aaa8d;
@@ -3256,7 +3265,6 @@ body.campaignflow {
   line-height: 33px;
   padding: 0 1.2em;
   line-height: 34px;
-  box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.2);
 }
 .btn-sm:focus {
   color: #ffffff;
@@ -3271,7 +3279,6 @@ body.campaignflow {
   height: 28px;
   width: 28px;
   min-width: 0;
-  box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.2);
   border-radius: 30px;
   background-clip: padding-box;
 }
@@ -3579,6 +3586,8 @@ span.list-info {
 }
 /* Modals */
 /* ------------------------------------------------- */
+/* Modals */
+/* ------------------------------------------------- */
 .popup {
   color: #ffffff;
   position: relative;
@@ -3643,8 +3652,8 @@ span.list-info {
   z-index: 1000;
 }
 .modal-backdrop.in {
-  opacity: .3;
-  filter: alpha(opacity=30);
+  opacity: .4;
+  filter: alpha(opacity=40);
 }
 /* Charity Modal */
 #modalCharity .microPhoto {
@@ -3682,6 +3691,8 @@ span.list-info {
 #modal-social-link .modal-dialog {
   max-width: 400px;
 }
+/* Responsive */
+/* ------------------------------------------------- */
 /* Problem Solving */
 /* ------------------------------------------------- */
 @media only screen and (min-width: 1800px) {
@@ -3742,12 +3753,11 @@ body {
   margin: 0 auto;
   padding: 3em 7.5% 1em;
   width: 100%;
-  max-width: 660px;
 }
 .form-wrapper .form-group input[type="text"],
-.form-wrapper .form-group textarea,
-.form-wrapper .form-group select {
+.form-wrapper .form-group textarea {
   font-size: 16px;
+  padding: 1em;
   width: 100%;
   max-width: 100%;
 }
@@ -3763,7 +3773,7 @@ body {
   font-size: 1.4em;
   font-weight: 700;
   margin: .3em auto .6em;
-  padding: .6em 2em;
+  padding: .8em 2em;
   height: auto;
 }
 a.close {
@@ -3898,36 +3908,17 @@ h3.charity-name a.approved .approved-info:before {
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
-/* Footer */
-/* ------------------------------------------------- */
-footer {
-  text-align: center;
-  padding-bottom: 3em;
-}
-footer h5 {
-  color: #d4d4d8;
-  font-size: .6em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: .2em;
-}
-footer a.logo:before {
-  color: #d4d4d8;
-  font-size: 2em;
-}
-footer a.logo:hover:before {
-  color: #53535a;
-}
 /* Personal Donation Form */
 /* ------------------------------------------------- */
 .tip-jar {
   text-align: center;
   /* Donation Input */
 }
-.tip-jar .donation-amount input {
+.tip-jar .form-wrapper {
+  max-width: 580px;
+}
+.tip-jar .donation-amount input[type="text"] {
   padding: 1em 3.2em 1em 2em;
-  text-indent: 25px;
 }
 .tip-jar .donation-amount span {
   position: absolute;
@@ -3946,6 +3937,9 @@ footer a.logo:hover:before {
 .events-form {
   text-align: center;
   /* Amount Selections */
+}
+.events-form .form-wrapper {
+  max-width: 640px;
 }
 .events-form #donation-amount {
   position: relative;
@@ -4046,6 +4040,27 @@ footer a.logo:hover:before {
 #fg-form {
   height: 1000px;
 }
+/* Footer */
+/* ------------------------------------------------- */
+footer {
+  text-align: center;
+  padding-bottom: 3em;
+}
+footer h5 {
+  color: #d4d4d8;
+  font-size: .6em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: .2em;
+}
+footer a.logo:before {
+  color: #d4d4d8;
+  font-size: 2em;
+}
+footer a.logo:hover:before {
+  color: #53535a;
+}
 /* Loader */
 /* ------------------------------------------------- */
 .spinner {
@@ -4064,7 +4079,8 @@ h4.donations-disabled {
 }
 .thankyou .custom-message-wrap {
   padding: 15px;
-  margin-bottom: 2em;
+  margin: 0 auto 2em;
+  max-width: 680px;
   background: #efeff0;
   border-radius: 3px;
   background-clip: padding-box;

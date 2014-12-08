@@ -12,14 +12,21 @@ CommonAsset::register($this);
 FrontendAsset::register($this);
 
 $streamboardConfig = StreamboardConfig::get();
-$js = 'Pullr.baseUrl = "'.Url::to('app').'";';
-$js .= 'Pullr.setCurrentMenuActive();';
-$js .= 'Pullr.Streamboard = '.json_encode($streamboardConfig->toArray(['streamboardWidth', 'streamboardHeight', 'streamboardLeft', 'streamboardTop'])).';';
-$this->registerJs($js);
+if(isset($streamboardConfig))
+{
+    $js = 'Pullr.baseUrl = "'.Url::to('app').'";';
+    $js .= 'Pullr.setCurrentMenuActive();';
+    $js .= 'Pullr.Streamboard = '.json_encode($streamboardConfig->toArray(['streamboardWidth', 'streamboardHeight', 'streamboardLeft', 'streamboardTop'])).';';
+    $this->registerJs($js);
+}
 
+$colorTheme = '';
 $user = Yii::$app->user->identity;
-$user->setScenario('settings');
-$colorTheme = $user->colorTheme == ""?"light":$user->colorTheme;
+if (isset($user))
+{
+    $user->setScenario('settings');
+    $colorTheme = $user->colorTheme == ""?"light":$user->colorTheme;
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

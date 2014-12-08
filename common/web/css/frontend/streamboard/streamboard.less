@@ -260,7 +260,7 @@ span.slider-value {
 				margin-bottom: 4px;
 			}
 			slider span.bar {
-				background: @streamboardgray;
+				/*background: @streamboardgray;*/
 			}
 			span.total_amountRaised {
 				font-weight: 400;
@@ -642,6 +642,19 @@ ul.panel-nav {
 				height: 100%;
 				max-width: 100%;
 				max-height: 100%;
+			}
+		}
+		.campaign-conatiner{
+			[resizable] {
+				&:hover,
+				&:active {
+					outline: dashed 1px white;
+				}
+				&:hover {
+					.ui-resizable-handle {
+						display: block !important;
+					}
+				}				
 			}
 		}
   	}

@@ -28,7 +28,7 @@ class CampaignapiController extends \yii\web\Controller
         $apiKey = \Yii::$app->request->getQueryParam('apikey');
         $user = $this->getUserByApiKey($apiKey);
         if ($user == "NOT_USER") {
-            $this->throwError("400", "An authentication error occured");
+            $this->throwError("401", "An authentication error occured");
         }
         $this->setUser($user);
         return parent::init();
@@ -228,12 +228,13 @@ class CampaignapiController extends \yii\web\Controller
     {
         \Yii::$app->response->setStatusCode($setStatusCode);
         $errornames = array(
-                                '400'=>'Unauthorized',
+                                '401'=>'Unauthorized',
                                 '405'=>'MethodNotAllowed',
                                 '406'=>'NotAcceptable',
                                 '407'=>'InvalidParameter'
                             );
         echo json_encode(array('name' => $errornames[$setStatusCode], 'message' => $errorMessage));
+        \Yii::$app->response->send();
         die();
     }
 }

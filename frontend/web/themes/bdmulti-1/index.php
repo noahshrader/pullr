@@ -19,8 +19,10 @@
     <link rel="stylesheet" href="/themes/bdmulti-1/css/master.css" />
     <!-- Scripts -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script> 
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+
     <script src="api/script"></script>
+    <script src="http://code.angularjs.org/1.2.0-rc.3/angular-sanitize.min.js"></script>
     <script src="/global/themes/global.js"></script>
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700|Varela+Round' rel='stylesheet' type='text/css'>
@@ -110,6 +112,7 @@
 <script>
     Pullr.Init({id: <?= $campaign->id ?>, key: <?= json_encode($campaign->key) ?>});
 </script>
+
 <script src="/global/themes/js/stream.js"></script>
 </body>
 </html>

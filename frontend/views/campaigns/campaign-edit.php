@@ -30,40 +30,34 @@ $user = \Yii::$app->user->identity;
                             <ul>
                                 <li class="cf">
                                     <a href="app/campaigns/view?id=<?= $campaign->id ?>">
-                                        <i class="icon mdi-av-equalizer"></i>
                                         <!-- Overview -->
                                         Overview
                                     </a>
                                 </li>
                                 <li class="active cf">
                                     <a href="app/campaigns/edit?id=<?= $campaign->id ?>">
-                                        <i class="icon mdi-content-create"></i>
                                         <!-- Edit -->
                                         Edit
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
-                                        <i class="icon mdi-action-toc"></i>
                                         Form
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/json' target="_blank">
-                                        <i class="icon mdi-action-settings-ethernet"></i>
                                         JSON
                                     </a>
                                 </li>
                                 <li class="cf">
                                     <a class="disabled">
-                                        <i class="icon mdi-device-now-widgets"></i>
                                         Widgets
                                     </a>
                                 </li>
                                 <? if ($campaign->status != Campaign::STATUS_PENDING): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_PENDING ?>')">
-                                        <i class="icon mdi-content-inbox"></i>
                                         <!-- Archive -->
                                         Archive
                                     </a>
@@ -72,7 +66,6 @@ $user = \Yii::$app->user->identity;
                                 <? if ($campaign->status != Campaign::STATUS_ACTIVE): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>,  '<?= Campaign::STATUS_ACTIVE ?>')">
-                                        <i class="icon mdi-content-undo"></i>
                                         <!-- Restore -->
                                         Restore
                                     </a>
@@ -81,7 +74,6 @@ $user = \Yii::$app->user->identity;
                                 <? if ($campaign->status != Campaign::STATUS_DELETED): ?>
                                 <li class="cf">
                                     <a href="app/campaigns" onclick="return campaignChangeStatus(<?= $campaign->id ?>, '<?= Campaign::STATUS_DELETED ?>')">
-                                        <i class="icon mdi-action-delete"></i>
                                         <!-- Remove -->
                                         Delete
                                     </a>

@@ -121,9 +121,9 @@ body.trash .campaigns-list {
 	position: relative;
 	display: block;
 	margin-bottom: @gutter;
-	padding: 0px;
-	height: @campain-name-height;
+	padding: 0;
 	width: 100%;
+	height: @campain-name-height;
 	background: @gray72;
 	.box-shadow;
 	.border-radius;
@@ -147,7 +147,7 @@ body.trash .campaigns-list {
 			&.drop {
 				ul {
 					top: 55px;
-					left: @halfgutter;
+					left: 0;
 				}
 				a.actions-toggle {
 					color: @gray40;
@@ -172,7 +172,7 @@ body.trash .campaigns-list {
 			color: @gray60;
 			font-size: 22px;
 			line-height: @campain-name-height;
-			padding: 0 @gutter;
+			padding: 0 @gutter 0 @halfgutter;
 			width: auto;
 			transition: none;
 			&:after {
@@ -202,10 +202,7 @@ body.trash .campaigns-list {
 		a {
 			display: inline-block;
 			color: @gray30;
-			width: 60%;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
+			width: 70%;
 		}
 	}
 
@@ -218,10 +215,10 @@ body.trash .campaigns-list {
 		color: @white;
 		font-size: 20px;
 		font-weight: 400;
-		padding-right: @halfgutter;
-		padding-left: 6px;
 		text-align: center;
 		line-height: @campain-name-height;
+		padding-right: @halfgutter;
+		padding-left: 6px;
 		width: auto;
 		background: @gray60;
 		border-top-right-radius: 2px;

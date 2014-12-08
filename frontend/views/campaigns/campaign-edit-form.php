@@ -1,6 +1,6 @@
 <?
     use yii\helpers\Html;
-    use dosamigos\ckeditor\CKEditor;
+    use artkost\trumbowyg\Widget;
 ?>
 <div id="campaign-edit-form">
     <div class="module-inner">
@@ -41,11 +41,29 @@
             <?= $form->field($campaign, 'enableThankYouPage', ['autoPlaceholder' => false])->checkbox([], false); ?>
         </div>
         <!-- Custom Thank You HTML -->
-        <div class="form-group highlight-wrap thankyoutext">
-        <?= $form->field($campaign, 'thankYouPageText')->label(false)->widget(CKEditor::className(), [
-                'options' => ['rows' => 6],
-                'preset' => 'basic'
-            ]) ?>
+        <div class="form-group thankyoutext text-left">
+        <?=
+            $form->field($campaign, 'thankYouPageText')->widget(Widget::className(), [
+                'settings' => [
+                    'fullscreenable' => false,
+                    'resetCss' => true,
+                    'btns' => ['viewHTML',
+                        '|', 'formatting',
+                        '|', ['bold', 'italic', 'underline'],
+                        '|', 'link',
+                        '|', 'insertImage',
+                        '|', ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                        '|', ['unorderedList', 'orderedList'],
+                        '|', 'insertHorizontalRule']
+                ]]);
+        ?>
+        <?php
+//            echo
+//            $form->field($campaign, 'thankYouPageText')->label(false)->widget(CKEditor::className(), [
+//                'options' => ['rows' => 6],
+//                'preset' => 'basic'
+//            ])
+        ?>
         </div>
     </div>
 </div>

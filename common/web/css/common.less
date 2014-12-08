@@ -1,6 +1,16 @@
+/* Main */
+/* ------------------------------------------------- */
 @import "base.less";
 @import "variables.less";
+
+
+/* Typography */
+/* ------------------------------------------------- */
 @import "type.less";
+
+
+/* Forms */
+/* ------------------------------------------------- */
 @import "forms.less";
 
 
@@ -73,7 +83,6 @@ body {
 .btn-primary {
 	color: @white;
 	background-color: @accent;
-	.box-shadow;
 	&:hover {
 		background-color: @dkaccent;
 	}
@@ -99,7 +108,6 @@ body {
 	line-height: 33px;
 	padding: 0 1.2em;
 	line-height: 34px;
-	.box-shadow;
 	&:focus {
 		color: @white;
 	}
@@ -114,7 +122,6 @@ body {
 	height: 28px;
 	width: 28px;
 	min-width: 0;
-	.box-shadow;
 	.round-radius;
 }
 .btn-link {
@@ -442,5 +449,12 @@ span.list-info {
     }
 }
 
+
+/* Modals */
+/* ------------------------------------------------- */
 @import "app-styles/modals.less";
+
+
+/* Responsive */
+/* ------------------------------------------------- */
 @import "responsive.less";

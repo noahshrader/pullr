@@ -21,7 +21,7 @@ class WidgetCampaignBarMessages extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['message1','message2', 'message3', 'message4', 'message5', 'rotationSpeed', 'positionX', 'positionY']
+            'default' => ['message1','message2', 'message3', 'message4', 'message5', 'rotationSpeed', 'positionX', 'positionY','messageWidth','messageHeight']
         ];
     }
 }
