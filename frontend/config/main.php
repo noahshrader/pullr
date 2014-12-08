@@ -10,9 +10,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'cache' => [
-            'class' => 'yii\caching\ApcCache',
-        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

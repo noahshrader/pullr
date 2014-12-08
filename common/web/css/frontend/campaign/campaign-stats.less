@@ -4,6 +4,7 @@ ul.campaign-quicknav {
 	position: fixed;
 	top: 0;
 	width: @sidepanelwidth;
+	border-bottom: solid 1px @maingray;
 
 	li {
 		width: 33.33%;
@@ -203,6 +204,9 @@ body.trash .campaigns-list {
 			display: inline-block;
 			color: @gray30;
 			width: 70%;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 	}
 
