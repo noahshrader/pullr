@@ -129,24 +129,25 @@ table.dataTable {
 .pagination>li>span {
 	color: @gray40;
 	background: @gray20;
-	border-top: solid 1px @gray12;
-	border-bottom: solid 1px @gray12;
+	border-top: solid 1px @gray20;
+	border-bottom: solid 1px @gray20;
 	&:hover {
-		color: @gray40;
-		background: @gray75;
-		border: solid 1px @gray75;
+		color: @white;
+		background: @gray20;
+		border: solid 1px @gray20;
 	}
 	&:first-child {
-		border-left: solid 1px @gray12;
+		border-left: solid 1px @gray20;
 	}
 	&:last-child {
-		border-right: solid 1px @gray12;
+		border-right: solid 1px @gray20;
 	}
 }
 .pagination>.active>a,
 .pagination>.active>span {
 	color: @white;
-	border: solid 1px @gray12 !important;
+	background: @gray30 !important;
+	border: solid 1px @gray30 !important;
 }
 .pagination>.disabled>span,
 .pagination>.disabled>span:hover,
@@ -269,6 +270,12 @@ legend,
 		span {
 			color: @white !important;
 		}
+	}
+}
+
+.form-group {
+	i.mdi-action-help {
+		color: @gray30;
 	}
 }
 
@@ -502,10 +509,10 @@ ul.campaign-quicknav {
 		}
 	}
 	.highlight-wrap {
-		background: @gray20;
+		background: @gray15;
 
 		&:before {
-			border-color: transparent transparent @gray20 transparent;
+			border-color: transparent transparent @gray15 transparent;
 		}
 		input[type="text"],
 		input.form-control {
@@ -534,6 +541,25 @@ ul.campaign-quicknav {
 }
 
 
+/* Tooltips */
+/* ------------------------------------------------- */
+.tooltip {
+
+	.tooltip-inner {
+		background: @maingray;
+	}
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: @maingray;
+}
+.tooltip.right .tooltip-arrow {
+	border-right-color: @maingray;
+}
+.tooltip.bottom .tooltip-arrow {
+	border-bottom-color: @maingray;
+}
+
+
 /* Dialog */
 /* ------------------------------------------------- */
 
@@ -541,6 +567,7 @@ ul.campaign-quicknav {
 /* Modals */
 /* ------------------------------------------------- */
 .modal-backdrop {
+	background: @base;
 	&.in {
 		opacity: .7;
 		filter: alpha(opacity=70);
