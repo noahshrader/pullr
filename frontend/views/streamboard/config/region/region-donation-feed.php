@@ -46,7 +46,7 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
         </div>
     </div>
 </div>
-<div class="module scrolling">
+<div class="module scrolling last">
     <div class="form-group red">
         <div class="checkbox">
             <label ng-class="{on:widget.scrolling}">
@@ -55,16 +55,11 @@ foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
             </label>
             <div ng-show="widget.scrolling" class="scroll-options">
                 <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.scrollSpeed" ng-init="WIDGET_SPEEDS = <?= htmlspecialchars(json_encode($speeds)) ?>" ng-change="regionChanged(region)"
-                        ng-options="speed.value as speed.name for speed in WIDGET_SPEEDS" data-placeholder="Select speed...">
+                        data-placeholder="Select speed...">
                     <option value=""></option>
+                    <option ng-repeat="type in WIDGET_SPEEDS" value="{{type.value}}">{{type.name}}</option>
                 </select>
             </div>
         </div>
-    </div>
-</div>
-<div class="module last">
-    <div class="form-group">
-        <h5>No Activity Message</h5>
-        <textarea ng-model="widget.noDonationMessage" ng-change="donationMessageChanged(region)"></textarea>
     </div>
 </div>

@@ -20,12 +20,16 @@
             this.showSubscriber = true;
             this.showFollower = true;
             this.groupUser = false;
+            this.groupBase = 'name';
+            this.noDonationMessage = '';
 
             this.getActivityFeedSetting = function () {                       
                 $http.get('app/streamboard/get_activity_feed_setting').success(function (data) {
                     Service.showSubscriber = data.showSubscriber;
                     Service.showFollower = data.showFollower;
                     Service.groupUser = data.groupUser;
+                    Service.groupBase = data.groupBase;
+                    Service.noDonationMessage = data.noDonationMessage;
 
                     $timeout(function(){
                         Service.getActivityFeedSetting();
@@ -48,6 +52,18 @@
             this.toggleGroupUser = function() {
                 $http.post('app/streamboard/set_activity_feed_setting', {
                     groupUser: Service.groupUser
+                });
+            }
+
+            this.groupBasedChanged = function() {
+                $http.post('app/streamboard/set_activity_feed_setting', {
+                    groupBase: Service.groupBase
+                });
+            }
+
+            this.noActivityMessageChanged = function() {
+                $http.post('app/streamboard/set_activity_feed_setting', {
+                    noDonationMessage: Service.noDonationMessage
                 });
             }
 

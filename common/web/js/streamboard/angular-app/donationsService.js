@@ -4,12 +4,19 @@
                 function ($http, $interval, $timeout, $compile, stream, simpleMarqueeHelper, donationsFilterToSelectedCampaignsFilter, groupByFilter, orderByFilter, limitToFilter) {
                     var Service = this;
                     this.donations = [];
+
+                    this.donationsByName = [];
+                    this.donationsByEmail = [];
+
                     this.followers = [];
                     this.subscribers = [];
                     this.unorderedDonations = {};
                     this.lastDonationId = 0;
                     this.stats = [];
                     this.groupDonations = [];
+                    this.groupDonationsByEmail = [];
+                    this.groupDonationsByName = [];
+
                     this.updateDonations = updateDonations;
                     this.clear = clear;
         
@@ -54,14 +61,20 @@
                             if (data.userDonations) {
                                 Service.userDonations = data.userDonations;
                             }
-        
-                            if (data.donations) {
-                                Service.donations = data.donations;
-                                groupDonations();                       
-                                if ( detectChange(data.donations, Service.donations)) {
-                                    simpleMarqueeHelper.recalculateMarquee();                            
-                                }                                                                        
+                            if (data.donationsByEmail) {
+                                Service.donationsByEmail = data.donationsByEmail;
+                                if ( detectChange(data.donationsByEmail, Service.donationsByEmail)) {
+                                    simpleMarqueeHelper.recalculateMarquee();
+                                }
                             }
+
+                            if (data.donationsByName) {
+                                Service.donationsByName = data.donationsByName;
+                                if ( detectChange(data.donationsByName, Service.donationsByName)) {
+                                    simpleMarqueeHelper.recalculateMarquee();
+                                }
+                            }
+                            groupDonations();
         
                             callback();
         
@@ -75,6 +88,7 @@
                         }
                         return false;
                     }
+
         
                     function countGroupDonationItem(groupDonations) {
                         var count = 0;
@@ -103,11 +117,21 @@
                         Service.donations = newDonations;                         
                     };
         
-                    function groupDonations() {           
-                        var groupDonations = orderByFilter(Service.donations, 'amount');               
-                        groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations, 'amount');                               
-                        groupDonations = groupByFilter(groupDonations, 'amount');
-                        Service.groupDonations = groupDonations;        
+                    function groupDonations() {
+                        if(Service.donationsByEmail){
+                            var groupDonations = orderByFilter(Service.donationsByEmail, 'amount');
+                            groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations, 'amount');
+                            groupDonations = groupByFilter(groupDonations, 'amount');
+                            Service.groupDonationsByEmail = groupDonations;
+                        }
+
+                        if(Service.donationsByName){
+                            var groupDonations = orderByFilter(Service.donationsByName, 'amount');
+                            groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations, 'amount');
+                            groupDonations = groupByFilter(groupDonations, 'amount');
+                            Service.groupDonationsByName = groupDonations;
+                        }
+                        return true;
                     }
         
                     function clear() {
@@ -115,46 +139,46 @@
                         Service.donations = [];
                     }
                 }]).filter('donationsFilterToSelectedCampaigns', function (campaigns) {
-            return function (donations) {
-                var filteredDonations = [];
-                for (var key in donations) {
-                    var donation = donations[key];
-                    var campaign = campaigns.campaigns[donation.campaignId];
-                    if (campaign && campaign.streamboardSelected) {
-                        filteredDonations.push(donation);
+                    return function (donations) {
+                        var filteredDonations = [];
+                        for (var key in donations) {
+                            var donation = donations[key];
+                            var campaign = campaigns.campaigns[donation.campaignId];
+                            if (campaign && campaign.streamboardSelected) {
+                                filteredDonations.push(donation);
+                            }
+                        }
+                        return filteredDonations;
                     }
-                }
-                return filteredDonations;
-            }
-        }).filter('groupBy', [function() {
-            var groupBy = function(list, groupBy) {
-                var groupedList = [];      
-                var checkList = [];          
-                angular.forEach(list, function(item, index) {
-                    if (checkList.indexOf(item[groupBy]) == -1) {                 
-                        lastGroupValue = item[groupBy];                        
-                        checkList.push(lastGroupValue);
-                        var group = {
-                            amount: lastGroupValue,
-                            items: [item]
-                        };
-                                            
-                        angular.forEach(list, function(item1, index1) {
-                            if ( lastGroupValue == item1[groupBy] && index1 > index) {
-                                group.items.push(item1);
+                }).filter('groupBy', [function() {
+                    var groupBy = function(list, groupBy) {
+                        var groupedList = [];
+                        var checkList = [];
+                        angular.forEach(list, function(item, index) {
+                            if (checkList.indexOf(item[groupBy]) == -1) {
+                                lastGroupValue = item[groupBy];
+                                checkList.push(lastGroupValue);
+                                var group = {
+                                    amount: lastGroupValue,
+                                    items: [item]
+                                };
+
+                                angular.forEach(list, function(item1, index1) {
+                                    if ( lastGroupValue == item1[groupBy] && index1 > index) {
+                                        group.items.push(item1);
+                                    }
+                                });
+
+                                groupedList.push(group);
                             }
                         });
 
-                        groupedList.push(group);
-                    }                    
-                });
+                        groupedList.sort(function(a,b) {
+                            return b.amount - a.amount;
+                        });
 
-                groupedList.sort(function(a,b) {
-                    return b.amount - a.amount;
-                });                                          
-
-                return groupedList;
-            }
-            return groupBy;
-        }]);
-})();
+                        return groupedList;
+                    }
+                    return groupBy;
+                }]);
+        })();
