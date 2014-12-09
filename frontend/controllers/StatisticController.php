@@ -20,7 +20,7 @@ class StatisticController extends FrontendController {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','amount_raised'],
+                        'actions' => ['index','amount_raised', 'api'],
                         'allow' => true
                     ],
                     [
