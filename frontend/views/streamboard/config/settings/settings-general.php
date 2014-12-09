@@ -22,7 +22,7 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
         </div>
 
         <div class="campaigns_list module">
-            <a class="settingtoggle">Feeds<i class="mdi-navigation-arrow-drop-down"></i></a>
+            <a class="settingtoggle">Activity Feeds<i class="mdi-navigation-arrow-drop-down"></i></a>
             <div class="module-settings">
                 <div class="form-group red">
                     <div class="checkbox cf">
@@ -46,8 +46,8 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
                         </label>
                     </div>
                 </div>
-                <div class="form-group red">
-                    <h5>Group Base</h5>
+                <div class="form-group">
+                    <h5>Donation Grouping</h5>
                     <select ui-select2="{minimumResultsForSearch: -1}" ng-model="streamService.groupBase" ng-change="groupBasedChanged()" data-placeholder="Select one..." ng-init="groupType = <?= htmlspecialchars(json_encode($groupType)) ?>">
                         <option value=""></option>
                         <option ng-repeat="type in groupType" value="{{type.value}}">{{type.name}}</option>
