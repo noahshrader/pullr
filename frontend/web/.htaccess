@@ -3,3 +3,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !index\.php$
 RewriteRule .* index.php/%{REQUEST_URI} [L]
+RedirectMatch 301 ^(.+)/$ $1

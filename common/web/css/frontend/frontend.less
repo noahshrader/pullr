@@ -71,6 +71,10 @@
 	}
 	.module-inner {
 		padding: @gutter;
+
+		&.red {
+			padding: @halfgutter @gutter;
+		}
 	}
 }
 
@@ -156,7 +160,7 @@
 		.none {
 			color: @gray40;
 			font-size: @smalltext;
-			padding: @gutter 0;
+			padding: @halfgutter 0;
 		}
 	}
 
@@ -334,26 +338,6 @@
 			}
 		}
 	}
-}
-
-
-/* Pace Loader Bar */
-/* ------------------------------------------------- */
-.pace .pace-progress {
-	background: @white;
-	position: fixed;
-	z-index: 9999;
-	top: 0;
-	left: 0;
-	height: 1px;
-	-webkit-transition: width 1s;
-	-moz-transition: width 1s;
-	-o-transition: width 1s;
-	transition: width 1s;
-}
-
-.pace-inactive {
-	display: none;
 }
 
 

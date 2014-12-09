@@ -103,14 +103,14 @@ endif;
 					</div>	
 				</div>
                 <div class="api-key module">
-                    <h5 class="module-title">Developers</h5>
+                    <h5 class="module-title">Developer</h5>
                     <div class="module-inner">
                         <?= $form->field($user, 'apiKey')->label("API Key")->input('text', ['class' => 'form-control copyable']) ?>
                     </div>
                 </div>
 			</section>
 			<section class="module">
-				<div class="module-inner">
+				<div class="module-inner red">
 	            	<a class="account-deactivate" data-toggle="modal" data-target="#deactivateModal">Deactivate my account</a>
 	            </div>
 			</section>

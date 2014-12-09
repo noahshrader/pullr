@@ -16,6 +16,7 @@ class PullrUtils extends \yii\base\Component
         $url = str_replace(' ', '-', $url);
         $url = preg_replace('/[^A-Za-z0-9\-]/', '', strtolower($url) );
         $url = preg_replace('/-+/', '-', $url);
+        $url = trim($url, '-');
         
         return $url;
     }

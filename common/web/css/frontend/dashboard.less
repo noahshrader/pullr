@@ -75,9 +75,9 @@
 					margin-left: -10px;
 					border-color: transparent transparent @dkaccent transparent;
 				}
-
 				.stats-box {
 					padding: 1.4em 0;
+					background: transparent;
 					border: 0;
 				}
 			}
@@ -99,7 +99,7 @@
 
 			/* Twitch Bar */
 			&.twitch-stats {
-				background: @twitchpurple;
+				background: @twitchpurple !important;
 				.box-shadow;
 				.border-radius;
 
@@ -122,6 +122,9 @@
 					width: 34px;
 					.round-radius;
 					background: @gray72;
+				}
+				.stats-box {
+					background: transparent;
 				}
 				span.stick {
 					top: -@gutter + -@gutter;

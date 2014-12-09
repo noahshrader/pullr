@@ -1,5 +1,23 @@
 body.dark {
 
+/* Base */
+/* ------------------------------------------------- */
+
+/* Placeholder styling */
+::-webkit-input-placeholder {
+   color: @gray30 !important;
+}
+:-moz-placeholder {
+   color: @gray30 !important; 
+}
+::-moz-placeholder {
+   color: @gray30 !important;  
+}
+:-ms-input-placeholder {  
+   color: @gray30 !important;  
+}
+
+
 /* Common */
 /* ------------------------------------------------- */
 .top-menu,
@@ -39,7 +57,7 @@ ul.content-nav {
 
 /* Tables */
 .table-header {
-	background: @gray20;
+	background: @gray15;
 	border-bottom-color: @gray12;
 
 	.btn {
@@ -49,14 +67,20 @@ ul.content-nav {
 		}
 	}
 }
-.dataTables_wrapper .dataTables_filter input {
-	background: @gray12;
+.dataTables_wrapper .dataTables_filter {
+
+	&:before {
+		color: @gray30;
+	}
+	input {
+		background: @gray12;
+	}
 }
 table.dataTable {
 	th,
 	thead th {
-		background: @gray20;
-		border: 0;
+		background: @gray15;
+		border-bottom: solid 1px @gray10;
 	}
 	tbody tr:hover,
 	&.hover tbody tr:hover,
@@ -72,7 +96,7 @@ table.dataTable {
 	&.display tbody th,
 	&.display tbody td,
 	thead td {
-		border-top-color: @gray12;
+		border-top-color: @gray10;
 	}
 	td.raised span {
 		background: @gray10;
@@ -84,12 +108,58 @@ table.dataTable {
 	}
 }
 .table-footer {
+	background: @gray15;
 	border-top-color: @gray10;
+}
+
+/* Lists */
+.list-search {
+	border: 0;
+
+	span {
+		background: transparent;
+	}
 }
 
 
 /* Forms */
 /* ------------------------------------------------- */
+
+/* Input */
+input[type="text"],
+input.form-control,
+div.form-control,
+textarea,
+textarea.form-control,
+select,
+select.form-control,
+.form-group.has-success input.form-control,
+.form-group.has-success textarea.form-control {
+	color: @white;
+	border: solid 1px @gray30;
+}
+label,
+legend,
+.form-group.has-success label {
+	color: @gray40;
+}
+
+/* Checboxes */
+.checkbox {
+
+	label {
+
+		&:before {
+			color: @gray75;
+			background: @gray30;
+	    }
+    	&.on:before {
+	        color: @gray30;
+    	}
+    }
+}
+
+/* Selects */
 
 
 /* Buttons */
@@ -101,6 +171,10 @@ table.dataTable {
 		color: @white;
 		background-color: @gray40;
 	}
+}
+.btn-container {
+	background: @gray15;
+	border-top-color: @gray10;
 }
 
 
@@ -114,13 +188,19 @@ table.dataTable {
 		background: @maingray;
 	}
 }
-.top-menu .avatar-container .avatar .user-photo-menu {
+.top-menu {
 
-	img {
-		border-color: @gray10;
+	&.shadow {
+		border-bottom: solid 1px @shadowgray;
 	}
-	&:after {
-		border-color: @gray20 transparent transparent transparent;
+	.avatar-container .avatar .user-photo-menu {
+
+		img {
+			border-color: @gray10;
+		}
+		&:after {
+			border-color: @gray20 transparent transparent transparent;
+		}
 	}
 }
 
@@ -176,12 +256,14 @@ table.dataTable {
 
 /* Campaign */
 /* ------------------------------------------------- */
+
+/* Main */
 .list-wrap {
 	background: @shadowgray;
 
 	.campaign-item,
 	.donor-item {
-		border: 0;
+		border-bottom: solid 1px @maingray;
 
 		h3.list-title,
 		h5 {
@@ -219,7 +301,7 @@ ul.campaign-quicknav {
 	}
 }
 .view-actions {
-	background: @gray20;
+	background: @gray15;
 	box-shadow: none;
 
 	h4,
@@ -232,10 +314,10 @@ ul.campaign-quicknav {
 			border-bottom-color: @gray30;
 		}
 		&:hover, {
-			background: @accent;
+			background: @gray40;
 		}
 		&:hover:before {
-			border-bottom-color: @accent;
+			border-bottom-color: @gray40;
 		}
 	}
 	a.actions-toggle {
@@ -252,13 +334,14 @@ ul.campaign-quicknav {
 		background: @accent;
 
 		.stats-box {
-			border-left-color: @dkaccent;
+			border-left-color: @gray10;
 		}
 	}
 	span {
 		color: rgba(255,255,255,.6) !important;
 	}
 	.stats-box {
+		background: @gray15;
 		border-left-color: @gray10;
 
 		h2,
@@ -273,6 +356,33 @@ ul.campaign-quicknav {
 		&.top-donor,
 		&.top-donation {
 			border-top-color: @gray10;
+		}
+	}
+}
+
+/* Campaign Edit */
+#campaignEdit {
+	.campaign-edit-wrap {
+		.module {
+			.module-inner {
+				h5 {
+					i {
+						color: @gray30;
+						border-color: @gray30;
+					}
+				}
+			}
+		}
+	}
+	.highlight-wrap {
+		background: @gray20;
+
+		&:before {
+			border-color: transparent transparent @gray20 transparent;
+		}
+		input[type="text"],
+		input.form-control {
+			border-color: @gray30;
 		}
 	}
 }
