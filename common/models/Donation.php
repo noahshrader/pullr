@@ -160,18 +160,28 @@ class Donation extends ActiveRecord
      * @param $sinceDate - if is set, only donations with paymentDate > $sinceDate will be taken in query
      * @return string[]
      */
-    public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false, $sinceDate = null){
-        $query = self::getDonationTableQueryForCampaigns($campaigns, $sinceDate)->andWhere('email <> ""')
-            ->groupBy('email')->orderBy('sum DESC')->select('id , SUM(AMOUNT) sum, email');
+    public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false, $sinceDate = null, $goupBy = 'email'){
+        $query = self::getDonationTableQueryForCampaigns($campaigns, $sinceDate)->andWhere('email <> ""');
+        if($goupBy == 'email'){
+            $query = $query->groupBy('email');
+        }else if($goupBy == 'name'){
+            $query = $query->groupBy('nameFromForm');
+        }
+        $query = $query->orderBy('sum DESC')->select('id , SUM(AMOUNT) sum, email, nameFromForm name');
         if ($limit){
             $query->limit($limit);
         }
         $rows = $query->all();
-        $sumByEmail = [];
+        $sumAry = [];
         $donationIds = [];
         foreach ($rows as $row){
             $donationIds[] = $row['id'];
-            $sumByEmail[$row['email']] = $row['sum'];
+            if($goupBy == 'email'){
+                $sumAry[$row['email']] = $row['sum'];
+            }else if($goupBy == 'name'){
+                $sumAry[$row['name']] = $row['sum'];
+            }
+
         }
 
         $donations = Donation::findAll($donationIds);
@@ -182,8 +192,9 @@ class Donation extends ActiveRecord
         $donors = [];
         foreach ($donations as $donation){
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
-            $donors[] = [ 'name' => $name,
-                        'amount' => $sumByEmail[$donation->email],
+            $key = $goupBy == 'email'?$donation['email']:$donation['nameFromForm'];
+            $donors[] = [ 'name' => $name, 
+                        'amount' => $sumAry[$key]*1,
                         'email' => $donation->email,
                         'campaignId' => $donation->campaignId];
         }

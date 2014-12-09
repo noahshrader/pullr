@@ -26,13 +26,23 @@ use frontend\models\streamboard\StreamboardRegion;
           >
             <span>
                 <span ng-if=' ! streamService.groupUser'>
-                    <span
-                        ng-repeat="donation in donationsService.donations | orderBy: amount | donationsFilterToSelectedCampaigns "
-                        class="commaAfter">
-                    <span>
-                        &nbsp;{{donation.name}} (${{number_format(donation.amount,2)}})<!--removing space for .commaAfter
-                    --></span>
+
+                     <span ng-if='region.widgetDonationFeed.groupBase == "name" || !region.widgetDonationFeed.groupBase'>
+                        <span
+                            ng-repeat="donation in donationsService.donationsByName |orderBy:'amount':true| donationsFilterToSelectedCampaigns "
+                            class="commaAfter">
+                            <span>&nbsp;{{donation.name}} (${{number_format(donation.amount)}})<!--removing space for .commaAfter--></span>
+                        </span>
                     </span>
+                    
+                    <span ng-if='region.widgetDonationFeed.groupBase=="email"'>
+                        <span
+                            ng-repeat="donation in donationsService.donationsByEmail | orderBy:'amount':true | donationsFilterToSelectedCampaigns "
+                            class="commaAfter">
+                        <span>&nbsp;{{donation.name}} (${{number_format(donation.amount)}})<!--removing space for .commaAfter--></span>
+                        </span>
+                    </span>
+
                     
                     <span
                         ng-repeat="follower in donationsService.followers"
@@ -56,9 +66,18 @@ use frontend\models\streamboard\StreamboardRegion;
                     </span> 
                 </span> 
                 <span ng-if='streamService.groupUser'>
-                    <span ng-repeat="groupDonation in donationsService.groupDonations"
-                        class="commaAfter grouped">
-                        <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount,2)}})
+                    <span ng-if='region.widgetDonationFeed.groupBase == "name" || !region.widgetDonationFeed.groupBase'>
+                        <span ng-repeat="groupDonation in donationsService.groupDonationsByName"
+                                  class="commaAfter grouped">
+                            <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount)}})
+                        </span>
+                    </span>
+
+                    <span ng-if='region.widgetDonationFeed.groupBase=="email"'>
+                         <span ng-repeat="groupDonation in donationsService.groupDonationsByEmail"
+                               class="commaAfter grouped">
+                            <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount)}})
+                        </span>
                     </span>
 
                     <span
@@ -78,9 +97,7 @@ use frontend\models\streamboard\StreamboardRegion;
                             &nbsp;{{follower.display_name}}<!--removing space for .commaAfter
                         -->
                         <span class="commaAfter" ng-show='$last'>(followed)</span>
-                    </span> 
-
-                    
+                    </span>
                 </span>     
             </span>         
         </div>

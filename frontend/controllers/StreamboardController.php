@@ -278,7 +278,10 @@ class StreamboardController extends FrontendController
     public function getDonationsData($user, $since_id = null) {
         $sinceDate = $user->streamboardConfig->clearedDate;
         $selectedCampaigns = Streamboard::getSelectedCampaigns($user);
+
         $donations = [];
+        $donationsByName = [];
+        $donationsByEmail = [];
 
         $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$user->id])->one();
         if ( $donationFeed && $donationFeed->groupUser == 1 ) {
@@ -287,7 +290,9 @@ class StreamboardController extends FrontendController
             $groupUser = false;
         }
 
-        $donations = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
+//        $donations = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
+        $donationsByName = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate,'name');
+        $donationsByEmail = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate,'email');
 
         $userDonations = $user->getDonations(['sinceId' => $since_id])
                             ->andWhere('paymentDate > ' . $sinceDate)
@@ -346,6 +351,10 @@ class StreamboardController extends FrontendController
 
         $data = [];
         $data['donations'] = $donations;
+
+        $data['donationsByEmail'] = $donationsByEmail;
+        $data['donationsByName'] = $donationsByName;
+
         $data['stats'] = $stats;
         $data['followers'] = $followers;
         $data['subscribers'] = $subscribers;
