@@ -119,10 +119,10 @@ class Campaign extends ActiveRecord {
         $this->formVisibility = true;
         $this->enableDonorComments = true;
         $this->enableThankYouPage = false;
-        $this->enableDonationProgressBar = true;        
+        $this->enableDonationProgressBar = true;
         $this->donationDestination = self::DONATION_PARTNERED_CHARITIES;
     }
-    
+
     public function beforeSave($insert)
     {
 
@@ -161,7 +161,7 @@ class Campaign extends ActiveRecord {
 
         return parent::beforeSave($insert);
     }
-    
+
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
 
@@ -175,7 +175,7 @@ class Campaign extends ActiveRecord {
             $this->link('streamboard', $streamboardCampaign);
         }
     }
-    
+
     public function attributeLabels() {
         return [
             'type' => 'Type of Campaign',
@@ -211,7 +211,7 @@ class Campaign extends ActiveRecord {
             ['thankYouPageText', 'thankYouPagePurifier']
         ];
     }
-    
+
     /* @inheritdoc
      * @return query\CampaignQuery
      */
@@ -219,7 +219,7 @@ class Campaign extends ActiveRecord {
     {
         return new query\CampaignQuery(get_called_class());
     }
-    
+
     public function nameFilter(){
         $userId = $this->userId;
         if (!$userId){
@@ -227,9 +227,9 @@ class Campaign extends ActiveRecord {
             return;
         }
         if ($this->name){
-            
+
             $alias = \common\components\PullrUtils::rewriteUrl($this->name);
-            
+
             /**better to use userId field that current user, because of possible sample data*/
             $query = Campaign::find()->where(['userId' => $userId,'status' => self::STATUS_ACTIVE, 'alias' => $alias]);
             if ($this->id){
@@ -243,7 +243,7 @@ class Campaign extends ActiveRecord {
             }
         }
     }
-    
+
     /**
      * Validate parentCampaignId.
      * For a new record with [$this->id] is null [$this->parentCampaignId] can be filtered to null.
@@ -263,7 +263,7 @@ class Campaign extends ActiveRecord {
         $userId = $this->userId;
         $countInvite = CampaignInvite::find()->where(['userId' => $userId, 'campaignId' => $id, 'status' => CampaignInvite::STATUS_ACTIVE ])->count();
         $countOwnCampaigns = Campaign::find()->where(['userId' => $userId, 'id' => $id, 'status' => Campaign::STATUS_ACTIVE, 'type' => Campaign::TYPE_CHARITY_FUNDRAISER])->count();
-        
+
         /*so there are no such campaign*/
         if ($countInvite === 0 && $countOwnCampaigns === 0){
             $this->parentCampaignId = $this->id;
@@ -276,7 +276,7 @@ class Campaign extends ActiveRecord {
             $this->description = HtmlPurifier::process($this->description);
         }
     }
-    
+
     public function thankYouPagePurifier(){
         if ($this->thankYouPageText){
             $this->thankYouPageText = HtmlPurifier::process($this->thankYouPageText);
@@ -302,7 +302,7 @@ class Campaign extends ActiveRecord {
 
         $this->refreshBackgroundImageFields();
     }
-    
+
     public function refreshBackgroundImageFields(){
         $id = $this->backgroundImageId;
         if ($id){
@@ -312,7 +312,7 @@ class Campaign extends ActiveRecord {
     }
 
     /**
-     * 
+     *
      * @return User
      */
     public function getUser() {
@@ -326,28 +326,28 @@ class Campaign extends ActiveRecord {
     public function getTheme() {
         return $this->hasOne(Theme::className(), ['id' => 'themeId']);
     }
-    
+
     public function getCharity() {
         return $this->hasOne(Charity::className(), ['id' => 'charityId']);
     }
-    
+
     public function getParentCampaign() {
         return $this->hasOne(Campaign::className(), ['id' => 'parentCampaignId']);
     }
-    
+
     /**
-     * 
+     *
      * @return \yii\db\ActiveQuery[]
      */
     public function getDonations(){
         return Donation::find()->where(['campaignId' => $this->id])->orWhere(['parentCampaignId' => $this->id])->andWhere('paymentDate > 0')->orderBy('paymentDate DESC');
     }
-    
+
     public function getChildCampaigns(){
         return Campaign::find()->where(['parentCampaignId' => $this->id, 'status' => self::STATUS_ACTIVE ])
                 ->andWhere('id <> ' . $this->id);
     }
-           
+
     /**
      * @return boolean true if that campaign is campaign for which user was invited
      * and that invite is approved by user
@@ -356,12 +356,12 @@ class Campaign extends ActiveRecord {
         if ($this->isNewRecord) {
             return false;
         }
-        
+
         $userId = \Yii::$app->user->id;
         $invite = CampaignInvite::findOne(['userId' => $userId, 'campaignId' => $this->id]);
         return $invite && $invite->status == CampaignInvite::STATUS_ACTIVE;
     }
-    
+
     /**
      * @return boolean true if that campaign is child campaign, that mean is tied to another parent campaign
      */
@@ -369,27 +369,27 @@ class Campaign extends ActiveRecord {
         if ($this->isNewRecord) {
             return false;
         }
-        
+
         return $this->id != $this->parentCampaignId;
     }
-    
+
     public function getDonationEmail(){
         if ($this->isChild()){
             return $this->parentCampaign->donationEmail;
         }
-        
+
         if ($this->type == self::TYPE_PERSONAL_FUNDRAISER){
             return $this->paypalAddress;
         }
-        
+
         if (!$this->donationDestination){
             return '';
         }
-        
+
         if ($this->donationDestination == self::DONATION_CUSTOM_FUNDRAISER){
             return $this->customCharityPaypal;
         }
-        
+
         /* @var $charity Charity */
         $charity = $this->charity;
         return ($charity) ? $charity->paypal : '';
@@ -401,10 +401,10 @@ class Campaign extends ActiveRecord {
      */
     public static function updateDonationStatistics($id){
         $campaign = Campaign::findOne($id);
-        
+
         $sum = Donation::find()->where(['campaignId' => $campaign->id])
                 ->orWhere(['parentCampaignId' => $campaign->id])->andWhere('paymentDate > 0')->sum('amount');
-        
+
         $campaign->amountRaised = $sum;
         $donations = $campaign->getDonations()->count('DISTINCT email');
         $campaign->numberOfDonations = $campaign->getDonations()->count('*');
@@ -419,7 +419,7 @@ class Campaign extends ActiveRecord {
      * If campaing is parent it can be at streamboard for a few users. So
      */
     public function getStreamboard(){
-        $userId = $this->userId;        
+        $userId = $this->userId;
         return $this->hasOne(StreamboardCampaign::className(), ['campaignId' => 'id'])->where(['userId' =>  $userId ]);
     }
 
@@ -438,5 +438,20 @@ class Campaign extends ActiveRecord {
     public function isFirstGiving()
     {
         return ($this->donationDestination == self::DONATION_PARTNERED_CHARITIES) && ($this->type == self::TYPE_CHARITY_FUNDRAISER);
+    }
+
+    public static function getDefaultTheme($user, $layoutType)
+    {
+        $plan = $user->getPlan();
+        $themesQuery = Theme::find()->where(['status' => Theme::STATUS_ACTIVE, 'is_default' => Theme::THEME_IS_DEFAULT]);
+        if ($plan == Plan::PLAN_BASE) {
+            $themesQuery->andWhere(['plan' => Plan::PLAN_BASE]);
+        }
+        if ($layoutType) {
+            $themesQuery->andWhere(['layoutType' => $layoutType]);
+        }
+
+        $theme = $themesQuery->one();
+        return $theme;
     }
 }

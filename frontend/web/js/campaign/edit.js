@@ -242,7 +242,7 @@ $(window).load(function() {
     $("#w2").on("change", function(){
         $("a#image-uploaded").click();
     });
-    getDefaultTheme();
+
     var value = $('#campaign-enablethankyoupage').bootstrapSwitch('state');
     if (value){
         $('.form-group.thankyoutext').show();

@@ -32,12 +32,15 @@ class CampaignsController extends FrontendController {
 
     public function actionAdd() {
         $campaign = new Campaign();
+        $user = \Yii::$app->user->identity;
+        $defaultTheme = Campaign::getDefaultTheme($user, $campaign->layoutType);
+        $campaign->themeId = $defaultTheme->id;
         return $this->actionIndex($campaign);
     }
 
     public function actionEdit() {
         $campaign = $this->getCampaign();
-        
+
         return $this->actionIndex($campaign, null, $campaign->status);
     }
 
@@ -56,15 +59,15 @@ class CampaignsController extends FrontendController {
 
         $this->redirect('app/campaigns');
     }
-    
+
     public function actionView(){
         $campaign = $this->getCampaign(true);
-        
+
         return $this->actionIndex(null, $campaign, $campaign->status);
     }
-    
+
     /**
-     * 
+     *
      * @param $editCampaign Campaign - campaign to edit
      * @param $selectedCampaign Campaign  - campaign to view
      * @param $status string
@@ -147,23 +150,23 @@ class CampaignsController extends FrontendController {
             $cloneCampaign->name = $cloneCampaign->name ? $cloneCampaign->name : 'New Campaign';
             array_unshift($params['campaigns'], $cloneCampaign);
         }
-        
+
         $params['selectedCampaign'] = $selectedCampaign;
         $params['status'] = $status;
-        
+
         /*         * from timestamp to html5 datetime-local tag */
 
         return $this->render('index', $params);
     }
-    
+
     public function actionArchive(){
         return $this->actionIndex(null, null, Campaign::STATUS_PENDING);
     }
-    
+
     public function actionTrash(){
         return $this->actionIndex(null, null, Campaign::STATUS_DELETED);
     }
-    
+
     public function actionLayoutteams() {
         $id = $_REQUEST['id'];
         $teams = LayoutTeam::find()->where(['campaignId' => $id])->orderBy('date DESC')->all();
@@ -226,7 +229,7 @@ class CampaignsController extends FrontendController {
     /**
      * get campaign and validate user has access to edit it.
      * @param boolean $childCampaignsAllowed if false ForbiddenHttpException will be throwed for campaign for which use is invited
-     * true used when viewing campaign 
+     * true used when viewing campaign
      * @return Campaign
      */
     public function getCampaign($childCampaignsAllowed = false) {
@@ -236,15 +239,15 @@ class CampaignsController extends FrontendController {
         if (!$campaign) {
             throw new NotFoundHttpException('Layout not found');
         }
-        
-        
+
+
         if ($campaign->userId != \Yii::$app->user->id && !Application::IsAdmin()) {
             $childFlag = false;
             if ($childCampaignsAllowed){
                 $params = ['userId' => \Yii::$app->user->id, 'campaignId' => $campaign->id, 'status' => CampaignInvite::STATUS_ACTIVE];
                 $childFlag = CampaignInvite::find()->where($params)->count() > 0;
             }
-            
+
             if (!$childFlag){
                 throw new \yii\web\ForbiddenHttpException();
             }
@@ -310,21 +313,28 @@ class CampaignsController extends FrontendController {
     public function actionDefaulttheme()
     {
         $layoutType = $_POST['layoutType'];
-        $plan = \Yii::$app->user->identity->getPlan();
-        
-        $themesQuery = Theme::find()->where(['status' => Theme::STATUS_ACTIVE, 'is_default' => Theme::THEME_IS_DEFAULT]);
-        if ($plan == Plan::PLAN_BASE) {
-            $themesQuery->andWhere(['plan' => Plan::PLAN_BASE]);
-        }
-        if ($layoutType) {
-            $themesQuery->andWhere(['layoutType' => $layoutType]);
-        }
-        
-        $theme = $themesQuery->one();
-        
+        $user = \Yii::$app->user->identity;
+        $theme = Campaign::getDefaultTheme($user, $layoutType);
         return json_encode(array('id' => $theme->id, 'name' => $theme->name));
     }
-    
+    // public function actionDefaulttheme()
+    // {
+    //     $layoutType = $_POST['layoutType'];
+    //     $plan = \Yii::$app->user->identity->getPlan();
+
+    //     $themesQuery = Theme::find()->where(['status' => Theme::STATUS_ACTIVE, 'is_default' => Theme::THEME_IS_DEFAULT]);
+    //     if ($plan == Plan::PLAN_BASE) {
+    //         $themesQuery->andWhere(['plan' => Plan::PLAN_BASE]);
+    //     }
+    //     if ($layoutType) {
+    //         $themesQuery->andWhere(['layoutType' => $layoutType]);
+    //     }
+
+    //     $theme = $themesQuery->one();
+
+    //     return json_encode(array('id' => $theme->id, 'name' => $theme->name));
+    // }
+
     public function actionModalthemes() {
         $layoutType = $_POST['layoutType'];
         $plan = \Yii::$app->user->identity->getPlan();
@@ -349,7 +359,7 @@ class CampaignsController extends FrontendController {
                     'charities' => $charities
         ]);
     }
-    
+
     public function actionExportdonations(){
         $user = \Yii::$app->user->identity;
         if (isset($_REQUEST['id'])){
@@ -360,7 +370,7 @@ class CampaignsController extends FrontendController {
         } else {
             throw new NotFoundHttpException();
         }
-        
+
         $rows = [];
         $date = (new \DateTime())->setTimezone(new \DateTimeZone(Yii::$app->user->identity->getTimezone()));
         foreach ($donations as $donation){
@@ -379,23 +389,23 @@ class CampaignsController extends FrontendController {
     {
         $model = new UploadCsv();
 
-        if (Yii::$app->request->isPost) 
+        if (Yii::$app->request->isPost)
         {
             $model->load($_POST);
             $model->file = UploadedFile::getInstance($model, 'file');
 
-            if ($model->validate()) 
+            if ($model->validate())
             {
                 $fileName = \Yii::getAlias('@frontend') . '/web/usercsv/' . uniqid()  . '.' . $model->file->extension;
                 $model->file->saveAs($fileName);
                 Donation::importFromCsv($model->campaignId, $fileName);
                 Campaign::updateDonationStatistics($model->campaignId);
                 unlink($fileName);
-                
+
                 $this->redirect(["view", "id" => $model->campaignId]);
             }
         }
-        
+
         throw new BadRequestHttpException();
     }
 
@@ -424,10 +434,10 @@ class CampaignsController extends FrontendController {
 
             // Dashboard "Donation received" notification
             RecentActivityNotification::createNotification($donation->campaign->userId, ActivityMessage::messageDonationReceived($donation));
-            
+
             $this->redirect(["view", "id" => $donation->campaignId]);
         }
-        
+
         throw new BadRequestHttpException();
     }
 
@@ -441,7 +451,7 @@ class CampaignsController extends FrontendController {
         {
             $donation->paymentDate = 0;
             $donation->save();
-            
+
             Campaign::updateDonationStatistics($donation->campaignId);
 
             $this->redirect(["view", "id" => $donation->campaignId]);
