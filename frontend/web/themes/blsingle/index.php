@@ -125,7 +125,7 @@
 	<section class="campaign-info container">
 		<div class="description holder pad">
 			<h4>Campaign Info</h4>
-			<p ng-cloak>{{campaign.description}}</p>
+			<p ng-cloak ng-bind-html="to_trusted(campaign.description)"></p>
 		</div>
 		<div class="donor-wall holder pad">
 			<h4>Donors</h4>

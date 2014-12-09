@@ -199,8 +199,8 @@ if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && 
                 'action'=> '/app/campaigns/manualdonation'
             ]) ?>
             <div class="modal-body">
-                <?= $form->field($manualDonation, 'name')->input('text')->label('Donor Name')->textInput(array('placeholder' => 'Donor Name'));?>
-                <?= $form->field($manualDonation, 'email')->input('text')->label('Email')->textInput(array('placeholder' => 'Email Address'));?>
+                <?= $form->field($manualDonation, 'name')->input('text')->label('Donor Name');?>
+                <?= $form->field($manualDonation, 'email')->input('text')->label('Email');?>
                 <div class="manualdonation-amount form-group required">
                     <label for="masked-amount" class="control-label">Amount</label>
                     <?= MaskedInput::widget([
@@ -226,7 +226,7 @@ if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && 
                     ]) ?>
                 </div>
                 <?= $form->field($manualDonation, 'dateCreated')->label("Date")->input('datetime-local', ['value' => strftime('%Y-%m-%dT%H:%M', time())]); ?>
-                <?= $form->field($manualDonation, 'comments')->label('Comments')->textarea(['placeholder' => 'Donor Comments']);?>
+                <?= $form->field($manualDonation, 'comments')->label('Comments')->textarea();?>
                 <?= $form->field($manualDonation, 'campaignId')->hiddenInput(['value' => $campaign->id])->label(false);?>
             </div>
             <div class="modal-footer btn-container">

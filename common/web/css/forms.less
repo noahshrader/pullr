@@ -115,6 +115,10 @@ input.color-choice {
 }
 
 .theme-color-picker {
+
+	&.form-group {
+		position: static;
+	}
 	.colorpicker {
 		&:before {
 			display: none;
@@ -137,7 +141,7 @@ input.color-choice {
 		top: 50%;
 		right: @halfgutter;
 		margin-top: -2px;
-		border-width: 6px 4px 0 4px;
+		border-width: 4px 4px 0 4px;
 		border-color: @gray60 transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
