@@ -399,7 +399,7 @@ class StreamboardController extends FrontendController
     {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if( ! (isset($data['showSubscriber']) || isset($data['showFollower']) || isset($data['groupUser']))) {
+        if( ! (isset($data['showSubscriber']) || isset($data['showFollower']) || isset($data['groupUser']) || isset($data['groupBase']) || isset($data['noDonationMessage']))) {
             throw new ForbiddenHttpException();
         }
         $userId = \Yii::$app->user->id;
@@ -420,6 +420,14 @@ class StreamboardController extends FrontendController
             $donationFeed->groupUser = $data['groupUser'];
         }
 
+        if (isset($data['groupBase'])) {
+            $donationFeed->groupBase = $data['groupBase'];
+        }
+
+        if (isset($data['noDonationMessage'])) {
+            $donationFeed->noDonationMessage = $data['noDonationMessage'];
+        }
+
         $donationFeed->save();
     }
 
@@ -431,7 +439,7 @@ class StreamboardController extends FrontendController
         if ( ! $donationFeed ) {
             throw new ForbiddenHttpException();
         }
-        return $donationFeed->toArray(['showSubscriber', 'showFollower', 'groupUser']);
+        return $donationFeed->toArray(['showSubscriber', 'showFollower', 'groupUser', 'groupBase', 'noDonationMessage']);
     }
 
     public function actionSet_streamboard_window()

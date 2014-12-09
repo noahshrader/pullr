@@ -1,6 +1,6 @@
 <?
 use yii\helpers\Url;
-
+$groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'email']];
 ?>
 <div class="text-center streamboard-settings-header">
     <button class="btn btn-secondary btn-sm" ng-click="clearButton()">Clear All Feeds</button>
@@ -45,6 +45,17 @@ use yii\helpers\Url;
                             Enable Grouping
                         </label>
                     </div>
+                </div>
+                <div class="form-group red">
+                    <h5>Group Base</h5>
+                    <select ui-select2="{minimumResultsForSearch: -1}" ng-model="streamService.groupBase" ng-change="groupBasedChanged()" data-placeholder="Select one..." ng-init="groupType = <?= htmlspecialchars(json_encode($groupType)) ?>">
+                        <option value=""></option>
+                        <option ng-repeat="type in groupType" value="{{type.value}}">{{type.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <h5>No Activity Message</h5>
+                    <textarea ng-model="streamService.noDonationMessage" ng-change="noActivityMessageChanged()"></textarea>
                 </div>
             </div>
         </div>

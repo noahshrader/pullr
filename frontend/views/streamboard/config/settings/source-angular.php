@@ -20,13 +20,21 @@ use yii\web\View;
             <h5>Activity Feed</h5>
             <div class="sb-activity-feed">
                 <span ng-if=' ! streamService.groupUser'>
-                    <span
-                        ng-repeat="donation in donationsService.donations | orderBy: amount | donationsFilterToSelectedCampaigns "
-                        class="commaAfter">
-                    <span>
-                        &nbsp;{{donation.name}} (${{number_format(donation.amount,2)}})<!--removing space for .commaAfter
-                    --></span>
+
+                    <span ng-if='streamService.groupBase == "name" || !streamService.groupBase'>
+                        <span
+                            ng-repeat="donation in donationsService.donationsByName |orderBy:'amount':true| donationsFilterToSelectedCampaigns "
+                            class="commaAfter">
+                            <span>&nbsp;{{donation.name}} (${{number_format(donation.amount,2)}})<!--removing space for .commaAfter--></span>
+                        </span>
                     </span>
+                    <span ng-if='streamService.groupBase=="email"'>
+                        <span
+                            ng-repeat="donation in donationsService.donationsByEmail | orderBy:'amount':true | donationsFilterToSelectedCampaigns "
+                            class="commaAfter">
+                        <span>&nbsp;{{donation.name}} (${{number_format(donation.amount,2)}})<!--removing space for .commaAfter--></span>
+                        </span>
+                    </span>                   
                     
                     <span
                         ng-repeat="follower in donationsService.followers"
@@ -44,15 +52,25 @@ use yii\web\View;
                     --></span>
                     </span>
                     
-                    <span ng-if="(donationsService.donations | donationsFilterToSelectedCampaigns).length == 0 && ( ! streamService.showSubscriber || donationsService.subscribers.length == 0 ) && ( ! streamService.showFollower || donationsService.followers.length == 0 ) ">
-                        <span ng-if="region.widgetDonationFeed.noDonationMessage">{{region.widgetDonationFeed.noDonationMessage}}</span>
-                        <span ng-if="!region.widgetDonationFeed.noDonationMessage">No activity!</span>
+                    <span ng-if="(donationsService.donationsByName | donationsFilterToSelectedCampaigns).length == 0 && ( ! streamService.showSubscriber || donationsService.subscribers.length == 0 ) && ( ! streamService.showFollower || donationsService.followers.length == 0 ) ">
+                        <span ng-if="streamService.noDonationMessage">{{streamService.noDonationMessage}}</span>
+                        <span ng-if="!streamService.noDonationMessage">No activity!</span>
                     </span> 
                 </span> 
                 <span ng-if='streamService.groupUser'>
-                    <span ng-repeat="groupDonation in donationsService.groupDonations"
-                        class="commaAfter">
-                        <span ng-repeat='donation in groupDonation.items' class="commaAfter" > {{donation.name}}</span> (${{number_format(groupDonation.amount,2)}})
+
+                    <span ng-if='streamService.groupBase == "name" || !streamService.groupBase'>
+                        <span ng-repeat="groupDonation in donationsService.groupDonationsByName"
+                                  class="commaAfter grouped">
+                            <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount, 2)}})
+                        </span>
+                    </span>
+
+                    <span ng-if='streamService.groupBase=="email"'>
+                         <span ng-repeat="groupDonation in donationsService.groupDonationsByEmail"
+                               class="commaAfter grouped">
+                            <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount, 2)}})
+                        </span>
                     </span>
 
                     <span
@@ -73,8 +91,10 @@ use yii\web\View;
                         -->
                         <span class="commaAfter" ng-show='$last && donationsService.followers.length > 0'>(followed)</span>
                     </span> 
-
-                    
+                    <span ng-if="(donationsService.donationsByName | donationsFilterToSelectedCampaigns).length == 0 && ( ! streamService.showSubscriber || donationsService.subscribers.length == 0 ) && ( ! streamService.showFollower || donationsService.followers.length == 0 ) ">
+                        <span ng-if="streamService.noDonationMessage">{{streamService.noDonationMessage}}</span>
+                        <span ng-if="!streamService.noDonationMessage">No activity!</span>
+                    </span>                     
                 </span>  
             </div>
         </div>

@@ -5,10 +5,6 @@ $speeds = [];
 foreach (WidgetDonationFeed::$SCROLL_SPEEDS as $speed){
    $speeds[] = ['name' => $speed, 'value' => $speed];
 }
-
-$groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'email']];
-
-
 ?>
 <div class="module">
     <a class="settingtoggle">Font <i class="mdi-navigation-arrow-drop-down"></i></a>
@@ -50,7 +46,7 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
         </div>
     </div>
 </div>
-<div class="module scrolling">
+<div class="module scrolling last">
     <div class="form-group red">
         <div class="checkbox">
             <label ng-class="{on:widget.scrolling}">
@@ -65,20 +61,5 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
                 </select>
             </div>
         </div>
-    </div>
-</div>
-<div class="module groupbase">
-    <div class="form-group">
-        <h5>Group Base</h5>
-        <select ui-select2="{minimumResultsForSearch: -1}" ng-model="widget.groupBase" ng-change="regionChanged(region)" data-placeholder="Select one..." ng-init="groupType = <?= htmlspecialchars(json_encode($groupType)) ?>">
-            <option value=""></option>
-            <option ng-repeat="type in groupType" value="{{type.value}}">{{type.name}}</option>
-        </select>
-    </div>
-</div>
-<div class="module last">
-    <div class="form-group">
-        <h5>No Activity Message</h5>
-        <textarea ng-model="widget.noDonationMessage" ng-change="donationMessageChanged(region)"></textarea>
     </div>
 </div>

@@ -26,24 +26,20 @@ use frontend\models\streamboard\StreamboardRegion;
           >
             <span>
                 <span ng-if=' ! streamService.groupUser'>
-
-                     <span ng-if='region.widgetDonationFeed.groupBase == "name" || !region.widgetDonationFeed.groupBase'>
+                     <span ng-if='streamService.groupBase == "name" || !streamService.groupBase'>
                         <span
                             ng-repeat="donation in donationsService.donationsByName |orderBy:'amount':true| donationsFilterToSelectedCampaigns "
                             class="commaAfter">
                             <span>&nbsp;{{donation.name}} (${{number_format(donation.amount)}})<!--removing space for .commaAfter--></span>
                         </span>
                     </span>
-                    
-                    <span ng-if='region.widgetDonationFeed.groupBase=="email"'>
+                    <span ng-if='streamService.groupBase=="email"'>
                         <span
                             ng-repeat="donation in donationsService.donationsByEmail | orderBy:'amount':true | donationsFilterToSelectedCampaigns "
                             class="commaAfter">
                         <span>&nbsp;{{donation.name}} (${{number_format(donation.amount)}})<!--removing space for .commaAfter--></span>
                         </span>
                     </span>
-
-                    
                     <span
                         ng-repeat="follower in donationsService.followers"
                         class="commaAfter" ng-if='streamService.showFollower'>
@@ -61,19 +57,19 @@ use frontend\models\streamboard\StreamboardRegion;
                     </span>
                     
                     <span ng-if="(donationsService.donations | donationsFilterToSelectedCampaigns).length == 0 && ( ! streamService.showSubscriber || donationsService.subscribers.length == 0 ) && ( ! streamService.showFollower || donationsService.followers.length == 0 ) ">
-                        <span ng-if="region.widgetDonationFeed.noDonationMessage">{{region.widgetDonationFeed.noDonationMessage}}</span>
-                        <span ng-if="!region.widgetDonationFeed.noDonationMessage">No activity!</span>
+                        <span ng-if="streamService.noDonationMessage">{{streamService.noDonationMessage}}</span>
+                        <span ng-if="!streamService.noDonationMessage">No activity!</span>
                     </span> 
                 </span> 
                 <span ng-if='streamService.groupUser'>
-                    <span ng-if='region.widgetDonationFeed.groupBase == "name" || !region.widgetDonationFeed.groupBase'>
+                    <span ng-if='streamService.groupBase == "name" || !streamService.groupBase'>
                         <span ng-repeat="groupDonation in donationsService.groupDonationsByName"
                                   class="commaAfter grouped">
                             <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount)}})
                         </span>
                     </span>
 
-                    <span ng-if='region.widgetDonationFeed.groupBase=="email"'>
+                    <span ng-if='streamService.groupBase=="email"'>
                          <span ng-repeat="groupDonation in donationsService.groupDonationsByEmail"
                                class="commaAfter grouped">
                             <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount)}})
@@ -84,12 +80,9 @@ use frontend\models\streamboard\StreamboardRegion;
                         ng-repeat="subscriber in donationsService.subscribers"
                         ng-if='streamService.showSubscriber'
                         class="commaAfter">
-                        
-                        &nbsp;{{subscriber.display_name}}<!--removing space for .commaAfter
-                    -->
+                        &nbsp;{{subscriber.display_name}}<!--removing space for .commaAfter                    -->
                         <span class="commaAfter" ng-show='$last'>(subscribed)</span>
-                    </span> 
-
+                    </span>
                     <span
                         ng-repeat="follower in donationsService.followers"
                         ng-if='streamService.showFollower' class="commaAfter">
@@ -97,6 +90,10 @@ use frontend\models\streamboard\StreamboardRegion;
                             &nbsp;{{follower.display_name}}<!--removing space for .commaAfter
                         -->
                         <span class="commaAfter" ng-show='$last'>(followed)</span>
+                    </span>
+                    <span ng-if="(donationsService.donations | donationsFilterToSelectedCampaigns).length == 0 && ( ! streamService.showSubscriber || donationsService.subscribers.length == 0 ) && ( ! streamService.showFollower || donationsService.followers.length == 0 ) ">
+                        <span ng-if="streamService.noDonationMessage">{{streamService.noDonationMessage}}</span>
+                        <span ng-if="!streamService.noDonationMessage">No activity!</span>
                     </span>
                 </span>     
             </span>         
