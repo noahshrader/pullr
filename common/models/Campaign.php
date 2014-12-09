@@ -108,6 +108,9 @@ class Campaign extends ActiveRecord {
             if (isset(\Yii::$app->components['user']) && !\Yii::$app->user->isGuest)
             {
                 $this->userId = \Yii::$app->user->id;
+                $user = \Yii::$app->user->identity;
+                $defaultTheme = Campaign::getDefaultTheme($user, $this->layoutType);
+                $this->themeId = $defaultTheme->id;
             }
         }
     }

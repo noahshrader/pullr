@@ -32,9 +32,6 @@ class CampaignsController extends FrontendController {
 
     public function actionAdd() {
         $campaign = new Campaign();
-        $user = \Yii::$app->user->identity;
-        $defaultTheme = Campaign::getDefaultTheme($user, $campaign->layoutType);
-        $campaign->themeId = $defaultTheme->id;
         return $this->actionIndex($campaign);
     }
 
