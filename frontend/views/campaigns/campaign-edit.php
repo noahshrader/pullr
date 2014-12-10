@@ -42,7 +42,7 @@ $user = \Yii::$app->user->identity;
                                 </li>
                                 <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
-                                        Form
+                                        Donation Form
                                     </a>
                                 </li>
                                 <li class="cf">

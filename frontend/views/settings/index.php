@@ -65,8 +65,8 @@ endif;
                         <?php
                             $thems = array('light' => 'Light', 'dark' => 'Dark');
                         ?>
-                        <!--<label>Theme</label>
-                        <?= $form->field($user, 'colorTheme', ['template'=>'{input}'])->dropDownList($thems, ['class' => 'select-block', 'data-size' => '10']); ?>-->
+                        <label>Theme</label>
+                        <?= $form->field($user, 'colorTheme', ['template'=>'{input}'])->dropDownList($thems, ['class' => 'select-block', 'data-size' => '10']); ?>
 					</div>
 				</div>
 				<div class="dashboard-notifications module">
