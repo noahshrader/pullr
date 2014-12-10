@@ -276,8 +276,12 @@ class StreamboardController extends FrontendController
     }
 
     public function getDonationsData($user, $since_id = null) {
+
+//        $selectedCampaigns = Streamboard::getSelectedCampaigns($user);
+
         $sinceDate = $user->streamboardConfig->clearedDate;
-        $selectedCampaigns = Streamboard::getSelectedCampaigns($user);
+
+        $selectedCampaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, true)->orderBy('amountRaised DESC, id DESC')->all();
 
         $donations = [];
         $donationsByName = [];

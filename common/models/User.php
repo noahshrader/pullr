@@ -454,6 +454,7 @@ class User extends ActiveRecord implements IdentityInterface
         if ($withInviteCampaigns) {
             $query = $query->union($this->getCampaignsImInvitedTo($status));
         }
+
         return $query;
     }
 
