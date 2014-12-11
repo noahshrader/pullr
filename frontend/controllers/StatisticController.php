@@ -11,6 +11,8 @@ use yii\web\Response;
 use common\models\Campaign;
 use common\models\Donation;
 use frontend\models\helpers\PullrStatistic;
+use common\components\PullrUtils;
+
 class StatisticController extends FrontendController {
 
     public function behaviors()
@@ -52,10 +54,11 @@ class StatisticController extends FrontendController {
         $cacheKey = 'pullr_statistic_amount_raised';
         $result = \Yii::$app->cache->get($cacheKey);
         if ( false === $result ) {
+            $totalAmount =
             $result = [
-                'totalAmount' => $pullrStatistic->getTotalDonation(),
-                'totalCharityAmount' => $pullrStatistic->getTotalDonationFromCharityCampaign(),
-                'totalPersonalAmount' => $pullrStatistic->getTotalDonationFromPersonalCampaign()
+                'totalAmount' => PullrUtils::formatNumber($pullrStatistic->getTotalDonation()),
+                'totalCharityAmount' => PullrUtils::formatNumber($pullrStatistic->getTotalDonationFromCharityCampaign()),
+                'totalPersonalAmount' => PullrUtils::formatNumber($pullrStatistic->getTotalDonationFromPersonalCampaign())
             ];
             \Yii::$app->cache->set($cacheKey, $result, 1800);
         }
