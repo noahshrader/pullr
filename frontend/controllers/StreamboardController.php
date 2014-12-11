@@ -208,7 +208,7 @@ class StreamboardController extends FrontendController
         }
 
         $followers = [];
-        if ($user->userFields->twitchPartner) {
+        if ($user->userFields->twitchChannel) {
             $twitchFollowers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
             foreach ($twitchFollowers as $twitchFollower) {
                 /** @var TwitchSubscription $subscription */
@@ -331,7 +331,7 @@ class StreamboardController extends FrontendController
 
         $followers = [];
 
-        if ($user->userFields->twitchPartner) {
+        if ($user->userFields->twitchChannel) {
             $twitchFollowers = TwitchFollow::find()->where(['userId' => $user->id])->andWhere('createdAt > ' . $sinceDate)->orderBy('createdAt DESC')->all();
             foreach ($twitchFollowers as $twitchFollower) {
                 /** @var TwitchSubscription $subscription */
