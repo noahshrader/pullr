@@ -3,6 +3,7 @@ namespace frontend\models\helpers;
 
 use common\models\Donation;
 use common\models\Campaign;
+use common\models\User;
 use yii\db\Query;
 
 class PullrStatistic {
@@ -13,7 +14,11 @@ class PullrStatistic {
         $query->select('sum(d.amount)')
             ->from(Donation::tableName() . ' d')
             ->leftJoin(Campaign::tableName() . ' c', 'c.id = d.campaignId')
-            ->where(['c.status' => [Campaign::STATUS_ACTIVE, Campaign::STATUS_PENDING]]);
+            ->leftJoin(User::tableName() . ' u', 'u.id = c.userId')
+            ->where(['c.status' => [Campaign::STATUS_ACTIVE, Campaign::STATUS_PENDING]])
+            ->andWhere(['d.isManual' => 0])
+            ->andWhere(['not',['d.paymentDate' => 0]])
+            ->andWhere(['not', ['u.role' => User::ROLE_ADMIN]]);
         return $query;
     }
     public function getTotalDonationFromCharityCampaign()
