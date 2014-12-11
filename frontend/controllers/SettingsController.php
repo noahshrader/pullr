@@ -107,7 +107,7 @@ class SettingsController extends FrontendController
             $payPalResponse = (new PullrPayment($apiConfig))->initProSubscription($payAmount);
 
             $payPalHost = \Yii::$app->params['payPalHost'];
-            $this->redirect("$payPalHost/incontext?token={$payPalResponse->Token}");
+            $this->redirect("$payPalHost/cgi-bin/webscr?cmd=_express-checkout&token={$payPalResponse->Token}");
         }
     }
 
