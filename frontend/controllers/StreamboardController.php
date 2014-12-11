@@ -276,9 +276,16 @@ class StreamboardController extends FrontendController
     }
 
     public function getDonationsData($user, $since_id = null) {
+
+//        $selectedCampaigns = Streamboard::getSelectedCampaigns($user);
+
         $sinceDate = $user->streamboardConfig->clearedDate;
-        $selectedCampaigns = Streamboard::getSelectedCampaigns($user);
+
+        $selectedCampaigns = $user->getCampaigns(Campaign::STATUS_ACTIVE, true)->orderBy('amountRaised DESC, id DESC')->all();
+
         $donations = [];
+        $donationsByName = [];
+        $donationsByEmail = [];
 
         $donationFeed = WidgetDonationFeed::find()->where(['userId'=>$user->id])->one();
         if ( $donationFeed && $donationFeed->groupUser == 1 ) {
@@ -287,7 +294,9 @@ class StreamboardController extends FrontendController
             $groupUser = false;
         }
 
-        $donations = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
+//        $donations = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
+        $donationsByName = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate,'name');
+        $donationsByEmail = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate,'email');
 
         $userDonations = $user->getDonations(['sinceId' => $since_id])
                             ->andWhere('paymentDate > ' . $sinceDate)
@@ -346,6 +355,10 @@ class StreamboardController extends FrontendController
 
         $data = [];
         $data['donations'] = $donations;
+
+        $data['donationsByEmail'] = $donationsByEmail;
+        $data['donationsByName'] = $donationsByName;
+
         $data['stats'] = $stats;
         $data['followers'] = $followers;
         $data['subscribers'] = $subscribers;
@@ -390,7 +403,7 @@ class StreamboardController extends FrontendController
     {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if( ! (isset($data['showSubscriber']) || isset($data['showFollower']) || isset($data['groupUser']))) {
+        if( ! (isset($data['showSubscriber']) || isset($data['showFollower']) || isset($data['groupUser']) || isset($data['groupBase']) || isset($data['noDonationMessage']))) {
             throw new ForbiddenHttpException();
         }
         $userId = \Yii::$app->user->id;
@@ -411,6 +424,14 @@ class StreamboardController extends FrontendController
             $donationFeed->groupUser = $data['groupUser'];
         }
 
+        if (isset($data['groupBase'])) {
+            $donationFeed->groupBase = $data['groupBase'];
+        }
+
+        if (isset($data['noDonationMessage'])) {
+            $donationFeed->noDonationMessage = $data['noDonationMessage'];
+        }
+
         $donationFeed->save();
     }
 
@@ -422,7 +443,7 @@ class StreamboardController extends FrontendController
         if ( ! $donationFeed ) {
             throw new ForbiddenHttpException();
         }
-        return $donationFeed->toArray(['showSubscriber', 'showFollower', 'groupUser']);
+        return $donationFeed->toArray(['showSubscriber', 'showFollower', 'groupUser', 'groupBase', 'noDonationMessage']);
     }
 
     public function actionSet_streamboard_window()

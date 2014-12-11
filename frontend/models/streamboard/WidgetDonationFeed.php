@@ -29,7 +29,7 @@ class WidgetDonationFeed extends ActiveRecord {
         return [
 
             'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'fontWeight', 'fontUppercase', 'scrolling', 'scrollSpeed', 
-            'positionX', 'positionY', 'width', 'height','textShadow']
+            'positionX', 'positionY', 'width', 'height','textShadow','groupBase']
         ];
     }
 
@@ -48,6 +48,7 @@ class WidgetDonationFeed extends ActiveRecord {
         $data['showFollower'] = $this->showFollower == 1;
         $data['groupUser'] = $this->groupUser == 1;
         $data['fontUppercase'] = $this->fontUppercase == 1;
+        $data['groupBase'] = $this->groupBase?$this->groupBase:'name';
         $data['textShadow'] = $this->textShadow == 1;
         return $data;
     }

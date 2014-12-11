@@ -64,7 +64,7 @@ if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && 
                                 </li>
                                 <li class="cf">
                                     <a href='<?= $campaign->user->getUrl() . $campaign->alias ?>/donate' target="_blank">
-                                        Form
+                                        Donation Form
                                     </a>
                                 </li>
                                 <li class="cf">

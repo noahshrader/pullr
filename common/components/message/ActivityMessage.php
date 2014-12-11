@@ -28,7 +28,7 @@ class ActivityMessage
     }
 
     public static function  messageGoalReached(Campaign $campaign){
-        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, PullrUtils::formatNumber($campaign->amountRaised, 2), $campaign->name);
+        return sprintf(self::TEMPLATE_CAMPAIGN_ENDED, $campaign->name, PullrUtils::formatNumber($campaign->amountRaised, 2));
     }
 
     public static function messageNewTwitchFollower($user, $displayName){        

@@ -34,5 +34,16 @@
                 stream.toggleGroupUser();
                 simpleMarqueeHelper.recalculateMarquee();
             }
+
+            $scope.groupBasedChanged = function() {
+                stream.groupBasedChanged();
+                simpleMarqueeHelper.recalculateMarquee();
+            }
+
+            $scope.noActivityMessageChanged = function() {
+                stream.noActivityMessageChanged();
+                simpleMarqueeHelper.recalculateMarquee();
+            }
+
         }]);
 })()

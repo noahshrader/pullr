@@ -61,9 +61,9 @@ ul.content-nav {
 	border-bottom-color: @gray12;
 
 	.btn {
-		background: @gray30;
+		background: @gray20;
 		&:hover {
-			background: @gray40;
+			background: @gray30;
 		}
 	}
 }
@@ -117,10 +117,13 @@ table.dataTable {
 
 /* Lists */
 .list-search {
-	border: 0;
+	border-bottom: solid 1px @maingray;
 
 	span {
-		background: transparent;
+		background: @shadowgray;
+	}
+	input[type='search'] {
+		background: @gray10;
 	}
 }
 
@@ -129,24 +132,25 @@ table.dataTable {
 .pagination>li>span {
 	color: @gray40;
 	background: @gray20;
-	border-top: solid 1px @gray12;
-	border-bottom: solid 1px @gray12;
+	border-top: solid 1px @gray20;
+	border-bottom: solid 1px @gray20;
 	&:hover {
-		color: @gray40;
-		background: @gray75;
-		border: solid 1px @gray75;
+		color: @white;
+		background: @gray20;
+		border: solid 1px @gray20;
 	}
 	&:first-child {
-		border-left: solid 1px @gray12;
+		border-left: solid 1px @gray20;
 	}
 	&:last-child {
-		border-right: solid 1px @gray12;
+		border-right: solid 1px @gray20;
 	}
 }
 .pagination>.active>a,
 .pagination>.active>span {
 	color: @white;
-	border: solid 1px @gray12 !important;
+	background: @gray30 !important;
+	border: solid 1px @gray30 !important;
 }
 .pagination>.disabled>span,
 .pagination>.disabled>span:hover,
@@ -272,15 +276,21 @@ legend,
 	}
 }
 
+.form-group {
+	i.mdi-action-help {
+		color: @gray30;
+	}
+}
+
 
 /* Buttons */
 /* ------------------------------------------------- */
 .btn-default {
 	color: @white;
-	background-color: @gray30;
+	background-color: @gray20;
 	&:hover {
 		color: @white;
-		background-color: @gray40;
+		background-color: @gray30;
 	}
 }
 .btn-container {
@@ -302,7 +312,7 @@ legend,
 .top-menu {
 
 	&.shadow {
-		border-bottom: solid 1px @shadowgray;
+		box-shadow: 0px -4px 0px 5px @shadowgray;
 	}
 	.avatar-container .avatar .user-photo-menu {
 
@@ -350,6 +360,7 @@ legend,
 			}
 		}
 		ul.activity-feed li {
+			color: @gray30;
 			background: @gray12;
 			border-bottom-color: @gray10;
 
@@ -420,15 +431,15 @@ ul.campaign-quicknav {
 		color: @white;
 	}
 	a.view-campaign {
-		background: @gray30;
+		background: @gray20;
 		&:before {
-			border-bottom-color: @gray30;
+			border-bottom-color: @gray20;
 		}
 		&:hover, {
-			background: @gray40;
+			background: @gray30;
 		}
 		&:hover:before {
-			border-bottom-color: @gray40;
+			border-bottom-color: @gray30;
 		}
 	}
 	a.actions-toggle {
@@ -502,10 +513,10 @@ ul.campaign-quicknav {
 		}
 	}
 	.highlight-wrap {
-		background: @gray20;
+		background: @gray15;
 
 		&:before {
-			border-color: transparent transparent @gray20 transparent;
+			border-color: transparent transparent @gray15 transparent;
 		}
 		input[type="text"],
 		input.form-control {
@@ -534,6 +545,25 @@ ul.campaign-quicknav {
 }
 
 
+/* Tooltips */
+/* ------------------------------------------------- */
+.tooltip {
+
+	.tooltip-inner {
+		background: @maingray;
+	}
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: @maingray;
+}
+.tooltip.right .tooltip-arrow {
+	border-right-color: @maingray;
+}
+.tooltip.bottom .tooltip-arrow {
+	border-bottom-color: @maingray;
+}
+
+
 /* Dialog */
 /* ------------------------------------------------- */
 
@@ -541,6 +571,7 @@ ul.campaign-quicknav {
 /* Modals */
 /* ------------------------------------------------- */
 .modal-backdrop {
+	background: @base;
 	&.in {
 		opacity: .7;
 		filter: alpha(opacity=70);
