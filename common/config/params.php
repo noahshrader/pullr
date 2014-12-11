@@ -7,8 +7,8 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'frontendUrl' => '../../frontend/web/',
     'backendUrl' => '../../backend/web/',
-    'monthSubscription' => 3.99,
-    'yearSubscription' => 48,
+    'monthSubscription' => 4,
+    'yearSubscription' => 40,
     'maxCampaignsBasic' => 2,
     'maxCampaignsPro' => 9999,
     /*use that link to add/change your application
