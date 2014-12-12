@@ -22,7 +22,7 @@ function catchKeys() {
     });
 }
 
-function number_format(number, decimals, dec_point, thousands_sep ) {   
+function number_format(number, decimals, dec_point, thousands_sep ) {
     thousands_sep   = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep;
     dec_point       = (typeof dec_point === 'undefined') ? '.' : dec_point;
     decimals        = !isFinite(+decimals) ? 0 : Math.abs(decimals);
@@ -57,11 +57,11 @@ function number_format(number, decimals, dec_point, thousands_sep ) {
         s[1] += new Array(decimals - s[1].length + 1).join('0');
     }
     return s.join(dec_point);
-    
+
 }
 
 /**
- * 
+ *
  * get current user timezone
  */
 function timezone()
@@ -78,28 +78,32 @@ function timezone()
 }
 
 function twitchEventsMonitor() {
-//     if (window.Twitch) {
-//         var channelName = Pullr.user.userFields.twitchChannel;
-//         var clientId = Pullr.twitchClientId;
-//         log(clientId);
-//         log(channelName);
-//         if (channelName) {
-//             Twitch.init({clientId: clientId}, function (error, status) {
-//                 var method = 'channels/' + channelName + '/follows';
-//                 Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-//                     $.post('app/twitch/update_follows_ajax', {data: JSON.stringify(list)});
-//                 });
+    if (window.Twitch) {
+        var channelName = Pullr.user.userFields.twitchChannel;
+        var clientId = Pullr.twitchClientId;
 
-//                 if (Pullr.user.userFields.twitchPartner){
-//                     $.post('app/twitch/update_subscriptions_ajax', {});
-// //                    method = 'channels/' + channelName + '/subscriptions'
-// //                    Twitch.api({method: method, params: {limit: 100} }, function (error, list) {
-// //                        $.post('app/twitch/update_subscriptions_ajax', {data: JSON.stringify(list)});
-// //                    });
-//                 }
-//             });
-//         }
-//     }
+        if (channelName) {
+            $.ajax({
+                type:'post',
+                url:'app/streamboard/get_followers',
+                success: function() {
+                    console.log('Update followers successful');
+
+                    if (Pullr.user.userFields.twitchPartner) {
+                        $.ajax({
+                            type:'post',
+                            url:'app/streamboard/get_subscribers',
+                            success: function(){
+                                console.log('Update subscribers successful');
+                            }
+                        });
+                    }
+
+                }
+            });
+
+        }
+    }
 }
 
 (catchKeys());

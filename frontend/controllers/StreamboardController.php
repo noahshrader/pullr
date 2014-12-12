@@ -647,6 +647,9 @@ class StreamboardController extends FrontendController
     }
 
     public function actionGet_subscribers() {
+        if ( ! Yii::$app->request->isPost) {
+            Yii::$app->end();
+        }
         Yii::$app->response->format = Response::FORMAT_JSON;
         $user = Streamboard::getCurrentUser();
         $accessToken = $user->userFields->twitchAccessToken;
@@ -671,6 +674,10 @@ class StreamboardController extends FrontendController
     }
 
     public function actionGet_followers() {
+
+        if ( ! Yii::$app->request->isPost) {
+            Yii::$app->end();
+        }
         Yii::$app->response->format = Response::FORMAT_JSON;
         $user = Streamboard::getCurrentUser();
         $channel = $user->userFields->twitchChannel;

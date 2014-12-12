@@ -19,13 +19,13 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', ['$http', '$int
 	}
 
 	service.getFollowers = function() {
-		return $http.get('app/streamboard/get_followers');
+		return $http.post('app/streamboard/get_followers');
 
 	}
 
 	service.getSubscribers = function() {
 		if (Pullr.user.userFields.twitchPartner == 1) {
-			return $http.get('app/streamboard/get_subscribers');
+			return $http.post('app/streamboard/get_subscribers');
 		}
 	}
 
