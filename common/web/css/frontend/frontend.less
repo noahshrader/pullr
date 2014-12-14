@@ -53,7 +53,9 @@
 	overflow: hidden;
 	
 	&.table {
-		background: @offwhite;
+		margin: @gutter 0;
+		background: transparent;
+		box-shadow: none;
 	}
 	h5 {
 		color: @gray30;
@@ -66,7 +68,6 @@
 			padding: 0 @gutter;
 			margin: 0;
 			background: @offwhite;
-			border-bottom: solid 1px @gray75;
 		}
 	}
 	.module-inner {
@@ -99,6 +100,31 @@
 	}
 }
 
+h3.list-title {
+	color: @gray20;
+	font-size: 17px;
+	font-weight: 500;
+	line-height: 1.2em;
+	margin-bottom: 0;
+	.trans;
+}
+p.list-total {
+	display: inline-block;
+	color: @gray20;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.5em;
+	margin-top: 6px;
+	margin-bottom: 0;
+	padding: 0 .6em;
+	background: @grayaccent;
+	.round-radius;
+	.trans;
+}
+span.list-info {
+	font-size: @fineprint;
+}
+
 
 /* Donor/Campaign Views */
 /* ------------------------------------------------- */
@@ -110,6 +136,9 @@
 	h1.donor-name {
 		text-align: center;
 		margin: 0 auto @gutter;
+	}
+	.content-wrap {
+		padding: @gutter 0 0;
 	}
 }
 .donor-view-wrap h1 {
@@ -136,7 +165,7 @@
 	position: fixed;
 	top: @top-menu-height;
 	width: @sidepanelwidth;
-	background: @gray15;
+	background: @gray10;
 	z-index: 1001;
 	overflow: auto;
 
@@ -354,12 +383,9 @@ table.dataTable {
 		padding: 0;
 		width: 100%;
 	}
-	th {
-		background: @modulegray;
-	}
 	td {
 		color: @gray40;
-		border-top: solid 1px @gray75;
+		border-top: solid 1px @gray72;
 		cursor: pointer;
 		.trans;
 		&.raised {
@@ -378,39 +404,47 @@ table.dataTable {
 	}
 	th,
 	thead th {
-		color: @gray50;
+		color: @gray60;
 		font-size: 14px;
 		font-weight: 500;
 		padding: .6em 4% !important;
 		border-bottom: solid 1px @modulegray;
 	}
-	tbody tr {
-		background-color: transparent !important;
-		border-color: transparent !important;
-		.trans;
-		&:hover {
-			background: @white !important;
-		}
-		&.donation-entry {
-			&.drop,
-			+ tr td[colspan~="4"],
-			+ tr td[colspan~="5"] {
-				padding: .3em 0 !important;
-				background: @white !important;
-				border-top: 0;
+	tbody {
+		tr {
+			background-color: transparent !important;
+			border-color: transparent !important;
+			.trans;
+
+			&.donation-entry:hover {
+				background: @offwhite !important;
 			}
-			i {
-				float: left;
-			}
-			&.drop td.details-control i.mdi-navigation-expand-more {
-				transform:rotate(180deg);
-				-ms-transform:rotate(180deg);
-				-webkit-transform:rotate(180deg);
-			}
-			td.details-control a {
-				color: @gray40;
-				&:hover {
-					color: @gray30;
+			&.donation-entry {
+
+				&.drop,
+				&.drop td tbody tr:hover,
+				+ tr td[colspan~="4"],
+				+ tr td[colspan~="5"] {
+					padding: .3em 0 !important;
+					background: @white !important;
+					border-top: 0;
+				}
+				tr:hover {
+					background: @white !important;
+				}
+				i {
+					float: left;
+				}
+				&.drop td.details-control i.mdi-navigation-expand-more {
+					transform:rotate(180deg);
+					-ms-transform:rotate(180deg);
+					-webkit-transform:rotate(180deg);
+				}
+				td.details-control a {
+					color: @gray40;
+					&:hover {
+						color: @gray30;
+					}
 				}
 			}
 		}
@@ -445,7 +479,7 @@ table.dataTable {
 	&.display tbody th,
 	&.display tbody td,
 	thead td {
-		border-top: solid 1px @gray75;
+		border-top: solid 1px @gray72;
 	}
 }
 .dataTables_info {
@@ -533,11 +567,9 @@ table.dataTable {
 	}
 }
 .table-header {
-	padding: 10px @halfgutter;
-	background: @modulegray;
-	border-bottom: solid 1px @gray70;
+	padding: 10px @gutter;
 
-	.btn {
+	a.btn {
 		float: left;
 		color: @white;
 		margin: 0;

@@ -4,7 +4,7 @@ ul.campaign-quicknav {
 	position: fixed;
 	top: 0;
 	width: @sidepanelwidth;
-	border-bottom: solid 1px @gray10;
+	border-bottom: solid 1px @grayaccent;
 
 	li {
 		width: 33.33%;
@@ -29,7 +29,7 @@ ul.campaign-quicknav {
 	position: relative;
 	display: block;
 	width: 100%;
-	border-bottom: solid 1px @gray12;
+	border-bottom: solid 1px @grayaccent;
 	&.active h3,
 	&.active p {
 		color: @white;
@@ -37,16 +37,6 @@ ul.campaign-quicknav {
 	&.active p {
 		color: @white;
 		background: @accent;
-	}
-	&.active {
-
-		&:after {
-			.arrow-left;
-			top: 50%;
-			right: 0;
-			margin-top: -10px;
-			border-color: transparent @gray75 transparent transparent;
-		}
 	}
 	&:hover {
 		h3,
@@ -64,7 +54,7 @@ ul.campaign-quicknav {
 	span.mdi-social-group {
 		display: inline-block;
 		float: left;
-		color: @gray30;
+		color: @gray20;
 		line-height: 1.4em;
 		margin: 6px 4px 0 0;
 	}
@@ -121,9 +111,8 @@ body.trash .campaigns-list {
 .view-actions {
 	position: relative;
 	display: block;
-	margin-bottom: @gutter;
+	margin: 0 @gutter @gutter;
 	padding: 0;
-	width: 100%;
 	height: @campain-name-height;
 	background: @gray72;
 	.box-shadow;
@@ -229,9 +218,9 @@ body.trash .campaigns-list {
 		border-bottom-right-radius: 2px;
 		&:hover {
 			color: @white;
-			background: @accent;
+			background: @gray50;
 			&:before {
-				border-bottom: @campain-name-height solid @accent;
+				border-bottom: @campain-name-height solid @gray50;
 			}
 		}
 		&:before {
