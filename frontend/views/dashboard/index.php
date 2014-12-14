@@ -33,19 +33,19 @@ $twitchPartner = $user->userFields->twitchPartner;
                     <?= $systemNotification->message ?>
                 </div>
             <? endif; ?> <!-- END notification -->
-
+            
+            <ul class="content-nav cf">
+                <li class="active">
+                    <a href="#overall" data-toggle="tab">Overall</a>
+                </li>
+                <li>
+                    <a href="#today" data-toggle="tab">Today</a>
+                </li>
+                <li>
+                    <a href="#month" data-toggle="tab">This Month</a>
+                </li>
+            </ul>
             <div class="tab-content">
-                <ul class="content-nav cf">
-                    <li class="active">
-                        <a href="#overall" data-toggle="tab">Overall</a>
-                    </li>
-                    <li>
-                        <a href="#today" data-toggle="tab">Today</a>
-                    </li>
-                    <li>
-                        <a href="#month" data-toggle="tab">This Month</a>
-                    </li>
-                </ul>
                 <!-- Overall -->
                 <div class="tab-pane in active" id="overall">
                     <section class="stats-overview main-totals cf">

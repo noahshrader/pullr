@@ -22,48 +22,46 @@ body.dark {
 /* ------------------------------------------------- */
 .top-menu,
 .site-content,
-#content {
+#content,
+#sidebar {
 	background: @dkgray;
 }
 
 /* Components */
-#sidebar {
-	background: @gray10;
-}
 .module {
 	background: @maingray;
 	box-shadow: none;
 
 	h5.module-title {
 		color: @white;
-		background: @gray20;
-		border: 0;
+		background: @gray10;
+	}
+	&.table {
+		background: transparent;
 	}
 }
 
 ul.content-nav {
-	background: @gray12;
-	border-bottom-color: @gray10;
+	border-bottom-color: @grayaccent;
 
 	li {
 		&.active a {
 			color: @white;
 		}
 		a {
-			color: @gray30;
+			color: @gray20;
 		}
 	}
 }
 
 /* Tables */
 .table-header {
-	background: @maingray;
-	border-bottom-color: @maingray;
+	background: @dkgray;
 
 	.btn {
 		background: @gray10;
 		&:hover {
-			background: @gray20;
+			background: @gray12;
 		}
 	}
 }
@@ -77,13 +75,14 @@ ul.content-nav {
 	}
 }
 .dataTables_info {
-	color: @gray30 !important;
+	color: @gray20 !important;
 }
 table.dataTable {
 	th,
 	thead th {
-		background: @maingray;
-		border-bottom: solid 1px @maingray;
+		color: @gray20;
+		background: @dkgray;
+		border: 0;
 	}
 	tbody tr:hover,
 	&.hover tbody tr:hover,
@@ -92,38 +91,38 @@ table.dataTable {
 	&.display tbody tr:hover,
 	&.display tbody tr.odd:hover,
 	&.display tbody tr.even:hover {
-		background: @dkgray !important;
+		background: @maingray !important;
 	}
 	&.row-border tbody th,
 	&.row-border tbody td,
 	&.display tbody th,
 	&.display tbody td,
 	thead td {
-		border-top-color: @dkgray;
+		border-top-color: @shadowgray;
 	}
 	td.raised span {
-		background: @gray10;
+		background: @dkgray;
 	}
 	tbody tr.donation-entry.drop,
 	tbody tr.donation-entry+tr td[colspan~="4"],
 	tbody tr.donation-entry+tr td[colspan~="5"] {
-		background: @dkgray !important;
+		background: @maingray !important;
 	}
 }
 .table-footer {
-	background: @maingray;
-	border-top-color: @maingray;
+	background: @dkgray;
+	border-top-color: @shadowgray;
 }
 
 /* Lists */
 .list-search {
-	border-bottom: solid 1px @maingray;
+	border-bottom: solid 1px @base;
 
 	span {
 		background: @shadowgray;
 	}
 	input[type='search'] {
-		background: @gray10;
+		background: @maingray;
 	}
 }
 
@@ -131,26 +130,26 @@ table.dataTable {
 .pagination>li>a,
 .pagination>li>span {
 	color: @gray40;
-	background: @gray20;
-	border-top: solid 1px @gray20;
-	border-bottom: solid 1px @gray20;
+	background: @gray10;
+	border-top: solid 1px @gray10;
+	border-bottom: solid 1px @gray10;
 	&:hover {
 		color: @white;
-		background: @gray20;
-		border: solid 1px @gray20;
+		background: @gray10;
+		border: solid 1px @gray10;
 	}
 	&:first-child {
-		border-left: solid 1px @gray20;
+		border-left: solid 1px @gray10;
 	}
 	&:last-child {
-		border-right: solid 1px @gray20;
+		border-right: solid 1px @gray10;
 	}
 }
 .pagination>.active>a,
 .pagination>.active>span {
 	color: @white;
-	background: @gray30 !important;
-	border: solid 1px @gray30 !important;
+	background: @gray15 !important;
+	border: solid 1px @gray15 !important;
 }
 .pagination>.disabled>span,
 .pagination>.disabled>span:hover,
@@ -166,15 +165,15 @@ table.dataTable {
 	padding: 0;
 
 	ul {
-		background: @gray20;
+		background: @gray15;
 		&:before {
-			border-color: transparent transparent @gray20 transparent;
+			border-color: transparent transparent @gray15 transparent;
 		}
 		li {
 			a {
 				color: @white;
 				&:hover {
-					background: @gray30;
+					background: @gray20;
 				}
 			}
 		}
@@ -196,12 +195,12 @@ select.form-control,
 .form-group.has-success input.form-control,
 .form-group.has-success textarea.form-control {
 	color: @white;
-	border: solid 1px @gray30;
+	border: solid 1px @gray20;
 }
 label,
 legend,
 .form-group.has-success label {
-	color: @gray40;
+	color: @gray30;
 }
 
 /* Checboxes */
@@ -211,10 +210,10 @@ legend,
 
 		&:before {
 			color: @gray75;
-			background: @gray30;
+			background: @gray12;
 	    }
     	&.on:before {
-	        color: @gray30;
+	        color: @gray12;
     	}
     }
 }
@@ -249,20 +248,20 @@ legend,
 }
 .select2-dropdown-open.select2-drop-above .select2-choice,
 .select2-dropdown-open.select2-drop-above .select2-choices {
-	background: @gray20;
+	background: @gray10;
 }
 .select2-drop {
 
 	&.select2-drop-active,
 	&.select2-drop-above.select2-drop-active {
-		background: @gray20;
+		background: @gray10;
 	}
 }
 
 .select2-results {
 	
 	.select2-highlighted {
-		background: @gray20;
+		background: @gray10;
 	}
 	.select2-result-label {
 		color: @white;
@@ -276,9 +275,28 @@ legend,
 	}
 }
 
+/* Toggles */
+.bootstrap-switch {
+
+	&.bootstrap-switch-off {
+		border-color: @gray12 !important;
+	}
+	.bootstrap-switch-handle-on.bootstrap-switch-default,
+	.bootstrap-switch-handle-off.bootstrap-switch-default {
+		background: @gray10;
+	}
+	.bootstrap-switch-handle-off.bootstrap-switch-default {
+		color: @gray20 !important;
+	}
+	.bootstrap-switch-label {
+		line-height: 26px;
+		background: @gray12;
+	}
+}
+
 .form-group {
 	i.mdi-action-help {
-		color: @gray30;
+		color: @gray20;
 	}
 }
 
@@ -287,15 +305,15 @@ legend,
 /* ------------------------------------------------- */
 .btn-default {
 	color: @white;
-	background-color: @gray20;
+	background-color: @gray10;
 	&:hover {
 		color: @white;
-		background-color: @gray30;
+		background-color: @gray12;
 	}
 }
 .btn-container {
-	background: @gray15;
-	border-top-color: @gray10;
+	background: @maingray;
+	border-top-color: @dkgray;
 }
 
 
@@ -322,6 +340,11 @@ legend,
 			border-color: @gray20 transparent transparent transparent;
 		}
 	}
+	ul {
+		li.add-campaign span {
+			color: @gray20;
+		}
+	}
 }
 
 
@@ -340,16 +363,16 @@ legend,
 		.stats-overview.twitch-stats {
 
 			i.group-header {
-				color: @gray10;
-				background: @gray12;
+				color: @dkgray;
+				background: @gray10;
 			}
 		}
 		span.stick {
-			background: @gray12;
+			background: @gray10;
 		}
 	}
 	#sidebar.dashboard {
-		background: @gray10;
+		background: @dkgray;
 
 		.invites-wrap ul li .invite-actions {
 			border-top-color: @gray10;
@@ -359,18 +382,19 @@ legend,
 			}
 		}
 		ul.activity-feed li {
-			color: @gray30;
-			background: @gray12;
-			border-bottom-color: @gray10;
+			color: @gray20;
+			background: @maingray;
+			border-bottom-color: @dkgray;
 
 			&:first-child {
 				color: @white;
-				background: @gray15;
+				background: @gray10;
+				border-top: solid 1px @maingray;
 			}
 		}
 	}
 	.alert-info {
-		background: @gray20;
+		background: @gray10;
 	}
 }
 
@@ -384,14 +408,15 @@ legend,
 
 	.campaign-item,
 	.donor-item {
-		border: 0;
+		border-bottom-color: @base;
 
 		h3.list-title,
 		h5 {
-			color: @gray10;
+			color: @gray15;
 		}
 		p.list-total {
-			background: @maingray;
+			color: @gray20;
+			background: @base;
 		}
 
 		&.active,
@@ -407,12 +432,14 @@ legend,
 		}
 		&.active {
 			p.list-total {
+				color: @white;
 				background: @accent;
 			}
 		}
 	}
 }
 ul.campaign-quicknav {
+	background: @shadowgray;
 	border-bottom-color: @base;
 
 	li {
@@ -504,18 +531,18 @@ ul.campaign-quicknav {
 			.module-inner {
 				h5 {
 					i {
-						color: @gray30;
-						border-color: @gray30;
+						color: @gray20;
+						border-color: @gray20;
 					}
 				}
 			}
 		}
 	}
 	.highlight-wrap {
-		background: @gray15;
+		background: @gray10;
 
 		&:before {
-			border-color: transparent transparent @gray15 transparent;
+			border-color: transparent transparent @gray10 transparent;
 		}
 		input[type="text"],
 		input.form-control {
@@ -534,12 +561,12 @@ ul.campaign-quicknav {
 /* Content Loader */
 /* ------------------------------------------------- */
 .spinner-wrap {
-	background: @gray10;
+	background: @dkgray;
 }
 .spinner {
 
 	div {
-		background: @gray30;
+		background: @gray20;
 	}
 }
 
@@ -549,22 +576,26 @@ ul.campaign-quicknav {
 .tooltip {
 
 	.tooltip-inner {
-		background: @maingray;
+		background: @base;
 	}
 }
 .tooltip.top .tooltip-arrow {
-	border-top-color: @maingray;
+	border-top-color: @base;
 }
 .tooltip.right .tooltip-arrow {
-	border-right-color: @maingray;
+	border-right-color: @base;
 }
 .tooltip.bottom .tooltip-arrow {
-	border-bottom-color: @maingray;
+	border-bottom-color: @base;
 }
 
 
-/* Dialog */
+/* Editor */
 /* ------------------------------------------------- */
+.trumbowyg-editor.trumbowyg-reset-css {
+	color: @white;
+	background: @gray10 !important;
+}
 
 
 /* Modals */
