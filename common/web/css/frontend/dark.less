@@ -23,7 +23,7 @@ body.dark {
 .top-menu,
 .site-content,
 #content {
-	background: @dkgray;
+	background: @gray10;
 }
 
 /* Components */
@@ -31,7 +31,7 @@ body.dark {
 	background: @gray10;
 }
 .module {
-	background: @maingray;
+	background: @gray12;
 	box-shadow: none;
 
 	h5.module-title {
@@ -57,13 +57,13 @@ ul.content-nav {
 
 /* Tables */
 .table-header {
-	background: @maingray;
-	border-bottom-color: @maingray;
+	background: @gray15;
+	border-bottom-color: @gray12;
 
 	.btn {
-		background: @gray10;
+		background: @gray20;
 		&:hover {
-			background: @gray20;
+			background: @gray30;
 		}
 	}
 }
@@ -73,7 +73,7 @@ ul.content-nav {
 		color: @gray30;
 	}
 	input {
-		background: @gray10;
+		background: @gray12;
 	}
 }
 .dataTables_info {
@@ -82,8 +82,8 @@ ul.content-nav {
 table.dataTable {
 	th,
 	thead th {
-		background: @maingray;
-		border-bottom: solid 1px @maingray;
+		background: @gray15;
+		border-bottom: solid 1px @gray10;
 	}
 	tbody tr:hover,
 	&.hover tbody tr:hover,
@@ -92,14 +92,14 @@ table.dataTable {
 	&.display tbody tr:hover,
 	&.display tbody tr.odd:hover,
 	&.display tbody tr.even:hover {
-		background: @dkgray !important;
+		background: @gray15 !important;
 	}
 	&.row-border tbody th,
 	&.row-border tbody td,
 	&.display tbody th,
 	&.display tbody td,
 	thead td {
-		border-top-color: @dkgray;
+		border-top-color: @gray10;
 	}
 	td.raised span {
 		background: @gray10;
@@ -107,12 +107,12 @@ table.dataTable {
 	tbody tr.donation-entry.drop,
 	tbody tr.donation-entry+tr td[colspan~="4"],
 	tbody tr.donation-entry+tr td[colspan~="5"] {
-		background: @dkgray !important;
+		background: @gray15 !important;
 	}
 }
 .table-footer {
-	background: @maingray;
-	border-top-color: @maingray;
+	background: @gray15;
+	border-top-color: @gray10;
 }
 
 /* Lists */
@@ -225,7 +225,7 @@ legend,
 		border-color: @white transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
-		background: @gray10;
+		background: @gray20;
 	}
 	&.form-control {
 		border: none;
@@ -234,13 +234,13 @@ legend,
 	.select2-choice,
 	.select2-choices {
 		color: @white;
-		background: @gray10;
+		background: @gray20;
 
 		&:focus {
 			outline: 0 !important;
 		}
 		&:hover {
-			background: @gray10;
+			background: @gray20;
 		}
 	}
 }
@@ -302,10 +302,11 @@ legend,
 /* Navigation */
 /* ------------------------------------------------- */
 .primary-navigation {
-	background: @base;
+	background: @maingray;
+	border-right: solid 1px @maingray;
 
 	.branding a {
-		background: @base;
+		background: @maingray;
 	}
 }
 .top-menu {
@@ -384,14 +385,14 @@ legend,
 
 	.campaign-item,
 	.donor-item {
-		border: 0;
+		border-bottom: solid 1px @maingray;
 
 		h3.list-title,
 		h5 {
-			color: @gray10;
+			color: @gray20;
 		}
 		p.list-total {
-			background: @maingray;
+			background: @gray10;
 		}
 
 		&.active,
@@ -402,7 +403,7 @@ legend,
 			}
 
 			&:after {
-				border-color: transparent @dkgray transparent transparent;
+				border-color: transparent @gray10 transparent transparent;
 			}
 		}
 		&.active {
@@ -413,7 +414,7 @@ legend,
 	}
 }
 ul.campaign-quicknav {
-	border-bottom-color: @base;
+	border-bottom-color: @maingray;
 
 	li {
 		a {
@@ -422,7 +423,7 @@ ul.campaign-quicknav {
 	}
 }
 .view-actions {
-	background: @gray10;
+	background: @gray15;
 	box-shadow: none;
 
 	h4,
@@ -430,15 +431,15 @@ ul.campaign-quicknav {
 		color: @white;
 	}
 	a.view-campaign {
-		background: @gray15;
+		background: @gray20;
 		&:before {
-			border-bottom-color: @gray15;
+			border-bottom-color: @gray20;
 		}
 		&:hover, {
-			background: @gray20;
+			background: @gray30;
 		}
 		&:hover:before {
-			border-bottom-color: @gray20;
+			border-bottom-color: @gray30;
 		}
 	}
 	a.actions-toggle {
@@ -471,15 +472,15 @@ ul.campaign-quicknav {
 		background: @accent;
 
 		.stats-box {
-			border-left-color: @maingray;
+			border-left-color: @gray10;
 		}
 	}
 	span {
 		color: rgba(255,255,255,.6) !important;
 	}
 	.stats-box {
-		background: @gray10;
-		border-left-color: @maingray;
+		background: @gray15;
+		border-left-color: @gray10;
 
 		h2,
 		h3 {
@@ -492,7 +493,7 @@ ul.campaign-quicknav {
 		}
 		&.top-donor,
 		&.top-donation {
-			border-top-color: @maingray;
+			border-top-color: @gray10;
 		}
 	}
 }

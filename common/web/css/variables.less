@@ -17,7 +17,6 @@
 /* Base */
 @base: #222225;
 @white: #FFF;
-@black: #000;
 @offwhite: darken(@white, 3%);
 
 /* Main Accent */
@@ -49,7 +48,7 @@
 @gray72: lighten(@base, 74%); /* 72% gray background */
 @gray75: lighten(@base, 80%); /* 78% gray background */
 
-@shadowgray: lighten(@base, 1%); /* Dark theme */
+@shadowgray: lighten(@base, 7%); /* Dark theme */
 
 @bgwhitefade: rgba(255,255,255,.7); /* Faded light background */
 @bglightwhitefade: rgba(255,255,255,.2); /* Faded light background */
@@ -140,7 +139,7 @@
 
 /* Borders & Box shadows */
 /* ------------------------------------------------- */
-.border-radius (@radius: 2px) {
+.border-radius (@radius: 3px) {
 	border-radius: @radius;
 	background-clip: padding-box;
 }
