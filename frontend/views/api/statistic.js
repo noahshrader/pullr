@@ -1,6 +1,6 @@
 var PullrStatistic = {};
 PullrStatistic.MAIN_URL = "//<?=$_SERVER['HTTP_HOST']?><?= \Yii::$app->urlManager->baseUrl?>/";
-PullrStatistic.ANGULAR_LIB_URL = 'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js';
+PullrStatistic.ANGULAR_LIB_URL = Pullr.MAIN_URL + 'public/angular-1.3.4.min.js';
 PullrStatistic.API_URL = PullrStatistic.MAIN_URL + 'app/statistic';
 
 

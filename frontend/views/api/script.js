@@ -6,8 +6,8 @@ Pullr.API_URL = Pullr.MAIN_URL + "api/";
 Pullr.TEMPLATES_URL = Pullr.MAIN_URL + "public/jqt.html";
 Pullr.JQUERY_TEMPLATES_URL = Pullr.MAIN_URL + "public/jquery.loadTemplate-1.4.3.min.js";
 
-Pullr.ANGULAR_LIB_URL = 'public/angular-1.3.4.min.js';
-Pullr.ANGULAR_SANITIZE_URL = 'public/angular-sanitize.min.js';
+Pullr.ANGULAR_LIB_URL = Pullr.MAIN_URL + 'public/angular-1.3.4.min.js';
+Pullr.ANGULAR_SANITIZE_URL = Pullr.MAIN_URL + 'public/angular-sanitize.min.js';
 Pullr.ANGULAR_APP_URL = Pullr.MAIN_URL + "public/api-widget.js";
 
 Pullr.MAGNIFIC_POPUP_JS = Pullr.MAIN_URL + "js/lib/magnificpopup.js";
