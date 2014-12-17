@@ -317,8 +317,8 @@ input.color-choice {
 
 /* Bootstrap Switch */
 .bootstrap-switch {
-	width: 100px;
-	border: solid 1px @gray72 !important;
+	width: 60px;
+	border: none !important;
 	&.bootstrap-switch-on {
 		border: solid 1px @accent !important;
 	}
@@ -326,6 +326,16 @@ input.color-choice {
 	.bootstrap-switch-handle-off.bootstrap-switch-default {
 		color: @gray60 !important;
 	}
+	
+	.bootstrap-switch-handle-on.bootstrap-switch-primary, 
+	{
+		background: #cccccc;
+		text-indent: -999em;
+		border-radius: 50%;
+		width: 2em;
+		position: relative;
+	}
+	
 	span {
 		font-size: @fineprint !important;
 		font-weight: 500;
@@ -333,9 +343,36 @@ input.color-choice {
 		padding: 0 !important;
 	}
 	label {
-		padding: 0 !important;
+		line-height: 16px;
+		background: @pullr_green;
+		left: -1em;
+		z-index: -1;
+		position: relative;
+		border-radius: 20px;
 	}
+	
+	&.bootstrap-switch-off {
+		
+		label {
+			background: @gray20;
+		}
+		
+		.bootstrap-switch-handle-off.bootstrap-switch-primary {
+			left: 40px;
+		}
+	}
+	
+	.bootstrap-switch-handle-off.bootstrap-switch-default {
+		
+		display: none !important;
+	}
+	
+	
+	
 }
+
+
+
 
 /* Combined Forms */
 .combined-form-wrap {
