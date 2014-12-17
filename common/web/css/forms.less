@@ -320,20 +320,25 @@ input.color-choice {
 	width: 60px;
 	border: none !important;
 	&.bootstrap-switch-on {
-		border: solid 1px @accent !important;
+		border: none !important;
 	}
 	.bootstrap-switch-handle-on.bootstrap-switch-default,
 	.bootstrap-switch-handle-off.bootstrap-switch-default {
 		color: @gray60 !important;
 	}
 	
-	.bootstrap-switch-handle-on.bootstrap-switch-primary, 
+	.bootstrap-switch-handle-on.bootstrap-switch-primary
 	{
 		background: #cccccc;
 		text-indent: -999em;
 		border-radius: 50%;
 		width: 2em;
 		position: relative;
+	}
+	
+	.bootstrap-switch-label {
+		line-height: 16px;
+		background: none;
 	}
 	
 	span {
