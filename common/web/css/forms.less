@@ -315,10 +315,11 @@ input.color-choice {
 	}
 }
 
-/* Bootstrap Switch */
+/* Bootstrap Switches */
 .bootstrap-switch {
 	width: 60px;
 	border: none !important;
+
 	&.bootstrap-switch-on {
 		border: none !important;
 	}
@@ -326,17 +327,13 @@ input.color-choice {
 	.bootstrap-switch-handle-off.bootstrap-switch-default {
 		color: @gray50 !important;
 	}
-	
-	.bootstrap-switch-handle-on.bootstrap-switch-primary
-	{
+	.bootstrap-switch-handle-on.bootstrap-switch-primary {
 		background: @gray75 !important;
 		text-indent: -999em;
 		border-radius: 50%;
 		width: 2em;
 		position: relative;
-		
 	}
-	
 	.bootstrap-switch-label {
 		line-height: 10px !important;
 		border-radius: 20px !important;
@@ -344,8 +341,8 @@ input.color-choice {
 		z-index: 0 !important;
 		position: relative;
 		left: -16px;
+		padding: 2px 0 !important;
 	}
-	
 	span {
 		font-size: @fineprint !important;
 		font-weight: 500;
@@ -361,11 +358,8 @@ input.color-choice {
 		border-radius: 20px;
 		left: 0px;
 	}
-	
 	&.bootstrap-switch-off {
-		
-	
-		
+
 		.bootstrap-switch-primary {
 			left: 40px;
 		}
@@ -374,21 +368,14 @@ input.color-choice {
 			border: 1px solid #bbb;
 			box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
 		}
-		
 	}
-	
 	.bootstrap-switch-handle-off.bootstrap-switch-default {
-		
 		display: none !important;
 	}
-	
 	&.bootstrap-switch-off .bootstrap-switch-container {
 		margin-left: 0 !important;
 	}	
-	
 }
-
-
 
 
 /* Combined Forms */
