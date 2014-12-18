@@ -12,8 +12,15 @@ use common\models\Campaign;
 use common\models\Donation;
 use frontend\models\helpers\PullrStatistic;
 use common\components\PullrUtils;
+use common\models\FeaturedCampaign;
+use common\models\User;
+use \ritero\SDK\TwitchTV\TwitchSDK;
+use frontend\models\helpers\TwitchChannelHelper;
+use frontend\models\helpers\CampaignHelper;
 
 class StatisticController extends FrontendController {
+
+    public $twitch;
 
     public function behaviors()
     {
@@ -22,7 +29,7 @@ class StatisticController extends FrontendController {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','amount_raised', 'api'],
+                        'actions' => ['index','amount_raised', 'api', 'featured_campaign_api', 'campaign_data'],
                         'allow' => true
                     ],
                     [
@@ -44,7 +51,7 @@ class StatisticController extends FrontendController {
             echo 'Invalid request';
             \Yii::$app->end();
         }
-
+        $this->twitch = new TwitchSDK();
         return parent::init();
     }
 
@@ -72,8 +79,43 @@ class StatisticController extends FrontendController {
         return $result;
     }
 
+    public function actionCampaign_data()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        if ( ! Yii::$app->getRequest()->isPost ) {
+            return [];
+        }
+        $campaigns = CampaignHelper::getFeaturedCampaigns();
+        $results = array();
+        $twitchChannelHelper = new TwitchChannelHelper();
+        $twitchChannelHelper->setAllowCache(true);
+        foreach($campaigns as $campaign) {
+            $campaignArray = $campaign->toArray();
+            $campaignArray['goalAmountFormatted'] = '$' . PullrUtils::formatNumber($campaign['goalAmount'], 2);
+            $campaignArray['amountRaisedFormatted'] = '$' . PullrUtils::formatNumber($campaign['amountRaised'], 2);
+            $campaignArray['percentageOfGoal'] = $campaign['goalAmount'] > 0 ? round($campaign['amountRaised'] / $campaign['goalAmount'] * 100) : 0;
+            if (($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES) && ($campaign->type === Campaign::TYPE_CHARITY_FUNDRAISER) && $campaign->charity) {
+                $campaignArray['charityName'] = $campaign->charity->name;
+            } else {
+                $campaignArray['charityName'] = $campaign->customCharity;
+            }
+            $campaignArray['channels'] = $twitchChannelHelper->getCampaignChannel($campaign);
+            $campaignArray['donationFormUrl'] = '/' . $campaign->user->getUrl() . $campaign->alias . '/donate';
+            $campaignArray['campaignPageUrl'] = '/' . $campaign->user->getUrl() . $campaign->alias;
+
+            $results[] = $campaignArray;
+        }
+        return $results;
+    }
+
+
     public function actionApi()
     {
         echo $this->renderFile('@frontend/views/api/statistic.js');
+    }
+
+    public function actionFeatured_campaign_api()
+    {
+        echo $this->renderFile('@frontend/views/api/featured_campaign.js');
     }
 }

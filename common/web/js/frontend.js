@@ -59,6 +59,7 @@ $('.checkbox label').click(function(event){
     $cbox.trigger('change');
 });
 $('.checkbox label input:checkbox').each(function(){
+
     if($(this).attr('checked')) {
         $(this).parent('label').addClass('on');
     }
@@ -76,7 +77,7 @@ $(".primary-nav-toggle").click(function(){
 });
 
 // reduce sidebar if the window shrinks too much
-$(window).resize(function() {  
+$(window).resize(function() {
     if($('.large-menu-toggled').width() < 900) {
         $('.main-wrapper').removeClass('large-menu-toggled').addClass('small-menu-toggled');
         $('.logo').removeClass('mdib-pullr-logo').addClass('mdib-pullr-logo2');

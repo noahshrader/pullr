@@ -20,7 +20,7 @@ class ApiController extends \yii\web\Controller {
     public function init()
     {
         $this->enableCORS();
-        
+
         if (\Yii::$app->request->isOptions)
         {
             \Yii::$app->end();
@@ -84,11 +84,11 @@ class ApiController extends \yii\web\Controller {
     public function actionCampaign() {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $campaign = $this->validateRequest();
-        
+
         $campaignArray = $campaign->toArray();
         $campaignArray['donationUrl'] = $campaign->user->getUrl() . $campaign->alias;
-        
-        if ( false == \Yii::$app->user->isGuest ){
+
+        if ( false == \Yii::$app->user->isGuest ) {
             $date = (new \DateTime())->setTimezone(new \DateTimeZone(\Yii::$app->user->identity->getTimezone()));
             $campaignArray['startDateFormatted'] = $campaignArray['startDate'] ? $date->setTimestamp($campaignArray['startDate'])->format('F j, Y') : null;
             $campaignArray['endDateFormatted'] = $campaignArray['endDate'] ? $date->setTimestamp($campaignArray['endDate'])->format('F j, Y') : null;
@@ -111,7 +111,7 @@ class ApiController extends \yii\web\Controller {
 
         $donors = $campaign->getDonations()->all();
         $campaignArray['donors'] = [];
-        foreach ($donors as $donor) {            
+        foreach ($donors as $donor) {
             $campaignArray['donors'][] = [
                 'name' => $donor->nameFromForm,
                 'amount' => $donor->amount
@@ -130,7 +130,7 @@ class ApiController extends \yii\web\Controller {
         if ($campaign->layoutType != Campaign::LAYOUT_TYPE_TEAM || !$campaign->channelTeam) {
             return [];
         }
-        $team = $this->twitch->teamGet($campaign->channelTeam);        
+        $team = $this->twitch->teamGet($campaign->channelTeam);
         return $team;
     }
 
@@ -141,7 +141,7 @@ class ApiController extends \yii\web\Controller {
         switch ($campaign->layoutType) {
             case Campaign::LAYOUT_TYPE_SINGLE:
                 $result = $this->actionSingleChannel();
-            break;    
+            break;
             case Campaign::LAYOUT_TYPE_TEAM:
                 $result = $this->actionTeamChannel();
             break;
@@ -160,7 +160,7 @@ class ApiController extends \yii\web\Controller {
         }
         $channels = $campaign->getTeams()->all();
         $members = [];
-        
+
         foreach ($channels as $channelModel) {
             $channel = $this->twitch->channelGet($channelModel->name);
             $members[] = $channel;
@@ -177,12 +177,12 @@ class ApiController extends \yii\web\Controller {
         }
 
         $membersList = $this->twitch->teamMembersAll($campaign->channelTeam);
-        
+
         $offlines = [];
         $onlines = [];
         foreach ($membersList as $member) {
             if ($member->channel->status == 'offline') {
-                $offlines[] = $member->channel;                
+                $offlines[] = $member->channel;
             } else {
                 $onlines[] = $member->channel;
             }
@@ -226,7 +226,7 @@ class ApiController extends \yii\web\Controller {
     }
 
     public function actionDonorlist() {
-        echo $this->renderFile('@frontend/views/api/templates/donor-list.html');    
+        echo $this->renderFile('@frontend/views/api/templates/donor-list.html');
     }
 
     protected function enableCORS(){

@@ -7,6 +7,7 @@ use yii\base\Security;
 use yii\web\IdentityInterface;
 use common\models\base\BaseImage;
 use common\models\user\UserFields;
+use common\models\FeaturedCampaign;
 use yii\db\ActiveQuery;
 use common\models\twitch\TwitchUser;
 use frontend\models\streamboard\StreamboardConfig;
@@ -63,6 +64,8 @@ class User extends ActiveRecord implements IdentityInterface
     public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_PENDING];
     public static $ROLES = [self::ROLE_ONCONFIRMATION, self::ROLE_USER, self::ROLE_ADMIN];
 
+    public $featuredCampaigns;
+
     public function behaviors()
     {
         return [
@@ -111,7 +114,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByTwitchUsername($twitchUsername)
     {
-        $userField = UserFields::find()->andWhere(['twitchChannel' => $twitchUsername])->one();        
+        $userField = UserFields::find()->andWhere(['twitchChannel' => $twitchUsername])->one();
         if ($userField) {
             return static::find()->andWhere(['id' => $userField->userId])->one();
         }
@@ -183,7 +186,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'photo' => ['photo', 'smallPhoto'],
-            'settings' => ['name', 'timezone','colorTheme'],
+            'settings' => ['name', 'timezone','colorTheme', 'enableFeaturedCampaign'],
             'openId' => ['name', 'email', 'birthday', 'photo', 'smallPhoto'],
             'signup' => ['login', 'name', 'email', 'password', 'confirmPassword', '!status', '!role'],
             'emailConfirm' => ['role', 'email'],
@@ -387,7 +390,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
 
         $notification = $this->hasOne(Notification::className(), ['userId' => 'id'])->one();
-        
+
         if ( ! $notification ) {
             $notification = new Notification();
             $notification->userId = $this->id;
@@ -421,6 +424,18 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return FeaturedCampaign
+    */
+    public function getFeaturedCampaigns()
+    {
+        return Campaign::find()
+            ->from(Campaign::tableName() . ' c')
+            ->rightJoin(FeaturedCampaign::tableName() . ' fc', 'fc.campaignId = c.id')
+            ->where(['fc.userId' => $this->id])
+            ->all();
+    }
+
+    /**
      * @return TwitchUser
      */
     public function getStreamboardConfig()
@@ -429,14 +444,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     public function getInvitatedCampaignIds() {
-        return CampaignInvite::find()->where(['userId' => $this->id, 'status' => CampaignInvite::STATUS_ACTIVE])->select(['campaignId'])->column();        
+        return CampaignInvite::find()->where(['userId' => $this->id, 'status' => CampaignInvite::STATUS_ACTIVE])->select(['campaignId'])->column();
     }
 
     /**
      * return ActiveQuery object for parent campaigns for current user
      */
     public function getCampaignsImInvitedTo($status = Campaign::STATUS_ACTIVE)
-    {        
+    {
         $ids = $this->getInvitatedCampaignIds();
         return Campaign::find()->where(['in', 'id', $ids])->andWhere(['status' => $status]);
     }
@@ -448,7 +463,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @return ActiveQuery user's campaigns + parent's campaigns
      */
     public function getCampaigns($status = Campaign::STATUS_ACTIVE, $withInviteCampaigns = true)
-    {        
+    {
         $query = Campaign::find()->where(['userId' => $this->id, 'status' => $status]);
 
         if ($withInviteCampaigns) {
@@ -467,7 +482,7 @@ class User extends ActiveRecord implements IdentityInterface
         $inviteCampaignIds = $this->getInvitatedCampaignIds();
         $inviteCampaignIdString = implode(',', $inviteCampaignIds);
         /**@var $query ActiveQuery */
-        $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId', !empty($inviteCampaignIdString) ? ('campaignId in (' . $inviteCampaignIdString .')') : ''])           
+        $query = Donation::find()->where(['or', 'campaignUserId = :userId', 'parentCampaignUserId = :userId', !empty($inviteCampaignIdString) ? ('campaignId in (' . $inviteCampaignIdString .')') : ''])
             ->andWhere('paymentDate > 0')
             ->addParams([':userId' => $this->id])
             ->orderBy('paymentDate DESC, id DESC');

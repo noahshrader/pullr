@@ -48,6 +48,25 @@ PullrStatistic.loadStatsticApp = function() {
         return Service;
     });
 
+    app.controller('PullrCharityCampaignCtrl', function($scope, PullrCharityCampaignData) {
+        $scope.charityCampaignService = PullrCharityCampaignData;
+        $scope.$watch('charityCampaignService.charityCampaignData', function() {
+            $scope.charityCampaignData = $scope.charityCampaignService.charityCampaignData
+        });
+
+
+    });
+
+    app.service('PullrCharityCampaignData', function($http) {
+        var Service = {};
+        Service.charityCampaignData = [];
+        Service.getCharityCampaignData = function() {
+            $http.get(PullrStatistic.API_URL + '/charity_campaign_data').success(function(data) {
+                Service.charityCampaignData = data;
+            });
+        }
+    });
+
     angular.element(document).ready(function() {
         angular.bootstrap(document, ['PullrStatisticApp']);
     });

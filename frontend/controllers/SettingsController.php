@@ -9,16 +9,18 @@ use common\models\RecurringProfile;
 use common\components\PullrPayment;
 use common\models\mail\Mail;
 use \common\components\PullrUtils;
+use frontend\models\helpers\CampaignHelper;
+use common\models\FeaturedCampaign;
 use yii\widgets\ActiveForm;
 use \yii\web\Session;
 use yii\web\Response;
 use Yii;
 
-class SettingsController extends FrontendController 
+class SettingsController extends FrontendController
 {
-    public function actionIndex() 
+    public function actionIndex()
     {
-        if (Yii::$app->user->isGuest) 
+        if (Yii::$app->user->isGuest)
         {
             return Yii::$app->user->loginRequired();
         }
@@ -31,15 +33,26 @@ class SettingsController extends FrontendController
             $user->setAttributes($_POST['User']);
             $user->save();
         }
+
+        $activeFeaturedCampaigns = [];
+        if (isset($_POST['featuredCampaign'])) {
+            foreach ($_POST['featuredCampaign'] as $campaignId => $isActive) {
+                if ($isActive) $activeFeaturedCampaigns[] = $campaignId;
+            }
+        }
+        FeaturedCampaign::setFeaturedCampaignFromArray($user, $activeFeaturedCampaigns);
+
+
+
         $notification = $user->notification;
         $notification->load($_POST) && $notification->save($_POST);
 
         $changePasswordForm = new ChangePasswordForm();
-        if ($changePasswordForm->load($_POST) && $changePasswordForm->oldPassword) 
+        if ($changePasswordForm->load($_POST) && $changePasswordForm->oldPassword)
         {
             $changePasswordForm->validatePassword();
             $changePasswordForm->validateNewPassword();
-            if (!$changePasswordForm->getErrors()) 
+            if (!$changePasswordForm->getErrors())
             {
                 $user->setNewPassword($changePasswordForm->newPassword);
                 $user->save();
@@ -52,14 +65,22 @@ class SettingsController extends FrontendController
             $user->apiKey  = Yii::$app->getSecurity()->generateRandomString().md5($user->name);
             $user->save();
         }
+        $charityCampaigns = CampaignHelper::getCharityCampaigns();
+        $featuredCampaigns = $user->getFeaturedCampaigns();
+        $featuredCampaignIds = [];
+        foreach ($featuredCampaigns as $campaign) {
+            $featuredCampaignIds[] = $campaign->id;
+        }
 
         return $this->render('index', [
                     'user' => $user,
                     'notification' => $notification,
-                    'changePasswordForm' => $changePasswordForm
+                    'changePasswordForm' => $changePasswordForm,
+                    'charityCampaigns' => $charityCampaigns,
+                    'featuredCampaignIds' => $featuredCampaignIds
         ]);
     }
-    
+
     /**
      * That method sets request for account deactivation and logout user
      * If user will not login in 30 days his account will be deactivated
@@ -177,7 +198,7 @@ class SettingsController extends FrontendController
 
         $this->redirect('index');
     }
-    
+
     public  function actionDetecttimezone($offset, $dst, $multiple = false, $default = 'UTC')
     {
         $timezone_ids = array();
@@ -201,13 +222,13 @@ class SettingsController extends FrontendController
         {
             $timezone_ids = array($default);
         }
-        
+
         $timezone = $timezone_ids[0];
         //update user timezone
         $user = Yii::$app->user->identity;
         $user->timezone = $timezone;
         $user->save(false);
-        
+
         return $timezone;
     }
 }
