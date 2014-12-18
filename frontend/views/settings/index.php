@@ -70,34 +70,6 @@ endif;
 					</div>
 				</div>
 
-				<div class="module">
-					<h5 class="module-title">Featured campaigns</h5>
-					<div class="module-inner">
-						<div class='checkbox'>
-							<?= $form->field($user, 'enableFeaturedCampaign')->checkbox(); ?>
-						</div>
-
-						<label>Featured campaigns</label>
-						<? foreach($charityCampaigns as $charityCampaign):?>
-							<div class='checkbox'>
-							<div class="form-group field-user-featuredcampaigns">
-								<? $checked = in_array($charityCampaign->id, $featuredCampaignIds); ?>
-								<label>
-									<?= Html::checkbox("featuredCampaign[$charityCampaign->id]", $checked); ?>
-									<?= $charityCampaign->name; ?>
-								</label>
-							</div>
-
-							</div>
-						<? endforeach; ?>
-
-						<?php
-						$timezones = array_values(common\components\PullrUtils::timezone_list());
-						$keyValues = array_combine($timezones, $timezones);
-						?>
-					</div>
-				</div>
-
 				<div class="dashboard-notifications module">
 					<h5 class="module-title">Dashboard Notifications</h5>
 					<div class="module-inner">

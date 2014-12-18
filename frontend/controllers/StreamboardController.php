@@ -63,6 +63,13 @@ class StreamboardController extends FrontendController
         return parent::init();
     }
 
+    public function getPayload()
+    {
+        $payload = file_get_contents("php://input");
+        $payload = json_decode($payload, true);
+        return $payload;
+    }
+
     public function actionIndex()
     {
         $this->layout = 'streamboard';
@@ -251,7 +258,7 @@ class StreamboardController extends FrontendController
             $campaign->numberOfDonations = PullrUtils::formatNumber($campaign->numberOfDonations, 2);
             /**@var $campaign Campaign */
 
-            $array = $campaign->toArray(['id', 'name', 'goalAmount', 'amountRaised', 'numberOfDonations', 'numberOfUniqueDonors', 'userId']);
+            $array = $campaign->toArray(['id', 'name', 'goalAmount', 'amountRaised', 'numberOfDonations', 'numberOfUniqueDonors', 'userId', 'type']);
             $array['streamboardSelected'] = $campaign->streamboard->selected ? true : false;
             $campaignsArray[$campaign->id] = $array;
         }
@@ -694,5 +701,27 @@ class StreamboardController extends FrontendController
         TwitchUser::updateFollowersNumber($user, $data['_total']);
         TwitchFollow::updateFollows($user, $data['follows']);
         return $data;
+    }
+
+    public function actionSet_enable_featured_campaign()
+    {
+        $payload = $this->getPayload();
+        if (isset($payload['enableFeaturedCampaign'])) {
+            $user = Streamboard::getCurrentUser();
+            $streamboardConfig = $user->streamboardConfig;
+            $streamboardConfig->enableFeaturedCampaign = (bool)$payload['enableFeaturedCampaign'];
+            $streamboardConfig->save();
+        }
+    }
+
+    public function actionSet_featured_campaign_id()
+    {
+        $payload = $this->getPayload();
+        if (isset($payload['featuredCampaignId'])) {
+            $user = Streamboard::getCurrentUser();
+            $streamboardConfig = $user->streamboardConfig;
+            $streamboardConfig->featuredCampaignId = intval($payload['featuredCampaignId']);
+            $streamboardConfig->save();
+        }
     }
 }

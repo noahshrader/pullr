@@ -3,8 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 use frontend\models\streamboard\StreamboardConfig;
-
-class m141216_011502_add_featured_campaign_table extends Migration
+class m141218_060534_add_featured_campaign_to_streamboard extends Migration
 {
     public function up()
     {
