@@ -669,7 +669,6 @@ class StreamboardController extends FrontendController
         $data = json_decode(json_encode($data), true);
         TwitchUser::updateSubscribersNumber($user, $data['_total']);
         TwitchSubscription::updateSubscriptions($user, $data['subscriptions']);
-        $data['subscriptions'][0]['created_at'] = date('Y-m-d H:i:s');
         return $data;
     }
 
