@@ -474,6 +474,7 @@ ul.panel-nav {
 
 		span {
 			display: block;
+			font-size: @fineprint;
 		}
 		.donation {
 			position: relative;
@@ -521,10 +522,19 @@ ul.panel-nav {
 			}
 			h3.list-title,
 			p.list-total {
+				display: block;
 				color: @white;
+				width: auto;
 			}
 			p.list-total {
+				display: inline-block;
+				font-size: @smalltext;
+				font-weight: 600;
+				padding: 0 .6em;
+				margin-bottom: .3em;
+				width: auto;
 				background: @gray15;
+				.round-radius;
 			}
 			.donation-comments {
 				color: @gray70;
