@@ -10,7 +10,6 @@ use common\components\PullrPayment;
 use common\models\mail\Mail;
 use \common\components\PullrUtils;
 use frontend\models\helpers\CampaignHelper;
-use common\models\FeaturedCampaign;
 use yii\widgets\ActiveForm;
 use \yii\web\Session;
 use yii\web\Response;
@@ -34,16 +33,6 @@ class SettingsController extends FrontendController
             $user->save();
         }
 
-        $activeFeaturedCampaigns = [];
-        if (isset($_POST['featuredCampaign'])) {
-            foreach ($_POST['featuredCampaign'] as $campaignId => $isActive) {
-                if ($isActive) $activeFeaturedCampaigns[] = $campaignId;
-            }
-        }
-        FeaturedCampaign::setFeaturedCampaignFromArray($user, $activeFeaturedCampaigns);
-
-
-
         $notification = $user->notification;
         $notification->load($_POST) && $notification->save($_POST);
 
@@ -65,19 +54,11 @@ class SettingsController extends FrontendController
             $user->apiKey  = Yii::$app->getSecurity()->generateRandomString().md5($user->name);
             $user->save();
         }
-        $charityCampaigns = CampaignHelper::getCharityCampaigns();
-        $featuredCampaigns = $user->getFeaturedCampaigns();
-        $featuredCampaignIds = [];
-        foreach ($featuredCampaigns as $campaign) {
-            $featuredCampaignIds[] = $campaign->id;
-        }
 
         return $this->render('index', [
                     'user' => $user,
                     'notification' => $notification,
                     'changePasswordForm' => $changePasswordForm,
-                    'charityCampaigns' => $charityCampaigns,
-                    'featuredCampaignIds' => $featuredCampaignIds
         ]);
     }
 

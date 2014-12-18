@@ -4,6 +4,7 @@ use common\assets\FrontendAsset;
 use common\assets\CommonAsset;
 use yii\helpers\Url;
 use frontend\models\streamboard\StreamboardConfig;
+use common\models\Campaign;
 /**
  * @var \yii\web\View $this
  * @var string $content
@@ -16,6 +17,7 @@ if(isset($streamboardConfig))
 {
     $js = 'Pullr.baseUrl = "'.Url::to('app').'";';
     $js .= 'Pullr.Streamboard = '.json_encode($streamboardConfig->toArray(['streamboardWidth', 'streamboardHeight', 'streamboardLeft', 'streamboardTop'])).';';
+    $js .= 'Pullr.CAMPAIGN_TYPE_CHARITY_FUNDRAISER = "' . Campaign::TYPE_CHARITY_FUNDRAISER . '";';
     $this->registerJs($js);
 }
 
@@ -34,7 +36,7 @@ if (isset($user))
     <!-- BEGIN body -->
     <body class="<?php echo $colorTheme; ?>">
         <?php $this->beginBody() ?>
-        
+
         <div class="main-wrapper large-menu-toggled">
             <? if ($this->context->id == 'campaigns') { ?>
             <div class="top-menu indent">
@@ -65,7 +67,7 @@ if (isset($user))
                     <a class="logo mdib-pullr-logo"></a>
                 </div>
                 <nav class="sidebar-nav nav-top">
-                    <ul> 
+                    <ul>
                         <li>
                             <a class="dashboard <?if(Yii::$app->controller->id == 'site'):?>active<?endif;?>" title="Dashboard" href="app">
                                 <i class="icon mdi-action-dashboard"></i>

@@ -12,7 +12,7 @@ use common\models\Campaign;
 use common\models\Donation;
 use frontend\models\helpers\PullrStatistic;
 use common\components\PullrUtils;
-use common\models\FeaturedCampaign;
+
 use common\models\User;
 use \ritero\SDK\TwitchTV\TwitchSDK;
 use frontend\models\helpers\TwitchChannelHelper;

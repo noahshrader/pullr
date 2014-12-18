@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use common\models\Donation;
 use common\models\User;
-
+use common\models\Campaign;
 /**
  * @var \yii\web\View $this
  */
@@ -19,6 +19,7 @@ use common\models\User;
         $js = 'window.Pullr = window.Pullr || {}; ';
         $js .= 'window.Pullr.twitchClientId = "'. \Yii::$app->params['twitchClientId'].'";';
         $js .= 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
+        $js .= 'window.Pullr.CAMPAIGN_TYPE_CHARITY_FUNDRAISER = "' . Campaign::TYPE_CHARITY_FUNDRAISER . '";';
         $js .= 'Pullr.ENV = "'. YII_ENV.'";';
         $publicParams = ['googleAPIKey'];
         $params = array_intersect_key(Yii::$app->params, array_flip($publicParams));

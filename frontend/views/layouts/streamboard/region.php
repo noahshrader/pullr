@@ -5,6 +5,7 @@ use common\assets\streamboard\StreamboardSingleRegionAsset;
 use common\assets\streamboard\StreamboardCommonAsset;
 use frontend\models\streamboard\Streamboard;
 use common\models\Donation;
+use common\models\Campaign;
 CommonAsset::register($this);
 StreamboardCommonAsset::register($this);
 StreamboardSingleRegionAsset::register($this);
@@ -29,12 +30,13 @@ $showBackground = isset($_GET['bg']) && $_GET['bg'] == 1 ? true : false ;
 	        $js = 'window.Pullr = window.Pullr || {}; ';
 	        $js .= 'window.Pullr.twitchClientId = "'. \Yii::$app->params['twitchClientId'].'";';
 	        $js .= 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
+	        $js .= 'window.Pullr.CAMPAIGN_TYPE_CHARITY_FUNDRAISER = "' . Campaign::TYPE_CHARITY_FUNDRAISER . '";';
 	        $js .= 'Pullr.ENV = "'. YII_ENV.'";';
 	        $publicParams = ['googleAPIKey'];
 	        $params = array_intersect_key(Yii::$app->params, array_flip($publicParams));
 	        $js .= 'Pullr.params = '.json_encode($params).';';
 	        $onreadyJs = '';
-	        if ($user) {	           
+	        if ($user) {
 	           /**@var User $user*/
 	           $js .= 'window.Pullr.user = ' . json_encode($user->toArray()) . ';';
 	           $onreadyJs .= 'twitchEventsMonitor();';
@@ -48,8 +50,8 @@ $showBackground = isset($_GET['bg']) && $_GET['bg'] == 1 ? true : false ;
 	    <? if ( ! $showBackground) : ?>
 		    <style type="text/css">
 			    ::-webkit-scrollbar { visibility: hidden; }
-				body, html, .region, .streamboardContainer, .regionsContainer, .regionsContainer .region { 
-					background-color: rgba(0, 255, 0, 0.01);				
+				body, html, .region, .streamboardContainer, .regionsContainer, .regionsContainer .region {
+					background-color: rgba(0, 255, 0, 0.01);
 				}
 
 		    </style>
@@ -70,7 +72,7 @@ $showBackground = isset($_GET['bg']) && $_GET['bg'] == 1 ? true : false ;
 	</div>
 	<?php $this->beginBody() ?>
 	<?= $content ?>
-	<?php $this->endBody() ?>	
+	<?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

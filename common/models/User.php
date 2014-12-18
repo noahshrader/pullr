@@ -7,7 +7,6 @@ use yii\base\Security;
 use yii\web\IdentityInterface;
 use common\models\base\BaseImage;
 use common\models\user\UserFields;
-use common\models\FeaturedCampaign;
 use yii\db\ActiveQuery;
 use common\models\twitch\TwitchUser;
 use frontend\models\streamboard\StreamboardConfig;
@@ -63,8 +62,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static $STATUSES = [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_PENDING];
     public static $ROLES = [self::ROLE_ONCONFIRMATION, self::ROLE_USER, self::ROLE_ADMIN];
-
-    public $featuredCampaigns;
 
     public function behaviors()
     {
@@ -186,7 +183,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'photo' => ['photo', 'smallPhoto'],
-            'settings' => ['name', 'timezone','colorTheme', 'enableFeaturedCampaign'],
+            'settings' => ['name', 'timezone','colorTheme'],
             'openId' => ['name', 'email', 'birthday', 'photo', 'smallPhoto'],
             'signup' => ['login', 'name', 'email', 'password', 'confirmPassword', '!status', '!role'],
             'emailConfirm' => ['role', 'email'],
@@ -421,18 +418,6 @@ class User extends ActiveRecord implements IdentityInterface
     public function getTwitchUser()
     {
         return $this->hasOne(TwitchUser::className(), ['userId' => 'id']);
-    }
-
-    /**
-     * @return FeaturedCampaign
-    */
-    public function getFeaturedCampaigns()
-    {
-        return Campaign::find()
-            ->from(Campaign::tableName() . ' c')
-            ->rightJoin(FeaturedCampaign::tableName() . ' fc', 'fc.campaignId = c.id')
-            ->where(['fc.userId' => $this->id])
-            ->all();
     }
 
     /**
