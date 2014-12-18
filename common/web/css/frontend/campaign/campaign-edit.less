@@ -146,11 +146,13 @@ p.team-notice {
 			&:before {
 				display: none;
 			}
-			.bootstrap-switch {
-				display: block !important;
-				margin: 0 auto;
-			}
 		}
+	}
+	.bootstrap-switch {
+		position: relative;
+		right: -18px;
+		display: block !important;
+		margin: 0 auto;
 	}
 	label.control-label {
 		display: none !important;
@@ -159,12 +161,10 @@ p.team-notice {
 .field-campaign-enabledonorcomments,
 .field-campaign-enabledonationprogressbar,
 .field-campaign-formvisibility {
-	.checkbox {
-		label {
-			.bootstrap-switch {
-				margin: 0;
-			}
-		}
+
+	.bootstrap-switch {
+		margin: 0;
+		right: 0;
 	}
 }
 
