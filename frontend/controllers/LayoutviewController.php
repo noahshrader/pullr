@@ -108,6 +108,7 @@ class LayoutviewController extends \yii\web\Controller {
         $donation =  new Donation();
         $donation->scenario = $campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER ? Campaign::TYPE_PERSONAL_FUNDRAISER : 'default';
         $donation->createdDate = time();
+        $donation->paymentDate = time();
         $donation->campaignId = $campaign->id;
 
         if (!\Yii::$app->user->isGuest)

@@ -108,14 +108,7 @@ function addNewCampaignInvite() {
 /* Toggles */
 function initBootstrapSwitch() {
     $("#campaignEdit input[type='checkbox']").bootstrapSwitch();
-    $("#campaign-enabledonations").on('switchChange.bootstrapSwitch', function() {
-        var value = $('#campaign-enabledonations').bootstrapSwitch('state');
-        if (value){
-            $('.field-campaign-eventid').fadeIn(300);
-        } else {
-            $('.field-campaign-eventid').fadeOut(300);
-        }
-    });
+
     $("#campaign-twitterenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-twitterenable').bootstrapSwitch('state');
         if (value){
@@ -124,6 +117,16 @@ function initBootstrapSwitch() {
             $('.field-campaign-twittername').fadeOut(300);
         }
     });
+
+    $("#campaign-enabledonations").on('switchChange.bootstrapSwitch', function() {
+        var value = $('#campaign-enabledonations').bootstrapSwitch('state');
+        if (value){
+            $('.field-campaign-eventid').fadeIn(300);
+        } else {
+            $('.field-campaign-eventid').fadeOut(300);
+        }
+    });
+
     $("#campaign-youtubeenable").on('switchChange.bootstrapSwitch', function() {
         var value = $('#campaign-youtubeenable').bootstrapSwitch('state');
         if (value){

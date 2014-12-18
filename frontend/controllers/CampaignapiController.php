@@ -192,7 +192,7 @@ class CampaignapiController extends \yii\web\Controller
         } else {
             $orderAttr = 'ASC';
         }
-        if (in_array($params['sort'], array('amount', 'paymentDate')) == false) {
+        if (in_array($params['sort'], array('id', 'nameFromForm', 'amount', 'paymentDate')) == false) {
             $this->throwError("407", "sort param is wrong");
         }
         $campaign = Campaign::findOne(['alias' => $campaignAlias]);
