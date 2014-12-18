@@ -1,4 +1,4 @@
-<?
+<?php
 namespace common\models;
 
 use common\models\User;
