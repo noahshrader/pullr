@@ -132,9 +132,11 @@ input.color-choice {
 .select2-container {
 	position: relative;
 	display: block;
+	text-align: left;
 	margin-top: .4em;
 	.border-radius;
 	overflow: hidden;
+
 	&:after {
 		position: absolute;
 		.arrow-down;
@@ -320,6 +322,10 @@ input.color-choice {
 	width: 60px;
 	border: none !important;
 
+	input[type=radio],
+	input[type=checkbox] {
+		cursor: pointer;
+	}
 	&.bootstrap-switch-on {
 		border: none !important;
 	}
@@ -333,6 +339,8 @@ input.color-choice {
 		border-radius: 50%;
 		width: 2em;
 		position: relative;
+		left: 40px;
+		box-shadow:  -2px 0 0 0px rgba(0,0,0,0.2); 
 	}
 	.bootstrap-switch-label {
 		line-height: 10px !important;
@@ -341,7 +349,8 @@ input.color-choice {
 		z-index: 0 !important;
 		position: relative;
 		left: -16px;
-		padding: 2px 0 !important;
+		margin-top: 10px !important;
+		padding: 1px 0 !important;
 	}
 	span {
 		font-size: @fineprint !important;
@@ -361,12 +370,12 @@ input.color-choice {
 	&.bootstrap-switch-off {
 
 		.bootstrap-switch-primary {
-			left: 40px;
+			left: 0px;
+			box-shadow: 2px 0 0 0px rgba(0,0,0,0.2);
 		}
 		.bootstrap-switch-label {
 			background: @gray70 !important;
-			border: 1px solid #bbb;
-			box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+			box-shadow: inset 0 0 4px rgba(50,50,50,0.02);
 		}
 	}
 	.bootstrap-switch-handle-off.bootstrap-switch-default {
@@ -453,4 +462,11 @@ input.color-choice {
 			color: @errorred;
 		}
 	}
+}
+
+.bootstrap-switch input[type=radio],.bootstrap-switch input[type=checkbox] {
+  position: absolute!important;
+  z-index: 10 !important;
+  width: 100%;
+  height: 100%;
 }
