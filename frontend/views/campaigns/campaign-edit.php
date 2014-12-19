@@ -99,7 +99,7 @@ $user = \Yii::$app->user->identity;
                     <a href="<?= Url::to()?>#layout" data-toggle="tab">Campaign Page</a>
                 </li>
                 <li>
-                    <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Form</a>
+                    <a href="<?= Url::to()?>#campaign-edit-form-container" data-toggle="tab">Donation Form</a>
                 </li>
                 <? if ($user->getPlan()==Plan::PLAN_PRO): ?>
                     <li id="campaign-edit-team-li">
@@ -110,7 +110,7 @@ $user = \Yii::$app->user->identity;
                     <a href="<?= Url::to()?>#social" data-toggle="tab">Social</a>
                 </li>
             </ul>
-            <div class="tab-content module">
+            <div class="tab-content">
                 <div class="spinner-wrap">
                     <div class="spinner">
                         <div class="rect1"></div>

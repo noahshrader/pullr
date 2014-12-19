@@ -33,8 +33,8 @@ body.dark {
 	box-shadow: none;
 
 	h5.module-title {
-		color: @white;
-		background: @gray10;
+		color: @gray30;
+		background: @grayaccent;
 	}
 	&.table {
 		background: transparent;
@@ -280,17 +280,15 @@ legend,
 
 	&.bootstrap-switch-off {
 		border-color: @gray12 !important;
+
+		.bootstrap-switch-label {
+			line-height: 26px;
+			background: @gray10 !important;
+		}
 	}
-	.bootstrap-switch-handle-on.bootstrap-switch-default,
-	.bootstrap-switch-handle-off.bootstrap-switch-default {
-		background: @gray10;
-	}
-	.bootstrap-switch-handle-off.bootstrap-switch-default {
-		color: @gray20 !important;
-	}
-	.bootstrap-switch-label {
-		line-height: 26px;
-		background: @gray12;
+	.bootstrap-switch-handle-on.bootstrap-switch-primary,
+	.bootstrap-switch-handle-off.bootstrap-switch-primary {
+		background: @gray15 !important;
 	}
 }
 
@@ -342,7 +340,7 @@ legend,
 	}
 	ul {
 		li.add-campaign span {
-			color: @gray20;
+			color: @gray30;
 		}
 	}
 }
@@ -539,20 +537,43 @@ ul.campaign-quicknav {
 		}
 	}
 	.highlight-wrap {
-		background: @gray10;
+		background: @grayaccent;
 
 		&:before {
-			border-color: transparent transparent @gray10 transparent;
+			border-color: transparent transparent @grayaccent transparent;
 		}
 		input[type="text"],
 		input.form-control {
 			border-color: @gray30;
 		}
 	}
+	.image-upload-preview,
+	.file-preview {
+		background: @grayaccent;
+
+		&:before {
+			border-color: @grayaccent transparent transparent transparent;
+		}
+	}
 	.theme-selection {
 
 		.selected-theme span {
 			color: @white;
+		}
+	}
+	.team-list {
+		ul {
+			li {
+				color: @white;
+				border-bottom: 1px dashed @gray20;
+
+				a {
+					color: @gray20;
+					&:hover {
+						color: @white;
+					}
+				}
+			}
 		}
 	}
 }
@@ -592,9 +613,13 @@ ul.campaign-quicknav {
 
 /* Editor */
 /* ------------------------------------------------- */
+.trumbowyg-box,
+.trumbowyg-editor {
+	border-color: @gray30;
+}
 .trumbowyg-editor.trumbowyg-reset-css {
 	color: @white;
-	background: @gray10 !important;
+	background: @maingray !important;
 }
 
 

@@ -7,14 +7,12 @@
 		background: @white;
 
 		.module-inner {
-			padding: 0;
-			margin-top: @gutter+20px;
+			padding: @gutter+@halfgutter @gutter+@gutter+@halfgutter;
 			&:first-child {
 				margin: 0;
 			}
 
 			h5 {
-				font-size: 1.3em;
 				text-align: center;
 
 				i {
@@ -22,7 +20,7 @@
 					top: 5px;
 					color: @gray72;
 					font-size: 30px;
-					margin: @gutter auto @halfgutter;
+					margin: 0 auto @halfgutter;
 					width: 48px;
 					height: 48px;
 					line-height: 48px;
@@ -31,38 +29,15 @@
 				}
 			}
 		}
-		.social {
-
-			.module-inner {
-
-				h5 {
-					margin-bottom: @halfgutter;
-				}
-				.network {
-					padding: @gutter+10px @gutter @gutter;
-					background: @gray75;
-
-					.form-group {
-						margin: 0;
-					}
-				}
-				.form-group {
-					text-align: center
-				}
-				label {
-					text-align: center;
-				}
-			}
-		}
+	}
+	.view-actions {
+		margin: 0 0 @gutter;
 	}
 	.tab-content {
 		position: relative;
 		margin: 0 auto @gutter;
 		max-width: 800px;
-		
-		.tab-pane {
-			padding: @gutter @gutter+@gutter+@halfgutter @gutter+@halfgutter;
-		}
+
 		h3 {
 			text-align: center;
 			color: @gray60;
@@ -70,8 +45,37 @@
 			margin: @halfgutter 0 @gutter+@halfgutter;
 		}
 	}
-	.view-actions {
-		margin: 0 0 @gutter;
+	.social {
+		
+		.module-inner {
+			padding: @halfgutter @gutter+@gutter+@halfgutter !important;
+			margin: 0 !important;
+
+			&.first {
+				padding-top: @gutter+@halfgutter !important;
+			}
+			&.last {
+				padding-bottom: @gutter+@halfgutter !important;
+			}
+
+			h5 {
+				margin-bottom: @halfgutter;
+			}
+			.network {
+				padding: @gutter+10px @gutter @gutter;
+				background: @gray75;
+
+				.form-group {
+					margin: 0;
+				}
+			}
+			.form-group {
+				text-align: center
+			}
+			label {
+				text-align: center;
+			}
+		}
 	}
 	.col-sm-4,
 	.col-md-4,
@@ -113,6 +117,9 @@
 	#teamQuestion,
 	#tieCampaignContainer {
 		display: block;
+	}
+	#teamInvites {
+		padding-top: 0;
 	}
 }
 p.team-notice {
@@ -376,12 +383,7 @@ p.team-notice {
 	}
 }
 
-.social {
-	.module-inner {
-		margin: 0 !important;
-	}
-}
 
-/* CKE Editor */
+/* Editor */
 /* ------------------------------------------------- */
 @import "../../app-styles/dialog.less";

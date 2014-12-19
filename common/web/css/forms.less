@@ -329,10 +329,6 @@ input.color-choice {
 	&.bootstrap-switch-on {
 		border: none !important;
 	}
-	.bootstrap-switch-handle-on.bootstrap-switch-default,
-	.bootstrap-switch-handle-off.bootstrap-switch-default {
-		color: @gray50 !important;
-	}
 	.bootstrap-switch-handle-on.bootstrap-switch-primary {
 		background: @gray75 !important;
 		text-indent: -999em;
@@ -340,7 +336,10 @@ input.color-choice {
 		width: 2em;
 		position: relative;
 		left: 40px;
-		box-shadow:  -2px 0 0 0px rgba(0,0,0,0.2); 
+		box-shadow: -2px 0 0 0px rgba(0,0,0,0.2); 
+	}
+	.bootstrap-switch-handle-off.bootstrap-switch-default {
+		display: none !important;
 	}
 	.bootstrap-switch-label {
 		line-height: 10px !important;
@@ -377,13 +376,10 @@ input.color-choice {
 			background: @gray70 !important;
 			box-shadow: inset 0 0 4px rgba(50,50,50,0.02);
 		}
+		.bootstrap-switch-container {
+			margin-left: 0 !important;
+		}
 	}
-	.bootstrap-switch-handle-off.bootstrap-switch-default {
-		display: none !important;
-	}
-	&.bootstrap-switch-off .bootstrap-switch-container {
-		margin-left: 0 !important;
-	}	
 }
 
 
