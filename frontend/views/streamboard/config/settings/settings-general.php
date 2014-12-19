@@ -59,21 +59,9 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
                 </div>
             </div>
         </div>
-
         <div class="campaigns_list module">
             <a class="settingtoggle">Featured Campaign<i class="mdi-navigation-arrow-drop-down"></i></a>
             <div class="module-settings">
-                <div class='form-group'>
-                    <div class="checkbox cf">
-                        <label ng-class="{on:streamboardConfigService.config.enableFeaturedCampaign}">
-                            <input type="checkbox"
-                                    ng-model="streamboardConfigService.config.enableFeaturedCampaign"
-                                    ng-change="streamboardConfigService.changeEnableFeaturedCampaign(streamboardConfigService.config.enableFeaturedCampaign)">
-                            Enable Grouping
-                        </label>
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <select ui-select2="{minimumResultsForSearch: -1}"
                         ng-model="streamboardConfigService.config.featuredCampaignId"
@@ -84,6 +72,16 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
                                 value="{{campaign.id}}">{{campaign.name}}
                         </option>
                     </select>
+                </div>
+                <div class='form-group'>
+                    <div class="checkbox cf">
+                        <label ng-class="{on:streamboardConfigService.config.enableFeaturedCampaign}">
+                            <input type="checkbox"
+                                    ng-model="streamboardConfigService.config.enableFeaturedCampaign"
+                                    ng-change="streamboardConfigService.changeEnableFeaturedCampaign(streamboardConfigService.config.enableFeaturedCampaign)">
+                            Push to pullr.io
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
