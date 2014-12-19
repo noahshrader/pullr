@@ -36,18 +36,8 @@ angular.module('pullr.streamboard.twitch', []).factory('twitch', ['$http', '$int
 }])
 .factory('twitchNotification', ['twitch', '$interval', 'stream', '$timeout', function(twitch, $interval, stream, $timeout) {
 	var service = {};
-	service.interval = 10000;
+	service.interval = 30000;
 	service.lastRequestTime = null;
-	service.getCurrentUTCDate = function(offset) {
-		offset = offset || null;
-		var now = new Date();
-		var result = new Date();
-		if (offset != null) {
-			elapse = now.getTime() - offset.getTime();
-			result = new Date(now.getTime() - elapse);
-		}
-		return result;
-	}
 
 	service.lastRequestTime = new Date();
 

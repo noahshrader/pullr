@@ -656,7 +656,7 @@ class StreamboardController extends FrontendController
     }
 
     public function actionGet_subscribers() {
-        return;
+
         if ( ! Yii::$app->request->isPost) {
             Yii::$app->end();
         }
@@ -683,7 +683,7 @@ class StreamboardController extends FrontendController
     }
 
     public function actionGet_followers() {
-        return;
+
         if ( ! Yii::$app->request->isPost) {
             Yii::$app->end();
         }
