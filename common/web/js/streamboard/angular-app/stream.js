@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('pullr.streamboard.stream', ['pullr.streamboard.regions'])
+    var app = angular.module('pullr.streamboard.stream', ['pullr.streamboard.regions', 'streamboardApp'])
 
         .constant('defaultMessage',{
             donations:'[[DonorName]] donated $[[DonorAmount]] to [[CampaignName]]!',
@@ -7,8 +7,8 @@
             subscribers:'[[SubscriberName]] just subscribed your channel!'
         })
 
-        .service('stream', ['$http', 'regions', '$interval', '$timeout', '$interpolate', 'defaultMessage', 'campaigns', 'customDonationSound',
-            function ($http, regions, $interval, $timeout, $interpolate, defaultMessage, campaigns, customDonationSound) {
+        .service('stream', ['$http', 'regions', '$interval', '$timeout', '$interpolate', 'defaultMessage', 'campaigns', 'customDonationSound', 'streamboardConfig',
+            function ($http, regions, $interval, $timeout, $interpolate, defaultMessage, campaigns, customDonationSound, streamboardConfig) {
             var Service = this;
             /*for each of regions we have separate stream*/
             this.streams = [];
@@ -23,7 +23,7 @@
             this.groupBase = 'name';
             this.noDonationMessage = '';
 
-            this.getActivityFeedSetting = function () {                       
+            this.getActivityFeedSetting = function () {
                 $http.get('app/streamboard/get_activity_feed_setting').success(function (data) {
                     Service.showSubscriber = data.showSubscriber;
                     Service.showFollower = data.showFollower;
@@ -84,7 +84,7 @@
                     if (type == 'subscribers') {
                         message = region.widgetCampaignBar.alertsModule.subscriberText||defaultMessage.subscribers;
                     }
-                    
+
                     highlightColor = region.widgetCampaignBar.alertsModule.highlightColor;
                 } else {
                     if (type == 'donations') {
@@ -100,9 +100,9 @@
                         highlightColor = region.widgetAlerts.subscribersPreference.highlightColor;
                     }
                 }
-                
+
                 if (highlightColor !== '') {
-                    message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');                                    
+                    message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
                 }
 
                 //private change for "$" amount
@@ -110,7 +110,7 @@
                     message = message.replace('$', '').replace('[[DonorAmount]]', '$[[DonorAmount]]');
                 }
                 message = message.replace(/\[\[/gi,'{{').replace(/\]\]/gi,'}}');
-                
+
                 var values =  {
                     DonorName: data['[[DonorName]]'],
                     DonorAmount: number_format(data['[[DonorAmount]]'],2),
@@ -123,9 +123,9 @@
                 return message;
             }
 
-            
 
-            this.requestStreamData = function() {              
+
+            this.requestStreamData = function() {
                 $http.get('app/streamboard/get_stream_data').success(function (data) {
                     /*we should get data in "date ASC" order because we first should notifications which occur early*/
                     for (var key in data) {
@@ -169,7 +169,30 @@
                 });
             }
 
-            Service.requestStreamData();         
+            this.requestTestAlert = function() {
+
+                $http.get('app/streamboard/get_test_alert').success(function(data) {
+                    for (var i=0, il = data.length; i < il; i++) {
+                        var item = data[i];
+                        var id = 'test_' + item.alertType + '_' + item.id;
+                        if (item.regionNumber == Pullr.Streamboard.region.regionNumber
+                            && ! (id in Service.alreadyViewed)
+                            && item.createdAt > streamboardConfig.config.streamRequestLastDate) {
+                            Service.alreadyViewed[id] = true;
+                            Service.showTestAlert(item.alertType, 1, Pullr.Streamboard.region);
+                        }
+                    }
+                    $timeout(function() {
+                        Service.requestTestAlert();
+                    }, 10000);
+                });
+            }
+
+            if (Pullr.Streamboard.region) {
+                Service.requestTestAlert();
+            }
+
+            Service.requestStreamData();
 
             this.pushCustomAlert = function(notification){
                 if(!notification.type){
@@ -188,12 +211,12 @@
                 if(notification.type === 'donations'){
                     if(regions.regions[0].widgetType ==  "widget_campaign_bar"){
                         var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'campaigns_1');
-                    }else{                        
-                        var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_1');                        
-                    }                    
+                    }else{
+                        var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_1');
+                    }
                     notification.soundFile = soundFile;
                     notification.soundType = null;
-                }                
+                }
 
                 Service.streams[1].push(notification);
                 if (regions.regions.length > 1) {
@@ -208,11 +231,11 @@
                     if(notificatin1.type === 'donations'){
                         if(regions.regions[1].widgetType ==  "widget_campaign_bar"){
                             var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'campaigns_2');
-                        }else{                            
-                            var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_2');                            
-                        }                        
+                        }else{
+                            var soundFile = customDonationSound.getSoundFileByValue(notification.data['[[DonorAmount]]'], 'donations_2');
+                        }
                         notificatin1.soundFile = soundFile;
-                        notificatin1.soundType = null;                    
+                        notificatin1.soundType = null;
                     }
                     Service.streams[2].push(notificatin1);
                 }
@@ -251,7 +274,7 @@
             }
 
             this.pushSubscriberAlerts = function(list) {
-                angular.forEach(list, function(item) {                       
+                angular.forEach(list, function(item) {
                     var notification = {
                         id: item.user._id,
                         type:'subscribers',
@@ -264,7 +287,19 @@
             }
 
             this.testData = function (type, number, region) {
-                number = number||1;
+                Service.showTestAlert(type, number, region);
+                Service.postTestAlert(type, region.regionNumber);
+            }
+
+            this.postTestAlert = function (type, regionNumber) {
+                $http.post('app/streamboard/add_test_alert', {
+                    alertType: type,
+                    regionNumber: regionNumber
+                });
+            }
+
+            this.showTestAlert = function (type, number, region) {
+                number = number || 1;
                 var message;
                 var highlightColor;
                 var regionNumber = region.regionNumber;
@@ -308,19 +343,19 @@
                     default:
                         throw new Exception('testData wrong type');
                 }
-                
+
                 if(highlightColor !== '') {
                     message = message.replace(/\[\[/gi,'<span style="color:'+highlightColor+'">[[').replace(/\]\]/gi,']]</span>');
-                    
-                    //private change for "$" amount 
+
+                    //private change for "$" amount
                     if(type === 'donations' && region.widgetAlerts.donationsPreference.alertText == '') {
                         message = message.replace('$', '').replace('[[DonorAmount]]', '$[[DonorAmount]]');
                     }
                 }
-                
+
                 for (var i = 0; i < number; i++) {
                     var notification = {"id": -1, "type": "donations", "message": message, "date": Math.round(new Date().getTime() / 1000)};
-                    
+
                     notification.type = type;
 
                     if (Pullr.Streamboard.region) { //for single region page, we always put notification to region 1
@@ -335,9 +370,9 @@
                                 /*if we have second region*/
                                 Service.streams[2].push(notification);
                             }
-                        }                        
+                        }
                     }
-                    
+
                 }
             }
 

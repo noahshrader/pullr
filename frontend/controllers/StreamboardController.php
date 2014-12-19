@@ -24,6 +24,8 @@ use common\components\message\ActivityMessage;
 use frontend\models\streamboard\WidgetDonationFeed;
 use yii\filters\AccessControl;
 use common\models\twitch\TwitchUser;
+use frontend\models\streamboard\StreamboardTestAlert;
+
 class StreamboardController extends FrontendController
 {
     protected $user;
@@ -654,6 +656,7 @@ class StreamboardController extends FrontendController
     }
 
     public function actionGet_subscribers() {
+        return;
         if ( ! Yii::$app->request->isPost) {
             Yii::$app->end();
         }
@@ -680,7 +683,7 @@ class StreamboardController extends FrontendController
     }
 
     public function actionGet_followers() {
-
+        return;
         if ( ! Yii::$app->request->isPost) {
             Yii::$app->end();
         }
@@ -723,5 +726,41 @@ class StreamboardController extends FrontendController
             $streamboardConfig->featuredCampaignId = intval($payload['featuredCampaignId']);
             $streamboardConfig->save();
         }
+    }
+
+    public function actionGet_test_alert()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $user = Streamboard::getCurrentUser();
+        $streamboardConfig = $user->streamboardConfig;
+        $testAlerts = StreamboardTestAlert::find()
+                        ->where('createdAt > :streamRequestLastDate')
+                        ->andWhere(['userId' => $user->id])
+                        ->addParams([
+                            'streamRequestLastDate' => $streamboardConfig->streamRequestLastDate
+                        ])
+                        ->all();
+        $result = [];
+        foreach ($testAlerts as $testAlert) {
+            $result[] = $testAlert->toArray(['id','alertType','regionNumber','createdAt']);
+        }
+        return $result;
+    }
+
+    public function actionAdd_test_alert()
+    {
+        $post = $this->getPayload();
+        if (isset($post['alertType']) && isset($post['regionNumber'])) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            $user = Streamboard::getCurrentUser();
+            $testAlert = new StreamboardTestAlert();
+            $testAlert->userId = $user->id;
+            $testAlert->alertType = $post['alertType'];
+            $testAlert->regionNumber = $post['regionNumber'];
+            $testAlert->createdAt = time();
+            return $testAlert->save();
+        }
+
     }
 }

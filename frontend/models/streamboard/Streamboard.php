@@ -42,13 +42,13 @@ class Streamboard extends Model {
         }
         $stats['number_of_donations'] = Donation::getDonationsForCampaigns($selectedCampaigns)->count();
         $stats['number_of_donors']  = Donation::getDonationsForCampaigns($selectedCampaigns)->count('DISTINCT email');
-        
+
         $last_donor = Donation::getLastDonorForCampaigns($selectedCampaigns);
         if ($last_donor) {
-            $last_donor['amount'] = PullrUtils::formatNumber($last_donor['amount'], 2);    
+            $last_donor['amount'] = PullrUtils::formatNumber($last_donor['amount'], 2);
             $stats['last_donor'] = $last_donor;
         }
-        
+
         return $stats;
     }
 
@@ -56,7 +56,7 @@ class Streamboard extends Model {
      * @return Campaign[]
      * @description return selected campaigns for current user
      */
-    public static function getSelectedCampaigns($user){        
+    public static function getSelectedCampaigns($user){
         /*we select only user campaigns, without parent campaigns */
         return Campaign::find()->from(Campaign::tableName().' campaign')->where(['campaign.userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE])
             ->joinWith(['streamboard' => function($q) use ($user){
@@ -66,34 +66,32 @@ class Streamboard extends Model {
     }
 
     public static function getCurrentUser() {
-        
-                    
-        $user = null;        
+        $user = null;
         $headers = \Yii::$app->request->getHeaders();
-      
+
         $token = null;
         if (isset($_GET['streamboardToken'])) {
             $token = $_GET['streamboardToken'];
         } else if (isset($headers['streamboardToken'])) {
             $token = $headers['streamboardToken'];
         }
-        
-        if ($token != null) {                    
+
+        if ($token != null) {
             $userId = \Yii::$app->db->createCommand('select userId from ' . StreamboardConfig::tableName() . ' where streamboardToken=:streamboardToken')
                         ->bindValues(['streamboardToken' => $token])
                         ->queryScalar();
             if ($userId) {
-                $user = User::find()->where(['id' => $userId])->one();                    
+                $user = User::find()->where(['id' => $userId])->one();
                 if ($user == null) {
                     throw new ForbiddenHttpException();
                 }
-            }                               
+            }
         } else {
             $user = Application::getCurrentUser();
         }
 
         return $user;
-        
+
     }
 
 }
