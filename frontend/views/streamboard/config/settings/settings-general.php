@@ -47,7 +47,7 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
                     </div>
                 </div>
                 <div class="form-group">
-                    <h5>Donation Grouping</h5>
+                    <h5>Donation Grouping By</h5>
                     <select ui-select2="{minimumResultsForSearch: -1}" ng-model="streamService.groupBase" ng-change="groupBasedChanged()" data-placeholder="Select one..." ng-init="groupType = <?= htmlspecialchars(json_encode($groupType)) ?>">
                         <option value=""></option>
                         <option ng-repeat="type in groupType" value="{{type.value}}">{{type.name}}</option>
@@ -60,9 +60,10 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
             </div>
         </div>
         <div class="campaigns_list module">
-            <a class="settingtoggle">Featured Campaign<i class="mdi-navigation-arrow-drop-down"></i></a>
+            <a class="settingtoggle">Promote<i class="mdi-navigation-arrow-drop-down"></i></a>
             <div class="module-settings">
                 <div class="form-group">
+                    <h5>Campaign</h5>
                     <select ui-select2="{minimumResultsForSearch: -1}"
                         ng-model="streamboardConfigService.config.featuredCampaignId"
                         ng-change="streamboardConfigService.changeFeaturedCampaignId(streamboardConfigService.config.featuredCampaignId)"
@@ -79,7 +80,7 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
                             <input type="checkbox"
                                     ng-model="streamboardConfigService.config.enableFeaturedCampaign"
                                     ng-change="streamboardConfigService.changeEnableFeaturedCampaign(streamboardConfigService.config.enableFeaturedCampaign)">
-                            Push to pullr.io
+                            Promote on pullr.io
                         </label>
                     </div>
                 </div>

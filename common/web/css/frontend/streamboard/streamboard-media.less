@@ -1,8 +1,8 @@
 /* Sounds/Graphics Tabs */
 ul.library-tabs {
 	padding: @halfgutter;
-	background: @streamboardlgray;
-	border-bottom: solid 1px @gray10;
+	background: @streamboardactive;
+	border-bottom: solid 1px @streamboardgray;
 
 	li {
 		float: left;
@@ -42,14 +42,14 @@ ul.library-tabs {
 	&.library-switch {
 		padding: 10px 0;
 		border: 0;
-		border-bottom: solid 1px @gray10;
+		border-bottom: solid 1px @streamboardgray;
 	}
 }
 
 /* Media List */
 .files-container {
 	> div {
-		border-bottom: solid 1px @gray10;
+		border-bottom: solid 1px @streamboardgray;
 		&:last-child {
 			border: 0;
 		}
@@ -63,7 +63,7 @@ ul.library-tabs {
 
 		&.selected {
 			color: @white;
-			background: @gray20;
+			background: @streamboardlgray;
 
 			i {
 				color: @white;
@@ -92,10 +92,10 @@ ul.library-tabs {
 	text-align: center;
 	padding: @gutter @halfgutter;
 	margin: @streamboardgutter 0;
-	border: dashed 1px @gray20;
+	border: dashed 1px @streamboardformgray;
 
 	&.uploader-drag-over {
-		background: @gray15;
+		background: @streamboardformgray;
 	}
 	span {
 		color: @gray30;

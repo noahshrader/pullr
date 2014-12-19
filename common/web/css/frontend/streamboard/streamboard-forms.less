@@ -1,7 +1,7 @@
 /* Buttons */
 .btn-sm {
 	color: @white;
-	background: @gray20;
+	background: @streamboardformgray;
 	&:hover {
 		color: @white;
 		background: @streamboardlgray;
@@ -29,7 +29,7 @@ textarea {
 	font-size: 14px;
 }
 input[type="text"].form-control {
-	border: solid 1px @streamboardlgray;
+	border: solid 1px @streamboardactive;
 }
 textarea {
 	color: @white;
@@ -37,8 +37,8 @@ textarea {
 	margin-top: 5px;
 	width: 100%;
 	min-height: 80px;
-	background: @gray15;
-	border: @gray10 !important;
+	background: @streamboardlgray;
+	border: @streamboardlgray!important;
 }
 
 /* Placeholder styling */
@@ -81,20 +81,20 @@ h5 input.color-choice {
 		border-color: @white transparent transparent transparent;
 	}
 	&.select2-dropdown-open a.select2-choice {
-		background: @gray20;
+		background: @streamboardformgray;
 	}
 
 	.select2-choices .select2-search-field input,
 	.select2-choice,
 	.select2-choices {
 		color: @white;
-		background: @gray20;
+		background: @streamboardformgray;
 
 		&:focus {
 			outline: 0 !important;
 		}
 		&:hover {
-			background: @gray20;
+			background: @streamboardformgray;
 		}
 	}
 	.select2-choice {
@@ -103,30 +103,30 @@ h5 input.color-choice {
 	}
 }
 .select2-default {
-	color: @gray40 !important;
+	color: @gray50 !important;
 }
 .select2-dropdown-open.select2-drop-above .select2-choice,
 .select2-dropdown-open.select2-drop-above .select2-choices {
-	background: @gray20;
+	background: @streamboardformgray;
 }
 .select2-drop {
 
 	&.select2-drop-active,
 	&.select2-drop-above.select2-drop-active {
-		background: @gray20;
+		background: @streamboardformgray;
 	}
 }
 
 .select2-results {
 	
 	.select2-highlighted {
-		background: @gray20;
+		background: @streamboardformgray;
 	}
 	.select2-result-label {
 		color: @white;
 		
 		&:hover {
-			background: @gray15;
+			background: @streamboardlgray;
 		}
 		span {
 			color: @white !important;
@@ -141,7 +141,7 @@ h5 input.color-choice {
 		.select2-choices .select2-search-field input,
 		.select2-choice,
 		.select2-choices {
-			background: @gray20;
+			background: @streamboardformgray;
 		}
 	}
 }
@@ -156,11 +156,11 @@ h5 input.color-choice {
 
 		&:before {
 			top: 0;
-			color: @gray20 !important;
-			background: @gray20;
+			color: @streamboardformgray !important;
+			background: @streamboardformgray;
 		}
     	&.on:before {
-			color: @gray50 !important;
+			color: @gray60 !important;
     	}
     	span {
     		display: inline-block;

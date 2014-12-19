@@ -181,7 +181,7 @@ span.slider-value {
 		min-width: @sidepanelwidth;
 		color: @white;
 		padding: 0 @streamboardgutter;
-		background: @gray10;
+		background: @streamboardgray;
 		border-bottom: solid 1px @streamboardshadow;
 		z-index: 1001;
 
@@ -198,14 +198,6 @@ span.slider-value {
 				}
 			}
 		}
-	}
-	.overlay {
-		position: fixed;
-		top: 0;
-		right: 0;
-		height: 100%;
-		width: @sidepanelwidth;
-		max-width: 50%;
 	}
 
 	/* Slideup Panel */
@@ -239,7 +231,7 @@ span.slider-value {
 			&.media-manager {
 				&.show {
 					a.settingtoggle {
-						background: @streamboardlgray;
+						background: @streamboardactive;
 					}
 				}			
 			}
@@ -294,11 +286,11 @@ span.slider-value {
 
 	}
 	.streamboard-settings-header {
+		position: relative;
 		padding: 8px @streamboardgutter;
 		height: @sidenavheight;
-		background: @gray10;
+		background: @streamboardgray;
 		border-bottom: solid 1px @streamboardshadow;
-		postion: relative;
 
 		button {
 			margin: 0;
@@ -385,7 +377,7 @@ span.slider-value {
 	height: 100%;
 	min-width: @sidepanelwidth;
 	max-width: 50%;
-	background: @maingray;
+	background: @base;
 	z-index: 900;
 	opacity: .95;
 }
@@ -457,7 +449,6 @@ ul.panel-nav {
 		}
 		&.active a {
 			color: @white;
-			background: @gray10;
 		}
 	}
 }
@@ -469,7 +460,7 @@ ul.panel-nav {
 	position: relative;
 
 	.donations-list {
-		background: @maingray;
+		background: #000;
 		.slowtrans;
 
 		span {
@@ -481,7 +472,8 @@ ul.panel-nav {
 			display: block;
 			color: @gray30;
 			margin: 0;
-			border-bottom: solid 1px @streamboardshadow;
+			background: @maingray;
+			border-bottom: solid 1px @base;
 
 			.donation-wrap {
 				padding: @gutter @streamboardgutter;
@@ -719,7 +711,7 @@ ul.panel-nav {
 	height: 20px;
 	width: 20px;
 	margin-right: 5px;
-	background: @streamboardlgray;
+	background: @streamboardformgray;
 	.round-radius;
 	&:hover {
 		color: @white;
@@ -735,7 +727,7 @@ ul.panel-nav {
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background: @maingray;
+	background: @base;
 
 	.sb-logo,
 	.spinner {
