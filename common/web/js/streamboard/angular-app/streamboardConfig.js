@@ -1,8 +1,8 @@
-angular.module('streamboardApp').service('streamboardConfig', ['$http', function($http){
+angular.module('pullr.streamboard.config',[]).service('streamboardConfig', ['$http', function($http){
 	var service = {};
 	service.config = {};
 	service.init = function() {
-		if (Pullr.Streamboard.streamboardConfig) {
+		if (Pullr.Streamboard && Pullr.Streamboard.streamboardConfig) {
 			service.config = Pullr.Streamboard.streamboardConfig;
 		} else {
 			$http.get('app/streamboard/get_streamboard_config').success(function(data){

@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('pullr.streamboard.stream', ['pullr.streamboard.regions', 'streamboardApp'])
+    var app = angular.module('pullr.streamboard.stream', ['pullr.streamboard.regions', 'pullr.streamboard.config'])
 
         .constant('defaultMessage',{
             donations:'[[DonorName]] donated $[[DonorAmount]] to [[CampaignName]]!',
@@ -188,7 +188,7 @@
                 });
             }
 
-            if (Pullr.Streamboard.region) {
+            if (Pullr.Streamboard && Pullr.Streamboard.region) {
                 Service.requestTestAlert();
             }
 

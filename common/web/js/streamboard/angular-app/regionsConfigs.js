@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('pullr.streamboard.regionsConfigs', ['pullr.common', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.campaigns',
-        'pullr.streamboard.regions', 'angularFileUpload', 'pullr.streamboard.stream', 'ui.bootstrap.datetimepicker', 'streamboardApp']);
+        'pullr.streamboard.regions', 'angularFileUpload', 'pullr.streamboard.stream', 'ui.bootstrap.datetimepicker', 'pullr.streamboard.config']);
     app.run(['$rootScope', '$http', function ($rootScope, $http) {
         $rootScope.GOOGLE_FONTS = [];
 
@@ -76,7 +76,7 @@
             $scope.campaignsService = campaigns;
             $scope.streamService = stream;
             $scope.regionsService = regions;
-            $scope.customDonationSound = customDonationSound;        
+            $scope.customDonationSound = customDonationSound;
             $scope.MAX_FONT_SIZE = 72;
             $scope.MIN_FONT_SIZE = 14;
             $scope.MIN_FONT_WEIGHT = 300;
@@ -84,13 +84,13 @@
             $scope.hideFooter = false;
             $scope.regionChanged = regions.regionChanged;
             $scope.streamboardConfig = streamboardConfig;
-            $scope.toggleModule = function(region) {    
-                $scope.toggleFooter(region);              
+            $scope.toggleModule = function(region) {
+                $scope.toggleFooter(region);
                 regions.regionChanged(region);
             }
-        
+
             $scope.toggleFooter = function(region) {
-                
+
                 if (region.widgetType == 'widget_alerts') {
                     var widget = region.widgetAlerts;
                     if (widget.includeDonations || widget.includeFollowers || widget.includeSubscribers) {
@@ -107,13 +107,13 @@
                     }
                 } else {
                     $scope.hideFooter = true;
-                }                    
+                }
             }
-    
+
             $scope.$on('regionTabChanged', function(e, data) {
                 $scope.toggleFooter(data.region);
             })
-            
+
             var timmer = null;
             $scope.alertTextChange = function(region) {
                 if(timmer !== null){
@@ -122,14 +122,14 @@
                 timmer = $timeout(function() {
                     console.log(region);
                     regions.regionChanged(region);
-                }, 300);           
+                }, 300);
             }
-    
-            $scope.changeAlertTextAlignment = function(alignment, preference, region) {        
+
+            $scope.changeAlertTextAlignment = function(alignment, preference, region) {
                 preference.textAlignment = alignment;
                 regions.regionChanged(region);
             }
-    
+
             $scope.fontSizeChange = function(region) {
                 simpleMarqueeHelper.recalculateMarquee();
                 regions.regionChanged(region);
@@ -140,9 +140,9 @@
             }
             $scope.donationMessageChanged = function(region){
                 simpleMarqueeHelper.recalculateMarquee();
-                regions.regionChanged(region);   
+                regions.regionChanged(region);
             }
-    
+
             $scope.selectSound = function (preference, sound, soundType, region) {
                 preference.sound = sound;
                 preference.soundType = soundType;
@@ -153,16 +153,16 @@
                 preference.imageType = imageType;
                 regions.regionChanged(region);
             };
-            $scope.selectCampaignAlertBackground = function(preference, image, region) {       
-                preference.background = image;            
+            $scope.selectCampaignAlertBackground = function(preference, image, region) {
+                preference.background = image;
                 regions.regionChanged(region);
             };
-    
-            $scope.campaignBackgroundChanged = function(background, region) {            
+
+            $scope.campaignBackgroundChanged = function(background, region) {
                 region.widgetCampaignBar.background = background;
                 regions.regionChanged(region);
             };
-    
+
             $scope.removeCampaignAlertBackground = function(image, region, event) {
                 if (event) {
                     event.stopPropagation();
@@ -178,11 +178,11 @@
                     event.stopPropagation();
                     event.preventDefault();
                 }
-                region.widgetCampaignBar.background = '';                                 
+                region.widgetCampaignBar.background = '';
                 alertMediaManager.removeCampaignBackground(image);
                 regions.regionChanged(region);
             }
-       
+
             $scope.onSetTimeCountDownFrom = function (newDate, oldDate) {
                 var scope = this.$parent;
                 /*we need to update value first to sending to server*/
@@ -236,7 +236,7 @@
                 // access or attach event listeners to the underlying XMLHttpRequest.
                 //.xhr(function(xhr){xhr.upload.addEventListener(...)})
             }
-    
+
             $scope.timerCountUpStart = function (module, region) {
                 var pauseDate = new Date(module.countUpPauseTime);
                 var startDate = new Date(module.countUpStartTime);
@@ -248,7 +248,7 @@
                 module.countUpStatus = true;
                 $scope.regionChanged(region);
             }
-    
+
             $scope.timerCountUpPause = function (module, region) {
                 module.countUpPauseTime = new Date();
                 module.countUpStatus = false;
@@ -262,7 +262,7 @@
             // var conatinerId = 'region_' + $scope.region
             // var $donationChildScope = angular.element(".donations_panel").scope();
             // console.log($donationChildScope.customsounds);
-            $scope.changeCustomSound = function(rangeData, key, module, region){                
+            $scope.changeCustomSound = function(rangeData, key, module, region){
                 for(var i in rangeData){
                     if(rangeData[i] == ""){
                         delete rangeData[i];
@@ -270,14 +270,14 @@
                 }
                 customDonationSound.customsounds[key] = rangeData;
                 customDonationSound.rangeData[key] = customDonationSound.getRange(key);
-                customDonationSound.showRangeTab[key] = (customDonationSound.rangeData[key].length>0);                
+                customDonationSound.showRangeTab[key] = (customDonationSound.rangeData[key].length>0);
                 var list = [];
                 for(var i in rangeData){
                     if(rangeData[i] != ""){
                         list.push({userId:region.userId, regionNumber:region.regionNumber, fileName:i, donationAmount:rangeData[i]});
                     }
                 }
-                
+
                 if(module.preferenceType == "donations"){
                     region.widgetAlerts.donationCustomsound = list;
                 }else if(module.preferenceType == "campaigns"){

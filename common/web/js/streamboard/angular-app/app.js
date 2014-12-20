@@ -4,7 +4,7 @@
         'pullr.streamboard.donationsCtrl', 'pullr.streamboard.regionsPanels','pullr.streamboard.regionsConfigs',
         'pullr.streamboard.settings', 'pullr.streamboard.stream', 'colorpicker.module',
         'pullr.streamboard.rotatingMessages', 'pullr.currentTime','pullr.countUpTimer','simpleMarquee',
-        'pullr.streamboard.twitch']);
+        'pullr.streamboard.twitch','pullr.streamboard.config']);
     app.run(function(){
     	$(".spinner-wrap").addClass('powered').fadeOut();
     });

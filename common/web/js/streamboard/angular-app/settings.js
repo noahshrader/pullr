@@ -1,5 +1,5 @@
 (function(){
-    var app = angular.module('pullr.streamboard.settings', ['pullr.common', 'pullr.streamboard.campaigns', 'pullr.streamboard.donations', 'simpleMarquee']);
+    var app = angular.module('pullr.streamboard.settings', ['pullr.common', 'pullr.streamboard.campaigns', 'pullr.streamboard.donations', 'simpleMarquee', 'pullr.streamboard.config']);
     app.controller('SettingsCtrl', ['$scope','campaigns', 'stream', 'donations', '$http', '$interval', 'simpleMarqueeHelper', 'streamboardConfig',
         function ($scope,campaigns, stream, donations, $http, $interval, simpleMarqueeHelper, streamboardConfig){
             $scope.campaignsService = campaigns;
@@ -44,10 +44,6 @@
             $scope.noActivityMessageChanged = function() {
                 stream.noActivityMessageChanged();
                 simpleMarqueeHelper.recalculateMarquee();
-            }
-
-            $scope.changeEnableFeaturedCampaign = function(enableFeaturedCampaign) {
-
             }
 
         }]);
