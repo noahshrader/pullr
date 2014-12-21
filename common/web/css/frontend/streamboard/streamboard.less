@@ -414,20 +414,20 @@ ul.panel-nav {
 		}
 
 		/* Stats Panel Nav */
-    	&.stats {
-    		width: 100%;
-    		a {
-    			font-size: 16px;
+	    	&.stats {
+	    		width: 100%;
+	    		a {
+	    			font-size: 16px;
 
-        		i {
-        			font-size: 18px;
-        			margin-right: @iconspace;
-        		}
-    		}
-    		span {
-    			font-size: @smalltext;
-    		}
-    	}
+	        		i {
+	        			font-size: 18px;
+	        			margin-right: @iconspace;
+	        		}
+	    		}
+	    		span {
+	    			font-size: @smalltext;
+	    		}
+	    	}
 		&:first-child:nth-last-child(1) {
 			width: 100%;
 		}
@@ -460,7 +460,7 @@ ul.panel-nav {
 	position: relative;
 
 	.donations-list {
-		background: #000;
+		background: @base;
 		.slowtrans;
 
 		span {
@@ -473,7 +473,7 @@ ul.panel-nav {
 			color: @gray30;
 			margin: 0;
 			background: @maingray;
-			border-bottom: solid 1px @base;
+			border-bottom: solid 1px @dkgray;
 
 			.donation-wrap {
 				padding: @gutter @streamboardgutter;
@@ -485,7 +485,7 @@ ul.panel-nav {
 			}
 			&.wasRead {
 				.donation-wrap {
-					opacity: .15;
+					opacity: .1;
 				}
 				a.markread {
 					background: transparent !important;
