@@ -1,6 +1,6 @@
 <?php
-use yii\helpers\Html;
 use common\assets\DonationAsset;
+use common\components\PullrUtils;
 /**
  * That is layout for Donation Form. Which is loaded by Magnific popup
  * @var \yii\web\View $this
@@ -22,7 +22,7 @@ $campaign = \Yii::$app->controller->campaign;
 				<div class="progress" style="width:<?= 100*$campaign->amountRaised/max(1,$campaign->goalAmount) ?>%;" ng-cloak></div>
 			</div>
 			<div class="totals">
-				<span class="total amountRaised" ng-cloak>$<?= number_format($campaign->amountRaised) ?></span> of <span class="goal">$<?= number_format($campaign->goalAmount) ?></span>
+				<span class="total amountRaised" ng-cloak>$<?= PullrUtils::formatNumber($campaign->amountRaised) ?></span> of <span class="goal">$<?= PullrUtils::formatNumber($campaign->goalAmount) ?></span>
 			</div>
 		</div>
 	 	<!-- ENG Progress Bar -->
