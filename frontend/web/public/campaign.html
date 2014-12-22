@@ -4,12 +4,17 @@
         <title>Test widget</title>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="/app/statistic/api"></script>
+        <script>
+        PullrStatistic.onCampaignTemplateLoaded = function(){
+            console.log('onCampaignTemplateLoaded');
+        }
+        </script>
         <link rel="stylesheet" id="bootstrapstyle-css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css?ver=1.0" media="all">
     </head>
     <body >
 
         <div class='container' ng-controller='PullrCampaignCtrl'>
-            <div id='watch_window' class='row' ng-show='showStreamWindow'>
+            <div id='watch_window' class='row' ng-show='showStreamWindow && isDataReady'>
                 <h4>{{selectedChannel.display_name}}</h4>
                 <a href='{{selectedCampaign.donationFormUrl}}' target='_blank'>Donate</a><br/>
                 <a href='{{selectedCampaign.campaignPageUrl}}' target='_blank'>Campaign page</a>

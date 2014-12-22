@@ -6,7 +6,7 @@ PullrStatistic.API_URL = PullrStatistic.MAIN_URL + 'app/statistic';
 PullrStatistic.LAYOUT_TYPE_SINGLE = "<? echo common\models\Campaign::LAYOUT_TYPE_SINGLE; ?>";
 PullrStatistic.LAYOUT_TYPE_TEAM = "<? echo common\models\Campaign::LAYOUT_TYPE_TEAM; ?>";
 PullrStatistic.LAYOUT_TYPE_MULTI = "<? echo common\models\Campaign::LAYOUT_TYPE_MULTI; ?>";
-
+PullrStatistic.onCampaignTemplateLoaded = PullrStatistic.onCampaignTemplateLoaded || function() {};
 PullrStatistic.bootstrapApp = function(){
     angular.element(document).ready(function() {
         angular.bootstrap(document, ['PullrStatisticApp']);
@@ -77,7 +77,19 @@ PullrStatistic.loadFeaturedCampaignApp = function(){
         $scope.selectedCampaign = null;
         $scope.isDataReady = false;
         $scope.campaignDataService = PullrCampaignData;
-        $scope.campaignDataService.fetchCampaignData();
+
+        $scope.campaignDataService.fetchCampaignData(function() {
+            $scope.campaigns = $scope.campaignDataService.campaignData;
+            console.log($scope.campaigns);
+            if ( ! $scope.isDataReady ) {
+                $scope.isDataReady = true;
+                $timeout(function() {
+                    PullrStatistic.onCampaignTemplateLoaded();
+                }, 100);
+
+            }
+        });
+
         $scope.showStreamWindow = false;
 
         $scope.$watch('campaignDataService.campaignData', function() {
@@ -111,9 +123,11 @@ PullrStatistic.loadFeaturedCampaignApp = function(){
     app.service('PullrCampaignData', function($http) {
         var Service = this;
         Service.campaignData = [];
-        Service.fetchCampaignData = function() {
+        Service.fetchCampaignData = function(successCb) {
+            successCb = successCb || function(){};
             $http.post(PullrStatistic.API_URL + '/campaign_data').success(function(data) {
                 Service.campaignData = data;
+                successCb();
             });
         }
         return Service;
