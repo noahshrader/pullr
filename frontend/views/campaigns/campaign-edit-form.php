@@ -31,7 +31,7 @@
             </div>
             <!-- Donate Button Text -->
             <div class="form-group float">
-                <?=$form->field($campaign, 'donationButtonText', ['autoPlaceholder' => false])->label('Donate Button Text <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Change the text on your donate button"></i>')->input('text'); ?>
+                <?=$form->field($campaign, 'donationButtonText', ['autoPlaceholder' => false])->label('Donate Button Text <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Change the text on your donate button"></i>')->input('text')->textInput(array('placeholder' => 'Donate')); ?>
             </div>
         </div>
     </div>
