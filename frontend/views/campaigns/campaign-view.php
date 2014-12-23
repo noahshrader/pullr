@@ -165,10 +165,10 @@ if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && 
                 </div>
                 <div class="clearfix"></div>
             </section>
-            <?= $this->render('campaign-view-childs', [
-                'campaign' => $campaign
-            ]);?>
             <section class="campaign-table module table">
+                <?= $this->render('campaign-view-childs', [
+                    'campaign' => $campaign
+                ]);?>
                 <div class="spinner-wrap">
                     <div class="spinner">
                         <div class="rect1"></div>
