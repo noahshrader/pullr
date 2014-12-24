@@ -36,7 +36,7 @@ $firstGiving = $campaign->getFirstGiving();
             <!-- Parent Campaigns -->
             <? if (sizeof($parentCampaigns) > 0): ?>
                 <? 
-                $keyValues = [ 0 => ''];
+                $keyValues = [ 0 => 'Select one...'];
                 foreach ($parentCampaigns as $parentCampaign){
                     $keyValues[$parentCampaign->id] = $parentCampaign->name;
                 }
