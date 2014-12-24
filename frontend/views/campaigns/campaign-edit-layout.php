@@ -54,7 +54,7 @@ $user = \Yii::$app->user->identity;
                 <button type="button" class="btn btn-default" onclick="layoutChooseTheme()">Select a theme</button>
                 <div class='selected-theme theme-name'>
                     <label>Current Theme:</label>
-                    <span><?= $campaign->theme?$campaign->theme->name:''?></span>
+                    <span><?= $campaign->theme ? $campaign->theme->name : $campaign->getDefaultTheme($user, $campaign->layoutType)->name;?></span>
                 </div>
             </div>
             <div class="theme-color-picker form-group cf">
