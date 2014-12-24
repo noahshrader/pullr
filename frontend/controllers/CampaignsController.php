@@ -86,6 +86,11 @@ class CampaignsController extends FrontendController {
                 throw new Exception('You have reached active campaigns limit');
             }
 
+            if (($editCampaign->layoutType == Campaign::LAYOUT_TYPE_SINGLE) && ($editCampaign->channelName != \Yii::$app->user->identity->uniqueName))
+            {
+                throw new Exception('Single Stream does not allow to alter channel name');
+            }
+
             //from html5 datetime-local tag to timestamp
             if ($editCampaign->startDate && !is_numeric($editCampaign->startDate)) {
                 $editCampaign->startDate = (new \DateTime($editCampaign->startDate))->getTimestamp();

@@ -20,7 +20,7 @@ $user = \Yii::$app->user->identity;
             </div>
 
             <!-- if Single Channel -->
-            <div id="campaign-channelname" class="form-group highlight-wrap float">
+            <div id="campaign-channelname" class="form-group highlight-wrap float" data-uniquename="<?=\Yii::$app->user->identity->uniqueName;?>">
                 <?= $form->field($campaign, 'channelName', ['autoPlaceholder' => false])->input('text', ['value' => $campaign->isNewRecord ? \Yii::$app->user->identity->uniqueName : $campaign->channelName])->label("Channel Name"); ?>
             </div>
 
