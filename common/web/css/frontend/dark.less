@@ -1,4 +1,5 @@
 body.dark {
+	background: @shadowgray;
 
 /* Base */
 /* ------------------------------------------------- */
@@ -82,7 +83,7 @@ table.dataTable {
 	thead th {
 		color: @gray20;
 		background: @dkgray;
-		border: 0;
+		border-bottom-color: @shadowgray;
 	}
 	tbody tr:hover,
 	&.hover tbody tr:hover,
@@ -441,6 +442,7 @@ ul.campaign-quicknav {
 	border-bottom-color: @base;
 
 	li {
+		background: @shadowgray;
 		a {
 			background: @shadowgray;
 		}

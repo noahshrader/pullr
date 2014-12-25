@@ -2,6 +2,18 @@ function layoutTypeChanged() {
     var newValue = $(this).val();
     newValue = newValue.replace(' ', '');
     $('[data-campaign-layoutType]').attr('data-campaign-layoutType', newValue);
+
+    channelName = $("#campaignEdit [data-campaign-layoutType=SingleStream] #campaign-channelname");
+    if (newValue == "SingleStream")
+    {
+        channelName.prop('readonly', true);
+        channelName.val(channelName.data('uniquename'));
+    }
+    else
+    {
+        channelName.prop('readonly', false);
+        channelName.val('');
+    }
 }
 
 function campaignTypeChanged(){
@@ -224,6 +236,7 @@ function selectCharity(el){
 
 $(function() {
     $('#campaign-layouttype').change(layoutTypeChanged);
+    $('#campaign-layouttype').trigger('change');
     $('[name="Campaign[type]"]').change(campaignTypeChanged);
     $('[name="Campaign[donationDestination]"]').change(donationDestinationChanged);
     updateLayoutTeams();
