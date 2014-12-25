@@ -103,6 +103,9 @@ class StatisticController extends FrontendController {
             $campaignArray['donationFormUrl'] = '/' . $campaign->user->getUrl() . $campaign->alias . '/donate';
             $campaignArray['campaignPageUrl'] = '/' . $campaign->user->getUrl() . $campaign->alias;
             $campaignArray['backgroundImageUrl'] = $campaign->backgroundImageUrl;
+            if ($campaign->layoutType == Campaign::LAYOUT_TYPE_TEAM) {
+                $campaignArray['twitchTeam'] = $twitchChannelHelper->getTeamObject($campaign->channelTeam);
+            }
             $results[] = $campaignArray;
         }
         return $results;

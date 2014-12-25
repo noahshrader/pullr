@@ -117,6 +117,14 @@ PullrStatistic.loadFeaturedCampaignApp = function(){
                 var top = $('#watch_window').offset().top;
                 $("html, body").animate({ scrollTop: top }, 600);
             }, 50);
+            switch (campaign) {
+                case $scope.LAYOUT_TYPE_TEAM:
+                    $scope.selectedLogo = channel.image.size300;
+                break;
+                case $scope.LAYOUT_TYPE_SINGLE:
+                case $scope.LAYOUT_TYPE_MULTI:
+                    $scope.selectedLogo = channel.logo;
+            }
         }
     });
 

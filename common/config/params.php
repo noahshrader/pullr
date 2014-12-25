@@ -3,7 +3,7 @@
 return [
     'adminEmails' => ['noahshrader@gmail.com', 'mail@orderbynull.me'],
     'mailFrom' => 'noreply@pullr.io',
-    'baseUrl' => 'http://pullr.io',
+    'baseUrl' => '//app.pullr.io',
     'user.passwordResetTokenExpire' => 3600,
     'frontendUrl' => '../../frontend/web/',
     'backendUrl' => '../../backend/web/',

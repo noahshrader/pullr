@@ -4,12 +4,13 @@
         <title>Test widget</title>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
+
+        <script type="text/javascript" src="/app/statistic/api"></script>
         <script>
         PullrStatistic.onCampaignTemplateLoaded = function(){
             console.log('onCampaignTemplateLoaded');
         }
         </script>
-        <script type="text/javascript" src="/app/statistic/api"></script>
         <link rel="stylesheet" id="bootstrapstyle-css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css?ver=1.0" media="all">
     </head>
     <body >
@@ -17,6 +18,16 @@
         <div class='container' ng-controller='PullrCampaignCtrl'>
             <div id='watch_window' class='row' ng-show='showStreamWindow && isDataReady'>
                 <h4>{{selectedChannel.display_name}}</h4>
+
+                <!-- team channel name -->
+                <div ng-if='selectedCampaign.layoutType == LAYOUT_TYPE_TEAM'>
+                    {{selectedCampaign.channelTeam}}
+                </div>
+
+                <!-- user avatar -->
+                <img ng-src='{{selectedChannel.logo}}' ng-if='selectedCampaign.layoutType != LAYOUT_TYPE_TEAM'/>
+                <img ng-src='{{selectedChannel.image.size300}}' ng-if='selectedCampaign.layoutType == LAYOUT_TYPE_TEAM'/>
+
                 <a href='{{selectedCampaign.donationFormUrl}}' target='_blank'>Donate</a><br/>
                 <a href='{{selectedCampaign.campaignPageUrl}}' target='_blank'>Campaign page</a>
                 <div id="stream" class="holder">
@@ -78,6 +89,16 @@
                     </div>
 
                     <div class='team_channel' ng-show='campaign.layoutType == LAYOUT_TYPE_TEAM'>
+                        <div class='row'>
+
+                            <!-- team name and team logo -->
+                            <div class='col-md-12'>
+                                <h3>Team information</h3>
+                                <p>{{campaign.twitchTeam.display_name}}</p>
+                                <img width="100" ng-src="{{campaign.twitchTeam.logo}}"/>
+                            </div>
+
+                        </div>
                         <div class='row'>
                             <div ng-repeat='channel in campaign.channels' class='col-md-3' ng-mouseenter='showChannelInfo(channel)' ng-mouseleave='hideChannelInfo(channel)'>
                                 <div class='thumbnail'>

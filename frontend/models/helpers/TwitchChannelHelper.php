@@ -110,6 +110,17 @@ class TwitchChannelHelper {
         return $results;
     }
 
+    public function getTeamObject($channelTeam)
+    {
+        $key = 'TwitchChannelHelper_getTeamObject_' . $channelTeam;
+        $result = $this->getCache($key);
+        if ( ! $result ) {
+            $result = $this->twitch->teamGet($channelTeam);
+            $this->setCache($key, $result);
+        }
+        return $result;
+    }
+
     /*
     * Get channels of a single campaign
     */

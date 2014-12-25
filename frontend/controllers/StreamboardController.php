@@ -387,7 +387,7 @@ class StreamboardController extends FrontendController
         $countInvite = CampaignInvite::find()->where(['userId' => $user->id, 'campaignId' => $id, 'status' => CampaignInvite::STATUS_ACTIVE ])->count();
         $campaign = Campaign::findOne($id);
 
-        if ((!$campaign && $countInvite == 0) && ($campaign && $campaign->userId != $user->id)){
+        if ((!$campaign && $countInvite == 0) && ($campaign && $campaign->userId != $user->id)) {
             throw new ForbiddenHttpException();
         }
 
