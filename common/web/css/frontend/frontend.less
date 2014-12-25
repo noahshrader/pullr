@@ -39,7 +39,7 @@
 	}
 }
 .content-wrap {
-	padding: @gutter @gutter 0;
+	padding: @gutter;
 	overflow: hidden;
 }
 
@@ -53,7 +53,7 @@
 	overflow: hidden;
 	
 	&.table {
-		margin: @gutter 0;
+		margin: @gutter 0 0;
 		background: transparent;
 		box-shadow: none;
 	}
@@ -136,9 +136,6 @@ span.list-info {
 	h1.donor-name {
 		text-align: center;
 		margin: 0 auto @gutter;
-	}
-	.content-wrap {
-		padding: @gutter 0 0;
 	}
 }
 .donor-view-wrap h1 {
@@ -385,13 +382,13 @@ table.dataTable {
 	}
 	td {
 		color: @gray40;
-		border-top: solid 1px @gray72;
+		border-top: solid 1px @gray75;
 		cursor: pointer;
 		.trans;
 		&.raised {
 			span {
 				padding: 0 .6em;
-				background: @gray75;
+				background: @offwhite;
 				.round-radius;
 			}
 		}
@@ -408,17 +405,15 @@ table.dataTable {
 		font-size: 14px;
 		font-weight: 500;
 		padding: .6em 4% !important;
-		border-bottom: solid 1px @modulegray;
+		background: @offwhite;
+		border-bottom: solid 1px @gray75;
 	}
 	tbody {
 		tr {
-			background-color: transparent !important;
+			background-color: @white !important;
 			border-color: transparent !important;
 			.trans;
 
-			&.donation-entry:hover {
-				background: @offwhite !important;
-			}
 			&.donation-entry {
 
 				&.drop,
@@ -426,11 +421,7 @@ table.dataTable {
 				+ tr td[colspan~="4"],
 				+ tr td[colspan~="5"] {
 					padding: .3em 0 !important;
-					background: @white !important;
 					border-top: 0;
-				}
-				tr:hover {
-					background: @white !important;
 				}
 				i {
 					float: left;
@@ -479,7 +470,7 @@ table.dataTable {
 	&.display tbody th,
 	&.display tbody td,
 	thead td {
-		border-top: solid 1px @gray72;
+		border-top: solid 1px @gray75;
 	}
 }
 .dataTables_info {
@@ -530,6 +521,9 @@ table.dataTable {
 }
 .table-header,
 .table-footer {
+	padding: @halfgutter 4%;
+	background: @offwhite;
+
 	.select2-container {
 		margin-right: 0;
 		margin-right: 4px;
@@ -539,7 +533,7 @@ table.dataTable {
 		}
 
 		&.select2-dropdown-open a.select2-choice {
-			background: transparent;
+			background: @white;
 		}
 		.select2-choice {
 			font-size: @basefontsize;
@@ -552,7 +546,7 @@ table.dataTable {
 		}
 		.select2-choices .select2-search-field input,
 		.select2-choice, .select2-choices {
-			background: transparent;
+			background: @white;
 		}
 		.select2-choice > span:first-child,
 		.select2-choices .select2-search-field input {
@@ -567,7 +561,6 @@ table.dataTable {
 	}
 }
 .table-header {
-	padding: 10px @gutter;
 
 	a.btn {
 		float: left;
@@ -582,7 +575,6 @@ table.dataTable {
 }
 .table-footer {
 	text-align: center;
-	padding: @halfgutter @gutter;
 	border-top: solid 1px @gray75;
 
 	a.btn {

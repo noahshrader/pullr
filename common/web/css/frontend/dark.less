@@ -1,5 +1,5 @@
 body.dark {
-	background: @shadowgray;
+	background: @dkgray;
 
 /* Base */
 /* ------------------------------------------------- */
@@ -82,8 +82,8 @@ table.dataTable {
 	th,
 	thead th {
 		color: @gray20;
-		background: @dkgray;
-		border-bottom-color: @shadowgray;
+		background: @maingray;
+		border-bottom-color: @dkgray;
 	}
 	tbody tr:hover,
 	&.hover tbody tr:hover,
@@ -99,7 +99,8 @@ table.dataTable {
 	&.display tbody th,
 	&.display tbody td,
 	thead td {
-		border-top-color: @shadowgray;
+		background: @maingray;
+		border-top-color: @dkgray;
 	}
 	td.raised span {
 		background: @dkgray;
@@ -110,9 +111,12 @@ table.dataTable {
 		background: @maingray !important;
 	}
 }
+.table-header,
 .table-footer {
-	background: @dkgray;
-	border-top-color: @shadowgray;
+	background: @maingray;
+}
+.table-footer {
+	border-top-color: @dkgray;
 }
 
 /* Lists */
@@ -120,7 +124,7 @@ table.dataTable {
 	border-bottom: solid 1px @base;
 
 	span {
-		background: @shadowgray;
+		background: @dkgray;
 	}
 	input[type='search'] {
 		background: @maingray;
@@ -166,9 +170,9 @@ table.dataTable {
 	padding: 0;
 
 	ul {
-		background: @gray15;
+		background: @gray12;
 		&:before {
-			border-color: transparent transparent @gray15 transparent;
+			border-color: transparent transparent @gray12 transparent;
 		}
 		li {
 			a {
@@ -328,7 +332,7 @@ legend,
 .top-menu {
 
 	&.shadow {
-		box-shadow: 0px -4px 0px 5px @shadowgray;
+		box-shadow: 0px -4px 0px 5px @dkgray;
 	}
 	.avatar-container .avatar .user-photo-menu {
 
@@ -403,7 +407,8 @@ legend,
 
 /* Main */
 .list-wrap {
-	background: @shadowgray;
+	background: @dkgray;
+	border-right: solid 1px @base;
 
 	.campaign-item,
 	.donor-item {
@@ -438,18 +443,19 @@ legend,
 	}
 }
 ul.campaign-quicknav {
-	background: @shadowgray;
+	background: @dkgray;
+	border-right: solid 1px @base;
 	border-bottom-color: @base;
 
 	li {
-		background: @shadowgray;
+		background: @dkgray;
 		a {
-			background: @shadowgray;
+			background: @dkgray;
 		}
 	}
 }
 .view-actions {
-	background: @gray10;
+	background: @maingray;
 	box-shadow: none;
 
 	h4,
@@ -457,15 +463,16 @@ ul.campaign-quicknav {
 		color: @white;
 	}
 	a.view-campaign {
-		background: @gray15;
+		background: @gray10;
 		&:before {
-			border-bottom-color: @gray15;
+			border-bottom-color: @gray10;
 		}
-		&:hover, {
-			background: @gray20;
-		}
-		&:hover:before {
-			border-bottom-color: @gray20;
+		&:hover {
+			background: @gray12;
+
+			&:before {
+				border-bottom-color: @gray12;
+			}
 		}
 	}
 	a.actions-toggle {
@@ -498,15 +505,15 @@ ul.campaign-quicknav {
 		background: @accent;
 
 		.stats-box {
-			border-left-color: @maingray;
+			border-left-color: @dkgray;
 		}
 	}
 	span {
 		color: rgba(255,255,255,.6) !important;
 	}
 	.stats-box {
-		background: @gray10;
-		border-left-color: @maingray;
+		background: @maingray;
+		border-left-color: @dkgray;
 
 		h2,
 		h3 {
@@ -514,12 +521,12 @@ ul.campaign-quicknav {
 
 			span {
 				color: @gray50;
-				background: @gray12;
+				background: @dkgray;
 			}
 		}
 		&.top-donor,
 		&.top-donation {
-			border-top-color: @maingray;
+			border-top-color: @dkgray;
 		}
 	}
 }
@@ -613,20 +620,17 @@ ul.campaign-quicknav {
 }
 
 
-/* Editor */
-/* ------------------------------------------------- */
-.trumbowyg-box,
-.trumbowyg-editor {
-	border-color: @gray30;
-}
-.trumbowyg-editor.trumbowyg-reset-css {
-	color: @white;
-	background: @maingray !important;
-}
-
-
 /* Modals */
 /* ------------------------------------------------- */
+.modal {
+
+	.modal-dialog {
+
+		button.close {
+			color: @gray70;
+		}
+	}
+}
 .modal-backdrop {
 	background: @base;
 	&.in {
@@ -634,7 +638,4 @@ ul.campaign-quicknav {
 		filter: alpha(opacity=70);
 	}
 }
-
-
-
 }
