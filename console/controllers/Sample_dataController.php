@@ -278,8 +278,9 @@ class Sample_dataController extends Controller
         $campaign->userId = $this->user1->id;
         $campaign->startDate = 1405761880;
         $campaign->endDate = 1408761880;
-
+        $campaign->teamEnable = true;
         $campaign->save();
+
         $this->childCampaign1 = $campaign;
 
         $campaign = new Campaign();
@@ -290,7 +291,9 @@ class Sample_dataController extends Controller
         $campaign->layoutType = Campaign::LAYOUT_TYPE_TEAM;
         $campaign->userId = $this->user1->id;
         $campaign->goalAmount = 15000;
+        $campaign->teamEnable = true;
         $campaign->save();
+
         $this->childCampaign2 = $campaign;
     }
 

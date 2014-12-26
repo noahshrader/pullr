@@ -41,7 +41,7 @@ $firstGiving = $campaign->getFirstGiving();
                     $keyValues[$parentCampaign->id] = $parentCampaign->name;
                 }
             ?>
-            <div id="tieCampaignContainer">
+            <div id="tieCampaignContainer" class="<?=$campaign->tiedToParent ? 'on' : 'off';?>">
                 <label>Connect to Another Campaign <i class="icon mdi-action-help" data-toggle="tooltip" data-placement="right" title="Turn on if you want this campaign to contribute to another campaign."></i></label>
                 <?= $form->field($campaign, 'tiedToParent')->label(false)->checkbox([], false); ?>
                 <div class="form-group field-campaign-parentcampaignid highlight-wrap">
