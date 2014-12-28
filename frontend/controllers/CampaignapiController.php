@@ -153,12 +153,12 @@ class CampaignapiController extends \yii\web\Controller
             $response['amountRaised'] = $campaign->amountRaised;
             $response['numberOfDonations'] = $campaign->getDonations()->count();
             $response['numberOfDonors'] = $campaign->getDonations()->count('DISTINCT email');
-            $donationsArray = [];
-            $donations = $campaign->getDonations()->all();
-            foreach ($donations as $donation) {
-                $donationsArray[] = $donation->toArray(['id', 'amount', 'nameFromForm', 'comments', 'paymentDate']);
-            }
-            $response['donations'] = $donationsArray;
+//            $donationsArray = [];
+//            $donations = $campaign->getDonations()->all();
+//            foreach ($donations as $donation) {
+//                $donationsArray[] = $donation->toArray(['id', 'amount', 'nameFromForm', 'comments', 'paymentDate']);
+//            }
+            $response['donations'] = [];//;$donationsArray;
         }
         return $response;
     }
