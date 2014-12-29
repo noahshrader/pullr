@@ -47,13 +47,13 @@ app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService, $s
 			}
 			$scope.isDataReady = true;
 		});
-	}, 30000);
+	}, 90000);
 
 	$interval(function(){
 		CampaignDataService.loadCampaign(function(data){
 			$scope.campaign = data;
 		});
-	}, 20000);
+	}, 90000);
 
     $scope.to_trusted = function(html_code) {
         return $sce.trustAsHtml(html_code);
