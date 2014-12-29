@@ -11,7 +11,7 @@
         <? foreach ($donations as $donation): ?>
             <tr data-email="<?= $donation->email ?>" data-comments="<?= $donation->comments ?>" class="donation-entry">
                 <td width="30%">
-                    <?= $donation->name ? $donation->name : 'Anonymous' ?>
+                    <?= $donation->nameFromForm ? $donation->nameFromForm : 'Anonymous' ?>
                 </td>
                 <td class="raised" width="25%">
                     <span>$<?= \common\components\PullrUtils::formatNumber($donation->amount, 2) ?></span>

@@ -376,7 +376,7 @@ class CampaignsController extends FrontendController {
         $rows = [];
         $date = (new \DateTime())->setTimezone(new \DateTimeZone(Yii::$app->user->identity->getTimezone()));
         foreach ($donations as $donation){
-            $rows[] = implode(',', [$donation->amount, $donation->name ? $donation->name : Donation::ANONYMOUS_NAME, $donation->email, '"'.str_replace(["\r", "\n"], " ",$donation->comments).'"', $date->setTimestamp($donation->paymentDate)->format('M j Y H:i:s')]);
+            $rows[] = implode(',', [$donation->amount, $donation->nameFromForm ? $donation->nameFromForm : Donation::ANONYMOUS_NAME, $donation->email, '"'.str_replace(["\r", "\n"], " ",$donation->comments).'"', $date->setTimestamp($donation->paymentDate)->format('M j Y H:i:s')]);
         }
         // set the content type
         Header('Content-type: text/plain');
