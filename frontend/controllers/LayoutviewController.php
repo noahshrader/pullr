@@ -82,10 +82,11 @@ class LayoutviewController extends \yii\web\Controller {
      */
     public function actionDonate($userAlias, $campaignAlias)
     {
+
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
-        
         if(isset($_GET["success"]) && ($_GET["success"] == "true"))
         {
+            die();
             $apiConfig = \Yii::$app->params['payPal'];
             $payKey = (new \yii\web\Session())->get("payKey");
             if((new PullrPayment($apiConfig))->finishDonationPayment($payKey))
@@ -114,6 +115,8 @@ class LayoutviewController extends \yii\web\Controller {
         {
             $donation->userId = \Yii::$app->user->id; 
         }
+
+//        print_r($_REQUEST);
 
         if ($donation->load($_REQUEST) && $donation->save())
         {
