@@ -130,19 +130,24 @@
                     /*we should get data in "date ASC" order because we first should notifications which occur early*/
                     for (var key in data) {
                         var notification = data[key];
-                        if(notification.type === 'donations'){
-                            var alertdata = {
-                                id: notification.id,
-                                type:'donations',
-                                data:{
-                                        '[[DonorName]]':notification.donation.nameFromForm,
-                                        '[[DonorAmount]]':notification.donation.amount,
-                                        '[[CampaignName]]':campaigns.getcampaignName(notification.donation.campaignId)
-                                   },
-                                date: notification.date
+                        if(notification.type === 'donations') {
+                            if (Service.canShowDonation(notification.donation)) {
+                                var alertdata = {
+                                    id: notification.id,
+                                    type:'donations',
+                                    data:{
+                                            '[[DonorName]]':notification.donation.nameFromForm,
+                                            '[[DonorAmount]]':notification.donation.amount,
+                                            '[[CampaignName]]':campaigns.getcampaignName(notification.donation.campaignId)
+                                       },
+                                    date: notification.date
+                                }
+                                Service.pushCustomAlert(alertdata);
+                            } else {
+                                Service.markAlertAsViewed(notification);
                             }
-                            Service.pushCustomAlert(alertdata);
-                        }else if(notification.type === 'followers'){
+
+                        } else if(notification.type === 'followers') {
                             var alertdata = {
                                 id: notification.id,
                                 type:'followers',
@@ -151,7 +156,7 @@
                             }
                             Service.pushCustomAlert(alertdata);
 
-                        } else if(notification.type === 'subscribers'){
+                        } else if(notification.type === 'subscribers') {
                             var alertdata = {
                                 id: notification.id,
                                 type:'followers',
@@ -167,6 +172,14 @@
                         Service.requestStreamData();
                     }, 3000);
                 });
+            }
+
+            this.canShowDonation = function(donation) {
+                var campaign = campaigns.campaigns[donation.campaignId];
+                if (campaign && campaign.streamboardSelected) {
+                    return true;
+                }
+                return false;
             }
 
             this.requestTestAlert = function() {
@@ -193,6 +206,11 @@
             }
 
             Service.requestStreamData();
+
+            this.markAlertAsViewed = function(notification) {
+                var id = notification.type + '_' + notification.id;
+                Service.alreadyViewed[id] = true;
+            }
 
             this.pushCustomAlert = function(notification){
                 if(!notification.type){
