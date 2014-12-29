@@ -31,7 +31,7 @@ use yii\widgets\MaskedInput;
         <? endif; ?>
     </div>
 
-    <?php $form = ActiveForm::begin($campaign->isFirstGiving() ? [] : ['options' => ['target' => '_blank']]) ?>
+    <?php $form = ActiveForm::begin($campaign->isFirstGiving() ? [] : ['options' => ['target' => '_blank'], 'validateOnSubmit' => false]) ?>
         <div class="form-wrapper">
 
             <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
