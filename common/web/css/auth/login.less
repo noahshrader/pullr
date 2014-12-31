@@ -42,17 +42,34 @@ html, body {
 		}
 
 		.login-box {
+			text-align: center;
 			padding: @gutter + @halfgutter;
 			margin: 0 auto;
 			width: 90%;
-			max-width: 400px;
+			max-width: 380px;
+			.border-radius;
+			-webkit-animation-duration: .3s;
+			animation-duration: .3s;
 
 			.site-login {
-				margin-top: 1.8em;
+				position: relative;
+				padding: @gutter @halfgutter;
+				background: @maingray;
+				.border-radius;
+				.dark-shadow;
+				&:before {
+					.arrow-up;
+					top: -10px;
+					left: 50%;
+					margin-left: -10px;
+					border-color: transparent transparent @maingray transparent;
+				}
 			}
 			a.login-logo {
+				display: inline-block;
 				color: @white;
-				font-size: 46px;
+				font-size: 56px;
+				margin-bottom: .4em;
 			}
 			a.btn {
 				margin: .2em 0;
@@ -78,22 +95,13 @@ html, body {
 					}
 				}
 			}
+			p {
+				display: block;
+				color: @gray30;
+				margin: 0 0 1em;
+				width: 100%;
+				max-width: 100%;
+			}
 		}
 	}
-}
-.login-back {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 0;
-	background-color: @maingray;
-	background-image: -webkit-gradient(radial, 50% 50%,0,50% 50%,200, from(@base), to(@maingray));
-	background-image: -webkit-radial-gradient(50% 50%, @maingray, @base);
-	background-image: -moz-radial-gradient(50% 50%, @maingray, @base);
-	background-image: -o-radial-gradient(50% 50%, @maingray, @base);
-	background-image: -ms-radial-gradient(50% 50%, @maingray, @base);
-	background-image: radial-gradient(50% 50%, @maingray, @base);
-	.fadein;
 }

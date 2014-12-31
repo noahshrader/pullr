@@ -18,14 +18,13 @@ AuthAsset::register($this);
         <?php $this->beginBody() ?>
              <div class="intro-content-wrapper">
                     <div class="intro-content">
-                        <div class="login-box animated zoomInRight">
+                        <div class="login-box animated zoomIn">
                             <a class="login-logo mdib-pullr-logo"></a>
                             <?= $content ?>
                         </div>
                     </div>
             </div>
         <?php $this->endBody() ?>
-        <div class="login-back"></div>
     </body>
 </html>
 <?php $this->endPage() ?>
