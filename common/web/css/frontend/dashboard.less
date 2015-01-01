@@ -1,13 +1,9 @@
 /* Main Dashboard Area */
 /* ------------------------------------------------- */
 .dashboard-wrap {
-	position: fixed;
 	top: @top-menu-height;
-	right: 0;
 
 	#content.dashboard {
-		position: static;
-		padding-right: @sidepanelwidth;
 
 		.tab-content {
 			padding-bottom: @gutter;
@@ -45,7 +41,6 @@
 				float: left;
 				width: 100%;
 				padding: @gutter+@halfgutter 0;
-				background: @accent;
 
 				h1 {
 					color: @white;
@@ -142,11 +137,8 @@
 	/* Activity Sidebar */
 	/* ------------------------------------------------- */
 	#sidebar.dashboard {
-		position: fixed;
 		top: @top-menu-height;
 		right: 0;
-		padding-right: @gutter;
-		background: @gray75;
 
 		.invites-wrap {
 			padding-bottom: 0px;
@@ -210,13 +202,12 @@
 			li {
 				color: @gray60;
 				font-size: @smalltext;
-				padding: @halfgutter @gutter;
+				padding: 10px 0;
 				margin: 0;
 				background: @offwhite;
 				border-bottom: solid 1px @gray75;
 				&:first-child {
 					color: @gray20;
-					background: @white;
 				}
 				&:last-child {
 					border: 0;

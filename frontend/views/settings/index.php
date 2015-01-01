@@ -25,7 +25,7 @@ if(empty($user->timezone)):
 endif;
 ?>
 
-<div class="settings-wrap pane">
+<div class="settings-wrap">
 	<section id="content" class="settings"> <!-- BEGIN main settings -->
 		<div class="content-wrap">
 			<?php $form = ActiveForm::begin(['options' => [

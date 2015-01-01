@@ -1,13 +1,8 @@
 /* Main Settings Area */
 /* ------------------------------------------------- */
 .settings-wrap {
-	position: fixed;
-	top: @top-menu-height;
-	right: 0;
 
 	#content.settings {
-		position: static;
-		padding-right: @sidepanelwidth;
 
 		a.account-deactivate {
 			color: @gray60;
@@ -31,27 +26,6 @@
 /* ------------------------------------------------- */
 #sidebar.plans {
 	text-align: center;
-	right: 0;
-
-	.plan {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		padding: 30px;
-		.background;
-	}
-	.mCSB_container {
-		height: 100% !important;
-	}
-	.account-action {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		padding: @gutter;
-	}
 
 	/* General Plan */
 	.plan-show-Basic,
@@ -117,12 +91,6 @@
 			display: none;
 		}
 		.plan-panel {
-			position: absolute;
-			top: 50%;
-			left: 0;
-			right: 0;
-			padding: 0 @gutter+@halfgutter;
-			margin-top: -120px;
 
 			i {
 				color: @gray20;

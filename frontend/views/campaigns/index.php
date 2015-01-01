@@ -30,15 +30,6 @@ $user = \Yii::$app->user->identity;
         </section>
     <? endif; ?>
 
-    <!-- Main Campaign View -->
-    <? if ($selectedCampaign): ?>
-         <?= $this->render('campaign-view', [
-                    'campaign' => $selectedCampaign
-                ]); ?>   
-    <? endif ?>
-    <? if ($editCampaign):?>
-
-
     <!-- Sidebar -->
     <section id="sidepanel" class='sidepanel open'>
         <div class="frontend-right-widget">
@@ -47,8 +38,6 @@ $user = \Yii::$app->user->identity;
                 ]); ?>            
         </div>
     </section>
-    
-    <!-- Charity Browsing -->
 
     <!-- Theme Browsing -->
     <section id="sidepanelthree" class="sidepanel">
@@ -59,5 +48,3 @@ $user = \Yii::$app->user->identity;
             </div>
         </div>
     </section>
-
-    <? endif; ?>

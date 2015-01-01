@@ -24,12 +24,10 @@ ul.campaign-quicknav {
 /* Campaign Listings */
 .campaign-item,
 .donor-item {
-	padding: 26px 0;
-	margin: 0px;
+	padding: 0 7.5px @halfgutter;
+	margin: 0;
 	position: relative;
 	display: block;
-	width: 100%;
-	border-bottom: solid 1px @grayaccent;
 	&.active h3,
 	&.active p {
 		color: @white;
@@ -66,6 +64,11 @@ ul.campaign-quicknav {
 		&.right .tooltip-arrow {
 			border-right-color: @gray10;
 		}
+	}
+	> div {
+		padding: @gutter;
+		background: @dkgray;
+		.border-radius;
 	}
 }
 body.archive .campaigns-list,
@@ -257,3 +260,7 @@ body.trash .campaigns-list {
 		.round-radius;
 	}
 }
+
+
+
+#pageslide{display:none;position:absolute;position:fixed;top:0;height:100%;z-index:999999;width:600px;}

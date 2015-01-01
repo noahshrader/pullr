@@ -113,16 +113,21 @@ body {
 	}
 }
 .btn-add {
+	float: right;
 	display: inline-block;
+	color: @white;
 	font-size: 20px;
 	font-weight: 400;
 	text-align: center;
-	line-height: 28px;
+	line-height: @top-menu-height;
 	padding: 0;
-	height: 28px;
-	width: 28px;
-	min-width: 0;
-	.round-radius;
+	height: @top-menu-height;
+	width: @top-menu-height;
+	background: @grayaccent;
+	&:hover {
+		color: @white;
+		background: @accent;
+	}
 }
 .btn-link {
 	padding: 0;
@@ -153,7 +158,6 @@ body {
 	/* Main Number Values */
 	&.main-values {
 		margin-bottom: @gutter;
-		background: @accent;
 
 		.stats-box {
 			width: 50%;
@@ -202,7 +206,6 @@ body {
 		}
 		&.raised-total,
 		&.campaign-goal {
-			background: @accent !important;
 			border-left-color: @dkaccent !important;
 		}
 		&.raised-total,
@@ -247,7 +250,7 @@ body {
 
 			.tooltip-inner {
 				font-weight: 400;
-				padding: 5px 0;
+				padding: 2px 0;
 				background: @dkraccent;
 			}
 			&.top .tooltip-arrow {
@@ -365,20 +368,20 @@ ul.panel-nav {
 	.tooltip-inner {
 		font-weight: 400;
 		padding: @halfgutter;
-		background: @gray20;
+		background: @dkgray;
 		.border-radius;
 	}
 }
 .tooltip.top .tooltip-arrow {
-	border-top-color: @gray20;
+	border-top-color: @dkgray;
 	border-width: 5px 5px 0;
 }
 .tooltip.right .tooltip-arrow {
-	border-right-color: @gray20;
+	border-right-color: @dkgray;
 	border-width: 5px 5px 5px 0;
 }
 .tooltip.bottom .tooltip-arrow {
-	border-bottom-color: @gray20;
+	border-bottom-color: @dkgray;
 	border-width: 0 5px 5px;
 }
 

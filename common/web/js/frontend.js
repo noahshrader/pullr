@@ -23,7 +23,7 @@ $(function(){
         component: '.color-choice'
     });
     // custom scrollbars
-    $(".pane").mCustomScrollbar({
+    $(".main-wrapper").mCustomScrollbar({
         theme:"minimal",
         mouseWheel:{
             preventDefault: true,
@@ -34,12 +34,6 @@ $(function(){
             onTotalScrollBackOffset: 10,
             whileScrolling: function(){
                 $('.colorpicker').removeClass('colorpicker-visible');
-            },
-            onScrollStart: function(){
-                $('.top-menu').addClass('shadow');
-            },
-            onTotalScrollBack: function(){
-                $('.top-menu').removeClass('shadow');
             }
         }
     });
@@ -66,22 +60,11 @@ $('.checkbox label input:checkbox').each(function(){
 });
 
 // enable tooltips
-$("[data-toggle='tooltip']").tooltip({html:true});
-
-// toggle sidebar
-$(".primary-nav-toggle").click(function(){
-    $(".main-wrapper").toggleClass("large-menu-toggled small-menu-toggled");
-    localStorage.setItem('menu-collapse', $(".main-wrapper").hasClass("small-menu-toggled"))
-    $(".logo").toggleClass("mdib-pullr-logo mdib-pullr-logo2");
-    $(this).toggleClass("mdi-navigation-chevron-left mdi-navigation-chevron-right");
-});
-
-// reduce sidebar if the window shrinks too much
-$(window).resize(function() {
-    if($('.large-menu-toggled').width() < 900) {
-        $('.main-wrapper').removeClass('large-menu-toggled').addClass('small-menu-toggled');
-        $('.logo').removeClass('mdib-pullr-logo').addClass('mdib-pullr-logo2');
-        $('.primary-nav-toggle .icon').removeClass('mdi-navigation-chevron-left').addClass('mdi-navigation-chevron-right');
+$("[data-toggle='tooltip']").tooltip({
+    html: true,
+    delay: {
+        show: 400,
+        hide: 100
     }
 });
 

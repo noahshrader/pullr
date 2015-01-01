@@ -7,20 +7,14 @@
 
 /* Main Content */
 /* ------------------------------------------------- */
-.site-content {
-	position: absolute;
-	top: @top-menu-height;
-	left: 0;
-	width: 100%;
+.main-wrapper {
+	padding: 0 6%;
 	height: 100%;
-	background: @gray75;
-	overflow: hidden;
 }
 #content {
-	position: fixed;
-	top: @top-menu-height;
-	right: @sidepanelwidth;
-	background: @gray75;
+	float: left;
+	padding: @gutter @halfgutter;
+	width: 75%;
 	.slowtrans;
 
 	&.adv {
@@ -39,7 +33,7 @@
 	}
 }
 .content-wrap {
-	padding: @gutter;
+	padding: @gutter @halfgutter;
 	overflow: hidden;
 }
 
@@ -47,9 +41,6 @@
 .module {
 	position: relative;
 	margin-bottom: @gutter;
-	background: @white;
-	.box-shadow;
-	.border-radius;
 	overflow: hidden;
 	
 	&.table {
@@ -65,13 +56,15 @@
 
 		&.module-title {
 			line-height: 50px;
-			padding: 0 @gutter;
+			padding: 0;
 			margin: 0;
-			background: @offwhite;
 		}
 	}
 	.module-inner {
 		padding: @gutter;
+		background: @white;
+		.box-shadow;
+		.border-radius;
 
 		&.red {
 			padding: @halfgutter @gutter;
@@ -83,10 +76,9 @@
 /* Sidebar */
 /* ------------------------------------------------- */
 #sidebar {
-	position: fixed;
-	top: @top-menu-height;
-	width: @sidepanelwidth;
-	z-index: 900;
+	float: right;
+	padding: @gutter @halfgutter;
+	width: 25%;
 
 	.module {
 		margin-top: @gutter;
@@ -95,7 +87,7 @@
 			font-size: @smalltext;
 			line-height: 40px;
 			margin: 0;
-			padding: 0 @gutter;
+			padding: 0;
 		}
 	}
 }
@@ -159,12 +151,6 @@ span.list-info {
 
 /*  Side Listings */
 .list-wrap {
-	position: fixed;
-	top: @top-menu-height;
-	width: @sidepanelwidth;
-	background: @gray10;
-	z-index: 1001;
-	overflow: auto;
 
 	.main-info {
 		padding: 0 @gutter+@gutter 0 @gutter;
@@ -231,79 +217,6 @@ span.list-info {
 		border-color: transparent;
 	}
 }
-
-
-/* Toggle Content Changes */
-/* ------------------------------------------------- */
-.large-menu-toggled {
-	.branding {
-		width: @primary-nav-lg-width;
-	}
-	.top-menu {
-		left: @primary-nav-lg-width;
-		&.indent {
-			left: @primary-nav-lg-width + @sidepanelwidth;
-		}
-	}
-	#content {
-		left: @primary-nav-lg-width;
-		&.adv {
-			left: @primary-nav-lg-width + @sidepanelwidth;
-		}
-	}
-	#sidepanel {
-		padding-left: @sidepanelwidth + @primary-nav-lg-width;
-	}
-	.dashboard-wrap,
-	.list-wrap,
-	.settings-wrap {
-		left: @primary-nav-lg-width;
-	}
-	.campaigns-view-wrap,
-	.donor-view-wrap {
-		padding-left: @sidepanelwidth + @primary-nav-lg-width;
-	}
-	.corner {
-		left: @primary-nav-lg-width;
-	}
-}
-.small-menu-toggled {
-	.branding {
-		width: @primary-nav-width;
-
-		a {
-			font-size: 26px;
-		}
-	}
-	.top-menu {
-		left: @primary-nav-width;
-		&.indent {
-			left: @primary-nav-width + @sidepanelwidth;
-		}
-	}
-	#content {
-		left: @primary-nav-width;
-		&.adv {
-			left: @primary-nav-width + @sidepanelwidth;
-		}
-	}
-	#sidepanel {
-		padding-left: @sidepanelwidth + @primary-nav-width;
-	}
-	.dashboard-wrap,
-	.list-wrap,
-	.settings-wrap {
-		left: @primary-nav-width;
-	}
-	.campaigns-view-wrap,
-	.donor-view-wrap {
-		padding-left: @sidepanelwidth + @primary-nav-width;
-	}
-	.corner {
-		left: @primary-nav-width;
-	}
-}
-
 
 /* Drop Down */
 /* ------------------------------------------------- */

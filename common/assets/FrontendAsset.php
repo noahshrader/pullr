@@ -16,6 +16,7 @@ class FrontendAsset extends AssetBundle {
 		'plugins/datatables/jquery.dataTables.js',
 		'plugins/datatables/DT_bootstrap.js',
 		'plugins/bootstrapExtend/js/bootstrap-colorpicker.js',
+		'plugins/pageslide/pageslide.js',
 		'js/frontend.js'
 	];
 	public $depends = [
