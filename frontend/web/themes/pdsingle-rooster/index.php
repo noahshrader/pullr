@@ -84,7 +84,7 @@
                 <div class="amount-progress">
                     <div class="project-progress status">
                         <div class="project-progressbar" style="background:{{campaign.primaryColor}}; width:{{campaign.percentageOfGoal}}%">
-                            <span class="progress-marker" style="background:{{campaign.secondaryColor}}"></span>
+                            <span class="progress-marker" style="background:{{campaign.primaryColor}}"></span>
                         </div>
                     </div>
                 </div>
