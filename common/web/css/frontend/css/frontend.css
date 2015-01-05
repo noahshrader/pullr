@@ -21,7 +21,6 @@
 /* Hitbox green */
 /* Hitbox hover state */
 /* Gray Sets */
-/* Dark theme */
 /* 3% darker than background */
 /* Main gray */
 /* 10% gray background */
@@ -1693,7 +1692,7 @@ yx-axis
 }
 .top-menu ul li.add-campaign span {
   float: left;
-  color: #6b6b75;
+  color: #9f9fa7;
   font-size: 1.1em;
   font-weight: 500;
   line-height: 62px;
@@ -1946,7 +1945,7 @@ yx-axis
   bottom: 0;
 }
 .content-wrap {
-  padding: 30px 30px 0;
+  padding: 30px;
   overflow: hidden;
 }
 /* Modules */
@@ -1962,12 +1961,12 @@ yx-axis
   overflow: hidden;
 }
 .module.table {
-  margin: 30px 0;
+  margin: 30px 0 0;
   background: transparent;
   box-shadow: none;
 }
 .module h5 {
-  color: #6b6b75;
+  color: #9f9fa7;
   font-size: 1.1em;
   font-weight: 500;
   margin-bottom: 30px;
@@ -2043,10 +2042,6 @@ span.list-info {
 .donor-view-wrap h1.donor-name {
   text-align: center;
   margin: 0 auto 30px;
-}
-.campaigns-view-wrap .content-wrap,
-.donor-view-wrap .content-wrap {
-  padding: 30px 0 0;
 }
 .donor-view-wrap h1 {
   margin-top: 40px;
@@ -2266,7 +2261,7 @@ table.dataTable table {
 }
 table.dataTable td {
   color: #85858e;
-  border-top: solid 1px #dfdfe2;
+  border-top: solid 1px #efeff0;
   cursor: pointer;
   -webkit-transition: linear 0.08s;
   -moz-transition: linear 0.08s;
@@ -2275,14 +2270,14 @@ table.dataTable td {
 }
 table.dataTable td.raised span {
   padding: 0 .6em;
-  background: #efeff0;
+  background: #f7f7f7;
   border-radius: 30px;
   background-clip: padding-box;
 }
 table.dataTable th,
 table.dataTable td,
 table.dataTable tbody th tbody td {
-  padding: .9em 4% !important;
+  padding: 1em 4% !important;
 }
 table.dataTable th,
 table.dataTable thead th {
@@ -2290,29 +2285,23 @@ table.dataTable thead th {
   font-size: 14px;
   font-weight: 500;
   padding: .6em 4% !important;
-  border-bottom: solid 1px #dfdfe2;
+  background: #f7f7f7;
+  border-bottom: solid 1px #efeff0;
 }
 table.dataTable tbody tr {
-  background-color: transparent !important;
+  background-color: #ffffff !important;
   border-color: transparent !important;
   -webkit-transition: linear 0.08s;
   -moz-transition: linear 0.08s;
   -ms-transition: linear 0.08s;
   transition: linear 0.08s;
 }
-table.dataTable tbody tr.donation-entry:hover {
-  background: #f7f7f7 !important;
-}
 table.dataTable tbody tr.donation-entry.drop,
 table.dataTable tbody tr.donation-entry.drop td tbody tr:hover,
 table.dataTable tbody tr.donation-entry + tr td[colspan~="4"],
 table.dataTable tbody tr.donation-entry + tr td[colspan~="5"] {
   padding: .3em 0 !important;
-  background: #ffffff !important;
   border-top: 0;
-}
-table.dataTable tbody tr.donation-entry tr:hover {
-  background: #ffffff !important;
 }
 table.dataTable tbody tr.donation-entry i {
   float: left;
@@ -2360,7 +2349,7 @@ table.dataTable.row-border tbody td,
 table.dataTable.display tbody th,
 table.dataTable.display tbody td,
 table.dataTable thead td {
-  border-top: solid 1px #dfdfe2;
+  border-top: solid 1px #efeff0;
 }
 .dataTables_info {
   color: #bababf !important;
@@ -2407,6 +2396,11 @@ table.dataTable thead td {
   margin: 0;
   padding: 12px 0;
 }
+.table-header,
+.table-footer {
+  padding: 15px 4%;
+  background: #f7f7f7;
+}
 .table-header .select2-container,
 .table-footer .select2-container {
   margin-right: 0;
@@ -2419,7 +2413,7 @@ table.dataTable thead td {
 }
 .table-header .select2-container.select2-dropdown-open a.select2-choice,
 .table-footer .select2-container.select2-dropdown-open a.select2-choice {
-  background: transparent;
+  background: #ffffff;
 }
 .table-header .select2-container .select2-choice,
 .table-footer .select2-container .select2-choice {
@@ -2438,7 +2432,7 @@ table.dataTable thead td {
 .table-footer .select2-container .select2-choice,
 .table-header .select2-container .select2-choices,
 .table-footer .select2-container .select2-choices {
-  background: transparent;
+  background: #ffffff;
 }
 .table-header .select2-container .select2-choice > span:first-child,
 .table-footer .select2-container .select2-choice > span:first-child,
@@ -2454,9 +2448,6 @@ table.dataTable thead td {
 .table-footer .pagination {
   margin: 0;
 }
-.table-header {
-  padding: 10px 30px;
-}
 .table-header a.btn {
   float: left;
   color: #ffffff;
@@ -2469,19 +2460,11 @@ table.dataTable thead td {
 }
 .table-footer {
   text-align: center;
-  padding: 15px 30px;
   border-top: solid 1px #efeff0;
 }
 .table-footer a.btn {
   float: none;
   margin: 10px 4px;
-}
-/*Trumbowyg Editor*/
-.trumbowyg-modal input[type="text"] {
-  min-height: 25px;
-}
-.trumbowyg-modal label .trumbowyg-input-infos span {
-  margin-left: 1px;
 }
 /* Campaign */
 /* ------------------------------------------------- */
@@ -2494,14 +2477,12 @@ table.dataTable thead td {
   background: #ffffff;
 }
 .campaign-edit-wrap .module .module-inner {
-  padding: 0;
-  margin-top: 50px;
+  padding: 45px 75px;
 }
 .campaign-edit-wrap .module .module-inner:first-child {
   margin: 0;
 }
 .campaign-edit-wrap .module .module-inner h5 {
-  font-size: 1.3em;
   text-align: center;
 }
 .campaign-edit-wrap .module .module-inner h5 i {
@@ -2509,36 +2490,20 @@ table.dataTable thead td {
   top: 5px;
   color: #dfdfe2;
   font-size: 30px;
-  margin: 30px auto 15px;
+  margin: 0 auto 15px;
   width: 48px;
   height: 48px;
   line-height: 48px;
   border: solid 2px #dfdfe2;
   border-radius: 50%;
 }
-.campaign-edit-wrap .module .social .module-inner h5 {
-  margin-bottom: 15px;
-}
-.campaign-edit-wrap .module .social .module-inner .network {
-  padding: 40px 30px 30px;
-  background: #efeff0;
-}
-.campaign-edit-wrap .module .social .module-inner .network .form-group {
-  margin: 0;
-}
-.campaign-edit-wrap .module .social .module-inner .form-group {
-  text-align: center;
-}
-.campaign-edit-wrap .module .social .module-inner label {
-  text-align: center;
+.campaign-edit-wrap .view-actions {
+  margin: 0 0 30px;
 }
 .campaign-edit-wrap .tab-content {
   position: relative;
   margin: 0 auto 30px;
   max-width: 800px;
-}
-.campaign-edit-wrap .tab-content .tab-pane {
-  padding: 30px 75px 45px;
 }
 .campaign-edit-wrap .tab-content h3 {
   text-align: center;
@@ -2546,8 +2511,31 @@ table.dataTable thead td {
   font-weight: 400;
   margin: 15px 0 45px;
 }
-.campaign-edit-wrap .view-actions {
-  margin: 0 0 30px;
+.campaign-edit-wrap .social .module-inner {
+  padding: 15px 75px !important;
+  margin: 0 !important;
+}
+.campaign-edit-wrap .social .module-inner.first {
+  padding-top: 45px !important;
+}
+.campaign-edit-wrap .social .module-inner.last {
+  padding-bottom: 45px !important;
+}
+.campaign-edit-wrap .social .module-inner h5 {
+  margin-bottom: 15px;
+}
+.campaign-edit-wrap .social .module-inner .network {
+  padding: 40px 30px 30px;
+  background: #efeff0;
+}
+.campaign-edit-wrap .social .module-inner .network .form-group {
+  margin: 0;
+}
+.campaign-edit-wrap .social .module-inner .form-group {
+  text-align: center;
+}
+.campaign-edit-wrap .social .module-inner label {
+  text-align: center;
 }
 .campaign-edit-wrap .col-sm-4,
 .campaign-edit-wrap .col-md-4,
@@ -2582,6 +2570,9 @@ table.dataTable thead td {
 #campaignEdit[data-campaigntype="Charity Fundraiser"].team-enabled #tieCampaignContainer {
   display: block;
 }
+#campaignEdit[data-campaigntype="Charity Fundraiser"].team-enabled #teamInvites {
+  padding-top: 0;
+}
 p.team-notice {
   text-align: center;
 }
@@ -2615,16 +2606,18 @@ p.team-notice {
 .field-campaign-formvisibility .checkbox label:before {
   display: none;
 }
-.field-campaign-enabledonorcomments .checkbox label .bootstrap-switch,
-.field-campaign-enabledonationprogressbar .checkbox label .bootstrap-switch,
-.field-campaign-enablethankyoupage .checkbox label .bootstrap-switch,
-.field-campaign-thankyoupagetext .checkbox label .bootstrap-switch,
-.field-campaign-teamenable .checkbox label .bootstrap-switch,
-.field-campaign-tiedtoparent .checkbox label .bootstrap-switch,
-.field-campaign-twitterenable .checkbox label .bootstrap-switch,
-.field-campaign-youtubeenable .checkbox label .bootstrap-switch,
-.field-campaign-facebookenable .checkbox label .bootstrap-switch,
-.field-campaign-formvisibility .checkbox label .bootstrap-switch {
+.field-campaign-enabledonorcomments .bootstrap-switch,
+.field-campaign-enabledonationprogressbar .bootstrap-switch,
+.field-campaign-enablethankyoupage .bootstrap-switch,
+.field-campaign-thankyoupagetext .bootstrap-switch,
+.field-campaign-teamenable .bootstrap-switch,
+.field-campaign-tiedtoparent .bootstrap-switch,
+.field-campaign-twitterenable .bootstrap-switch,
+.field-campaign-youtubeenable .bootstrap-switch,
+.field-campaign-facebookenable .bootstrap-switch,
+.field-campaign-formvisibility .bootstrap-switch {
+  position: relative;
+  right: -18px;
   display: block !important;
   margin: 0 auto;
 }
@@ -2640,10 +2633,11 @@ p.team-notice {
 .field-campaign-formvisibility label.control-label {
   display: none !important;
 }
-.field-campaign-enabledonorcomments .checkbox label .bootstrap-switch,
-.field-campaign-enabledonationprogressbar .checkbox label .bootstrap-switch,
-.field-campaign-formvisibility .checkbox label .bootstrap-switch {
+.field-campaign-enabledonorcomments .bootstrap-switch,
+.field-campaign-enabledonationprogressbar .bootstrap-switch,
+.field-campaign-formvisibility .bootstrap-switch {
   margin: 0;
+  right: 0;
 }
 /* General Campaign Edit */
 /* ------------------------------------------------- */
@@ -2827,14 +2821,12 @@ p.team-notice {
 .select2-drop.charitydrop .select2-results .select2-result-label br {
   display: none;
 }
-.social .module-inner {
-  margin: 0 !important;
-}
-/* CKE Editor */
+/* Editor */
 /* ------------------------------------------------- */
 /* Editor */
 .trumbowyg-box,
 .trumbowyg-editor {
+  margin: 0;
   width: 100%;
   border-radius: 2px;
   background-clip: padding-box;
@@ -2849,6 +2841,12 @@ p.team-notice {
 }
 .trumbowyg-textarea:focus {
   border: 0;
+}
+.trumbowyg-modal input[type="text"] {
+  min-height: 25px;
+}
+.trumbowyg-modal label .trumbowyg-input-infos span {
+  margin-left: 1px;
 }
 .trumbowyg-modal-box .trumbowyg-modal-button {
   border-radius: 2px;
@@ -2872,10 +2870,10 @@ p.team-notice {
 #campaignEdit[data-campaignType="Personal Fundraiser"] #donationDestination {
   display: none;
 }
-#campaignEdit[data-campaigntype="Charity Fundraiser"] .field-campaign-parentcampaignid {
+#campaignEdit[data-campaigntype="Charity Fundraiser"] .off .field-campaign-parentcampaignid {
   display: none;
 }
-#campaignEdit[data-campaigntype="Charity Fundraiser"] .field-campaign-parentcampaignid.highlight-wrap:before {
+#campaignEdit[data-campaigntype="Charity Fundraiser"] .off .field-campaign-parentcampaignid.highlight-wrap:before {
   left: 50%;
   margin-left: -10px;
 }
@@ -3248,7 +3246,7 @@ body.trash .campaigns-list .list-search {
 .view-actions {
   position: relative;
   display: block;
-  margin: 0 30px 30px;
+  margin-bottom: 30px;
   padding: 0;
   height: 58px;
   background: #dfdfe2;
@@ -3373,6 +3371,9 @@ body.trash .campaigns-list .list-search {
   left: -30px;
 }
 /* Child Campaigns */
+.campaign-view-childs {
+  margin-bottom: 30px !important;
+}
 .campaign-view-childs.dataTable th {
   padding: .9em 4% !important;
 }
@@ -3413,7 +3414,7 @@ body.campaigns .container.panels-wrap {
   padding-top: 70px;
   height: 100%;
   width: 33.33%;
-  border-right: solid 1px #29292d;
+  border-right: solid 1px #27272a;
   z-index: 900;
 }
 .campaign-panel.two {
@@ -4028,6 +4029,7 @@ ul.donation-actions li a:before {
 /* Dark UI */
 /* ------------------------------------------------- */
 body.dark {
+  background: #27272a;
   /* Base */
   /* ------------------------------------------------- */
   /* Placeholder styling */
@@ -4058,8 +4060,6 @@ body.dark {
   /* ------------------------------------------------- */
   /* Tooltips */
   /* ------------------------------------------------- */
-  /* Editor */
-  /* ------------------------------------------------- */
   /* Modals */
   /* ------------------------------------------------- */
 }
@@ -4079,15 +4079,15 @@ body.dark .top-menu,
 body.dark .site-content,
 body.dark #content,
 body.dark #sidebar {
-  background: #29292d;
+  background: #27272a;
 }
 body.dark .module {
   background: #2e2e32;
   box-shadow: none;
 }
 body.dark .module h5.module-title {
-  color: #ffffff;
-  background: #3a3a40;
+  color: #6b6b75;
+  background: #36363a;
 }
 body.dark .module.table {
   background: transparent;
@@ -4102,7 +4102,7 @@ body.dark ul.content-nav li a {
   color: #53535a;
 }
 body.dark .table-header {
-  background: #29292d;
+  background: #27272a;
 }
 body.dark .table-header .btn {
   background: #3a3a40;
@@ -4122,8 +4122,8 @@ body.dark .dataTables_info {
 body.dark table.dataTable th,
 body.dark table.dataTable thead th {
   color: #53535a;
-  background: #29292d;
-  border: 0;
+  background: #2e2e32;
+  border-bottom-color: #27272a;
 }
 body.dark table.dataTable tbody tr:hover,
 body.dark table.dataTable.hover tbody tr:hover,
@@ -4139,25 +4139,29 @@ body.dark table.dataTable.row-border tbody td,
 body.dark table.dataTable.display tbody th,
 body.dark table.dataTable.display tbody td,
 body.dark table.dataTable thead td {
-  border-top-color: #242428;
+  background: #2e2e32;
+  border-top-color: #27272a;
 }
 body.dark table.dataTable td.raised span {
-  background: #29292d;
+  background: #27272a;
 }
 body.dark table.dataTable tbody tr.donation-entry.drop,
 body.dark table.dataTable tbody tr.donation-entry + tr td[colspan~="4"],
 body.dark table.dataTable tbody tr.donation-entry + tr td[colspan~="5"] {
   background: #2e2e32 !important;
 }
+body.dark .table-header,
 body.dark .table-footer {
-  background: #29292d;
-  border-top-color: #242428;
+  background: #2e2e32;
+}
+body.dark .table-footer {
+  border-top-color: #27272a;
 }
 body.dark .list-search {
   border-bottom: solid 1px #222225;
 }
 body.dark .list-search span {
-  background: #242428;
+  background: #27272a;
 }
 body.dark .list-search input[type='search'] {
   background: #2e2e32;
@@ -4201,10 +4205,10 @@ body.dark .dropdown {
   padding: 0;
 }
 body.dark .dropdown ul {
-  background: #47474d;
+  background: #424248;
 }
 body.dark .dropdown ul:before {
-  border-color: transparent transparent #47474d transparent;
+  border-color: transparent transparent #424248 transparent;
 }
 body.dark .dropdown ul li a {
   color: #ffffff;
@@ -4287,16 +4291,13 @@ body.dark .select2-results .select2-result-label span {
 body.dark .bootstrap-switch.bootstrap-switch-off {
   border-color: #424248 !important;
 }
-body.dark .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default,
-body.dark .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
-  background: #3a3a40;
-}
-body.dark .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
-  color: #53535a !important;
-}
-body.dark .bootstrap-switch .bootstrap-switch-label {
+body.dark .bootstrap-switch.bootstrap-switch-off .bootstrap-switch-label {
   line-height: 26px;
-  background: #424248;
+  background: #3a3a40 !important;
+}
+body.dark .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
+body.dark .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+  background: #47474d !important;
 }
 body.dark .form-group i.mdi-action-help {
   color: #53535a;
@@ -4309,10 +4310,6 @@ body.dark .btn-default:hover {
   color: #ffffff;
   background-color: #424248;
 }
-body.dark .btn-container {
-  background: #2e2e32;
-  border-top-color: #29292d;
-}
 body.dark .primary-navigation {
   background: #222225;
 }
@@ -4320,7 +4317,7 @@ body.dark .primary-navigation .branding a {
   background: #222225;
 }
 body.dark .top-menu.shadow {
-  box-shadow: 0px -4px 0px 5px #242428;
+  box-shadow: 0px -4px 0px 5px #27272a;
 }
 body.dark .top-menu .avatar-container .avatar .user-photo-menu img {
   border-color: #3a3a40;
@@ -4329,7 +4326,7 @@ body.dark .top-menu .avatar-container .avatar .user-photo-menu:after {
   border-color: #53535a transparent transparent transparent;
 }
 body.dark .top-menu ul li.add-campaign span {
-  color: #53535a;
+  color: #6b6b75;
 }
 body.dark .dashboard-wrap #content.dashboard .stats-overview.other-raised-totals {
   background: #424248;
@@ -4338,14 +4335,14 @@ body.dark .dashboard-wrap #content.dashboard .stats-overview.other-raised-totals
   color: #ffffff;
 }
 body.dark .dashboard-wrap #content.dashboard .stats-overview.twitch-stats i.group-header {
-  color: #29292d;
+  color: #27272a;
   background: #3a3a40;
 }
 body.dark .dashboard-wrap #content.dashboard span.stick {
   background: #3a3a40;
 }
 body.dark .dashboard-wrap #sidebar.dashboard {
-  background: #29292d;
+  background: #27272a;
 }
 body.dark .dashboard-wrap #sidebar.dashboard .invites-wrap ul li .invite-actions {
   border-top-color: #3a3a40;
@@ -4356,7 +4353,7 @@ body.dark .dashboard-wrap #sidebar.dashboard .invites-wrap ul li .invite-actions
 body.dark .dashboard-wrap #sidebar.dashboard ul.activity-feed li {
   color: #53535a;
   background: #2e2e32;
-  border-bottom-color: #29292d;
+  border-bottom-color: #27272a;
 }
 body.dark .dashboard-wrap #sidebar.dashboard ul.activity-feed li:first-child {
   color: #ffffff;
@@ -4367,7 +4364,8 @@ body.dark .dashboard-wrap .alert-info {
   background: #3a3a40;
 }
 body.dark .list-wrap {
-  background: #242428;
+  background: #27272a;
+  border-right: solid 1px #222225;
 }
 body.dark .list-wrap .campaign-item,
 body.dark .list-wrap .donor-item {
@@ -4394,7 +4392,7 @@ body.dark .list-wrap .campaign-item.active:after,
 body.dark .list-wrap .donor-item.active:after,
 body.dark .list-wrap .campaign-item:hover:after,
 body.dark .list-wrap .donor-item:hover:after {
-  border-color: transparent #29292d transparent transparent;
+  border-color: transparent #27272a transparent transparent;
 }
 body.dark .list-wrap .campaign-item.active p.list-total,
 body.dark .list-wrap .donor-item.active p.list-total {
@@ -4402,14 +4400,18 @@ body.dark .list-wrap .donor-item.active p.list-total {
   background: #1dbc9c;
 }
 body.dark ul.campaign-quicknav {
-  background: #242428;
+  background: #27272a;
+  border-right: solid 1px #222225;
   border-bottom-color: #222225;
 }
+body.dark ul.campaign-quicknav li {
+  background: #27272a;
+}
 body.dark ul.campaign-quicknav li a {
-  background: #242428;
+  background: #27272a;
 }
 body.dark .view-actions {
-  background: #3a3a40;
+  background: #2e2e32;
   box-shadow: none;
 }
 body.dark .view-actions h4,
@@ -4417,16 +4419,16 @@ body.dark .view-actions h4 a {
   color: #ffffff;
 }
 body.dark .view-actions a.view-campaign {
-  background: #47474d;
+  background: #3a3a40;
 }
 body.dark .view-actions a.view-campaign:before {
-  border-bottom-color: #47474d;
+  border-bottom-color: #3a3a40;
 }
 body.dark .view-actions a.view-campaign:hover {
-  background: #53535a;
+  background: #424248;
 }
 body.dark .view-actions a.view-campaign:hover:before {
-  border-bottom-color: #53535a;
+  border-bottom-color: #424248;
 }
 body.dark .view-actions a.actions-toggle {
   color: #85858e;
@@ -4450,14 +4452,14 @@ body.dark .stats-overview.main-values {
   background: #1dbc9c;
 }
 body.dark .stats-overview.main-values .stats-box {
-  border-left-color: #2e2e32;
+  border-left-color: #27272a;
 }
 body.dark .stats-overview span {
   color: rgba(255, 255, 255, 0.6) !important;
 }
 body.dark .stats-overview .stats-box {
-  background: #3a3a40;
-  border-left-color: #2e2e32;
+  background: #2e2e32;
+  border-left-color: #27272a;
 }
 body.dark .stats-overview .stats-box h2,
 body.dark .stats-overview .stats-box h3 {
@@ -4466,31 +4468,49 @@ body.dark .stats-overview .stats-box h3 {
 body.dark .stats-overview .stats-box h2 span,
 body.dark .stats-overview .stats-box h3 span {
   color: #9f9fa7;
-  background: #424248;
+  background: #27272a;
 }
 body.dark .stats-overview .stats-box.top-donor,
 body.dark .stats-overview .stats-box.top-donation {
-  border-top-color: #2e2e32;
+  border-top-color: #27272a;
 }
 body.dark #campaignEdit .campaign-edit-wrap .module .module-inner h5 i {
   color: #53535a;
   border-color: #53535a;
 }
 body.dark #campaignEdit .highlight-wrap {
-  background: #3a3a40;
+  background: #36363a;
 }
 body.dark #campaignEdit .highlight-wrap:before {
-  border-color: transparent transparent #3a3a40 transparent;
+  border-color: transparent transparent #36363a transparent;
 }
 body.dark #campaignEdit .highlight-wrap input[type="text"],
 body.dark #campaignEdit .highlight-wrap input.form-control {
   border-color: #6b6b75;
 }
+body.dark #campaignEdit .image-upload-preview,
+body.dark #campaignEdit .file-preview {
+  background: #36363a;
+}
+body.dark #campaignEdit .image-upload-preview:before,
+body.dark #campaignEdit .file-preview:before {
+  border-color: #36363a transparent transparent transparent;
+}
 body.dark #campaignEdit .theme-selection .selected-theme span {
   color: #ffffff;
 }
+body.dark #campaignEdit .team-list ul li {
+  color: #ffffff;
+  border-bottom: 1px dashed #53535a;
+}
+body.dark #campaignEdit .team-list ul li a {
+  color: #53535a;
+}
+body.dark #campaignEdit .team-list ul li a:hover {
+  color: #ffffff;
+}
 body.dark .spinner-wrap {
-  background: #29292d;
+  background: #27272a;
 }
 body.dark .spinner div {
   background: #53535a;
@@ -4507,9 +4527,8 @@ body.dark .tooltip.right .tooltip-arrow {
 body.dark .tooltip.bottom .tooltip-arrow {
   border-bottom-color: #222225;
 }
-body.dark .trumbowyg-editor.trumbowyg-reset-css {
-  color: #ffffff;
-  background: #3a3a40 !important;
+body.dark .modal .modal-dialog button.close {
+  color: #d4d4d8;
 }
 body.dark .modal-backdrop {
   background: #222225;

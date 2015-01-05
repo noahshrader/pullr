@@ -80,6 +80,11 @@
     width: 0%;
   }
 }
+@-moz-keyframes animate-bar {
+  0% {
+    width: 0%;
+  }
+}
 @-webkit-keyframes animate-bar {
   0% {
     width: 0%;
@@ -92,6 +97,14 @@
 }
 /* Fade In */
 @keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
   from {
     opacity: 0;
   }
@@ -259,6 +272,8 @@ header .container {
 }
 .stats .stats-wrap .numbers span {
   opacity: .6;
+  margin-bottom: 0.4em;
+  display: inline-block;
 }
 .stats .stats-wrap .numbers h1 {
   margin: 0;
@@ -289,6 +304,8 @@ header .container {
 }
 /* User */
 .user-bar {
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   /* Social Links */
 }
@@ -389,6 +406,8 @@ header .container {
 /* ------------------------------------------------- */
 .stream-wrap {
   -webkit-transition: linear 0.08s;
+  -moz-transition: linear 0.08s;
+  -ms-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .stream-wrap #stream {
@@ -406,6 +425,8 @@ header .container {
   width: 65%;
   z-index: 10;
   -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -ms-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream #featured .featuredchat {
@@ -425,6 +446,8 @@ header .container {
 .stream-wrap #stream #featured .biggerFeaturedStream {
   width: 100%;
   -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -ms-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
 .stream-wrap #stream a.togglechat {
@@ -452,6 +475,7 @@ header .container {
   float: left;
   display: inline-block;
   width: 12.5%;
+  width: -webkit-calc(12.5%);
   width: calc(12.5%);
   padding: .5%;
 }
@@ -467,9 +491,10 @@ header .container {
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   filter: gray;
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  filter: grayscale(100%);
   -webkit-transition: linear 0.08s;
+  -moz-transition: linear 0.08s;
+  -ms-transition: linear 0.08s;
   transition: linear 0.08s;
 }
 .team-content .team-wrap .team-members .team-member.offline img:hover {
@@ -490,6 +515,8 @@ header .container {
   background: #222225;
   border-radius: 6px;
   background-clip: padding-box;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   z-index: 1001;
 }
@@ -669,8 +696,12 @@ header .container {
   padding: 5px 0;
   width: 100%;
   z-index: 9999;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.15);
   -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -ms-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
 }
 .slidestats.show {
