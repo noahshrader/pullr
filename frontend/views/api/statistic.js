@@ -114,18 +114,17 @@ PullrStatistic.loadFeaturedCampaignApp = function(){
             $scope.hostname = 'hostname=www.twitch.tv&channel=' + channel.name + '&auto_play=true&start_volume=25';
             $scope.chatUrl = '//twitch.tv/' + channel.name + '/chat?popout=';
             $timeout(function() {
-                var top = $('#watch_window').offset().top;
-                $("html, body").animate({ scrollTop: top }, 600);
+                var watchWindowTop = angular.element('#watch_window').offset().top;
+                angular.element("html, body").animate({ scrollTop: top }, 600);
             }, 50);
-            switch (campaign) {
-                case $scope.LAYOUT_TYPE_TEAM:
-                    $scope.selectedLogo = channel.image.size300;
-                break;
-                case $scope.LAYOUT_TYPE_SINGLE:
-                case $scope.LAYOUT_TYPE_MULTI:
-                    $scope.selectedLogo = channel.logo;
+
+            if (channel.hasOwnProperty('logo')) {
+                $scope.selectedLogo = channel.logo;
+            } else if (channel.hasOwnProperty('image')) {
+                $scope.selectedLogo = channel.image.size300;
             }
         }
+
     });
 
     app.service('PullrCampaignData', function($http) {
