@@ -35,14 +35,14 @@ $showBackground = isset($_GET['bg']) && $_GET['bg'] == 1 ? true : false ;
 	        $publicParams = ['googleAPIKey'];
 	        $params = array_intersect_key(Yii::$app->params, array_flip($publicParams));
 	        $js .= 'Pullr.params = '.json_encode($params).';';
-	        $onreadyJs = '';
+
 	        if ($user) {
 	           /**@var User $user*/
 	           $js .= 'window.Pullr.user = ' . json_encode($user->toArray()) . ';';
-	           $onreadyJs .= 'twitchEventsMonitor();';
+
 	        }
 	        echo $js;
-	        $this->registerJs($onreadyJs);
+
 	        ?>
 	    </script>
 	    <!-- Load Fonts -->
