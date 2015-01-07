@@ -180,6 +180,7 @@ class IpnController extends FrontendController
                             $payment->amount = $data['mc_gross'];
                             $payment->payPalTransactionId = $data['txn_id'];
                             $payment->createdDate = time();
+                            $payment->paymentDate = time();
                             $payment->type = $paymentParams['paymentType'];
                             $payment->save();
                         }

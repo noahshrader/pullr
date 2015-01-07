@@ -56,6 +56,7 @@ class PullrPayment extends \yii\base\Component
                 $params['paymentType'] = \common\models\Payment::TYPE_PRO_YEAR;
                 break;
 
+            case '3.99':
             case \Yii::$app->params['monthSubscription']:
                 $params['days'] = (365.25) / 12;
                 $params['subscription'] = Plan::SUBSCRIPTION_MONTH;
