@@ -175,26 +175,23 @@ class Donation extends ActiveRecord
         $rows = $query->all();
         $sumAry = [];
         $donationIds = [];
-        foreach ($rows as $row){
+        foreach ($rows as $row) {
             $donationIds[] = $row['id'];
             if($goupBy == 'email'){
                 $sumAry[$row['email']] = $row['sum'];
             }else if($goupBy == 'name'){
                 $sumAry[$row['name']] = $row['sum'];
             }
-
         }
 
-        $donations = Donation::findAll($donationIds);
-        usort($donations, function(Donation $d1,Donation $d2) use (&$donationIds){
-            return (array_search($d1->id, $donationIds) > array_search($d2->id, $donationIds)) ? '1' : '-1';
-        });
+        $donations = Donation::find()->where(['id' => $donationIds])->orderBy('id desc')->all();
+
         /*we are using model function name, because logic maybe different to apply for getting names*/
         $donors = [];
         foreach ($donations as $donation){
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
             $key = $goupBy == 'email'?$donation['email']:$donation['nameFromForm'];
-            $donors[] = [ 'name' => $name, 
+            $donors[] = [ 'name' => $name,
                         'amount' => $sumAry[$key]*1,
                         'email' => $donation->email,
                         'campaignId' => $donation->campaignId];

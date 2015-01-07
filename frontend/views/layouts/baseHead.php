@@ -24,15 +24,14 @@ use common\models\Campaign;
         $publicParams = ['googleAPIKey'];
         $params = array_intersect_key(Yii::$app->params, array_flip($publicParams));
         $js .= 'Pullr.params = '.json_encode($params).';';
-        $onreadyJs = '';
+
         if (!\Yii::$app->user->isGuest) {
            $user = \Yii::$app->user->identity;
            /**@var User $user*/
            $js .= 'window.Pullr.user = ' . json_encode($user->toArray()) . ';';
-           $onreadyJs .= 'twitchEventsMonitor();';
+
         }
         echo $js;
-        $this->registerJs($onreadyJs);
         ?>
     </script>
     <!-- Load Fonts -->
