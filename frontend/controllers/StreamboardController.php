@@ -40,7 +40,7 @@ class StreamboardController extends FrontendController
                     [
                         'actions' => ['source', 'region', 'get_followers', 'get_regions_ajax', 'get_stream_data',
                                     'get_donations_ajax', 'get_subscribers', 'get_streamboard_config', 'get_activity_feed_setting',
-                                    'get_source_data', 'get_campaigns_ajax', 'test_ajax', 'update_region_ajax'],
+                                    'get_source_data', 'get_campaigns_ajax', 'test_ajax', 'update_region_ajax', 'get_test_alert'],
                         'allow' => true
                     ],
                     [
@@ -663,6 +663,7 @@ class StreamboardController extends FrontendController
         }
 
         Yii::$app->response->format = Response::FORMAT_JSON;
+        
         $user = Streamboard::getCurrentUser();
         $accessToken = $user->userFields->twitchAccessToken;
         $channel = $user->userFields->twitchChannel;
@@ -689,8 +690,9 @@ class StreamboardController extends FrontendController
         if ( ! Yii::$app->request->isPost) {
             Yii::$app->end();
         }
-
+    
         Yii::$app->response->format = Response::FORMAT_JSON;
+        
         $user = Streamboard::getCurrentUser();
         $channel = $user->userFields->twitchChannel;
 
@@ -734,7 +736,6 @@ class StreamboardController extends FrontendController
     public function actionGet_test_alert()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-
         $user = Streamboard::getCurrentUser();
         $streamboardConfig = $user->streamboardConfig;
         $testAlerts = StreamboardTestAlert::find()
