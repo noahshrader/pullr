@@ -40,7 +40,7 @@
                     var url = Service.getCampaignBackgroundUrl(Service.customCampaignBackgrounds[i]);
                     var img = new Image();
                     img.src = url;
-                }                
+                }
             }
 
             this.preloadSound = function() {
@@ -69,7 +69,7 @@
                         break;
                     case 'Custom':
                         path = addUserToPath(Service.PATH_TO_CUSTOM_SOUNDS)+sound;
-                        break;                                        
+                        break;
                 }
                 return path;
             }
@@ -82,11 +82,12 @@
             }
 
             this.playSound = function (sound,soundType, volume) {
-                if (!sound){
+
+                if (!sound) {
                     return;
                 }
                 // var path;
-                switch (soundType){
+                switch (soundType) {
                     case 'Library':
                         path = Service.PATH_TO_LIBRARY_SOUNDS+sound;
                         break;
@@ -94,7 +95,7 @@
                         path = addUserToPath(Service.PATH_TO_CUSTOM_SOUNDS)+sound;
                         break;
                     default:
-                        var a = $filter('filter')(Service.customSounds, sound, true);                        
+                        var a = $filter('filter')(Service.customSounds, sound, true);
                         if(a.length > 0){
                             Service.playSound(a[0], 'Custom', volume);
                         }
@@ -104,17 +105,14 @@
                         }
                         return true;
                 }
+
                 var path = this.getSoundPath(sound, soundType);
                 sound = this.getSound(path);
 
-                /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
-                if (this.sound) {
-                    this.sound.pause();
-                    this.sound.currentTime = 0;
-                }
-                this.sound = sound;
-                this.sound.volume = volume / 100;
-                this.sound.play();
+                // /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
+                sound.volume = volume / 100;
+                sound.play();
+
             };
             this.getImageUrl = function(image, imageType) {
                 if ( ! image || ! imageType) {
@@ -139,7 +137,7 @@
                 } else {
                     return addUserToPath(Service.PATH_TO_CUSTOM_CAMPAIGN_BACKGROUNDS) + image;
                 }
-            }            
+            }
 
             this.removeCampaignBackground = function(image){
                 $http.post('app/streamboard/alert_remove_campaign_background_ajax', image).success(function(data){
