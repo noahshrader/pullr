@@ -18,8 +18,26 @@
             var Service = this;
             $.extend(this, Pullr.Streamboard.AlertMediaManager);
             var soundCache = {};
+            var flashSupport = (navigator.mimeTypes && navigator.mimeTypes.length
+                ? Array.prototype.slice.call(navigator.mimeTypes).some(function(a) {
+                    return "application/x-shockwave-flash" == a.type;
+                }) : /MSIE/.test(navigator.userAgent)
+                ? eval("try { new ActiveXObject('ShockwaveFlash.ShockwaveFlash') && !0 } catch(e) { !1 };") : !1);
+
+            var html5AudioSupport = (function() {
+                                        var a = document.createElement('audio');
+                                        return !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
+                                    })();
+
             this.init = function() {
-                Service.preloadSound();
+                soundManager.setup({
+                    preferFlash: !html5AudioSupport,
+                    url: Pullr.streamboard_common_path + '/bower_components/soundmanager/swf',
+                    onready: function() {
+                        Service.preloadSound();
+                    }
+                });
+
                 Service.preloadImage();
             }
 
@@ -47,13 +65,22 @@
                 for (var i = 0, il = Service.customSounds.length; i < il; i++) {
                     var sound = Service.customSounds[i];
                     var path = this.getSoundPath(sound, 'Custom');
-                    soundCache[path] = new Audio(path);
+
+
+                    soundCache[path] = soundManager.createSound({
+                        url: path
+                    });
+
                 }
 
                 for (var i = 0, il = Service.librarySounds.length; i < il; i++) {
                     var sound = Service.librarySounds[i];
                     var path = this.getSoundPath(sound, 'Library');
-                    soundCache[path] = new Audio(path);
+                    console.log(path)
+                    soundCache[path] = soundManager.createSound({
+                        url: path
+                    });
+                    console.log(soundCache[path]);
                 }
 
             }
@@ -76,7 +103,9 @@
 
             this.getSound = function(path) {
                 if ( ! soundCache.hasOwnProperty(path)) {
-                    soundCache[path] = new Audio(path);
+                    soundCache[path] = soundManager.createSound({
+                        url: path
+                    });
                 }
                 return soundCache[path];
             }
@@ -108,10 +137,11 @@
 
                 var path = this.getSoundPath(sound, soundType);
                 sound = this.getSound(path);
+                if (sound) {
+                    sound.setVolume(volume);
+                    sound.play();
+                }
 
-                // /*we are using $rootScope.audio to have ability to stop current audio if it is playing now*/
-                sound.volume = volume / 100;
-                sound.play();
 
             };
             this.getImageUrl = function(image, imageType) {

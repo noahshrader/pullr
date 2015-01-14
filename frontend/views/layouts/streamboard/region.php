@@ -7,7 +7,7 @@ use frontend\models\streamboard\Streamboard;
 use common\models\Donation;
 use common\models\Campaign;
 CommonAsset::register($this);
-StreamboardCommonAsset::register($this);
+$streamboardCommonBundle = StreamboardCommonAsset::register($this);
 StreamboardSingleRegionAsset::register($this);
 $this->title = 'Streamboard';
 $user = Streamboard::getCurrentUser();
@@ -19,6 +19,7 @@ $showBackground = isset($_GET['bg']) && $_GET['bg'] == 1 ? true : false ;
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <head>
+    	<?= $this->render('../baseHead') ?>
 	    <meta charset="<?= Yii::$app->charset ?>"/>
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <title><?= Html::encode($this->title) ?></title>
@@ -32,6 +33,7 @@ $showBackground = isset($_GET['bg']) && $_GET['bg'] == 1 ? true : false ;
 	        $js .= 'window.Pullr.ANONYMOUS_NAME = "' . Donation::ANONYMOUS_NAME . '";';
 	        $js .= 'window.Pullr.CAMPAIGN_TYPE_CHARITY_FUNDRAISER = "' . Campaign::TYPE_CHARITY_FUNDRAISER . '";';
 	        $js .= 'Pullr.ENV = "'. YII_ENV.'";';
+	        $js .= 'window.Pullr.streamboard_common_path = "' . $streamboardCommonBundle->baseUrl . '";';
 	        $publicParams = ['googleAPIKey'];
 	        $params = array_intersect_key(Yii::$app->params, array_flip($publicParams));
 	        $js .= 'Pullr.params = '.json_encode($params).';';

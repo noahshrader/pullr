@@ -23,7 +23,8 @@
     "angular-bootstrap-datetimepicker": "~0.2.4",
     "zeroclipboard": "2.1.6",
     "hint.css": "~1.3.3",
-    "sprintf": "*"
+    "sprintf": "*",
+    "soundmanager": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.23",
