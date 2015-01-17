@@ -4,56 +4,67 @@ html.dataset.ngApp = 'PullrApp';
 var body = document.getElementsByTagName('body')[0];
 body.dataset.ngController = 'PullrCtrl';
 
-var head = document.getElementsByTagName('head')[0];
-head.dataset.ngController = 'PullrCtrl';
 var app = angular.module('PullrApp', ['ngSanitize']);
 
-app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService, $sce) {
-	$scope.isDataReady = false;
-	$scope.LAYOUT_TYPE_SINGLE = Pullr.LAYOUT_TYPE_SINGLE;
-	$scope.LAYOUT_TYPE_MULTI = Pullr.LAYOUT_TYPE_MULTI;
-	$scope.LAYOUT_TYPE_TEAM = Pullr.LAYOUT_TYPE_TEAM;
-	CampaignDataService.loadCampaign(function(data) {
-		$scope.campaign = data;	
-		// $scope.campaign.description = $sce.get
-		CampaignDataService.loadChannels(function(data) {
-			if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
-				$scope.channel = data;
-				$scope.selectedChannel = data;
-			} else {
-				$scope.channels = data;
-				if (data.length > 0) {
-					$scope.selectedChannel = data[0];
-				}
-				
-			}
-			$scope.isDataReady = true;
-		});
-		if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_TEAM) {
-			CampaignDataService.loadTeam(function(data) {
-				$scope.team = data;
-				console.log(data);
-			});
-		}
-		
-	});
+app.controller('PullrCtrl', function ($scope, $rootScope, $interval, CampaignDataService, $sce) {
+    $scope.isDataReady = false;
+    $scope.LAYOUT_TYPE_SINGLE = Pullr.LAYOUT_TYPE_SINGLE;
+    $scope.LAYOUT_TYPE_MULTI = Pullr.LAYOUT_TYPE_MULTI;
+    $scope.LAYOUT_TYPE_TEAM = Pullr.LAYOUT_TYPE_TEAM;
 
-	$interval(function(){
-		CampaignDataService.loadChannels(function(data) {
-			if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
-				$scope.channel = data;
-			} else {
-				$scope.channels = data;
-			}
-			$scope.isDataReady = true;
-		});
-	}, 90000);
+    if ( false == $scope.isDataReady) {
+    	CampaignDataService.loadCampaign().success(function(data) {
+    		$rootScope.campaign = data;
+	        $scope.campaign = data;
+	        // $scope.campaign.description = $sce.get
 
-	$interval(function(){
-		CampaignDataService.loadCampaign(function(data){
-			$scope.campaign = data;
-		});
-	}, 90000);
+	        CampaignDataService.loadChannels().success(function(data) {
+
+	            if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
+	                $scope.channel = data;
+	                $scope.selectedChannel = data;
+	            } else {
+	                $scope.channels = data;
+	                if (data.length > 0) {
+	                    $scope.selectedChannel = data[0];
+	                }
+
+	            }
+	            $scope.isDataReady = true;
+	        }).error(function(data) {
+	        	alert('Please enter a valid channel name');
+	        });
+
+	        if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_TEAM) {
+	            CampaignDataService.loadTeam()
+	            	.success(function(data) {
+		                $scope.team = data;
+		            })
+		            .error(function() {
+		            	alert('Can\'t load team')
+		            });
+	        }
+
+	    });
+    }
+
+
+    $interval(function(){
+        CampaignDataService.loadChannels().success(function(data) {
+            if ($scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
+                $scope.channel = data;
+            } else {
+                $scope.channels = data;
+            }
+            $scope.isDataReady = true;
+        });
+    }, 90000);
+
+    $interval(function(){
+        CampaignDataService.loadCampaign().success(function(data){
+            $scope.campaign = data;
+        });
+    }, 90000);
 
     $scope.to_trusted = function(html_code) {
         return $sce.trustAsHtml(html_code);
@@ -61,48 +72,37 @@ app.controller('PullrCtrl', function ($scope, $interval, CampaignDataService, $s
 });
 
 app.factory('CampaignDataService', function($http) {
-	var service = {};
-	service.data = {};
-	service.campaign = null;
-	service.user = null;
-	service.channels = null;
-	service.call = function(method, params, callback) {
-		if (!params) {
-	        params = {};
-	    }
-	    
-	    for (var attrname in Pullr.requestParams) { 
-	        params[attrname] = Pullr.requestParams[attrname]; 
-	    }
+    var service = {};
+    service.data = {};
+    service.campaign = null;
+    service.user = null;
+    service.channels = null;
+    service.call = function(method, params) {
+        if (!params) {
+            params = {};
+        }
 
-	    var url = Pullr.API_URL + method;
+        for (var attrname in Pullr.requestParams) {
+            params[attrname] = Pullr.requestParams[attrname];
+        }
 
-	    $http.post(url,params).then(function(response) {
-	    	callback(response.data);
-	    });
-	}
+        var url = Pullr.API_URL + method;
 
-	service.loadCampaign = function(callback) {		
-		service.call('campaign', {}, function(data) {
-			service.campaign = data;
-			callback(data);
-		});
-	}
+        return $http.post(url,params);
+    }
 
-	service.loadChannels = function(callback) {
-		service.call('channels', {}, function(data) {
-			service.channels = data;
-			callback(data);
-		});	
-	}
+    service.loadCampaign = function(callback) {
+        return service.call('campaign', {});
+    }
 
-	service.loadTeam = function(callback) {
-		service.call('team', {}, function(data) {
-			service.team = data;
-			callback(data);
-		});	
-	}
-	return service;
+    service.loadChannels = function(callback) {
+        return service.call('channels', {});
+    }
+
+    service.loadTeam = function(callback) {
+        return service.call('team');
+    }
+    return service;
 });
 
 app.directive('bgImage', function(){
@@ -117,73 +117,73 @@ app.directive('bgImage', function(){
 });
 
 app.directive('pullrCampaignName', function(CampaignDataService) {
-	return {
-		restrict: 'A',
-		scope: '@',
-		template: '<span ng-cloak>{{campaign.name}}</span>',
-		link: function(scope,element, attr) {
-		}
-	}
+    return {
+        restrict: 'A',
+        scope: '@',
+        template: '<span ng-cloak>{{campaign.name}}</span>',
+        link: function(scope,element, attr) {
+        }
+    }
 });
 
 app.directive('pullrCampaignLayout', function($interval, $timeout, CampaignDataService) {
-	return {
-		restrict: 'A',
-		scope: '@',
-		link : function(scope, element, attr) {
+    return {
+        restrict: 'A',
+        scope: '@',
+        link : function(scope, element, attr) {
 
-			scope.$watch('selectedChannel', function(selectedChannel) {
-				if (selectedChannel != null) {
-					scope.embedPlayerUrl = '//www.twitch.tv/widgets/live_embed_player.swf?channel=' + scope.selectedChannel.name;
-					scope.hostname = 'hostname=www.twitch.tv&channel=' + scope.selectedChannel.name + '&auto_play=true&start_volume=25';
-					scope.chatUrl = '//twitch.tv/' + scope.selectedChannel.name + '/chat?popout=';
-				}
-			});
+            scope.$watch('selectedChannel', function(selectedChannel) {
+                if (selectedChannel != null) {
+                    scope.embedPlayerUrl = '//www.twitch.tv/widgets/live_embed_player.swf?channel=' + scope.selectedChannel.name;
+                    scope.hostname = 'hostname=www.twitch.tv&channel=' + scope.selectedChannel.name + '&auto_play=true&start_volume=25';
+                    scope.chatUrl = '//twitch.tv/' + scope.selectedChannel.name + '/chat?popout=';
+                }
+            });
 
-			scope.setChannel = function(channel) {
-				scope.selectedChannel = channel;
-			}
+            scope.setChannel = function(channel) {
+                scope.selectedChannel = channel;
+            }
 
-			scope.getLayoutUrl = function() {
-				if (typeof(scope.campaign) != 'undefined') {
-					if (scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
-						return Pullr.API_URL + 'campaignsinglestreamlayout';
-					} else if(scope.campaign.layoutType == Pullr.LAYOUT_TYPE_MULTI) {
-						return Pullr.API_URL + 'campaignmultistreamlayout';
-					} else {
-						return Pullr.API_URL + 'campaignteamstreamlayout'; 
-					}	
-				}				
-			}
+            scope.getLayoutUrl = function() {
+                if (typeof(scope.campaign) != 'undefined') {
+                    if (scope.campaign.layoutType == Pullr.LAYOUT_TYPE_SINGLE) {
+                        return Pullr.API_URL + 'campaignsinglestreamlayout';
+                    } else if(scope.campaign.layoutType == Pullr.LAYOUT_TYPE_MULTI) {
+                        return Pullr.API_URL + 'campaignmultistreamlayout';
+                    } else {
+                        return Pullr.API_URL + 'campaignteamstreamlayout';
+                    }
+                }
+            }
 
-			scope.afterLoadTemplate = function(){
-				console.log('Campaign template loaded');
-				myCustomAfterRender = myCustomAfterRender || function(){};
-				myCustomAfterRender();
-			}
-			
-		},
-		template:'<div ng-include="getLayoutUrl() | trusted" onload="afterLoadTemplate()" ng-cloak></div>' 
-	}
+            scope.afterLoadTemplate = function(){
+                console.log('Campaign template loaded');
+                myCustomAfterRender = myCustomAfterRender || function(){};
+                myCustomAfterRender();
+            }
+
+        },
+        template:'<div ng-include="getLayoutUrl() | trusted" onload="afterLoadTemplate()" ng-cloak></div>'
+    }
 });
 
 app.directive('pullrDonorList', function(CampaignDataService) {
-	return {
-		restrict : 'A',
-		scope : '@',
-		link : function(scope, element, attr) {
-			$('#btnShowDonorList').magnificPopup({
-				type: 'inline',
-				preloader: false,				
-				modal: false,
-				mainClass: 'mfp-fade'
-			});
-			scope.closeDonorModal = function() {
-				$.magnificPopup.close();
-			}
-		},
-		templateUrl: Pullr.API_URL + 'donorlist'
-	}
+    return {
+        restrict : 'A',
+        scope : '@',
+        link : function(scope, element, attr) {
+            $('#btnShowDonorList').magnificPopup({
+                type: 'inline',
+                preloader: false,
+                modal: false,
+                mainClass: 'mfp-fade'
+            });
+            scope.closeDonorModal = function() {
+                $.magnificPopup.close();
+            }
+        },
+        templateUrl: Pullr.API_URL + 'donorlist'
+    }
 });
 
 app.filter('trusted', ['$sce', function ($sce) {
@@ -193,5 +193,5 @@ app.filter('trusted', ['$sce', function ($sce) {
 }]);
 
 angular.element(document).ready(function() {
-  	angular.bootstrap(document, ['PullrApp']);
+    angular.bootstrap(document, ['PullrApp']);
 });

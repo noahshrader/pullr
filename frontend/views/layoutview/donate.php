@@ -7,16 +7,16 @@ use yii\widgets\MaskedInput;
 <!-- BEGIN Donation Form -->
 <section class="<?= ($campaign->type == Campaign::TYPE_PERSONAL_FUNDRAISER) ? 'tip-jar' :'events-form' ?>">
     <div class="donation-form-header">
-        <h2 class="main-title" ng-cloak>{{campaign.name}}</h2>
+        <h2 class="main-title"><?= $campaign->name; ?></h2>
         <? if ($campaign->type != Campaign::TYPE_PERSONAL_FUNDRAISER): ?>
-            <? 
+            <?
                $charityName = '';
                if ($campaign->donationDestination == Campaign::DONATION_CUSTOM_FUNDRAISER){
                    $charityName = $campaign->customCharity;
-               } 
+               }
                if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && $campaign->charityId){
                    $charityName = $campaign->charity->name;
-               } 
+               }
             ?>
             <? if ($charityName):?>
                 <h3 class="charity-name">for <span><?= $charityName ?></span>
