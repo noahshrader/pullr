@@ -29,7 +29,7 @@ class LayoutviewController extends \yii\web\Controller {
             throw new \yii\web\NotFoundHttpException("Such user doesn't exist");
         }
         
-        $campaign = Campaign::findOne(['userId' => $user->id, 'status' => Campaign::STATUS_ACTIVE, 'alias' => $campaignAlias]);
+        $campaign = Campaign::findOne(['userId' => $user->id, 'alias' => $campaignAlias]);
         if (!$campaign){
             throw new \yii\web\NotFoundHttpException("Such campaign doesn't exist for user");
         }
@@ -42,12 +42,18 @@ class LayoutviewController extends \yii\web\Controller {
         $campaign = $this->getCampaign($userAlias, $campaignAlias);
         $campaignTheme = $campaign->getTheme()->one();
 
-        if(!is_null($campaignTheme) && ($campaignTheme->status == Theme::STATUS_ACTIVE)){
+        if(!is_null($campaignTheme) && ($campaignTheme->status == Theme::STATUS_ACTIVE))
+        {
             $theme = $campaignTheme->filename;
         }
         else
         {
             $theme = 'default';
+        }
+
+        if($campaign->status !== Campaign::STATUS_ACTIVE)
+        {
+            $theme = 'archived';
         }
         
         echo $this->renderPartial("@app/web/themes/{$theme}/index", ['campaign' => $campaign]);
