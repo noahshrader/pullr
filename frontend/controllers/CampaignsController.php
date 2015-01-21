@@ -30,18 +30,20 @@ use yii\web\UploadedFile;
 
 class CampaignsController extends FrontendController {
 
-    public function actionAdd() {
+    public function actionAdd()
+    {
         $campaign = new Campaign();
         return $this->actionIndex($campaign);
     }
 
-    public function actionEdit() {
+    public function actionEdit()
+    {
         $campaign = $this->getCampaign();
-
         return $this->actionIndex($campaign, null, $campaign->status);
     }
 
-    public function actionStatus() {
+    public function actionStatus()
+    {
         $campaign = $this->getCampaign();
         $status = $_REQUEST['status'];
         $campaign->status = $status;
@@ -57,9 +59,9 @@ class CampaignsController extends FrontendController {
         $this->redirect('app/campaigns');
     }
 
-    public function actionView(){
+    public function actionView()
+    {
         $campaign = $this->getCampaign(true);
-
         return $this->actionIndex(null, $campaign, $campaign->status);
     }
 
@@ -123,7 +125,13 @@ class CampaignsController extends FrontendController {
             }
         }
 
-        if ($editCampaign) {
+        if ($editCampaign)
+        {
+            if (in_array($editCampaign->status, [Campaign::STATUS_DELETED, Campaign::STATUS_PENDING]))
+            {
+                $this->redirect(['campaigns/view', 'id' => $editCampaign->id]);
+            }
+
             if (!$editCampaign->startDate) {
                 $editCampaign->startDate = time();
             }

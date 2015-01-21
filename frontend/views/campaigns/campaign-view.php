@@ -57,7 +57,7 @@ if ($campaign->donationDestination == Campaign::DONATION_PARTNERED_CHARITIES && 
                                     </a>
                                 </li>
                                 <li class="cf">
-                                    <a href="app/campaigns/edit?id=<?= $campaign->id ?>">
+                                    <a <?if(in_array($campaign->status, [Campaign::STATUS_DELETED, Campaign::STATUS_PENDING])):?>class="disabled"<?else:?>href="app/campaigns/edit?id=<?= $campaign->id ?>"<?endif;?>>
                                         <!-- Edit -->
                                         Edit
                                     </a>
