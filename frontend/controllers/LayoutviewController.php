@@ -29,7 +29,7 @@ class LayoutviewController extends \yii\web\Controller {
             throw new \yii\web\NotFoundHttpException("Such user doesn't exist");
         }
         
-        $campaign = Campaign::findOne(['userId' => $user->id, 'alias' => $campaignAlias]);
+        $campaign = Campaign::findOne(['userId' => $user->id, 'status' => [Campaign::STATUS_ACTIVE, Campaign::STATUS_PENDING], 'alias' => $campaignAlias]);
         if (!$campaign){
             throw new \yii\web\NotFoundHttpException("Such campaign doesn't exist for user");
         }
@@ -51,7 +51,7 @@ class LayoutviewController extends \yii\web\Controller {
             $theme = 'default';
         }
 
-        if($campaign->status !== Campaign::STATUS_ACTIVE)
+        if($campaign->status == Campaign::STATUS_PENDING)
         {
             $theme = 'archived';
         }
