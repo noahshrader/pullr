@@ -19,7 +19,6 @@ $deactivateAccount = new DeactivateAccount();
 			]) ?>
 			<div class="modal-body">
 				<?= $form->field($deactivateAccount, 'reason')->textarea();?>
-				<?= $form->field($deactivateAccount, 'password')->passwordInput(); ?>
 			</div>
 			<div class="modal-footer btn-container">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

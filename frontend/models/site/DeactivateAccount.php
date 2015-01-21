@@ -12,12 +12,9 @@ class DeactivateAccount extends ActiveRecord {
 
     /**
      * how much time should be passed before account should be deleted in seconds
-     * 30 days = 30*24*60*60 = 2592000
+     * 20 days = 20*24*60*60 = 1728000
      */
-    const DEACTIVATION_PERIOD = 2592000;
-//    const DEACTIVATION_PERIOD = 20;
-
-    public $password;
+    const DEACTIVATION_PERIOD = 1728000;
 
     public static function tableName() {
         return 'tbl_deactivateaccount';
@@ -25,7 +22,7 @@ class DeactivateAccount extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'default' => ['reason', 'password'],
+            'default' => ['reason'],
             'processing' => ['processing'],
         ];
     }
@@ -38,8 +35,6 @@ class DeactivateAccount extends ActiveRecord {
             return [
                 ['reason', 'filter', 'filter' => 'trim'],
                 ['reason', 'filter', 'filter' => 'strip_tags'],
-                ['password', 'required'],
-                ['password', 'validatePassword'],
             ];
         } else {
             return [];
@@ -61,25 +56,9 @@ class DeactivateAccount extends ActiveRecord {
     }
 
     /**
-     * 
      * @return User
      */
     public function getUser() {
         return $this->hasOne(User::className(), ['id' => 'userId']);
     }
-
-    /**
-     * Validates the password.
-     */
-    public function validatePassword() {
-        if (!$this->password) {
-            $this->addError('password', 'Password is required');
-            return;
-        }
-        $user = \Yii::$app->user->identity;
-        if (!$user || !$user->validatePassword($this->password)) {
-            $this->addError('password', 'Incorrect password.');
-        }
-    }
-
 }
