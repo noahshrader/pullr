@@ -1,7 +1,26 @@
 (function () {
     var app = angular.module('pullr.streamboard.donations', []).
-        service('donations', ['$http', '$interval', '$timeout', '$compile', 'stream', 'simpleMarqueeHelper', 'donationsFilterToSelectedCampaignsFilter', 'groupByFilter', 'orderByFilter', 'limitToFilter',
-            function ($http, $interval, $timeout, $compile, stream, simpleMarqueeHelper, donationsFilterToSelectedCampaignsFilter, groupByFilter, orderByFilter, limitToFilter) {
+        service('donations', ['$http',
+                            '$interval',
+                            '$timeout',
+                            '$compile',
+                            'stream',
+                            'simpleMarqueeHelper',
+                            'donationsFilterToSelectedCampaignsFilter',
+                            'groupByFilter',
+                            'orderByFilter',
+                            'limitToFilter',
+            function ($http,
+                    $interval,
+                    $timeout,
+                    $compile,
+                    stream,
+                    simpleMarqueeHelper,
+                    donationsFilterToSelectedCampaignsFilter,
+                    groupByFilter,
+                    orderByFilter,
+                    limitToFilter) {
+
                 var Service = this;
                 this.donations = [];
 
@@ -49,86 +68,32 @@
                             var donation = data.donations[key];
                             Service.unorderedDonations[donation.id] = donation;
                         }
-                        var oldFollowers = Service.followers;
-                        var oldSubscribers = Service.subscribers;
 
                         Service.followers = data.followers;
                         Service.subscribers = data.subscribers;
 
-                        if (detectChange(data.subscribers, oldSubscribers) || detectChange(data.followers, oldFollowers)) {
-                            simpleMarqueeHelper.recalculateMarquee();
-                        }
-
                         if (data.userDonations) {
-                            Service.userDonations = data.userDonations;
+                            Service.userDonations = donationsFilterToSelectedCampaignsFilter(data.userDonations);
                         }
-                        if (data.donationsByEmail) {
-                            Service.donationsByEmail = data.donationsByEmail;
-                            if (detectChange(data.donationsByEmail, Service.donationsByEmail)) {
-                                simpleMarqueeHelper.recalculateMarquee();
-                            }
-                        }
-
-                        if (data.donationsByName) {
-                            Service.donationsByName = data.donationsByName;
-                            if (detectChange(data.donationsByName, Service.donationsByName)) {
-                                simpleMarqueeHelper.recalculateMarquee();
-                            }
-                        }
+                        Service.donationsByEmail = data.donationsByEmail;
+                        Service.donationsByName = data.donationsByName;
                         groupDonations();
 
                         callback();
-
-
                     });
-                };
-
-                function detectGroupDonationChange(groupDonations1, groupDonations2) {
-                    if (countGroupDonationItem(groupDonations1) != countGroupDonationItem(groupDonations2)) {
-                        return true;
-                    }
-                    return false;
-                }
-
-
-                function countGroupDonationItem(groupDonations) {
-                    var count = 0;
-                    angular.forEach(groupDonations, function (item) {
-                        count++;
-                    });
-                    return count;
-                }
-
-                function detectChange(streamArray1, streamArray2) {
-                    if (streamArray2.length != streamArray1.length) {
-                        return true;
-                    }
-                    return false;
-                }
-
-                function sortDonations() {
-                    var newDonations = [];
-                    for (var key in Service.unorderedDonations) {
-                        var donation = Service.unorderedDonations[key];
-                        newDonations.push(donation);
-                    }
-                    newDonations.sort(function (a, b) {
-                        return b.amount - a.amount;
-                    });
-                    Service.donations = newDonations;
                 };
 
                 function groupDonations() {
                     if (Service.donationsByEmail) {
                         var groupDonations = orderByFilter(Service.donationsByEmail, 'amount');
-                        groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations, 'amount');
+                        groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations);
                         groupDonations = groupByFilter(groupDonations, 'amount');
                         Service.groupDonationsByEmail = groupDonations;
                     }
 
                     if (Service.donationsByName) {
                         var groupDonations = orderByFilter(Service.donationsByName, 'amount');
-                        groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations, 'amount');
+                        groupDonations = donationsFilterToSelectedCampaignsFilter(groupDonations);
                         groupDonations = groupByFilter(groupDonations, 'amount');
                         Service.groupDonationsByName = groupDonations;
                     }

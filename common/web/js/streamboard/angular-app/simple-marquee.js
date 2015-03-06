@@ -14,7 +14,7 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', ['$timeout', 'sim
             var $element = $(tElement);
 
             $(tElement).empty();
-            tElement.append('<div class="js-marquee" style="float:left;">' + content.clone()[0].outerHTML + '</div>');
+            tElement.append('<div class="js-marquee" style="float:left;">{{marqueeContent}}</div>');
             var $item = $element.find('.js-marquee');
 
             $item.clone().css('display','none').appendTo($element);

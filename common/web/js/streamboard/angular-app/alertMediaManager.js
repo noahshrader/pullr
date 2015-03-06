@@ -33,6 +33,7 @@
                 soundManager.setup({
                     preferFlash: !html5AudioSupport,
                     url: Pullr.streamboard_common_path + '/bower_components/soundmanager/swf',
+                    debugMode: false,
                     onready: function() {
                         Service.preloadSound();
                     }
@@ -76,11 +77,9 @@
                 for (var i = 0, il = Service.librarySounds.length; i < il; i++) {
                     var sound = Service.librarySounds[i];
                     var path = this.getSoundPath(sound, 'Library');
-                    console.log(path)
                     soundCache[path] = soundManager.createSound({
                         url: path
                     });
-                    console.log(soundCache[path]);
                 }
 
             }
