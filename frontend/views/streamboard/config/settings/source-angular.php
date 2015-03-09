@@ -31,6 +31,7 @@ use yii\web\View;
                     show-subscriber='streamService.showSubscriber'
                     no-donation-message='streamService.noDonationMessage'
                     no-animation='true'
+                    sort-by='streamService.sortBy'
                     >
                 </activity-feed>
             </div>

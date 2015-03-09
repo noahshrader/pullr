@@ -23,7 +23,7 @@ $groupType = [
             <a class="settingtoggle">Campaigns<i class="mdi-navigation-arrow-drop-down"></i></a>
             <div class="module-settings">
                 <div class="form-group">
-                    <div class="checkbox cf" ng-repeat="campaign in campaignsService.campaigns">
+                    <div class="checkbox cf" ng-repeat="campaign in campaignsService.campaigns" ng-click='recalculateMarquee();'>
                         <label ng-class="{on:campaign.streamboardSelected}">
                             <input type="checkbox" ng-model="campaign.streamboardSelected" ng-change="campaignsService.campaignChanged(campaign)">
                             <span>{{campaign.name}}</span>

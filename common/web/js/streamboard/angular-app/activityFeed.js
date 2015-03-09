@@ -35,9 +35,11 @@
 				initActivityFeed();
 			});
 
+
 			function initActivityFeed () {
 				//Sort donation
 				sortDonations();
+
 				//Create activity feed string
 				activityArray = activityFeedHelper.createActivityArray(scope.donations,
 																																scope.groupDonationByEmail,
@@ -64,6 +66,7 @@
 			}
 
 			function sortDonations() {
+
 				//sort field
 				var sortField = 'amount';
 				var sortDirection = 'desc';
@@ -84,7 +87,7 @@
 				}
 
 				scope.donations = activityFeedHelper.sortDonationByProperty(scope.donations, sortField, sortDirection);
-
+				console.log(sortField, sortDirection, scope.donations);
 				//alway sort group donation by amount, but sort donation inside by sortField;
 				scope.groupDonationByEmail = activityFeedHelper.sortDonationByProperty(scope.groupDonationByEmail, 'amount', sortDirection);
 				scope.groupDonationByName = activityFeedHelper.sortDonationByProperty(scope.groupDonationByName, 'amount', sortDirection);

@@ -51,5 +51,9 @@
                 simpleMarqueeHelper.recalculateMarquee();
             }
 
+            $scope.recalculateMarquee = function() {
+                simpleMarqueeHelper.recalculateMarquee();
+            }
+
         }]);
 })()

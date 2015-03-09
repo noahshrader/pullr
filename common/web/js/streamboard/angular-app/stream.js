@@ -31,7 +31,7 @@
                     Service.groupUser = data.groupUser;
                     Service.groupBase = data.groupBase;
                     Service.noDonationMessage = data.noDonationMessage;
-                    this.sortBy = data.sortBy;
+                    Service.sortBy = data.sortBy;
                     $timeout(function(){
                         Service.getActivityFeedSetting();
                     }, 10000);

@@ -326,6 +326,7 @@ class StreamboardController extends FrontendController
                 $array['streamboard']['nameHidden'] = $donation->streamboard->nameHidden;
                 $array['streamboard']['wasRead'] = $donation->streamboard->wasRead;
             }
+            $array['displayName'] = $donation->displayNameForDonation();
             $array['name'] = $donation->displayNameForDonation();
             $userDonationArray[] = $array;
         }
