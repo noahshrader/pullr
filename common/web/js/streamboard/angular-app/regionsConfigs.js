@@ -112,7 +112,7 @@
 
             $scope.$on('regionTabChanged', function(e, data) {
                 $scope.toggleFooter(data.region);
-            })
+            });
 
             var timmer = null;
             $scope.alertTextChange = function(region) {
@@ -134,6 +134,7 @@
                 simpleMarqueeHelper.recalculateMarquee();
                 regions.regionChanged(region);
             }
+
             $scope.fontWeightChange = function(region) {
                 simpleMarqueeHelper.recalculateMarquee();
                 regions.regionChanged(region);

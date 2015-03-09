@@ -18,7 +18,9 @@ class StreamboardSourceAsset extends AssetBundle
         'js/streamboard/angular-app/regionsService.js',
         'js/streamboard/angular-app/simple-marquee.js',
         'js/streamboard/angular-app/donationsService.js',
-        'js/streamboard/angular-app/streamboardConfig.js'
+        'js/streamboard/angular-app/streamboardConfig.js',
+        'js/streamboard/angular-app/activityFeed.js',
+        'js/streamboard/angular-app/activityFeedHelper.js',
 	];
 	public $depends = [
 		'common\assets\streamboard\StreamboardCommonAsset',

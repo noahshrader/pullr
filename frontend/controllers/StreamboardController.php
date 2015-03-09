@@ -326,7 +326,7 @@ class StreamboardController extends FrontendController
                 $array['streamboard']['nameHidden'] = $donation->streamboard->nameHidden;
                 $array['streamboard']['wasRead'] = $donation->streamboard->wasRead;
             }
-            $array['displayName'] = $donation->displayNameForDonation();
+            $array['name'] = $donation->displayNameForDonation();
             $userDonationArray[] = $array;
         }
 
@@ -413,7 +413,13 @@ class StreamboardController extends FrontendController
     {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        if( ! (isset($data['showSubscriber']) || isset($data['showFollower']) || isset($data['groupUser']) || isset($data['groupBase']) || isset($data['noDonationMessage']))) {
+        if ( !(isset($data['showSubscriber']) ||
+                isset($data['showFollower']) ||
+                isset($data['groupUser']) ||
+                isset($data['groupBase']) ||
+                isset($data['noDonationMessage']) ||
+                isset($data['sortBy'])
+            )) {
             throw new ForbiddenHttpException();
         }
         $userId = \Yii::$app->user->id;
@@ -442,6 +448,10 @@ class StreamboardController extends FrontendController
             $donationFeed->noDonationMessage = $data['noDonationMessage'];
         }
 
+        if (isset($data['sortBy'])) {
+            $donationFeed->sortBy = $data['sortBy'];
+        }
+
         $donationFeed->save();
     }
 
@@ -453,7 +463,14 @@ class StreamboardController extends FrontendController
         if ( ! $donationFeed ) {
             throw new ForbiddenHttpException();
         }
-        return $donationFeed->toArray(['showSubscriber', 'showFollower', 'groupUser', 'groupBase', 'noDonationMessage']);
+        return $donationFeed->toArray([
+            'showSubscriber',
+            'showFollower',
+            'groupUser',
+            'groupBase',
+            'noDonationMessage',
+            'sortBy'
+        ]);
     }
 
     public function actionSet_streamboard_window()
@@ -663,7 +680,7 @@ class StreamboardController extends FrontendController
         }
 
         Yii::$app->response->format = Response::FORMAT_JSON;
-        
+
         $user = Streamboard::getCurrentUser();
         $accessToken = $user->userFields->twitchAccessToken;
         $channel = $user->userFields->twitchChannel;
@@ -690,9 +707,9 @@ class StreamboardController extends FrontendController
         if ( ! Yii::$app->request->isPost) {
             Yii::$app->end();
         }
-    
+
         Yii::$app->response->format = Response::FORMAT_JSON;
-        
+
         $user = Streamboard::getCurrentUser();
         $channel = $user->userFields->twitchChannel;
 

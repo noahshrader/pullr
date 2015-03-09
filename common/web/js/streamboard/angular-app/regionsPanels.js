@@ -1,8 +1,18 @@
 (function () {
-    var app = angular.module('pullr.streamboard.regionsPanels', ['pullr.streamboard.stream',
-            'pullr.streamboard.regions', 'pullr.streamboard.alertMediaManager', 'pullr.streamboard.donations',
-            'pullr.streamboard.campaigns', 'pullr.currentTime', 'pullr.countUpTimer', 'timer', 'simpleMarquee',
-            'pullr.streamboard.twitch','pullr.streamboard.config']).
+    var app = angular.module('pullr.streamboard.regionsPanels', [
+            'pullr.streamboard.stream',
+            'pullr.streamboard.regions',
+            'pullr.streamboard.alertMediaManager',
+            'pullr.streamboard.donations',
+            'pullr.streamboard.campaigns',
+            'pullr.currentTime',
+            'pullr.countUpTimer',
+            'timer',
+            'simpleMarquee',
+            'pullr.streamboard.twitch',
+            'pullr.streamboard.config',
+            'pullr.streamboard.activityFeed'
+        ]).
         controller('RegionsCtrl', ['$sce', '$http', '$scope', 'stream', 'regions', '$interval', '$timeout', 'alertMediaManager', 'donations', 'campaigns', 'simpleMarqueeHelper', 'streamboardConfig', 'twitchNotification',
             function ($sce, $http, $scope, stream, regions, $interval, $timeout, alertMediaManager, donations, campaigns, simpleMarqueeHelper, streamboardConfig, twitchNotification) {
                 $scope.streamService = stream;

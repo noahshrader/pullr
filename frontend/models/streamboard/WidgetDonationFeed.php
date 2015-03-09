@@ -17,7 +17,23 @@ class WidgetDonationFeed extends ActiveRecord {
     const SCROLL_SPEED_SLOW = 'Slow';
     const SCROLL_SPEED_NORMAL = 'Normal';
     const SCROLL_SPEED_FAST = 'Fast';
-    public static $SCROLL_SPEEDS = [self::SCROLL_SPEED_SLOW, self::SCROLL_SPEED_NORMAL, self::SCROLL_SPEED_FAST];
+
+    public static $SCROLL_SPEEDS = [
+        self::SCROLL_SPEED_SLOW,
+        self::SCROLL_SPEED_NORMAL,
+        self::SCROLL_SPEED_FAST
+    ];
+
+    const SORT_BY_AMOUNT = 'amount';
+    const SORT_BY_TIME = 'time';
+    const SORT_BY_ALPHABET = 'alphabet';
+
+    public static $SORT_TYPE = [
+        self::SORT_BY_AMOUNT,
+        self::SORT_BY_TIME,
+        self::SORT_BY_ALPHABET
+    ];
+
     /**
      * @return string the name of the table associated with this ActiveRecord class.
      */
@@ -28,14 +44,15 @@ class WidgetDonationFeed extends ActiveRecord {
     public function scenarios() {
         return [
 
-            'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'fontWeight', 'fontUppercase', 'scrolling', 'scrollSpeed', 
-            'positionX', 'positionY', 'width', 'height','textShadow','groupBase']
+            'default' => ['noDonationMessage', 'fontStyle', 'fontSize', 'fontColor', 'fontWeight', 'fontUppercase', 'scrolling', 'scrollSpeed',
+            'positionX', 'positionY', 'width', 'height','textShadow','groupBase', 'sortBy']
         ];
     }
 
     public function beforeValidate() {
         if ($this->isNewRecord) {
             $this->fontColor = '#FFFFFF';
+            $this->sortBy = self::SORT_BY_AMOUNT;
         }
         return parent::beforeValidate();
     }

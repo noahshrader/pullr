@@ -1,6 +1,6 @@
 (function() {
 	angular
-		.module('pullr.streamboard.regionsPanels')
+		.module('pullr.streamboard.activityFeed')
 		.service('activityFeedHelper', activityFeedHelper);
 
 	function activityFeedHelper () {
@@ -59,23 +59,20 @@
 			var activityArray = [];
 
 			//No Group Donation
-			if (false == enableGroupDonation) {
+			if (false == enableGroupDonation && null != donations) {
 				for (var i = 0; i < donations.length; i++) {
-					var donationString = donations[i].displayName + ' ($' + number_format(donations[i].amount) + ')';
+					var donationString = donations[i].name + ' ($' + number_format(donations[i].amount) + ')';
 					activityArray.push(donationString);
 				}
-			} else {
-				// Group Donation by Email
-
-				if (groupBy == 'email' && groupDonationByEmail != null) {
-					activityArray.push(createGroupDonationActivityFeed(groupDonationByEmail));
-					// Group Donation By Name
-				} else if (groupBy == 'name' && groupDonationByName != null) {
-					activityArray.push(createGroupDonationActivityFeed(groupDonationByName));
-				}
-
+				return activityArray;
 			}
-
+			// Group Donation by Email
+			if (groupBy == 'email' && groupDonationByEmail != null) {
+				activityArray.push(createGroupDonationActivityFeed(groupDonationByEmail));
+				// Group Donation By Name
+			} else if (groupBy == 'name' && groupDonationByName != null) {
+				activityArray.push(createGroupDonationActivityFeed(groupDonationByName));
+			}
 			return activityArray;
 		}
 
@@ -97,13 +94,37 @@
 			return groupDonationActivityFeed.join(', ');
 		}
 
-		function sortDonationByProperty(donations, property) {
+		function sortDonationByProperty(donations, property, sortDirection) {
 			if (!donations || !donations.length) {
 				return;
 			}
 			return donations.sort(function(donation1, donation2) {
-				return donation2[property] - donation1[property];
+				var a,b;
+				a = donation1[property];
+				b = donation2[property];
+				if (isNumeric(a) && isNumeric(b)) {
+					if (sortDirection == 'desc') {
+						return b - a;
+					} else {
+						return a - b;
+					}
+				} else if (isString(a) && isString(b)) {
+					if (sortDirection == 'desc') {
+						return b > a ? 1 : -1;
+					} else {
+						return b > a ? -1 : 1;
+					}
+				}
 			});
+		}
+
+		function isNumeric(input)
+		{
+		   return (input - 0) == input && (''+input).trim().length > 0;
+		}
+
+		function isString(val) {
+			return typeof val == 'string' || val instanceof String;
 		}
 
 

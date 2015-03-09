@@ -14,13 +14,13 @@ angular.module('simpleMarquee', []).directive('simpleMarquee', ['$timeout', 'sim
             var $element = $(tElement);
 
             $(tElement).empty();
-            tElement.append('<div class="js-marquee" style="float:left;">{{marqueeContent}}</div>');
+            tElement.append('<div class="js-marquee" style="float:left;">' + content.clone()[0].outerHTML + '</div>');
             var $item = $element.find('.js-marquee');
 
             $item.clone().css('display','none').appendTo($element);
 
             //wrap both inner elements into one div
-            $element.wrapInner('<div style="width:100000px" class="js-marquee-wrapper"></div>');
+            $element.wrapInner('<div style="width:10000000px" class="js-marquee-wrapper"></div>');
             return {
                 post: function(scope, element, attrs) {
                     //direction, duration,

@@ -1,6 +1,18 @@
 <?
 use yii\helpers\Url;
-$groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'email']];
+use frontend\models\streamboard\WidgetDonationFeed;
+
+$groupType = [
+    [
+        'name'=>'Name',
+        'value'=>'name'
+    ],
+    [
+        'name'=>'Email',
+        'value'=>'email'
+    ]
+];
+
 ?>
 <div class="text-center streamboard-settings-header">
     <button class="btn btn-secondary btn-sm" ng-click="clearButton()">Clear All Feeds</button>
@@ -48,9 +60,23 @@ $groupType = [['name'=>'Name', 'value'=>'name'], ['name'=>'Email', 'value'=>'ema
                 </div>
                 <div class="form-group">
                     <h5>Donation Grouping By</h5>
-                    <select ui-select2="{minimumResultsForSearch: -1}" ng-model="streamService.groupBase" ng-change="groupBasedChanged()" data-placeholder="Select one..." ng-init="groupType = <?= htmlspecialchars(json_encode($groupType)) ?>">
+                    <select ui-select2="{minimumResultsForSearch: -1}"
+                            ng-model="streamService.groupBase"
+                            ng-change="groupBasedChanged()"
+                            data-placeholder="Select one..."
+                            ng-init="groupType = <?= htmlspecialchars(json_encode($groupType)) ?>">
                         <option value=""></option>
                         <option ng-repeat="type in groupType" value="{{type.value}}">{{type.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <h5>Donation Sort By</h5>
+                    <select ui-select2="{minimumResultsForSearch: -1}"
+                            ng-model="streamService.sortBy" ng-change="sortByChange()"
+                            data-placeholder="Select one..."
+                            ng-init="sortType = <?= htmlspecialchars(json_encode(WidgetDonationFeed::$SORT_TYPE)) ?>">
+                        <option value=""></option>
+                        <option ng-repeat="type in sortType" value="{{type}}">{{type}}</option>
                     </select>
                 </div>
                 <div class="form-group">

@@ -11,9 +11,9 @@ class StreamboardSingleRegionAsset extends AssetBundle
 {
     public $sourcePath = '@common/web';
     public $baseUrl = '@web';
-    public $css = [      
+    public $css = [
         'css/animate.css',
-        'css/slide-animate.css',        
+        'css/slide-animate.css',
     ];
     public $js = [
         '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js',
@@ -24,15 +24,15 @@ class StreamboardSingleRegionAsset extends AssetBundle
         'bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',
         'bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'bower_components/angular-timer/app/js/timer.js',     
+        'bower_components/angular-timer/app/js/timer.js',
         'bower_components/moment/moment.js',
         'bower_components/angular-moment/angular-moment.min.js',
         'bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
-        'bower_components/zeroclipboard/dist/ZeroClipboard.min.js',  
-        'bower_components/sprintf/dist/sprintf.min.js',              
+        'bower_components/zeroclipboard/dist/ZeroClipboard.min.js',
+        'bower_components/sprintf/dist/sprintf.min.js',
         'js/streamboard/angular-app/simple-marquee.js',
         'js/streamboard/angular-app/region/regions.js',
-        /* angular-app begin */        
+        /* angular-app begin */
         'js/streamboard/angular-app/plugins/interaction.js',
         'js/streamboard/angular-app/timers/current-time.js',
         'js/streamboard/angular-app/timers/count-up-timer.js',
@@ -43,6 +43,8 @@ class StreamboardSingleRegionAsset extends AssetBundle
         'js/streamboard/angular-app/regionsService.js',
         'js/streamboard/angular-app/regionsPanels.js',
         'js/streamboard/angular-app/regionsConfigs.js',
+        'js/streamboard/angular-app/activityFeed.js',
+        'js/streamboard/angular-app/activityFeedHelper.js',
         'js/streamboard/angular-app/pullr-common.js',
         'js/streamboard/angular-app/campaigns.js',
         'js/streamboard/angular-app/settings.js',

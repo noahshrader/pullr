@@ -22,6 +22,7 @@
             this.groupUser = false;
             this.groupBase = 'name';
             this.noDonationMessage = '';
+            this.sortBy = 'amount';
 
             this.getActivityFeedSetting = function () {
                 $http.get('app/streamboard/get_activity_feed_setting').success(function (data) {
@@ -30,7 +31,7 @@
                     Service.groupUser = data.groupUser;
                     Service.groupBase = data.groupBase;
                     Service.noDonationMessage = data.noDonationMessage;
-
+                    this.sortBy = data.sortBy;
                     $timeout(function(){
                         Service.getActivityFeedSetting();
                     }, 10000);
@@ -58,6 +59,12 @@
             this.groupBasedChanged = function() {
                 $http.post('app/streamboard/set_activity_feed_setting', {
                     groupBase: Service.groupBase
+                });
+            }
+
+            this.sortByChange = function() {
+                $http.post('app/streamboard/set_activity_feed_setting', {
+                    sortBy: Service.sortBy
                 });
             }
 

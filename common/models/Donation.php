@@ -190,10 +190,13 @@ class Donation extends ActiveRecord
         foreach ($donations as $donation){
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
             $key = $goupBy == 'email'?$donation['email']:$donation['nameFromForm'];
-            $donors[] = [ 'name' => $name,
-                        'amount' => $sumAry[$key]*1,
-                        'email' => $donation->email,
-                        'campaignId' => $donation->campaignId];
+            $donors[] = [
+                            'name' => $name,
+                            'amount' => $sumAry[$key]*1,
+                            'email' => $donation->email,
+                            'campaignId' => $donation->campaignId,
+                            'time' => $donation->paymentDate
+                        ];
         }
         return $donors;
     }

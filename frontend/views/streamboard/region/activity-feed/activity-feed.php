@@ -17,18 +17,27 @@ use frontend\models\streamboard\StreamboardRegion;
          resizable-size="{width:region.widgetDonationFeed.width, height: region.widgetDonationFeed.height}"
          ng-if='region.widgetType == <?= htmlspecialchars(json_encode(StreamboardRegion::WIDGET_DONATION_FEED)) ?>'
         >
-    <activity-feed
-        region='region'
-        donations='donationsService.userDonations'
-        enable-group-donation='streamService.groupUser'
-        group-by='streamService.groupBase'
-        group-donation-by-email='donationsService.groupDonationsByEmail'
-        group-donation-by-name='donationsService.groupDonationsByName'
-        followers='donationsService.followers'
-        subscribers='donationsService.subscribers'
-        show-follower='streamService.showFollower'
-        show-subscriber='streamService.showSubscriber'
-        no-donation-message='streamService.noDonationMessage'
-        >
-    </activity-feed>
+    <div simple-marquee
+    marquee-content='marqueeContent'
+    marquee-name='region.regionNumber'
+    duration="region.widgetDonationFeed.scrollSpeed"
+    scroll="region.widgetDonationFeed.scrolling"
+    ng-style="{'color': region.widgetDonationFeed.fontColor, 'font-size': region.widgetDonationFeed.fontSize, 'font-family': region.widgetDonationFeed.fontStyle, 'font-weight': region.widgetDonationFeed.fontWeight}"
+    ng-class='{fontUppercase: region.widgetDonationFeed.fontUppercase, textShadow: region.widgetDonationFeed.textShadow}'
+      >
+        <activity-feed
+            donations='donationsService.userDonations'
+            enable-group-donation='streamService.groupUser'
+            group-by='streamService.groupBase'
+            group-donation-by-email='donationsService.groupDonationsByEmail'
+            group-donation-by-name='donationsService.groupDonationsByName'
+            followers='donationsService.followers'
+            subscribers='donationsService.subscribers'
+            show-follower='streamService.showFollower'
+            show-subscriber='streamService.showSubscriber'
+            no-donation-message='streamService.noDonationMessage'
+            sort-by='streamService.sortBy'
+            >
+        </activity-feed>
+    </div>
 </div>

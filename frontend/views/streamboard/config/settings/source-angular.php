@@ -4,7 +4,7 @@ use yii\web\View;
 
 /**@var $this View */
 ?>
-<div class="source-wrap" id='source-wrap-angular' ng-cloak style='display:none;'>    
+<div class="source-wrap" id='source-wrap-angular' ng-cloak style='display:none;'>
     <div class="twitchStats module" ng-show="twitchUser">
         <div class="form-group">
             <h5>Twitch</h5>
@@ -19,83 +19,20 @@ use yii\web\View;
         <div class="form-group">
             <h5>Activity Feed</h5>
             <div class="sb-activity-feed">
-                <span ng-if=' ! streamService.groupUser'>
-
-                    <span ng-if='streamService.groupBase == "name" || !streamService.groupBase'>
-                        <span
-                            ng-repeat="donation in donationsService.donationsByName |orderBy:'amount':true| donationsFilterToSelectedCampaigns "
-                            class="commaAfter">
-                            <span>&nbsp;{{donation.name}} (${{number_format(donation.amount,2)}})<!--removing space for .commaAfter--></span>
-                        </span>
-                    </span>
-                    <span ng-if='streamService.groupBase=="email"'>
-                        <span
-                            ng-repeat="donation in donationsService.donationsByEmail | orderBy:'amount':true | donationsFilterToSelectedCampaigns "
-                            class="commaAfter">
-                        <span>&nbsp;{{donation.name}} (${{number_format(donation.amount,2)}})<!--removing space for .commaAfter--></span>
-                        </span>
-                    </span>                   
-                    
-                    <span
-                        ng-repeat="follower in donationsService.followers"
-                        class="commaAfter" ng-if='streamService.showFollower'>
-                    <span>
-                        &nbsp;{{follower.display_name}} (followed)<!--removing space for .commaAfter
-                    --></span>
-                    </span>
-
-                    <span
-                        ng-repeat="subscriber in donationsService.subscribers"
-                        class="commaAfter" ng-if='streamService.showSubscriber'>
-                    <span>
-                        &nbsp;{{subscriber.display_name}} (subscribed)<!--removing space for .commaAfter
-                    --></span>
-                    </span>
-                    
-                    <span ng-if="(donationsService.donationsByName | donationsFilterToSelectedCampaigns).length == 0 && ( ! streamService.showSubscriber || donationsService.subscribers.length == 0 ) && ( ! streamService.showFollower || donationsService.followers.length == 0 ) ">
-                        <span ng-if="streamService.noDonationMessage">{{streamService.noDonationMessage}}</span>
-                        <span ng-if="!streamService.noDonationMessage">No activity!</span>
-                    </span> 
-                </span> 
-                <span ng-if='streamService.groupUser'>
-
-                    <span ng-if='streamService.groupBase == "name" || !streamService.groupBase'>
-                        <span ng-repeat="groupDonation in donationsService.groupDonationsByName"
-                                  class="commaAfter grouped">
-                            <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount, 2)}})
-                        </span>
-                    </span>
-
-                    <span ng-if='streamService.groupBase=="email"'>
-                         <span ng-repeat="groupDonation in donationsService.groupDonationsByEmail"
-                               class="commaAfter grouped">
-                            <span ng-repeat='donation in groupDonation.items' class="commaAfter"> &nbsp;{{donation.name}}</span> (${{number_format(groupDonation.amount, 2)}})
-                        </span>
-                    </span>
-
-                    <span
-                        ng-repeat="subscriber in donationsService.subscribers"
-                        ng-if='streamService.showSubscriber'
-                        class="commaAfter">
-                    
-                        &nbsp;{{subscriber.display_name}}<!--removing space for .commaAfter
-                    -->
-                        <span class="commaAfter" ng-show='$last && donationsService.subscribers.length > 0'>(subscribed)</span>
-                    </span> 
-
-                    <span
-                        ng-repeat="follower in donationsService.followers"
-                        ng-if='streamService.showFollower' class="commaAfter">
-                        
-                            &nbsp;{{follower.display_name}}<!--removing space for .commaAfter
-                        -->
-                        <span class="commaAfter" ng-show='$last && donationsService.followers.length > 0'>(followed)</span>
-                    </span> 
-                    <span ng-if="(donationsService.donationsByName | donationsFilterToSelectedCampaigns).length == 0 && ( ! streamService.showSubscriber || donationsService.subscribers.length == 0 ) && ( ! streamService.showFollower || donationsService.followers.length == 0 ) ">
-                        <span ng-if="streamService.noDonationMessage">{{streamService.noDonationMessage}}</span>
-                        <span ng-if="!streamService.noDonationMessage">No activity!</span>
-                    </span>                     
-                </span>  
+                <activity-feed
+                    donations='donationsService.userDonations'
+                    enable-group-donation='streamService.groupUser'
+                    group-by='streamService.groupBase'
+                    group-donation-by-email='donationsService.groupDonationsByEmail'
+                    group-donation-by-name='donationsService.groupDonationsByName'
+                    followers='donationsService.followers'
+                    subscribers='donationsService.subscribers'
+                    show-follower='streamService.showFollower'
+                    show-subscriber='streamService.showSubscriber'
+                    no-donation-message='streamService.noDonationMessage'
+                    no-animation='true'
+                    >
+                </activity-feed>
             </div>
         </div>
     </div>
@@ -139,5 +76,5 @@ use yii\web\View;
             </div>
         </div>
     </div>
-    
+
 </div>

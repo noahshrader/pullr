@@ -1,14 +1,13 @@
 (function() {
 	angular
-		.module('pullr.streamboard.regionsPanels')
+		.module('pullr.streamboard.activityFeed', [])
 		.directive('activityFeed', activityFeed);
 
 	function activityFeed ($rootScope, activityFeedHelper) {
 		return {
 			restrict: 'EA',
-			templateUrl: 'activity-feed.html',
+			template: '{{marqueeContent}}',
 			scope: {
-				region: '=',
 				donations: '=',
 				enableGroupDonation: '=',
 				groupBy: '=',
@@ -18,19 +17,21 @@
 				subscribers: '=',
 				showFollower: '=',
 				showSubscriber: '=',
-				sortType: '=',
-				noDonationMessage: '='
+				sortBy: '=',
+				noDonationMessage: '=',
+				noAnimation: '&'
 			},
 			link: link
 		};
 
 		function link(scope, element, attrs) {
 			scope.marqueeContent = '';
-			var sortType = 'amount';
 			var oldMarqueeContent = '';
 			//Watch for changes
 
-			scope.$watchCollection('[donations,	followers, subscribers,	showFollower,	showSubscriber,	enableGroupDonation, groupDonationByEmail, groupDonationByName,	groupBy]', function() {
+			scope.$watchCollection('[donations,	followers, subscribers,	showFollower,' +
+														'showSubscriber,	enableGroupDonation, groupDonationByEmail, ' +
+														'groupDonationByName,	groupBy, sortBy]', function() {
 				initActivityFeed();
 			});
 
@@ -55,16 +56,50 @@
 
 				if (oldMarqueeContent != scope.marqueeContent) {
 					//recalculate marquee
-					$rootScope.$broadcast('recalculateMarquee');
+					if (!scope.noAnimation) {
+						$rootScope.$broadcast('recalculateMarquee');
+					}
 					oldMarqueeContent = scope.marqueeContent;
 				}
-
 			}
 
 			function sortDonations() {
-				scope.donations = activityFeedHelper.sortDonationByProperty(scope.donations, sortType);
-				scope.groupDonationByEmail = activityFeedHelper.sortDonationByProperty(scope.groupDonationByEmail, sortType);
-				scope.groupDonationByName = activityFeedHelper.sortDonationByProperty(scope.groupDonationByName, sortType);
+				//sort field
+				var sortField = 'amount';
+				var sortDirection = 'desc';
+				switch (scope.sortBy) {
+					case 'time':
+						sortField = 'paymentDate';
+						sortDirection = 'desc';
+						break;
+					case 'alphabet':
+						sortField = 'name';
+						sortDirection = 'asc';
+						break;
+					case 'amount':
+					default:
+						sortField = 'amount';
+						sortDirection = 'desc';
+						break;
+				}
+
+				scope.donations = activityFeedHelper.sortDonationByProperty(scope.donations, sortField, sortDirection);
+
+				//alway sort group donation by amount, but sort donation inside by sortField;
+				scope.groupDonationByEmail = activityFeedHelper.sortDonationByProperty(scope.groupDonationByEmail, 'amount', sortDirection);
+				scope.groupDonationByName = activityFeedHelper.sortDonationByProperty(scope.groupDonationByName, 'amount', sortDirection);
+
+				if (scope.groupDonationByEmail) {
+					for (var i = 0; i < scope.groupDonationByEmail.length; i++) {
+						activityFeedHelper.sortDonationByProperty(scope.groupDonationByEmail[i].items, sortField, sortDirection);
+					}
+				}
+
+				if (scope.groupDonationByName) {
+					for (var i = 0; i < scope.groupDonationByName.length; i++) {
+						activityFeedHelper.sortDonationByProperty(scope.groupDonationByName[i].items, sortField, sortDirection);
+					}
+				}
 			}
 
 		}

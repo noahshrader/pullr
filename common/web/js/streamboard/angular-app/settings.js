@@ -46,5 +46,10 @@
                 simpleMarqueeHelper.recalculateMarquee();
             }
 
+            $scope.sortByChange = function(region) {
+                stream.sortByChange();
+                simpleMarqueeHelper.recalculateMarquee();
+            }
+
         }]);
 })()
