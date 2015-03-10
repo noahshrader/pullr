@@ -202,11 +202,24 @@ class StreamboardController extends FrontendController
         $donors = [];
         $groupDonors = [];
         if ($groupUser) {
-            $groupDonors = Donation::getTopDonorsForCampaignsGroupByAmount($selectedCampaigns, null, true, $sinceDate);
+            $groupDonors = Donation::getTopDonorsForCampaignsGroupByAmount($selectedCampaigns, null, true, $sinceDate, $donationFeed->groupBase);
         } else {
             $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
         }
 
+        $sortField = 'amount';
+        $reverseOrder = false;
+        switch ($donationFeed->sortBy) {
+            case 'time':
+                $sortField = 'time';
+                break;
+            case 'alphabet':
+                $sortField = 'name';
+                $reverseOrder = true;
+                break;
+        }
+
+        $this->sortDonations($donors, $groupDonors, $sortField, $reverseOrder);
 
         $subscribers = [];
         if ($user->userFields->twitchPartner) {
@@ -232,6 +245,7 @@ class StreamboardController extends FrontendController
         $data['subscribers'] = $subscribers;
         $data['followers'] = $followers;
         $data['groupUser'] = $groupUser;
+        $data['sortBy'] = $donationFeed->sortBy;
         $data['campaigns'] = $this->getUserCampaigns($user);
         $data['twitchPartner'] = $user->userFields->twitchPartner;
         $data['groupDonors'] = $groupDonors;
@@ -241,6 +255,24 @@ class StreamboardController extends FrontendController
             'hideAngularJsPage' => $hideAngularJsPage
         ]);
     }
+
+    protected function sortDonations(&$donations = [], &$groupDonations = [], $sortBy = 'amount', $reverseOrder = false) {
+        usort($donations, function($donation1, $donation2) use ($sortBy, $reverseOrder) {
+
+            $result = $donation2[$sortBy] > $donation1[$sortBy] ? 1 : -1;
+            return $reverseOrder == false ? $result : -$result;
+        });
+
+        krsort($groupDonations, SORT_NUMERIC);
+        $groupDonationLength = count($groupDonations);
+        foreach ($groupDonations as $amount => &$items) {
+            usort($items, function($donation1, $donation2) use ($sortBy, $reverseOrder){
+                $result = $donation2[$sortBy] > $donation1[$sortBy] ? 1 : -1;
+                return $reverseOrder == false ? $result : -$result;
+            });
+        }
+    }
+
 
     public function actionGet_campaigns_ajax()
     {

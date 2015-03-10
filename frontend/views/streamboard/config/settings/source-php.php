@@ -5,7 +5,7 @@ use common\components\PullrUtils;
 
 /**@var $this View */
 ?>
-<div class="source-wrap" id="source-wrap-php">    
+<div class="source-wrap" id="source-wrap-php">
     <? if ($twitchUser != null): ?>
     <div class="twitchStats module">
         <div class="form-group">
@@ -23,34 +23,34 @@ use common\components\PullrUtils;
     <div class="activityFeed module">
         <div class="form-group">
             <h5>Activity Feed</h5>
-            <div class="sb-activity-feed"><?  
-                    $activityFeed = $this->render('source-activity-feed', [
-                        'donors' => $donors,
-                        'subscribers' => $subscribers,
-                        'followers' => $followers,
-                        'showSubscriber' => $showSubscriber,
-                        'showFollower' => $showFollower,
-                        'emptyActivityMessage' => $emptyActivityMessage,
-                        'groupUser' => $groupUser,
-                        'groupDonors' => $groupDonors,                        
-                    ]);
-                    echo preg_replace("/\s+/", " ", trim($activityFeed));
-                ?></div>
+            <div class="sb-activity-feed"><?
+                $activityFeed = $this->render('source-activity-feed', [
+                    'donors' => $donors,
+                    'subscribers' => $subscribers,
+                    'followers' => $followers,
+                    'showSubscriber' => $showSubscriber,
+                    'showFollower' => $showFollower,
+                    'emptyActivityMessage' => $emptyActivityMessage,
+                    'groupUser' => $groupUser,
+                    'groupDonors' => $groupDonors,
+                ]);
+                echo preg_replace("/\s+/", " ", trim($activityFeed));
+            ?></div>
         </div>
     </div>
-    
+
     <? if (count($campaigns) > 0): ?>
     <div class="tags module">
         <div class="form-group">
             <h5>Tags</h5>
             <div>Last Follower: <span id='last_follower'><?= (!empty($followers)) ? $followers[0]['display_name'] : '' ?></span></div>
             <div>Last Subscriber: <span id='last_subscriber'><?= (!empty($subscribers)) ? $subscribers[0]['display_name'] : '' ?></span></div>
-            
+
             <div>Last Donor: <span id='last_donor'><?= isset($stats['last_donor']) ? $stats['last_donor']['name']:'' ?></span></div>
             <div>Last Donor/Amount: <span id='last_donor_donation'><?= isset($stats['last_donor']) ? $stats['last_donor']['name']. ' ($'. $stats['last_donor']['amount'].')': '' ?></span></div>
-            
+
             <div>Largest Donation: <span id='largest_donation'><?= (!empty($stats['top_donation'])) ? '$'. $stats['top_donation']['amount'] .' ('.  $stats['top_donation']['displayName'] .')' : ''  ?></span></div>
-            
+
             <div>Top Donor: <span><?= isset($stats['top_donors'][0]) ? $stats['top_donors'][0]['name'] : '' ?></span></div>
             <div>Top Donor/Amount: <span id='top_donor'><?= isset($stats['top_donors'][0]) ? $stats['top_donors'][0]['name'] .' ($'. $stats['top_donors'][0]['amount']  .')' : '' ?></span></div>
             <div>
@@ -59,11 +59,11 @@ use common\components\PullrUtils;
                 <span><?= $donor['name'] .' ($'. PullrUtils::formatNumber($donor['amount'], 2)  .')' ?></span><br>
                 <?php endforeach;?>
             </div>
-            
+
         </div>
     </div>
     <?php endif; ?>
-    
+
     <? if (count($campaigns) > 0): ?>
     <div class="overall module">
         <div class="form-group">
@@ -94,5 +94,5 @@ use common\components\PullrUtils;
         </div>
     </div>
     <? endforeach; ?>
-    
+
 </div>

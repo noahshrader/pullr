@@ -160,11 +160,11 @@ class Donation extends ActiveRecord
      * @param $sinceDate - if is set, only donations with paymentDate > $sinceDate will be taken in query
      * @return string[]
      */
-    public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false, $sinceDate = null, $goupBy = 'email'){
+    public static function getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm = false, $sinceDate = null, $groupBy = 'email'){
         $query = self::getDonationTableQueryForCampaigns($campaigns, $sinceDate)->andWhere('email <> ""');
-        if($goupBy == 'email'){
+        if($groupBy == 'email'){
             $query = $query->groupBy('email');
-        }else if($goupBy == 'name'){
+        }else if($groupBy == 'name'){
             $query = $query->groupBy('nameFromForm');
         }
         $query = $query->orderBy('sum DESC')->select('id , SUM(AMOUNT) sum, email, nameFromForm name');
@@ -176,9 +176,9 @@ class Donation extends ActiveRecord
         $donationIds = [];
         foreach ($rows as $row) {
             $donationIds[] = $row['id'];
-            if($goupBy == 'email'){
+            if($groupBy == 'email'){
                 $sumAry[$row['email']] = $row['sum'];
-            }else if($goupBy == 'name'){
+            }else if($groupBy == 'name'){
                 $sumAry[$row['name']] = $row['sum'];
             }
         }
@@ -189,7 +189,7 @@ class Donation extends ActiveRecord
         $donors = [];
         foreach ($donations as $donation){
             $name = $nameFromForm ? $donation->displayNameForDonation() : $donation->name;
-            $key = $goupBy == 'email'?$donation['email']:$donation['nameFromForm'];
+            $key = $groupBy == 'email'?$donation['email']:$donation['nameFromForm'];
             $donors[] = [
                             'name' => $name,
                             'amount' => $sumAry[$key]*1,
@@ -201,9 +201,9 @@ class Donation extends ActiveRecord
         return $donors;
     }
 
-    public static function getTopDonorsForCampaignsGroupByAmount($campaigns, $limit, $nameFromForm = false, $sinceDate = null)
+    public static function getTopDonorsForCampaignsGroupByAmount($campaigns, $limit, $nameFromForm = false, $sinceDate = null, $groupBy = 'email')
     {
-        $donors = static::getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm, $sinceDate);
+        $donors = static::getTopDonorsForCampaigns($campaigns, $limit, $nameFromForm, $sinceDate, $groupBy);
         $groupResult = [];
         foreach ($donors as $index => $donor) {
             $amount = $donor['amount'];
