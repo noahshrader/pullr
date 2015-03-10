@@ -12,8 +12,6 @@ class m150309_022435_activity_sort_filter extends Migration
 
     public function down()
     {
-        echo "m150309_022435_activity_sort_filter cannot be reverted.\n";
-
-        return false;
+      $this->dropColumn('tbl_streamboard_widget_donation_feed', 'sortBy');
     }
 }
