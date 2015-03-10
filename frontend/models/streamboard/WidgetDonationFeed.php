@@ -24,9 +24,9 @@ class WidgetDonationFeed extends ActiveRecord {
         self::SCROLL_SPEED_FAST
     ];
 
-    const SORT_BY_AMOUNT = 'amount';
-    const SORT_BY_TIME = 'time';
-    const SORT_BY_ALPHABET = 'alphabet';
+    const SORT_BY_AMOUNT = 'Amount';
+    const SORT_BY_TIME = 'Time';
+    const SORT_BY_ALPHABET = 'Alphabet';
 
     public static $SORT_TYPE = [
         self::SORT_BY_AMOUNT,

@@ -71,15 +71,15 @@
 				var sortField = 'amount';
 				var sortDirection = 'desc';
 				switch (scope.sortBy) {
-					case 'time':
-						sortField = 'paymentDate';
+					case 'Time':
+						sortField = 'time';
 						sortDirection = 'desc';
 						break;
-					case 'alphabet':
+					case 'Alphabet':
 						sortField = 'name';
 						sortDirection = 'asc';
 						break;
-					case 'amount':
+					case 'Amount':
 					default:
 						sortField = 'amount';
 						sortDirection = 'desc';

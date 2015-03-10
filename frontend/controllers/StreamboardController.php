@@ -207,15 +207,18 @@ class StreamboardController extends FrontendController
             $donors = Donation::getTopDonorsForCampaigns($selectedCampaigns, null, true, $sinceDate);
         }
 
-        $sortField = 'amount';
+        $sortField = null;
         $reverseOrder = false;
         switch ($donationFeed->sortBy) {
-            case 'time':
+            case WidgetDonationFeed::SORT_BY_TIME:
                 $sortField = 'time';
                 break;
-            case 'alphabet':
+            case WidgetDonationFeed::SORT_BY_ALPHABET:
                 $sortField = 'name';
                 $reverseOrder = true;
+                break;
+            case WidgetDonationFeed::SORT_BY_AMOUNT;
+                $sortField = 'amount';
                 break;
         }
 
