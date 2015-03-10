@@ -29,9 +29,16 @@
 			var oldMarqueeContent = '';
 			//Watch for changes
 
-			scope.$watchCollection('[donations,	followers, subscribers,	showFollower,' +
-														'showSubscriber,	enableGroupDonation, groupDonationByEmail, ' +
-														'groupDonationByName,	groupBy, sortBy]', function() {
+			scope.$watchGroup(['donations',
+												'followers',
+												'subscribers',
+												'showFollower',
+												'showSubscriber',
+												'enableGroupDonation',
+												'groupDonationByEmail',
+												'groupDonationByName',
+												'groupBy',
+												'sortBy'], function() {
 				initActivityFeed();
 				console.log('change detect');
 			});
