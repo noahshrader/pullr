@@ -2,10 +2,10 @@
 use frontend\models\streamboard\WidgetCampaignBarTimer;
 
 ?>
-<div ng-if="region.widgetCampaignBar.timerEnable" child-scope ng-init="module = region.widgetCampaignBar.timerModule"
-     draggable-widget="region.widgetCampaignBar.timerModule" 
-     draggable-region="region" 
-     draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}" 
+<div ng-if="region.widgetCampaignBar.timerEnable" ng-init="module = region.widgetCampaignBar.timerModule"
+     draggable-widget="region.widgetCampaignBar.timerModule"
+     draggable-region="region"
+     draggable-fields="{widgetLeftAttribute:'positionX', widgetTopAttribute:'positionY'}"
      draggable-config="{containment:'parent'}"
      class='campaign-timers'
      interaction

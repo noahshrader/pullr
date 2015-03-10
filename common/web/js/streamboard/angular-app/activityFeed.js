@@ -33,6 +33,7 @@
 														'showSubscriber,	enableGroupDonation, groupDonationByEmail, ' +
 														'groupDonationByName,	groupBy, sortBy]', function() {
 				initActivityFeed();
+				console.log('change detect');
 			});
 
 
@@ -87,7 +88,6 @@
 				}
 
 				scope.donations = activityFeedHelper.sortDonationByProperty(scope.donations, sortField, sortDirection);
-				console.log(sortField, sortDirection, scope.donations);
 				//alway sort group donation by amount, but sort donation inside by sortField;
 				scope.groupDonationByEmail = activityFeedHelper.sortDonationByProperty(scope.groupDonationByEmail, 'amount', sortDirection);
 				scope.groupDonationByName = activityFeedHelper.sortDonationByProperty(scope.groupDonationByName, 'amount', sortDirection);
